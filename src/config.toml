@@ -1,5 +1,5 @@
 baseURL = "/"
-publishDir = "../public"
+publishDir = "../docs"
 languageCode = "en-us"
 DefaultContentLanguage = "en"
 title = "Cloud Native Buildpack Documentation"
