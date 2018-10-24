@@ -6,7 +6,7 @@
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="generator" content="Hugo 0.49.2" />
-<title>Creating a Cloud Native Buildpack :: Cloud Native Buildpack Documentation</title>
+<title>Cloud Native Buildpack Documentation :: Cloud Native Buildpack Documentation</title>
 <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 <link href="/css/font-awesome.min.css" rel="stylesheet">
 <link href="/css/nucleus.css" rel="stylesheet">
@@ -51,7 +51,7 @@
             <i class="fa fa-fw fa-home"></i>
           </a>
           </li>
-    <li data-nav-id="/" class="dd-item parent active alwaysopen
+    <li data-nav-id="/" class="dd-item active alwaysopen
         ">
       <div>
       <a href="/">Creating a Cloud Native Buildpack</a><i class="fa fa-circle-thin read-icon"></i>
@@ -96,65 +96,87 @@
       </div>
     
 
-    <h1>Creating a Cloud Native Buildpack</h1>
     
     
     
+    
+<span id="sidebar-toggle-span">
+<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fa fa-bars"></i> navigation</a>
+</span>
+           
+	
+		<h1>Customize your own home page</h1>
+		<p>
+		  The site is working. Don't forget to customize this homepage with your own. You typically have 2 choices :
+		</p>
+		<ul>
+		  <li><b>1. </b> Create an _index.md document in the content folder</li>
+		  <li><b>2. </b> Configure your server to automatically redirect this home page to one of your documentation pages</li>
+		</ul>
+	
+	<p><i class="fa fa-heart fa-4x"></i></p>
 
 
 
-<p>This is a step by step tutorial for creating a Ruby Cloud Native Buildpack. This tutorial will cover the following concepts:</p>
+    
+    
+        <div class="chevrons">
+    <div id="navigation">
+<a class="nav nav-prev" href="/" title="Cloud Native Buildpack Documentation"> <i class="fa fa-chevron-left"></i><label>Cloud Native Buildpack Documentation</label></a>
+    </div>
+  </div>
 
-<ul>
-<li>Buildpack Detection</li>
-<li>Buildpack Image Layering</li>
-<li>Buildpack Caching</li>
-<li>Making an OCI image Runnable</li>
-</ul>
+  </section>
+</article>
 
-<p>All source code from this tutorial is available <a href="tbd">here</a>.</p>
+<footer>
 
-<hr />
+<div class="footline">
+    
 
-<h3 id="prequesites">Prequesites</h3>
+    
 
-<p>Before we get started make sure you have the following installed on your system</p>
+    
 
-<ul>
-<li><a href="https://store.docker.com/search?type=edition&amp;offering=community">Docker Community Edition</a></li>
-<li><a href="https://github.com/buildpack/pack/releases">pack</a><br /></li>
-</ul>
+    
+    <div class="github-link">
+      <a href="https://github.com/vjeantet/hugo-theme-docdock/edit/master/exampleSite/content/" target="blank"><i class="fa fa-code-fork"></i>
+        Improve this page</a>
+    </div>
+    
+  </div>
 
-<hr />
 
-<h3 id="setup-your-local-environment">Setup Your Local Environment</h3>
+	<div>
 
-<p>First we will want to clone a sample ruby app that you can use when developing the ruby cloud native buildpack</p>
 
-<pre><code>mkdir workspace
-cd workspace
-git clone &lt;path to sample ruby app&gt;
-</code></pre>
+  
+    Create a content/_footer.md file to customize the footer content
+  
 
-<p>Next we want to create the directory where you will create your buildpack</p>
 
-<pre><code>cd workspace
-mkdir ruby-cnb
-</code></pre>
 
-<p>Finally, make sure your local docker daemon is running by running the following command</p>
+	</div>
+</footer>
 
-<pre><code>docker version
-</code></pre>
+<script src="/js/clipboard.min.js"></script>
 
-<p>The following output should appear</p>
+<link href="/css/featherlight.min.css" rel="stylesheet">
+<script src="/js/featherlight.min.js"></script>
 
-<pre><code>Client:
- Version:           18.06.1-ce
- API version:       1.38
- Go version:        go1.10.3
- Git commit:        e68fc7a
- Built:             Tue Aug 21 17:21:31 2018
+
+
+<script src="/theme-flex/script.js"></script>
+
+
+    
+
+    
+    
+
+    
+  </body>
+</html>uilt:             Tue Aug 21 17:21:31 2018
  OS/Arch:           darwin/amd64
  Experimental:      false
 
@@ -297,6 +319,8 @@ Error: failed with status code: 7
 
 <p>You will also notice <code>ANALYZE</code> now appears in the build output.  This step is part of the buildpack lifecycle that looks to see if any previous image builds have layers that the buildpack can re-use. We will get into this topic in more detail later.</p>
 
+<hr />
+
 <h3 id="building-your-ruby-app">Building Your Ruby App</h3>
 
 <p>Next we will make the build step work.  This will a few updates to the build script.</p>
@@ -415,6 +439,8 @@ Successfully built af8d138f6c96
 Successfully tagged test-ruby-app:latest
 </code></pre>
 
+<hr />
+
 <h3 id="making-the-application-runnable">Making the Application Runnable</h3>
 
 <p>Next we want to set a default start command for the application in the image.  You will want to add the following code to then end of your build script.</p>
@@ -469,6 +495,8 @@ echo 'processes = [{ type = &quot;web&quot;, command = &quot;rackup -p 8080 --ho
 </code></pre>
 
 <p>You should also be able to access the app via your web browser at <code>localhost:8080</code>.</p>
+
+<hr />
 
 <h3 id="improving-buildpack-performance-through-caching">Improving Buildpack Performance Through Caching</h3>
 

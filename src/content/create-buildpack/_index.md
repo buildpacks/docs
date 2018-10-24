@@ -218,7 +218,7 @@ Notice that `detect` now passes because there is a valid Gemfile in the ruby app
 
 You will also notice `ANALYZE` now appears in the build output.  This step is part of the buildpack lifecycle that looks to see if any previous image builds have layers that the buildpack can re-use. We will get into this topic in more detail later.
 
-
+---
 
 ### Building Your Ruby App
 
@@ -350,6 +350,8 @@ Successfully built af8d138f6c96
 Successfully tagged test-ruby-app:latest
 ```
 
+---
+
 ### Making the Application Runnable
 
 Next we want to set a default start command for the application in the image.  You will want to add the following code to then end of your build script. 
@@ -408,6 +410,8 @@ And when you run `docker run -p 8080:8080 test-ruby-app` you should see you the 
 ```
 
 You should also be able to access the app via your web browser at `localhost:8080`.
+
+---
 
 ### Improving Buildpack Performance Through Caching
 
