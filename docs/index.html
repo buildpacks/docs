@@ -103,7 +103,20 @@
 
 
 
-<p>This is a step by step tutorial for creating a Ruby Cloud Native Buildpack.</p>
+<p>This is a step by step tutorial for creating a Ruby Cloud Native Buildpack. This tutorial will cover the following concepts:</p>
+
+<ul>
+<li>Buildpack Detection</li>
+<li>Buildpack Image Layering</li>
+<li>Buildpack Caching</li>
+<li>Making an OCI image Runnable</li>
+</ul>
+
+<p>All source code from this tutorial is available <a href="tbd">here</a>.</p>
+
+<hr />
+
+<h3 id="prequesites">Prequesites</h3>
 
 <p>Before we get started make sure you have the following installed on your system</p>
 
@@ -112,17 +125,21 @@
 <li><a href="https://github.com/buildpack/pack/releases">pack</a><br /></li>
 </ul>
 
+<hr />
+
 <h3 id="setup-your-local-environment">Setup Your Local Environment</h3>
 
 <p>First we will want to clone a sample ruby app that you can use when developing the ruby cloud native buildpack</p>
 
-<pre><code>cd ~
+<pre><code>mkdir workspace
+cd workspace
 git clone &lt;path to sample ruby app&gt;
 </code></pre>
 
 <p>Next we want to create the directory where you will create your buildpack</p>
 
-<pre><code>mkdir ~/ruby-cnb
+<pre><code>cd workspace
+mkdir ruby-cnb
 </code></pre>
 
 <p>Finally, make sure your local docker daemon is running by running the following command</p>
@@ -152,14 +169,16 @@ Server:
   Experimental:     true
 </code></pre>
 
+<hr />
+
 <h3 id="create-the-building-blocks-of-a-cloud-native-buildpack">Create the Building Blocks of a Cloud Native Buildpack</h3>
 
 <p>Now we will setup the buildpack scaffolding. You will need to make these files in your <code>ruby-cnb</code> directory</p>
 
-<pre><code>cd ~/ruby-cnb
+<pre><code>cd ruby-cnb
 </code></pre>
 
-<h4 id="buildpack-toml">buildpack.toml</h4>
+<h5 id="buildpack-toml">buildpack.toml</h5>
 
 <p>Once you are in the directory. You will need to create a <code>buildpack.toml</code> file in that directory. This file must exist in the root directory of your buildpack so the <code>pack</code> cli knows it is a buildpack and it can apply the build lifecycle to it.</p>
 
@@ -179,9 +198,7 @@ id = [&quot;io.buildpacks.stacks.bionic&quot;]
 
 <p>You will notice two specific fields in the file: buildpack ID and stack ID. The buildpack ID is the way you will reference the buildpack when you create buildpack groups, builders, etc.  The stack ID is the root file system in which the buildpack will be built.  This example is bulit on ubuntu bionic.</p>
 
-<hr />
-
-<h4 id="detect-and-build">Detect and Build</h4>
+<h5 id="detect-and-build">Detect and Build</h5>
 
 <p>Next you will need to create the detect and build scripts.  These files must exist in a <code>bin</code> directory in your buildpack directory.</p>
 
@@ -215,15 +232,13 @@ exit 1
 
 <p>These two files are now executable detect and build scripts.  Now you can run your use your buildpack.</p>
 
-<hr />
-
-<h4 id="using-your-buildpack-with-pack">Using your buildpack with pack</h4>
+<h5 id="using-your-buildpack-with-pack">Using your buildpack with pack</h5>
 
 <p>In order to test your buildpack, you will need to run the buildpack against your sample ruby app using the <code>pack</code> cli.</p>
 
 <p>Run the following pack command</p>
 
-<pre><code>pack build test-ruby-app --buildpack ~/ruby-cnb --path ~/ruby-sample-app 
+<pre><code>pack build test-ruby-app --buildpack workspace/ruby-cnb  --path workspace/ruby-sample-app/
 </code></pre>
 
 <p>The <code>pack build</code> command takes in your buildpack directory as the <code>--buildpack</code> argument and the ruby sample app as the <code>--path</code> argument</p>
@@ -236,6 +251,8 @@ exit 1
 2018/10/16 14:59:04 Error: failed to detect
 Error: run detect container: failed with status code: 6
 </code></pre>
+
+<hr />
 
 <h3 id="detecting-your-ruby-app">Detecting Your Ruby App</h3>
 
@@ -258,11 +275,9 @@ if [[ ! -f Gemfile ]]; then
 fi
 </code></pre>
 
-<hr />
-
 <p>Next, rebuild your app with your updated buildpack</p>
 
-<pre><code>pack build test-ruby-app --buildpack ~/ruby-cnb  --path ~/ruby-sample-app/ 
+<pre><code>pack build test-ruby-app --buildpack workspace/ruby-cnb  --path workspace/ruby-sample-app/
 </code></pre>
 
 <p>You will see the following output</p>
@@ -310,7 +325,7 @@ mkdir -p $launchdir/bundler
 wget -q -O - &quot;$bundler_url&quot; | tar -xzf - -C &quot;$launchdir/bundler&quot;
 </code></pre>
 
-<p>Finalluy, we will need to install bundle and then run bundle install</p>
+<p>Finally, we will need to install bundle and then run bundle install</p>
 
 <pre><code>gem install bundler
 bundle install
@@ -344,11 +359,9 @@ echo &quot;---&gt; Installing gems&quot;
 bundle install
 </code></pre>
 
-<hr />
-
 <p>Now if you build your app again</p>
 
-<pre><code>pack build test-ruby-app --buildpack ~/ruby-cnb  --path ~/ruby-sample-app/ 
+<pre><code>pack build test-ruby-app --buildpack workspace/ruby-cnb  --path workspace/ruby-sample-app/
 </code></pre>
 
 <p>You will see the following output</p>
@@ -380,8 +393,7 @@ Use `bundle info [gemname]` to see where a bundled gem is installed.
 
 <p>After building the ruby app, the buildpack now creates a docker file based on the output of build and then runs it</p>
 
-<pre><code>
-*** EXPORTING:
+<pre><code>*** EXPORTING:
 Step 1/4 : FROM packs/run *** This is the run image from your stack ***
 ---&gt; aebbb14d9529
 Step 2/4 : ADD --chown=pack:pack /workspace/app /workspace/app  *** This is the app ***
@@ -408,7 +420,7 @@ Successfully tagged test-ruby-app:latest
 <p>Next we want to set a default start command for the application in the image.  You will want to add the following code to then end of your build script.</p>
 
 <pre><code># Set default start command
-echo 'processes = [{ type = &quot;web&quot;, command = &quot;rackup -p 8080 -o 0.0.0.0&quot;}]' &gt; &quot;$launchdir/launch.toml&quot;
+echo 'processes = [{ type = &quot;web&quot;, command = &quot;rackup -p 8080 --host 0.0.0.0&quot;}]' &gt; &quot;$launchdir/launch.toml&quot;
 </code></pre>
 
 <p>This sets your default start command.</p>
@@ -441,12 +453,12 @@ echo &quot;---&gt; Installing gems&quot;
 bundle install
 
 # Set default start command
-echo 'processes = [{ type = &quot;web&quot;, command = &quot;rackup -p 8080 -o 0.0.0.0&quot;}]' &gt; &quot;$launchdir/launch.toml&quot;
+echo 'processes = [{ type = &quot;web&quot;, command = &quot;rackup -p 8080 --host 0.0.0.0&quot;}]' &gt; &quot;$launchdir/launch.toml&quot;
 </code></pre>
 
 <p>Now you will rebuild your app using the updated buildpack with the launch command</p>
 
-<pre><code>pack build test-ruby-app --buildpack ~/ruby-cnb  --path ~/ruby-sample-app/ 
+<pre><code>pack build test-ruby-app --buildpack workspace/ruby-cnb  --path workspace/ruby-sample-app/
 </code></pre>
 
 <p>And when you run <code>docker run -p 8080:8080 test-ruby-app</code> you should see you the WEBRICK webserver startup</p>
@@ -456,11 +468,13 @@ echo 'processes = [{ type = &quot;web&quot;, command = &quot;rackup -p 8080 -o 0
 [2018-10-17 15:05:38] INFO  WEBrick::HTTPServer#start: pid=1 port=8080
 </code></pre>
 
-<p>And you should be able to access the app via your web browser at <code>localhost:8080</code></p>
+<p>You should also be able to access the app via your web browser at <code>localhost:8080</code>.</p>
 
 <h3 id="improving-buildpack-performance-through-caching">Improving Buildpack Performance Through Caching</h3>
 
-<p>Next we want to separate the ruby interpreter and bundled gems into different layers.  This will allows us to cache the ruby layer and gem dependency layer separate, which help speed up builds.</p>
+<p>Next we want to separate the ruby interpreter and bundled gems into different layers.  This will allows us to cache the ruby layer and gem dependency layer separately, which helps speed up builds.</p>
+
+<h5 id="creating-the-bundler-layer">Creating the Bundler Layer</h5>
 
 <p>To do this replace the line</p>
 
@@ -509,12 +523,12 @@ bundle install --path &quot;$launchdir/bundler&quot; --binstubs &quot;$launchdir
 
 
 # Set default start command
-echo 'processes = [{ type = &quot;web&quot;, command = &quot;rackup -p 8080 -o 0.0.0.0&quot;}]' &gt; &quot;$launchdir/launch.toml&quot;
+echo 'processes = [{ type = &quot;web&quot;, command = &quot;rackup -p 8080 --host 0.0.0.0&quot;}]' &gt; &quot;$launchdir/launch.toml&quot;
 </code></pre>
 
 <p>Now when we run</p>
 
-<pre><code>pack build test-ruby-app --buildpack ~/ruby-cnb  --path ~/ruby-sample-app/
+<pre><code>pack build test-ruby-app --buildpack workspace/ruby-cnb  --path workspace/ruby-sample-app/
 </code></pre>
 
 <p>You will see the following change during EXPORT</p>
@@ -543,7 +557,9 @@ Successfully built d66d877f6442
 Successfully tagged test-ruby-app:latest
 </code></pre>
 
-<p>Next we will start caching gem dependencies to help speed up the build if no new dependencies are needed</p>
+<h5 id="caching-gem-dependencies">Caching Gem Dependencies</h5>
+
+<p>Next we will start caching gem dependencies to help speed up the build if no new dependencies are needed.</p>
 
 <p>Replace the bundle logic from the previous step</p>
 
@@ -554,22 +570,21 @@ touch &quot;$launchdir/bundler.toml&quot;
 bundle install --path &quot;$launchdir/bundler&quot; --binstubs &quot;$launchdir/bundler/bin&quot;
 </code></pre>
 
-<p>With this new logic that checks to see if any gems have been changed</p>
+<p>With this new logic that checks to see if any gems have been changed. This simply creates a checksum for the previous Gemfile and compares it to the checksum of the current Gemfile.  If they are the same, the gems are reused. If they are not, the new gems are installed.</p>
 
 <pre><code>### START BUNDLER LAYER
-#Create a checksum for the Gemfile.lock to determine if Gemfile.lock has changed
-local_bundler_checksum=$(md5sum Gemfile.lock | cut -d' ' -f1)
-#Gets the checksum for the previous images Gemfile.lock
-if [[ -f $launchdir/bundler.toml ]]; then
-    remote_bundler_checksum=$(cat &quot;$launchdir/bundler.toml&quot; | yj -t | jq -r .lock_checksum)
-fi
 
 #Compares previous Gemfile.lock checksum to the current Gemfile.lock
-if [[ -f Gemfile.lock &amp;&amp; $local_bundler_checksum == $remote_bundler_checksum ]] ; then
+local_bundler_checksum=$(sha256sum Gemfile.lock | cut -d ' ' -f 1) 
+remote_bundler_checksum=$(cat &quot;$launchdir/bundler.toml&quot; | yj -t | jq -r .lock_checksum 2&gt;/dev/null || echo 'not found')
+
+if [[ -f Gemfile.lock &amp;&amp; $local_bundler_checksum == $remote_bundler_checksum &amp;&amp; $reused_ruby == 'true' ]] ; then
     #Determine no gem depencencies have changed, so can reuse existing gems without running bundle install
-	echo &quot;---&gt; Reusing gems&quot;
+    echo &quot;---&gt; Reusing gems&quot;
+    bundle config --local path &quot;$launchdir/bundler&quot; &gt;/dev/null 
+    bundle config --local bin &quot;$launchdir/bundler/bin&quot; &gt;/dev/null 
 else
-	#Determine there has been a gem dependency change and will create a new version of the bundler layer to install new gems
+    #Determine there has been a gem dependency change and will create a new version of the bundler layer to install new gems
     echo &quot;---&gt; Installing gems&quot;
     mkdir &quot;$launchdir/bundler&quot;
     echo &quot;lock_checksum = \&quot;$local_bundler_checksum\&quot;&quot; &gt; &quot;$launchdir/bundler.toml&quot;
@@ -604,7 +619,8 @@ gem install bundler
 
 ### START BUNDLER LAYER
 #Compares previous Gemfile.lock checksum to the current Gemfile.lock
-local_bundler_checksum=$(sha256sum Gemfile.lock | cut -d ' ' -f 1) remote_bundler_checksum=$(cat &quot;$launchdir/bundler.toml&quot; | yj -t | jq -r .lock_checksum 2&gt;/dev/null || echo 'not found')
+local_bundler_checksum=$(sha256sum Gemfile.lock | cut -d ' ' -f 1) 
+remote_bundler_checksum=$(cat &quot;$launchdir/bundler.toml&quot; | yj -t | jq -r .lock_checksum 2&gt;/dev/null || echo 'not found')
 if [[ -f Gemfile.lock &amp;&amp; $local_bundler_checksum == $remote_bundler_checksum &amp;&amp; $reused_ruby == 'true' ]] ; then
     #Determine no gem depencencies have changed, so can reuse existing gems without running bundle install
     echo &quot;---&gt; Reusing gems&quot;
@@ -624,17 +640,17 @@ fi
 echo 'processes = [{ type = &quot;web&quot;, command = &quot;rackup -p 8080 -o 0.0.0.0&quot;}]' &gt; &quot;$launchdir/launch.toml&quot;
 </code></pre>
 
-<p>And if you run</p>
+<p>Now when you build your app it will now generate the Gemfile checksum for the first time and store it in the image</p>
 
-<p><code>pack build test-ruby-app --buildpack ~/Dev/cnb/ruby-cnb  --path ~/Dev/ruby-sample-app/</code></p>
+<pre><code>pack build test-ruby-app --buildpack workspace/ruby-cnb  --path workspace/ruby-sample-app/
+</code></pre>
 
-<p>it will build your app and generate the Gemfile checksum for the first time and store it in the image</p>
+<p>And if you build the app again</p>
 
-<p>And now if you run the command again</p>
+<pre><code>pack build test-ruby-app --buildpack workspace/ruby-cnb  --path workspace/ruby-sample-app/
+</code></pre>
 
-<p><code>pack build test-ruby-app --buildpack ~/Dev/cnb/ruby-cnb  --path ~/Dev/ruby-sample-app/</code></p>
-
-<p>you will see the new caching logic work</p>
+<p>You will see the new caching logic work</p>
 
 <pre><code>*** BUILDING:
 ---&gt; Ruby Buildpack
@@ -649,29 +665,29 @@ Done installing documentation for bundler after 2 seconds
 
 </code></pre>
 
-<p>Now we will add the logic to cache the ruby interpreter to speed up build times if a new version of ruby s not needed</p>
+<h5 id="cache-ruby">Cache Ruby</h5>
+
+<p>Now we will add the logic to cache the ruby interpreter to speed up build times if a new version of ruby is not needed.</p>
 
 <p>First we need to capture the cache directory from the build lifecycle.</p>
 
 <pre><code>cachedir=$2
 </code></pre>
 
-<p>Next we will set a desired ruby version that we will support as a variable, in this instance ruby 2.5.1</p>
+<p>Next we will set a desired ruby version that we will support as a variable, in this instance <code>ruby 2.5.1</code>.</p>
 
 <pre><code>ruby_version=2.5.1
 </code></pre>
 
-<p>Next we will update our ruby paths inside the script to point to the cachedir instead of the launchdir</p>
+<p>Next we will update our ruby paths inside the script to point to the <code>$cachedir</code> instead of the <code>$launchdir</code>.</p>
 
 <pre><code>export PATH=$PATH:$cachedir/ruby/bin
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}$cachedir/ruby/lib
 </code></pre>
 
-<p>Next we will add the ruby caching logic that checks to see if ruby has been successfully cached with the correct version</p>
+<p>Next we will add the ruby caching logic that checks to see if ruby has been successfully cached with the correct version.</p>
 
-<p>This logic checks to see if version cached version captured in ruby.toml matches the desired version defined in the ruby_version variable</p>
-
-<p>If it is the same - it reuses the cached version, if it is not (or does not exist) it will download and cache the correct version</p>
+<p>This logic checks to see if the cached version captured in <code>ruby.toml</code> matches the desired version defined in the <code>ruby_version</code> variable. If it is the same - it reuses the cached version, if it is not (or does not exist) it will download and cache the correct version.</p>
 
 <pre><code>if [[ $ruby_version == $([[ -f $cachedir/ruby.toml ]] &amp;&amp; cat &quot;$cachedir/ruby.toml&quot; | yj -t | jq -r .version) ]] ; then
     echo &quot;---&gt; Reusing ruby $ruby_version&quot;
@@ -755,10 +771,10 @@ echo 'processes = [{ type = &quot;web&quot;, command = &quot;rackup -p 8080&quot
 
 <p>Now when you run</p>
 
-<pre><code>pack build test-ruby-app --buildpack ~/Dev/cnb/ruby-cnb  --path ~/Dev/ruby-sample-app/
+<pre><code>pack build test-ruby-app --buildpack workspace/ruby-cnb  --path workspace/ruby-sample-app/
 </code></pre>
 
-<p>You will noticed that the ruby layer is being added to the cache and then added to the launch directory</p>
+<p>You will notice that the ruby layer is being added to the cache and then added to the launch directory.</p>
 
 <pre><code>*** BUILDING:
 ---&gt; Ruby Buildpack
@@ -775,10 +791,10 @@ Done installing documentation for bundler after 2 seconds
 
 <p>If you rebuild your app with the cached version of ruby using</p>
 
-<pre><code>pack build test-ruby-app --buildpack ~/Dev/cnb/ruby-cnb  --path ~/Dev/ruby-sample-app/
+<pre><code>pack build test-ruby-app --buildpack workspace/ruby-cnb  --path workspace/ruby-sample-app/
 </code></pre>
 
-<p>You will now see the build is using the cached version of ruby</p>
+<p>You will now see the build is using the cached version of ruby.</p>
 
 <pre><code>*** BUILDING:
 ---&gt; Ruby Buildpack
@@ -787,7 +803,9 @@ Done installing documentation for bundler after 2 seconds
 ---&gt; Reusing gems
 </code></pre>
 
-<p>Next we will update the detect script to check for a specific version of ruby that the user has defined in their application via a <code>.ruby-version</code> file</p>
+<h5 id="select-ruby-version">Select Ruby Version</h5>
+
+<p>Next we will update the detect script to check for a specific version of ruby that the user has defined in their application via a <code>.ruby-version</code> file,</p>
 
 <p>Append the following version check to the end of your detect script</p>
 
@@ -827,14 +845,14 @@ echo &quot;ruby = { version = \&quot;$version\&quot; }&quot;
 <pre><code>ruby_version=$(yj -t | jq -r .ruby.version)
 </code></pre>
 
-<p>Now in your ruby app - create a file named <code>.ruby-version</code> and add the following line to it</p>
+<p>Now in your ruby app, create a file named <code>.ruby-version</code> and add the following line to it</p>
 
 <pre><code>2.5.0
 </code></pre>
 
 <p>Now when run</p>
 
-<pre><code>pack build test-ruby-app --buildpack ~/Dev/cnb/ruby-cnb  --path ~/Dev/ruby-sample-app/
+<pre><code>pack build test-ruby-app --buildpack workspace/ruby-cnb  --path workspace/ruby-sample-app/
 </code></pre>
 
 <p>You will see the new ruby version downloaded and installed</p>
@@ -852,14 +870,9 @@ Done installing documentation for bundler after 3 seconds
 ---&gt; Reusing gems
 </code></pre>
 
-<p>That&rsquo;s it!  You&rsquo;ve created your first buildpack.</p>
+<hr />
 
-<p>There are a handful of advanced concepts we will cover in other articles. Specifically :</p>
-
-<ul>
-<li>Adding your buildpack to a builder</li>
-<li>TBD</li>
-</ul>
+<p>That&rsquo;s it!  You&rsquo;ve created your first Cloud Native Buildpack that uses detection, image layers and caching to create a runnable OCI image. In a seperate tutorial we will cover distributing this buildpack for developer use via a Cloud Native Buildpack <code>builder</code>.</p>
 
 
 
