@@ -8,7 +8,7 @@ creatoremail = "ssisil@pivotal.io"
 lastmodifierdisplayname = "Scott Sisil"
 lastmodifieremail = "ssisil@pivotal.io"
 alwaysopen=true
-url="/"
+
 
 +++
 

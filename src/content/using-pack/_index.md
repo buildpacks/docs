@@ -1,7 +1,7 @@
 +++
 
 title="Getting Started with pack"
-weight=1
+weight=2
 type="page"
 creatordisplayname = "Scott Sisil"
 creatoremail = "ssisil@pivotal.io"
@@ -46,10 +46,3 @@ alwaysopen=true
 
 ----
 
-## Development
-
-To run the tests, simply run:
-
-```bash
-$ go test
-```
