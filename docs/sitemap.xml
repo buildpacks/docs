@@ -3,7 +3,27 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>/using-pack/building-app/</loc>
+  </url>
+  
+  <url>
     <loc>/</loc>
+  </url>
+  
+  <url>
+    <loc>/using-pack/</loc>
+  </url>
+  
+  <url>
+    <loc>/using-pack/update-app-rebase/</loc>
+  </url>
+  
+  <url>
+    <loc>/using-pack/working-with-builders/</loc>
+  </url>
+  
+  <url>
+    <loc>/using-pack/managing-stacks/</loc>
   </url>
   
   <url>

@@ -6,7 +6,7 @@
       <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="generator" content="Hugo 0.49.2" />
-<title>Tags :: Cloud Native Buildpack Documentation</title>
+<title>Updating app images using `rebase` :: Cloud Native Buildpack Documentation</title>
 <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 <link href="/css/font-awesome.min.css" rel="stylesheet">
 <link href="/css/nucleus.css" rel="stylesheet">
@@ -23,7 +23,7 @@
 
     
   </head>
-  <body data-url="/tags/">
+  <body data-url="/using-pack/update-app-rebase/">
     
       <header>
   <div class="logo">
@@ -52,7 +52,7 @@
       <a href="/">Creating a Cloud Native Buildpack</a><i class="fa fa-circle-thin read-icon"></i>
       </div>
     </li>
-    <li data-nav-id="/using-pack/" class="dd-item alwaysopen haschildren
+    <li data-nav-id="/using-pack/" class="dd-item parent alwaysopen haschildren
         ">
       <div>
       <a href="/using-pack/">Getting Started with pack</a>
@@ -66,7 +66,7 @@
           </a><i class="fa fa-circle-thin read-icon"></i>
         </div>
     </li>
-      <li data-nav-id="/using-pack/update-app-rebase/" class="dd-item">
+      <li data-nav-id="/using-pack/update-app-rebase/" class="dd-item active">
         <div>
           <a href="/using-pack/update-app-rebase/">
             Updating app images using `rebase`
@@ -109,7 +109,7 @@
     <option value="/using-pack/" >
    Getting Started with pack</option> 
       <option value="/using-pack/building-app/" >- Building app images with `build`</option>
-      <option value="/using-pack/update-app-rebase/" >- Updating app images using `rebase`</option>
+      <option value="/using-pack/update-app-rebase/"  selected>- Updating app images using `rebase`</option>
       <option value="/using-pack/working-with-builders/" >- Working with builders</option>
       <option value="/using-pack/managing-stacks/" >- Managing Stacks</option>
   
@@ -121,41 +121,41 @@
     </div>
     
 
-    <h1>Tags</h1>
+    <h1>Updating app images using `rebase`</h1>
     
     
     
+    
 
+<h2 id="updating-app-images-using-rebase">Updating app images using <code>rebase</code></h2>
 
+<p>The <code>pack rebase</code> command allows app developers to rapidly update an app image when its stack&rsquo;s run image has changed.
+By using image layer rebasing, this command avoids the need to fully rebuild the app.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ pack rebase &lt;image-name&gt;</code></pre></div>
+<h3 id="example-rebasing-an-app-image">Example: Rebasing an app image</h3>
 
-<div class="extra-pagination inner">
-<nav class="pagination" role="navigation">
-	
-	<span class="page-number">Page 1 of 0</span>
-	
-</nav>
+<p>Consider an app image <code>my-app:my-tag</code> that was originally built using the default builder. That builder&rsquo;s stack has a
+run image called <code>pack/run</code>. Running the following will update the base of <code>my-app:my-tag</code> with the latest version of
+<code>pack/run</code>.</p>
+<div class="highlight"><pre style="color:#272822;background-color:#fafafa;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ pack rebase my-app:my-tag</code></pre></div>
+<p>Like <a href="#building-app-images-using-build"><code>build</code></a>, <code>rebase</code> has a <code>--publish</code> flag that can be
+used to publish the updated app image to a registry.</p>
 
-</div>
+<h3 id="rebasing-explained">Rebasing explained</h3>
 
+<p><img src="rebase.svg" alt="rebase diagram" /></p>
 
-
-<div style="margin-bottom:2rem"></div>
-
-<nav class="pagination" role="navigation">
-	
-	<span class="page-number">Page 1 of 0</span>
-	
-</nav>
-
-
+<p>At its core, image rebasing is a simple process. By inspecting an app image, <code>rebase</code> can determine whether or not a
+newer version of the app&rsquo;s base image exists (either locally or in a registry). If so, <code>rebase</code> updates the app image&rsquo;s
+layer metadata to reference the newer base image version.</p>
 
 
     
     
         <div class="chevrons">
     <div id="navigation">
-<a class="nav nav-prev" href="/" title="Cloud Native Buildpack Documentation"> <i class="fa fa-chevron-left"></i><label>Cloud Native Buildpack Documentation</label></a>
-    <a class="nav nav-next" href="/using-pack/" title="Getting Started with pack" style="margin-right: 0px;"><label>Getting Started with pack</label><i class="fa fa-chevron-right"></i></a></div>
+<a class="nav nav-prev" href="/using-pack/building-app/" title="Building app images with `build`"> <i class="fa fa-chevron-left"></i><label>Building app images with `build`</label></a>
+    <a class="nav nav-next" href="/using-pack/working-with-builders/" title="Working with builders" style="margin-right: 0px;"><label>Working with builders</label><i class="fa fa-chevron-right"></i></a></div>
   </div>
 
   </section>
@@ -167,12 +167,16 @@
     
 
     
+    <div class="author">
+        <i class='fa fa-user'></i> <a href="mailto:ssisil@pivotal.io">Scott Sisil</a>
+    </div>
+    
 
     
 
     
     <div class="github-link">
-      <a href="https://github.com/vjeantet/hugo-theme-docdock/edit/master/exampleSite/content/" target="blank"><i class="fa fa-code-fork"></i>
+      <a href="https://github.com/vjeantet/hugo-theme-docdock/edit/master/exampleSite/content/using-pack/update-app-rebase.md" target="blank"><i class="fa fa-code-fork"></i>
         Improve this page</a>
     </div>
     
