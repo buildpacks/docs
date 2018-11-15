@@ -1,0 +1,28 @@
+/**********************************
+
+Colors
+
+**********************************/
+
+/* Primary colors */
+$pink             : #DF0A6B;
+$blue-dark        : #242960;
+$blue-light       : #47529E;
+
+/* Shades */
+$white            : #FFFFFF;
+$off-white        : #F7F7F7;
+$gray-dark        : #302C2E;
+$black            : #000000;
+
+.text-pink {
+  color: $pink;
+}
+
+.bg-pink {
+  background-color: $pink;
+}
+
+.bg-blue {
+  background-color: $blue-light;
+}

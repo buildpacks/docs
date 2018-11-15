@@ -1,0 +1,40 @@
+/**********************************
+
+Hero
+
+**********************************/
+
+.hero {
+  padding: 8vw 20px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-weight: 600;
+  max-width: 580px;
+  margin: 0 auto 20px;
+}
+
+.hero .button-holder {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.hero .button {
+  margin-bottom: 20px;
+  max-width: 200px;
+}
+
+@media (min-width: 768px) {
+  .hero .button-holder {
+    flex-direction: row;
+  }
+
+  .hero .button {
+    margin-right: 20px;
+    margin-bottom: 0;
+  }
+}

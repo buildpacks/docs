@@ -1,0 +1,46 @@
+/**********************************
+
+Button
+
+**********************************/
+
+.button {
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  display: inline-block;
+  text-decoration: none;
+  line-height: 130%;
+}
+
+a.button:hover {
+  color: white;
+  text-decoration: none;
+  opacity: .9;
+}
+
+.icon-button {
+  display: flex;
+  width: fit-content;
+  padding-right: 25px; /* makes them look more even to have more right padding */
+}
+
+.icon-button::before {
+  content: '';
+  display: inline-block;
+  align-self: center;
+  margin: 0 10px 0 0;
+  height: 20px;
+  width: 20px;
+  min-width: 20px; /* so on other sizes, it never shrinks */
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.button.github-button::before {
+  background-image: url('/images/github-mark.svg');
+}
+
+.button.download-button::before {
+  background-image: url('/images/download-icon.svg');
+}

@@ -1,0 +1,24 @@
+/**********************************
+
+Content
+
+**********************************/
+
+.content {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+@media (min-width: 576px) {
+  .content {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+}
+
+@media (min-width: 768px) {
+  .content {
+    padding-top: 70px;
+    padding-bottom: 70px;
+  }
+}

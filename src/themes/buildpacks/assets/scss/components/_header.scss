@@ -1,0 +1,114 @@
+/**********************************
+
+Header
+
+**********************************/
+
+/**** mobile nav ****/
+
+header ul {
+  display: none;
+}
+
+header input[type=checkbox] {
+  display: none;
+}
+
+/* toggle */
+header #mobile-nav-toggle ~ label {
+  font-size: 1.9rem;
+}
+
+header #mobile-nav-toggle:checked ~ label ~ ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  background: white;
+  right: 0;
+  top: 90px;
+  padding: 20px;
+  width: 100%;
+  border-bottom: 1px solid #eee;
+  box-shadow: 0 1px 12px 0 rgba(0,0,0,0.03);
+}
+
+header li {
+  margin: 10px 0;
+  flex: 1;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+/**** desktop nav ****/
+
+@media (min-width: 768px) {
+  header #mobile-nav-toggle ~ label{
+    display: none;
+  }
+
+  /* make sure if the mobile nav is open and the screen increases that the nav displays correctly on desktop */
+  header #mobile-nav-toggle:checked ~ label ~ ul {
+    display: flex;
+  }
+
+  header ul {
+    display: flex;
+
+    /* undo all the mobile styles */
+    position: relative;
+    right: auto;
+    top: auto;
+    padding: 0;
+    width: auto;
+    border: none;
+    box-shadow: none;
+  }
+
+  header li {
+    display: flex; /* ensure header items stay centered no matter the height of a button */
+    align-items: center;
+  }
+
+  header li:last-of-type {
+    margin-right: 0;
+  }
+}
+
+/**** general header styles ****/
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+}
+
+header .logo img {
+  width: auto;
+  min-width: 160px;
+}
+
+@media (min-width: 768px) {
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+  }
+
+  header li {
+    margin: 0 20px;
+  }
+
+  header .logo img {
+    width: 200px;
+  }
+}

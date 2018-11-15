@@ -1,0 +1,35 @@
+/**********************************
+
+Code
+
+**********************************/
+
+.pre-scrollable {
+  max-height: 340px;
+  overflow-y: scroll;
+}
+
+/* one line code */
+code.highlight {
+  font-weight: 600;
+  background-color: #eee;
+  padding: 5px 10px;
+  font-family: monospace;
+  font-size: 1rem;
+  color: inherit;
+}
+
+/* multi-line code */
+.code-block {
+  background-color: white;
+  border: 1px solid #f0f0f0;
+  border-radius: .25rem;
+  padding: 15px 20px;
+}
+
+/* command line code (inludes an not-selectable $ at the beginning) */
+.command-line::before {
+  content: '$';
+  color: #ccc;
+  margin-right: 15px;
+}
