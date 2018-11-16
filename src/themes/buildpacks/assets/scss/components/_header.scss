@@ -14,37 +14,49 @@ header input[type=checkbox] {
   display: none;
 }
 
+header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+}
+
 /* toggle */
 header #mobile-nav-toggle ~ label {
   font-size: 1.9rem;
+  transition: opacity 0.3s;
+}
+
+header #mobile-nav-toggle:checked ~ label {
+  opacity: 0.5;
 }
 
 header #mobile-nav-toggle:checked ~ label ~ ul {
+  width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
 
 header ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  position: absolute;
   background: white;
-  right: 0;
-  top: 90px;
-  padding: 20px;
-  width: 100%;
-  border-bottom: 1px solid #eee;
-  box-shadow: 0 1px 12px 0 rgba(0,0,0,0.03);
+  justify-content: space-between;
+  margin-top: 20px;
 }
 
 header li {
-  margin: 10px 0;
-  flex: 1;
   display: flex;
-  align-content: center;
+  align-items: center;
   justify-content: center;
+}
+
+header li a {
+  white-space: nowrap;
+  padding: 0 20px;
 }
 
 /**** desktop nav ****/
@@ -54,27 +66,9 @@ header li {
     display: none;
   }
 
-  /* make sure if the mobile nav is open and the screen increases that the nav displays correctly on desktop */
-  header #mobile-nav-toggle:checked ~ label ~ ul {
-    display: flex;
-  }
-
   header ul {
     display: flex;
-
-    /* undo all the mobile styles */
-    position: relative;
-    right: auto;
-    top: auto;
-    padding: 0;
-    width: auto;
-    border: none;
-    box-shadow: none;
-  }
-
-  header li {
-    display: flex; /* ensure header items stay centered no matter the height of a button */
-    align-items: center;
+    margin-top: 0;
   }
 
   header li:last-of-type {
@@ -94,21 +88,4 @@ header {
 header .logo img {
   width: auto;
   min-width: 160px;
-}
-
-@media (min-width: 768px) {
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-  }
-
-  header li {
-    margin: 0 20px;
-  }
-
-  header .logo img {
-    width: 200px;
-  }
 }

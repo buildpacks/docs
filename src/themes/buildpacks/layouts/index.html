@@ -1,19 +1,6 @@
 {{ define "main" }}
 
-<header>
-  <a href="/" class="logo"><img src="/images/buildpacks-logo.svg" alt="Buildpacks.io Logo"></a>
-  <nav>
-    <input type="checkbox" id="mobile-nav-toggle">
-    <label for="mobile-nav-toggle">&#9776;</label>
-    <ul>
-      <li><a href="#get-started">Get Started</a></li>
-      <li><a href="/docs">Docs</a></li>
-      <li><a href="https://github.com/buildpack" class="github-button icon-button bg-blue button">GitHub</a></li>
-    </ul>
-  </nav>
-</header>
-
-<div class="inset-grey-container">
+<div class="well">
   <section class="container hero">
     <h1><span class="text-pink">Buildpacks</span> are pluggable, modular tools that translate source code into OCI images.</h1>
     <p class="button-holder">
@@ -48,7 +35,7 @@
   </section>
 </div>
 
-<div id="get-started" class="inset-grey-container content">
+<div id="get-started" class="well content">
   <section class="container">
     <h2>Getting Started with Cloud Native Buildpacks</h2>
 

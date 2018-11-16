@@ -7,6 +7,34 @@ Content
 .content {
   padding-top: 30px;
   padding-bottom: 30px;
+
+  h2 {
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+    position: relative;
+    &:after {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      content: '';
+      width: 40%;
+      height: 2px;
+      background-color: $blue-dark;
+    }
+  }
+  
+  ul {
+    list-style-type: none;
+    margin: 0 0 30px 0;
+    padding: 0;
+    
+    li {
+      border-left: 1px solid #D1D4E7;
+      color: $blue-light;
+      margin-bottom: 10px;
+      padding-left: 20px;
+    }
+  }
 }
 
 @media (min-width: 576px) {
