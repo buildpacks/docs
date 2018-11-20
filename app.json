@@ -1,5 +1,7 @@
 {
   "buildpacks": [
-    "https://github.com/hone/heroku-buildpack-static"
+    {
+      "url": "https://github.com/hone/heroku-buildpack-static"
+    }
   ]
 }
