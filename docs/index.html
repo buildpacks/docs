@@ -1,203 +1,141 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
-    <title>Cloud Native Buildpack Documentation</title>
+	<meta name="generator" content="Hugo 0.49.2" />
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Fira+Mono|Source+Sans+Pro:400,400i,600" rel="stylesheet">
     
-      <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="generator" content="Hugo 0.49.2" />
-<title>Cloud Native Buildpack Documentation :: Cloud Native Buildpack Documentation</title>
-<link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
-<link href="/css/font-awesome.min.css" rel="stylesheet">
-<link href="/css/nucleus.css" rel="stylesheet">
-<link href="/theme-flex/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="/scss/site.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
-<link rel="stylesheet" href="/css/bootstrap.min.css">
-<script src="/js/jquery-2.x.min.js"></script>
-<script type="text/javascript">
-      var baseurl = "\/";
-</script>
-<meta name="description" content="">
-
-
-
+    <link rel="icon" type="image/png" href="/images/favicon.png">
     
+    
+
+    <title>Cloud Native Buildpack Documentation · Cloud Native Buildpack Documentation</title>
   </head>
-  <body data-url="/">
-    
-      <header>
-  <div class="logo">
-    
-	
-  
-    <a class="baselink" href="/">Cloud Native Buildpack Documentation</a>
-  
-
-  </div>
-  <div class="burger"><a href="javascript:void(0);" style="font-size:15px;">&#9776;</a></div>
-    <nav class="shortcuts">
-            <li class="" role="">
-                <a href="https://github.com/buildpack"  rel="noopener">
-                  <i class='fa fa-github'></i> <label>Github repo</label>
-                </a>
-            </li>
-    </nav>
+  <body>
+    <header>
+  <a href="/" class="logo"><img src="/images/buildpacks-logo.svg" alt="Buildpacks.io Logo"></a>
+  <input type="checkbox" id="mobile-nav-toggle">
+  <label for="mobile-nav-toggle">&#9776;</label>
+  <ul>
+    <li><a href="/#get-started">Get Started</a></li>
+    <li><a href="/docs">Docs</a></li>
+    <li><a href="https://github.com/buildpack" class="github-button icon-button bg-blue button">GitHub</a></li>
+  </ul>
 </header>
-<article>
-  <aside>
-    <ul class="menu">
-    <li data-nav-id="/create-buildpack/" class="dd-item alwaysopen
-        ">
-      <div>
-      <a href="/create-buildpack/">Creating a Cloud Native Buildpack</a><i class="fa fa-circle-thin read-icon"></i>
-      </div>
-    </li>
-    <li data-nav-id="/using-pack/" class="dd-item alwaysopen haschildren
-        ">
-      <div>
-      <a href="/using-pack/">Getting Started with pack</a>
-            <i class="fa fa-angle-down fa-lg category-icon"></i><i class="fa fa-circle-thin read-icon"></i>
-      </div>
-        <ul>
-      <li data-nav-id="/using-pack/building-app/" class="dd-item">
-        <div>
-          <a href="/using-pack/building-app/">
-            Building app images with `build`
-          </a><i class="fa fa-circle-thin read-icon"></i>
-        </div>
-    </li>
-      <li data-nav-id="/using-pack/update-app-rebase/" class="dd-item">
-        <div>
-          <a href="/using-pack/update-app-rebase/">
-            Updating app images using `rebase`
-          </a><i class="fa fa-circle-thin read-icon"></i>
-        </div>
-    </li>
-      <li data-nav-id="/using-pack/working-with-builders/" class="dd-item">
-        <div>
-          <a href="/using-pack/working-with-builders/">
-            Working with builders
-          </a><i class="fa fa-circle-thin read-icon"></i>
-        </div>
-    </li>
-      <li data-nav-id="/using-pack/managing-stacks/" class="dd-item">
-        <div>
-          <a href="/using-pack/managing-stacks/">
-            Managing Stacks
-          </a><i class="fa fa-circle-thin read-icon"></i>
-        </div>
-    </li>
-        </ul>
-    </li>
-
-
-
-
-    </ul>
-    <section>
-    </section>
-  </aside>
-  <section class="page">
-    
-    <div class="nav-select">
-      <center>Navigation : 
-        <select onchange="javascript:location.href = this.value;">
-          
-    <option value="/create-buildpack/" >
-   Creating a Cloud Native Buildpack</option> 
-  
-    <option value="/using-pack/" >
-   Getting Started with pack</option> 
-      <option value="/using-pack/building-app/" >- Building app images with `build`</option>
-      <option value="/using-pack/update-app-rebase/" >- Updating app images using `rebase`</option>
-      <option value="/using-pack/working-with-builders/" >- Working with builders</option>
-      <option value="/using-pack/managing-stacks/" >- Managing Stacks</option>
-  
-
-
-
-        </select>
-      </center>
-    </div>
-    
 
     
-    
-    
-    
-<span id="sidebar-toggle-span">
-<a href="#" id="sidebar-toggle" data-sidebar-toggle=""><i class="fa fa-bars"></i> navigation</a>
-</span>
-           
-	
-		<h1>Customize your own home page</h1>
-		<p>
-		  The site is working. Don't forget to customize this homepage with your own. You typically have 2 choices :
-		</p>
-		<ul>
-		  <li><b>1. </b> Create an _index.md document in the content folder</li>
-		  <li><b>2. </b> Configure your server to automatically redirect this home page to one of your documentation pages</li>
-		</ul>
-	
-	<p><i class="fa fa-heart fa-4x"></i></p>
 
-
-
-    
-    
-        <div class="chevrons">
-    <div id="navigation">
-<a class="nav nav-next" href="/create-buildpack/" title="Creating a Cloud Native Buildpack" style="margin-right: 0px;"><label>Creating a Cloud Native Buildpack</label><i class="fa fa-chevron-right"></i></a></div>
-  </div>
-
+<div class="well">
+  <section class="container hero">
+    <h1><span class="text-pink">Buildpacks</span> are pluggable, modular tools that translate source code into OCI images.</h1>
+    <p class="button-holder">
+      <a href="#learn-more" class="bg-pink button">Learn More</a>
+      <a href="https://www.cncf.io/blog/2018/10/03/cncf-to-host-cloud-native-buildpacks-in-the-sandbox">Read the Announcement</a>
+    </p>
   </section>
-</article>
+</div>
 
-<footer>
+<div id="learn-more" class="container content">
+    <h2>What Are Buildpacks?</h2>
 
-<div class="footline">
-    
+    <section class="row">
+    <div class="col-sm">
+      <p>Buildpacks provide a higher-level abstraction for building apps compared to Dockerfiles.</p>
 
-    
-
-    
-
-    
-    <div class="github-link">
-      <a href="https://github.com/vjeantet/hugo-theme-docdock/edit/master/exampleSite/content/" target="blank"><i class="fa fa-code-fork"></i>
-        Improve this page</a>
+      <p>Specifically, buildpacks:</p>
+      <ul>
+        <li>Provide a balance of control that reduces the operational burden on developers and supports enterprise operators who manage apps at scale.</li>
+        <li>Ensure that apps meet security and compliance requirements without developer intervention.</li>
+        <li>Provide automated delivery of both OS-level and application-level dependency upgrades, efficiently handling day-2 app operations that are often difficult to manage with Dockerfiles.</li>
+        <li>Rely on compatibility guarantees to safely apply patches without rebuilding artifacts and without unintentionally changing application behavior.</li>
+      </ul>
     </div>
-    
+    <div class="col-sm">
+      <p>Buildpacks were first conceived by Heroku in 2011. Since then, they have been adopted by Cloud Foundry and other PaaS such as Gitlab, Knative, Deis, Dokku, and Drie.</p>
+
+      <p>The <b>Cloud Native Buildpacks</b> project was initiated by Pivotal and Heroku in January 2018 and joined the <a href="https://www.cncf.io/">Cloud Native Sandbox</a> in October 2018. The project aims to unify the buildpack ecosystems with a <a href="https://github.com/buildpack/spec/blob/master/buildpack.md" target="blank">platform-to-buildpack contract</a> that is well-defined and that incorporates learnings from maintaining production-grade buildpacks for years at both Pivotal and Heroku.</p>
+
+      <p>Cloud Native Buildpacks embrace modern container standards, such as the OCI image format. They take advantage of the latest capabilities of these standards, such as cross-repository blob mounting and image layer "rebasing" on Docker API v2 registries.</p>
+    </div>
+  </section>
+</div>
+
+<div id="get-started" class="well content">
+  <section class="container">
+    <h2>Getting Started with Cloud Native Buildpacks</h2>
+
+    <div class="row">
+      <div class="col-sm">
+        <p>Until cloud platforms such as Heroku and Cloud Foundry incorporate the <a href="https://github.com/buildpack/lifecycle" target="blank">Buildpack v3 Lifecycle</a>, the fastest way to try Cloud Native Buildpacks is via the <code class="highlight">pack</code> CLI, which integrates with your local Docker daemon.</p>
+
+        <p>Please make sure you have Docker Community Edition installed on your machine.</p>
+
+        <p class="pb-3"><a href="https://store.docker.com/search?type=edition&offering=community" class="download-button button icon-button bg-blue">Download Docker Community Edition</a></p>
+
+        <p>Next you will need to download and install <code class="highlight">pack</code> &mdash; the Cloud Native Buildpack CLI. This will allow you to use Cloud Native Buildpacks in your local environment.</p>
+
+        <p><a href="https://github.com/buildpack/pack/releases" class="download-button button icon-button bg-pink">Download pack via GitHub</a></p>
+      </div>
+
+      <div class="col-sm">
+        <div class="text-note mt-4 mt-sm-0">
+          <h3>Please note:</h3>
+
+          <p><strong>This project just started!</strong> Very few buildpacks currently support the Buildpack v3 API.</p>
+
+          <p>By default, the CLI only includes <a href="https://github.com/buildpack/samples" target="blank">sample buildpacks</a> for Node.js and Java. To address this, we are actively adding v3 support to existing buildpacks. Until then, this CLI is only useful for developing new v3 buildpacks and for porting existing buildpacks to the v3 API.</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm">
+        <h3>Building your application</h3>
+
+        <p>Let’s get started building your first application with Cloud Native Buildpacks.</p>
+
+        <p>Build your application by passing in your application source code directory and image name to the <code class="highlight">pack build</code> command.</p>
+
+        <pre class="command-line code-block"><code>pack build --path &lt;path to source code&gt; &lt;repository name&gt;:&lt;image tag (optional)&gt;</code></pre>
+
+        <p>Upon a successful build, you will see your image in your local Docker daemon.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm">
+        <h3 class="pt-5">Running Your Application</h3>
+        <p>Now that you have successfully built your OCI image using Cloud Native Buildpacks you can run your application using the Docker CLI.</p>
+
+        <pre class="command-line code-block"><code>docker run -p 8080:8080 &lt;image name&gt;</code></pre>
+
+        <p>Congratulations! You have now successfully built and run your first application with Cloud Native Buildpacks.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+    <footer>
+  <div class="container footer">
+      <a href="https://www.cncf.io/" style="width: 50%;"><img src="/images/cncf-color.svg" class="footer-logo"></a>
+      <p>We are a <a href="https://www.cncf.io/">Cloud Native Sandbox</a> project.</p>
   </div>
-
-
-	<div>
-
-
-  
-    Create a content/_footer.md file to customize the footer content
-  
-
-
-
-	</div>
+  <div class="bg-blue">
+    <div class="container sub-footer">
+      <p>Reach out <a href="https://slack.buildpacks.io">on Slack</a> to learn more.</p>
+      <ul>
+        <li><a href="https://twitter.com/buildpacks_io">Twitter</a> <span>&bull;</span></li>
+        
+        <li><a href="https://github.com/buildpack">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
 </footer>
 
-<script src="/js/clipboard.min.js"></script>
-
-<link href="/css/featherlight.min.css" rel="stylesheet">
-<script src="/js/featherlight.min.js"></script>
-
-
-
-<script src="/theme-flex/script.js"></script>
-
-
-    
-
-    
-    
-
-    
   </body>
 </html>

@@ -1,8 +1,16 @@
 {{ define "main" }}
 
-{{ partial "sidebar.html" . }}
-
-<h1>Single page</h1>
-{{ .Content }}
+<div class='docs'>
+  <div class='container-fluid'>
+    <div class='row'>
+      <div class='col-sm-3 docs-sidebar'>
+        {{ partial "sidebar.html" . }}
+      </div>
+      <div class='col-sm-9 docs-content'>
+        {{ .Content }}
+      </div>
+    </div>
+  </div>
+</div>
 
 {{ end }}

@@ -57,3 +57,9 @@ a:hover {
 b, strong {
   font-style: 600;
 }
+
+hr {
+  border: 0;
+  height: 1px;
+  background: $off-gray;
+}

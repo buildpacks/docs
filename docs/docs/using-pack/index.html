@@ -14,7 +14,7 @@
     
     
 
-    <title>Categories · Cloud Native Buildpack Documentation</title>
+    <title>Getting Started with pack · Cloud Native Buildpack Documentation</title>
   </head>
   <body>
     <header>
@@ -36,10 +36,11 @@
       <div class='col-sm-3 docs-sidebar'>
         <nav class='sidebar'>
     <ul>
-      <li data-nav-id="/docs/" class="dd-item haschildren
+      <li data-nav-id="/docs/" class="dd-item parent haschildren
       ">
       <div>
-        <a href="/docs/">Home</a><i class="fa fa-angle-right fa-lg category-icon"></i>
+        <a href="/docs/">Home</a>
+              <i class="fa fa-angle-down fa-lg category-icon"></i>
         </div>
           <ul>
       <li data-nav-id="/docs/create-buildpack/" class="dd-item alwaysopen
@@ -48,7 +49,7 @@
         <a href="/docs/create-buildpack/">Creating a Cloud Native Buildpack</a>
         </div>
       </li>
-      <li data-nav-id="/docs/using-pack/" class="dd-item alwaysopen haschildren
+      <li data-nav-id="/docs/using-pack/" class="dd-item parent active alwaysopen haschildren
       ">
       <div>
         <a href="/docs/using-pack/">Getting Started with pack</a>
@@ -95,6 +96,59 @@
       </div>
       <div class='col-sm-9 docs-content'>
         
+
+<h2 id="pack-makes-it-easy-for"><code>pack</code> makes it easy for</h2>
+
+<ul>
+<li><strong>application developers</strong> to use <a href="https://buildpacks.io/">buildpacks</a> to convert code into runnable images</li>
+<li><strong>buildpack authors</strong> to develop and package buildpacks for distribution</li>
+</ul>
+
+<h2 id="contents">Contents</h2>
+
+<ul>
+<li><a href="#building-app-images-using-build">Building app images using <code>build</code></a>
+
+<ul>
+<li><a href="#example-building-using-the-default-builder-image">Example: Building using the default builder image</a></li>
+<li><a href="#example-building-using-a-specified-buildpack">Example: Building using a specified buildpack</a></li>
+<li><a href="#building-explained">Building explained</a></li>
+</ul></li>
+<li><a href="#updating-app-images-using-rebase">Updating app images using <code>rebase</code></a>
+
+<ul>
+<li><a href="#example-rebasing-an-app-image">Example: Rebasing an app image</a></li>
+<li><a href="#rebasing-explained">Rebasing explained</a></li>
+</ul></li>
+<li><a href="#working-with-builders-using-create-builder">Working with builders using <code>create-builder</code></a>
+
+<ul>
+<li><a href="#example-creating-a-builder-from-buildpacks">Example: Creating a builder from buildpacks</a></li>
+<li><a href="#builders-explained">Builders explained</a></li>
+</ul></li>
+<li><a href="#managing-stacks">Managing stacks</a>
+
+<ul>
+<li><a href="#example-adding-a-stack">Example: Adding a stack</a></li>
+<li><a href="#example-updating-a-stack">Example: Updating a stack</a></li>
+<li><a href="#example-deleting-a-stack">Example: Deleting a stack</a></li>
+<li><a href="#example-setting-the-default-stack">Example: Setting the default stack</a></li>
+<li><a href="#listing-stacks">Listing stacks</a></li>
+</ul></li>
+<li><a href="#resources">Resources</a></li>
+<li><a href="#development">Development</a></li>
+</ul>
+
+<hr />
+
+<h2 id="resources">Resources</h2>
+
+<ul>
+<li><a href="https://github.com/buildpack/spec">Buildpack &amp; Platform Specifications</a></li>
+</ul>
+
+<hr />
+
       </div>
     </div>
   </div>

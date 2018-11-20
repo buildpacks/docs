@@ -14,7 +14,7 @@
     
     
 
-    <title>Categories · Cloud Native Buildpack Documentation</title>
+    <title>Updating app images using `rebase` · Cloud Native Buildpack Documentation</title>
   </head>
   <body>
     <header>
@@ -36,10 +36,11 @@
       <div class='col-sm-3 docs-sidebar'>
         <nav class='sidebar'>
     <ul>
-      <li data-nav-id="/docs/" class="dd-item haschildren
+      <li data-nav-id="/docs/" class="dd-item parent haschildren
       ">
       <div>
-        <a href="/docs/">Home</a><i class="fa fa-angle-right fa-lg category-icon"></i>
+        <a href="/docs/">Home</a>
+              <i class="fa fa-angle-down fa-lg category-icon"></i>
         </div>
           <ul>
       <li data-nav-id="/docs/create-buildpack/" class="dd-item alwaysopen
@@ -48,7 +49,7 @@
         <a href="/docs/create-buildpack/">Creating a Cloud Native Buildpack</a>
         </div>
       </li>
-      <li data-nav-id="/docs/using-pack/" class="dd-item alwaysopen haschildren
+      <li data-nav-id="/docs/using-pack/" class="dd-item parent alwaysopen haschildren
       ">
       <div>
         <a href="/docs/using-pack/">Getting Started with pack</a>
@@ -62,7 +63,7 @@
             </a>
           </div>
       </li>
-        <li data-nav-id="/docs/using-pack/update-app-rebase/" class="dd-item">
+        <li data-nav-id="/docs/using-pack/update-app-rebase/" class="dd-item active">
           <div>
             <a href="/docs/using-pack/update-app-rebase/">
               Updating app images using `rebase`
@@ -95,6 +96,35 @@
       </div>
       <div class='col-sm-9 docs-content'>
         
+
+<h2 id="updating-app-images-using-rebase">Updating app images using <code>rebase</code></h2>
+
+<p>The <code>pack rebase</code> command allows app developers to rapidly update an app image when its stack&rsquo;s run image has changed.
+By using image layer rebasing, this command avoids the need to fully rebuild the app.</p>
+
+<pre><code class="language-bash">$ pack rebase &lt;image-name&gt;
+</code></pre>
+
+<h3 id="example-rebasing-an-app-image">Example: Rebasing an app image</h3>
+
+<p>Consider an app image <code>my-app:my-tag</code> that was originally built using the default builder. That builder&rsquo;s stack has a
+run image called <code>pack/run</code>. Running the following will update the base of <code>my-app:my-tag</code> with the latest version of
+<code>pack/run</code>.</p>
+
+<pre><code class="language-bash">$ pack rebase my-app:my-tag
+</code></pre>
+
+<p>Like <a href="#building-app-images-using-build"><code>build</code></a>, <code>rebase</code> has a <code>--publish</code> flag that can be
+used to publish the updated app image to a registry.</p>
+
+<h3 id="rebasing-explained">Rebasing explained</h3>
+
+<p><img src="rebase.svg" alt="rebase diagram" /></p>
+
+<p>At its core, image rebasing is a simple process. By inspecting an app image, <code>rebase</code> can determine whether or not a
+newer version of the app&rsquo;s base image exists (either locally or in a registry). If so, <code>rebase</code> updates the app image&rsquo;s
+layer metadata to reference the newer base image version.</p>
+
       </div>
     </div>
   </div>
