@@ -1,0 +1,5 @@
+{
+  "buildpacks": [
+    "https://github.com/hone/heroku-buildpack-static"
+  ]
+}
