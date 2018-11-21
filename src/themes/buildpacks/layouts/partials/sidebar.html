@@ -2,7 +2,7 @@
 {{- $showvisitedlinks := .Site.Params.showVisitedLinks -}}
 
 <nav class='sidebar'>
-  {{- range .Site.Sections.ByTitle}}
+  {{- range .Site.Sections.ByTitle }}
     <ul>
       {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode}}
     </ul>
@@ -20,20 +20,9 @@
       <li data-nav-id="{{.URL}}" class="dd-item
           {{- if .IsAncestor $currentNode}} parent{{end}}
           {{- if eq .URL $currentNode.URL}} active{{end}}
-          {{- if .Params.alwaysopen}} alwaysopen{{end -}}
           {{- if ne $numberOfPages 0 }} haschildren{{end}}
       ">
-      <div>
         <a href="{{ .RelPermalink}}">{{safeHTML .Params.Pre}}{{.Title}}{{safeHTML .Params.Post}}</a>
-          
-          {{- if ne $numberOfPages 0 }}
-            {{- if or (.IsAncestor $currentNode) (.Params.alwaysopen) }}
-              <i class="fa fa-angle-down fa-lg category-icon"></i>
-            {{- else -}}
-              <i class="fa fa-angle-right fa-lg category-icon"></i>
-            {{- end}}
-          {{- end}}
-        </div>
 
         {{- if ne $numberOfPages 0 }}
           <ul>
@@ -66,12 +55,9 @@
         <li data-nav-id="{{.URL}}" class="dd-item
           {{- if eq .URL $currentNode.URL}} active{{end -}}
         ">
-          <div>
-            <a href="{{ .RelPermalink}}">
-              {{safeHTML .Params.Pre}}{{.LinkTitle}}{{safeHTML .Params.Post}}
-            </a>
-            {{- if $showvisitedlinks}}<i class="fa fa-circle-thin read-icon"></i>{{end}}
-          </div>
+          <a href="{{ .RelPermalink}}">
+            {{safeHTML .Params.Pre}}{{.LinkTitle}}{{safeHTML .Params.Post}}
+          </a>
       </li>
       {{- end}}
     {{- end}}

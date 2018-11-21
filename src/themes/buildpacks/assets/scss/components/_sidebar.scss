@@ -1,12 +1,56 @@
 .sidebar {
-  padding: 0 20px;
+  font-size: 1rem;
   ul {
     list-style: none;
-    padding-left: 0;
-    margin-bottom: 0;
-    &:not(:first-child) {
-      padding-left: 1rem;
-      margin-top: 1rem;
+    padding: 0;
+    margin: 0;
+  }
+  > ul > li > a {
+    display: block;
+    padding: 20px;
+    padding-top: 30px;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-size: 0.75rem;
+  }
+  > ul > li > ul > li {
+    position: relative;
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 20px;
+      width: 1px;
+      top: 20px;
+      bottom: 20px;
+      background-color: rgba($gray-light, 0.2);
     }
+    padding: 10px;
+    padding-left: 40px;
+  }
+  a {
+    text-decoration: none;
+    color: $gray-light;
+    display: inline-block;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    transition: opacity 0.2s;
+  }
+
+  ul * .parent {
+    background: $white;
+    > a {
+      font-weight: 600;
+      color: $gray-dark;
+    }
+    .active > a {
+      color: $pink;
+    }
+  }
+
+  > ul > li > ul > li > ul > li > ul {
+    padding-left: 20px;
   }
 }
