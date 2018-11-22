@@ -52,5 +52,32 @@ $ pack create-builder &amp;lt;image-name&amp;gt; --builder-config &amp;lt;path-t
 $ pack add-stack &amp;lt;stack-name&amp;gt; --build-image &amp;lt;build-image-name&amp;gt; --run-image &amp;lt;run-image-name1,run-image-name2,...&amp;gt;  $ pack update-stack &amp;lt;stack-name&amp;gt; --build-image &amp;lt;build-image-name&amp;gt; --run-image &amp;lt;run-image-name1,run-image-name2,...&amp;gt;  $ pack delete-stack &amp;lt;stack-name&amp;gt;  $ pack set-default-stack &amp;lt;stack-name&amp;gt;   Technically, a stack can be associated with multiple run images, as a variant is needed for each registry to which an app image might be published when using --publish.</description>
     </item>
     
+    <item>
+      <title>Nested Article</title>
+      <link>/docs/hierachy/nested-article/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/hierachy/nested-article/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Really Nested Article</title>
+      <link>/docs/hierachy/sub-section/really-nested-article/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/hierachy/sub-section/really-nested-article/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Really Nested Article</title>
+      <link>/docs/hierachy/sub-section/sub-section/really-nested-article/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/hierachy/sub-section/sub-section/really-nested-article/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

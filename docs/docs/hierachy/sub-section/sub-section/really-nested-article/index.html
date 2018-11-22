@@ -14,7 +14,7 @@
     
     
 
-    <title>Managing Stacks · Cloud Native Buildpack Documentation</title>
+    <title>Really Nested Article · Cloud Native Buildpack Documentation</title>
   </head>
   <body>
     <header>
@@ -47,7 +47,7 @@
         <a href="/docs/create-buildpack/">Creating a Cloud Native Buildpack</a>
       </li>
       <li data-nav-id="/docs/using-pack/" class="dd-item
-          depth-1 parent haschildren
+          depth-1 haschildren
       ">
         <a href="/docs/using-pack/">Getting Started with pack</a>
           <ul>
@@ -66,7 +66,7 @@
             Working with builders
           </a>
       </li>
-        <li data-nav-id="/docs/using-pack/managing-stacks/" class="dd-item active">
+        <li data-nav-id="/docs/using-pack/managing-stacks/" class="dd-item">
           <a href="/docs/using-pack/managing-stacks/">
             Managing Stacks
           </a>
@@ -74,7 +74,7 @@
           </ul>
       </li>
       <li data-nav-id="/docs/hierachy/" class="dd-item
-          depth-1 haschildren
+          depth-1 parent haschildren
       ">
         <a href="/docs/hierachy/">Hierachy Example</a>
           <ul>
@@ -84,7 +84,7 @@
           </a>
       </li>
       <li data-nav-id="/docs/hierachy/sub-section/" class="dd-item
-          depth-2 haschildren
+          depth-2 parent haschildren
       ">
         <a href="/docs/hierachy/sub-section/">Sub Section</a>
           <ul>
@@ -94,11 +94,11 @@
           </a>
       </li>
       <li data-nav-id="/docs/hierachy/sub-section/sub-section/" class="dd-item
-          depth-3 haschildren
+          depth-3 parent haschildren
       ">
         <a href="/docs/hierachy/sub-section/sub-section/">Sub Section</a>
           <ul>
-        <li data-nav-id="/docs/hierachy/sub-section/sub-section/really-nested-article/" class="dd-item">
+        <li data-nav-id="/docs/hierachy/sub-section/sub-section/really-nested-article/" class="dd-item active">
           <a href="/docs/hierachy/sub-section/sub-section/really-nested-article/">
             Really Nested Article
           </a>
@@ -118,86 +118,6 @@
       </div>
       <div class='col-sm-9 docs-content'>
         
-
-<h2 id="managing-stacks">Managing stacks</h2>
-
-<p>As mentioned <a href="#building-explained">previously</a>, a stack is associated with a build image and a run image. Stacks in
-<code>pack</code>&rsquo;s configuration can be managed using the following commands:</p>
-
-<pre><code class="language-bash">$ pack add-stack &lt;stack-name&gt; --build-image &lt;build-image-name&gt; --run-image &lt;run-image-name1,run-image-name2,...&gt;
-</code></pre>
-
-<pre><code class="language-bash">$ pack update-stack &lt;stack-name&gt; --build-image &lt;build-image-name&gt; --run-image &lt;run-image-name1,run-image-name2,...&gt;
-</code></pre>
-
-<pre><code class="language-bash">$ pack delete-stack &lt;stack-name&gt;
-</code></pre>
-
-<pre><code class="language-bash">$ pack set-default-stack &lt;stack-name&gt;
-</code></pre>
-
-<blockquote>
-<p>Technically, a stack can be associated with multiple run images, as a variant is needed for each registry to
-which an app image might be published when using <code>--publish</code>.</p>
-</blockquote>
-
-<h3 id="example-adding-a-stack">Example: Adding a stack</h3>
-
-<p>In this example, a new stack called <code>org.example.my-stack</code> is added and associated with build image <code>my-stack/build</code>
-and run image <code>my-stack/run</code>.</p>
-
-<pre><code class="language-bash">$ pack add-stack org.example.my-stack --build-image my-stack/build --run-image my-stack/run
-</code></pre>
-
-<h3 id="example-updating-a-stack">Example: Updating a stack</h3>
-
-<p>In this example, an existing stack called <code>org.example.my-stack</code> is updated with a new build image <code>my-stack/build:v2</code>
-and a new run image <code>my-stack/run:v2</code>.</p>
-
-<pre><code class="language-bash">$ pack add-stack org.example.my-stack --build-image my-stack/build:v2 --run-image my-stack/run:v2
-</code></pre>
-
-<h3 id="example-deleting-a-stack">Example: Deleting a stack</h3>
-
-<p>In this example, the existing stack <code>org.example.my-stack</code> is deleted from <code>pack</code>&rsquo;s configuration.</p>
-
-<pre><code class="language-bash">$ pack delete-stack org.example.my-stack
-</code></pre>
-
-<h3 id="example-setting-the-default-stack">Example: Setting the default stack</h3>
-
-<p>In this example, the default stack, used by <a href="#working-with-builders-using-create-builder"><code>create-builder</code></a>, is set to
-<code>org.example.my-stack</code>.</p>
-
-<pre><code class="language-bash">$ pack set-default-stack org.example.my-stack
-</code></pre>
-
-<h3 id="listing-stacks">Listing stacks</h3>
-
-<p>To inspect available stacks and their names (denoted by <code>id</code>), run:</p>
-
-<pre><code class="language-bash">$ cat ~/.pack/config.toml
-
-...
-
-[[stacks]]
-  id = &quot;io.buildpacks.stacks.bionic&quot;
-  build-images = [&quot;packs/build&quot;]
-  run-images = [&quot;packs/run&quot;]
-
-[[stacks]]
-  id = &quot;org.example.my-stack&quot;
-  build-images = [&quot;my-stack/build&quot;]
-  run-images = [&quot;my-stack/run&quot;]
-
-...
-</code></pre>
-
-<blockquote>
-<p>Note that this method of inspecting available stacks will soon be replaced by a new command. The format of
-<code>config.toml</code> is subject to change at any time.</p>
-</blockquote>
-
       </div>
     </div>
   </div>

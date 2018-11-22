@@ -37,7 +37,31 @@
   </url>
   
   <url>
+    <loc>/docs/hierachy/</loc>
+  </url>
+  
+  <url>
     <loc>/docs/</loc>
+  </url>
+  
+  <url>
+    <loc>/docs/hierachy/nested-article/</loc>
+  </url>
+  
+  <url>
+    <loc>/docs/hierachy/sub-section/really-nested-article/</loc>
+  </url>
+  
+  <url>
+    <loc>/docs/hierachy/sub-section/sub-section/really-nested-article/</loc>
+  </url>
+  
+  <url>
+    <loc>/docs/hierachy/sub-section/</loc>
+  </url>
+  
+  <url>
+    <loc>/docs/hierachy/sub-section/sub-section/</loc>
   </url>
   
   <url>
