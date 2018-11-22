@@ -1873,20 +1873,28 @@ Footer
     list-style: none;
     padding: 0;
     margin: 0; }
-  .sidebar > ul > li > a {
+  .sidebar a {
+    text-decoration: none;
+    color: #7C6E75;
+    display: inline-block;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    transition: opacity 0.2s; }
+  .sidebar .depth-0 > a {
     display: block;
     padding: 20px;
-    padding-top: 30px;
-    padding-bottom: 10px;
     text-transform: uppercase;
     font-weight: 600;
     letter-spacing: 1px;
     font-size: 0.75rem; }
-  .sidebar > ul > li > ul > li {
+  .sidebar .depth-0.active > a {
+    background: rgba(255, 255, 255, 0.25); }
+  .sidebar .depth-1 {
     position: relative;
     padding: 10px;
-    padding-left: 40px; }
-    .sidebar > ul > li > ul > li:before {
+    padding-left: 40px;
+    border-top: 1px solid rgba(124, 110, 117, 0.1); }
+    .sidebar .depth-1:before {
       content: "";
       position: absolute;
       top: 0;
@@ -1895,21 +1903,16 @@ Footer
       top: 20px;
       bottom: 20px;
       background-color: rgba(124, 110, 117, 0.2); }
-  .sidebar a {
-    text-decoration: none;
-    color: #7C6E75;
-    display: inline-block;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    transition: opacity 0.2s; }
-  .sidebar ul * .parent {
-    background: #FFFFFF; }
-    .sidebar ul * .parent > a {
-      font-weight: 600;
-      color: #302C2E; }
-    .sidebar ul * .parent .active > a {
-      color: #DF0A6B; }
-  .sidebar > ul > li > ul > li > ul > li > ul {
+    .sidebar .depth-1.parent {
+      background: #FFFFFF; }
+      .sidebar .depth-1.parent > a {
+        font-weight: 600;
+        color: #302C2E; }
+      .sidebar .depth-1.parent .parent > a {
+        color: #302C2E; }
+      .sidebar .depth-1.parent .active > a {
+        color: #DF0A6B; }
+  .sidebar li[class*="depth-"]:not(.depth-0):not(.depth-1) > ul {
     padding-left: 20px; }
 
 .docs {

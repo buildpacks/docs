@@ -1,23 +1,24 @@
 {{- $currentNode := . }}
-{{- $showvisitedlinks := .Site.Params.showVisitedLinks -}}
+{{- $depth := 0 -}}
 
 <nav class='sidebar'>
   {{- range .Site.Sections.ByTitle }}
     <ul>
-      {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode}}
+      {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "depth" $depth -}}
     </ul>
   {{- end}}
 </nav>
 
 <!-- templates -->
 {{- define "section-tree-nav" }}
-{{- $showvisitedlinks := .showvisitedlinks }}
-{{- $currentNode := .currentnode }}
+  {{- $currentNode := .currentnode }}
+  {{- $depth := .depth }}
   {{- with .sect}}
     {{- if and .IsSection (or (not .Params.hidden) $.showhidden)}}
       {{- $numberOfPages := (add (len .Pages) (len .Sections)) }}
       {{- safeHTML .Params.head}}
       <li data-nav-id="{{.URL}}" class="dd-item
+          depth-{{ $depth }}
           {{- if .IsAncestor $currentNode}} parent{{end}}
           {{- if eq .URL $currentNode.URL}} active{{end}}
           {{- if ne $numberOfPages 0 }} haschildren{{end}}
@@ -25,6 +26,7 @@
         <a href="{{ .RelPermalink}}">{{safeHTML .Params.Pre}}{{.Title}}{{safeHTML .Params.Post}}</a>
 
         {{- if ne $numberOfPages 0 }}
+          {{- $depth = add (int $depth) 1 }}
           <ul>
             {{- .Scratch.Set "pages" .Pages }}
             {{- if .Sections}}
@@ -32,21 +34,12 @@
             {{- end}}
             {{- $pages := (.Scratch.Get "pages") }}
 
-          {{- if eq .Site.Params.ordersectionsby "title"}}
-            {{- range $pages.ByTitle }}
-              {{- if and .Params.hidden (not $.showhidden) }}
-              {{- else}}
-              {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks }}
-              {{- end}}
-            {{- end}}
-          {{- else}}
             {{- range $pages.ByWeight }}
               {{- if and .Params.hidden (not $.showhidden) }}
               {{- else}}
-              {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "showvisitedlinks" $showvisitedlinks }}
+              {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "depth" $depth }}
               {{- end}}
             {{- end}}
-          {{- end}}
           </ul>
         {{- end}}
       </li>
