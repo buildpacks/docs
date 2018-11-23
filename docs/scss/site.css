@@ -1688,7 +1688,7 @@ Content
       content: '';
       width: 40%;
       height: 2px;
-      background-color: #242960; }
+      background-color: #47529E; }
   .content ul {
     list-style-type: none;
     margin: 0 0 30px 0;
@@ -1938,8 +1938,60 @@ Footer
     padding: 0;
     border-right: 1px solid #E8E7E8; }
   .docs .docs-content {
-    padding: 2rem; }
+    padding: 2rem;
+    color: #302C2E; }
+    .docs .docs-content h1, .docs .docs-content .h1,
+    .docs .docs-content h2, .docs .docs-content .h2,
+    .docs .docs-content h3, .docs .docs-content .h3,
+    .docs .docs-content h4, .docs .docs-content .h4,
+    .docs .docs-content h5, .docs .docs-content .h5,
+    .docs .docs-content h6, .docs .docs-content .h6 {
+      font-weight: 400;
+      color: #242960;
+      margin-bottom: 1rem; }
+    .docs .docs-content h1, .docs .docs-content .h1 {
+      font-size: 1.875rem; }
+    .docs .docs-content h2, .docs .docs-content .h2 {
+      font-size: 1.5rem; }
+    .docs .docs-content h3, .docs .docs-content .h3 {
+      font-size: 1.25rem; }
+    .docs .docs-content h4, .docs .docs-content .h4 {
+      font-size: 1rem; }
+    .docs .docs-content h5, .docs .docs-content .h5 {
+      font-size: 0.875rem; }
+    .docs .docs-content h6, .docs .docs-content .h6 {
+      font-size: 0.75rem; }
+    .docs .docs-content h1:first-child, .docs .docs-content .h1:first-child {
+      padding-bottom: 1rem;
+      margin-bottom: 2rem;
+      position: relative; }
+      .docs .docs-content h1:first-child:after, .docs .docs-content .h1:first-child:after {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        content: '';
+        width: 10%;
+        height: 2px;
+        background-color: #47529E; }
+    .docs .docs-content pre {
+      background: white;
+      border: 1px solid #E8E7E8;
+      border-radius: 3px;
+      padding: 15px;
+      font-size: 0.875rem; }
+      .docs .docs-content pre code {
+        line-height: 1.6; }
     .docs .docs-content hr {
       margin: 2rem 0;
       margin-left: -2rem;
       background: transparent linear-gradient(to right, #e8e7e8, rgba(232, 231, 232, 0)); }
+    .docs .docs-content:last-child {
+      margin-bottom: 0; }
+
+.footline {
+  font-size: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  color: #7C6E75; }
+  .footline > *:not(:first-child):not(:last-child) {
+    padding: 0 20px; }

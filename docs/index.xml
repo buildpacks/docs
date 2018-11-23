@@ -16,7 +16,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/docs/using-pack/building-app/</guid>
-      <description>Building app images using build pack build enables app developers to create runnable app images from source code using buildpacks.
+      <description>pack build enables app developers to create runnable app images from source code using buildpacks.
 $ pack build &amp;lt;image-name&amp;gt;  Example: Building using the default builder image In the following example, an app image is created from Node.js application source code.
 $ cd /path/to/node/app $ pack build my-app:my-tag # ... Detect, analyze and build output Successfully built 2452b4b1fce1 Successfully tagged my-app:my-tag  In this case, the default builder is used, and an appropriate buildpack is automatically selected from the builder based on the app source code.</description>
     </item>
@@ -71,11 +71,11 @@ $ pack add-stack &amp;lt;stack-name&amp;gt; --build-image &amp;lt;build-image-na
     </item>
     
     <item>
-      <title>Really Nested Article</title>
-      <link>/docs/hierachy/sub-section/sub-section/really-nested-article/</link>
+      <title>Really, Really Nested Article</title>
+      <link>/docs/hierachy/sub-section/sub-section/really-really-nested-article/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/docs/hierachy/sub-section/sub-section/really-nested-article/</guid>
+      <guid>/docs/hierachy/sub-section/sub-section/really-really-nested-article/</guid>
       <description></description>
     </item>
     
