@@ -1,5 +1,6 @@
 .sidebar {
   font-size: 1rem;
+  border-bottom: 1px solid rgba($gray-light, 0.1);
   
   ul {
     list-style: none;
@@ -40,14 +41,14 @@
       width: 1px;
       top: 20px;
       bottom: 20px;
-      background-color: rgba($gray-light, 0.2);
+      background-color: rgba($gray-light, 0.1);
     }
     > a {
       font-weight: 600;
     }
     padding: 10px;
     padding-left: 40px;
-    border-top: 1px solid rgba($gray-light, 0.1);
+    border-top: 1px solid rgba($gray-light, 0.05);
 
     // Has active child nodes
     &.parent {
