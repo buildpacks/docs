@@ -1969,6 +1969,13 @@ Footer
       font-weight: 400;
       color: #242960;
       margin-bottom: 1rem; }
+      .docs .docs-content h1:not(:first-child), .docs .docs-content .h1:not(:first-child),
+      .docs .docs-content h2:not(:first-child), .docs .docs-content .h2:not(:first-child),
+      .docs .docs-content h3:not(:first-child), .docs .docs-content .h3:not(:first-child),
+      .docs .docs-content h4:not(:first-child), .docs .docs-content .h4:not(:first-child),
+      .docs .docs-content h5:not(:first-child), .docs .docs-content .h5:not(:first-child),
+      .docs .docs-content h6:not(:first-child), .docs .docs-content .h6:not(:first-child) {
+        margin-top: 2rem; }
     .docs .docs-content h1, .docs .docs-content .h1 {
       font-size: 1.875rem; }
     .docs .docs-content h2, .docs .docs-content .h2 {

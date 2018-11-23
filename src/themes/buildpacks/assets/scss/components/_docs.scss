@@ -62,6 +62,9 @@
       font-weight: 400;
       color: $blue-dark;
       margin-bottom: 1rem;
+      &:not(:first-child) {
+        margin-top: 2rem;
+      }
     }
 
     h1, .h1 { font-size: 1.875rem; }
