@@ -1,5 +1,4 @@
 +++
-
 title="Building app images with `build`"
 weight=1
 type="page"
@@ -7,12 +6,7 @@ creatordisplayname = "Scott Sisil"
 creatoremail = "ssisil@pivotal.io"
 lastmodifierdisplayname = "Scott Sisil"
 lastmodifieremail = "ssisil@pivotal.io"
-alwaysopen=true
-
-
 +++
-
-## Building app images using `build`
 
 `pack build` enables app developers to create runnable app images from source code using buildpacks.
 

@@ -1,5 +1,4 @@
 +++
-
 title="Creating a Cloud Native Buildpack"
 weight=1
 type="page"
@@ -8,10 +7,7 @@ creatoremail = "ssisil@pivotal.io"
 lastmodifierdisplayname = "Scott Sisil"
 lastmodifieremail = "ssisil@pivotal.io"
 alwaysopen=true
-
-
 +++
-
 
 This is a step by step tutorial for creating a Ruby Cloud Native Buildpack. This tutorial will cover the following concepts: 
 
@@ -24,7 +20,7 @@ All source code from this tutorial is available [here](tbd).
 
 ---
 
-### Prequesites
+### Prerequisites
 
 Before we get started make sure you have the following installed on your system 
 

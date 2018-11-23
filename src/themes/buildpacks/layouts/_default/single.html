@@ -1,16 +1,5 @@
 {{ define "main" }}
 
-<div class='docs'>
-  <div class='container-fluid'>
-    <div class='row'>
-      <div class='col-sm-3 docs-sidebar'>
-        {{ partial "sidebar.html" . }}
-      </div>
-      <div class='col-sm-9 docs-content'>
-        {{ .Content }}
-      </div>
-    </div>
-  </div>
-</div>
+{{ partial "docs.html" . }}
 
 {{ end }}

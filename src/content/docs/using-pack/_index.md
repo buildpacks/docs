@@ -1,5 +1,4 @@
 +++
-
 title="Getting Started with pack"
 weight=2
 type="page"
@@ -7,9 +6,6 @@ creatordisplayname = "Scott Sisil"
 creatoremail = "ssisil@pivotal.io"
 lastmodifierdisplayname = "Scott Sisil"
 lastmodifieremail = "ssisil@pivotal.io"
-alwaysopen=true
-
-
 +++
 
 ## `pack` makes it easy for
