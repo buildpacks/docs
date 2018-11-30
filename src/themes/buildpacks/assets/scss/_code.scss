@@ -8,6 +8,8 @@ code {
   font-size: 87.5%;
   color: $pink;
   word-break: break-word;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 a > code {
@@ -38,4 +40,5 @@ pre code {
   font-size: inherit;
   word-break: normal;
   color: $gray-light;
+  padding: 0;
 }

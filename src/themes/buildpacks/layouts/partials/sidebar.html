@@ -1,8 +1,9 @@
 {{- $currentNode := . }}
-{{- $depth := 0 -}}
+{{- $depth := 1 -}}
+{{- $docs := .Site.GetPage "/docs" }}
 
 <nav class='sidebar'>
-  {{- range .Site.Sections.ByTitle }}
+  {{- range $docs.Sections.ByWeight }}
     <ul>
       {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "depth" $depth -}}
     </ul>
@@ -23,7 +24,7 @@
           {{- if eq .URL $currentNode.URL}} active{{end}}
           {{- if ne $numberOfPages 0 }} haschildren{{end}}
       ">
-        <a href="{{ .RelPermalink}}">{{safeHTML .Params.Pre}}{{.Title}}{{safeHTML .Params.Post}}</a>
+        <a href="{{ .RelPermalink}}">{{safeHTML .Params.Pre}}{{.Title | markdownify}}{{safeHTML .Params.Post}}</a>
 
         {{- if ne $numberOfPages 0 }}
           {{- $depth = add (int $depth) 1 }}
@@ -49,7 +50,7 @@
           {{- if eq .URL $currentNode.URL}} active{{end -}}
         ">
           <a href="{{ .RelPermalink}}">
-            {{safeHTML .Params.Pre}}{{.LinkTitle}}{{safeHTML .Params.Post}}
+            {{safeHTML .Params.Pre}}{{.LinkTitle | markdownify}}{{safeHTML .Params.Post}}
           </a>
       </li>
       {{- end}}

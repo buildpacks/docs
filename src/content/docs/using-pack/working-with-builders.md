@@ -2,7 +2,6 @@
 
 title="Working with builders"
 weight=3
-type="page"
 creatordisplayname = "Scott Sisil"
 creatoremail = "ssisil@pivotal.io"
 lastmodifierdisplayname = "Scott Sisil"
@@ -67,7 +66,7 @@ $ pack build my-app:my-tag --builder my-builder:my-tag --buildpack org.example.b
 
 ### Builders explained
 
-![create-builder diagram](create-builder.svg)
+![create-builder diagram](/docs/using-pack/create-builder.svg)
 
 A builder is an image containing a collection of buildpacks that will be executed, in the order that they appear in
 `builder.toml`, against app source code. A buildpack's primary role is to inspect the source code, determine any

@@ -22,8 +22,14 @@
   <input type="checkbox" id="mobile-nav-toggle">
   <label for="mobile-nav-toggle">&#9776;</label>
   <ul>
-    <li><a href="/#get-started">Get Started</a></li>
-    <li><a href="/docs">Docs</a></li>
+    
+    
+      
+      <li><a class="" href="/">Home</a></li>
+    
+      
+      <li><a class="active" href="/docs">Docs</a></li>
+    
     <li><a href="https://github.com/buildpack" class="github-button icon-button bg-blue button">GitHub</a></li>
   </ul>
 </header>
@@ -34,18 +40,10 @@
   <div class='container-fluid'>
     <div class='row'>
       <div class='col-sm-3 docs-sidebar'>
-        <nav class='sidebar'>
+        
+
+<nav class='sidebar'>
     <ul>
-      <li data-nav-id="/docs/" class="dd-item
-          depth-0 parent haschildren
-      ">
-        <a href="/docs/">Home</a>
-          <ul>
-      <li data-nav-id="/docs/create-buildpack/" class="dd-item
-          depth-1
-      ">
-        <a href="/docs/create-buildpack/">Creating a Cloud Native Buildpack</a>
-      </li>
       <li data-nav-id="/docs/using-pack/" class="dd-item
           depth-1 parent active haschildren
       ">
@@ -53,12 +51,12 @@
           <ul>
         <li data-nav-id="/docs/using-pack/building-app/" class="dd-item">
           <a href="/docs/using-pack/building-app/">
-            Building app images with `build`
+            Building app images with <code>build</code>
           </a>
       </li>
         <li data-nav-id="/docs/using-pack/update-app-rebase/" class="dd-item">
           <a href="/docs/using-pack/update-app-rebase/">
-            Updating app images using `rebase`
+            Updating app images using <code>rebase</code>
           </a>
       </li>
         <li data-nav-id="/docs/using-pack/working-with-builders/" class="dd-item">
@@ -72,44 +70,12 @@
           </a>
       </li>
           </ul>
-      </li>
-      <li data-nav-id="/docs/hierachy/" class="dd-item
-          depth-1 haschildren
+      </li></ul>
+    <ul>
+      <li data-nav-id="/docs/create-buildpack/" class="dd-item
+          depth-1
       ">
-        <a href="/docs/hierachy/">Hierachy Example</a>
-          <ul>
-        <li data-nav-id="/docs/hierachy/nested-article/" class="dd-item">
-          <a href="/docs/hierachy/nested-article/">
-            Nested Article
-          </a>
-      </li>
-      <li data-nav-id="/docs/hierachy/sub-section/" class="dd-item
-          depth-2 haschildren
-      ">
-        <a href="/docs/hierachy/sub-section/">Sub Section</a>
-          <ul>
-        <li data-nav-id="/docs/hierachy/sub-section/really-nested-article/" class="dd-item">
-          <a href="/docs/hierachy/sub-section/really-nested-article/">
-            Really Nested Article
-          </a>
-      </li>
-      <li data-nav-id="/docs/hierachy/sub-section/sub-section/" class="dd-item
-          depth-3 haschildren
-      ">
-        <a href="/docs/hierachy/sub-section/sub-section/">Sub Section</a>
-          <ul>
-        <li data-nav-id="/docs/hierachy/sub-section/sub-section/really-really-nested-article/" class="dd-item">
-          <a href="/docs/hierachy/sub-section/sub-section/really-really-nested-article/">
-            Really, Really Nested Article
-          </a>
-      </li>
-          </ul>
-      </li>
-          </ul>
-      </li>
-          </ul>
-      </li>
-          </ul>
+        <a href="/docs/create-buildpack/">Creating a Cloud Native Buildpack</a>
       </li></ul>
 </nav>
 
@@ -130,36 +96,35 @@
 <h2 id="contents">Contents</h2>
 
 <ul>
-<li><a href="#building-app-images-using-build">Building app images using <code>build</code></a>
+<li><a href="/docs/using-pack/building-app">Building app images using <code>build</code></a>
 
 <ul>
-<li><a href="#example-building-using-the-default-builder-image">Example: Building using the default builder image</a></li>
-<li><a href="#example-building-using-a-specified-buildpack">Example: Building using a specified buildpack</a></li>
-<li><a href="#building-explained">Building explained</a></li>
+<li><a href="/docs/using-pack/building-app/#example-building-using-the-default-builder-image">Example: Building using the default builder image</a></li>
+<li><a href="/docs/using-pack/building-app/#example-building-using-a-specified-buildpack">Example: Building using a specified buildpack</a></li>
+<li><a href="/docs/using-pack/building-app/#building-explained">Building explained</a></li>
 </ul></li>
-<li><a href="#updating-app-images-using-rebase">Updating app images using <code>rebase</code></a>
+<li><a href="/docs/update-app-rebase/">Updating app images using <code>rebase</code></a>
 
 <ul>
-<li><a href="#example-rebasing-an-app-image">Example: Rebasing an app image</a></li>
-<li><a href="#rebasing-explained">Rebasing explained</a></li>
+<li><a href="/docs/update-app-rebase/#example-rebasing-an-app-image">Example: Rebasing an app image</a></li>
+<li><a href="/docs/update-app-rebase/#rebasing-explained">Rebasing explained</a></li>
 </ul></li>
-<li><a href="#working-with-builders-using-create-builder">Working with builders using <code>create-builder</code></a>
+<li><a href="/docs/working-with-builders">Working with builders using <code>create-builder</code></a>
 
 <ul>
-<li><a href="#example-creating-a-builder-from-buildpacks">Example: Creating a builder from buildpacks</a></li>
-<li><a href="#builders-explained">Builders explained</a></li>
+<li><a href="/docs/working-with-builders/#example-creating-a-builder-from-buildpacks">Example: Creating a builder from buildpacks</a></li>
+<li><a href="/docs/working-with-builders/#builders-explained">Builders explained</a></li>
 </ul></li>
-<li><a href="#managing-stacks">Managing stacks</a>
+<li><a href="/docs/managing-stacks">Managing stacks</a>
 
 <ul>
-<li><a href="#example-adding-a-stack">Example: Adding a stack</a></li>
-<li><a href="#example-updating-a-stack">Example: Updating a stack</a></li>
-<li><a href="#example-deleting-a-stack">Example: Deleting a stack</a></li>
-<li><a href="#example-setting-the-default-stack">Example: Setting the default stack</a></li>
-<li><a href="#listing-stacks">Listing stacks</a></li>
+<li><a href="/docs/managing-stacks/#example-adding-a-stack">Example: Adding a stack</a></li>
+<li><a href="/docs/managing-stacks/#example-updating-a-stack">Example: Updating a stack</a></li>
+<li><a href="/docs/managing-stacks/#example-deleting-a-stack">Example: Deleting a stack</a></li>
+<li><a href="/docs/managing-stacks/#example-setting-the-default-stack">Example: Setting the default stack</a></li>
+<li><a href="/docs/managing-stacks/#listing-stacks">Listing stacks</a></li>
 </ul></li>
 <li><a href="#resources">Resources</a></li>
-<li><a href="#development">Development</a></li>
 </ul>
 
 <hr />
@@ -169,8 +134,6 @@
 <ul>
 <li><a href="https://github.com/buildpack/spec">Buildpack &amp; Platform Specifications</a></li>
 </ul>
-
-<hr />
 
         
   <hr>

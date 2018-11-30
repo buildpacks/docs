@@ -1,3 +1,0 @@
-+++
-title="Hierachy Example"
-+++

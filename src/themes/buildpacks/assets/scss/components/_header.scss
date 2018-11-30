@@ -28,6 +28,7 @@ header {
 header #mobile-nav-toggle ~ label {
   font-size: 1.9rem;
   transition: opacity 0.3s;
+  margin-bottom: 0;
 }
 
 header #mobile-nav-toggle:checked ~ label {
@@ -62,7 +63,10 @@ header li a {
     text-decoration: inherit;
   }
   &:not(.button) {
-    border-bottom: 1px solid rgba($blue-light, 0.25);
+    border-bottom: 2px solid rgba($blue-light, 0.25);
+  }
+  &.active {
+    border-bottom-color: $blue-light;
   }
 }
 
@@ -95,4 +99,7 @@ header {
 header .logo img {
   width: auto;
   min-width: 160px;
+  @media (min-width: 768px) {
+    width: 200px;
+  }
 }

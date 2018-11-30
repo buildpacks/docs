@@ -7,11 +7,11 @@
   </url>
   
   <url>
-    <loc>/docs/create-buildpack/</loc>
+    <loc>/docs/using-pack/</loc>
   </url>
   
   <url>
-    <loc>/docs/using-pack/</loc>
+    <loc>/docs/create-buildpack/</loc>
   </url>
   
   <url>
@@ -37,31 +37,7 @@
   </url>
   
   <url>
-    <loc>/docs/hierachy/</loc>
-  </url>
-  
-  <url>
     <loc>/docs/</loc>
-  </url>
-  
-  <url>
-    <loc>/docs/hierachy/nested-article/</loc>
-  </url>
-  
-  <url>
-    <loc>/docs/hierachy/sub-section/really-nested-article/</loc>
-  </url>
-  
-  <url>
-    <loc>/docs/hierachy/sub-section/sub-section/really-really-nested-article/</loc>
-  </url>
-  
-  <url>
-    <loc>/docs/hierachy/sub-section/</loc>
-  </url>
-  
-  <url>
-    <loc>/docs/hierachy/sub-section/sub-section/</loc>
   </url>
   
   <url>

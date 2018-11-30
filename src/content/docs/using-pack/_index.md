@@ -1,7 +1,6 @@
 +++
 title="Getting Started with pack"
-weight=2
-type="page"
+weight=1
 creatordisplayname = "Scott Sisil"
 creatoremail = "ssisil@pivotal.io"
 lastmodifierdisplayname = "Scott Sisil"
@@ -14,24 +13,24 @@ lastmodifieremail = "ssisil@pivotal.io"
 - **buildpack authors** to develop and package buildpacks for distribution
 
 ## Contents
-- [Building app images using `build`](#building-app-images-using-build)
-  - [Example: Building using the default builder image](#example-building-using-the-default-builder-image)
-  - [Example: Building using a specified buildpack](#example-building-using-a-specified-buildpack)
-  - [Building explained](#building-explained)
-- [Updating app images using `rebase`](#updating-app-images-using-rebase)
-  - [Example: Rebasing an app image](#example-rebasing-an-app-image)
-  - [Rebasing explained](#rebasing-explained)
-- [Working with builders using `create-builder`](#working-with-builders-using-create-builder)
-  - [Example: Creating a builder from buildpacks](#example-creating-a-builder-from-buildpacks)
-  - [Builders explained](#builders-explained)
-- [Managing stacks](#managing-stacks)
-  - [Example: Adding a stack](#example-adding-a-stack)
-  - [Example: Updating a stack](#example-updating-a-stack)
-  - [Example: Deleting a stack](#example-deleting-a-stack)
-  - [Example: Setting the default stack](#example-setting-the-default-stack)
-  - [Listing stacks](#listing-stacks)
+
+- [Building app images using `build`](/docs/using-pack/building-app)
+  - [Example: Building using the default builder image](/docs/using-pack/building-app/#example-building-using-the-default-builder-image)
+  - [Example: Building using a specified buildpack](/docs/using-pack/building-app/#example-building-using-a-specified-buildpack)
+  - [Building explained](/docs/using-pack/building-app/#building-explained)
+- [Updating app images using `rebase`](/docs/update-app-rebase/)
+  - [Example: Rebasing an app image](/docs/update-app-rebase/#example-rebasing-an-app-image)
+  - [Rebasing explained](/docs/update-app-rebase/#rebasing-explained)
+- [Working with builders using `create-builder`](/docs/working-with-builders)
+  - [Example: Creating a builder from buildpacks](/docs/working-with-builders/#example-creating-a-builder-from-buildpacks)
+  - [Builders explained](/docs/working-with-builders/#builders-explained)
+- [Managing stacks](/docs/managing-stacks)
+  - [Example: Adding a stack](/docs/managing-stacks/#example-adding-a-stack)
+  - [Example: Updating a stack](/docs/managing-stacks/#example-updating-a-stack)
+  - [Example: Deleting a stack](/docs/managing-stacks/#example-deleting-a-stack)
+  - [Example: Setting the default stack](/docs/managing-stacks/#example-setting-the-default-stack)
+  - [Listing stacks](/docs/managing-stacks/#listing-stacks)
 - [Resources](#resources)
-- [Development](#development)
 
 ----
 
@@ -39,6 +38,3 @@ lastmodifieremail = "ssisil@pivotal.io"
 ## Resources
 
 - [Buildpack & Platform Specifications](https://github.com/buildpack/spec)
-
-----
-

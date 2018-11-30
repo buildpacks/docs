@@ -2,7 +2,6 @@
 
 title="Updating app images using `rebase`"
 weight=2
-type="page"
 creatordisplayname = "Scott Sisil"
 creatoremail = "ssisil@pivotal.io"
 lastmodifierdisplayname = "Scott Sisil"
@@ -34,7 +33,7 @@ used to publish the updated app image to a registry.
 
 ### Rebasing explained
 
-![rebase diagram](rebase.svg)
+![rebase diagram](/docs/using-pack/rebase.svg)
 
 At its core, image rebasing is a simple process. By inspecting an app image, `rebase` can determine whether or not a
 newer version of the app's base image exists (either locally or in a registry). If so, `rebase` updates the app image's

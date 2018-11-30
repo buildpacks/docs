@@ -1,7 +1,6 @@
 +++
 title="Creating a Cloud Native Buildpack"
-weight=1
-type="page"
+weight=2
 creatordisplayname = "Scott Sisil"
 creatoremail = "ssisil@pivotal.io"
 lastmodifierdisplayname = "Scott Sisil"
@@ -85,7 +84,7 @@ Now we will setup the buildpack scaffolding. You will need to make these files i
 cd ruby-cnb
 ```
 
-##### buildpack.toml
+#### buildpack.toml
 Once you are in the directory. You will need to create a `buildpack.toml` file in that directory. This file must exist in the root directory of your buildpack so the `pack` cli knows it is a buildpack and it can apply the build lifecycle to it.  
 
 Create the `buildpack.toml` file and copy the following into it 
@@ -106,7 +105,7 @@ id = ["io.buildpacks.stacks.bionic"]
 You will notice two specific fields in the file: buildpack ID and stack ID. The buildpack ID is the way you will reference the buildpack when you create buildpack groups, builders, etc.  The stack ID is the root file system in which the buildpack will be built.  This example is bulit on ubuntu bionic.
 
 
-##### Detect and Build 
+#### Detect and Build 
 
 Next you will need to create the detect and build scripts.  These files must exist in a `bin` directory in your buildpack directory.
 
@@ -144,7 +143,7 @@ chmod +x detect build
 
 These two files are now executable detect and build scripts.  Now you can run your use your buildpack.
 
-##### Using your buildpack with pack
+#### Using your buildpack with pack
 
 In order to test your buildpack, you will need to run the buildpack against your sample ruby app using the `pack` cli.
 
@@ -413,7 +412,7 @@ You should also be able to access the app via your web browser at `localhost:808
 
 Next we want to separate the ruby interpreter and bundled gems into different layers.  This will allows us to cache the ruby layer and gem dependency layer separately, which helps speed up builds.
 
-##### Creating the Bundler Layer
+#### Creating the Bundler Layer
 
 To do this replace the line
 
@@ -501,7 +500,7 @@ Successfully built d66d877f6442
 Successfully tagged test-ruby-app:latest
 ```
 
-##### Caching Gem Dependencies
+#### Caching Gem Dependencies
 
 Next we will start caching gem dependencies to help speed up the build if no new dependencies are needed.
 
@@ -615,7 +614,7 @@ Done installing documentation for bundler after 2 seconds
 
 ```
 
-##### Cache Ruby
+#### Cache Ruby
 
 Now we will add the logic to cache the ruby interpreter to speed up build times if a new version of ruby is not needed.
 
@@ -763,7 +762,7 @@ You will now see the build is using the cached version of ruby.
 ---> Reusing gems
 ```
 
-##### Select Ruby Version
+#### Select Ruby Version
 
 Next we will update the detect script to check for a specific version of ruby that the user has defined in their application via a `.ruby-version` file,
 

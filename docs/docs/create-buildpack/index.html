@@ -22,8 +22,14 @@
   <input type="checkbox" id="mobile-nav-toggle">
   <label for="mobile-nav-toggle">&#9776;</label>
   <ul>
-    <li><a href="/#get-started">Get Started</a></li>
-    <li><a href="/docs">Docs</a></li>
+    
+    
+      
+      <li><a class="" href="/">Home</a></li>
+    
+      
+      <li><a class="active" href="/docs">Docs</a></li>
+    
     <li><a href="https://github.com/buildpack" class="github-button icon-button bg-blue button">GitHub</a></li>
   </ul>
 </header>
@@ -34,18 +40,10 @@
   <div class='container-fluid'>
     <div class='row'>
       <div class='col-sm-3 docs-sidebar'>
-        <nav class='sidebar'>
+        
+
+<nav class='sidebar'>
     <ul>
-      <li data-nav-id="/docs/" class="dd-item
-          depth-0 parent haschildren
-      ">
-        <a href="/docs/">Home</a>
-          <ul>
-      <li data-nav-id="/docs/create-buildpack/" class="dd-item
-          depth-1 parent active
-      ">
-        <a href="/docs/create-buildpack/">Creating a Cloud Native Buildpack</a>
-      </li>
       <li data-nav-id="/docs/using-pack/" class="dd-item
           depth-1 haschildren
       ">
@@ -53,12 +51,12 @@
           <ul>
         <li data-nav-id="/docs/using-pack/building-app/" class="dd-item">
           <a href="/docs/using-pack/building-app/">
-            Building app images with `build`
+            Building app images with <code>build</code>
           </a>
       </li>
         <li data-nav-id="/docs/using-pack/update-app-rebase/" class="dd-item">
           <a href="/docs/using-pack/update-app-rebase/">
-            Updating app images using `rebase`
+            Updating app images using <code>rebase</code>
           </a>
       </li>
         <li data-nav-id="/docs/using-pack/working-with-builders/" class="dd-item">
@@ -72,44 +70,12 @@
           </a>
       </li>
           </ul>
-      </li>
-      <li data-nav-id="/docs/hierachy/" class="dd-item
-          depth-1 haschildren
+      </li></ul>
+    <ul>
+      <li data-nav-id="/docs/create-buildpack/" class="dd-item
+          depth-1 parent active
       ">
-        <a href="/docs/hierachy/">Hierachy Example</a>
-          <ul>
-        <li data-nav-id="/docs/hierachy/nested-article/" class="dd-item">
-          <a href="/docs/hierachy/nested-article/">
-            Nested Article
-          </a>
-      </li>
-      <li data-nav-id="/docs/hierachy/sub-section/" class="dd-item
-          depth-2 haschildren
-      ">
-        <a href="/docs/hierachy/sub-section/">Sub Section</a>
-          <ul>
-        <li data-nav-id="/docs/hierachy/sub-section/really-nested-article/" class="dd-item">
-          <a href="/docs/hierachy/sub-section/really-nested-article/">
-            Really Nested Article
-          </a>
-      </li>
-      <li data-nav-id="/docs/hierachy/sub-section/sub-section/" class="dd-item
-          depth-3 haschildren
-      ">
-        <a href="/docs/hierachy/sub-section/sub-section/">Sub Section</a>
-          <ul>
-        <li data-nav-id="/docs/hierachy/sub-section/sub-section/really-really-nested-article/" class="dd-item">
-          <a href="/docs/hierachy/sub-section/sub-section/really-really-nested-article/">
-            Really, Really Nested Article
-          </a>
-      </li>
-          </ul>
-      </li>
-          </ul>
-      </li>
-          </ul>
-      </li>
-          </ul>
+        <a href="/docs/create-buildpack/">Creating a Cloud Native Buildpack</a>
       </li></ul>
 </nav>
 
@@ -195,7 +161,7 @@ Server:
 <pre><code>cd ruby-cnb
 </code></pre>
 
-<h5 id="buildpack-toml">buildpack.toml</h5>
+<h4 id="buildpack-toml">buildpack.toml</h4>
 
 <p>Once you are in the directory. You will need to create a <code>buildpack.toml</code> file in that directory. This file must exist in the root directory of your buildpack so the <code>pack</code> cli knows it is a buildpack and it can apply the build lifecycle to it.</p>
 
@@ -215,7 +181,7 @@ id = [&quot;io.buildpacks.stacks.bionic&quot;]
 
 <p>You will notice two specific fields in the file: buildpack ID and stack ID. The buildpack ID is the way you will reference the buildpack when you create buildpack groups, builders, etc.  The stack ID is the root file system in which the buildpack will be built.  This example is bulit on ubuntu bionic.</p>
 
-<h5 id="detect-and-build">Detect and Build</h5>
+<h4 id="detect-and-build">Detect and Build</h4>
 
 <p>Next you will need to create the detect and build scripts.  These files must exist in a <code>bin</code> directory in your buildpack directory.</p>
 
@@ -249,7 +215,7 @@ exit 1
 
 <p>These two files are now executable detect and build scripts.  Now you can run your use your buildpack.</p>
 
-<h5 id="using-your-buildpack-with-pack">Using your buildpack with pack</h5>
+<h4 id="using-your-buildpack-with-pack">Using your buildpack with pack</h4>
 
 <p>In order to test your buildpack, you will need to run the buildpack against your sample ruby app using the <code>pack</code> cli.</p>
 
@@ -497,7 +463,7 @@ echo 'processes = [{ type = &quot;web&quot;, command = &quot;rackup -p 8080 --ho
 
 <p>Next we want to separate the ruby interpreter and bundled gems into different layers.  This will allows us to cache the ruby layer and gem dependency layer separately, which helps speed up builds.</p>
 
-<h5 id="creating-the-bundler-layer">Creating the Bundler Layer</h5>
+<h4 id="creating-the-bundler-layer">Creating the Bundler Layer</h4>
 
 <p>To do this replace the line</p>
 
@@ -580,7 +546,7 @@ Successfully built d66d877f6442
 Successfully tagged test-ruby-app:latest
 </code></pre>
 
-<h5 id="caching-gem-dependencies">Caching Gem Dependencies</h5>
+<h4 id="caching-gem-dependencies">Caching Gem Dependencies</h4>
 
 <p>Next we will start caching gem dependencies to help speed up the build if no new dependencies are needed.</p>
 
@@ -688,7 +654,7 @@ Done installing documentation for bundler after 2 seconds
 
 </code></pre>
 
-<h5 id="cache-ruby">Cache Ruby</h5>
+<h4 id="cache-ruby">Cache Ruby</h4>
 
 <p>Now we will add the logic to cache the ruby interpreter to speed up build times if a new version of ruby is not needed.</p>
 
@@ -826,7 +792,7 @@ Done installing documentation for bundler after 2 seconds
 ---&gt; Reusing gems
 </code></pre>
 
-<h5 id="select-ruby-version">Select Ruby Version</h5>
+<h4 id="select-ruby-version">Select Ruby Version</h4>
 
 <p>Next we will update the detect script to check for a specific version of ruby that the user has defined in their application via a <code>.ruby-version</code> file,</p>
 

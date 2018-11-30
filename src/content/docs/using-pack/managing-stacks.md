@@ -2,7 +2,6 @@
 
 title="Managing Stacks"
 weight=4
-type="page"
 creatordisplayname = "Scott Sisil"
 creatoremail = "ssisil@pivotal.io"
 lastmodifierdisplayname = "Scott Sisil"

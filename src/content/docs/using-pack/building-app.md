@@ -1,7 +1,6 @@
 +++
 title="Building app images with `build`"
 weight=1
-type="page"
 creatordisplayname = "Scott Sisil"
 creatoremail = "ssisil@pivotal.io"
 lastmodifierdisplayname = "Scott Sisil"
@@ -68,7 +67,7 @@ The `--buildpack` parameter can be
 
 ### Building explained
 
-![build diagram](build.svg)
+![build diagram](/docs/using-pack/build.svg)
 
 To create an app image, `build` executes one or more buildpacks against the app's source code.
 Each buildpack inspects the source code and provides relevant dependencies. An image is then generated

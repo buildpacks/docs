@@ -349,18 +349,27 @@ h5, .h5
 h6, .h6 {
   line-height: 1.2; }
 
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+  font-weight: 600;
+  padding-bottom: .5rem; }
+
 h1, .h1 {
   font-size: 1.8rem; }
 
 h2, .h2 {
-  font-size: 1.6rem;
-  font-weight: 600;
-  padding-bottom: .5rem; }
+  font-size: 1.6rem; }
 
 h3, .h3 {
-  font-size: 1.2rem;
-  font-weight: 600;
-  padding-bottom: .5rem; }
+  font-size: 1.2rem; }
+
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+  font-size: 1.2rem; }
 
 @media (min-width: 768px) {
   h1, .h1 {
@@ -395,7 +404,9 @@ Code
 code {
   font-size: 87.5%;
   color: #DF0A6B;
-  word-break: break-word; }
+  word-break: break-word;
+  padding-left: 5px;
+  padding-right: 5px; }
 
 a > code {
   color: inherit; }
@@ -420,7 +431,8 @@ pre {
 pre code {
   font-size: inherit;
   word-break: normal;
-  color: #7C6E75; }
+  color: #7C6E75;
+  padding: 0; }
 
 /*!
  * Bootstrap Grid Only (grid and responsive utilities extracted from Bootstrap 4.1.3)
@@ -1576,7 +1588,8 @@ header {
 /* toggle */
 header #mobile-nav-toggle ~ label {
   font-size: 1.9rem;
-  transition: opacity 0.3s; }
+  transition: opacity 0.3s;
+  margin-bottom: 0; }
 
 header #mobile-nav-toggle:checked ~ label {
   opacity: 0.5; }
@@ -1605,7 +1618,9 @@ header li a {
   header li a:hover {
     text-decoration: inherit; }
   header li a:not(.button) {
-    border-bottom: 1px solid rgba(71, 82, 158, 0.25); }
+    border-bottom: 2px solid rgba(71, 82, 158, 0.25); }
+  header li a.active {
+    border-bottom-color: #47529E; }
 
 /**** desktop nav ****/
 @media (min-width: 768px) {
@@ -1627,6 +1642,9 @@ header {
 header .logo img {
   width: auto;
   min-width: 160px; }
+  @media (min-width: 768px) {
+    header .logo img {
+      width: 200px; } }
 
 /**********************************
 
@@ -1954,9 +1972,10 @@ Footer
         background-color: rgba(232, 231, 232, 0.25);
         box-shadow: inset 0 0 10px rgba(124, 110, 117, 0.1); }
         .docs .docs-sidebar:before {
-          content: none; }
-        .docs .docs-sidebar .sidebar {
-          font-size: 0.9125rem !important; } }
+          content: none; } }
+    @media (max-width: 767px) {
+      .docs .docs-sidebar .sidebar {
+        font-size: 0.9125rem !important; } }
   .docs .docs-content {
     padding: 2rem;
     color: #302C2E; }
@@ -1982,12 +2001,12 @@ Footer
       font-size: 1.5rem; }
     .docs .docs-content h3, .docs .docs-content .h3 {
       font-size: 1.25rem; }
-    .docs .docs-content h4, .docs .docs-content .h4 {
-      font-size: 1rem; }
-    .docs .docs-content h5, .docs .docs-content .h5 {
-      font-size: 0.875rem; }
+    .docs .docs-content h4, .docs .docs-content .h4,
+    .docs .docs-content h5, .docs .docs-content .h5,
     .docs .docs-content h6, .docs .docs-content .h6 {
-      font-size: 0.75rem; }
+      font-size: 1rem;
+      font-weight: 600;
+      color: #323985; }
     .docs .docs-content h1:first-child, .docs .docs-content .h1:first-child {
       padding-bottom: 1rem;
       margin-bottom: 2rem;
