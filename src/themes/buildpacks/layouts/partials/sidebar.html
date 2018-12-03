@@ -12,7 +12,7 @@
 
 <!-- templates -->
 {{- define "section-tree-nav" }}
-  {{- $currentNode := .currentnode }}
+  {{- $currentNode := .currentnode }} 
   {{- $depth := .depth }}
   {{- with .sect}}
     {{- if and .IsSection (or (not .Params.hidden) $.showhidden)}}

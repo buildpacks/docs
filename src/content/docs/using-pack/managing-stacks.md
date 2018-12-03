@@ -1,6 +1,6 @@
 +++
 
-title="Managing Stacks"
+title="Managing stacks"
 weight=4
 creatordisplayname = "Scott Sisil"
 creatoremail = "ssisil@pivotal.io"

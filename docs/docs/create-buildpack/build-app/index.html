@@ -1,0 +1,281 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Fira+Mono|Source+Sans+Pro:400,400i,600" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/scss/site.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    
+    
+
+    <title>Building your application · Cloud Native Buildpack Documentation</title>
+  </head>
+  <body>
+    <header>
+  <a href="/" class="logo"><img src="/images/buildpacks-logo.svg" alt="Buildpacks.io Logo"></a>
+  <input type="checkbox" id="mobile-nav-toggle">
+  <label for="mobile-nav-toggle">&#9776;</label>
+  <ul>
+    
+    
+      
+      <li><a class="" href="/">Home</a></li>
+    
+      
+      <li><a class="active" href="/docs">Docs</a></li>
+    
+    <li><a href="https://github.com/buildpack" class="github-button icon-button bg-blue button">GitHub</a></li>
+  </ul>
+</header>
+
+    
+
+<div class='docs'>
+  <div class='container-fluid'>
+    <div class='row'>
+      <div class='col-sm-3 docs-sidebar'>
+        
+
+<nav class='sidebar'>
+    <ul>
+      <li data-nav-id="/docs/latest-updates/" class="dd-item
+          depth-1
+      ">
+        <a href="/docs/latest-updates/">Latest Project Updates</a>
+      </li></ul>
+    <ul>
+      <li data-nav-id="/docs/using-pack/" class="dd-item
+          depth-1 haschildren
+      ">
+        <a href="/docs/using-pack/">Getting Started with <code>pack</code></a>
+          <ul>
+        <li data-nav-id="/docs/using-pack/building-app/" class="dd-item">
+          <a href="/docs/using-pack/building-app/">
+            Building app images with <code>build</code>
+          </a>
+      </li>
+        <li data-nav-id="/docs/using-pack/update-app-rebase/" class="dd-item">
+          <a href="/docs/using-pack/update-app-rebase/">
+            Updating app images using <code>rebase</code>
+          </a>
+      </li>
+        <li data-nav-id="/docs/using-pack/working-with-builders/" class="dd-item">
+          <a href="/docs/using-pack/working-with-builders/">
+            Working with builders
+          </a>
+      </li>
+        <li data-nav-id="/docs/using-pack/managing-stacks/" class="dd-item">
+          <a href="/docs/using-pack/managing-stacks/">
+            Managing stacks
+          </a>
+      </li>
+          </ul>
+      </li></ul>
+    <ul>
+      <li data-nav-id="/docs/create-buildpack/" class="dd-item
+          depth-1 parent haschildren
+      ">
+        <a href="/docs/create-buildpack/">Creating a Cloud Native Buildpack</a>
+          <ul>
+        <li data-nav-id="/docs/create-buildpack/setup-local-environment/" class="dd-item">
+          <a href="/docs/create-buildpack/setup-local-environment/">
+            Setup your local environment
+          </a>
+      </li>
+        <li data-nav-id="/docs/create-buildpack/building-blocks-cnb/" class="dd-item">
+          <a href="/docs/create-buildpack/building-blocks-cnb/">
+            Building blocks of a Cloud Native Buildpack
+          </a>
+      </li>
+        <li data-nav-id="/docs/create-buildpack/detection/" class="dd-item">
+          <a href="/docs/create-buildpack/detection/">
+            Detecting your application
+          </a>
+      </li>
+        <li data-nav-id="/docs/create-buildpack/build-app/" class="dd-item active">
+          <a href="/docs/create-buildpack/build-app/">
+            Building your application
+          </a>
+      </li>
+        <li data-nav-id="/docs/create-buildpack/make-app-runnable/" class="dd-item">
+          <a href="/docs/create-buildpack/make-app-runnable/">
+            Make your application runnable
+          </a>
+      </li>
+        <li data-nav-id="/docs/create-buildpack/caching/" class="dd-item">
+          <a href="/docs/create-buildpack/caching/">
+            Improving performance with caching
+          </a>
+      </li>
+          </ul>
+      </li></ul>
+</nav>
+
+
+
+      </div>
+      <div class='col-sm-9 docs-content'>
+        <h1>Building your application</h1>
+        <p>Next we will make the build step work.  This will a few updates to the build script.</p>
+
+<p>We need to read the launch directory passed in by build lifecycle - learn more about the lifecycle <a href="https://github.com/buildpack/lifecycle">here</a></p>
+
+<pre><code>launchdir=$3 
+</code></pre>
+
+<p>We need to create a ruby layer in the image</p>
+
+<pre><code>mkdir -p $launchdir/ruby
+touch $launchdir/ruby.toml
+</code></pre>
+
+<p>We will need to download ruby</p>
+
+<pre><code>ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-2.5.1.tgz
+wget -q -O - &quot;$ruby_url&quot; | tar -xzf - -C &quot;$launchdir/ruby&quot;
+</code></pre>
+
+<p>We will need to download bundler</p>
+
+<pre><code>bundler_url=https://buildpacks.cloudfoundry.org/dependencies/bundler/bundler-1.16.6-any-stack-77354698.tgz
+mkdir -p $launchdir/bundler
+wget -q -O - &quot;$bundler_url&quot; | tar -xzf - -C &quot;$launchdir/bundler&quot;
+</code></pre>
+
+<p>Finally, we will need to install bundle and then run bundle install</p>
+
+<pre><code>gem install bundler
+bundle install
+</code></pre>
+
+<p>Your build script will now look like this</p>
+
+<pre><code>#!/usr/bin/env bash
+set -eo pipefail
+# Set the launchdir variable to be the third argument from the build lifecycle
+launchdir=$3 
+
+echo &quot;---&gt; Ruby Buildpack&quot; 
+
+echo &quot;---&gt; Downloading and extracting ruby&quot;
+mkdir -p $launchdir/ruby
+touch $launchdir/ruby.toml
+
+ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-2.5.1.tgz
+wget -q -O - &quot;$ruby_url&quot; | tar -xzf - -C &quot;$launchdir/ruby&quot;
+
+
+# Make ruby and bundler accessible in this script
+export PATH=$PATH:$launchdir/ruby/bin
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}$launchdir/ruby/lib
+
+echo &quot;---&gt; Installing bundler&quot;
+gem install bundler
+
+echo &quot;---&gt; Installing gems&quot;
+bundle install
+</code></pre>
+
+<p>Now if you build your app again</p>
+
+<pre><code>pack build test-ruby-app --buildpack workspace/ruby-cnb  --path workspace/ruby-sample-app/
+</code></pre>
+
+<p>You will see the following output</p>
+
+<pre><code>2018/10/16 14:20:47 Selected run image 'packs/run' from stack 'io.buildpacks.stacks.bionic'
+*** DETECTING:
+2018/10/16 19:20:49 Group: Ruby Buildpack: pass
+*** ANALYZING: Reading information from previous image for possible re-use
+2018/10/16 14:20:50 WARNING: skipping analyze, image not found
+*** BUILDING:
+---&gt; Ruby Buildpack
+---&gt; Downloading and extracting ruby
+---&gt; Installing bundler
+Successfully installed bundler-1.16.6
+Parsing documentation for bundler-1.16.6
+Installing ri documentation for bundler-1.16.6
+Done installing documentation for bundler after 3 seconds
+1 gem installed
+---&gt; Installing gems
+Fetching gem metadata from https://rubygems.org/..............
+Using bundler 1.16.6
+Fetching rack 2.0.5
+Installing rack 2.0.5
+Fetching roda 3.13.0
+Installing roda 3.13.0
+Bundle complete! 1 Gemfile dependency, 3 gems now installed.
+Use `bundle info [gemname]` to see where a bundled gem is installed.
+</code></pre>
+
+<p>After building the ruby app, the buildpack now creates a docker file based on the output of build and then runs it</p>
+
+<pre><code>*** EXPORTING:
+Step 1/4 : FROM packs/run *** This is the run image from your stack ***
+---&gt; aebbb14d9529
+Step 2/4 : ADD --chown=pack:pack /workspace/app /workspace/app  *** This is the app ***
+---&gt; f248b539eb0b
+Step 3/4 : ADD --chown=pack:pack /workspace/config /workspace/config ** Metadata for runtime **
+---&gt; 74fb93aaa030
+Step 4/4 : ADD --chown=pack:pack  /workspace/io.buildpacks.samples.ruby/ruby /workspace/io.buildpacks.samples.ruby/ruby *** This is the ruby interpreter that the buildpack placed as a layer ***
+---&gt; 3d096514cf24
+---&gt; 3d096514cf24
+Successfully built 3d096514cf24
+Successfully tagged test-ruby-app:latest
+Step 1/2 : FROM test-ruby-app  *** Set metadata labels of the image ***
+---&gt; 3d096514cf24
+Step 2/2 : LABEL io.buildpacks.lifecycle.metadata='{&quot;app&quot;:{&quot;name&quot;:&quot;&quot;,&quot;sha&quot;:&quot;sha256:1e13e329d407844821c3aa5bd22d74feb5cae32af5aa85c82b5271a20e51615d&quot;},&quot;config&quot;:{&quot;sha&quot;:&quot;sha256:45f0d1cb7eee98d807a7932b4fcf8a5c0c5b2c1aad0a223994922d68885457ad&quot;},&quot;buildpacks&quot;:[{&quot;key&quot;:&quot;io.buildpacks.samples.ruby&quot;,&quot;name&quot;:&quot;&quot;,&quot;layers&quot;:{&quot;ruby&quot;:{&quot;sha&quot;:&quot;sha256:f5fa2b809b8847000234da59c2f346e066736efbcd5a84ffddf02993b0fd23e9&quot;,&quot;data&quot;:{}}}}],&quot;runimage&quot;:{&quot;name&quot;:&quot;packs/run&quot;,&quot;sha&quot;:&quot;sha256:2ace261ebe9f5936ea72b6290019cda476db6a0b3a4d5d64039c61b45e46091f&quot;}}'
+---&gt; Running in 49bca3c53f9f
+---&gt; af8d138f6c96
+---&gt; af8d138f6c96
+Successfully built af8d138f6c96
+Successfully tagged test-ruby-app:latest
+</code></pre>
+
+<hr />
+
+        
+  <hr>
+  <div class='footline'>
+    
+      <div class='footline-author'>
+        Last modified by <a href="mailto:ssisil@pivotal.io">Scott Sisil</a>
+      </div>
+    
+    
+    
+  </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+    <footer>
+  <div class="container footer">
+      <a href="https://www.cncf.io/" style="width: 50%;"><img src="/images/cncf-color.svg" class="footer-logo"></a>
+      <p>We are a <a href="https://www.cncf.io/">Cloud Native Sandbox</a> project.</p>
+  </div>
+  <div class="bg-blue">
+    <div class="container sub-footer">
+      <p>Reach out <a href="https://slack.buildpacks.io">on Slack</a> to learn more.</p>
+      <ul>
+        <li><a href="https://twitter.com/buildpacks_io">Twitter</a> <span>&bull;</span></li>
+        
+        <li><a href="https://github.com/buildpack">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

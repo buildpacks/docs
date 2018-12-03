@@ -5,4 +5,4 @@ title="Docs"
     parent = "docs"
 +++
 
-<meta http-equiv="refresh" content="0;url=/docs/using-pack/" />
+<meta http-equiv="refresh" content="0;url=/docs/latest-updates">

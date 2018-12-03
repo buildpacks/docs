@@ -14,7 +14,7 @@
     
     
 
-    <title>Docs · Cloud Native Buildpack Documentation</title>
+    <title>Setup your local environment · Cloud Native Buildpack Documentation</title>
   </head>
   <body>
     <header>
@@ -79,11 +79,11 @@
       </li></ul>
     <ul>
       <li data-nav-id="/docs/create-buildpack/" class="dd-item
-          depth-1 haschildren
+          depth-1 parent haschildren
       ">
         <a href="/docs/create-buildpack/">Creating a Cloud Native Buildpack</a>
           <ul>
-        <li data-nav-id="/docs/create-buildpack/setup-local-environment/" class="dd-item">
+        <li data-nav-id="/docs/create-buildpack/setup-local-environment/" class="dd-item active">
           <a href="/docs/create-buildpack/setup-local-environment/">
             Setup your local environment
           </a>
@@ -121,10 +121,61 @@
 
       </div>
       <div class='col-sm-9 docs-content'>
-        <h1>Docs</h1>
-        <p><meta http-equiv="refresh" content="0;url=/docs/latest-updates"></p>
+        <h1>Setup your local environment</h1>
+        <p>First we will want to clone a sample ruby app that you can use when developing the ruby cloud native buildpack</p>
+
+<pre><code>mkdir workspace
+cd workspace
+git clone &lt;path to sample ruby app&gt;
+</code></pre>
+
+<p>Next we want to create the directory where you will create your buildpack</p>
+
+<pre><code>cd workspace
+mkdir ruby-cnb
+</code></pre>
+
+<p>Finally, make sure your local docker daemon is running by running the following command</p>
+
+<pre><code>docker version
+</code></pre>
+
+<p>The following output should appear</p>
+
+<pre><code>Client:
+ Version:           18.06.1-ce
+ API version:       1.38
+ Go version:        go1.10.3
+ Git commit:        e68fc7a
+ Built:             Tue Aug 21 17:21:31 2018
+ OS/Arch:           darwin/amd64
+ Experimental:      false
+
+Server:
+ Engine:
+  Version:          18.06.1-ce
+  API version:      1.38 (minimum version 1.12)
+  Go version:       go1.10.3
+  Git commit:       e68fc7a
+  Built:            Tue Aug 21 17:29:02 2018
+  OS/Arch:          linux/amd64
+  Experimental:     true
+</code></pre>
+
+<hr />
 
         
+  <hr>
+  <div class='footline'>
+    
+      <div class='footline-author'>
+        Last modified by <a href="mailto:ssisil@pivotal.io">Scott Sisil</a>
+      </div>
+    
+    
+    
+  </div>
+
 
       </div>
     </div>

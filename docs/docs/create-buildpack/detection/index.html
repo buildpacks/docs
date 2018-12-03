@@ -14,7 +14,7 @@
     
     
 
-    <title>Docs · Cloud Native Buildpack Documentation</title>
+    <title>Detecting your application · Cloud Native Buildpack Documentation</title>
   </head>
   <body>
     <header>
@@ -79,7 +79,7 @@
       </li></ul>
     <ul>
       <li data-nav-id="/docs/create-buildpack/" class="dd-item
-          depth-1 haschildren
+          depth-1 parent haschildren
       ">
         <a href="/docs/create-buildpack/">Creating a Cloud Native Buildpack</a>
           <ul>
@@ -93,7 +93,7 @@
             Building blocks of a Cloud Native Buildpack
           </a>
       </li>
-        <li data-nav-id="/docs/create-buildpack/detection/" class="dd-item">
+        <li data-nav-id="/docs/create-buildpack/detection/" class="dd-item active">
           <a href="/docs/create-buildpack/detection/">
             Detecting your application
           </a>
@@ -121,10 +121,62 @@
 
       </div>
       <div class='col-sm-9 docs-content'>
-        <h1>Docs</h1>
-        <p><meta http-equiv="refresh" content="0;url=/docs/latest-updates"></p>
+        <h1>Detecting your application</h1>
+        <p>Next you will want to actually detect that the app your are building is a ruby app. In order to do this you will need to check for a Gemfile.</p>
+
+<p>Replace <code>exit 1</code> with the following check in your detect script</p>
+
+<pre><code>if [[ ! -f Gemfile ]]; then
+   exit 100
+fi
+</code></pre>
+
+<p>And now your detect script will look like this</p>
+
+<pre><code>#!/usr/bin/env bash
+set -eo pipefail
+
+if [[ ! -f Gemfile ]]; then
+   exit 100
+fi
+</code></pre>
+
+<p>Next, rebuild your app with your updated buildpack</p>
+
+<pre><code>pack build test-ruby-app --buildpack workspace/ruby-cnb  --path workspace/ruby-sample-app/
+</code></pre>
+
+<p>You will see the following output</p>
+
+<pre><code>2018/10/16 10:16:36 Selected run image 'packs/run' from stack 'io.buildpacks.stacks.bionic'
+*** DETECTING:
+2018/10/16 15:16:40 Group: Ruby Buildpack: pass
+*** ANALYZING: Reading information from previous image for possible re-use
+2018/10/16 10:16:41 WARNING: skipping analyze, image not found
+*** BUILDING:
+---&gt; Ruby Buildpack
+2018/10/16 15:16:42 Error: failed to : exit status 1
+Error: failed with status code: 7
+</code></pre>
+
+<p>Notice that <code>detect</code> now passes because there is a valid Gemfile in the ruby app at <code>~/ruby-sample-app</code>, but now <code>build</code> fails because it is coded to do so.</p>
+
+<p>You will also notice <code>ANALYZE</code> now appears in the build output.  This step is part of the buildpack lifecycle that looks to see if any previous image builds have layers that the buildpack can re-use. We will get into this topic in more detail later.</p>
+
+<hr />
 
         
+  <hr>
+  <div class='footline'>
+    
+      <div class='footline-author'>
+        Last modified by <a href="mailto:ssisil@pivotal.io">Scott Sisil</a>
+      </div>
+    
+    
+    
+  </div>
+
 
       </div>
     </div>

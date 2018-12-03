@@ -14,7 +14,7 @@
     
     
 
-    <title>Docs · Cloud Native Buildpack Documentation</title>
+    <title>Make your application runnable · Cloud Native Buildpack Documentation</title>
   </head>
   <body>
     <header>
@@ -79,7 +79,7 @@
       </li></ul>
     <ul>
       <li data-nav-id="/docs/create-buildpack/" class="dd-item
-          depth-1 haschildren
+          depth-1 parent haschildren
       ">
         <a href="/docs/create-buildpack/">Creating a Cloud Native Buildpack</a>
           <ul>
@@ -103,7 +103,7 @@
             Building your application
           </a>
       </li>
-        <li data-nav-id="/docs/create-buildpack/make-app-runnable/" class="dd-item">
+        <li data-nav-id="/docs/create-buildpack/make-app-runnable/" class="dd-item active">
           <a href="/docs/create-buildpack/make-app-runnable/">
             Make your application runnable
           </a>
@@ -121,10 +121,74 @@
 
       </div>
       <div class='col-sm-9 docs-content'>
-        <h1>Docs</h1>
-        <p><meta http-equiv="refresh" content="0;url=/docs/latest-updates"></p>
+        <h1>Make your application runnable</h1>
+        <p>Next we want to set a default start command for the application in the image.  You will want to add the following code to then end of your build script.</p>
+
+<pre><code># Set default start command
+echo 'processes = [{ type = &quot;web&quot;, command = &quot;rackup -p 8080 --host 0.0.0.0&quot;}]' &gt; &quot;$launchdir/launch.toml&quot;
+</code></pre>
+
+<p>This sets your default start command.</p>
+
+<p>Your full build script should now look like this</p>
+
+<pre><code>#!/usr/bin/env bash
+set -eo pipefail
+# Set the launchdir variable to be the third argument from the build lifecycle
+launchdir=$3 
+
+echo &quot;---&gt; Ruby Buildpack&quot; 
+
+echo &quot;---&gt; Downloading and extracting ruby&quot;
+mkdir -p $launchdir/ruby
+touch $launchdir/ruby.toml
+
+ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-2.5.1.tgz
+wget -q -O - &quot;$ruby_url&quot; | tar -xzf - -C &quot;$launchdir/ruby&quot;
+
+
+# Make ruby and bundler accessible in this script
+export PATH=$PATH:$launchdir/ruby/bin
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}$launchdir/ruby/lib
+
+echo &quot;---&gt; Installing bundler&quot;
+gem install bundler
+
+echo &quot;---&gt; Installing gems&quot;
+bundle install
+
+# Set default start command
+echo 'processes = [{ type = &quot;web&quot;, command = &quot;rackup -p 8080 --host 0.0.0.0&quot;}]' &gt; &quot;$launchdir/launch.toml&quot;
+</code></pre>
+
+<p>Now you will rebuild your app using the updated buildpack with the launch command</p>
+
+<pre><code>pack build test-ruby-app --buildpack workspace/ruby-cnb  --path workspace/ruby-sample-app/
+</code></pre>
+
+<p>And when you run <code>docker run -p 8080:8080 test-ruby-app</code> you should see you the WEBRICK webserver startup</p>
+
+<pre><code>[2018-10-17 15:05:38] INFO  WEBrick 1.4.2
+[2018-10-17 15:05:38] INFO  ruby 2.5.1 (2018-03-29) [x86_64-linux]
+[2018-10-17 15:05:38] INFO  WEBrick::HTTPServer#start: pid=1 port=8080
+</code></pre>
+
+<p>You should also be able to access the app via your web browser at <code>localhost:8080</code>.</p>
+
+<hr />
 
         
+  <hr>
+  <div class='footline'>
+    
+      <div class='footline-author'>
+        Last modified by <a href="mailto:ssisil@pivotal.io">Scott Sisil</a>
+      </div>
+    
+    
+    
+  </div>
+
 
       </div>
     </div>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Getting Started with pack on Cloud Native Buildpack Documentation</title>
+    <title>Getting Started with `pack` on Cloud Native Buildpack Documentation</title>
     <link>/docs/using-pack/</link>
-    <description>Recent content in Getting Started with pack on Cloud Native Buildpack Documentation</description>
+    <description>Recent content in Getting Started with `pack` on Cloud Native Buildpack Documentation</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
@@ -43,7 +43,7 @@ $ pack create-builder &amp;lt;image-name&amp;gt; --builder-config &amp;lt;path-t
     </item>
     
     <item>
-      <title>Managing Stacks</title>
+      <title>Managing stacks</title>
       <link>/docs/using-pack/managing-stacks/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
