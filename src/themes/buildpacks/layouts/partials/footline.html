@@ -1,0 +1,20 @@
+{{ if or (.Params.LastModifierDisplayName) (not .Page.Lastmod.IsZero) (.Site.Params.editURL) }}
+  <hr>
+  <div class='footline'>
+    {{with .Params.LastModifierDisplayName}}
+      <div class='footline-author'>
+        Last modified by <a href="mailto:{{ $.Params.LastModifierEmail }}">{{ . }}</a>
+      </div>
+    {{end}}
+    {{ if not .Page.Lastmod.IsZero }}
+      <div class='footline-date'>
+        Last updated {{ .Page.Lastmod.Format "01/01/2018" }}
+      </div>
+    {{end}}
+    {{ if .Site.Params.editURL }}
+      <div class='footline-github'>
+        <a href="{{ .Site.Params.editURL }}{{ replace .File.Dir "\\" "/" }}{{ .File.LogicalName }}" target="blank"> Improve this page</a>
+      </div>
+    {{end}}
+  </div>
+{{end}}

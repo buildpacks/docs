@@ -1,0 +1,79 @@
+.sidebar {
+  font-size: 1rem;
+  border-bottom: 1px solid rgba($gray-light, 0.1);
+  
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  a {
+    text-decoration: none;
+    color: $gray-light;
+    display: inline-block;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    transition: opacity 0.2s;
+  }
+  
+  .depth-0 {
+    > a {
+      display: block;
+      padding: 20px;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 1px;
+      font-size: 0.75rem;
+    }
+    &.active > a {
+      background: rgba($white, 0.25);
+    }
+  }
+  
+  .depth-1 {
+    position: relative;
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 20px;
+      width: 1px;
+      top: 20px;
+      bottom: 20px;
+      background-color: rgba($gray-light, 0.1);
+    }
+    > a {
+      font-weight: 600;
+    }
+    padding: 10px;
+    padding-left: 40px;
+    border-top: 1px solid rgba($gray-light, 0.05);
+
+    // Has active child nodes
+    &.parent {
+      background: $white;
+      > a {
+        font-weight: 600;
+        color: $gray-dark;
+      }
+      
+      // Has child nodes with active children
+      .parent > a {
+        color: $gray-dark;
+      }
+      
+      // Active state
+      .active > a {
+        color: $pink;
+      }
+    }
+  }
+
+  // Anything below the first two depth levels
+  li[class*="depth-"]:not(.depth-0):not(.depth-1) {
+    > ul {
+      padding-left: 20px;
+    }
+  }
+}

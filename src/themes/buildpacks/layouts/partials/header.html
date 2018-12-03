@@ -1,0 +1,13 @@
+<header>
+  <a href="{{.Site.BaseURL}}" class="logo"><img src="/images/buildpacks-logo.svg" alt="Buildpacks.io Logo"></a>
+  <input type="checkbox" id="mobile-nav-toggle">
+  <label for="mobile-nav-toggle">&#9776;</label>
+  <ul>
+    {{ $current := . }}
+    {{ range $.Site.Menus.main }}
+      {{ $topLevel := replace .URL "/" "" }}
+      <li><a class="{{ if or (eq $current.URL .URL) (eq $current.Type $topLevel) }}active{{end}}" href="{{ .URL }}">{{ .Name }}</a></li>
+    {{ end }}
+    <li><a href="https://github.com/buildpack" class="github-button icon-button bg-blue button">GitHub</a></li>
+  </ul>
+</header>

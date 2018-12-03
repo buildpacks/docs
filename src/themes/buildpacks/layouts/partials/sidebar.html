@@ -1,0 +1,59 @@
+{{- $currentNode := . }}
+{{- $depth := 1 -}}
+{{- $docs := .Site.GetPage "/docs" }}
+
+<nav class='sidebar'>
+  {{- range $docs.Sections.ByWeight }}
+    <ul>
+      {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "depth" $depth -}}
+    </ul>
+  {{- end}}
+</nav>
+
+<!-- templates -->
+{{- define "section-tree-nav" }}
+  {{- $currentNode := .currentnode }}
+  {{- $depth := .depth }}
+  {{- with .sect}}
+    {{- if and .IsSection (or (not .Params.hidden) $.showhidden)}}
+      {{- $numberOfPages := (add (len .Pages) (len .Sections)) }}
+      {{- safeHTML .Params.head}}
+      <li data-nav-id="{{.URL}}" class="dd-item
+          depth-{{ $depth }}
+          {{- if .IsAncestor $currentNode}} parent{{end}}
+          {{- if eq .URL $currentNode.URL}} active{{end}}
+          {{- if ne $numberOfPages 0 }} haschildren{{end}}
+      ">
+        <a href="{{ .RelPermalink}}">{{safeHTML .Params.Pre}}{{.Title | markdownify}}{{safeHTML .Params.Post}}</a>
+
+        {{- if ne $numberOfPages 0 }}
+          {{- $depth = add (int $depth) 1 }}
+          <ul>
+            {{- .Scratch.Set "pages" .Pages }}
+            {{- if .Sections}}
+            {{- .Scratch.Set "pages" (.Pages | union .Sections) }}
+            {{- end}}
+            {{- $pages := (.Scratch.Get "pages") }}
+
+            {{- range $pages.ByWeight }}
+              {{- if and .Params.hidden (not $.showhidden) }}
+              {{- else}}
+              {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "depth" $depth }}
+              {{- end}}
+            {{- end}}
+          </ul>
+        {{- end}}
+      </li>
+    {{- else}}
+      {{- if not .Params.Hidden }}
+        <li data-nav-id="{{.URL}}" class="dd-item
+          {{- if eq .URL $currentNode.URL}} active{{end -}}
+        ">
+          <a href="{{ .RelPermalink}}">
+            {{safeHTML .Params.Pre}}{{.LinkTitle | markdownify}}{{safeHTML .Params.Post}}
+          </a>
+      </li>
+      {{- end}}
+    {{- end}}
+  {{- end}}
+{{- end}}

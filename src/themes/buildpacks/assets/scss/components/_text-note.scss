@@ -1,0 +1,20 @@
+/**********************************
+
+Text Note
+
+**********************************/
+
+.text-note {
+  background-color: $off-gray;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: .9rem;
+  line-height: 180%;
+  color: $gray-dark;
+}
+
+.text-note h3 {
+  color: inherit;
+  font-size: inherit;
+  text-transform: uppercase;
+}

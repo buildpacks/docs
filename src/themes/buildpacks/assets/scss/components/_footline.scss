@@ -1,0 +1,9 @@
+.footline {
+  font-size: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  color: $gray-light;
+  > *:not(:first-child):not(:last-child) {
+    padding: 0 20px;
+  }
+}

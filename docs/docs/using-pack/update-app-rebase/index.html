@@ -14,7 +14,7 @@
     
     
 
-    <title>Tags · Cloud Native Buildpack Documentation</title>
+    <title>Updating app images using `rebase` · Cloud Native Buildpack Documentation</title>
   </head>
   <body>
     <header>
@@ -28,7 +28,7 @@
       <li><a class="" href="/">Home</a></li>
     
       
-      <li><a class="" href="/docs">Docs</a></li>
+      <li><a class="active" href="/docs">Docs</a></li>
     
     <li><a href="https://github.com/buildpack" class="github-button icon-button bg-blue button">GitHub</a></li>
   </ul>
@@ -45,7 +45,7 @@
 <nav class='sidebar'>
     <ul>
       <li data-nav-id="/docs/using-pack/" class="dd-item
-          depth-1 haschildren
+          depth-1 parent haschildren
       ">
         <a href="/docs/using-pack/">Getting Started with pack</a>
           <ul>
@@ -54,7 +54,7 @@
             Building app images with <code>build</code>
           </a>
       </li>
-        <li data-nav-id="/docs/using-pack/update-app-rebase/" class="dd-item">
+        <li data-nav-id="/docs/using-pack/update-app-rebase/" class="dd-item active">
           <a href="/docs/using-pack/update-app-rebase/">
             Updating app images using <code>rebase</code>
           </a>
@@ -83,9 +83,49 @@
 
       </div>
       <div class='col-sm-9 docs-content'>
-        <h1>Tags</h1>
+        <h1>Updating app images using <code>rebase</code></h1>
         
+
+<h2 id="updating-app-images-using-rebase">Updating app images using <code>rebase</code></h2>
+
+<p>The <code>pack rebase</code> command allows app developers to rapidly update an app image when its stack&rsquo;s run image has changed.
+By using image layer rebasing, this command avoids the need to fully rebuild the app.</p>
+
+<pre><code class="language-bash">$ pack rebase &lt;image-name&gt;
+</code></pre>
+
+<h3 id="example-rebasing-an-app-image">Example: Rebasing an app image</h3>
+
+<p>Consider an app image <code>my-app:my-tag</code> that was originally built using the default builder. That builder&rsquo;s stack has a
+run image called <code>pack/run</code>. Running the following will update the base of <code>my-app:my-tag</code> with the latest version of
+<code>pack/run</code>.</p>
+
+<pre><code class="language-bash">$ pack rebase my-app:my-tag
+</code></pre>
+
+<p>Like <a href="#building-app-images-using-build"><code>build</code></a>, <code>rebase</code> has a <code>--publish</code> flag that can be
+used to publish the updated app image to a registry.</p>
+
+<h3 id="rebasing-explained">Rebasing explained</h3>
+
+<p><img src="/docs/using-pack/rebase.svg" alt="rebase diagram" /></p>
+
+<p>At its core, image rebasing is a simple process. By inspecting an app image, <code>rebase</code> can determine whether or not a
+newer version of the app&rsquo;s base image exists (either locally or in a registry). If so, <code>rebase</code> updates the app image&rsquo;s
+layer metadata to reference the newer base image version.</p>
+
         
+  <hr>
+  <div class='footline'>
+    
+      <div class='footline-author'>
+        Last modified by <a href="mailto:ssisil@pivotal.io">Scott Sisil</a>
+      </div>
+    
+    
+    
+  </div>
+
 
       </div>
     </div>

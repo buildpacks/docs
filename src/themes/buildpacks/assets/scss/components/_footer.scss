@@ -1,0 +1,82 @@
+/**********************************
+
+Footer
+
+**********************************/
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.footer img {
+  max-width: 300px;
+  width: 100%;
+}
+
+.footer p {
+  margin: 10px 0 0;
+}
+
+@media (min-width: 768px) {
+  .footer {
+    flex-direction: row;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: left;
+  }
+
+  .footer p {
+    margin: 0;
+  }
+}
+
+.sub-footer {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  font-size: .9rem;
+  font-weight: 400;
+}
+
+.sub-footer p {
+  margin: 0;
+}
+
+.sub-footer ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.sub-footer li {
+  margin: 10px 0;
+}
+
+/* the bullets between lis */
+.sub-footer span {
+  margin: 0 10px;
+}
+
+@media (min-width: 768px) {
+  .sub-footer {
+    flex-direction: row;
+    text-align: left;
+  }
+
+  .sub-footer li {
+    margin: 0;
+  }
+}

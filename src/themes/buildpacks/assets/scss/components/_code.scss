@@ -1,0 +1,36 @@
+/**********************************
+
+Code
+
+**********************************/
+
+.pre-scrollable {
+  max-height: 340px;
+  overflow-y: scroll;
+}
+
+/* one line code */
+code.highlight {
+  background-color: $off-gray;
+  padding: 5px 10px;
+  font-family: monospace;
+  font-size: 1rem;
+  color: inherit;
+  box-shadow: 0 1px 0 0 rgba($gray-light, 0.4);
+  border-radius: 3px;
+}
+
+/* multi-line code */
+.code-block {
+  background-color: white;
+  border: 1px solid rgba($gray-light, 0.25);
+  border-radius: .25rem;
+  padding: 15px 20px;
+}
+
+/* command line code (inludes an not-selectable $ at the beginning) */
+.command-line::before {
+  content: '$';
+  color: rgba($gray-light, 0.5);
+  margin-right: 15px;
+}

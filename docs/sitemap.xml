@@ -3,27 +3,27 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/using-pack/building-app/</loc>
+    <loc>/docs/using-pack/building-app/</loc>
   </url>
   
   <url>
-    <loc>/create-buildpack/</loc>
+    <loc>/docs/using-pack/</loc>
   </url>
   
   <url>
-    <loc>/using-pack/</loc>
+    <loc>/docs/create-buildpack/</loc>
   </url>
   
   <url>
-    <loc>/using-pack/update-app-rebase/</loc>
+    <loc>/docs/using-pack/update-app-rebase/</loc>
   </url>
   
   <url>
-    <loc>/using-pack/working-with-builders/</loc>
+    <loc>/docs/using-pack/working-with-builders/</loc>
   </url>
   
   <url>
-    <loc>/using-pack/managing-stacks/</loc>
+    <loc>/docs/using-pack/managing-stacks/</loc>
   </url>
   
   <url>
@@ -34,6 +34,10 @@
   <url>
     <loc>/</loc>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/docs/</loc>
   </url>
   
   <url>

@@ -1,0 +1,76 @@
+/**********************************
+
+Typography
+
+**********************************/
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5
+h6, .h6 {
+  line-height: 1.2;
+}
+
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+  font-weight: 600;
+  padding-bottom: .5rem;
+}
+
+h1, .h1 {
+  font-size: 1.8rem;
+}
+
+h2, .h2 {
+  font-size: 1.6rem;
+}
+
+h3, .h3 {
+  font-size: 1.2rem;
+}
+
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+  font-size: 1.2rem;
+}
+
+@media (min-width: 768px) {
+  h1, .h1 {
+    font-size: 2.5rem;
+  }
+
+  h2, .h2 {
+    font-size: 1.8rem;
+  }
+
+  h3, .h3 {
+    font-size: 1.4rem;
+  }
+}
+
+a {
+  text-decoration: underline;
+  color: inherit;
+  transition: opacity 0.1s;
+}
+
+a:hover {
+  opacity: .7;
+  color: inherit;
+}
+
+b, strong {
+  font-style: 600;
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: $off-gray;
+}
