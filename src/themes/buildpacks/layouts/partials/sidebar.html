@@ -1,9 +1,8 @@
 {{- $currentNode := . }}
-{{- $depth := 1 -}}
-{{- $docs := .Site.GetPage "/docs" }}
+{{- $depth := 0 -}}
 
 <nav class='sidebar'>
-  {{- range $docs.Sections.ByWeight }}
+  {{- range .Site.Sections.ByWeight }}
     <ul>
       {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "depth" $depth -}}
     </ul>

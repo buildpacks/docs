@@ -7,7 +7,7 @@
   </url>
   
   <url>
-    <loc>/docs/latest-updates/</loc>
+    <loc>/docs/</loc>
   </url>
   
   <url>
@@ -62,10 +62,6 @@
   <url>
     <loc>/</loc>
     <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/docs/</loc>
   </url>
   
   <url>
