@@ -21,13 +21,18 @@
     > a {
       display: block;
       padding: 20px;
-      text-transform: uppercase;
       font-weight: 600;
-      letter-spacing: 1px;
-      font-size: 0.75rem;
+      margin-left: 20px;
+      position: relative;
+      &:before {
+        position: absolute;
+        content: "•";
+        left: 0;
+        opacity: 0.25;
+      }
     }
     &.active > a {
-      background: rgba($white, 0.25);
+      background: rgba($white, 0.5);
     }
   }
   

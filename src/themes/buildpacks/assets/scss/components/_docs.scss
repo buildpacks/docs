@@ -118,5 +118,9 @@
     &:last-child {
       margin-bottom: 0;
     }
+
+    p {
+      max-width: 48em;
+    }
   }
 }
