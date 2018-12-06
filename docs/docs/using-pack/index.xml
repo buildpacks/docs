@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Getting Started with `pack` on Cloud Native Buildpack Documentation</title>
+    <title>Getting started with `pack` on Cloud Native Buildpack Documentation</title>
     <link>/docs/using-pack/</link>
-    <description>Recent content in Getting Started with `pack` on Cloud Native Buildpack Documentation</description>
+    <description>Recent content in Getting started with `pack` on Cloud Native Buildpack Documentation</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     

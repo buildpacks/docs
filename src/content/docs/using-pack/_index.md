@@ -1,5 +1,5 @@
 +++
-title="Getting Started with `pack`"
+title="Getting started with `pack`"
 weight=2
 creatordisplayname = "Scott Sisil"
 creatoremail = "ssisil@pivotal.io"

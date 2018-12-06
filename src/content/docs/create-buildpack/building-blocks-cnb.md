@@ -20,7 +20,7 @@ Once you are in the directory. You will need to create a `buildpack.toml` file i
 Create the `buildpack.toml` file and copy the following into it 
 
 ```
-#Buidpack ID and metadata
+#Buildpack ID and metadata
 [buildpack]
 id = "com.examples.buildpacks.ruby"
 version = "0.0.1"
