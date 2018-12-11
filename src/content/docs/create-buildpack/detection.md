@@ -37,15 +37,16 @@ pack build test-ruby-app --buildpack workspace/ruby-cnb  --path workspace/ruby-s
 You will see the following output
 
 ```
-2018/10/16 10:16:36 Selected run image 'packs/run' from stack 'io.buildpacks.stacks.bionic'
-*** DETECTING:
-2018/10/16 15:16:40 Group: Ruby Buildpack: pass
+*** DETECTING WITH MANUALLY-PROVIDED GROUP:
+2018/12/11 19:28:45 Trying group of 1...
+2018/12/11 19:28:45 ======== Results ========
+2018/12/11 19:28:45 Ruby Buildpack: pass
 *** ANALYZING: Reading information from previous image for possible re-use
-2018/10/16 10:16:41 WARNING: skipping analyze, image not found
+2018/12/11 19:28:46 WARNING: skipping analyze, image 'test-ruby-app' not found or requires authentication to access
 *** BUILDING:
 ---> Ruby Buildpack
-2018/10/16 15:16:42 Error: failed to : exit status 1
-Error: failed with status code: 7
+2018/12/11 19:28:49 Error: failed to : exit status 1
+Error: running builder in container: failed with status code: 7
 ```
 
 Notice that `detect` now passes because there is a valid Gemfile in the ruby app at `~/ruby-sample-app`, but now `build` fails because it is coded to do so.

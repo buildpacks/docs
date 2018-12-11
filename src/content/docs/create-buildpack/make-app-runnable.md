@@ -11,7 +11,7 @@ Next we want to set a default start command for the application in the image.  Y
 
 ```
 # Set default start command
-echo 'processes = [{ type = "web", command = "rackup -p 8080 --host 0.0.0.0"}]' > "$launchdir/launch.toml"
+echo 'processes = [{ type = "web", command = "rackup -p 8080 --host 0.0.0.0"}]' > "$layersdir/launch.toml"
 ```
 
 This sets your default start command.
@@ -21,22 +21,22 @@ Your full build script should now look like this
 ```
 #!/usr/bin/env bash
 set -eo pipefail
-# Set the launchdir variable to be the third argument from the build lifecycle
-launchdir=$3 
+# Set the layersdir variable to be the first argument from the build lifecycle
+layersdir=$1
 
 echo "---> Ruby Buildpack" 
 
 echo "---> Downloading and extracting ruby"
-mkdir -p $launchdir/ruby
-touch $launchdir/ruby.toml
+mkdir -p $layersdir/ruby
+echo -e 'launch = true' > $layersdir/ruby.toml
 
 ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-2.5.1.tgz
-wget -q -O - "$ruby_url" | tar -xzf - -C "$launchdir/ruby"
+wget -q -O - "$ruby_url" | tar -xzf - -C "$layersdir/ruby"
 
 
 # Make ruby and bundler accessible in this script
-export PATH=$PATH:$launchdir/ruby/bin
-export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}$launchdir/ruby/lib
+export PATH=$PATH:$layersdir/ruby/bin
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}$layersdir/ruby/lib
 
 echo "---> Installing bundler"
 gem install bundler
@@ -45,7 +45,7 @@ echo "---> Installing gems"
 bundle install
 
 # Set default start command
-echo 'processes = [{ type = "web", command = "rackup -p 8080 --host 0.0.0.0"}]' > "$launchdir/launch.toml"
+echo 'processes = [{ type = "web", command = "rackup -p 8080 --host 0.0.0.0"}]' > "$layersdir/launch.toml"
 ```
 
 Now you will rebuild your app using the updated buildpack with the launch command

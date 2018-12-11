@@ -44,7 +44,7 @@ docker version  The following output should appear</description>
     </item>
     
     <item>
-      <title>Working with builders</title>
+      <title>Working with builders `create-builder`</title>
       <link>/docs/using-pack/working-with-builders/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -94,10 +94,9 @@ if [[ ! -f Gemfile ]]; then exit 100 fi  And now your detect script will look li
       
       <guid>/docs/create-buildpack/build-app/</guid>
       <description>Next we will make the build step work. This will a few updates to the build script.
-We need to read the launch directory passed in by build lifecycle - learn more about the lifecycle here
-launchdir=$3  We need to create a ruby layer in the image
-mkdir -p $launchdir/ruby touch $launchdir/ruby.toml  We will need to download ruby
-ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-2.5.1.tgz wget -q -O - &amp;quot;$ruby_url&amp;quot; | tar -xzf - -C &amp;quot;$launchdir/ruby&amp;quot;  We will need to download bundler</description>
+We need to read the layers directory passed in by build lifecycle - learn more about the lifecycle here
+layersdir=$1  We need to create a ruby layer in the image. We add launch = true to direct the lifecycle to provide ruby when we launch our app.
+mkdir -p $layersdir/ruby echo -e &#39;launch = true&#39; &amp;gt; $layersdir/ruby.</description>
     </item>
     
     <item>
@@ -107,9 +106,9 @@ ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/rub
       
       <guid>/docs/create-buildpack/make-app-runnable/</guid>
       <description>Next we want to set a default start command for the application in the image. You will want to add the following code to then end of your build script.
-# Set default start command echo &#39;processes = [{ type = &amp;quot;web&amp;quot;, command = &amp;quot;rackup -p 8080 --host 0.0.0.0&amp;quot;}]&#39; &amp;gt; &amp;quot;$launchdir/launch.toml&amp;quot;  This sets your default start command.
+# Set default start command echo &#39;processes = [{ type = &amp;quot;web&amp;quot;, command = &amp;quot;rackup -p 8080 --host 0.0.0.0&amp;quot;}]&#39; &amp;gt; &amp;quot;$layersdir/launch.toml&amp;quot;  This sets your default start command.
 Your full build script should now look like this
-#!/usr/bin/env bash set -eo pipefail # Set the launchdir variable to be the third argument from the build lifecycle launchdir=$3 echo &amp;quot;---&amp;gt; Ruby Buildpack&amp;quot; echo &amp;quot;---&amp;gt; Downloading and extracting ruby&amp;quot; mkdir -p $launchdir/ruby touch $launchdir/ruby.</description>
+#!/usr/bin/env bash set -eo pipefail # Set the layersdir variable to be the first argument from the build lifecycle layersdir=$1 echo &amp;quot;---&amp;gt; Ruby Buildpack&amp;quot; echo &amp;quot;---&amp;gt; Downloading and extracting ruby&amp;quot; mkdir -p $layersdir/ruby echo -e &#39;launch = true&#39; &amp;gt; $layersdir/ruby.</description>
     </item>
     
     <item>
@@ -121,7 +120,7 @@ Your full build script should now look like this
       <description>Next we want to separate the ruby interpreter and bundled gems into different layers. This will allows us to cache the ruby layer and gem dependency layer separately, which helps speed up builds.
 Creating the Bundler Layer To do this replace the line
 echo &amp;quot;---&amp;gt; Installing gems&amp;quot; bundle install  With the following
-echo &amp;quot;---&amp;gt; Installing gems&amp;quot; mkdir &amp;quot;$launchdir/bundler&amp;quot; touch &amp;quot;$launchdir/bundler.toml&amp;quot; bundle install --path &amp;quot;$launchdir/bundler&amp;quot; --binstubs &amp;quot;$launchdir/bundler/bin&amp;quot;  Your full build script should now look like this</description>
+echo &amp;quot;---&amp;gt; Installing gems&amp;quot; mkdir &amp;quot;$layersdir/bundler&amp;quot; echo -e &#39;launch = true&#39; &amp;gt; &amp;quot;$layersdir/bundler.toml&amp;quot; bundle install --path &amp;quot;$layersdir/bundler&amp;quot; --binstubs &amp;quot;$layersdir/bundler/bin&amp;quot;  Your full build script should now look like this</description>
     </item>
     
   </channel>
