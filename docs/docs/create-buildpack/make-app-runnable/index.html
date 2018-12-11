@@ -123,7 +123,7 @@
         <p>Next we want to set a default start command for the application in the image.  You will want to add the following code to then end of your build script.</p>
 
 <pre><code># Set default start command
-echo 'processes = [{ type = &quot;web&quot;, command = &quot;rackup -p 8080 --host 0.0.0.0&quot;}]' &gt; &quot;$launchdir/launch.toml&quot;
+echo 'processes = [{ type = &quot;web&quot;, command = &quot;rackup -p 8080 --host 0.0.0.0&quot;}]' &gt; &quot;$layersdir/launch.toml&quot;
 </code></pre>
 
 <p>This sets your default start command.</p>
@@ -132,22 +132,22 @@ echo 'processes = [{ type = &quot;web&quot;, command = &quot;rackup -p 8080 --ho
 
 <pre><code>#!/usr/bin/env bash
 set -eo pipefail
-# Set the launchdir variable to be the third argument from the build lifecycle
-launchdir=$3 
+# Set the layersdir variable to be the first argument from the build lifecycle
+layersdir=$1
 
 echo &quot;---&gt; Ruby Buildpack&quot; 
 
 echo &quot;---&gt; Downloading and extracting ruby&quot;
-mkdir -p $launchdir/ruby
-touch $launchdir/ruby.toml
+mkdir -p $layersdir/ruby
+echo -e 'launch = true' &gt; $layersdir/ruby.toml
 
 ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-2.5.1.tgz
-wget -q -O - &quot;$ruby_url&quot; | tar -xzf - -C &quot;$launchdir/ruby&quot;
+wget -q -O - &quot;$ruby_url&quot; | tar -xzf - -C &quot;$layersdir/ruby&quot;
 
 
 # Make ruby and bundler accessible in this script
-export PATH=$PATH:$launchdir/ruby/bin
-export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}$launchdir/ruby/lib
+export PATH=$PATH:$layersdir/ruby/bin
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}$layersdir/ruby/lib
 
 echo &quot;---&gt; Installing bundler&quot;
 gem install bundler
@@ -156,7 +156,7 @@ echo &quot;---&gt; Installing gems&quot;
 bundle install
 
 # Set default start command
-echo 'processes = [{ type = &quot;web&quot;, command = &quot;rackup -p 8080 --host 0.0.0.0&quot;}]' &gt; &quot;$launchdir/launch.toml&quot;
+echo 'processes = [{ type = &quot;web&quot;, command = &quot;rackup -p 8080 --host 0.0.0.0&quot;}]' &gt; &quot;$layersdir/launch.toml&quot;
 </code></pre>
 
 <p>Now you will rebuild your app using the updated buildpack with the launch command</p>

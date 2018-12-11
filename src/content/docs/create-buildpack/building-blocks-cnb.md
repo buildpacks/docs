@@ -88,10 +88,11 @@ The `pack build` command takes in your buildpack directory as the `--buildpack` 
 After successfully running the command you should see the following output. You should see that it failed to detect because the detect script was setup to fail 
 
 ```
-2018/10/16 09:59:00 Selected run image 'packs/run' from stack 'io.buildpacks.stacks.bionic'
-*** DETECTING:
-2018/10/16 14:59:04 Group: Ruby Buildpack: error (1)
-2018/10/16 14:59:04 Error: failed to detect
+*** DETECTING WITH MANUALLY-PROVIDED GROUP:
+2018/12/11 18:54:03 Trying group of 1...
+2018/12/11 18:54:03 Error: failed to detect
+2018/12/11 18:54:03 ======== Results ========
+2018/12/11 18:54:03 Ruby Buildpack: error (1)
 Error: run detect container: failed with status code: 6
 ```
 
