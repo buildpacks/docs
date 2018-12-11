@@ -27,10 +27,10 @@ Successfully built 2452b4b1fce1
 Successfully tagged my-app:my-tag
 ```
 
-In this case, the default [builder](#working-with-builders-using-create-builder) is used, and an appropriate buildpack
+In this case, the default [builder](/docs/using-pack/working-with-builders) is used, and an appropriate buildpack
 is automatically selected from the builder based on the app source code. To understand more about what builders are and
 how to create or use them, see the
-[Working with builders using `create-builder`](#working-with-builders-using-create-builder) section.
+[Working with builders using `create-builder`](/docs/using-pack/working-with-builders) section.
 
 To publish the produced image to an image registry, include the `--publish` flag:
 
@@ -73,12 +73,12 @@ To create an app image, `build` executes one or more buildpacks against the app'
 Each buildpack inspects the source code and provides relevant dependencies. An image is then generated
 from the app's source code and these dependencies.
 
-Buildpacks are compatible with one or more [stacks](#managing-stacks). A stack designates a **build image**
+Buildpacks are compatible with one or more [stacks](/docs/using-pack/managing-stacks). A stack designates a **build image**
 and a **run image**. During the build process, a stack's build image becomes the environment in which buildpacks are
 executed, and its run image becomes the base for the final app image. For more information on working with stacks, see
-the [Managing stacks](#managing-stacks) section.
+the [Managing stacks](/docs/using-pack/managing-stacks) section.
 
 Buildpacks can be bundled together with a specific stack's build image, resulting in a
-[builder](#working-with-builders-using-create-builder) image (note the "er" ending). Builders provide the most
+[builder](/docs/using-pack/working-with-builders) image (note the "er" ending). Builders provide the most
 convenient way to distribute buildpacks for a given stack. For more information on working with builders, see the
-[Working with builders using `create-builder`](#working-with-builders-using-create-builder) section.
+[Working with builders using `create-builder`](/docs/using-pack/working-with-builders) section.

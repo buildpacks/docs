@@ -50,13 +50,13 @@ $ pack create-builder my-builder:my-tag --builder-config path/to/builder.toml
 2018/10/29 15:36:06 Successfully created builder image: my-builder:my-tag
 ```
 
-Like [`build`](#building-app-images-using-build), `create-builder` has a `--publish` flag that can be used to publish
+Like [`build`](/docs/using-pack/building-app), `create-builder` has a `--publish` flag that can be used to publish
 the generated builder image to a registry.
 
 > The above example uses the default stack, whose build image is `packs/build`.
 > The `--stack` parameter can be used to specify a different stack (currently, the only built-in stack is
 > `io.buildpacks.stacks.bionic`). For more information about managing stacks and their associations with build and run
-> images, see the [Managing stacks](#managing-stacks) section.
+> images, see the [Managing stacks](/docs/using-pack/managing-stacks) section.
 
 The builder can then be used in `build` by running:
 
@@ -74,4 +74,4 @@ dependencies that will be required to compile and/or run the app, and provide th
 resulting image. This image's base will be the build image associated with a given stack.
 
 It's important to note that the buildpacks in a builder are not actually executed until
-[`build`](#building-explained) is run.
+[`build`](/docs/using-pack/building-app/#building-explained) is run.

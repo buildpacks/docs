@@ -1915,8 +1915,9 @@ Footer
     background: rgba(255, 255, 255, 0.5); }
   .sidebar .depth-1 {
     position: relative;
-    padding: 10px;
+    padding: 10px 0;
     padding-left: 40px;
+    padding-right: 20px;
     border-top: 1px solid rgba(124, 110, 117, 0.05); }
     .sidebar .depth-1:before {
       content: "";
@@ -1961,7 +1962,8 @@ Footer
   .docs .docs-sidebar {
     padding: 0;
     border-right: 1px solid #E8E7E8;
-    position: relative; }
+    position: relative;
+    max-width: 400px; }
     .docs .docs-sidebar:before {
       content: "";
       position: absolute;
@@ -1975,7 +1977,8 @@ Footer
     @media (max-width: 575px) {
       .docs .docs-sidebar {
         background-color: rgba(232, 231, 232, 0.25);
-        box-shadow: inset 0 0 10px rgba(124, 110, 117, 0.1); }
+        box-shadow: inset 0 0 10px rgba(124, 110, 117, 0.1);
+        max-width: none; }
         .docs .docs-sidebar:before {
           content: none; } }
     @media (max-width: 767px) {
@@ -2000,6 +2003,14 @@ Footer
       .docs .docs-content h5:not(:first-child), .docs .docs-content .h5:not(:first-child),
       .docs .docs-content h6:not(:first-child), .docs .docs-content .h6:not(:first-child) {
         margin-top: 2rem; }
+      .docs .docs-content h1 a, .docs .docs-content .h1 a,
+      .docs .docs-content h2 a, .docs .docs-content .h2 a,
+      .docs .docs-content h3 a, .docs .docs-content .h3 a,
+      .docs .docs-content h4 a, .docs .docs-content .h4 a,
+      .docs .docs-content h5 a, .docs .docs-content .h5 a,
+      .docs .docs-content h6 a, .docs .docs-content .h6 a {
+        text-decoration: none;
+        border-bottom: 1px solid rgba(36, 41, 96, 0.25); }
     .docs .docs-content h1, .docs .docs-content .h1 {
       font-size: 1.875rem; }
     .docs .docs-content h2, .docs .docs-content .h2 {
@@ -2040,6 +2051,9 @@ Footer
       margin-bottom: 0; }
     .docs .docs-content p {
       max-width: 48em; }
+    .docs .docs-content a code {
+      padding-left: 0;
+      padding-right: 0; }
 
 .footline {
   font-size: 0.75rem;

@@ -10,7 +10,7 @@ lastmodifieremail = "ssisil@pivotal.io"
 +++
 ## Managing stacks
 
-As mentioned [previously](#building-explained), a stack is associated with a build image and a run image. Stacks in
+As mentioned [previously](/docs/using-pack/building-app/#building-explained), a stack is associated with a build image and a run image. Stacks in
 `pack`'s configuration can be managed using the following commands:
 
 ```bash
@@ -60,7 +60,7 @@ $ pack delete-stack org.example.my-stack
 
 ### Example: Setting the default stack
 
-In this example, the default stack, used by [`create-builder`](#working-with-builders-using-create-builder), is set to
+In this example, the default stack, used by [`create-builder`](/docs/using-pack/working-with-builders), is set to
 `org.example.my-stack`.
 
 ```bash

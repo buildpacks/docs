@@ -161,14 +161,14 @@ A <code>builder.toml</code> file provides necessary configuration to the command
 2018/10/29 15:36:06 Successfully created builder image: my-builder:my-tag
 </code></pre>
 
-<p>Like <a href="#building-app-images-using-build"><code>build</code></a>, <code>create-builder</code> has a <code>--publish</code> flag that can be used to publish
+<p>Like <a href="/docs/using-pack/building-app"><code>build</code></a>, <code>create-builder</code> has a <code>--publish</code> flag that can be used to publish
 the generated builder image to a registry.</p>
 
 <blockquote>
 <p>The above example uses the default stack, whose build image is <code>packs/build</code>.
 The <code>--stack</code> parameter can be used to specify a different stack (currently, the only built-in stack is
 <code>io.buildpacks.stacks.bionic</code>). For more information about managing stacks and their associations with build and run
-images, see the <a href="#managing-stacks">Managing stacks</a> section.</p>
+images, see the <a href="/docs/using-pack/managing-stacks">Managing stacks</a> section.</p>
 </blockquote>
 
 <p>The builder can then be used in <code>build</code> by running:</p>
@@ -186,7 +186,7 @@ dependencies that will be required to compile and/or run the app, and provide th
 resulting image. This image&rsquo;s base will be the build image associated with a given stack.</p>
 
 <p>It&rsquo;s important to note that the buildpacks in a builder are not actually executed until
-<a href="#building-explained"><code>build</code></a> is run.</p>
+<a href="/docs/using-pack/building-app/#building-explained"><code>build</code></a> is run.</p>
 
         
   <hr>
