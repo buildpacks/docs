@@ -8,6 +8,8 @@ lastmodifieremail = "ssisil@pivotal.io"
 lastmodified = "2018/12/03"
 +++
 
+![Buildpacks logo](/docs/buildpacks-logo.svg)
+
 Welcome to our new developer website.  You can find the latest updates for Cloud Native Buildpacks here.  
 
 ---

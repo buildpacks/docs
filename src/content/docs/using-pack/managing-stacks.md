@@ -10,7 +10,7 @@ lastmodifieremail = "ssisil@pivotal.io"
 +++
 ## Managing stacks
 
-As mentioned [previously](/docs/using-pack/building-app), a stack is associated with a build image and a run image. Stacks in
+As mentioned [previously](/docs/using-pack/building-app/#building-explained), a stack is associated with a build image and a run image. Stacks in
 `pack`'s configuration can be managed using the following commands:
 
 ```bash

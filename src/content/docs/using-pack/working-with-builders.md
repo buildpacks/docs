@@ -74,4 +74,4 @@ dependencies that will be required to compile and/or run the app, and provide th
 resulting image. This image's base will be the build image associated with a given stack.
 
 It's important to note that the buildpacks in a builder are not actually executed until
-[`build`](/docs/using-pack/building-app) is run.
+[`build`](/docs/using-pack/building-app/#building-explained) is run.
