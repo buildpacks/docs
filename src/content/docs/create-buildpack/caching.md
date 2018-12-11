@@ -22,10 +22,10 @@ With the following
 
 ```
 echo "---> Installing gems"
-mkdir "$launchdir/bundler"
-touch "$launchdir/bundler.toml"
+mkdir "$layersdir/bundler"
+touch "$layersdir/bundler.toml"
 
-bundle install --path "$launchdir/bundler" --binstubs "$launchdir/bundler/bin"
+bundle install --path "$layersdir/bundler" --binstubs "$layersdir/bundler/bin"
 ```
 
 Your full build script should now look like this
@@ -33,35 +33,35 @@ Your full build script should now look like this
 ```
 #!/usr/bin/env bash
 set -eo pipefail
-# Set the launchdir variable to be the third argument from the build lifecycle
-launchdir=$3 
+# Set the layersdir variable to be the third argument from the build lifecycle
+layersdir=$3 
 
 echo "---> Ruby Buildpack" 
 
 echo "---> Downloading and extracting ruby"
-mkdir -p $launchdir/ruby
-touch $launchdir/ruby.toml
+mkdir -p $layersdir/ruby
+touch $layersdir/ruby.toml
 
 ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-2.5.1.tgz
-wget -q -O - "$ruby_url" | tar -xzf - -C "$launchdir/ruby"
+wget -q -O - "$ruby_url" | tar -xzf - -C "$layersdir/ruby"
 
 
 # Make ruby and bundler accessible in this script
-export PATH=$PATH:$launchdir/ruby/bin
-export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}$launchdir/ruby/lib
+export PATH=$PATH:$layersdir/ruby/bin
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}$layersdir/ruby/lib
 
 echo "---> Installing bundler"
 gem install bundler
 
 echo "---> Installing gems"
-mkdir "$launchdir/bundler"
-touch "$launchdir/bundler.toml"
+mkdir "$layersdir/bundler"
+touch "$layersdir/bundler.toml"
 
-bundle install --path "$launchdir/bundler" --binstubs "$launchdir/bundler/bin"
+bundle install --path "$layersdir/bundler" --binstubs "$layersdir/bundler/bin"
 
 
 # Set default start command
-echo 'processes = [{ type = "web", command = "rackup -p 8080 --host 0.0.0.0"}]' > "$launchdir/launch.toml"
+echo 'processes = [{ type = "web", command = "rackup -p 8080 --host 0.0.0.0"}]' > "$layersdir/launch.toml"
 ```
 
 Now when we run 
@@ -105,10 +105,10 @@ Replace the bundle logic from the previous step
 
 ```
 echo "---> Installing gems"
-mkdir "$launchdir/bundler"
-touch "$launchdir/bundler.toml"
+mkdir "$layersdir/bundler"
+touch "$layersdir/bundler.toml"
 
-bundle install --path "$launchdir/bundler" --binstubs "$launchdir/bundler/bin"
+bundle install --path "$layersdir/bundler" --binstubs "$layersdir/bundler/bin"
 ```
 
 With this new logic that checks to see if any gems have been changed. This simply creates a checksum for the previous Gemfile and compares it to the checksum of the current Gemfile.  If they are the same, the gems are reused. If they are not, the new gems are installed.
@@ -118,19 +118,19 @@ With this new logic that checks to see if any gems have been changed. This simpl
 
 #Compares previous Gemfile.lock checksum to the current Gemfile.lock
 local_bundler_checksum=$(sha256sum Gemfile.lock | cut -d ' ' -f 1) 
-remote_bundler_checksum=$(cat "$launchdir/bundler.toml" | yj -t | jq -r .lock_checksum 2>/dev/null || echo 'not found')
+remote_bundler_checksum=$(cat "$layersdir/bundler.toml" | yj -t | jq -r .lock_checksum 2>/dev/null || echo 'not found')
 
 if [[ -f Gemfile.lock && $local_bundler_checksum == $remote_bundler_checksum && $reused_ruby == 'true' ]] ; then
     #Determine no gem depencencies have changed, so can reuse existing gems without running bundle install
     echo "---> Reusing gems"
-    bundle config --local path "$launchdir/bundler" >/dev/null 
-    bundle config --local bin "$launchdir/bundler/bin" >/dev/null 
+    bundle config --local path "$layersdir/bundler" >/dev/null 
+    bundle config --local bin "$layersdir/bundler/bin" >/dev/null 
 else
-    #Determine there has been a gem dependency change and will create a new version of the bundler layer to install new gems
-    echo "---> Installing gems"
-    mkdir "$launchdir/bundler"
-    echo "lock_checksum = \"$local_bundler_checksum\"" > "$launchdir/bundler.toml"
-    bundle install --path "$launchdir/bundler" --binstubs "$launchdir/bundler/bin"
+# Determine if there has been a gem dependency change and install new gems to the bundler layer; re-using existing  and un-changed gems
+	echo "---> Installing gems"
+	mkdir -p "$layersdir/bundler"
+	echo -e "cache=\"true\"\nbuild=\"false\"\nlaunch=\"true\"\nlock_checksum=\"$local_bundler_checksum\"" > "$layersdir/bundler.toml"
+	bundle install --path "$layersdir/bundler" --binstubs "$layersdir/bundler/bin" && bundle clean
 fi
 ### END BUNDLER LAYER
 ```
@@ -140,22 +140,22 @@ Your full build script will now look like this
 ```
 #!/usr/bin/env bash
 set -eo pipefail
-# Set the launchdir variable to be the third argument from the build lifecycle
-launchdir=$3 
+# Set the layersdir variable to be the third argument from the build lifecycle
+layersdir=$3 
 
 echo "---> Ruby Buildpack" 
 
 echo "---> Downloading and extracting ruby"
-mkdir -p $launchdir/ruby
-touch $launchdir/ruby.toml
+mkdir -p $layersdir/ruby
+touch $layersdir/ruby.toml
 
 ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-2.5.1.tgz
-wget -q -O - "$ruby_url" | tar -xzf - -C "$launchdir/ruby"
+wget -q -O - "$ruby_url" | tar -xzf - -C "$layersdir/ruby"
 
 
 # Make ruby and bundler accessible in this script
-export PATH=$PATH:$launchdir/ruby/bin
-export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}$launchdir/ruby/lib
+export PATH=$PATH:$layersdir/ruby/bin
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}$layersdir/ruby/lib
 
 echo "---> Installing bundler"
 gem install bundler
@@ -163,24 +163,24 @@ gem install bundler
 ### START BUNDLER LAYER
 #Compares previous Gemfile.lock checksum to the current Gemfile.lock
 local_bundler_checksum=$(sha256sum Gemfile.lock | cut -d ' ' -f 1) 
-remote_bundler_checksum=$(cat "$launchdir/bundler.toml" | yj -t | jq -r .lock_checksum 2>/dev/null || echo 'not found')
+remote_bundler_checksum=$(cat "$layersdir/bundler.toml" | yj -t | jq -r .lock_checksum 2>/dev/null || echo 'not found')
 if [[ -f Gemfile.lock && $local_bundler_checksum == $remote_bundler_checksum && $reused_ruby == 'true' ]] ; then
     #Determine no gem depencencies have changed, so can reuse existing gems without running bundle install
     echo "---> Reusing gems"
-    bundle config --local path "$launchdir/bundler" >/dev/null 
-    bundle config --local bin "$launchdir/bundler/bin" >/dev/null 
+    bundle config --local path "$layersdir/bundler" >/dev/null 
+    bundle config --local bin "$layersdir/bundler/bin" >/dev/null 
 else
-    #Determine there has been a gem dependency change and will create a new version of the bundler layer to install new gems
-    echo "---> Installing gems"
-    mkdir "$launchdir/bundler"
-    echo "lock_checksum = \"$local_bundler_checksum\"" > "$launchdir/bundler.toml"
-    bundle install --path "$launchdir/bundler" --binstubs "$launchdir/bundler/bin"
+# Determine if there has been a gem dependency change and install new gems to the bundler layer; re-using existing  and un-changed gems
+	echo "---> Installing gems"
+	mkdir -p "$layersdir/bundler"
+	echo -e "cache=\"true\"\nbuild=\"false\"\nlaunch=\"true\"\nlock_checksum=\"$local_bundler_checksum\"" > "$layersdir/bundler.toml"
+	bundle install --path "$layersdir/bundler" --binstubs "$layersdir/bundler/bin" && bundle clean
 fi
 ### END BUNDLER LAYER
 
 
 # Set default start command
-echo 'processes = [{ type = "web", command = "rackup -p 8080 -o 0.0.0.0"}]' > "$launchdir/launch.toml"
+echo 'processes = [{ type = "web", command = "rackup -p 8080 -o 0.0.0.0"}]' > "$layersdir/launch.toml"
 ```
 
 Now when you build your app it will now generate the Gemfile checksum for the first time and store it in the image
@@ -227,7 +227,7 @@ Next we will set a desired ruby version that we will support as a variable, in t
 ruby_version=2.5.1
 ```
 
-Next we will update our ruby paths inside the script to point to the `$cachedir` instead of the `$launchdir`.
+Next we will update our ruby paths inside the script to point to the `$cachedir` instead of the `$layersdir`.
 
 ```
 export PATH=$PATH:$cachedir/ruby/bin
@@ -253,15 +253,15 @@ else
 fi
 ```
 
-Next we check to see if the desired version of ruby matches the previous images version of ruby in the `$launchdir`. If it is the same, it is reused, if it is not it is copied to the `$launchdir` from the `$cachedir`
+Next we check to see if the desired version of ruby matches the previous images version of ruby in the `$layersdir`. If it is the same, it is reused, if it is not it is copied to the `$layersdir` from the `$cachedir`
 
 ```
-if [[ $ruby_version == $([[ -f $launchdir/ruby.toml ]] && cat "$launchdir/ruby.toml" | yj -t | jq -r .version) ]] ; then
+if [[ $ruby_version == $([[ -f $layersdir/ruby.toml ]] && cat "$layersdir/ruby.toml" | yj -t | jq -r .version) ]] ; then
     echo "---> Reusing ruby layer"
 else
     echo "---> Adding ruby layer"
-    cp $cachedir/ruby.toml $launchdir/ruby.toml
-    cp -r $cachedir/ruby $launchdir/ruby
+    cp $cachedir/ruby.toml $layersdir/ruby.toml
+    cp -r $cachedir/ruby $layersdir/ruby
 fi
 ```
 
@@ -270,55 +270,50 @@ Now your full build script will look like this
 ```
 #!/usr/bin/env bash
 set -eo pipefail
-# Set the launchdir variable to be the third argument from the build lifecycle
+# Set the layersdir variable to be the third argument from the build lifecycle
 cachedir=$2
-launchdir=$3
+layersdir=$3
 echo "---> Ruby Buildpack"
 ruby_version=2.5.1
+
 # Make ruby and bundler accessible in this script
-export PATH=$PATH:$cachedir/ruby/bin
-export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}$cachedir/ruby/lib
-if [[ $ruby_version == $([[ -f $cachedir/ruby.toml ]] && cat "$cachedir/ruby.toml" | yj -t | jq -r .version) ]] ; then
+export PATH=$PATH:$layersdir/ruby/bin
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}$layersdir/ruby/lib
+
+if [[ $ruby_version == $([[ -f $layersdir/ruby.toml ]] && cat "$layersdir/ruby.toml" | yj -t | jq -r .version) ]] ; then
     echo "---> Reusing ruby $ruby_version"
 else
     echo "---> Downloading and extracting ruby - $ruby_version"
-    rm -rf $cachedir/ruby
-    mkdir -p $cachedir/ruby
-    echo "version = \"$ruby_version\"" > "$cachedir/ruby.toml"
+    rm -rf $layersdir/ruby
+    mkdir -p $layersdir/ruby
+    echo -e "cache=\"true\"\nbuild=\"false\"\nlaunch=\"true\"\nversion=\"$ruby_version\"" > "$layersdir/ruby.toml"
     ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-$ruby_version.tgz
-    wget -q -O - "$ruby_url" | tar -xzf - -C "$cachedir/ruby"
+    wget -q -O - "$ruby_url" | tar -xzf - -C "$layersdir/ruby"
     echo "---> Installing bundler"
     gem install bundler
-fi
-if [[ $ruby_version == $([[ -f $launchdir/ruby.toml ]] && cat "$launchdir/ruby.toml" | yj -t | jq -r .version) ]] ; then
-    echo "---> Reusing ruby layer"
-else
-    echo "---> Adding ruby layer"
-    cp $cachedir/ruby.toml $launchdir/ruby.toml
-    cp -r $cachedir/ruby $launchdir/ruby
 fi
 
 ### START BUNDLER LAYER
 #Compares previous Gemfile.lock checksum to the current Gemfile.lock
 local_bundler_checksum=$(sha256sum Gemfile.lock | cut -d ' ' -f 1) 
-remote_bundler_checksum=$(cat "$launchdir/bundler.toml" | yj -t | jq -r .lock_checksum 2>/dev/null || echo 'not found') 
+remote_bundler_checksum=$(cat "$layersdir/bundler.toml" | yj -t | jq -r .lock_checksum 2>/dev/null || echo 'not found') 
 if [[ -f Gemfile.lock && $local_bundler_checksum == $remote_bundler_checksum && $reused_ruby == 'true' ]] ; then
     #Determine no gem depencencies have changed, so can reuse existing gems without running bundle install
     echo "---> Reusing gems"
-    bundle config --local path "$launchdir/bundler" >/dev/null 
-    bundle config --local bin "$launchdir/bundler/bin" >/dev/null
+    bundle config --local path "$layersdir/bundler" >/dev/null 
+    bundle config --local bin "$layersdir/bundler/bin" >/dev/null
 else
-    #Determine there has been a gem dependency change and will create a new version of the bundler layer to install new gems
-    echo "---> Installing gems"
-    mkdir "$launchdir/bundler"
-    echo "lock_checksum = \"$local_bundler_checksum\"" > "$launchdir/bundler.toml"
-    bundle install --path "$launchdir/bundler" --binstubs "$launchdir/bundler/bin"
+# Determine if there has been a gem dependency change and install new gems to the bundler layer; re-using existing  and un-changed gems
+	echo "---> Installing gems"
+	mkdir -p "$layersdir/bundler"
+	echo -e "cache=\"true\"\nbuild=\"false\"\nlaunch=\"true\"\nlock_checksum=\"$local_bundler_checksum\"" > "$layersdir/bundler.toml"
+	bundle install --path "$layersdir/bundler" --binstubs "$layersdir/bundler/bin" && bundle clean
 fi
 ### END BUNDLER LAYER
 
 
 # Set default start command
-echo 'processes = [{ type = "web", command = "rackup -p 8080"}]' > "$launchdir/launch.toml"
+echo 'processes = [{ type = "web", command = "rackup -p 8080"}]' > "$layersdir/launch.toml"
 ```
 
 Now when you run 

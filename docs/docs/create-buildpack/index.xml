@@ -79,7 +79,7 @@ Your full build script should now look like this
       <description>Next we want to separate the ruby interpreter and bundled gems into different layers. This will allows us to cache the ruby layer and gem dependency layer separately, which helps speed up builds.
 Creating the Bundler Layer To do this replace the line
 echo &amp;quot;---&amp;gt; Installing gems&amp;quot; bundle install  With the following
-echo &amp;quot;---&amp;gt; Installing gems&amp;quot; mkdir &amp;quot;$launchdir/bundler&amp;quot; touch &amp;quot;$launchdir/bundler.toml&amp;quot; bundle install --path &amp;quot;$launchdir/bundler&amp;quot; --binstubs &amp;quot;$launchdir/bundler/bin&amp;quot;  Your full build script should now look like this</description>
+echo &amp;quot;---&amp;gt; Installing gems&amp;quot; mkdir &amp;quot;$layersdir/bundler&amp;quot; touch &amp;quot;$layersdir/bundler.toml&amp;quot; bundle install --path &amp;quot;$layersdir/bundler&amp;quot; --binstubs &amp;quot;$layersdir/bundler/bin&amp;quot;  Your full build script should now look like this</description>
     </item>
     
   </channel>

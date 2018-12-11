@@ -140,10 +140,10 @@ Successfully built 2452b4b1fce1
 Successfully tagged my-app:my-tag
 </code></pre>
 
-<p>In this case, the default <a href="#working-with-builders-using-create-builder">builder</a> is used, and an appropriate buildpack
+<p>In this case, the default <a href="/docs/using-pack/working-with-builders">builder</a> is used, and an appropriate buildpack
 is automatically selected from the builder based on the app source code. To understand more about what builders are and
 how to create or use them, see the
-<a href="#working-with-builders-using-create-builder">Working with builders using <code>create-builder</code></a> section.</p>
+<a href="/docs/using-pack/working-with-builders">Working with builders using <code>create-builder</code></a> section.</p>
 
 <p>To publish the produced image to an image registry, include the <code>--publish</code> flag:</p>
 
@@ -184,15 +184,15 @@ by the automated detection process.</p>
 Each buildpack inspects the source code and provides relevant dependencies. An image is then generated
 from the app&rsquo;s source code and these dependencies.</p>
 
-<p>Buildpacks are compatible with one or more <a href="#managing-stacks">stacks</a>. A stack designates a <strong>build image</strong>
+<p>Buildpacks are compatible with one or more <a href="/docs/using-pack/managing-stacks">stacks</a>. A stack designates a <strong>build image</strong>
 and a <strong>run image</strong>. During the build process, a stack&rsquo;s build image becomes the environment in which buildpacks are
 executed, and its run image becomes the base for the final app image. For more information on working with stacks, see
-the <a href="#managing-stacks">Managing stacks</a> section.</p>
+the <a href="/docs/using-pack/managing-stacks">Managing stacks</a> section.</p>
 
 <p>Buildpacks can be bundled together with a specific stack&rsquo;s build image, resulting in a
-<a href="#working-with-builders-using-create-builder">builder</a> image (note the &ldquo;er&rdquo; ending). Builders provide the most
+<a href="/docs/using-pack/working-with-builders">builder</a> image (note the &ldquo;er&rdquo; ending). Builders provide the most
 convenient way to distribute buildpacks for a given stack. For more information on working with builders, see the
-<a href="#working-with-builders-using-create-builder">Working with builders using <code>create-builder</code></a> section.</p>
+<a href="/docs/using-pack/working-with-builders">Working with builders using <code>create-builder</code></a> section.</p>
 
         
   <hr>

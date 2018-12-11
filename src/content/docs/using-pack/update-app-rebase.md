@@ -28,7 +28,7 @@ run image called `pack/run`. Running the following will update the base of `my-a
 $ pack rebase my-app:my-tag
 ```
 
-Like [`build`](#building-app-images-using-build), `rebase` has a `--publish` flag that can be
+Like [`build`](/docs/using-pack/building-app), `rebase` has a `--publish` flag that can be
 used to publish the updated app image to a registry.
 
 ### Rebasing explained
