@@ -31,7 +31,6 @@ From there, you can copy the executable to a directory like `/usr/local/bin` or 
 ```shell
 wget https://github.com/buildpack/pack/releases/download/v{{< latest >}}/pack-{{< latest >}}-linux.tar.gz
 tar xvf pack-{{< latest >}}-linux.tar.gz
-pack-{{< latest >}}-linux.tar.gz
 rm pack-{{< latest >}}-macos.tar.gz
 ./pack --help
 ```
@@ -41,3 +40,4 @@ From there, you can copy the executable to a directory like `/usr/local/bin` or 
 ## Windows
 
 You can install the Windows executable for `pack` by downloading the Windows [ZIP file](https://github.com/buildpack/pack/releases/download/v{{< latest >}}/pack-{{< latest >}}-windows.zip).
+
