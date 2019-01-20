@@ -22,6 +22,18 @@ $ cd /path/to/node/app $ pack build my-app:my-tag # ... Detect, analyze and buil
     </item>
     
     <item>
+      <title>Installing `pack`</title>
+      <link>/docs/using-pack/install-pack/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/docs/using-pack/install-pack/</guid>
+      <description>You can install the most recent version of pack (version 0.0.9) as an executable binary on the following operating systems:
+ macOS Linux Windows  macOS To install pack on macOS, fetch and unpack the tarball:
+wget https://github.com/buildpack/pack/releases/download/v0.0.9/pack-0.0.9-macos.tar.gz tar xvf pack-0.0.9-macos.tar.gz rm pack-0.0.9-macos.tar.gz ./pack --help  From there, you can copy the executable to a directory like /usr/local/bin or add the current directory to your PATH.
+Linux wget https://github.com/buildpack/pack/releases/download/v0.0.9/pack-0.0.9-linux.tar.gz tar xvf pack-0.</description>
+    </item>
+    
+    <item>
       <title>Updating app images using `rebase`</title>
       <link>/docs/using-pack/update-app-rebase/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
