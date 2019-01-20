@@ -1,0 +1,5 @@
+{{- $releasesUrl := "https://api.github.com/repos/buildpack/pack/releases" }}
+{{- $releases    := getJSON $releasesUrl }}
+{{- $latestTag   := (index $releases 0).tag_name -}}
+{{- $latest      := replace $latestTag "v" "" -}}
+{{- $latest -}}
