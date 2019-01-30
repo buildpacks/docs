@@ -15,7 +15,25 @@ You can install the most recent version of `pack` (version **{{< latest >}}**) a
 
 ## macOS
 
-To install `pack` on macOS, fetch and unpack the tarball:
+You can install `pack` on macOS via [Homebrew](#homebrew) or [tarball](#tarball).
+
+### Homebrew
+
+The easiest way to install `pack` on macOS is to use [Homebrew](https://brew.sh):
+
+```shell
+brew install pack
+```
+
+If you don't have Homebrew installed, you can install it by running:
+
+```shell
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+
+### Tarball
+
+You can also install `pack` on macOS by fetching and unpacking the `pack` tarball from the [releases](https://github.com/buildpack/pack/releases) page on GitHub:
 
 ```shell
 wget https://github.com/buildpack/pack/releases/download/v{{< latest >}}/pack-{{< latest >}}-macos.tar.gz
