@@ -326,7 +326,8 @@ body {
   color: #242960;
   font-weight: 400;
   font-size: 1.1rem;
-  line-height: 1.5; }
+  line-height: 1.5;
+  min-width: 320px; }
 
 /**********************************
 
@@ -1611,7 +1612,9 @@ header li {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-left: 40px; }
+  padding-left: 10px; }
+  header li:first-child {
+    padding-left: 0; }
 
 header li a {
   white-space: nowrap;
@@ -1630,8 +1633,10 @@ header li a {
   header ul {
     display: flex;
     margin-top: 0; }
-  header li:last-of-type {
-    margin-right: 0; } }
+  header li {
+    padding-left: 40px; }
+    header li:last-of-type {
+      margin-right: 0; } }
 
 /**** general header styles ****/
 header {

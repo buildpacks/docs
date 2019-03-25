@@ -16,4 +16,10 @@ theme = "buildpacks"
   identifier = "docs"
   name       = "Docs"
   url        = "/docs"
-  weight     = 0
+  weight     = 2
+
+  [[menu.main]]
+  identifier = "blog"
+  name       = "Blog"
+  url        = "https://medium.com/"
+  weight     = 3
