@@ -80,46 +80,16 @@
       <div class="col-sm">
         <p>Until cloud platforms such as Heroku and Cloud Foundry incorporate the <a href="https://github.com/buildpack/lifecycle" target="blank">Buildpack v3 Lifecycle</a>, the fastest way to try Cloud Native Buildpacks is via the <code class="highlight">pack</code> CLI, which integrates with your local Docker daemon.</p>
 
-        <p>Please make sure you have Docker Community Edition installed on your machine.</p>
+        Try out our tutorial to get started quickly!</p>
 
-        <p class="pb-3"><a href="https://store.docker.com/search?type=edition&offering=community" class="download-button button icon-button bg-blue">Download Docker Community Edition</a></p>
-
-        <p>Next you will need to download and install <code class="highlight">pack</code> &mdash; the Cloud Native Buildpack CLI. This will allow you to use Cloud Native Buildpacks in your local environment.</p>
-
-        <p><a href="https://github.com/buildpack/pack/releases" class="download-button button icon-button bg-pink">Download pack via GitHub</a></p>
+        <p><a href="/docs/app-journey" class="button bg-pink">Start Tutorial</a></p>
       </div>
 
       <div class="col-sm">
         <div class="text-note mt-4 mt-sm-0">
-          <h3>Please note:</h3>
-
-          <p><strong>This project just started!</strong> Very few buildpacks currently support the Buildpack v3 API.</p>
-
-          <p>By default, the CLI only includes <a href="https://github.com/buildpack/samples" target="blank">sample buildpacks</a> for Node.js and Java. To address this, we are actively adding v3 support to existing buildpacks. Until then, this CLI is only useful for developing new v3 buildpacks and for porting existing buildpacks to the v3 API.</p>
+          <h3>This project is still new!</h3>
+          <p>Currently only a few buildpacks support the Buildpack v3 API. That said, we're actively adding v3 support to existing buildpacks.</p>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm">
-        <h3>Building your application</h3>
-
-        <p>Let’s get started building your first application with Cloud Native Buildpacks.</p>
-
-        <p>Build your application by passing in your application source code directory and image name to the <code class="highlight">pack build</code> command.</p>
-
-        <pre class="command-line code-block"><code>pack build --path &lt;path to source code&gt; &lt;repository name&gt;:&lt;image tag (optional)&gt;</code></pre>
-
-        <p>Upon a successful build, you will see your image in your local Docker daemon.</p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm">
-        <h3 class="pt-5">Running Your Application</h3>
-        <p>Now that you have successfully built your OCI image using Cloud Native Buildpacks you can run your application using the Docker CLI.</p>
-
-        <pre class="command-line code-block"><code>docker run -p 8080:8080 &lt;image name&gt;</code></pre>
-
-        <p>Congratulations! You have now successfully built and run your first application with Cloud Native Buildpacks.</p>
       </div>
     </div>
   </section>

@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/docs/using-pack/building-app/</loc>
+    <loc>/docs/install-pack/</loc>
   </url>
   
   <url>
@@ -11,11 +11,15 @@
   </url>
   
   <url>
+    <loc>/docs/app-journey/</loc>
+  </url>
+  
+  <url>
     <loc>/docs/using-pack/</loc>
   </url>
   
   <url>
-    <loc>/docs/using-pack/install-pack/</loc>
+    <loc>/docs/using-pack/building-app/</loc>
   </url>
   
   <url>
@@ -23,39 +27,11 @@
   </url>
   
   <url>
-    <loc>/docs/create-buildpack/</loc>
-  </url>
-  
-  <url>
-    <loc>/docs/create-buildpack/setup-local-environment/</loc>
-  </url>
-  
-  <url>
     <loc>/docs/using-pack/working-with-builders/</loc>
   </url>
   
   <url>
-    <loc>/docs/create-buildpack/building-blocks-cnb/</loc>
-  </url>
-  
-  <url>
     <loc>/docs/using-pack/managing-stacks/</loc>
-  </url>
-  
-  <url>
-    <loc>/docs/create-buildpack/detection/</loc>
-  </url>
-  
-  <url>
-    <loc>/docs/create-buildpack/build-app/</loc>
-  </url>
-  
-  <url>
-    <loc>/docs/create-buildpack/make-app-runnable/</loc>
-  </url>
-  
-  <url>
-    <loc>/docs/create-buildpack/caching/</loc>
   </url>
   
   <url>

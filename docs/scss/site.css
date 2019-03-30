@@ -395,7 +395,7 @@ b, strong {
 hr {
   border: 0;
   height: 1px;
-  background: #E8E7E8; }
+  background: #EFEFEF; }
 
 /**********************************
 
@@ -1733,18 +1733,21 @@ Content
 Text Note
 
 **********************************/
-.text-note {
-  background-color: #E8E7E8;
+.text-note,
+blockquote {
+  background-color: #EFEFEF;
   border-radius: 5px;
   padding: 20px;
   font-size: .9rem;
   line-height: 180%;
   color: #302C2E; }
-
-.text-note h3 {
-  color: inherit;
-  font-size: inherit;
-  text-transform: uppercase; }
+  .text-note h3,
+  blockquote h3 {
+    color: inherit;
+    font-size: larger; }
+  .text-note p,
+  blockquote p {
+    margin: 0; }
 
 /**********************************
 
@@ -1799,7 +1802,7 @@ Code
 
 /* one line code */
 code.highlight {
-  background-color: #E8E7E8;
+  background-color: #EFEFEF;
   padding: 5px 10px;
   font-family: monospace;
   font-size: 1rem;
@@ -1961,7 +1964,7 @@ Footer
     background: linear-gradient(rgba(124, 110, 117, 0), rgba(124, 110, 117, 0.05)); }
   .docs .docs-sidebar {
     padding: 0;
-    border-right: 1px solid #E8E7E8;
+    border-right: 1px solid #EFEFEF;
     position: relative;
     max-width: 400px; }
     .docs .docs-sidebar:before {
@@ -1976,7 +1979,7 @@ Footer
       pointer-events: none; }
     @media (max-width: 575px) {
       .docs .docs-sidebar {
-        background-color: rgba(232, 231, 232, 0.25);
+        background-color: rgba(239, 239, 239, 0.25);
         box-shadow: inset 0 0 10px rgba(124, 110, 117, 0.1);
         max-width: none; }
         .docs .docs-sidebar:before {
@@ -2037,7 +2040,7 @@ Footer
         background-color: #47529E; }
     .docs .docs-content pre {
       background: white;
-      border: 1px solid #E8E7E8;
+      border: 1px solid #EFEFEF;
       border-radius: 3px;
       padding: 15px;
       font-size: 0.875rem; }
@@ -2046,7 +2049,7 @@ Footer
     .docs .docs-content hr {
       margin: 2rem 0;
       margin-left: -2rem;
-      background: transparent linear-gradient(to right, #e8e7e8, rgba(232, 231, 232, 0)); }
+      background: transparent linear-gradient(to right, #efefef, rgba(239, 239, 239, 0)); }
     .docs .docs-content:last-child {
       margin-bottom: 0; }
     .docs .docs-content p {

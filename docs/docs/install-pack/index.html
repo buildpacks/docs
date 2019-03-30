@@ -14,7 +14,7 @@
     
     
 
-    <title>Using `pack` · Cloud Native Buildpack Documentation</title>
+    <title>Installing `pack` · Cloud Native Buildpack Documentation</title>
   </head>
   <body>
     <header>
@@ -48,7 +48,7 @@
         <a href="/docs/">Latest project updates</a>
           <ul>
       <li data-nav-id="/docs/install-pack/" class="dd-item
-          depth-1
+          depth-1 parent active
       ">
         <a href="/docs/install-pack/">Installing <code>pack</code></a>
       </li>
@@ -58,7 +58,7 @@
         <a href="/docs/app-journey/">An App&rsquo;s Brief Journey from Source to Image</a>
       </li>
       <li data-nav-id="/docs/using-pack/" class="dd-item
-          depth-1 parent active haschildren
+          depth-1 haschildren
       ">
         <a href="/docs/using-pack/">Using <code>pack</code></a>
           <ul>
@@ -92,70 +92,55 @@
 
       </div>
       <div class='col-sm-9 docs-content'>
-        <h1>Using <code>pack</code></h1>
+        <h1>Installing <code>pack</code></h1>
         
 
-<p><strong><code>pack</code></strong> makes it easy for</p>
+<p>You can install the most recent version of <code>pack</code> (version <strong>0.0.9</strong>) as an executable binary on the following operating systems:</p>
 
 <ul>
-<li><strong>Application developers</strong> to use <a href="https://buildpacks.io/">Cloud Native Buildpacks</a> to convert code into runnable images</li>
-<li><strong>Buildpack authors</strong> to develop and package buildpacks for distribution</li>
+<li><a href="#macos">macOS</a></li>
+<li><a href="#linux">Linux</a></li>
+<li><a href="#windows">Windows</a></li>
 </ul>
 
-<hr />
+<h2 id="macos">macOS</h2>
 
-<h2 id="it-s-dangerous-to-go-alone-read-this">⚔️ It&rsquo;s dangerous to go alone! Read this. 🛠️</h2>
+<p>To install <code>pack</code> on macOS, the easiest way is to use Homebrew:</p>
 
-<p>Ready to embark on your adventure with <code>pack</code> but not sure where to start? Try out our tutorial,
-<a href="/docs/app-journey"><strong>An App&rsquo;s Brief Journey from Source to Image</strong></a>.</p>
+<pre><code class="language-bash">$ brew tap buildpack/tap
+$ brew install pack
+</code></pre>
 
-<p>Otherwise, read the rest of this document for detailed explanations and examples of <code>pack</code>&rsquo;s most important commands.</p>
+<p>To install manually instead, fetch and unpack the tarball:</p>
 
-<hr />
+<pre><code class="language-bash">$ wget https://github.com/buildpack/pack/releases/download/v0.0.9/pack-0.0.9-macos.tar.gz
+$ tar xvf pack-0.0.9-macos.tar.gz
+$ rm pack-0.0.9-macos.tar.gz
+$ ./pack --help
+</code></pre>
 
-<h2 id="contents">Contents</h2>
+<p>From there, you can copy the executable to a directory like <code>/usr/local/bin</code> or add the current directory to your <code>PATH</code>.</p>
 
-<ul>
-<li><a href="/docs/using-pack/building-app">Building app images using <code>build</code></a>
+<h2 id="linux">Linux</h2>
 
-<ul>
-<li><a href="/docs/using-pack/building-app/#example-building-using-the-default-builder-image">Example: Building using the default builder image</a></li>
-<li><a href="/docs/using-pack/building-app/#example-building-using-a-specified-buildpack">Example: Building using a specified buildpack</a></li>
-<li><a href="/docs/using-pack/building-app/#building-explained">Building explained</a></li>
-</ul></li>
-<li><a href="/docs/using-pack/update-app-rebase/">Updating app images using <code>rebase</code></a>
+<pre><code class="language-bash">$ wget https://github.com/buildpack/pack/releases/download/v0.0.9/pack-0.0.9-linux.tar.gz
+$ tar xvf pack-0.0.9-linux.tar.gz
+$ rm pack-0.0.9-macos.tar.gz
+$ ./pack --help
+</code></pre>
 
-<ul>
-<li><a href="/docs/using-pack/update-app-rebase/#example-rebasing-an-app-image">Example: Rebasing an app image</a></li>
-<li><a href="/docs/using-pack/update-app-rebase/#rebasing-explained">Rebasing explained</a></li>
-</ul></li>
-<li><a href="/docs/using-pack/working-with-builders">Working with builders using <code>create-builder</code></a>
+<p>From there, you can copy the executable to a directory like <code>/usr/local/bin</code> or add the current directory to your <code>PATH</code>.</p>
 
-<ul>
-<li><a href="/docs/using-pack/working-with-builders/#example-creating-a-builder-from-buildpacks">Example: Creating a builder from buildpacks</a></li>
-<li><a href="/docs/using-pack/working-with-builders/#builders-explained">Builders explained</a></li>
-</ul></li>
-<li><a href="/docs/using-pack/managing-stacks">Managing stacks</a>
+<h2 id="windows">Windows</h2>
 
-<ul>
-<li><a href="/docs/using-pack/managing-stacks/#run-image-mirrors">Run image mirrors</a></li>
-</ul></li>
-</ul>
-
-<hr />
-
-<h2 id="other-resources">Other resources</h2>
-
-<ul>
-<li><a href="https://github.com/buildpack/spec">Buildpack &amp; Platform Specifications</a></li>
-</ul>
+<p>You can install the Windows executable for <code>pack</code> by downloading the Windows <a href="https://github.com/buildpack/pack/releases/download/v0.0.9/pack-0.0.9-windows.zip">ZIP file</a>.</p>
 
         
   <hr>
   <div class='footline'>
     
       <div class='footline-author'>
-        Last modified by <a href="mailto:ameyer@pivotal.io">Andrew Meyer</a>
+        Last modified by <a href="mailto:ameyer@gmail.com">Andrew Meyer</a>
       </div>
     
     
