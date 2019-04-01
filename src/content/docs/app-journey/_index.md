@@ -47,7 +47,7 @@ $ pack build myapp
 ```
 
 > If this is your first time running `pack`, you might see a message about selecting a default
-> [builder](../../README.md#working-with-builders-using-create-builder) (essentially, an image containing buildpacks). Simply choose
+> [builder](/docs/using-pack/working-with-builders) (essentially, an image containing buildpacks). Simply choose
 > either builder presented by running `pack set-default-builder <builder>`, then run `pack build myapp` again.
 
 That's it. You've now got a runnable app image called `myapp` available on your local Docker daemon.

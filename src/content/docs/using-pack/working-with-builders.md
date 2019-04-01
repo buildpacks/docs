@@ -8,7 +8,6 @@ lastmodifierdisplayname = "Andrew Meyer"
 lastmodifieremail = "ameyer@pivotal.io"
 
 +++
-## Working with builders using `create-builder`
 
 `pack create-builder` enables buildpack authors and platform operators to bundle a collection of buildpacks into a
 single image for distribution and use with a specified stack.

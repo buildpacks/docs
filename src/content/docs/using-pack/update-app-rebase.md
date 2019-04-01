@@ -9,8 +9,6 @@ lastmodifieremail = "ssisil@pivotal.io"
 
 +++
 
-## Updating app images using `rebase`
-
 The `pack rebase` command allows app developers to rapidly update an app image when its stack's run image has changed.
 By using image layer rebasing, this command avoids the need to fully rebuild the app.
 

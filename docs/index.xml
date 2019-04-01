@@ -27,8 +27,8 @@ $ cd path/to/node/app $ pack build my-app:my-tag  In this case, the default buil
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/docs/using-pack/update-app-rebase/</guid>
-      <description>Updating app images using rebase The pack rebase command allows app developers to rapidly update an app image when its stack&amp;rsquo;s run image has changed. By using image layer rebasing, this command avoids the need to fully rebuild the app.
-$ pack rebase &amp;lt;image-name&amp;gt;  Example: Rebasing an app image Consider an app image my-app:my-tag that was originally built using the default builder. That builder&amp;rsquo;s stack has a run image called pack/run.</description>
+      <description>The pack rebase command allows app developers to rapidly update an app image when its stack&amp;rsquo;s run image has changed. By using image layer rebasing, this command avoids the need to fully rebuild the app.
+$ pack rebase &amp;lt;image-name&amp;gt;  Example: Rebasing an app image Consider an app image my-app:my-tag that was originally built using the default builder. That builder&amp;rsquo;s stack has a run image called pack/run. Running the following will update the base of my-app:my-tag with the latest version of pack/run.</description>
     </item>
     
     <item>
@@ -37,8 +37,9 @@ $ pack rebase &amp;lt;image-name&amp;gt;  Example: Rebasing an app image Conside
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/docs/using-pack/working-with-builders/</guid>
-      <description>Working with builders using create-builder pack create-builder enables buildpack authors and platform operators to bundle a collection of buildpacks into a single image for distribution and use with a specified stack.
-$ pack create-builder &amp;lt;image-name&amp;gt; --builder-config &amp;lt;path-to-builder-toml&amp;gt;  Example: Creating a builder from buildpacks In this example, a builder image is created from buildpacks org.example.buildpack-1 and org.example.buildpack-2. A TOML file (typically named builder.toml) file provides necessary configuration to the command.</description>
+      <description>pack create-builder enables buildpack authors and platform operators to bundle a collection of buildpacks into a single image for distribution and use with a specified stack.
+$ pack create-builder &amp;lt;image-name&amp;gt; --builder-config &amp;lt;path-to-builder-toml&amp;gt;  Example: Creating a builder from buildpacks In this example, a builder image is created from buildpacks org.example.buildpack-1 and org.example.buildpack-2. A TOML file (typically named builder.toml) file provides necessary configuration to the command.
+[[buildpacks]] id = &amp;quot;org.example.buildpack-1&amp;quot; uri = &amp;quot;relative/path/to/buildpack-1&amp;quot; # URIs without schemes are read as paths relative to builder.</description>
     </item>
     
     <item>

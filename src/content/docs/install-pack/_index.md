@@ -13,6 +13,10 @@ You can install the most recent version of `pack` (version **{{< latest >}}**) a
 * [Linux](#linux)
 * [Windows](#windows)
 
+`pack` requires Docker to run
+
+<a href="https://store.docker.com/search?type=edition&offering=community" class="download-button button icon-button bg-blue">Install Docker Community Edition</a>
+
 ## macOS
 
 To install `pack` on macOS, the easiest way is to use Homebrew:
