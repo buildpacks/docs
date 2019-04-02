@@ -7,7 +7,7 @@ lastmodifierdisplayname = "Andrew Meyer"
 lastmodifieremail = "ameyer@pivotal.io"
 +++
 
-Take a look at the links below to learn how to use `pack` and Cloud Native Buildpacks.
+Follow the tutorials below to learn how to use `pack` and Cloud Native Buildpacks.
 
 ### [An App's Brief Journey from Source to Image](/docs/app-journey)
 
