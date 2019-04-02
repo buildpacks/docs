@@ -11,7 +11,7 @@
     
     
     <item>
-      <title>Building app images with `build`</title>
+      <title>Building app images using `build`</title>
       <link>/docs/using-pack/building-app/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -32,7 +32,7 @@ $ pack rebase &amp;lt;image-name&amp;gt;  Example: Rebasing an app image Conside
     </item>
     
     <item>
-      <title>Working with builders `create-builder`</title>
+      <title>Working with builders using `create-builder`</title>
       <link>/docs/using-pack/working-with-builders/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
