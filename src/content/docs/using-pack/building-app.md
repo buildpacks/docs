@@ -1,5 +1,5 @@
 +++
-title="Building app images with `build`"
+title="Building app images using `build`"
 weight=301
 creatordisplayname = "Andrew Meyer"
 creatoremail = "ameyer@pivotal.io"
