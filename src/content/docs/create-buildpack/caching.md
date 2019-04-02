@@ -5,7 +5,6 @@ creatordisplayname = "Scott Sisil"
 creatoremail = "ssisil@pivotal.io"
 lastmodifierdisplayname = "Danny Joyce"
 lastmodifieremail = "djoyce@pivotal.io"
-draft = true
 +++
 
 Next we want to separate the ruby interpreter and bundled gems into different layers.  This will allows us to cache the ruby layer and gem dependency layer separately, which helps speed up builds.
@@ -47,7 +46,7 @@ ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/rub
 wget -q -O - "$ruby_url" | tar -xzf - -C "$layersdir/ruby"
 
 # Make ruby accessible in this script
-export PATH=$PATH:$layersdir/ruby/bin
+export PATH=$layersdir/ruby/bin:$PATH
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}$layersdir/ruby/lib
 
 echo "---> Installing bundler"
@@ -142,7 +141,7 @@ ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/rub
 wget -q -O - "$ruby_url" | tar -xzf - -C "$layersdir/ruby"
 
 # Make ruby accessible in this script
-export PATH=$PATH:$layersdir/ruby/bin
+export PATH=$layersdir/ruby/bin:$PATH
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}$layersdir/ruby/lib
 
 echo "---> Installing bundler"
@@ -245,7 +244,7 @@ ruby_version=2.5.1
 echo "---> Ruby Buildpack"
 
 # Make ruby accessible in this script
-export PATH=$PATH:$layersdir/ruby/bin
+export PATH=$layersdir/ruby/bin:$PATH
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}$layersdir/ruby/lib
 
 # Check to see if the desired ruby version is available for re-use

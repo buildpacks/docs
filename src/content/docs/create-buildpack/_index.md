@@ -5,7 +5,6 @@ creatordisplayname = "Scott Sisil"
 creatoremail = "ssisil@pivotal.io"
 lastmodifierdisplayname = "Scott Sisil"
 lastmodifieremail = "ssisil@pivotal.io"
-draft = true
 +++
 
 This is a step by step tutorial for creating a Ruby Cloud Native Buildpack. This tutorial will cover the following concepts: 

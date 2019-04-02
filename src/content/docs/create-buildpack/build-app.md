@@ -5,7 +5,6 @@ creatordisplayname = "Scott Sisil"
 creatoremail = "ssisil@pivotal.io"
 lastmodifierdisplayname = "Danny Joyce"
 lastmodifieremail = "djoyce@pivotal.io"
-draft = true
 +++
 
 
@@ -58,7 +57,7 @@ ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/rub
 wget -q -O - "$ruby_url" | tar -xzf - -C "$layersdir/ruby"
 
 # Make ruby accessible in this script
-export PATH=$PATH:$layersdir/ruby/bin
+export PATH=$layersdir/ruby/bin:$PATH
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}$layersdir/ruby/lib
 
 echo "---> Installing bundler"

@@ -19,6 +19,10 @@
   </url>
   
   <url>
+    <loc>/docs/create-buildpack/</loc>
+  </url>
+  
+  <url>
     <loc>/docs/using-pack/building-app/</loc>
   </url>
   
@@ -32,6 +36,30 @@
   
   <url>
     <loc>/docs/using-pack/managing-stacks/</loc>
+  </url>
+  
+  <url>
+    <loc>/docs/create-buildpack/setup-local-environment/</loc>
+  </url>
+  
+  <url>
+    <loc>/docs/create-buildpack/building-blocks-cnb/</loc>
+  </url>
+  
+  <url>
+    <loc>/docs/create-buildpack/detection/</loc>
+  </url>
+  
+  <url>
+    <loc>/docs/create-buildpack/build-app/</loc>
+  </url>
+  
+  <url>
+    <loc>/docs/create-buildpack/make-app-runnable/</loc>
+  </url>
+  
+  <url>
+    <loc>/docs/create-buildpack/caching/</loc>
   </url>
   
   <url>

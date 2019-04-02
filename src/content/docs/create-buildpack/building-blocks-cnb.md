@@ -6,7 +6,6 @@ creatordisplayname = "Scott Sisil"
 creatoremail = "ssisil@pivotal.io"
 lastmodifierdisplayname = "Scott Sisil"
 lastmodifieremail = "ssisil@pivotal.io"
-draft = true
 +++
 
 Now we will setup the buildpack scaffolding. You will need to make these files in your `ruby-cnb` directory

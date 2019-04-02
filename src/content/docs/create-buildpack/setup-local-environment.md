@@ -5,7 +5,6 @@ creatordisplayname = "Scott Sisil"
 creatoremail = "ssisil@pivotal.io"
 lastmodifierdisplayname = "Danny Joyce"
 lastmodifieremail = "djoyce@pivotal.io"
-draft = true
 +++
 
 First we will want to create a sample ruby app that you can use when developing the ruby cloud native buildpack

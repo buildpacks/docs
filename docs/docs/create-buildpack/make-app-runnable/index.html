@@ -14,7 +14,7 @@
     
     
 
-    <title>Latest project updates · Cloud Native Buildpack Documentation</title>
+    <title>Make your application runnable · Cloud Native Buildpack Documentation</title>
   </head>
   <body>
     <header>
@@ -43,7 +43,7 @@
         <nav class='sidebar'>
     <ul>
       <li data-nav-id="/docs/" class="dd-item
-          depth-0 parent active haschildren
+          depth-0 parent haschildren
       ">
         <a href="/docs/">Latest project updates</a>
           <ul>
@@ -85,7 +85,7 @@
           </ul>
       </li>
       <li data-nav-id="/docs/create-buildpack/" class="dd-item
-          depth-1 haschildren
+          depth-1 parent haschildren
       ">
         <a href="/docs/create-buildpack/">Creating a Cloud Native Buildpack</a>
           <ul>
@@ -109,7 +109,7 @@
             Building your application
           </a>
       </li>
-        <li data-nav-id="/docs/create-buildpack/make-app-runnable/" class="dd-item">
+        <li data-nav-id="/docs/create-buildpack/make-app-runnable/" class="dd-item active">
           <a href="/docs/create-buildpack/make-app-runnable/">
             Make your application runnable
           </a>
@@ -129,49 +129,69 @@
 
       </div>
       <div class='col-sm-9 docs-content'>
-        <h1>Latest project updates</h1>
-        
+        <h1>Make your application runnable</h1>
+        <p>Next we want to set a default start command for the application in the image.  You will want to add the following code to then end of your build script.</p>
 
-<p><img src="/docs/buildpacks-logo.svg" alt="Buildpacks logo" /></p>
+<pre><code># Set default start command
+echo 'processes = [{ type = &quot;web&quot;, command = &quot;&quot;bundle exec ruby app.rb&quot;&quot;}]' &gt; &quot;$layersdir/launch.toml&quot;
+</code></pre>
 
-<p>Welcome to our developer website. Here you can find the latest updates for Cloud Native Buildpacks.</p>
+<p>This sets your default start command.</p>
+
+<p>Your full build script should now look like this</p>
+
+<pre><code>#!/usr/bin/env bash
+set -eo pipefail
+
+# Set the layersdir variable to be the first argument from the build lifecycle
+layersdir=$1
+
+echo &quot;---&gt; Ruby Buildpack&quot; 
+
+echo &quot;---&gt; Downloading and extracting ruby&quot;
+mkdir -p $layersdir/ruby
+echo -e 'launch = true' &gt; $layersdir/ruby.toml
+
+ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-2.5.1.tgz
+wget -q -O - &quot;$ruby_url&quot; | tar -xzf - -C &quot;$layersdir/ruby&quot;
+
+# Make ruby accessible in this script
+export PATH=$layersdir/ruby/bin:$PATH
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}$layersdir/ruby/lib
+
+echo &quot;---&gt; Installing bundler&quot;
+gem install bundler --no-ri --no-rdoc
+
+echo &quot;---&gt; Installing gems&quot;
+bundle install
+
+# Set default start command
+echo 'processes = [{ type = &quot;web&quot;, command = &quot;bundle exec ruby app.rb&quot;}]' &gt; &quot;$layersdir/launch.toml&quot;
+</code></pre>
+
+<p>Now you will rebuild your app using the updated buildpack with the launch command</p>
+
+<pre><code>pack build test-ruby-app --buildpack workspace/ruby-cnb  --path workspace/ruby-sample-app/
+</code></pre>
+
+<p>And when you run <code>docker run -p 8080:8080 test-ruby-app</code> you should see you the server logs</p>
+
+<pre><code>[2019-04-02 18:04:48] INFO  WEBrick 1.4.2
+[2019-04-02 18:04:48] INFO  ruby 2.5.1 (2018-03-29) [x86_64-linux]
+== Sinatra (v2.0.5) has taken the stage on 8080 for development with backup from WEBrick
+[2019-04-02 18:04:48] INFO  WEBrick::HTTPServer#start: pid=1 port=8080
+</code></pre>
+
+<p>You should also be able to access the app via your web browser at <code>localhost:8080</code>.</p>
 
 <hr />
-
-<p>Take a look at the links below to learn how to use <code>pack</code> and Cloud Native Buildpacks.</p>
-
-<h3 id="an-app-s-brief-journey-from-source-to-image-docs-app-journey"><a href="/docs/app-journey">An App&rsquo;s Brief Journey from Source to Image</a></h3>
-
-<p>An easy-to-follow introduction to <code>pack</code> and Cloud Native Buildpacks, this tutorial will get you up and running quickly.</p>
-
-<h3 id="using-pack-docs-using-pack"><a href="/docs/using-pack">Using <code>pack</code></a></h3>
-
-<p>Detailed explanations and examples of <code>pack</code>&rsquo;s most important commands.</p>
-
-<h3 id="creating-a-cloud-native-buildpack-docs-create-buildpack"><a href="/docs/create-buildpack">Creating a Cloud Native Buildpack</a></h3>
-
-<p>A tutorial that walks you through the creation of a simple ruby buildpack.</p>
-
-<hr />
-
-<h1 id="community-and-support">Community and Support</h1>
-
-<p>Cloud Native Buildpacks is an active sandbox project in the CNCF.  We welcome contribution from the community.  Here you will find helpful information for interacting with the core team and contributing to the project.</p>
-
-<h2 id="contacting-the-core-team">Contacting the core team</h2>
-
-<p>The best place to contact the Cloud Native Buildpack team is on our <a href="https://slack.buildpacks.io/">Slack channel</a>.</p>
-
-<h2 id="project-roadmap">Project Roadmap</h2>
-
-<p>This is a community driven project and our roadmap is publicly available on our <a href="https://github.com/orgs/buildpack/projects/1">Github page</a>. We encourage you to contribute with feature requests.</p>
 
         
   <hr>
   <div class='footline'>
     
       <div class='footline-author'>
-        Last modified by <a href="mailto:ameyer@pivotal.io">Andrew Meyer</a>
+        Last modified by <a href="mailto:djoyce@pivotal.io">Danny Joyce</a>
       </div>
     
     

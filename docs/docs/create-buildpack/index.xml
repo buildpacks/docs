@@ -1,57 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Cloud Native Buildpack Documentation</title>
-    <link>/</link>
-    <description>Recent content on Cloud Native Buildpack Documentation</description>
+    <title>Creating a Cloud Native Buildpack on Cloud Native Buildpack Documentation</title>
+    <link>/docs/create-buildpack/</link>
+    <description>Recent content in Creating a Cloud Native Buildpack on Cloud Native Buildpack Documentation</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/docs/create-buildpack/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Building app images using `build`</title>
-      <link>/docs/using-pack/building-app/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/using-pack/building-app/</guid>
-      <description>pack build enables app developers to create runnable app images from source code using buildpacks.
-$ pack build &amp;lt;image-name&amp;gt;  Example: Building using the default builder image In the following example, an app image is created from Node.js application source code.
-$ cd path/to/node/app $ pack build my-app:my-tag  In this case, the default builder (essentially, an image containing buildpacks) is used, and an appropriate buildpack is automatically selected from the builder based on the app source code.</description>
-    </item>
-    
-    <item>
-      <title>Updating app images using `rebase`</title>
-      <link>/docs/using-pack/update-app-rebase/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/using-pack/update-app-rebase/</guid>
-      <description>The pack rebase command allows app developers to rapidly update an app image when its stack&amp;rsquo;s run image has changed. By using image layer rebasing, this command avoids the need to fully rebuild the app.
-$ pack rebase &amp;lt;image-name&amp;gt;  Example: Rebasing an app image Consider an app image my-app:my-tag that was originally built using the default builder. That builder&amp;rsquo;s stack has a run image called pack/run. Running the following will update the base of my-app:my-tag with the latest version of pack/run.</description>
-    </item>
-    
-    <item>
-      <title>Working with builders using `create-builder`</title>
-      <link>/docs/using-pack/working-with-builders/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/using-pack/working-with-builders/</guid>
-      <description>pack create-builder enables buildpack authors and platform operators to bundle a collection of buildpacks into a single image for distribution and use with a specified stack.
-$ pack create-builder &amp;lt;image-name&amp;gt; --builder-config &amp;lt;path-to-builder-toml&amp;gt;  Example: Creating a builder from buildpacks In this example, a builder image is created from buildpacks org.example.buildpack-1 and org.example.buildpack-2. A TOML file (typically named builder.toml) file provides necessary configuration to the command.
-[[buildpacks]] id = &amp;quot;org.example.buildpack-1&amp;quot; uri = &amp;quot;relative/path/to/buildpack-1&amp;quot; # URIs without schemes are read as paths relative to builder.</description>
-    </item>
-    
-    <item>
-      <title>Managing stacks</title>
-      <link>/docs/using-pack/managing-stacks/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/docs/using-pack/managing-stacks/</guid>
-      <description>As mentioned previously, a stack is a named association of a build image and a run image. Stacks are managed through a builder&amp;rsquo;s TOML file:
-[[buildpacks]] # ... [[groups]] # ... [stack] id = &amp;quot;com.example.stack&amp;quot; build-image = &amp;quot;example/build&amp;quot; run-image = &amp;quot;example/run&amp;quot; run-image-mirrors = [&amp;quot;gcr.io/example/run&amp;quot;, &amp;quot;registry.example.com/example/run&amp;quot;]  By providing the required [stack] section, a builder author can configure a stack&amp;rsquo;s ID, build image, and run image (including any mirrors).
-Run image mirrors Run image mirrors provide alternate locations for run images, for use during build (or rebase).</description>
-    </item>
     
     <item>
       <title>Setup your local environment</title>

@@ -14,7 +14,7 @@
     
     
 
-    <title>Latest project updates · Cloud Native Buildpack Documentation</title>
+    <title>Creating a Cloud Native Buildpack · Cloud Native Buildpack Documentation</title>
   </head>
   <body>
     <header>
@@ -43,7 +43,7 @@
         <nav class='sidebar'>
     <ul>
       <li data-nav-id="/docs/" class="dd-item
-          depth-0 parent active haschildren
+          depth-0 parent haschildren
       ">
         <a href="/docs/">Latest project updates</a>
           <ul>
@@ -85,7 +85,7 @@
           </ul>
       </li>
       <li data-nav-id="/docs/create-buildpack/" class="dd-item
-          depth-1 haschildren
+          depth-1 parent active haschildren
       ">
         <a href="/docs/create-buildpack/">Creating a Cloud Native Buildpack</a>
           <ul>
@@ -129,49 +129,48 @@
 
       </div>
       <div class='col-sm-9 docs-content'>
-        <h1>Latest project updates</h1>
+        <h1>Creating a Cloud Native Buildpack</h1>
         
 
-<p><img src="/docs/buildpacks-logo.svg" alt="Buildpacks logo" /></p>
+<p>This is a step by step tutorial for creating a Ruby Cloud Native Buildpack. This tutorial will cover the following concepts:</p>
 
-<p>Welcome to our developer website. Here you can find the latest updates for Cloud Native Buildpacks.</p>
-
-<hr />
-
-<p>Take a look at the links below to learn how to use <code>pack</code> and Cloud Native Buildpacks.</p>
-
-<h3 id="an-app-s-brief-journey-from-source-to-image-docs-app-journey"><a href="/docs/app-journey">An App&rsquo;s Brief Journey from Source to Image</a></h3>
-
-<p>An easy-to-follow introduction to <code>pack</code> and Cloud Native Buildpacks, this tutorial will get you up and running quickly.</p>
-
-<h3 id="using-pack-docs-using-pack"><a href="/docs/using-pack">Using <code>pack</code></a></h3>
-
-<p>Detailed explanations and examples of <code>pack</code>&rsquo;s most important commands.</p>
-
-<h3 id="creating-a-cloud-native-buildpack-docs-create-buildpack"><a href="/docs/create-buildpack">Creating a Cloud Native Buildpack</a></h3>
-
-<p>A tutorial that walks you through the creation of a simple ruby buildpack.</p>
+<ul>
+<li>Buildpack Detection</li>
+<li>Buildpack Image Layering</li>
+<li>Buildpack Caching</li>
+<li>Making an OCI image Runnable</li>
+</ul>
 
 <hr />
 
-<h1 id="community-and-support">Community and Support</h1>
+<h2 id="prerequisites">Prerequisites</h2>
 
-<p>Cloud Native Buildpacks is an active sandbox project in the CNCF.  We welcome contribution from the community.  Here you will find helpful information for interacting with the core team and contributing to the project.</p>
+<p>Before we get started make sure you have the following installed on your system</p>
 
-<h2 id="contacting-the-core-team">Contacting the core team</h2>
+<ul>
+<li><a href="https://store.docker.com/search?type=edition&amp;offering=community">Docker Community Edition</a></li>
+<li><a href="https://github.com/buildpack/pack/releases">pack</a><br /></li>
+</ul>
 
-<p>The best place to contact the Cloud Native Buildpack team is on our <a href="https://slack.buildpacks.io/">Slack channel</a>.</p>
+<hr />
 
-<h2 id="project-roadmap">Project Roadmap</h2>
+<h2 id="contents">Contents</h2>
 
-<p>This is a community driven project and our roadmap is publicly available on our <a href="https://github.com/orgs/buildpack/projects/1">Github page</a>. We encourage you to contribute with feature requests.</p>
+<ul>
+<li><a href="/docs/create-buildpack/setup-local-environment">Setup your local environment</a></li>
+<li><a href="/docs/create-buildpack/building-blocks-cnb">Building blocks of a Cloud Native Builldpack</a></li>
+<li><a href="/docs/create-buildpack/detection">Detecting your application</a></li>
+<li><a href="/docs/create-buildpack/build-app">Building your application</a></li>
+<li><a href="/docs/create-buildpack/make-app-runnable">Making your application runnable</a></li>
+<li><a href="/docs/create-buildpack/caching">Improving performance with caching</a></li>
+</ul>
 
         
   <hr>
   <div class='footline'>
     
       <div class='footline-author'>
-        Last modified by <a href="mailto:ameyer@pivotal.io">Andrew Meyer</a>
+        Last modified by <a href="mailto:ssisil@pivotal.io">Scott Sisil</a>
       </div>
     
     

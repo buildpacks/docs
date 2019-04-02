@@ -1,0 +1,540 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Fira+Mono|Source+Sans+Pro:400,400i,600" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/scss/site.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    
+    
+
+    <title>Improving performance with caching · Cloud Native Buildpack Documentation</title>
+  </head>
+  <body>
+    <header>
+  <a href="/" class="logo"><img src="/images/buildpacks-logo.svg" alt="Buildpacks.io Logo"></a>
+  <input type="checkbox" id="mobile-nav-toggle">
+  <label for="mobile-nav-toggle">&#9776;</label>
+  <ul>
+    
+    
+      
+      <li><a class="" href="/">Home</a></li>
+    
+      
+      <li><a class="active" href="/docs">Docs</a></li>
+    
+    <li><a href="https://github.com/buildpack" class="github-button icon-button bg-blue button">GitHub</a></li>
+  </ul>
+</header>
+
+    
+
+<div class='docs'>
+  <div class='container-fluid'>
+    <div class='row'>
+      <div class='col-sm-3 docs-sidebar'>
+        <nav class='sidebar'>
+    <ul>
+      <li data-nav-id="/docs/" class="dd-item
+          depth-0 parent haschildren
+      ">
+        <a href="/docs/">Latest project updates</a>
+          <ul>
+      <li data-nav-id="/docs/install-pack/" class="dd-item
+          depth-1
+      ">
+        <a href="/docs/install-pack/">Installing <code>pack</code></a>
+      </li>
+      <li data-nav-id="/docs/app-journey/" class="dd-item
+          depth-1
+      ">
+        <a href="/docs/app-journey/">An App&rsquo;s Brief Journey from Source to Image</a>
+      </li>
+      <li data-nav-id="/docs/using-pack/" class="dd-item
+          depth-1 haschildren
+      ">
+        <a href="/docs/using-pack/">Using <code>pack</code></a>
+          <ul>
+        <li data-nav-id="/docs/using-pack/building-app/" class="dd-item">
+          <a href="/docs/using-pack/building-app/">
+            Building app images using <code>build</code>
+          </a>
+      </li>
+        <li data-nav-id="/docs/using-pack/update-app-rebase/" class="dd-item">
+          <a href="/docs/using-pack/update-app-rebase/">
+            Updating app images using <code>rebase</code>
+          </a>
+      </li>
+        <li data-nav-id="/docs/using-pack/working-with-builders/" class="dd-item">
+          <a href="/docs/using-pack/working-with-builders/">
+            Working with builders using <code>create-builder</code>
+          </a>
+      </li>
+        <li data-nav-id="/docs/using-pack/managing-stacks/" class="dd-item">
+          <a href="/docs/using-pack/managing-stacks/">
+            Managing stacks
+          </a>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/create-buildpack/" class="dd-item
+          depth-1 parent haschildren
+      ">
+        <a href="/docs/create-buildpack/">Creating a Cloud Native Buildpack</a>
+          <ul>
+        <li data-nav-id="/docs/create-buildpack/setup-local-environment/" class="dd-item">
+          <a href="/docs/create-buildpack/setup-local-environment/">
+            Setup your local environment
+          </a>
+      </li>
+        <li data-nav-id="/docs/create-buildpack/building-blocks-cnb/" class="dd-item">
+          <a href="/docs/create-buildpack/building-blocks-cnb/">
+            Building blocks of a Cloud Native Buildpack
+          </a>
+      </li>
+        <li data-nav-id="/docs/create-buildpack/detection/" class="dd-item">
+          <a href="/docs/create-buildpack/detection/">
+            Detecting your application
+          </a>
+      </li>
+        <li data-nav-id="/docs/create-buildpack/build-app/" class="dd-item">
+          <a href="/docs/create-buildpack/build-app/">
+            Building your application
+          </a>
+      </li>
+        <li data-nav-id="/docs/create-buildpack/make-app-runnable/" class="dd-item">
+          <a href="/docs/create-buildpack/make-app-runnable/">
+            Make your application runnable
+          </a>
+      </li>
+        <li data-nav-id="/docs/create-buildpack/caching/" class="dd-item active">
+          <a href="/docs/create-buildpack/caching/">
+            Improving performance with caching
+          </a>
+      </li>
+          </ul>
+      </li>
+          </ul>
+      </li></ul>
+</nav>
+
+
+
+      </div>
+      <div class='col-sm-9 docs-content'>
+        <h1>Improving performance with caching</h1>
+        
+
+<p>Next we want to separate the ruby interpreter and bundled gems into different layers.  This will allows us to cache the ruby layer and gem dependency layer separately, which helps speed up builds.</p>
+
+<h3 id="creating-the-bundler-layer">Creating the Bundler Layer</h3>
+
+<p>To do this replace the line</p>
+
+<pre><code>echo &quot;---&gt; Installing gems&quot;
+bundle install
+</code></pre>
+
+<p>With the following</p>
+
+<pre><code>echo &quot;---&gt; Installing gems&quot;
+mkdir &quot;$layersdir/bundler&quot;
+echo -e 'launch = true' &gt; &quot;$layersdir/bundler.toml&quot;
+bundle install --path &quot;$layersdir/bundler&quot; --binstubs &quot;$layersdir/bundler/bin&quot;
+</code></pre>
+
+<p>Your full build script should now look like this</p>
+
+<pre><code>#!/usr/bin/env bash
+set -eo pipefail
+
+# Set the layersdir variable to be the first argument from the build lifecycle
+layersdir=$1
+
+echo &quot;---&gt; Ruby Buildpack&quot; 
+
+echo &quot;---&gt; Downloading and extracting ruby&quot;
+mkdir -p $layersdir/ruby
+echo -e 'launch = true' &gt; $layersdir/ruby.toml
+
+ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-2.5.1.tgz
+wget -q -O - &quot;$ruby_url&quot; | tar -xzf - -C &quot;$layersdir/ruby&quot;
+
+# Make ruby accessible in this script
+export PATH=$layersdir/ruby/bin:$PATH
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}$layersdir/ruby/lib
+
+echo &quot;---&gt; Installing bundler&quot;
+gem install bundler --no-ri --no-rdoc
+
+echo &quot;---&gt; Installing gems&quot;
+mkdir &quot;$layersdir/bundler&quot;
+echo -e 'launch = true' &gt; &quot;$layersdir/bundler.toml&quot;
+bundle install --path &quot;$layersdir/bundler&quot; --binstubs &quot;$layersdir/bundler/bin&quot;
+
+# Set default start command
+echo 'processes = [{ type = &quot;web&quot;, command = &quot;bundle exec ruby app.rb&quot;}]' &gt; &quot;$layersdir/launch.toml&quot;
+</code></pre>
+
+<p>Now when we run</p>
+
+<pre><code>pack build test-ruby-app --buildpack workspace/ruby-cnb  --path workspace/ruby-sample-app/
+</code></pre>
+
+<p>You will see the a similar line added during the EXPORTING phase</p>
+
+<pre><code>[exporter] adding layer 'com.examples.buildpacks.ruby:bundler' with diffID 'sha256:7a0b5596acbb2c846a4f4f9a0fd44c2d5265e10b4949db1fd7f44dedd91244c5'
+</code></pre>
+
+<h3 id="caching-gem-dependencies">Caching Gem Dependencies</h3>
+
+<p>Next we will start caching gem dependencies to help speed up the build if no new dependencies are needed.</p>
+
+<p>First, we&rsquo;ll need to install some helpful tools at the top of the build script</p>
+
+<pre><code># Download some useful tools
+wget -qO /usr/local/bin/jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 &amp;&amp; chmod +x /usr/local/bin/jq
+wget -qO /usr/local/bin/yj https://github.com/sclevine/yj/releases/download/v2.0/yj-linux &amp;&amp; chmod +x /usr/local/bin/yj
+</code></pre>
+
+<p>Replace the bundle logic from the previous step</p>
+
+<pre><code>echo &quot;---&gt; Installing gems&quot;
+mkdir &quot;$layersdir/bundler&quot;
+echo -e 'launch = true' &gt; &quot;$layersdir/bundler.toml&quot;
+
+bundle install --path &quot;$layersdir/bundler&quot; --binstubs &quot;$layersdir/bundler/bin&quot;
+</code></pre>
+
+<p>With this new logic that checks to see if any gems have been changed. This simply creates a checksum for the previous Gemfile and compares it to the checksum of the current Gemfile.  If they are the same, the gems are reused. If they are not, the new gems are installed.</p>
+
+<p>We&rsquo;ll now write additional metadata to our <code>bundler.toml</code> of the form <code>cache = true</code>, <code>build = false</code>, and <code>launch = true</code>. This directs the lifecycle to cache our gems and provide them when launching our application. With <code>cache = true</code> the lifecycle can keep existing gems around so that build times are fast even with minor Gemfile changes.</p>
+
+<pre><code># Compares previous Gemfile.lock checksum to the current Gemfile.lock
+local_bundler_checksum=$(sha256sum Gemfile.lock | cut -d ' ' -f 1) 
+remote_bundler_checksum=$(cat &quot;$layersdir/bundler.toml&quot; | yj -t | jq -r .metadata 2&gt;/dev/null || echo 'not found')
+
+if [[ -f Gemfile.lock &amp;&amp; $local_bundler_checksum == $remote_bundler_checksum ]] ; then
+    # Determine if no gem depencencies have changed, so it can reuse existing gems without running bundle install
+    echo &quot;---&gt; Reusing gems&quot;
+    bundle config --local path &quot;$layersdir/bundler&quot; &gt;/dev/null 
+    bundle config --local bin &quot;$layersdir/bundler/bin&quot; &gt;/dev/null 
+else
+    # Determine if there has been a gem dependency change and install new gems to the bundler layer; re-using existing and un-changed gems
+    echo &quot;---&gt; Installing gems&quot;
+    mkdir -p &quot;$layersdir/bundler&quot;
+    echo -e &quot;cache = true\nbuild = false\nlaunch = true\nmetadata = \&quot;$local_bundler_checksum\&quot;&quot; &gt; &quot;$layersdir/bundler.toml&quot;
+    bundle install --path &quot;$layersdir/bundler&quot; --binstubs &quot;$layersdir/bundler/bin&quot; &amp;&amp; bundle clean
+fi
+</code></pre>
+
+<p>Your full build script will now look like this</p>
+
+<pre><code>#!/usr/bin/env bash
+set -eo pipefail
+
+# Set the layersdir variable to be the first argument from the build lifecycle
+layersdir=$1
+
+# Download some useful tools
+wget -qO /usr/local/bin/jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 &amp;&amp; chmod +x /usr/local/bin/jq
+wget -qO /usr/local/bin/yj https://github.com/sclevine/yj/releases/download/v2.0/yj-linux &amp;&amp; chmod +x /usr/local/bin/yj
+
+echo &quot;---&gt; Ruby Buildpack&quot; 
+
+echo &quot;---&gt; Downloading and extracting ruby&quot;
+mkdir -p $layersdir/ruby
+echo -e 'launch = true' &gt; $layersdir/ruby.toml
+
+ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-2.5.1.tgz
+wget -q -O - &quot;$ruby_url&quot; | tar -xzf - -C &quot;$layersdir/ruby&quot;
+
+# Make ruby accessible in this script
+export PATH=$layersdir/ruby/bin:$PATH
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}$layersdir/ruby/lib
+
+echo &quot;---&gt; Installing bundler&quot;
+gem install bundler --no-ri --no-rdoc
+
+# Compares previous Gemfile.lock checksum to the current Gemfile.lock
+local_bundler_checksum=$(sha256sum Gemfile.lock | cut -d ' ' -f 1) 
+remote_bundler_checksum=$(cat &quot;$layersdir/bundler.toml&quot; | yj -t | jq -r .metadata 2&gt;/dev/null || echo 'not found')
+
+if [[ -f Gemfile.lock &amp;&amp; $local_bundler_checksum == $remote_bundler_checksum ]] ; then
+    # Determine if no gem depencencies have changed, so it can reuse existing gems without running bundle install
+    echo &quot;---&gt; Reusing gems&quot;
+    bundle config --local path &quot;$layersdir/bundler&quot; &gt;/dev/null 
+    bundle config --local bin &quot;$layersdir/bundler/bin&quot; &gt;/dev/null 
+else
+    # Determine if there has been a gem dependency change and install new gems to the bundler layer; re-using existing and un-changed gems
+    echo &quot;---&gt; Installing gems&quot;
+    mkdir -p &quot;$layersdir/bundler&quot;
+    echo -e &quot;cache = true\nbuild = false\nlaunch = true\nmetadata = \&quot;$local_bundler_checksum\&quot;&quot; &gt; &quot;$layersdir/bundler.toml&quot;
+    bundle install --path &quot;$layersdir/bundler&quot; --binstubs &quot;$layersdir/bundler/bin&quot; &amp;&amp; bundle clean
+fi
+
+# Set default start command
+echo 'processes = [{ type = &quot;web&quot;, command = &quot;bundle exec ruby app.rb&quot;}]' &gt; &quot;$layersdir/launch.toml&quot;
+</code></pre>
+
+<p>Now when you build your app it will now generate the Gemfile checksum for the first time and store it in the image</p>
+
+<pre><code>pack build test-ruby-app --buildpack workspace/ruby-cnb  --path workspace/ruby-sample-app/
+</code></pre>
+
+<p>And if you build the app again</p>
+
+<pre><code>pack build test-ruby-app --buildpack workspace/ruby-cnb  --path workspace/ruby-sample-app/
+</code></pre>
+
+<p>You will see the new caching logic at work during the BUILDING phase</p>
+
+<pre><code>===&gt; BUILDING
+[builder] ---&gt; Ruby Buildpack
+[builder] ---&gt; Downloading and extracting ruby
+[builder] ---&gt; Installing bundler
+[builder] Successfully installed bundler-2.0.1
+[builder] 1 gem installed
+[builder] ---&gt; Reusing gems
+</code></pre>
+
+<h3 id="cache-ruby">Cache Ruby</h3>
+
+<p>Now we will add the logic to cache the ruby interpreter to speed up build times if a new version of ruby is not needed.</p>
+
+<p>First, we will set a desired ruby version that we will support as a variable, in this instance <code>ruby 2.5.1</code>.</p>
+
+<pre><code>ruby_version=2.5.1
+</code></pre>
+
+<p>Next we will add the ruby caching logic that checks to see if ruby has been successfully cached with the correct version.</p>
+
+<p>This logic checks to see if the cached version captured in <code>ruby.toml</code> matches the desired version defined in the <code>ruby_version</code> variable. If it is the same - it reuses the cached version, if it is not (or does not exist) it will download and cache the correct version.</p>
+
+<p>We also write the additional metadata to our <code>ruby.toml</code> of the form <code>cache = true</code>, <code>build = false</code>, and <code>launch = true</code> to leverage the cache from the lifecycle.</p>
+
+<pre><code># Check to see if the desired ruby version is available for re-use
+if [[ $ruby_version == $([[ -f $layersdir/ruby.toml ]] &amp;&amp; cat &quot;$layersdir/ruby.toml&quot; | yj -t | jq -r .metadata) ]] ; then
+    echo &quot;---&gt; Reusing ruby $ruby_version&quot;
+else
+    echo &quot;---&gt; Downloading and extracting ruby - $ruby_version&quot;
+    rm -rf $layersdir/ruby
+    mkdir -p $layersdir/ruby
+    echo -e &quot;cache = true \nbuild = false\nlaunch = true\nmetadata = \&quot;$ruby_version\&quot;&quot; &gt; &quot;$layersdir/ruby.toml&quot;
+    ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-$ruby_version.tgz
+    wget -q -O - &quot;$ruby_url&quot; | tar -xzf - -C &quot;$layersdir/ruby&quot;
+    
+    echo &quot;---&gt; Installing bundler&quot;
+    gem install bundler --no-ri --no-rdoc
+fi
+</code></pre>
+
+<p>Now your full build script will look like this</p>
+
+<pre><code>#!/usr/bin/env bash
+set -eo pipefail
+
+# Set the layersdir variable to be the first argument from the build lifecycle
+layersdir=$1
+
+# Download some useful tools
+wget -qO /usr/local/bin/jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 &amp;&amp; chmod +x /usr/local/bin/jq
+wget -qO /usr/local/bin/yj https://github.com/sclevine/yj/releases/download/v2.0/yj-linux &amp;&amp; chmod +x /usr/local/bin/yj
+
+# Set the default ruby version
+ruby_version=2.5.1
+
+echo &quot;---&gt; Ruby Buildpack&quot;
+
+# Make ruby accessible in this script
+export PATH=$layersdir/ruby/bin:$PATH
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}$layersdir/ruby/lib
+
+# Check to see if the desired ruby version is available for re-use
+if [[ $ruby_version == $([[ -f $layersdir/ruby.toml ]] &amp;&amp; cat &quot;$layersdir/ruby.toml&quot; | yj -t | jq -r .metadata) ]] ; then
+    echo &quot;---&gt; Reusing ruby $ruby_version&quot;
+else
+    echo &quot;---&gt; Downloading and extracting ruby - $ruby_version&quot;
+    rm -rf $layersdir/ruby
+    mkdir -p $layersdir/ruby
+    echo -e &quot;cache = true \nbuild = false\nlaunch = true\nmetadata = \&quot;$ruby_version\&quot;&quot; &gt; &quot;$layersdir/ruby.toml&quot;
+    ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-$ruby_version.tgz
+    wget -q -O - &quot;$ruby_url&quot; | tar -xzf - -C &quot;$layersdir/ruby&quot;
+    
+    echo &quot;---&gt; Installing bundler&quot;
+    gem install bundler --no-ri --no-rdoc
+fi
+
+# Compares previous Gemfile.lock checksum to the current Gemfile.lock
+local_bundler_checksum=$(sha256sum Gemfile.lock | cut -d ' ' -f 1) 
+remote_bundler_checksum=$(cat &quot;$layersdir/bundler.toml&quot; | yj -t | jq -r .metadata 2&gt;/dev/null || echo 'not found')
+
+if [[ -f Gemfile.lock &amp;&amp; $local_bundler_checksum == $remote_bundler_checksum ]] ; then
+    # Determine if no gem depencencies have changed, so it can reuse existing gems without running bundle install
+    echo &quot;---&gt; Reusing gems&quot;
+    bundle config --local path &quot;$layersdir/bundler&quot; &gt;/dev/null 
+    bundle config --local bin &quot;$layersdir/bundler/bin&quot; &gt;/dev/null 
+else
+    # Determine if there has been a gem dependency change and install new gems to the bundler layer; re-using existing and un-changed gems
+    echo &quot;---&gt; Installing gems&quot;
+    mkdir -p &quot;$layersdir/bundler&quot;
+    echo -e &quot;cache = true\nbuild = false\nlaunch = true\nmetadata = \&quot;$local_bundler_checksum\&quot;&quot; &gt; &quot;$layersdir/bundler.toml&quot;
+    bundle install --path &quot;$layersdir/bundler&quot; --binstubs &quot;$layersdir/bundler/bin&quot; &amp;&amp; bundle clean
+fi
+
+# Set default start command
+echo 'processes = [{ type = &quot;web&quot;, command = &quot;bundle exec ruby app.rb&quot;}]' &gt; &quot;$layersdir/launch.toml&quot;
+</code></pre>
+
+<p>Now when you run</p>
+
+<pre><code>pack build test-ruby-app --buildpack workspace/ruby-cnb  --path workspace/ruby-sample-app/
+</code></pre>
+
+<p>You will notice that the ruby layer is both exported and cached.</p>
+
+<pre><code>===&gt; EXPORTING
+...
+[exporter] adding layer 'com.examples.buildpacks.ruby:ruby' with diffID 'sha256:2fe78024e6cec6037c774bdad0b79d160188ea6b074405b9467e2a1eaeec173d'
+...
+===&gt; CACHING
+...
+[cacher] adding layer 'com.examples.buildpacks.ruby:ruby' with diffID 'sha256:2fe78024e6cec6037c774bdad0b79d160188ea6b074405b9467e2a1eaeec173d'
+...
+</code></pre>
+
+<p>If you rebuild your app with the cached version of ruby using</p>
+
+<pre><code>pack build test-ruby-app --buildpack workspace/ruby-cnb  --path workspace/ruby-sample-app/
+</code></pre>
+
+<p>You will now see the build is using the cached version of ruby.</p>
+
+<pre><code>===&gt; BUILDING
+[builder] ---&gt; Ruby Buildpack
+[builder] ---&gt; Reusing ruby 2.5.1
+[builder] ---&gt; Reusing gems
+</code></pre>
+
+<h3 id="select-ruby-version">Select Ruby Version</h3>
+
+<p>Next we will update the detect script to check for a specific version of ruby that the user has defined in their application via a <code>.ruby-version</code> file,</p>
+
+<p>Add the following version check to the end of your detect script.</p>
+
+<pre><code>plan=$2
+version=2.5.1
+
+if [[ -f .ruby-version ]]; then
+    version=$(cat .ruby-version | tr -d '[:space:]')
+fi
+
+echo &quot;ruby = { version = \&quot;$version\&quot; }&quot; &gt; &quot;$plan&quot;
+</code></pre>
+
+<p>This new version needs to be written to the build plan to be utilized by the lifecycle throughout the build process. To achieve this, you will need to get the build plan file (the second argument passed into the detect step) and then write to it with the desired ruby version.</p>
+
+<p>Your full script will now look like this</p>
+
+<pre><code>#!/usr/bin/env bash
+set -eo pipefail
+
+if [[ ! -f Gemfile ]]; then
+   exit 100
+fi
+
+plan=$2
+version=2.5.1
+
+if [[ -f .ruby-version ]]; then
+    version=$(cat .ruby-version | tr -d '[:space:]')
+fi
+
+echo &quot;ruby = { version = \&quot;$version\&quot; }&quot; &gt; &quot;$plan&quot;
+</code></pre>
+
+<p>Then you will need to update your build script to look for this version from the detect script</p>
+
+<p>Replace</p>
+
+<pre><code># Set the default ruby version
+ruby_version=2.5.1 
+</code></pre>
+
+<p>With this</p>
+
+<pre><code># Get the desired version of ruby
+ruby_version=$(yj -t | jq -r .ruby.version)
+</code></pre>
+
+<p>Now in your ruby app, create a file named <code>.ruby-version</code> and add the following line to it</p>
+
+<pre><code>2.5.0
+</code></pre>
+
+<p>Now when run</p>
+
+<pre><code>pack build test-ruby-app --buildpack workspace/ruby-cnb  --path workspace/ruby-sample-app/
+</code></pre>
+
+<p>You will see the new ruby version downloaded and installed</p>
+
+<pre><code>===&gt; BUILDING
+[builder] ---&gt; Ruby Buildpack
+[builder] ---&gt; Downloading and extracting ruby - 2.5.0
+[builder] ---&gt; Installing bundler
+[builder] Successfully installed bundler-2.0.1
+[builder] 1 gem installed
+[builder] ---&gt; Reusing gems
+</code></pre>
+
+<p>That&rsquo;s it!  You&rsquo;ve created your first Cloud Native Buildpack that uses detection, image layers and caching to create a runnable OCI image.</p>
+
+<hr />
+
+        
+  <hr>
+  <div class='footline'>
+    
+      <div class='footline-author'>
+        Last modified by <a href="mailto:djoyce@pivotal.io">Danny Joyce</a>
+      </div>
+    
+    
+    
+  </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+    <footer>
+  <div class="container footer">
+      <a href="https://www.cncf.io/" style="width: 50%;"><img src="/images/cncf-color.svg" class="footer-logo"></a>
+      <p>We are a <a href="https://www.cncf.io/">Cloud Native Sandbox</a> project.</p>
+  </div>
+  <div class="bg-blue">
+    <div class="container sub-footer">
+      <p>Reach out <a href="https://slack.buildpacks.io">on Slack</a> to learn more.</p>
+      <ul>
+        <li><a href="https://twitter.com/buildpacks_io">Twitter</a> <span>&bull;</span></li>
+        
+        <li><a href="https://github.com/buildpack">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

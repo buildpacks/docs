@@ -14,7 +14,7 @@
     
     
 
-    <title>Latest project updates · Cloud Native Buildpack Documentation</title>
+    <title>Building blocks of a Cloud Native Buildpack · Cloud Native Buildpack Documentation</title>
   </head>
   <body>
     <header>
@@ -43,7 +43,7 @@
         <nav class='sidebar'>
     <ul>
       <li data-nav-id="/docs/" class="dd-item
-          depth-0 parent active haschildren
+          depth-0 parent haschildren
       ">
         <a href="/docs/">Latest project updates</a>
           <ul>
@@ -85,7 +85,7 @@
           </ul>
       </li>
       <li data-nav-id="/docs/create-buildpack/" class="dd-item
-          depth-1 haschildren
+          depth-1 parent haschildren
       ">
         <a href="/docs/create-buildpack/">Creating a Cloud Native Buildpack</a>
           <ul>
@@ -94,7 +94,7 @@
             Setup your local environment
           </a>
       </li>
-        <li data-nav-id="/docs/create-buildpack/building-blocks-cnb/" class="dd-item">
+        <li data-nav-id="/docs/create-buildpack/building-blocks-cnb/" class="dd-item active">
           <a href="/docs/create-buildpack/building-blocks-cnb/">
             Building blocks of a Cloud Native Buildpack
           </a>
@@ -129,49 +129,103 @@
 
       </div>
       <div class='col-sm-9 docs-content'>
-        <h1>Latest project updates</h1>
+        <h1>Building blocks of a Cloud Native Buildpack</h1>
         
 
-<p><img src="/docs/buildpacks-logo.svg" alt="Buildpacks logo" /></p>
+<p>Now we will setup the buildpack scaffolding. You will need to make these files in your <code>ruby-cnb</code> directory</p>
 
-<p>Welcome to our developer website. Here you can find the latest updates for Cloud Native Buildpacks.</p>
+<pre><code>cd ruby-cnb
+</code></pre>
+
+<h3 id="buildpack-toml">buildpack.toml</h3>
+
+<p>Once you are in the directory. You will need to create a <code>buildpack.toml</code> file in that directory. This file must exist in the root directory of your buildpack so the <code>pack</code> cli knows it is a buildpack and it can apply the build lifecycle to it.</p>
+
+<p>Create the <code>buildpack.toml</code> file and copy the following into it</p>
+
+<pre><code># Buildpack ID and metadata
+[buildpack]
+id = &quot;com.examples.buildpacks.ruby&quot;
+version = &quot;0.0.1&quot;
+name = &quot;Ruby Buildpack&quot;
+
+# Stacks that the buildpack will work with
+[[stacks]]
+id = &quot;heroku-18&quot;
+
+[[stacks]]
+id = &quot;io.buildpacks.stacks.bionic&quot;
+
+[[stacks]]
+id = &quot;io.buildpacks.stacks.cflinuxfs3&quot;
+
+</code></pre>
+
+<p>You will notice two specific fields in the file: buildpack ID and stack ID. The buildpack ID is the way you will reference the buildpack when you create buildpack groups, builders, etc.  The stack ID is the root file system in which the buildpack will be built.  This example can be built on one of three different stacks, all based upon ubuntu bionic.</p>
+
+<h3 id="detect-and-build">Detect and Build</h3>
+
+<p>Next you will need to create the detect and build scripts.  These files must exist in a <code>bin</code> directory in your buildpack directory.</p>
+
+<p>Create your <code>bin</code> directory and the change to that directory.</p>
+
+<pre><code>mkdir bin
+cd bin
+</code></pre>
+
+<p>Now create your <code>detect</code> file in the <code>bin</code> directory and copy in the following content</p>
+
+<pre><code>#!/usr/bin/env bash
+set -eo pipefail
+
+exit 1
+</code></pre>
+
+<p>Now create your <code>build</code> file in the <code>bin</code> directory and copy in the following content</p>
+
+<pre><code>#!/usr/bin/env bash
+set -eo pipefail
+
+echo &quot;---&gt; Ruby Buildpack&quot;
+exit 1
+</code></pre>
+
+<p>You will need to make both of these files executable, so run the following command.</p>
+
+<pre><code>chmod +x detect build
+</code></pre>
+
+<p>These two files are now executable detect and build scripts.  Now you can run your use your buildpack.</p>
+
+<h3 id="using-your-buildpack-with-pack">Using your buildpack with pack</h3>
+
+<p>In order to test your buildpack, you will need to run the buildpack against your sample ruby app using the <code>pack</code> cli.</p>
+
+<p>Run the following pack command</p>
+
+<pre><code>pack build test-ruby-app --buildpack workspace/ruby-cnb  --path workspace/ruby-sample-app/
+</code></pre>
+
+<p>The <code>pack build</code> command takes in your buildpack directory as the <code>--buildpack</code> argument and the ruby sample app as the <code>--path</code> argument</p>
+
+<p>After successfully running the command you should see the following output. You should see that it failed to detect because the detect script was setup to fail</p>
+
+<pre><code>===&gt; DETECTING
+[detector] Trying group of 1...
+[detector] Error: failed to detect
+[detector] ======== Results ========
+[detector] Ruby Buildpack: error (1)
+ERROR: failed with status code: 6
+</code></pre>
 
 <hr />
-
-<p>Take a look at the links below to learn how to use <code>pack</code> and Cloud Native Buildpacks.</p>
-
-<h3 id="an-app-s-brief-journey-from-source-to-image-docs-app-journey"><a href="/docs/app-journey">An App&rsquo;s Brief Journey from Source to Image</a></h3>
-
-<p>An easy-to-follow introduction to <code>pack</code> and Cloud Native Buildpacks, this tutorial will get you up and running quickly.</p>
-
-<h3 id="using-pack-docs-using-pack"><a href="/docs/using-pack">Using <code>pack</code></a></h3>
-
-<p>Detailed explanations and examples of <code>pack</code>&rsquo;s most important commands.</p>
-
-<h3 id="creating-a-cloud-native-buildpack-docs-create-buildpack"><a href="/docs/create-buildpack">Creating a Cloud Native Buildpack</a></h3>
-
-<p>A tutorial that walks you through the creation of a simple ruby buildpack.</p>
-
-<hr />
-
-<h1 id="community-and-support">Community and Support</h1>
-
-<p>Cloud Native Buildpacks is an active sandbox project in the CNCF.  We welcome contribution from the community.  Here you will find helpful information for interacting with the core team and contributing to the project.</p>
-
-<h2 id="contacting-the-core-team">Contacting the core team</h2>
-
-<p>The best place to contact the Cloud Native Buildpack team is on our <a href="https://slack.buildpacks.io/">Slack channel</a>.</p>
-
-<h2 id="project-roadmap">Project Roadmap</h2>
-
-<p>This is a community driven project and our roadmap is publicly available on our <a href="https://github.com/orgs/buildpack/projects/1">Github page</a>. We encourage you to contribute with feature requests.</p>
 
         
   <hr>
   <div class='footline'>
     
       <div class='footline-author'>
-        Last modified by <a href="mailto:ameyer@pivotal.io">Andrew Meyer</a>
+        Last modified by <a href="mailto:ssisil@pivotal.io">Scott Sisil</a>
       </div>
     
     

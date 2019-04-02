@@ -6,7 +6,6 @@ creatordisplayname = "Scott Sisil"
 creatoremail = "ssisil@pivotal.io"
 lastmodifierdisplayname = "Danny Joyce"
 lastmodifieremail = "djoyce@pivotal.io"
-draft = true
 +++
 
 Next you will want to actually detect that the app your are building is a ruby app. In order to do this you will need to check for a Gemfile.
