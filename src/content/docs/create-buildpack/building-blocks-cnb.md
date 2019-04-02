@@ -21,19 +21,25 @@ Once you are in the directory. You will need to create a `buildpack.toml` file i
 Create the `buildpack.toml` file and copy the following into it 
 
 ```
-#Buildpack ID and metadata
+# Buildpack ID and metadata
 [buildpack]
 id = "com.examples.buildpacks.ruby"
 version = "0.0.1"
 name = "Ruby Buildpack"
 
-#Stack the buildpack will work with
+# Stacks that the buildpack will work with
 [[stacks]]
-id = ["io.buildpacks.stacks.bionic"]
+id = "heroku-18"
+
+[[stacks]]
+id = "io.buildpacks.stacks.bionic"
+
+[[stacks]]
+id = "io.buildpacks.stacks.cflinuxfs3"
 
 ```
 
-You will notice two specific fields in the file: buildpack ID and stack ID. The buildpack ID is the way you will reference the buildpack when you create buildpack groups, builders, etc.  The stack ID is the root file system in which the buildpack will be built.  This example is built on ubuntu bionic.
+You will notice two specific fields in the file: buildpack ID and stack ID. The buildpack ID is the way you will reference the buildpack when you create buildpack groups, builders, etc.  The stack ID is the root file system in which the buildpack will be built.  This example can be built on one of three different stacks, all based upon ubuntu bionic.
 
 
 ### Detect and Build 
@@ -89,12 +95,12 @@ The `pack build` command takes in your buildpack directory as the `--buildpack` 
 After successfully running the command you should see the following output. You should see that it failed to detect because the detect script was setup to fail 
 
 ```
-*** DETECTING WITH MANUALLY-PROVIDED GROUP:
-2018/12/11 18:54:03 Trying group of 1...
-2018/12/11 18:54:03 Error: failed to detect
-2018/12/11 18:54:03 ======== Results ========
-2018/12/11 18:54:03 Ruby Buildpack: error (1)
-Error: run detect container: failed with status code: 6
+===> DETECTING
+[detector] Trying group of 1...
+[detector] Error: failed to detect
+[detector] ======== Results ========
+[detector] Ruby Buildpack: error (1)
+ERROR: failed with status code: 6
 ```
 
 ---

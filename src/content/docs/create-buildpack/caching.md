@@ -3,8 +3,8 @@ title="Improving performance with caching"
 weight=406
 creatordisplayname = "Scott Sisil"
 creatoremail = "ssisil@pivotal.io"
-lastmodifierdisplayname = "Scott Sisil"
-lastmodifieremail = "ssisil@pivotal.io"
+lastmodifierdisplayname = "Danny Joyce"
+lastmodifieremail = "djoyce@pivotal.io"
 draft = true
 +++
 
@@ -25,7 +25,6 @@ With the following
 echo "---> Installing gems"
 mkdir "$layersdir/bundler"
 echo -e 'launch = true' > "$layersdir/bundler.toml"
-
 bundle install --path "$layersdir/bundler" --binstubs "$layersdir/bundler/bin"
 ```
 
@@ -34,6 +33,7 @@ Your full build script should now look like this
 ```
 #!/usr/bin/env bash
 set -eo pipefail
+
 # Set the layersdir variable to be the first argument from the build lifecycle
 layersdir=$1
 
@@ -41,28 +41,25 @@ echo "---> Ruby Buildpack"
 
 echo "---> Downloading and extracting ruby"
 mkdir -p $layersdir/ruby
-touch $layersdir/ruby.toml
+echo -e 'launch = true' > $layersdir/ruby.toml
 
 ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-2.5.1.tgz
 wget -q -O - "$ruby_url" | tar -xzf - -C "$layersdir/ruby"
 
-
-# Make ruby and bundler accessible in this script
+# Make ruby accessible in this script
 export PATH=$PATH:$layersdir/ruby/bin
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}$layersdir/ruby/lib
 
 echo "---> Installing bundler"
-gem install bundler
+gem install bundler --no-ri --no-rdoc
 
 echo "---> Installing gems"
 mkdir "$layersdir/bundler"
 echo -e 'launch = true' > "$layersdir/bundler.toml"
-
 bundle install --path "$layersdir/bundler" --binstubs "$layersdir/bundler/bin"
 
-
 # Set default start command
-echo 'processes = [{ type = "web", command = "rackup -p 8080 --host 0.0.0.0"}]' > "$layersdir/launch.toml"
+echo 'processes = [{ type = "web", command = "bundle exec ruby app.rb"}]' > "$layersdir/launch.toml"
 ```
 
 Now when we run 
@@ -71,27 +68,23 @@ Now when we run
 pack build test-ruby-app --buildpack workspace/ruby-cnb  --path workspace/ruby-sample-app/
 ```
 
-You will see the following change during EXPORT
+You will see the a similar line added during the EXPORTING phase
 
 ```
-*** EXPORTING:
-2018/12/11 20:01:24 removing uncached layer 'com.examples.buildpacks.ruby/bundler'
-2018/12/11 20:01:24 removing uncached layer 'com.examples.buildpacks.ruby/ruby'
-2018/12/11 20:01:24 adding app layer with diffID 'sha256:1c2f0054971ea2cbb62b79e028ce1a85975e7e25e556d7740206693f41fa431a'
-2018/12/11 20:01:24 adding config layer with diffID 'sha256:d9f220af3d63e3cc42833703d199d952d8de39e587666e7d64cb97b5330c9b90'
-2018/12/11 20:01:24 adding layer 'com.examples.buildpacks.ruby/bundler' with diffID 'sha256:3b9e650eb89e681aff825f3fa4d3cc408467c79c7b69371c42d73faae854eeb1'
-2018/12/11 20:01:24 adding layer 'com.examples.buildpacks.ruby/ruby' with diffID 'sha256:e8c6c857d25abd0f16f2541e4d787913fde0efec1a265116655baa51e79a9ea0'
-2018/12/11 20:01:24 setting metadata label 'io.buildpacks.lifecycle.metadata'
-2018/12/11 20:01:24 setting env var 'PACK_LAYERS_DIR=/workspace'
-2018/12/11 20:01:24 setting env var 'PACK_APP_DIR=/workspace/app'
-2018/12/11 20:01:24 writing image
-2018/12/11 20:01:27
-*** Image: test-ruby-app@d91760eb14ef46772d4b61754942014f9263ccf8a96d8bedaf33be8f59ca5586
+[exporter] adding layer 'com.examples.buildpacks.ruby:bundler' with diffID 'sha256:7a0b5596acbb2c846a4f4f9a0fd44c2d5265e10b4949db1fd7f44dedd91244c5'
 ```
 
 ### Caching Gem Dependencies
 
 Next we will start caching gem dependencies to help speed up the build if no new dependencies are needed.
+
+First, we'll need to install some helpful tools at the top of the build script
+
+```
+# Download some useful tools
+wget -qO /usr/local/bin/jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 && chmod +x /usr/local/bin/jq
+wget -qO /usr/local/bin/yj https://github.com/sclevine/yj/releases/download/v2.0/yj-linux && chmod +x /usr/local/bin/yj
+```
 
 Replace the bundle logic from the previous step
 
@@ -105,12 +98,10 @@ bundle install --path "$layersdir/bundler" --binstubs "$layersdir/bundler/bin"
 
 With this new logic that checks to see if any gems have been changed. This simply creates a checksum for the previous Gemfile and compares it to the checksum of the current Gemfile.  If they are the same, the gems are reused. If they are not, the new gems are installed.
 
-We now write additional metadata to our `bundler.toml` of the form `cache = true`, `build = false`, and `launch = true`. This directs the lifecycle to cache our gems and provide them when launching our application. With `cache = true` the lifecycle can keep existing gems around so that build times are fast even with minor Gemfile changes.
+We'll now write additional metadata to our `bundler.toml` of the form `cache = true`, `build = false`, and `launch = true`. This directs the lifecycle to cache our gems and provide them when launching our application. With `cache = true` the lifecycle can keep existing gems around so that build times are fast even with minor Gemfile changes.
 
 ```
-### START BUNDLER LAYER
-
-#Compares previous Gemfile.lock checksum to the current Gemfile.lock
+# Compares previous Gemfile.lock checksum to the current Gemfile.lock
 local_bundler_checksum=$(sha256sum Gemfile.lock | cut -d ' ' -f 1) 
 remote_bundler_checksum=$(cat "$layersdir/bundler.toml" | yj -t | jq -r .metadata 2>/dev/null || echo 'not found')
 
@@ -126,7 +117,6 @@ else
     echo -e "cache = true\nbuild = false\nlaunch = true\nmetadata = \"$local_bundler_checksum\"" > "$layersdir/bundler.toml"
     bundle install --path "$layersdir/bundler" --binstubs "$layersdir/bundler/bin" && bundle clean
 fi
-### END BUNDLER LAYER
 ```
 
 Your full build script will now look like this 
@@ -134,8 +124,13 @@ Your full build script will now look like this
 ```
 #!/usr/bin/env bash
 set -eo pipefail
+
 # Set the layersdir variable to be the first argument from the build lifecycle
 layersdir=$1
+
+# Download some useful tools
+wget -qO /usr/local/bin/jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 && chmod +x /usr/local/bin/jq
+wget -qO /usr/local/bin/yj https://github.com/sclevine/yj/releases/download/v2.0/yj-linux && chmod +x /usr/local/bin/yj
 
 echo "---> Ruby Buildpack" 
 
@@ -146,35 +141,32 @@ echo -e 'launch = true' > $layersdir/ruby.toml
 ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-2.5.1.tgz
 wget -q -O - "$ruby_url" | tar -xzf - -C "$layersdir/ruby"
 
-
-# Make ruby and bundler accessible in this script
+# Make ruby accessible in this script
 export PATH=$PATH:$layersdir/ruby/bin
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}$layersdir/ruby/lib
 
 echo "---> Installing bundler"
-gem install bundler
+gem install bundler --no-ri --no-rdoc
 
-### START BUNDLER LAYER
-# Compare the previous Gemfile.lock checksum to the current Gemfile.lock checksum
+# Compares previous Gemfile.lock checksum to the current Gemfile.lock
 local_bundler_checksum=$(sha256sum Gemfile.lock | cut -d ' ' -f 1) 
 remote_bundler_checksum=$(cat "$layersdir/bundler.toml" | yj -t | jq -r .metadata 2>/dev/null || echo 'not found')
+
 if [[ -f Gemfile.lock && $local_bundler_checksum == $remote_bundler_checksum ]] ; then
     # Determine if no gem depencencies have changed, so it can reuse existing gems without running bundle install
     echo "---> Reusing gems"
     bundle config --local path "$layersdir/bundler" >/dev/null 
     bundle config --local bin "$layersdir/bundler/bin" >/dev/null 
 else
-    # Determine if there has been a gem dependency change and install new gems to the bundler layer; re-using existing  and un-changed gems
+    # Determine if there has been a gem dependency change and install new gems to the bundler layer; re-using existing and un-changed gems
     echo "---> Installing gems"
     mkdir -p "$layersdir/bundler"
-    echo -e "cache = true \nbuild = false\nlaunch = true\nmetadata = \"$local_bundler_checksum\"" > "$layersdir/bundler.toml"
+    echo -e "cache = true\nbuild = false\nlaunch = true\nmetadata = \"$local_bundler_checksum\"" > "$layersdir/bundler.toml"
     bundle install --path "$layersdir/bundler" --binstubs "$layersdir/bundler/bin" && bundle clean
 fi
-### END BUNDLER LAYER
-
 
 # Set default start command
-echo 'processes = [{ type = "web", command = "rackup -p 8080 -o 0.0.0.0"}]' > "$layersdir/launch.toml"
+echo 'processes = [{ type = "web", command = "bundle exec ruby app.rb"}]' > "$layersdir/launch.toml"
 ```
 
 Now when you build your app it will now generate the Gemfile checksum for the first time and store it in the image
@@ -189,20 +181,16 @@ And if you build the app again
 pack build test-ruby-app --buildpack workspace/ruby-cnb  --path workspace/ruby-sample-app/
 ```
 
-You will see the new caching logic work
+You will see the new caching logic at work during the BUILDING phase
 
 ```
-*** BUILDING:
----> Ruby Buildpack
----> Downloading and extracting ruby
----> Installing bundler
-Successfully installed bundler-1.17.2
-Parsing documentation for bundler-1.17.2
-Installing ri documentation for bundler-1.17.2
-Done installing documentation for bundler after 2 seconds
-1 gem installed
----> Reusing gems
-
+===> BUILDING
+[builder] ---> Ruby Buildpack
+[builder] ---> Downloading and extracting ruby
+[builder] ---> Installing bundler
+[builder] Successfully installed bundler-2.0.1
+[builder] 1 gem installed
+[builder] ---> Reusing gems
 ```
 
 ### Cache Ruby
@@ -222,34 +210,7 @@ This logic checks to see if the cached version captured in `ruby.toml` matches t
 We also write the additional metadata to our `ruby.toml` of the form `cache = true`, `build = false`, and `launch = true` to leverage the cache from the lifecycle.
 
 ```
-if [[ $ruby_version == $([[ -f $layersdir/ruby.toml ]] && cat "$layersdir/ruby.toml" | yj -t | jq -r .metadata) ]] ; then
-    echo "---> Reusing ruby $ruby_version"
-else
-    echo "---> Downloading and extracting ruby"
-    rm -rf $layersdir/ruby
-    mkdir -p $layersdir/ruby
-    echo "cache = true\nbuild = false\nlaunch = true\nmetadata = \"$ruby_version\"" > "$layersdir/ruby.toml"
-    ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-$ruby_version.tgz
-    wget -q -O - "$ruby_url" | tar -xzf - -C "$layersdir/ruby"
-    echo "---> Installing bundler"
-    gem install bundler
-fi
-```
-
-Now your full build script will look like this
-
-```
-#!/usr/bin/env bash
-set -eo pipefail
-# Set the layersdir variable to be the first argument from the build lifecycle
-layersdir=$1
-echo "---> Ruby Buildpack"
-ruby_version=2.5.1
-
-# Make ruby and bundler accessible in this script
-export PATH=$PATH:$layersdir/ruby/bin
-export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}$layersdir/ruby/lib
-
+# Check to see if the desired ruby version is available for re-use
 if [[ $ruby_version == $([[ -f $layersdir/ruby.toml ]] && cat "$layersdir/ruby.toml" | yj -t | jq -r .metadata) ]] ; then
     echo "---> Reusing ruby $ruby_version"
 else
@@ -259,31 +220,68 @@ else
     echo -e "cache = true \nbuild = false\nlaunch = true\nmetadata = \"$ruby_version\"" > "$layersdir/ruby.toml"
     ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-$ruby_version.tgz
     wget -q -O - "$ruby_url" | tar -xzf - -C "$layersdir/ruby"
+    
     echo "---> Installing bundler"
-    gem install bundler
+    gem install bundler --no-ri --no-rdoc
+fi
+```
+
+Now your full build script will look like this
+
+```
+#!/usr/bin/env bash
+set -eo pipefail
+
+# Set the layersdir variable to be the first argument from the build lifecycle
+layersdir=$1
+
+# Download some useful tools
+wget -qO /usr/local/bin/jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 && chmod +x /usr/local/bin/jq
+wget -qO /usr/local/bin/yj https://github.com/sclevine/yj/releases/download/v2.0/yj-linux && chmod +x /usr/local/bin/yj
+
+# Set the default ruby version
+ruby_version=2.5.1
+
+echo "---> Ruby Buildpack"
+
+# Make ruby accessible in this script
+export PATH=$PATH:$layersdir/ruby/bin
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}$layersdir/ruby/lib
+
+# Check to see if the desired ruby version is available for re-use
+if [[ $ruby_version == $([[ -f $layersdir/ruby.toml ]] && cat "$layersdir/ruby.toml" | yj -t | jq -r .metadata) ]] ; then
+    echo "---> Reusing ruby $ruby_version"
+else
+    echo "---> Downloading and extracting ruby - $ruby_version"
+    rm -rf $layersdir/ruby
+    mkdir -p $layersdir/ruby
+    echo -e "cache = true \nbuild = false\nlaunch = true\nmetadata = \"$ruby_version\"" > "$layersdir/ruby.toml"
+    ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-$ruby_version.tgz
+    wget -q -O - "$ruby_url" | tar -xzf - -C "$layersdir/ruby"
+    
+    echo "---> Installing bundler"
+    gem install bundler --no-ri --no-rdoc
 fi
 
-### START BUNDLER LAYER
-#Compares previous Gemfile.lock checksum to the current Gemfile.lock
+# Compares previous Gemfile.lock checksum to the current Gemfile.lock
 local_bundler_checksum=$(sha256sum Gemfile.lock | cut -d ' ' -f 1) 
-remote_bundler_checksum=$(cat "$layersdir/bundler.toml" | yj -t | jq -r .metadata 2>/dev/null || echo 'not found') 
+remote_bundler_checksum=$(cat "$layersdir/bundler.toml" | yj -t | jq -r .metadata 2>/dev/null || echo 'not found')
+
 if [[ -f Gemfile.lock && $local_bundler_checksum == $remote_bundler_checksum ]] ; then
     # Determine if no gem depencencies have changed, so it can reuse existing gems without running bundle install
     echo "---> Reusing gems"
     bundle config --local path "$layersdir/bundler" >/dev/null 
-    bundle config --local bin "$layersdir/bundler/bin" >/dev/null
+    bundle config --local bin "$layersdir/bundler/bin" >/dev/null 
 else
-    # Determine if there has been a gem dependency change and install new gems to the bundler layer; re-using existing  and un-changed gems
+    # Determine if there has been a gem dependency change and install new gems to the bundler layer; re-using existing and un-changed gems
     echo "---> Installing gems"
     mkdir -p "$layersdir/bundler"
-    echo -e "cache = true \nbuild = false\nlaunch = true\nmetadata = \"$local_bundler_checksum\"" > "$layersdir/bundler.toml"
+    echo -e "cache = true\nbuild = false\nlaunch = true\nmetadata = \"$local_bundler_checksum\"" > "$layersdir/bundler.toml"
     bundle install --path "$layersdir/bundler" --binstubs "$layersdir/bundler/bin" && bundle clean
 fi
-### END BUNDLER LAYER
-
 
 # Set default start command
-echo 'processes = [{ type = "web", command = "rackup -p 8080"}]' > "$layersdir/launch.toml"
+echo 'processes = [{ type = "web", command = "bundle exec ruby app.rb"}]' > "$layersdir/launch.toml"
 ```
 
 Now when you run 
@@ -292,22 +290,17 @@ Now when you run
 pack build test-ruby-app --buildpack workspace/ruby-cnb  --path workspace/ruby-sample-app/
 ```
 
-You will notice that the ruby layer is being added to the cache and then added to the launch directory.
+You will notice that the ruby layer is both exported and cached.
 
 ```
-*** EXPORTING:
-2018/12/11 20:13:04 caching launch layer 'com.examples.buildpacks.ruby/bundler' with sha 'sha256:4dd0befcac1580e9f3a6b432d40bcabae40dc82dda8d91e734473b9359a82620'
-2018/12/11 20:13:05 caching launch layer 'com.examples.buildpacks.ruby/ruby' with sha 'sha256:e240e89a4dc266170a1fad8464e63b44c3efe3ca559e12e980ffbcbe67534341'
-2018/12/11 20:13:05 adding app layer with diffID 'sha256:2fdb94281b4d0d549684e96d91b86ad88d227bf987a5081cb57c5a2b41d14f5f'
-2018/12/11 20:13:05 adding config layer with diffID 'sha256:f27f7ca0ec85fcf13087cccbb0989a701f59dfea2a6f60f751cf82c4942f7ca1'
-2018/12/11 20:13:05 reusing layer 'com.examples.buildpacks.ruby/bundler' with diffID 'sha256:4dd0befcac1580e9f3a6b432d40bcabae40dc82dda8d91e734473b9359a82620'
-2018/12/11 20:13:09 adding layer 'com.examples.buildpacks.ruby/ruby' with diffID 'sha256:e240e89a4dc266170a1fad8464e63b44c3efe3ca559e12e980ffbcbe67534341'
-2018/12/11 20:13:09 setting metadata label 'io.buildpacks.lifecycle.metadata'
-2018/12/11 20:13:09 setting env var 'PACK_LAYERS_DIR=/workspace'
-2018/12/11 20:13:09 setting env var 'PACK_APP_DIR=/workspace/app'
-2018/12/11 20:13:09 writing image
-2018/12/11 20:13:13
-*** Image: test-ruby-app@4f9a768d791908071ed40f2bca1b875ab2450d7917ab18eebcc6777505c92972
+===> EXPORTING
+...
+[exporter] adding layer 'com.examples.buildpacks.ruby:ruby' with diffID 'sha256:2fe78024e6cec6037c774bdad0b79d160188ea6b074405b9467e2a1eaeec173d'
+...
+===> CACHING
+...
+[cacher] adding layer 'com.examples.buildpacks.ruby:ruby' with diffID 'sha256:2fe78024e6cec6037c774bdad0b79d160188ea6b074405b9467e2a1eaeec173d'
+...
 ```
 
 If you rebuild your app with the cached version of ruby using 
@@ -319,25 +312,27 @@ pack build test-ruby-app --buildpack workspace/ruby-cnb  --path workspace/ruby-s
 You will now see the build is using the cached version of ruby. 
 
 ```
-*** BUILDING:
----> Ruby Buildpack
----> Reusing ruby 2.5.1
----> Reusing gems
+===> BUILDING
+[builder] ---> Ruby Buildpack
+[builder] ---> Reusing ruby 2.5.1
+[builder] ---> Reusing gems
 ```
 
 ### Select Ruby Version
 
 Next we will update the detect script to check for a specific version of ruby that the user has defined in their application via a `.ruby-version` file,
 
-Append the following version check to the end of your detect script.
+Add the following version check to the end of your detect script.
 
 ```
-plandir=$2
+plan=$2
 version=2.5.1
+
 if [[ -f .ruby-version ]]; then
     version=$(cat .ruby-version | tr -d '[:space:]')
 fi
-echo "ruby = { version = \"$version\" }" > "$plandir/ruby.toml"
+
+echo "ruby = { version = \"$version\" }" > "$plan"
 ```
 
 This new version needs to be written to the build plan to be utilized by the lifecycle throughout the build process. To achieve this, you will need to get the build plan file (the second argument passed into the detect step) and then write to it with the desired ruby version. 
@@ -352,12 +347,14 @@ if [[ ! -f Gemfile ]]; then
    exit 100
 fi
 
-planfile=$2
+plan=$2
 version=2.5.1
+
 if [[ -f .ruby-version ]]; then
     version=$(cat .ruby-version | tr -d '[:space:]')
 fi
-echo "ruby = { version = \"$version\" }" > "$planfile"
+
+echo "ruby = { version = \"$version\" }" > "$plan"
 ```
 
 Then you will need to update your build script to look for this version from the detect script
@@ -365,12 +362,14 @@ Then you will need to update your build script to look for this version from the
 Replace 
 
 ```
+# Set the default ruby version
 ruby_version=2.5.1 
 ```
 
 With this
 
 ```
+# Get the desired version of ruby
 ruby_version=$(yj -t | jq -r .ruby.version)
 ```
 
@@ -391,18 +390,15 @@ pack build test-ruby-app --buildpack workspace/ruby-cnb  --path workspace/ruby-s
 You will see the new ruby version downloaded and installed
 
 ```
-*** BUILDING:
----> Ruby Buildpack
----> Downloading and extracting ruby - 2.5.0
----> Installing bundler
-Successfully installed bundler-1.17.2
-Parsing documentation for bundler-1.17.2
-Installing ri documentation for bundler-1.17.2
-Done installing documentation for bundler after 3 seconds
-1 gem installed
----> Reusing gems
+===> BUILDING
+[builder] ---> Ruby Buildpack
+[builder] ---> Downloading and extracting ruby - 2.5.0
+[builder] ---> Installing bundler
+[builder] Successfully installed bundler-2.0.1
+[builder] 1 gem installed
+[builder] ---> Reusing gems
 ```
 
----
+That's it!  You've created your first Cloud Native Buildpack that uses detection, image layers and caching to create a runnable OCI image.
 
-That's it!  You've created your first Cloud Native Buildpack that uses detection, image layers and caching to create a runnable OCI image. In a seperate tutorial we will cover distributing this buildpack for developer use via a Cloud Native Buildpack `builder`.
+---

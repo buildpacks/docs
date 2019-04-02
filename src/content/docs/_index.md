@@ -21,7 +21,11 @@ An easy-to-follow introduction to `pack` and Cloud Native Buildpacks, this tutor
 
 ### [Using `pack`](/docs/using-pack)
 
-Detailed explanations and examples of `pack`'s most important commands
+Detailed explanations and examples of `pack`'s most important commands.
+
+### [Creating a Cloud Native Buildpack](/docs/create-buildpack)
+
+A tutorial that walks you through the creation of a simple ruby buildpack.
 
 ---
 
