@@ -1,17 +1,11 @@
 +++
-title="Latest project updates"
+title="Getting Started with Buildpacks"
 weight=1
 creatordisplayname = "Andrew Meyer"
 creatoremail = "ameyer@pivotal.io"
 lastmodifierdisplayname = "Andrew Meyer"
 lastmodifieremail = "ameyer@pivotal.io"
 +++
-
-![Buildpacks logo](/docs/buildpacks-logo.svg)
-
-Welcome to our developer website. Here you can find the latest updates for Cloud Native Buildpacks.  
-
----
 
 Take a look at the links below to learn how to use `pack` and Cloud Native Buildpacks.
 
