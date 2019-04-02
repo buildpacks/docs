@@ -81,8 +81,8 @@ First, we'll need to install some helpful tools at the top of the build script
 
 ```
 # Download some useful tools
-wget -qO /usr/local/bin/jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 && chmod +x /usr/local/bin/jq
-wget -qO /usr/local/bin/yj https://github.com/sclevine/yj/releases/download/v2.0/yj-linux && chmod +x /usr/local/bin/yj
+wget -qO /tmp/jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 && chmod +x /tmp/jq
+wget -qO /tmp/yj https://github.com/sclevine/yj/releases/download/v2.0/yj-linux && chmod +x /tmp/yj
 ```
 
 Replace the bundle logic from the previous step
@@ -102,7 +102,7 @@ We'll now write additional metadata to our `bundler.toml` of the form `cache = t
 ```
 # Compares previous Gemfile.lock checksum to the current Gemfile.lock
 local_bundler_checksum=$(sha256sum Gemfile.lock | cut -d ' ' -f 1) 
-remote_bundler_checksum=$(cat "$layersdir/bundler.toml" | yj -t | jq -r .metadata 2>/dev/null || echo 'not found')
+remote_bundler_checksum=$(cat "$layersdir/bundler.toml" | /tmp/yj -t | /tmp/jq -r .metadata 2>/dev/null || echo 'not found')
 
 if [[ -f Gemfile.lock && $local_bundler_checksum == $remote_bundler_checksum ]] ; then
     # Determine if no gem depencencies have changed, so it can reuse existing gems without running bundle install
@@ -128,8 +128,8 @@ set -eo pipefail
 layersdir=$1
 
 # Download some useful tools
-wget -qO /usr/local/bin/jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 && chmod +x /usr/local/bin/jq
-wget -qO /usr/local/bin/yj https://github.com/sclevine/yj/releases/download/v2.0/yj-linux && chmod +x /usr/local/bin/yj
+wget -qO /tmp/jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 && chmod +x /tmp/jq
+wget -qO /tmp/yj https://github.com/sclevine/yj/releases/download/v2.0/yj-linux && chmod +x /tmp/yj
 
 echo "---> Ruby Buildpack" 
 
@@ -149,7 +149,7 @@ gem install bundler --no-ri --no-rdoc
 
 # Compares previous Gemfile.lock checksum to the current Gemfile.lock
 local_bundler_checksum=$(sha256sum Gemfile.lock | cut -d ' ' -f 1) 
-remote_bundler_checksum=$(cat "$layersdir/bundler.toml" | yj -t | jq -r .metadata 2>/dev/null || echo 'not found')
+remote_bundler_checksum=$(cat "$layersdir/bundler.toml" | /tmp/yj -t | /tmp/jq -r .metadata 2>/dev/null || echo 'not found')
 
 if [[ -f Gemfile.lock && $local_bundler_checksum == $remote_bundler_checksum ]] ; then
     # Determine if no gem depencencies have changed, so it can reuse existing gems without running bundle install
@@ -210,7 +210,7 @@ We also write the additional metadata to our `ruby.toml` of the form `cache = tr
 
 ```
 # Check to see if the desired ruby version is available for re-use
-if [[ $ruby_version == $([[ -f $layersdir/ruby.toml ]] && cat "$layersdir/ruby.toml" | yj -t | jq -r .metadata) ]] ; then
+if [[ $ruby_version == $([[ -f $layersdir/ruby.toml ]] && cat "$layersdir/ruby.toml" | /tmp/yj -t | /tmp/jq -r .metadata) ]] ; then
     echo "---> Reusing ruby $ruby_version"
 else
     echo "---> Downloading and extracting ruby - $ruby_version"
@@ -235,8 +235,8 @@ set -eo pipefail
 layersdir=$1
 
 # Download some useful tools
-wget -qO /usr/local/bin/jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 && chmod +x /usr/local/bin/jq
-wget -qO /usr/local/bin/yj https://github.com/sclevine/yj/releases/download/v2.0/yj-linux && chmod +x /usr/local/bin/yj
+wget -qO /tmp/jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 && chmod +x /tmp/jq
+wget -qO /tmp/yj https://github.com/sclevine/yj/releases/download/v2.0/yj-linux && chmod +x /tmp/yj
 
 # Set the default ruby version
 ruby_version=2.5.1
@@ -248,7 +248,7 @@ export PATH=$layersdir/ruby/bin:$PATH
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}$layersdir/ruby/lib
 
 # Check to see if the desired ruby version is available for re-use
-if [[ $ruby_version == $([[ -f $layersdir/ruby.toml ]] && cat "$layersdir/ruby.toml" | yj -t | jq -r .metadata) ]] ; then
+if [[ $ruby_version == $([[ -f $layersdir/ruby.toml ]] && cat "$layersdir/ruby.toml" | /tmp/yj -t | /tmp/jq -r .metadata) ]] ; then
     echo "---> Reusing ruby $ruby_version"
 else
     echo "---> Downloading and extracting ruby - $ruby_version"
@@ -264,7 +264,7 @@ fi
 
 # Compares previous Gemfile.lock checksum to the current Gemfile.lock
 local_bundler_checksum=$(sha256sum Gemfile.lock | cut -d ' ' -f 1) 
-remote_bundler_checksum=$(cat "$layersdir/bundler.toml" | yj -t | jq -r .metadata 2>/dev/null || echo 'not found')
+remote_bundler_checksum=$(cat "$layersdir/bundler.toml" | /tmp/yj -t | /tmp/jq -r .metadata 2>/dev/null || echo 'not found')
 
 if [[ -f Gemfile.lock && $local_bundler_checksum == $remote_bundler_checksum ]] ; then
     # Determine if no gem depencencies have changed, so it can reuse existing gems without running bundle install
@@ -369,7 +369,7 @@ With this
 
 ```
 # Get the desired version of ruby
-ruby_version=$(yj -t | jq -r .ruby.version)
+ruby_version=$(/tmp/yj -t | /tmp/jq -r .ruby.version)
 ```
 
 
