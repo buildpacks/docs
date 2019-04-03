@@ -53,7 +53,10 @@ header li {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-left: 40px;
+  padding-left: 10px;
+  &:first-child {
+    padding-left: 0;
+  }
 }
 
 header li a {
@@ -82,8 +85,11 @@ header li a {
     margin-top: 0;
   }
 
-  header li:last-of-type {
-    margin-right: 0;
+  header li {
+    padding-left: 40px;
+    &:last-of-type {
+      margin-right: 0;
+    }
   }
 }
 
