@@ -14,7 +14,7 @@
     
     
 
-    <title>Installing `pack` · Cloud Native Buildpack Documentation</title>
+    <title>An App&#39;s Brief Journey from Source to Image · Cloud Native Buildpack Documentation</title>
   </head>
   <body>
     <header>
@@ -45,21 +45,26 @@
       <li data-nav-id="/docs/" class="dd-item
           depth-0 parent haschildren
       ">
-        <a href="/docs/">Latest project updates</a>
+        <a href="/docs/">Getting Started with Buildpacks</a>
           <ul>
-      <li data-nav-id="/docs/using-pack/" class="dd-item
-          depth-1 parent haschildren
+      <li data-nav-id="/docs/install-pack/" class="dd-item
+          depth-1
       ">
-        <a href="/docs/using-pack/">Getting started with <code>pack</code></a>
+        <a href="/docs/install-pack/">Installing <code>pack</code></a>
+      </li>
+      <li data-nav-id="/docs/app-journey/" class="dd-item
+          depth-1 parent active
+      ">
+        <a href="/docs/app-journey/">An App&rsquo;s Brief Journey from Source to Image</a>
+      </li>
+      <li data-nav-id="/docs/using-pack/" class="dd-item
+          depth-1 haschildren
+      ">
+        <a href="/docs/using-pack/">Using <code>pack</code></a>
           <ul>
         <li data-nav-id="/docs/using-pack/building-app/" class="dd-item">
           <a href="/docs/using-pack/building-app/">
-            Building app images with <code>build</code>
-          </a>
-      </li>
-        <li data-nav-id="/docs/using-pack/install-pack/" class="dd-item active">
-          <a href="/docs/using-pack/install-pack/">
-            Installing <code>pack</code>
+            Building app images using <code>build</code>
           </a>
       </li>
         <li data-nav-id="/docs/using-pack/update-app-rebase/" class="dd-item">
@@ -69,7 +74,7 @@
       </li>
         <li data-nav-id="/docs/using-pack/working-with-builders/" class="dd-item">
           <a href="/docs/using-pack/working-with-builders/">
-            Working with builders <code>create-builder</code>
+            Working with builders using <code>create-builder</code>
           </a>
       </li>
         <li data-nav-id="/docs/using-pack/managing-stacks/" class="dd-item">
@@ -124,49 +129,82 @@
 
       </div>
       <div class='col-sm-9 docs-content'>
-        <h1>Installing <code>pack</code></h1>
+        <h1>An App&rsquo;s Brief Journey from Source to Image</h1>
         
 
-<p>You can install the most recent version of <code>pack</code> (version <strong>0.0.9</strong>) as an executable binary on the following operating systems:</p>
+<p>In this tutorial, we&rsquo;ll explain how to use <code>pack</code> and Cloud Native Buildpacks to create a runnable app image from source code.</p>
 
-<ul>
-<li><a href="#macos">macOS</a></li>
-<li><a href="#linux">Linux</a></li>
-<li><a href="#windows">Windows</a></li>
-</ul>
+<h2 id="what-is-a-buildpack">What is a buildpack?</h2>
 
-<h2 id="macos">macOS</h2>
+<p>Let&rsquo;s start with the basics. A buildpack is something you&rsquo;ve likely leveraged without knowing it, as they&rsquo;re already
+being used in many cloud platforms. A buildpack&rsquo;s job is to gather dependencies that your app needs to build and run,
+and a buildpack often performs this job quickly and quietly.</p>
 
-<p>To install <code>pack</code> on macOS, fetch and unpack the tarball:</p>
+<p>That said, while buildpacks are often a behind-the-scenes detail, they are extremely important.</p>
 
-<pre><code class="language-shell">wget https://github.com/buildpack/pack/releases/download/v0.0.9/pack-0.0.9-macos.tar.gz
-tar xvf pack-0.0.9-macos.tar.gz
-rm pack-0.0.9-macos.tar.gz
-./pack --help
+<h2 id="auto-detection">Auto-detection</h2>
+
+<p>What enables buildpacks to often go unnoticed is auto-detection. Auto-detection happens when a platform sequentially
+tests groups of buildpacks against your app&rsquo;s source code. The first group that deems itself fit for your source code
+will become the selected set of buildpacks for your app. Detection criteria is specific to each buildpack &ndash; for
+instance, an NPM buildpack might look for a <code>package.json</code>, and a Go buildpack might look for Go source files.</p>
+
+<p>Let&rsquo;s see auto-detection in action by running <code>pack build</code> against a simple Java application.</p>
+
+<h2 id="pack-for-the-journey"><code>pack</code> for the journey</h2>
+
+<p>Start by installing Docker and <code>pack</code>.</p>
+
+<p><a href="https://store.docker.com/search?type=edition&offering=community" class="download-button button icon-button bg-blue">Install Docker Community Edition</a></p>
+
+<p><a href="/docs/install-pack" class="download-button button icon-button bg-pink">Install pack</a></p>
+
+<h2 id="next-stop-the-end">Next stop, the end</h2>
+
+<p>Next, clone or download <a href="https://github.com/buildpack/sample-java-app">this simple Java app source code</a> to a location
+of your choosing.</p>
+
+<p>Now run the following commands in a shell:</p>
+
+<pre><code class="language-bash">$ cd path/to/sample-java-app
+$ pack build myapp
 </code></pre>
 
-<p>From there, you can copy the executable to a directory like <code>/usr/local/bin</code> or add the current directory to your <code>PATH</code>.</p>
+<blockquote>
+<p>If this is your first time running <code>pack</code>, you might see a message about selecting a default
+<a href="/docs/using-pack/working-with-builders">builder</a> (essentially, an image containing buildpacks). Simply choose
+either builder presented by running <code>pack set-default-builder &lt;builder&gt;</code>, then run <code>pack build myapp</code> again.</p>
+</blockquote>
 
-<h2 id="linux">Linux</h2>
+<p>That&rsquo;s it. You&rsquo;ve now got a runnable app image called <code>myapp</code> available on your local Docker daemon.
+We did say this was a &ldquo;brief&rdquo; journey after all! Take note that your app was built without any need for you to install
+a JDK, run Maven, or otherwise configure a build environment. <code>pack</code> and the buildpacks took care of all that for you.</p>
 
-<pre><code class="language-shell">wget https://github.com/buildpack/pack/releases/download/v0.0.9/pack-0.0.9-linux.tar.gz
-tar xvf pack-0.0.9-linux.tar.gz
-rm pack-0.0.9-macos.tar.gz
-./pack --help
+<h2 id="beyond-the-journey">Beyond the journey</h2>
+
+<p>To test out your new app image locally, you can run it with Docker:</p>
+
+<pre><code class="language-bash">$ docker run --rm -p 8080:8080 myapp
 </code></pre>
 
-<p>From there, you can copy the executable to a directory like <code>/usr/local/bin</code> or add the current directory to your <code>PATH</code>.</p>
+<p>Now just hit <code>localhost:8080</code> in your favorite browser and take a minute to admire your handiwork.</p>
 
-<h2 id="windows">Windows</h2>
+<h3 id="take-your-image-to-the-skies">Take your image to the skies</h3>
 
-<p>You can install the Windows executable for <code>pack</code> by downloading the Windows <a href="https://github.com/buildpack/pack/releases/download/v0.0.9/pack-0.0.9-windows.zip">ZIP file</a>.</p>
+<p><code>pack</code> uses Cloud Native Buildpacks to help you easily create OCI images that you can run just about anywhere. Try
+deploying your new image to your favorite cloud!</p>
+
+<blockquote>
+<p>In case you need it, <code>pack build</code> has a handy flag called <code>--publish</code> that will publish your app image to a Docker
+registry after building it.</p>
+</blockquote>
 
         
   <hr>
   <div class='footline'>
     
       <div class='footline-author'>
-        Last modified by <a href="mailto:lucperkins@gmail.com">Luc Perkins</a>
+        Last modified by <a href="mailto:ameyer@pivotal.io">Andrew Meyer</a>
       </div>
     
     

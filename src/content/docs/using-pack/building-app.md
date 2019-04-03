@@ -1,10 +1,10 @@
 +++
-title="Building app images with `build`"
-weight=1
-creatordisplayname = "Scott Sisil"
-creatoremail = "ssisil@pivotal.io"
-lastmodifierdisplayname = "Scott Sisil"
-lastmodifieremail = "ssisil@pivotal.io"
+title="Building app images using `build`"
+weight=301
+creatordisplayname = "Andrew Meyer"
+creatoremail = "ameyer@pivotal.io"
+lastmodifierdisplayname = "Andrew Meyer"
+lastmodifieremail = "ameyer@pivotal.io"
 +++
 
 `pack build` enables app developers to create runnable app images from source code using buildpacks.
@@ -18,24 +18,21 @@ $ pack build <image-name>
 In the following example, an app image is created from Node.js application source code.
 
 ```bash
-$ cd /path/to/node/app
+$ cd path/to/node/app
 $ pack build my-app:my-tag
-
-# ... Detect, analyze and build output
-
-Successfully built 2452b4b1fce1
-Successfully tagged my-app:my-tag
 ```
 
-In this case, the default [builder](/docs/using-pack/working-with-builders) is used, and an appropriate buildpack
-is automatically selected from the builder based on the app source code. To understand more about what builders are and
-how to create or use them, see the
-[Working with builders using `create-builder`](/docs/using-pack/working-with-builders) section.
+In this case, the default [builder](/docs/using-pack/working-with-builders) (essentially, an image containing
+buildpacks) is used, and an appropriate buildpack is automatically selected from the builder based on the app source code.
+
+> You can change the default builder using the `set-default-builder` command.
+>
+> Alternately, you can ignore the default and use a specific builder with the `build` command's `--builder` flag.
 
 To publish the produced image to an image registry, include the `--publish` flag:
 
 ```bash
-$ pack build private-registry.example.com/my-app:my-tag --publish
+$ pack build registry.example.com/my-app:my-tag --publish
 ```
 
 ### Example: Building using a specified buildpack
@@ -44,26 +41,19 @@ In the following example, an app image is created from Node.js application sourc
 user.
 
 ```bash
-$ cd /path/to/node/app
+$ cd path/to/node/app
 $ pack build my-app:my-tag --buildpack path/to/some/buildpack
-
-# ...
-*** DETECTING WITH MANUALLY-PROVIDED GROUP:
-2018/10/29 18:31:05 Group: Name Of Some Buildpack: pass
-# ...
-
-Successfully built 2452b4b1fce1
-Successfully tagged my-app:my-tag
 ```
 
-The message `DETECTING WITH MANUALLY-PROVIDED GROUP` indicates that the buildpack was chosen by the user, rather than
-by the automated detection process.
-
 The `--buildpack` parameter can be
-- a path to a directory
-- a path to a `.tgz` file
-- a URL to a `.tgz` file, or
+
+- a path to a directory, or
 - the ID of a buildpack located in a builder
+
+> Multiple buildpacks can be specified, in order, by:
+>
+> - supplying `--buildpack` multiple times, or
+> - supplying a comma-separated list to `--buildpack` (without spaces)
 
 ### Building explained
 

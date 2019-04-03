@@ -1,11 +1,11 @@
 
 +++
 title="Detecting your application"
-weight=5
+weight=403
 creatordisplayname = "Scott Sisil"
 creatoremail = "ssisil@pivotal.io"
-lastmodifierdisplayname = "Scott Sisil"
-lastmodifieremail = "ssisil@pivotal.io"
+lastmodifierdisplayname = "Danny Joyce"
+lastmodifieremail = "djoyce@pivotal.io"
 +++
 
 Next you will want to actually detect that the app your are building is a ruby app. In order to do this you will need to check for a Gemfile.
@@ -37,20 +37,23 @@ pack build test-ruby-app --buildpack workspace/ruby-cnb  --path workspace/ruby-s
 You will see the following output
 
 ```
-*** DETECTING WITH MANUALLY-PROVIDED GROUP:
-2018/12/11 19:28:45 Trying group of 1...
-2018/12/11 19:28:45 ======== Results ========
-2018/12/11 19:28:45 Ruby Buildpack: pass
-*** ANALYZING: Reading information from previous image for possible re-use
-2018/12/11 19:28:46 WARNING: skipping analyze, image 'test-ruby-app' not found or requires authentication to access
-*** BUILDING:
----> Ruby Buildpack
-2018/12/11 19:28:49 Error: failed to : exit status 1
-Error: running builder in container: failed with status code: 7
+===> DETECTING
+[detector] Trying group of 1...
+[detector] ======== Results ========
+[detector] Ruby Buildpack: pass
+===> RESTORING
+[restorer] cache image 'pack-cache-5f615b7ee276' not found, nothing to restore
+===> ANALYZING
+[analyzer] WARNING: image 'test-ruby-app' not found or requires authentication to access
+[analyzer] WARNING: image 'test-ruby-app' has incompatible 'io.buildpacks.lifecycle.metadata' label
+===> BUILDING
+[builder] ---> Ruby Buildpack
+[builder] Error: failed to : exit status 1
+ERROR: failed with status code: 7
 ```
 
 Notice that `detect` now passes because there is a valid Gemfile in the ruby app at `~/ruby-sample-app`, but now `build` fails because it is coded to do so.
 
-You will also notice `ANALYZE` now appears in the build output.  This step is part of the buildpack lifecycle that looks to see if any previous image builds have layers that the buildpack can re-use. We will get into this topic in more detail later.
+You will also notice `ANALYZING` now appears in the build output.  This steps is part of the buildpack lifecycle that looks to see if any previous image builds have layers that the buildpack can re-use. We will get into this topic in more detail later.
 
 ---

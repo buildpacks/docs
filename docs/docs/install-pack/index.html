@@ -14,7 +14,7 @@
     
     
 
-    <title>Make your application runnable · Cloud Native Buildpack Documentation</title>
+    <title>Installing `pack` · Cloud Native Buildpack Documentation</title>
   </head>
   <body>
     <header>
@@ -48,7 +48,7 @@
         <a href="/docs/">Getting Started with Buildpacks</a>
           <ul>
       <li data-nav-id="/docs/install-pack/" class="dd-item
-          depth-1
+          depth-1 parent active
       ">
         <a href="/docs/install-pack/">Installing <code>pack</code></a>
       </li>
@@ -85,7 +85,7 @@
           </ul>
       </li>
       <li data-nav-id="/docs/create-buildpack/" class="dd-item
-          depth-1 parent haschildren
+          depth-1 haschildren
       ">
         <a href="/docs/create-buildpack/">Creating a Cloud Native Buildpack</a>
           <ul>
@@ -109,7 +109,7 @@
             Building your application
           </a>
       </li>
-        <li data-nav-id="/docs/create-buildpack/make-app-runnable/" class="dd-item active">
+        <li data-nav-id="/docs/create-buildpack/make-app-runnable/" class="dd-item">
           <a href="/docs/create-buildpack/make-app-runnable/">
             Make your application runnable
           </a>
@@ -129,69 +129,59 @@
 
       </div>
       <div class='col-sm-9 docs-content'>
-        <h1>Make your application runnable</h1>
-        <p>Next we want to set a default start command for the application in the image.  You will want to add the following code to then end of your build script.</p>
+        <h1>Installing <code>pack</code></h1>
+        
 
-<pre><code># Set default start command
-echo 'processes = [{ type = &quot;web&quot;, command = &quot;&quot;bundle exec ruby app.rb&quot;&quot;}]' &gt; &quot;$layersdir/launch.toml&quot;
+<p>You can install the most recent version of <code>pack</code> (version <strong>0.0.9</strong>) as an executable binary on the following operating systems:</p>
+
+<ul>
+<li><a href="#macos">macOS</a></li>
+<li><a href="#linux">Linux</a></li>
+<li><a href="#windows">Windows</a></li>
+</ul>
+
+<p><code>pack</code> requires Docker to run</p>
+
+<p><a href="https://store.docker.com/search?type=edition&offering=community" class="download-button button icon-button bg-blue">Install Docker Community Edition</a></p>
+
+<h2 id="macos">macOS</h2>
+
+<p>To install <code>pack</code> on macOS, the easiest way is to use Homebrew:</p>
+
+<pre><code class="language-bash">$ brew tap buildpack/tap
+$ brew install pack
 </code></pre>
 
-<p>This sets your default start command.</p>
+<p>To install manually instead, fetch and unpack the tarball:</p>
 
-<p>Your full build script should now look like this</p>
-
-<pre><code>#!/usr/bin/env bash
-set -eo pipefail
-
-# Set the layersdir variable to be the first argument from the build lifecycle
-layersdir=$1
-
-echo &quot;---&gt; Ruby Buildpack&quot; 
-
-echo &quot;---&gt; Downloading and extracting ruby&quot;
-mkdir -p $layersdir/ruby
-echo -e 'launch = true' &gt; $layersdir/ruby.toml
-
-ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-2.5.1.tgz
-wget -q -O - &quot;$ruby_url&quot; | tar -xzf - -C &quot;$layersdir/ruby&quot;
-
-# Make ruby accessible in this script
-export PATH=$layersdir/ruby/bin:$PATH
-export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}$layersdir/ruby/lib
-
-echo &quot;---&gt; Installing bundler&quot;
-gem install bundler --no-ri --no-rdoc
-
-echo &quot;---&gt; Installing gems&quot;
-bundle install
-
-# Set default start command
-echo 'processes = [{ type = &quot;web&quot;, command = &quot;bundle exec ruby app.rb&quot;}]' &gt; &quot;$layersdir/launch.toml&quot;
+<pre><code class="language-bash">$ wget https://github.com/buildpack/pack/releases/download/v0.0.9/pack-v0.0.9-macos.tgz
+$ tar xvf pack-v0.0.9-macos.tgz
+$ rm pack-v0.0.9-macos.tgz
+$ ./pack --help
 </code></pre>
 
-<p>Now you will rebuild your app using the updated buildpack with the launch command</p>
+<p>From there, you can copy the executable to a directory like <code>/usr/local/bin</code> or add the current directory to your <code>PATH</code>.</p>
 
-<pre><code>pack build test-ruby-app --buildpack workspace/ruby-cnb  --path workspace/ruby-sample-app/
+<h2 id="linux">Linux</h2>
+
+<pre><code class="language-bash">$ wget https://github.com/buildpack/pack/releases/download/v0.0.9/pack-v0.0.9-linux.tgz
+$ tar xvf pack-v0.0.9-linux.tgz
+$ rm pack-v0.0.9-linux.tgz
+$ ./pack --help
 </code></pre>
 
-<p>And when you run <code>docker run -p 8080:8080 test-ruby-app</code> you should see you the server logs</p>
+<p>From there, you can copy the executable to a directory like <code>/usr/local/bin</code> or add the current directory to your <code>PATH</code>.</p>
 
-<pre><code>[2019-04-02 18:04:48] INFO  WEBrick 1.4.2
-[2019-04-02 18:04:48] INFO  ruby 2.5.1 (2018-03-29) [x86_64-linux]
-== Sinatra (v2.0.5) has taken the stage on 8080 for development with backup from WEBrick
-[2019-04-02 18:04:48] INFO  WEBrick::HTTPServer#start: pid=1 port=8080
-</code></pre>
+<h2 id="windows">Windows</h2>
 
-<p>You should also be able to access the app via your web browser at <code>localhost:8080</code>.</p>
-
-<hr />
+<p>You can install the Windows executable for <code>pack</code> by downloading the Windows <a href="https://github.com/buildpack/pack/releases/download/v0.0.9/pack-v0.0.9-windows.zip">ZIP file</a>.</p>
 
         
   <hr>
   <div class='footline'>
     
       <div class='footline-author'>
-        Last modified by <a href="mailto:djoyce@pivotal.io">Danny Joyce</a>
+        Last modified by <a href="mailto:ameyer@gmail.com">Andrew Meyer</a>
       </div>
     
     

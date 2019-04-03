@@ -1,17 +1,26 @@
 +++
-title="Getting started with `pack`"
-weight=2
-creatordisplayname = "Scott Sisil"
-creatoremail = "ssisil@pivotal.io"
-lastmodifierdisplayname = "Scott Sisil"
-lastmodifieremail = "ssisil@pivotal.io"
+title="Using `pack`"
+weight=3
+creatordisplayname = "Andrew Meyer"
+creatoremail = "ameyer@pivotal.io"
+lastmodifierdisplayname = "Andrew Meyer"
+lastmodifieremail = "ameyer@pivotal.io"
 +++
 
-## `pack` makes it easy for
+**`pack`** makes it easy for
 
-- **application developers** to use [buildpacks](https://buildpacks.io/) to convert code into runnable images
-- **buildpack authors** to develop and package buildpacks for distribution
+- **Application developers** to use [Cloud Native Buildpacks](https://buildpacks.io/) to convert code into runnable images
+- **Buildpack authors** to develop and package buildpacks for distribution
 
+---
+
+## ⚔️ It's dangerous to go alone! Read this. 🛠️
+Ready to embark on your adventure with `pack` but not sure where to start? Try out our tutorial,
+[**An App's Brief Journey from Source to Image**](/docs/app-journey).
+
+Otherwise, read the rest of this document for detailed explanations and examples of `pack`'s most important commands.
+
+---
 ## Contents
 
 - [Building app images using `build`](/docs/using-pack/building-app)
@@ -25,16 +34,11 @@ lastmodifieremail = "ssisil@pivotal.io"
   - [Example: Creating a builder from buildpacks](/docs/using-pack/working-with-builders/#example-creating-a-builder-from-buildpacks)
   - [Builders explained](/docs/using-pack/working-with-builders/#builders-explained)
 - [Managing stacks](/docs/using-pack/managing-stacks)
-  - [Example: Adding a stack](/docs/using-pack/managing-stacks/#example-adding-a-stack)
-  - [Example: Updating a stack](/docs/using-pack/managing-stacks/#example-updating-a-stack)
-  - [Example: Deleting a stack](/docs/using-pack/managing-stacks/#example-deleting-a-stack)
-  - [Example: Setting the default stack](/docs/using-pack/managing-stacks/#example-setting-the-default-stack)
-  - [Listing stacks](/docs/using-pack/managing-stacks/#listing-stacks)
-- [Resources](#resources)
+  - [Run image mirrors](/docs/using-pack/managing-stacks/#run-image-mirrors)
 
-----
+---
 
 
-## Resources
+## Other resources
 
 - [Buildpack & Platform Specifications](https://github.com/buildpack/spec)

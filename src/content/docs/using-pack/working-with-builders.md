@@ -1,14 +1,13 @@
 +++
 
-title="Working with builders `create-builder`"
-weight=3
-creatordisplayname = "Scott Sisil"
-creatoremail = "ssisil@pivotal.io"
-lastmodifierdisplayname = "Scott Sisil"
-lastmodifieremail = "ssisil@pivotal.io"
+title="Working with builders using `create-builder`"
+weight=303
+creatordisplayname = "Andrew Meyer"
+creatoremail = "ameyer@pivotal.io"
+lastmodifierdisplayname = "Andrew Meyer"
+lastmodifieremail = "ameyer@pivotal.io"
 
 +++
-## Working with builders using `create-builder`
 
 `pack create-builder` enables buildpack authors and platform operators to bundle a collection of buildpacks into a
 single image for distribution and use with a specified stack.
@@ -20,7 +19,7 @@ $ pack create-builder <image-name> --builder-config <path-to-builder-toml>
 ### Example: Creating a builder from buildpacks
 
 In this example, a builder image is created from buildpacks `org.example.buildpack-1` and `org.example.buildpack-2`.
-A `builder.toml` file provides necessary configuration to the command.
+A TOML file (typically named `builder.toml`) file provides necessary configuration to the command.
 
 ```toml
 [[buildpacks]]
@@ -39,7 +38,14 @@ A `builder.toml` file provides necessary configuration to the command.
   [[groups.buildpacks]]
     id = "org.example.buildpack-2"
     version = "0.0.1"
+
+[stack]
+  id = "com.example.stack"
+  build-image = "example/build"
+  run-image = "example/run"
 ```
+
+> For more information on stacks, see the [Managing stacks](/docs/using-pack/managing-stacks) section.
 
 Running `create-builder` while supplying this configuration file will produce the builder image.
 
@@ -53,11 +59,6 @@ $ pack create-builder my-builder:my-tag --builder-config path/to/builder.toml
 Like [`build`](/docs/using-pack/building-app), `create-builder` has a `--publish` flag that can be used to publish
 the generated builder image to a registry.
 
-> The above example uses the default stack, whose build image is `packs/build`.
-> The `--stack` parameter can be used to specify a different stack (currently, the only built-in stack is
-> `io.buildpacks.stacks.bionic`). For more information about managing stacks and their associations with build and run
-> images, see the [Managing stacks](/docs/using-pack/managing-stacks) section.
-
 The builder can then be used in `build` by running:
 
 ```bash
@@ -68,10 +69,12 @@ $ pack build my-app:my-tag --builder my-builder:my-tag --buildpack org.example.b
 
 ![create-builder diagram](/docs/using-pack/create-builder.svg)
 
-A builder is an image containing a collection of buildpacks that will be executed, in the order that they appear in
-`builder.toml`, against app source code. A buildpack's primary role is to inspect the source code, determine any
-dependencies that will be required to compile and/or run the app, and provide those dependencies as layers in the
-resulting image. This image's base will be the build image associated with a given stack.
+A builder is an image containing a collection of buildpack groups that will be executed against app source code, in the order
+that they appear in `builder.toml`. This image's base will be the build image associated with a given stack.
 
-It's important to note that the buildpacks in a builder are not actually executed until
-[`build`](/docs/using-pack/building-app/#building-explained) is run.
+> A buildpack's primary role is to inspect the source code, determine any
+> dependencies that will be required to compile and/or run the app, and provide runtime dependencies as layers in the
+> final app image. 
+> 
+> It's important to note that the buildpacks in a builder are not actually executed until
+> [`build`](/docs/using-pack/building-app/#building-explained) is run.

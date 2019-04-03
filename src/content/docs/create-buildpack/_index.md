@@ -1,6 +1,6 @@
 +++
 title="Creating a Cloud Native Buildpack"
-weight=3
+weight=4
 creatordisplayname = "Scott Sisil"
 creatoremail = "ssisil@pivotal.io"
 lastmodifierdisplayname = "Scott Sisil"

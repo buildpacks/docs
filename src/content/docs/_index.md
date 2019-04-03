@@ -1,28 +1,25 @@
 +++
-title="Latest project updates"
+title="Getting Started with Buildpacks"
 weight=1
-creatordisplayname = "Scott Sisil"
-creatoremail = "ssisil@pivotal.io"
-lastmodifierdisplayname = "Scott Sisil"
-lastmodifieremail = "ssisil@pivotal.io"
-lastmodified = "2018/12/03"
+creatordisplayname = "Andrew Meyer"
+creatoremail = "ameyer@pivotal.io"
+lastmodifierdisplayname = "Andrew Meyer"
+lastmodifieremail = "ameyer@pivotal.io"
 +++
 
-![Buildpacks logo](/docs/buildpacks-logo.svg)
+Follow the tutorials below to learn how to use `pack` and Cloud Native Buildpacks.
 
-Welcome to our new developer website.  You can find the latest updates for Cloud Native Buildpacks here.  
+### [An App's Brief Journey from Source to Image](/docs/app-journey)
 
----
+An easy-to-follow introduction to `pack` and Cloud Native Buildpacks, this tutorial will get you up and running quickly.
 
-The team is continuing work to add features to the project and increase the ease of use. As a part of this effort we have created our initial developer documentation by creating two new tutorials for our users:
+### [Using `pack`](/docs/using-pack)
 
-### 1) [Getting started with `pack`](/docs/using-pack)
+Detailed explanations and examples of `pack`'s most important commands.
 
-This tutorial provides an over view of the features and tools available for developers in the `pack` CLI.  This CLI is intended for developers who are building applications with Cloud Native Buildpacks and/or developing Cloud Native Buildpacks for use by other developers.
+### [Creating a Cloud Native Buildpack](/docs/create-buildpack)
 
-### 2) [Creating a Cloud Native Buildpack](/docs/create-buildpack)
-
-This is a comprehensive tutorial that details the steps involved with creating a Cloud Native Buildpack from scratch using the `pack` CLI. The tutorial focuses on creating a Ruby buildpack, but concepts can be used for other languages.
+A tutorial that walks you through the creation of a simple ruby buildpack.
 
 ---
 

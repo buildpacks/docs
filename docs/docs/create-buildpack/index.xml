@@ -16,10 +16,10 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/docs/create-buildpack/setup-local-environment/</guid>
-      <description>First we will want to clone a sample ruby app that you can use when developing the ruby cloud native buildpack
-mkdir workspace cd workspace git clone &amp;lt;path to sample ruby app&amp;gt;  Next we want to create the directory where you will create your buildpack
-cd workspace mkdir ruby-cnb  Finally, make sure your local docker daemon is running by running the following command
-docker version  The following output should appear</description>
+      <description>First we will want to create a sample ruby app that you can use when developing the ruby cloud native buildpack
+mkdir -p ~/workspace/ruby-sample-app cd ~/workspace/ruby-sample-app  Create a file called app.rb with the following content:
+require &#39;sinatra&#39; set :bind, &#39;0.0.0.0&#39; set :port, 8080 get &#39;/&#39; do &#39;Hello World!&#39; end  Create a Gemfile with the following content:
+source &amp;quot;https://rubygems.org&amp;quot; git_source(:github) {|repo_name| &amp;quot;https://github.com/#{repo_name}&amp;quot; } gem &amp;quot;sinatra&amp;quot;  Next we want to create the directory where you will create your buildpack</description>
     </item>
     
     <item>
@@ -51,9 +51,9 @@ if [[ ! -f Gemfile ]]; then exit 100 fi  And now your detect script will look li
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/docs/create-buildpack/build-app/</guid>
-      <description>Next we will make the build step work. This will a few updates to the build script.
+      <description>Next we will make the build step work. This will require a few updates to the build script.
 We need to read the layers directory passed in by build lifecycle - learn more about the lifecycle here
-layersdir=$1  We need to create a ruby layer in the image. We add launch = true to direct the lifecycle to provide ruby when we launch our app.
+layersdir=$1  We need to create a ruby layer in the image. We&amp;rsquo;ll add launch = true to direct the lifecycle to provide ruby when we launch our app.
 mkdir -p $layersdir/ruby echo -e &#39;launch = true&#39; &amp;gt; $layersdir/ruby.</description>
     </item>
     
@@ -64,7 +64,7 @@ mkdir -p $layersdir/ruby echo -e &#39;launch = true&#39; &amp;gt; $layersdir/rub
       
       <guid>/docs/create-buildpack/make-app-runnable/</guid>
       <description>Next we want to set a default start command for the application in the image. You will want to add the following code to then end of your build script.
-# Set default start command echo &#39;processes = [{ type = &amp;quot;web&amp;quot;, command = &amp;quot;rackup -p 8080 --host 0.0.0.0&amp;quot;}]&#39; &amp;gt; &amp;quot;$layersdir/launch.toml&amp;quot;  This sets your default start command.
+# Set default start command echo &#39;processes = [{ type = &amp;quot;web&amp;quot;, command = &amp;quot;&amp;quot;bundle exec ruby app.rb&amp;quot;&amp;quot;}]&#39; &amp;gt; &amp;quot;$layersdir/launch.toml&amp;quot;  This sets your default start command.
 Your full build script should now look like this
 #!/usr/bin/env bash set -eo pipefail # Set the layersdir variable to be the first argument from the build lifecycle layersdir=$1 echo &amp;quot;---&amp;gt; Ruby Buildpack&amp;quot; echo &amp;quot;---&amp;gt; Downloading and extracting ruby&amp;quot; mkdir -p $layersdir/ruby echo -e &#39;launch = true&#39; &amp;gt; $layersdir/ruby.</description>
     </item>

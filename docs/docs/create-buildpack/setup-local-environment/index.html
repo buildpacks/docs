@@ -45,21 +45,26 @@
       <li data-nav-id="/docs/" class="dd-item
           depth-0 parent haschildren
       ">
-        <a href="/docs/">Latest project updates</a>
+        <a href="/docs/">Getting Started with Buildpacks</a>
           <ul>
+      <li data-nav-id="/docs/install-pack/" class="dd-item
+          depth-1
+      ">
+        <a href="/docs/install-pack/">Installing <code>pack</code></a>
+      </li>
+      <li data-nav-id="/docs/app-journey/" class="dd-item
+          depth-1
+      ">
+        <a href="/docs/app-journey/">An App&rsquo;s Brief Journey from Source to Image</a>
+      </li>
       <li data-nav-id="/docs/using-pack/" class="dd-item
           depth-1 haschildren
       ">
-        <a href="/docs/using-pack/">Getting started with <code>pack</code></a>
+        <a href="/docs/using-pack/">Using <code>pack</code></a>
           <ul>
         <li data-nav-id="/docs/using-pack/building-app/" class="dd-item">
           <a href="/docs/using-pack/building-app/">
-            Building app images with <code>build</code>
-          </a>
-      </li>
-        <li data-nav-id="/docs/using-pack/install-pack/" class="dd-item">
-          <a href="/docs/using-pack/install-pack/">
-            Installing <code>pack</code>
+            Building app images using <code>build</code>
           </a>
       </li>
         <li data-nav-id="/docs/using-pack/update-app-rebase/" class="dd-item">
@@ -69,7 +74,7 @@
       </li>
         <li data-nav-id="/docs/using-pack/working-with-builders/" class="dd-item">
           <a href="/docs/using-pack/working-with-builders/">
-            Working with builders <code>create-builder</code>
+            Working with builders using <code>create-builder</code>
           </a>
       </li>
         <li data-nav-id="/docs/using-pack/managing-stacks/" class="dd-item">
@@ -125,17 +130,37 @@
       </div>
       <div class='col-sm-9 docs-content'>
         <h1>Setup your local environment</h1>
-        <p>First we will want to clone a sample ruby app that you can use when developing the ruby cloud native buildpack</p>
+        <p>First we will want to create a sample ruby app that you can use when developing the ruby cloud native buildpack</p>
 
-<pre><code>mkdir workspace
-cd workspace
-git clone &lt;path to sample ruby app&gt;
+<pre><code>mkdir -p ~/workspace/ruby-sample-app
+cd ~/workspace/ruby-sample-app
+</code></pre>
+
+<p>Create a file called <code>app.rb</code> with the following content:</p>
+
+<pre><code>require 'sinatra'
+
+set :bind, '0.0.0.0'
+set :port, 8080
+
+get '/' do
+  'Hello World!'
+end
+</code></pre>
+
+<p>Create a <code>Gemfile</code> with the following content:</p>
+
+<pre><code>source &quot;https://rubygems.org&quot;
+
+git_source(:github) {|repo_name| &quot;https://github.com/#{repo_name}&quot; }
+
+gem &quot;sinatra&quot;
 </code></pre>
 
 <p>Next we want to create the directory where you will create your buildpack</p>
 
-<pre><code>cd workspace
-mkdir ruby-cnb
+<pre><code>mkdir -p ~/workspace/ruby-cnb
+cd ~/workspace/ruby-cnb
 </code></pre>
 
 <p>Finally, make sure your local docker daemon is running by running the following command</p>
@@ -143,24 +168,24 @@ mkdir ruby-cnb
 <pre><code>docker version
 </code></pre>
 
-<p>The following output should appear</p>
+<p>Similar output should appear</p>
 
-<pre><code>Client:
- Version:           18.06.1-ce
- API version:       1.38
- Go version:        go1.10.3
- Git commit:        e68fc7a
- Built:             Tue Aug 21 17:21:31 2018
+<pre><code>Client: Docker Engine - Community
+ Version:           18.09.2
+ API version:       1.39
+ Go version:        go1.10.8
+ Git commit:        6247962
+ Built:             Sun Feb 10 04:12:39 2019
  OS/Arch:           darwin/amd64
  Experimental:      false
 
-Server:
+Server: Docker Engine - Community
  Engine:
-  Version:          18.06.1-ce
-  API version:      1.38 (minimum version 1.12)
-  Go version:       go1.10.3
-  Git commit:       e68fc7a
-  Built:            Tue Aug 21 17:29:02 2018
+  Version:          18.09.2
+  API version:      1.39 (minimum version 1.12)
+  Go version:       go1.10.6
+  Git commit:       6247962
+  Built:            Sun Feb 10 04:13:06 2019
   OS/Arch:          linux/amd64
   Experimental:     true
 </code></pre>
@@ -172,7 +197,7 @@ Server:
   <div class='footline'>
     
       <div class='footline-author'>
-        Last modified by <a href="mailto:ssisil@pivotal.io">Scott Sisil</a>
+        Last modified by <a href="mailto:djoyce@pivotal.io">Danny Joyce</a>
       </div>
     
     

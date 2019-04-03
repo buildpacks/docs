@@ -45,21 +45,26 @@
       <li data-nav-id="/docs/" class="dd-item
           depth-0 parent haschildren
       ">
-        <a href="/docs/">Latest project updates</a>
+        <a href="/docs/">Getting Started with Buildpacks</a>
           <ul>
+      <li data-nav-id="/docs/install-pack/" class="dd-item
+          depth-1
+      ">
+        <a href="/docs/install-pack/">Installing <code>pack</code></a>
+      </li>
+      <li data-nav-id="/docs/app-journey/" class="dd-item
+          depth-1
+      ">
+        <a href="/docs/app-journey/">An App&rsquo;s Brief Journey from Source to Image</a>
+      </li>
       <li data-nav-id="/docs/using-pack/" class="dd-item
           depth-1 haschildren
       ">
-        <a href="/docs/using-pack/">Getting started with <code>pack</code></a>
+        <a href="/docs/using-pack/">Using <code>pack</code></a>
           <ul>
         <li data-nav-id="/docs/using-pack/building-app/" class="dd-item">
           <a href="/docs/using-pack/building-app/">
-            Building app images with <code>build</code>
-          </a>
-      </li>
-        <li data-nav-id="/docs/using-pack/install-pack/" class="dd-item">
-          <a href="/docs/using-pack/install-pack/">
-            Installing <code>pack</code>
+            Building app images using <code>build</code>
           </a>
       </li>
         <li data-nav-id="/docs/using-pack/update-app-rebase/" class="dd-item">
@@ -69,7 +74,7 @@
       </li>
         <li data-nav-id="/docs/using-pack/working-with-builders/" class="dd-item">
           <a href="/docs/using-pack/working-with-builders/">
-            Working with builders <code>create-builder</code>
+            Working with builders using <code>create-builder</code>
           </a>
       </li>
         <li data-nav-id="/docs/using-pack/managing-stacks/" class="dd-item">
@@ -138,19 +143,25 @@
 
 <p>Create the <code>buildpack.toml</code> file and copy the following into it</p>
 
-<pre><code>#Buildpack ID and metadata
+<pre><code># Buildpack ID and metadata
 [buildpack]
 id = &quot;com.examples.buildpacks.ruby&quot;
 version = &quot;0.0.1&quot;
 name = &quot;Ruby Buildpack&quot;
 
-#Stack the buildpack will work with
+# Stacks that the buildpack will work with
 [[stacks]]
-id = [&quot;io.buildpacks.stacks.bionic&quot;]
+id = &quot;heroku-18&quot;
+
+[[stacks]]
+id = &quot;io.buildpacks.stacks.bionic&quot;
+
+[[stacks]]
+id = &quot;io.buildpacks.stacks.cflinuxfs3&quot;
 
 </code></pre>
 
-<p>You will notice two specific fields in the file: buildpack ID and stack ID. The buildpack ID is the way you will reference the buildpack when you create buildpack groups, builders, etc.  The stack ID is the root file system in which the buildpack will be built.  This example is built on ubuntu bionic.</p>
+<p>You will notice two specific fields in the file: buildpack ID and stack ID. The buildpack ID is the way you will reference the buildpack when you create buildpack groups, builders, etc.  The stack ID is the root file system in which the buildpack will be built.  This example can be built on one of three different stacks, all based upon ubuntu bionic.</p>
 
 <h3 id="detect-and-build">Detect and Build</h3>
 
@@ -199,12 +210,12 @@ exit 1
 
 <p>After successfully running the command you should see the following output. You should see that it failed to detect because the detect script was setup to fail</p>
 
-<pre><code>*** DETECTING WITH MANUALLY-PROVIDED GROUP:
-2018/12/11 18:54:03 Trying group of 1...
-2018/12/11 18:54:03 Error: failed to detect
-2018/12/11 18:54:03 ======== Results ========
-2018/12/11 18:54:03 Ruby Buildpack: error (1)
-Error: run detect container: failed with status code: 6
+<pre><code>===&gt; DETECTING
+[detector] Trying group of 1...
+[detector] Error: failed to detect
+[detector] ======== Results ========
+[detector] Ruby Buildpack: error (1)
+ERROR: failed with status code: 6
 </code></pre>
 
 <hr />
