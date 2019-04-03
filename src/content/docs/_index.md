@@ -29,7 +29,7 @@ Cloud Native Buildpacks is an active sandbox project in the CNCF.  We welcome co
 
 ## Contacting the core team
 
-The best place to contact the Cloud Native Buildpack team is on our [Slack channel](https://slack.buildpacks.io/).  
+The best place to contact the Cloud Native Buildpack team is on our [Slack channel](https://slack.buildpacks.io/) or [mailing list](https://lists.cncf.io/g/cncf-buildpacks).
 
 ## Project Roadmap
 
