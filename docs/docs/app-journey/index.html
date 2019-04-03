@@ -136,15 +136,15 @@
 
 <h2 id="what-is-a-buildpack">What is a buildpack?</h2>
 
-<p>Let&rsquo;s start with the basics. A buildpack is something you&rsquo;ve likely leveraged without knowing it, as they&rsquo;re already
-being used in many cloud platforms. A buildpack&rsquo;s job is to gather dependencies that your app needs to build and run,
-and a buildpack often performs this job quickly and quietly.</p>
+<p>Let&rsquo;s start with the basics. A buildpack is something you&rsquo;ve likely leveraged without knowing, as they&rsquo;re already
+being used in many cloud platforms. A buildpack&rsquo;s job is to gather dependencies your app needs to build and run,
+and it often does this job quickly and quietly.</p>
 
 <p>That said, while buildpacks are often a behind-the-scenes detail, they are extremely important.</p>
 
 <h2 id="auto-detection">Auto-detection</h2>
 
-<p>What enables buildpacks to often go unnoticed is auto-detection. Auto-detection happens when a platform sequentially
+<p>What enables buildpacks to go unnoticed is auto-detection, which happens when a platform sequentially
 tests groups of buildpacks against your app&rsquo;s source code. The first group that deems itself fit for your source code
 will become the selected set of buildpacks for your app. Detection criteria is specific to each buildpack &ndash; for
 instance, an NPM buildpack might look for a <code>package.json</code>, and a Go buildpack might look for Go source files.</p>
@@ -177,8 +177,8 @@ either builder presented by running <code>pack set-default-builder &lt;builder&g
 </blockquote>
 
 <p>That&rsquo;s it. You&rsquo;ve now got a runnable app image called <code>myapp</code> available on your local Docker daemon.
-We did say this was a &ldquo;brief&rdquo; journey after all! Take note that your app was built without any need for you to install
-a JDK, run Maven, or otherwise configure a build environment. <code>pack</code> and the buildpacks took care of all that for you.</p>
+We did say this was a <em>brief</em> journey after all! Take note that your app was built without needing to install
+a JDK, run Maven, or otherwise configure a build environment. <code>pack</code> and the buildpacks took care of that for you.</p>
 
 <h2 id="beyond-the-journey">Beyond the journey</h2>
 
@@ -187,7 +187,7 @@ a JDK, run Maven, or otherwise configure a build environment. <code>pack</code> 
 <pre><code class="language-bash">$ docker run --rm -p 8080:8080 myapp
 </code></pre>
 
-<p>Now just hit <code>localhost:8080</code> in your favorite browser and take a minute to admire your handiwork.</p>
+<p>Now hit <code>localhost:8080</code> in your favorite browser and take a minute to admire your handiwork.</p>
 
 <h3 id="take-your-image-to-the-skies">Take your image to the skies</h3>
 
