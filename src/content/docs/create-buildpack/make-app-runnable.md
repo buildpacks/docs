@@ -11,7 +11,7 @@ Next we want to set a default start command for the application in the image.  Y
 
 ```
 # Set default start command
-echo 'processes = [{ type = "web", command = ""bundle exec ruby app.rb""}]' > "$layersdir/launch.toml"
+echo 'processes = [{ type = "web", command = "bundle exec ruby app.rb"}]' > "$layersdir/launch.toml"
 ```
 
 This sets your default start command.
