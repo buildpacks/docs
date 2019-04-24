@@ -134,7 +134,7 @@ You will see the following output
 Successfully built image test-ruby-app
 ```
 
-You should now see a newly created image named `test-ruby-app`. However, you're app
+You should now see a newly created image named `test-ruby-app`. However, your app
 image is not yet runnable. We'll make the app image runnable in the next section.
 
 ---
