@@ -3,8 +3,8 @@ title="Building app images using `build`"
 weight=301
 creatordisplayname = "Andrew Meyer"
 creatoremail = "ameyer@pivotal.io"
-lastmodifierdisplayname = "Andrew Meyer"
-lastmodifieremail = "ameyer@pivotal.io"
+lastmodifierdisplayname = "Max Prettyjohns"
+lastmodifieremail = "heshoots9999@gmail.com"
 +++
 
 `pack build` enables app developers to create runnable app images from source code using buildpacks.
@@ -54,6 +54,42 @@ The `--buildpack` parameter can be
 >
 > - supplying `--buildpack` multiple times, or
 > - supplying a comma-separated list to `--buildpack` (without spaces)
+
+### Example: Building using environment variables
+
+In the following example, an app image is created which uses an environment variable during the build.
+```bash
+$ cd path/to/java/app
+$ pack build my-app:my-tag --env="MAVEN_OPTS=-dskipTests"--buildpack=path/to/java-buildpack
+```
+
+Environment variables can be passed with `--env` or `--env-file`.
+
+`--env` uses the format `NAME=value`.
+
+`--env-file` provides the path to a file containing environment variables in the following format:
+```sh
+NAME=value
+OTHER_NAME=value2
+```
+> Multiple environment variables can be specified, by supplying `--env` or `--env-file` multiple times.
+
+When creating a buildpack which consumes environment variables, they are not immediately available to the builder. The environment variables are stored as files in the platform directory (the second argument to the build script) under the `env` directory. The file name is the name of the environment variable, its content is the value of the variable.
+
+The java buildpack access all user environment variables with the following script.
+
+```bash
+env_dir="$2/env"
+...
+# Load user-provided build-time environment variables
+if compgen -G "$env_dir/*" > /dev/null; then
+  for var in "$env_dir"/*; do
+    declare "$(basename "$var")=$(<"$var")"
+  done
+fi
+```
+
+This checks that the environment directory contains variables, then for each variable in the directory, declares them in the current scope.
 
 ### Building explained
 
