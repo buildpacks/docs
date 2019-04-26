@@ -187,6 +187,46 @@ $ pack build my-app:my-tag --buildpack path/to/some/buildpack
 </ul>
 </blockquote>
 
+<h3 id="example-building-using-environment-variables">Example: Building using environment variables</h3>
+
+<p>In the following example, an app image is created which uses an environment variable during the build.</p>
+
+<pre><code class="language-bash">$ cd path/to/java/app
+$ pack build my-app:my-tag --env=&quot;MAVEN_OPTS=-dskipTests&quot;--buildpack=path/to/java-buildpack
+</code></pre>
+
+<p>Environment variables can be passed with <code>--env</code> or <code>--env-file</code>.</p>
+
+<ul>
+<li><p><code>--env</code> uses the format <code>NAME=value</code>.</p></li>
+
+<li><p><code>--env-file</code> provides the path to a file containing environment variables in the following format:</p>
+
+<pre><code class="language-sh">NAME=value
+OTHER_NAME=value2
+</code></pre></li>
+</ul>
+
+<blockquote>
+<p>Multiple environment variables can be specified, by supplying <code>--env</code> or <code>--env-file</code> multiple times.</p>
+</blockquote>
+
+<p>When creating a buildpack which consumes environment variables, they are not made immediately available to the builder. The environment variables are stored as files in the platform directory (the second argument to the build script) under the <code>env</code> directory. The file name is the name of the environment variable, its content is the value of the variable.</p>
+
+<p>The java buildpack access all user environment variables with the following script.</p>
+
+<pre><code class="language-bash">env_dir=&quot;$2/env&quot;
+...
+# Load user-provided build-time environment variables
+if compgen -G &quot;$env_dir/*&quot; &gt; /dev/null; then
+  for var in &quot;$env_dir&quot;/*; do
+    declare &quot;$(basename &quot;$var&quot;)=$(&lt;&quot;$var&quot;)&quot;
+  done
+fi
+</code></pre>
+
+<p>This checks that the environment directory contains variables, then for each variable in the directory, declares them in the current scope.</p>
+
 <h3 id="building-explained">Building explained</h3>
 
 <p><img src="/docs/using-pack/build.svg" alt="build diagram" /></p>
@@ -210,7 +250,7 @@ convenient way to distribute buildpacks for a given stack. For more information 
   <div class='footline'>
     
       <div class='footline-author'>
-        Last modified by <a href="mailto:ameyer@pivotal.io">Andrew Meyer</a>
+        Last modified by <a href="mailto:heshoots9999@gmail.com">Max Prettyjohns</a>
       </div>
     
     
