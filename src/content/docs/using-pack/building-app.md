@@ -65,16 +65,17 @@ $ pack build my-app:my-tag --env="MAVEN_OPTS=-dskipTests"--buildpack=path/to/jav
 
 Environment variables can be passed with `--env` or `--env-file`.
 
-`--env` uses the format `NAME=value`.
+- `--env` uses the format `NAME=value`.
 
-`--env-file` provides the path to a file containing environment variables in the following format:
+- `--env-file` provides the path to a file containing environment variables in the following format:
 ```sh
 NAME=value
 OTHER_NAME=value2
 ```
+
 > Multiple environment variables can be specified, by supplying `--env` or `--env-file` multiple times.
 
-When creating a buildpack which consumes environment variables, they are not immediately available to the builder. The environment variables are stored as files in the platform directory (the second argument to the build script) under the `env` directory. The file name is the name of the environment variable, its content is the value of the variable.
+When creating a buildpack which consumes environment variables, they are not made immediately available to the builder. The environment variables are stored as files in the platform directory (the second argument to the build script) under the `env` directory. The file name is the name of the environment variable, its content is the value of the variable.
 
 The java buildpack access all user environment variables with the following script.
 

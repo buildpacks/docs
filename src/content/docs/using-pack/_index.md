@@ -23,6 +23,7 @@ Otherwise, read the rest of this document for detailed explanations and examples
 - [Building app images using `build`](/docs/using-pack/building-app)
   - [Example: Building using the default builder image](/docs/using-pack/building-app/#example-building-using-the-default-builder-image)
   - [Example: Building using a specified buildpack](/docs/using-pack/building-app/#example-building-using-a-specified-buildpack)
+  - [Example: Building using environment variables](/docs/using-pack/building-app/#example-building-using-environment-variables)
   - [Building explained](/docs/using-pack/building-app/#building-explained)
 - [Updating app images using `rebase`](/docs/using-pack/update-app-rebase/)
   - [Example: Rebasing an app image](/docs/using-pack/update-app-rebase/#example-rebasing-an-app-image)
