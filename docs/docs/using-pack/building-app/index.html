@@ -187,6 +187,39 @@ $ pack build my-app:my-tag --buildpack path/to/some/buildpack
 </ul>
 </blockquote>
 
+<h3 id="example-building-with-user-provided-environment-variables">Example: Building with user provided environment variables</h3>
+
+<p>In the following example, an app image is created from Node.js application source code and the environment
+variable &lsquo;HELLO&rsquo; with the value &lsquo;WORLD&rsquo; is provided to the buildpacks at build time.</p>
+
+<pre><code class="language-bash">$ cd path/to/node/app
+$ pack build my-app:my-tag --env &quot;HELLO=WORLD&quot;
+</code></pre>
+
+<p>The <code>--env</code> parameter must be one of
+- &lsquo;VARIABLE=VALUE&rsquo;
+- &lsquo;VARIABLE&rsquo;, where the value of &lsquo;VARIABLE&rsquo; will be taken from the current environment</p>
+
+<blockquote>
+<p>Multiple environment variables can be specified by supplying <code>--env</code> multiple times.</p>
+</blockquote>
+
+<p>Alternatively, environment variables can be provided using the <code>--env-file</code> flag.</p>
+
+<pre><code class="language-bash">$ cd path/to/node/app
+$ pack build my-app:my-tag --env-file ./my-env-file
+</code></pre>
+
+<p>The <code>--env-file</code> parameter must be a path to a file where each line must be one of
+- &lsquo;VARIABLE=VALUE&rsquo;
+- &lsquo;VARIABLE&rsquo;, where the value of &lsquo;VARIABLE&rsquo; will be taken from the current environment</p>
+
+<blockquote>
+<p>Multiple environment variables can be specified by supplying variables on each line of the file.</p>
+
+<p>Variables defined using <code>--env</code> take precedence over variables defined in <code>--env-file</code>.</p>
+</blockquote>
+
 <h3 id="building-explained">Building explained</h3>
 
 <p><img src="/docs/using-pack/build.svg" alt="build diagram" /></p>
