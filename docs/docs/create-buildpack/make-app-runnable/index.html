@@ -136,7 +136,7 @@
         <p>Next we want to set a default start command for the application in the image.  You will want to add the following code to then end of your build script.</p>
 
 <pre><code># Set default start command
-echo 'processes = [{ type = &quot;web&quot;, command = &quot;&quot;bundle exec ruby app.rb&quot;&quot;}]' &gt; &quot;$layersdir/launch.toml&quot;
+echo 'processes = [{ type = &quot;web&quot;, command = &quot;bundle exec ruby app.rb&quot;}]' &gt; &quot;$layersdir/launch.toml&quot;
 </code></pre>
 
 <p>This sets your default start command.</p>
