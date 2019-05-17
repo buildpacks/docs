@@ -2,9 +2,9 @@
 title="Installing `pack`"
 weight=1
 creatordisplayname="Andrew Meyer"
-creatoremail="ameyer@gmail.com"
+creatoremail="ameyer@pivotal.io"
 lastmodifierdisplayname="Andrew Meyer"
-lastmodifieremail="ameyer@gmail.com"
+lastmodifieremail="ameyer@pivotal.io"
 +++
 
 You can install the most recent version of `pack` (version **{{< latest >}}**) as an executable binary on the following operating systems:

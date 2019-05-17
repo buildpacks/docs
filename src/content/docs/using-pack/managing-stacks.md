@@ -10,7 +10,7 @@ lastmodifieremail = "ameyer@pivotal.io"
 +++
 
 As mentioned [previously](/docs/using-pack/building-app/#building-explained), a stack is a named association of a build image and a run image.
-Stacks are managed through a builder's TOML file:
+Stacks are managed through a builder's [configuration file](/docs/using-pack/working-with-builders#builder-configuration):
 
 ```toml
 [[buildpacks]]

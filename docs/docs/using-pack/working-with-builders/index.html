@@ -144,11 +144,11 @@ single image for distribution and use with a specified stack.</p>
 <h3 id="example-creating-a-builder-from-buildpacks">Example: Creating a builder from buildpacks</h3>
 
 <p>In this example, a builder image is created from buildpacks <code>org.example.buildpack-1</code> and <code>org.example.buildpack-2</code>.
-A TOML file (typically named <code>builder.toml</code>) file provides necessary configuration to the command.</p>
+A <a href="#builder-configuration">TOML configuration file</a> provides necessary configuration to the command.</p>
 
 <pre><code class="language-toml">[[buildpacks]]
   id = &quot;org.example.buildpack-1&quot;
-  uri = &quot;relative/path/to/buildpack-1&quot; # URIs without schemes are read as paths relative to builder.toml
+  uri = &quot;relative/path/to/buildpack-1&quot;
 
 [[buildpacks]]
   id = &quot;org.example.buildpack-2&quot;
@@ -169,16 +169,9 @@ A TOML file (typically named <code>builder.toml</code>) file provides necessary 
   run-image = &quot;example/run&quot;
 </code></pre>
 
-<blockquote>
-<p>For more information on stacks, see the <a href="/docs/using-pack/managing-stacks">Managing stacks</a> section.</p>
-</blockquote>
-
 <p>Running <code>create-builder</code> while supplying this configuration file will produce the builder image.</p>
 
 <pre><code class="language-bash">$ pack create-builder my-builder:my-tag --builder-config path/to/builder.toml
-
-2018/10/29 15:35:47 Pulling builder base image packs/build
-2018/10/29 15:36:06 Successfully created builder image: my-builder:my-tag
 </code></pre>
 
 <p>Like <a href="/docs/using-pack/building-app"><code>build</code></a>, <code>create-builder</code> has a <code>--publish</code> flag that can be used to publish
@@ -193,8 +186,9 @@ the generated builder image to a registry.</p>
 
 <p><img src="/docs/using-pack/create-builder.svg" alt="create-builder diagram" /></p>
 
-<p>A builder is an image containing a collection of buildpack groups that will be executed against app source code, in the order
-that they appear in <code>builder.toml</code>. This image&rsquo;s base will be the build image associated with a given stack.</p>
+<p>A builder is an image containing a collection of buildpacks that will be executed against application source code, in
+the order defined by the builder&rsquo;s <a href="#builder-configuration">configuration file</a>. This image&rsquo;s base will be the build
+image associated with a given stack.</p>
 
 <blockquote>
 <p>A buildpack&rsquo;s primary role is to inspect the source code, determine any
@@ -203,6 +197,123 @@ final app image.</p>
 
 <p>It&rsquo;s important to note that the buildpacks in a builder are not actually executed until
 <a href="/docs/using-pack/building-app/#building-explained"><code>build</code></a> is run.</p>
+</blockquote>
+
+<h4 id="lifecycle">Lifecycle</h4>
+
+<p>A builder also includes a layer with a series of binaries that are executed during <a href="/docs/using-pack/building-app/#building-explained"><code>build</code></a>.
+These binaries collectively represent the <a href="https://github.com/buildpack/lifecycle#lifecycle">buildpack lifecycle</a>. See
+<a href="#builder-configuration">Builder configuration</a> for more information on configuring the lifecycle for a builder.</p>
+
+<h3 id="builder-configuration">Builder configuration</h3>
+
+<p>The <a href="/docs/using-pack/working-with-builders"><code>create-builder</code></a> command requires a TOML configuration file (commonly
+referred to as <code>builder.toml</code>). This file has a number of fields.</p>
+
+<ul>
+<li><p><strong><code>description</code></strong> <em>(string, optional)</em>
+<br>
+A human-readable description of the builder, to be shown in <code>inspect-builder</code> output
+(run <code>pack inspect-builder -h</code> for more information).</p></li>
+
+<li><p><strong><code>buildpacks</code></strong> <em>(list, required)</em>
+<br>
+A list of buildpacks, each with the following fields:</p>
+
+<ul>
+<li><p><strong><code>id</code></strong> <em>(string, required)</em>
+<br>
+An identifier for the buildpack</p></li>
+
+<li><p><strong><code>uri</code></strong> <em>(string, required)</em>
+<br>
+Either a fully-qualified URL to a <code>.tgz</code> file, or a path to a local buildpack&rsquo;s <code>.tgz</code> file or directory (relative to
+<code>builder.toml</code>)</p></li>
+
+<li><p><strong><code>latest</code></strong> <em>(boolean, optional, default: <code>false</code>)</em>
+<br>
+Whether or not this buildpack is considered the latest version (for use in specifying <code>groups</code> below).</p></li>
+</ul></li>
+</ul>
+
+<blockquote>
+<p>Multiple versions of the same buildpack (i.e. buildpacks with the same ID but with URIs to differing versions) may be
+specified in this list, though only one entry per ID may be marked as <code>latest</code>.</p>
+</blockquote>
+
+<ul>
+<li><p><strong><code>groups</code></strong> <em>(list, required)</em>
+<br>
+A list of buildpack groups. This list determines the order in which groups of buildpacks
+will be tested during detection. Detection is a phase of the <a href="#lifecycle">lifecycle</a> where
+buildpacks are tested, one group at a time, for compatibility with the provided application source code. The first
+group whose non-optional buildpacks all pass detection will be the group selected for the remainder of the build. Each
+group currently contains a single required field:</p>
+
+<ul>
+<li><p><strong><code>buildpacks</code></strong> <em>(list, required)</em>
+<br>
+The set of buildpacks belonging to the group. Each buildpack specified has the following fields (different from the
+buildpack fields mentioned previously):</p></li>
+
+<li><p><strong><code>id</code></strong> <em>(string, required)</em>
+<br>
+The identifier of a buildpack from the configuration&rsquo;s top-level <code>buildpacks</code> list. Buildpacks with the same ID may
+appear in multiple groups at once but never in the same group.</p></li>
+
+<li><p><strong><code>version</code></strong> <em>(string, required)</em>
+<br>
+The version of the buildpack being referred to. Alternately, specify <code>&quot;latest&quot;</code> to use the buildpack marked as
+<code>latest</code> in the configuration&rsquo;s top-level <code>buildpacks</code> list.</p></li>
+
+<li><p><strong><code>optional</code></strong> <em>(boolean, optional, default: false)</em>
+<br>
+Whether or not this buildpack is optional during detection.</p></li>
+</ul></li>
+
+<li><p><strong><code>stack</code></strong> <em>(required)</em>
+<br>
+The stack to use for the builder. See <a href="/docs/using-pack/managing-stacks">Managing stacks</a> for more information about this field. It
+contains the following fields:</p>
+
+<ul>
+<li><p><strong><code>id</code></strong> <em>(required, string)</em>
+<br>
+Identifier for the stack</p></li>
+
+<li><p><strong><code>build-image</code></strong> <em>(required, string)</em>
+<br>
+Build image for the stack</p></li>
+
+<li><p><strong><code>run-image</code></strong> <em>(required, string)</em>
+<br>
+Run image for the stack</p></li>
+
+<li><p><strong><code>run-image-mirrors</code></strong> <em>(optional, string list)</em>
+<br>
+<a href="/docs/using-pack/managing-stacks#run-image-mirrors">Run image mirrors</a> for the stack</p></li>
+</ul></li>
+
+<li><p><strong><code>lifecycle</code></strong> <em>(optional)</em>
+<br>
+The <a href="#lifecycle">lifecycle</a> to use for the builder. It contains the following fields:</p>
+
+<ul>
+<li><p><strong><code>version</code></strong> <em>(string, optional)</em>
+<br>
+The version of the lifecycle (semver format). If omitted, defaults to the latest release of the lifecycle captured
+at the time of <code>pack</code>&rsquo;s particular release (i.e. if you&rsquo;re pinned to a particular release of <code>pack</code>, this default
+will never change, even when new versions of the lifecycle are released).</p></li>
+
+<li><p><strong><code>uri</code></strong> <em>(string, optional)</em>
+<br>
+Either a fully-qualified URL to a <code>.tgz</code> file, or a path to a local lifecycle&rsquo;s <code>.tgz</code> file (relative to
+<code>builder.toml</code>). If omitted, a URL to a GitHub release for the defined <code>version</code> will be used.</p></li>
+</ul></li>
+</ul>
+
+<blockquote>
+<p>If the <code>lifecycle</code> field itself is omitted, default values for each sub-field will be used.</p>
 </blockquote>
 
         
