@@ -34,7 +34,7 @@ id = "heroku-18"
 id = "io.buildpacks.stacks.bionic"
 
 [[stacks]]
-id = "io.buildpacks.stacks.cflinuxfs3"
+id = "org.cloudfoundry.stacks.cflinuxfs3"
 
 ```
 
