@@ -8,7 +8,7 @@ lastmodifieremail = "djoyce@pivotal.io"
 +++
 
 
-Next we will make the build step work.  This will require a few updates to the build script.
+Next we will make the build step work.  This will require a few updates to the `build` script.
 
 We need to read the layers directory passed in by build lifecycle - learn more about the lifecycle [here](https://github.com/buildpack/lifecycle)
 
@@ -30,7 +30,7 @@ ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/rub
 wget -q -O - "$ruby_url" | tar -xzf - -C "$layersdir/ruby"
 ```
 
-Finally, we will need to install bundler and then run bundle install
+Finally, we will need to install bundler and then run `bundle install`
 
 ```
 gem install bundler --no-ri --no-rdoc
@@ -38,7 +38,7 @@ bundle install
 ```
 
 
-Your build script will now look like this
+Your `build` script will now look like this
 
 ```
 #!/usr/bin/env bash
