@@ -7,7 +7,7 @@ lastmodifierdisplayname = "Danny Joyce"
 lastmodifieremail = "djoyce@pivotal.io"
 +++
 
-Next we want to set a default start command for the application in the image.  You will want to add the following code to then end of your build script. 
+Next we want to set a default start command for the application in the image.  You will want to add the following code to then end of your `build` script. 
 
 ```
 # Set default start command
@@ -16,7 +16,7 @@ echo 'processes = [{ type = "web", command = ""bundle exec ruby app.rb""}]' > "$
 
 This sets your default start command.
 
-Your full build script should now look like this
+Your full `build` script should now look like this
 
 ```
 #!/usr/bin/env bash
