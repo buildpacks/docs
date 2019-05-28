@@ -86,7 +86,7 @@ In order to test your buildpack, you will need to run the buildpack against your
 Run the following pack command
 
 ```
-pack build test-ruby-app --buildpack workspace/ruby-cnb  --path workspace/ruby-sample-app/
+pack build test-ruby-app --buildpack ~/workspace/ruby-cnb  --path ~/workspace/ruby-sample-app/
 ```
 
 The `pack build` command takes in your buildpack directory as the `--buildpack` argument and the ruby sample app as the `--path` argument
