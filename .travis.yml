@@ -15,4 +15,4 @@ deploy:
   skip_cleanup: true
   verbose: true
   on:
-    branch: master
+    branch: travis-refactor # TEMPORARY: will change to master soon
