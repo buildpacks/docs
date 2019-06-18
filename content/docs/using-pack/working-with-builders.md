@@ -95,9 +95,13 @@ referred to as `builder.toml`). This file has a number of fields.
   <br>
   A list of buildpacks, each with the following fields:
   
-  - **`id`** _(string, required)_
+  - **`id`** _(string, optional)_
     <br>
-    An identifier for the buildpack
+    An identifier for the buildpack. Must match ID specified in buildpack's `buildpack.toml` file.
+    
+  - **`version`** _(string, optional)_
+    <br>
+    Version of the buildpack. Must match version specified in buildpack's `buildpack.toml` file.
     
   - **`uri`** _(string, required)_
     <br>
@@ -108,8 +112,8 @@ referred to as `builder.toml`). This file has a number of fields.
     <br>
     Whether or not this buildpack is considered the latest version (for use in specifying `groups` below).
   
-  > Multiple versions of the same buildpack (i.e. buildpacks with the same ID but with URIs to differing versions) may be
-  > specified in this list, though only one entry per ID may be marked as `latest`.
+  > Multiple versions of the same buildpack (i.e. buildpacks with the same ID) may be specified in this list, though
+  > only one entry per ID may be marked as `latest`.
 
 - **`groups`** _(list, required)_
   <br>
