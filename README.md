@@ -3,16 +3,20 @@
 # docs
 Website for Cloud Native Buildpacks
 
+## Prerequisites
+
+* [Hugo](https://gohugo.io/)
+
 ## Local development
 
 ```bash
-$ hugo server
+hugo server
 ```
 
 ## Build
 
 ```bash
-$ hugo
+hugo
 ```
 
 ## Update referenced  `pack` release
@@ -20,5 +24,5 @@ $ hugo
 Before building (or running the local dev server) run:
 
 ```bash
-$ ./update_latest_version.sh
+./update_latest_version.sh
 ```
