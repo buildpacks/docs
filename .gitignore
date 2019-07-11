@@ -11,3 +11,6 @@ $RECYCLE.BIN/
 # Artifacts
 /public
 /resources
+
+# IDEs
+.idea/

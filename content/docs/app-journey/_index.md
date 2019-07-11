@@ -42,8 +42,8 @@ of your choosing.
 Now run the following commands in a shell:
 
 ```bash
-$ cd path/to/sample-java-app
-$ pack build myapp
+cd path/to/sample-java-app
+pack build myapp
 ```
 
 > If this is your first time running `pack`, you might see a message about selecting a default
@@ -59,7 +59,7 @@ a JDK, run Maven, or otherwise configure a build environment. `pack` and the bui
 To test out your new app image locally, you can run it with Docker:
 
 ```bash
-$ docker run --rm -p 8080:8080 myapp
+docker run --rm -p 8080:8080 myapp
 ```
 
 Now hit `localhost:8080` in your favorite browser and take a minute to admire your handiwork.

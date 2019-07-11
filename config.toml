@@ -4,6 +4,9 @@ languageCode = "en-us"
 title = "Cloud Native Buildpack Documentation"
 theme = "buildpacks"
 
+pygmentsUseClasses = true
+pygmentsCodefences = true
+
 [menu]
   [[menu.main]]
   identifier = "home"
