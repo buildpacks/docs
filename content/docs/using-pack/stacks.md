@@ -1,6 +1,6 @@
 +++
 
-title="Managing stacks"
+title="Working with stacks"
 weight=304
 creatordisplayname = "Andrew Meyer"
 creatoremail = "ameyer@pivotal.io"
@@ -9,8 +9,16 @@ lastmodifieremail = "ameyer@pivotal.io"
 
 +++
 
-As mentioned [previously](/docs/using-pack/building-app/#building-explained), a stack is a named association of a build image and a run image.
-Stacks are managed through a builder's [configuration file](/docs/using-pack/working-with-builders#builder-configuration):
+## What is a stack?
+
+A [stack](/docs/using-pack/building-app/#building-explained) provides the buildpack lifecycle with build-time and run-time
+environments in the form of images. If you're using the `pack` CLI, running `pack suggest-stacks` will display a list of recommended
+stacks that can be used when running `pack create-builder`, along with each stack's associated build and run images.
+
+## Using stacks
+
+Stacks are used by [builders](/docs/using-pack/working-with-builders/#builders-explained) and are configured through a builder's
+[configuration file](/docs/using-pack/working-with-builders#builder-configuration):
 
 ```toml
 [[buildpacks]]
@@ -60,3 +68,32 @@ $ pack build example/app
 > `inspect-builder` command can be used. `inspect-builder` will output built-in and locally-configured run images for
 > a given builder, among other useful information. The order of the run images in the output denotes the order in
 > which they will be matched during `build`.
+
+## Creating custom stacks
+
+To create a custom stack, simply create customized build and run images containing the following information:
+
+#### Labels
+
+| Name | Description |
+|------|-------------|
+| `io.buildpacks.stack.id` | Identifier for the stack |
+
+#### Environment Variables
+
+| Name | Description |
+|------|-------------|
+| `CNB_STACK_ID` | Identifier for the stack |
+| `CNB_USER_ID`  | UID of the user specified in the image |
+| `CNB_GROUP_ID` | GID of the user specified in the image |
+<p class="spacer"></p>
+
+> **NOTE:** The **stack identifier** implies compatibility with other stacks of that same identifier. For instance, a custom stack may use 
+> `io.buildpacks.stacks.bionic` as its identifier so long as it will work with buildpacks that declare compatibility with the 
+> `io.buildpacks.stacks.bionic` stack.
+
+### Resources
+
+For a reference stack, see the [CNB Bionic stack repo](https://github.com/buildpack/stacks).
+
+For technical details on stacks, see the [platform specification for stacks](https://github.com/buildpack/spec/blob/master/platform.md#stacks).

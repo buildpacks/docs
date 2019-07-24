@@ -32,8 +32,10 @@ Otherwise, read the rest of this document for detailed explanations and examples
   - [Example: Creating a builder from buildpacks](/docs/using-pack/working-with-builders/#example-creating-a-builder-from-buildpacks)
   - [Builders explained](/docs/using-pack/working-with-builders/#builders-explained)
   - [Builder configuration](/docs/using-pack/working-with-builders/#builder-configuration)
-- [Managing stacks](/docs/using-pack/managing-stacks)
-  - [Run image mirrors](/docs/using-pack/managing-stacks/#run-image-mirrors)
+- [Working with stacks](/docs/using-pack/stacks)
+  - [What is a stack?](/docs/using-pack/stacks/#what-is-a-stack)
+  - [Using stacks](/docs/using-pack/stacks/#using-stacks)
+  - [Creating custom stacks](/docs/using-pack/stacks/#creating-custom-stacks)
 
 ---
 

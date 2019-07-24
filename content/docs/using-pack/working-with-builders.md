@@ -144,7 +144,7 @@ referred to as `builder.toml`). This file has a number of fields.
  
 - **`stack`** _(required)_
   <br>
-  The stack to use for the builder. See [Managing stacks](/docs/using-pack/managing-stacks) for more information about this field. It
+  The stack to use for the builder. See [Working with stacks](/docs/using-pack/stacks) for more information about this field. It
   contains the following fields:
   
   - **`id`** _(required, string)_
@@ -161,7 +161,7 @@ referred to as `builder.toml`). This file has a number of fields.
   
   - **`run-image-mirrors`** _(optional, string list)_
     <br>
-    [Run image mirrors](/docs/using-pack/managing-stacks#run-image-mirrors) for the stack
+    [Run image mirrors](/docs/using-pack/stacks#run-image-mirrors) for the stack
 
 - **`lifecycle`** _(optional)_
   <br>

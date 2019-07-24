@@ -84,7 +84,9 @@
       font-size: 1rem;
       font-weight: 600;
       color: lighten($blue-dark, 10%);
+      margin-bottom: 0.25rem;
     }
+    h4, .h4 { font-size: 1.125rem; }
 
     h1, .h1 {
       &:first-child {

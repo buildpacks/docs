@@ -96,10 +96,10 @@ To create an app image, `build` executes one or more buildpacks against the app'
 Each buildpack inspects the source code and provides relevant dependencies. An image is then generated
 from the app's source code and these dependencies.
 
-Buildpacks are compatible with one or more [stacks](/docs/using-pack/managing-stacks). A stack designates a **build image**
+Buildpacks are compatible with one or more [stacks](/docs/using-pack/stacks). A stack designates a **build image**
 and a **run image**. During the build process, a stack's build image becomes the environment in which buildpacks are
 executed, and its run image becomes the base for the final app image. For more information on working with stacks, see
-the [Managing stacks](/docs/using-pack/managing-stacks) section.
+the [Working with stacks](/docs/using-pack/stacks) section.
 
 Buildpacks can be bundled together with a specific stack's build image, resulting in a
 [builder](/docs/using-pack/working-with-builders) image (note the "er" ending). Builders provide the most
