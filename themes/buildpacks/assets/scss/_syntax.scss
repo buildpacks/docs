@@ -1,5 +1,5 @@
 /* Background */ .chroma { background-color: #f0f3f3 }
-/* Error */ .chroma .err { color: #aa0000; background-color: #ffaaaa }
+// /* Error */ .chroma .err { color: #aa0000; background-color: #ffaaaa }  // Eventually, fix lexer rather than remove this
 /* LineTableTD */ .chroma .lntd { vertical-align: top; padding: 0; margin: 0; border: 0; }
 /* LineTable */ .chroma .lntable { border-spacing: 0; padding: 0; margin: 0; border: 0; width: auto; overflow: auto; display: block; }
 /* LineHighlight */ .chroma .hl { display: block; width: 100%;background-color: #ffffcc }
