@@ -83,6 +83,16 @@ These two files are now executable detect and build scripts.  Now you can run yo
 
 In order to test your buildpack, you will need to run the buildpack against your sample ruby app using the `pack` cli.
 
+Set your default builder to either `cloudfoundry/cnb:cflinuxfs3` or `heroku/buildpacks:18` by running one of
+
+```
+pack set-default-builder cloudfoundry/cnb:cflinuxfs3
+```
+```
+pack set-default-builder heroku/buildpacks:18
+```
+
+
 Run the following pack command
 
 ```

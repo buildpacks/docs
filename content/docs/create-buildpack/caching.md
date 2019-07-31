@@ -11,7 +11,7 @@ Next we want to separate the ruby interpreter and bundled gems into different la
 
 ### Creating the Bundler Layer
 
-To do this replace the line
+To do this replace the line in the `bin/build` script
 
 ```
 echo "---> Installing gems"
@@ -77,7 +77,7 @@ You will see the a similar line added during the EXPORTING phase
 
 Next we will start caching gem dependencies to help speed up the build if no new dependencies are needed.
 
-First, we'll need to install some helpful tools at the top of the build script
+First, we'll need to install some helpful tools at the top of the `bin/build` script
 
 ```
 # Download some useful tools

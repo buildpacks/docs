@@ -8,16 +8,16 @@ lastmodifierdisplayname = "Danny Joyce"
 lastmodifieremail = "djoyce@pivotal.io"
 +++
 
-Next you will want to actually detect that the app your are building is a ruby app. In order to do this you will need to check for a Gemfile.
+Next you will want to actually detect that the app your are building is a ruby app. In order to do this you will need to check for a `Gemfile`.
 
-Replace `exit 1` with the following check in your detect script
+Replace `exit 1` in the `bin/detect` file with the following check
 
 ```
 if [[ ! -f Gemfile ]]; then
    exit 100
 fi
 ```
-And now your detect script will look like this
+And now your `bin/detect` script will look like this
 
 ```
 #!/usr/bin/env bash
@@ -52,7 +52,7 @@ You will see the following output
 ERROR: failed with status code: 7
 ```
 
-Notice that `detect` now passes because there is a valid Gemfile in the ruby app at `~/ruby-sample-app`, but now `build` fails because it is coded to do so.
+Notice that `detect` now passes because there is a valid `Gemfile` in the ruby app at `~/ruby-sample-app`, but now `build` fails because it is coded to do so.
 
 You will also notice `ANALYZING` now appears in the build output.  This steps is part of the buildpack lifecycle that looks to see if any previous image builds have layers that the buildpack can re-use. We will get into this topic in more detail later.
 
