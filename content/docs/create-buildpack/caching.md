@@ -275,7 +275,7 @@ else
     # Determine if there has been a gem dependency change and install new gems to the bundler layer; re-using existing and un-changed gems
     echo "---> Installing gems"
     mkdir -p "$layersdir/bundler"
-    echo -e "cache = true\nbuild = false\nlaunch = true\nmetadata = \"$local_bundler_checksum\"" > "$layersdir/bundler.toml"
+    echo -e "cache = true\nbuild = false\nlaunch = true\nmetadata.checksum = \"$local_bundler_checksum\"" > "$layersdir/bundler.toml"
     bundle install --path "$layersdir/bundler" --binstubs "$layersdir/bundler/bin" && bundle clean
 fi
 
