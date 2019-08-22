@@ -13,7 +13,7 @@ The pack documentation is build using hugo, install it using the guide [here](ht
 
 ```bash
 git clone https://github.com/buildpack/docs.git
-cd docs/src
+cd docs
 hugo server
 # documentation is available at localhost:1313
 ```
