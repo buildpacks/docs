@@ -8,12 +8,12 @@ lastmodifieremail = "djoyce@pivotal.io"
 +++
 
 
-Next we will make the build step work.  This will require a few updates to the build script.
+Next we will make the build step work.  This will require a few updates to the `bin/build` file.
 
 We need to read the layers directory passed in by build lifecycle - learn more about the lifecycle [here](https://github.com/buildpack/lifecycle)
 
 ```
-layersdir=$1 
+layersdir=$1
 ```
 
 We need to create a ruby layer in the image. We'll add `launch = true` to direct the lifecycle to provide ruby when we launch our app.
@@ -30,7 +30,15 @@ ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/rub
 wget -q -O - "$ruby_url" | tar -xzf - -C "$layersdir/ruby"
 ```
 
+Make ruby accessible in this script
+
+```
+export PATH=$layersdir/ruby/bin:$PATH
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}$layersdir/ruby/lib
+```
+
 Finally, we will need to install bundler and then run bundle install
+
 
 ```
 gem install bundler --no-ri --no-rdoc
@@ -38,7 +46,7 @@ bundle install
 ```
 
 
-Your build script will now look like this
+And now your `bin/build` script will look like this
 
 ```
 #!/usr/bin/env bash
