@@ -7,6 +7,9 @@ theme = "buildpacks"
 pygmentsUseClasses = true
 pygmentsCodefences = true
 
+[params]
+twitter_handle = "buildpacks_io"
+
 [menu]
   [[menu.main]]
   identifier = "home"
