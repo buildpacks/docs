@@ -1,0 +1,30 @@
+baseURL = "/"
+languageCode = "en-us"
+
+title = "Cloud Native Buildpack Documentation"
+theme = "buildpacks"
+
+pygmentsUseClasses = true
+pygmentsCodefences = true
+
+[params]
+twitter_handle = "buildpacks_io"
+
+[menu]
+  [[menu.main]]
+  identifier = "home"
+  name       = "Home"
+  url        = "/"
+  weight     = 1
+
+  [[menu.main]]
+  identifier = "docs"
+  name       = "Docs"
+  url        = "/docs"
+  weight     = 2
+
+  [[menu.main]]
+  identifier = "blog"
+  name       = "Blog"
+  url        = "https://medium.com/buildpacks"
+  weight     = 3

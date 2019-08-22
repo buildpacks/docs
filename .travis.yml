@@ -1,0 +1,18 @@
+dist: xenial
+
+install:
+  - wget https://github.com/gohugoio/hugo/releases/download/v0.55.6/hugo_extended_0.55.6_Linux-64bit.deb
+  - sudo dpkg -i hugo*.deb
+
+script:
+  - hugo
+
+deploy:
+  provider: pages
+  github_token: $GITHUB_TOKEN
+  local_dir: public
+  fqdn: buildpacks.io
+  skip_cleanup: true
+  verbose: true
+  on:
+    branch: master

@@ -1,0 +1,17 @@
+table {
+    border-collapse: initial;
+    border-spacing: 0.5rem;
+
+    code {
+        padding: 0;
+    }
+}
+
+th {
+    border-bottom: 2px solid $pink;
+    padding: 0.25rem 0.5rem;
+}
+
+td {
+    padding: 0.25rem 0.5rem;
+}

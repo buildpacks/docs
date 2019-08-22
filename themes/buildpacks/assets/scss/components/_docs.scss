@@ -1,0 +1,141 @@
+.docs {
+  background-color: $off-white;
+  position: relative;
+
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 8px;
+    background: red;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  &:before {
+    top: 0;
+    background: linear-gradient(rgba($gray-light, 0.08), rgba($gray-light, 0));
+  }
+  &:after {
+    bottom: 0;
+    background: linear-gradient(rgba($gray-light, 0), rgba($gray-light, 0.05));
+  }
+
+  .docs-sidebar {
+    padding: 0;
+    border-right: 1px solid $off-gray;
+    position: relative;
+    max-width: 400px;
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 5px;
+      height: 100%;
+      background: linear-gradient(to right, rgba($gray-light, 0), rgba($gray-light, 0.05));
+      z-index: 1;
+      pointer-events: none;
+    }
+    @media (max-width: 575px) {
+      background-color: rgba($off-gray, 0.25);
+      box-shadow: inset 0 0 10px rgba($gray-light, 0.1);
+      max-width: none;
+      &:before {
+        content: none;
+      }
+    }
+    @media (max-width: 767px) {
+      .sidebar {
+        font-size: 0.9125rem !important;
+      }
+    }
+  }
+
+  .docs-content {
+    padding: 2rem;
+    color: $gray-dark;
+
+    h1, .h1,
+    h2, .h2,
+    h3, .h3,
+    h4, .h4,
+    h5, .h5,
+    h6, .h6 {
+      font-weight: 400;
+      color: $blue-dark;
+      margin-bottom: 1rem;
+      &:not(:first-child) {
+        margin-top: 2rem;
+      }
+      a {
+        text-decoration: none;
+        border-bottom: 1px solid rgba($blue-dark, 0.25);
+      }
+    }
+
+    h1, .h1 { font-size: 1.875rem; }
+    h2, .h2 { font-size: 1.5rem; }
+    h3, .h3 { font-size: 1.25rem; }
+    h4, .h4,
+    h5, .h5,
+    h6, .h6 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: lighten($blue-dark, 10%);
+      margin-bottom: 0.25rem;
+    }
+    h4, .h4 { font-size: 1.125rem; }
+
+    h1, .h1 {
+      &:first-child {
+        padding-bottom: 1rem;
+        margin-bottom: 2rem;
+        position: relative;
+        &:after {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          content: '';
+          width: 10%;
+          height: 2px;
+          background-color: $blue-light;
+        }
+      }
+    }
+
+    pre {
+      background: white;
+      border: 1px solid $off-gray;
+      border-radius: 3px;
+      padding: 15px;
+      font-size: 0.875rem;
+      
+      code {
+        line-height: 1.6;
+      }
+    }
+
+    hr {
+      margin: 2rem 0;
+      margin-left: -2rem;
+      background: transparent linear-gradient(to right, rgba($off-gray, 1), rgba($off-gray, 0));
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    p {
+      max-width: 48em;
+    }
+
+    a {
+      code {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+  }
+}

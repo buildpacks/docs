@@ -7,3 +7,10 @@ $RECYCLE.BIN/
 
 # OSX
 .DS_Store
+
+# Artifacts
+/public
+/resources
+
+# IDEs
+.idea/

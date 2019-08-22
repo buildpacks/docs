@@ -1,0 +1,25 @@
+/**********************************
+
+Text Note
+
+**********************************/
+
+.text-note,
+blockquote {
+  background-color: $off-gray;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: .9rem;
+  line-height: 180%;
+  color: $gray-dark;
+  border-left: 5px solid $pink;
+
+  h3 {
+    color: inherit;
+    font-size: larger;
+  }
+
+  p {
+    margin: 0;
+  }
+}
