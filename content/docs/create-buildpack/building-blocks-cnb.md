@@ -17,7 +17,7 @@ cd ruby-cnb
 ### buildpack.toml
 Once you are in the directory. You will need to create a `buildpack.toml` file in that directory. This file must exist in the root directory of your buildpack so the `pack` cli knows it is a buildpack and it can apply the build lifecycle to it.  
 
-Create the `buildpack.toml` file and copy the following into it 
+Create the `buildpack.toml` file and copy the following into it
 
 ```
 # Buildpack ID and metadata
@@ -41,7 +41,7 @@ id = "org.cloudfoundry.stacks.cflinuxfs3"
 You will notice two specific fields in the file: buildpack ID and stack ID. The buildpack ID is the way you will reference the buildpack when you create buildpack groups, builders, etc.  The stack ID is the root file system in which the buildpack will be built.  This example can be built on one of three different stacks, all based upon ubuntu bionic.
 
 
-### Detect and Build 
+### Detect and Build
 
 Next you will need to create the detect and build scripts.  These files must exist in a `bin` directory in your buildpack directory.
 
@@ -96,12 +96,12 @@ pack set-default-builder heroku/buildpacks:18
 Run the following pack command
 
 ```
-pack build test-ruby-app --buildpack workspace/ruby-cnb  --path workspace/ruby-sample-app/
+pack build test-ruby-app --buildpack ~/workspace/ruby-cnb  --path ~/workspace/ruby-sample-app/
 ```
 
 The `pack build` command takes in your buildpack directory as the `--buildpack` argument and the ruby sample app as the `--path` argument
 
-After successfully running the command you should see the following output. You should see that it failed to detect because the detect script was setup to fail 
+After successfully running the command you should see the following output. You should see that it failed to detect because the detect script was setup to fail
 
 ```
 ===> DETECTING
