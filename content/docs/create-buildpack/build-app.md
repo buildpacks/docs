@@ -37,7 +37,7 @@ export PATH=$layersdir/ruby/bin:$PATH
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}$layersdir/ruby/lib
 ```
 
-Finally, we will need to install bundler and then run bundle install
+Finally, we will need to install bundler and then run `bundle install`
 
 
 ```
@@ -55,7 +55,7 @@ set -eo pipefail
 # Set the layersdir variable to be the first argument from the build lifecycle
 layersdir=$1
 
-echo "---> Ruby Buildpack" 
+echo "---> Ruby Buildpack"
 
 echo "---> Downloading and extracting ruby"
 mkdir -p $layersdir/ruby
@@ -76,7 +76,7 @@ bundle install
 ```
 
 
-Now if you build your app again 
+Now if you build your app again
 
 ```
 pack build test-ruby-app --buildpack workspace/ruby-cnb  --path workspace/ruby-sample-app/
