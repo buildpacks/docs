@@ -45,15 +45,18 @@ $ cd path/to/node/app
 $ pack build my-app:my-tag --buildpack path/to/some/buildpack
 ```
 
-The `--buildpack` parameter can be
+The `--buildpack` parameter can be one of the following:
 
-- a path to a directory, or
-- the ID of a buildpack located in a builder
+- path to a directory*, `tar` file, or `tgz` file
+- URL to a `tar` or `tgz` file
+- buildpack located in a builder, in the form of `<id>@<version>`
 
-> Multiple buildpacks can be specified, in order, by:
-> 
-> - supplying `--buildpack` multiple times, or
-> - supplying a comma-separated list to `--buildpack` (without spaces)
+<small>* Directory buildpacks are not currently supported on Windows</small>
+
+> Multiple buildpacks can be specified, in order, by supplying:
+>
+> - `--buildpack` multiple times, or
+> - a comma-separated list to `--buildpack` (without spaces)
 
 ### Example: Building with user-provided environment variables
 
@@ -65,9 +68,9 @@ $ cd path/to/node/app
 $ pack build my-app:my-tag --env "HELLO=WORLD"
 ```
 
-The `--env` parameter must be one of
+The `--env` parameter must be one of the following:
 
-- `VARIABLE=VALUE`, or
+- `VARIABLE=VALUE`
 - `VARIABLE`, where the value of `VARIABLE` will be taken from the current environment
 
 > Multiple environment variables can be specified by supplying `--env` multiple times.
@@ -79,9 +82,9 @@ $ cd path/to/node/app
 $ pack build my-app:my-tag --env-file ./my-env-file
 ```
 
-The `--env-file` parameter must be a path to a file where each line is one of
+The `--env-file` parameter must be a path to a file where each line is one of the following:
 
-- `VARIABLE=VALUE`, or
+- `VARIABLE=VALUE`
 - `VARIABLE`, where the value of `VARIABLE` will be taken from the current environment
 
 > Multiple environment variables can be specified by supplying variables on each line of the file.

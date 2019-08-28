@@ -19,7 +19,10 @@ Once you are in the directory. You will need to create a `buildpack.toml` file i
 
 Create the `buildpack.toml` file and copy the following into it
 
-```
+```toml
+# Buildpack API version
+api = "0.2"
+
 # Buildpack ID and metadata
 [buildpack]
 id = "com.examples.buildpacks.ruby"
@@ -35,10 +38,9 @@ id = "io.buildpacks.stacks.bionic"
 
 [[stacks]]
 id = "org.cloudfoundry.stacks.cflinuxfs3"
-
 ```
 
-You will notice two specific fields in the file: buildpack ID and stack ID. The buildpack ID is the way you will reference the buildpack when you create buildpack groups, builders, etc.  The stack ID is the root file system in which the buildpack will be built.  This example can be built on one of three different stacks, all based upon ubuntu bionic.
+You will notice two specific fields in the file: buildpack ID and stack ID. The buildpack ID is the way you will reference the buildpack when you create buildpack groups, builders, etc.  The stack ID is the root file system in which the buildpack will be run.  This example can be run on one of three different stacks, all based upon ubuntu bionic.
 
 
 ### Detect and Build
