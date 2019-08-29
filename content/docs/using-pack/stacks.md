@@ -24,7 +24,7 @@ Stacks are used by [builders](/docs/using-pack/working-with-builders/#builders-e
 [[buildpacks]]
   # ...
 
-[[groups]]
+[[order]]
   # ...
 
 [stack]

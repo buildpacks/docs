@@ -24,18 +24,20 @@ A [TOML configuration file](#builder-configuration) provides necessary configura
 ```toml
 [[buildpacks]]
   id = "org.example.buildpack-1"
+  version = "0.0.1"
   uri = "relative/path/to/buildpack-1"
 
 [[buildpacks]]
   id = "org.example.buildpack-2"
+  version = "0.0.1"
   uri = "https://example.org/buildpacks/buildpack-2.tgz"
 
-[[groups]]
-  [[groups.buildpacks]]
+[[order]]
+  [[order.group]]
     id = "org.example.buildpack-1"
     version = "0.0.1"
   
-  [[groups.buildpacks]]
+  [[order.group]]
     id = "org.example.buildpack-2"
     version = "0.0.1"
 
@@ -101,21 +103,13 @@ referred to as `builder.toml`). This file has a number of fields.
     
   - **`version`** _(string, optional)_
     <br>
-    Version of the buildpack. Must match version specified in buildpack's `buildpack.toml` file.
+    The version of the buildpack. Must match version specified in buildpack's `buildpack.toml` file.
     
   - **`uri`** _(string, required)_
     <br>
-    Either a fully-qualified URL to a `.tgz` file, or a path to a local buildpack's `.tgz` file or directory (relative to
-    `builder.toml`)
-    
-  - **`latest`** _(boolean, optional, default: `false`)_
-    <br>
-    Whether or not this buildpack is considered the latest version (for use in specifying `groups` below).
-  
-  > Multiple versions of the same buildpack (i.e. buildpacks with the same ID) may be specified in this list, though
-  > only one entry per ID may be marked as `latest`.
+    A URL or path to an [archive](#supported-archives), or a path to a directory. If path is relative, it must be relative to the `builder.toml`.
 
-- **`groups`** _(list, required)_
+- **`order`** _(list, required)_
   <br>
   A list of buildpack groups. This list determines the order in which groups of buildpacks
   will be tested during detection. Detection is a phase of the [lifecycle](#lifecycle) where
@@ -123,24 +117,23 @@ referred to as `builder.toml`). This file has a number of fields.
   group whose non-optional buildpacks all pass detection will be the group selected for the remainder of the build. Each
   group currently contains a single required field:
   
-  - **`buildpacks`** _(list, required)_
+    - **`group`** _(list, required)_
     <br>
-    The set of buildpacks belonging to the group. Each buildpack specified has the following fields (different from the
-    buildpack fields mentioned previously):
-  
-    - **`id`** _(string, required)_
-      <br>
-      The identifier of a buildpack from the configuration's top-level `buildpacks` list. Buildpacks with the same ID may
-      appear in multiple groups at once but never in the same group.
+    A set of buildpack references. Each buildpack reference specified has the following fields:
     
-    - **`version`** _(string, required)_
-      <br>
-      The version of the buildpack being referred to. Alternately, specify `"latest"` to use the buildpack marked as
-      `latest` in the configuration's top-level `buildpacks` list.
-    
-    - **`optional`** _(boolean, optional, default: false)_
-      <br>
-      Whether or not this buildpack is optional during detection.
+        - **`id`** _(string, required)_
+          <br>
+          The identifier of a buildpack from the configuration's top-level `buildpacks` list. Buildpacks with the same ID may
+          appear in multiple groups at once but never in the same group.
+        
+        - **`version`** _(string, optional, default: inferred)_
+          <br>
+          The version of the buildpack being referred to. This field may be omitted if the top-level `buildpacks` list contains
+          only one version of the buildpack.
+        
+        - **`optional`** _(boolean, optional, default: `false`)_
+          <br>
+          Whether or not this buildpack is optional during detection.
  
 - **`stack`** _(required)_
   <br>
@@ -165,17 +158,20 @@ referred to as `builder.toml`). This file has a number of fields.
 
 - **`lifecycle`** _(optional)_
   <br>
-  The [lifecycle](#lifecycle) to use for the builder. It contains the following fields:
-
+  The [lifecycle](#lifecycle) to embed into the builder. It must contain **at most one** the following fields:
+  
   - **`version`** _(string, optional)_
     <br>
-    The version of the lifecycle (semver format). If omitted, defaults to the latest release of the lifecycle captured
-    at the time of `pack`'s particular release (i.e. if you're pinned to a particular release of `pack`, this default
-    will never change, even when new versions of the lifecycle are released).
+    The version of the lifecycle (semver format) to download. If specified, `uri` must not be provided.
    
   - **`uri`** _(string, optional)_
     <br>
-    Either a fully-qualified URL to a `.tgz` file, or a path to a local lifecycle's `.tgz` file (relative to
-    `builder.toml`). If omitted, a URL to a GitHub release for the defined `version` will be used.
+     A URL or path to an [archive](#supported-archives). If specified, `version` must not be provided.
+
+    > If `version` and `uri` are both omitted, `lifecycle` defaults to the version that was last released
+    > at the time of `pack`'s release. In other words, for a particular version of `pack`, this default
+    > will not change despite new lifecycle versions being released.
   
-  > If the `lifecycle` field itself is omitted, default values for each sub-field will be used.
+#### Supported archives
+
+Currently, when specifying a URI to a buildpack or lifecycle, only `tar` or `tgz` archive types are supported.
