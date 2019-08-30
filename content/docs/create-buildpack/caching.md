@@ -105,7 +105,7 @@ local_bundler_checksum=$(sha256sum Gemfile.lock | cut -d ' ' -f 1)
 remote_bundler_checksum=$(cat "$layersdir/bundler.toml" | /tmp/yj -t | /tmp/jq -r .metadata 2>/dev/null || echo 'not found')
 
 if [[ -f Gemfile.lock && $local_bundler_checksum == $remote_bundler_checksum ]] ; then
-    # Determine if no gem depencencies have changed, so it can reuse existing gems without running bundle install
+    # Determine if no gem dependencies have changed, so it can reuse existing gems without running bundle install
     echo "---> Reusing gems"
     bundle config --local path "$layersdir/bundler" >/dev/null 
     bundle config --local bin "$layersdir/bundler/bin" >/dev/null 
@@ -152,7 +152,7 @@ local_bundler_checksum=$(sha256sum Gemfile.lock | cut -d ' ' -f 1)
 remote_bundler_checksum=$(cat "$layersdir/bundler.toml" | /tmp/yj -t | /tmp/jq -r .metadata 2>/dev/null || echo 'not found')
 
 if [[ -f Gemfile.lock && $local_bundler_checksum == $remote_bundler_checksum ]] ; then
-    # Determine if no gem depencencies have changed, so it can reuse existing gems without running bundle install
+    # Determine if no gem depenencies have changed, so it can reuse existing gems without running bundle install
     echo "---> Reusing gems"
     bundle config --local path "$layersdir/bundler" >/dev/null 
     bundle config --local bin "$layersdir/bundler/bin" >/dev/null 
@@ -267,7 +267,7 @@ local_bundler_checksum=$(sha256sum Gemfile.lock | cut -d ' ' -f 1)
 remote_bundler_checksum=$(cat "$layersdir/bundler.toml" | /tmp/yj -t | /tmp/jq -r .metadata 2>/dev/null || echo 'not found')
 
 if [[ -f Gemfile.lock && $local_bundler_checksum == $remote_bundler_checksum ]] ; then
-    # Determine if no gem depencencies have changed, so it can reuse existing gems without running bundle install
+    # Determine if no gem dependencies have changed, so it can reuse existing gems without running bundle install
     echo "---> Reusing gems"
     bundle config --local path "$layersdir/bundler" >/dev/null 
     bundle config --local bin "$layersdir/bundler/bin" >/dev/null 
