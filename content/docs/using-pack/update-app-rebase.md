@@ -26,8 +26,7 @@ run image called `pack/run`. Running the following will update the base of `my-a
 $ pack rebase my-app:my-tag
 ```
 
-Like [`build`](/docs/using-pack/building-app), `rebase` has a `--publish` flag that can be
-used to publish the updated app image to a registry.
+Like [`build`](/docs/using-pack/building-app), `rebase` has a `--publish` flag. It will make the metadata change directly on the registry, without it the change happens on the daemon (which is actually slower, because the daemon is pretty inefficient for these types of operations).
 
 ### Rebasing explained
 
