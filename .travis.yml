@@ -6,7 +6,7 @@ install:
   - sudo dpkg -i hugo*.deb
 
 script:
-  - make build
+  - GITHUB_TOKEN=$GITHUB_TOKEN make build
 
 deploy:
   provider: pages
