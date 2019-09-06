@@ -11,7 +11,7 @@ lastmodifieremail = "ameyer@pivotal.io"
 
 In this tutorial, we'll explain how to use `pack` and **buildpacks** to create a runnable app image from source code.
 
-That means you'll need to make sure you have `pack` installed: 
+That means you'll need to make sure you have `pack` installed:
 <br/><br/>
 <a href="/docs/install-pack" class="download-button button icon-button bg-pink">Install pack</a><br/>
 
@@ -46,7 +46,7 @@ Let's see auto-detection in action by running `pack build` against a simple Java
 Run the following commands in a shell to clone and build this [simple Java app](https://github.com/buildpack/sample-java-app).
 
 ```bash
-git clone git@github.com:buildpack/sample-java-app.git
+git clone https://github.com/buildpack/sample-java-app.git
 cd sample-java-app
 pack build myapp
 ```
