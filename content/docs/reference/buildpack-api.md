@@ -8,13 +8,14 @@ lastmodifieremail = "jpkutner@gmail.com"
 +++
 
 This specification defines the interface between a buildpack and the environment that runs it.
+This API will be used by buildpack authors.
 
 A buildpack contains two executables:
 
 * `bin/detect`
 * `bin/build`
 
-These executables can be shell scripts written in a languages like Bash, or they
+These executables can be shell scripts written in a language like Bash or they
 can be executables compiled from a language like Go.
 
 ## `bin/detect`
@@ -27,16 +28,16 @@ bin/detect PLATFORM_DIR BUILD_PLAN
 
 ### Summary
 
-This entrypoint is used to determine if this buildpack should be
+This entrypoint is used to determine if a buildpack should
 run against a given codebase. It will often check for the existence of a particular
-file or configuration that indicates what kind of application has been provided.
+file or some configuration indicating what kind of application has been provided.
 It accepts two positional arguments:
 
 * `PLATFORM_DIR` - a directory containing platform provided configuration, such as environment variables.
 * `BUILD_PLAN` - a string containing the [Build Plan](https://github.com/buildpack/spec/blob/master/buildpack.md#buildpack-plan-toml).
 
 In addition, the working directory is defined as the location of the codebase
-this buildpack will execute against.
+the buildpack will execute against.
 
 The executable must return an exit code of `0` if the codebase can be serviced by this buildpack. If the exit code is `0`, the script must print a human-readable name to `stdout`.
 
@@ -88,7 +89,7 @@ of the following purposes:
 * Build - the directory will be accessible by subsequent buildpacks
 
 A buildpack defines how a layer will by used by creating a `<layer>.toml` with
-a name matching the directory itself in the `LAYERS_DIR`. For example, a
+a name matching the directory it describes in the `LAYERS_DIR`. For example, a
 buildpack might create a `$LAYERS_DIR/python` directory and a `$LAYERS_DIR/python.toml`
 with the following contents:
 
