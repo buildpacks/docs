@@ -66,7 +66,7 @@ fi
 bin/build LAYERS_DIR PLATFORM_DIR BUILD_PLAN
 ```
 
-This entrypoint transforms a codebase into an state from which it is ready to run.
+This entrypoint transforms a codebase.
 It will often resolve dependencies, install binary packages, and compile code.
 It accepts three positional arguments:
 
