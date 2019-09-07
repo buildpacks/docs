@@ -10,12 +10,13 @@ lastmodifieremail = "jpkutner@gmail.com"
 This specification defines the interface between a buildpack and the environment that runs it.
 This API will be used by buildpack authors.
 
-A buildpack contains two executables:
+A buildpack must contain three files:
 
+* `buildpack.toml`
 * `bin/detect`
 * `bin/build`
 
-These executables can be shell scripts written in a language like Bash or they
+The two files in `bin/` must be executable. They can be shell scripts written in a language like Bash or they
 can be executables compiled from a language like Go.
 
 ## `bin/detect`
@@ -120,6 +121,20 @@ pip install -r requirements.txt -t "$PIP_LAYER/modules" \
   --exists-action=w --disable-pip-version-check --no-cache-dir
 
 echo "launch = true" > $PIP_LAYER.toml
+```
+
+## `buildpack.toml`
+
+A buildpack must contain a `buildpack.toml` file in its root directory. This
+descriptor file must contain a `buildpack.id` that is a globally unique
+identifier.
+
+### Example
+
+```
+[buildpack]
+id = "example.com/python"
+version = "1.0"
 ```
 
 ## Further Reading
