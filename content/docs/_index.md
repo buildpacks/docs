@@ -21,7 +21,7 @@ Detailed explanations and examples of `pack`'s most important commands.
 
 A tutorial that walks you through the creation of a simple ruby buildpack.
 
-### [API Reference](/docs/reference)
+### [Reference](/docs/reference)
 
 A overview of the buildpack API specification.
 
