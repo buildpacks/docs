@@ -132,9 +132,14 @@ identifier.
 ### Example
 
 ```
+api = "0.2"
+
 [buildpack]
 id = "example.com/python"
 version = "1.0"
+
+[[stacks]]
+id = "io.buildpacks.stacks.bionic"
 ```
 
 ## Further Reading
