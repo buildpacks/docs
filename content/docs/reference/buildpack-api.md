@@ -51,7 +51,7 @@ checking for the presence of a `requirements.txt` file:
 #!/bin/sh
 
 if [ -f requirements.txt ]; then
-  echo "Python"
+  echo "Python Buildpack"
   exit 0
 else
   exit 1
