@@ -120,7 +120,7 @@ pip install -r requirements.txt -t "$PIP_LAYER/modules" \
   --install-option="--install-scripts=$PIP_LAYER/bin" \
   --exists-action=w --disable-pip-version-check --no-cache-dir
 
-echo "launch = true" > $PIP_LAYER.toml
+echo "launch = true" > "$PIP_LAYER.toml"
 ```
 
 ## `buildpack.toml`
