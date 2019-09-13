@@ -1,22 +1,22 @@
 +++
-title="Setup your local environment"
+title="Set up your local environment"
 weight=401
 creatordisplayname = "Scott Sisil"
 creatoremail = "ssisil@pivotal.io"
-lastmodifierdisplayname = "Danny Joyce"
-lastmodifieremail = "djoyce@pivotal.io"
+lastmodifierdisplayname = "Javier Romero"
+lastmodifieremail = "jromero@pivotal.io"
 +++
 
-First we will want to create a sample ruby app that you can use when developing the ruby cloud native buildpack
+First, we'll create a sample Ruby app that you can use when developing your buildpack:
 
-```
+```bash
 mkdir -p ~/workspace/ruby-sample-app
 cd ~/workspace/ruby-sample-app
 ```
 
-Create a file called `app.rb` with the following content:
+Create a file in the current directory called `app.rb` with the following contents:
 
-```
+```ruby
 require 'sinatra'
 
 set :bind, '0.0.0.0'
@@ -27,8 +27,8 @@ get '/' do
 end
 ```
 
-Create a `Gemfile` with the following content:
-```
+Then, create a file called `Gemfile` with the following contents:
+```ruby
 source "https://rubygems.org"
 
 git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
@@ -36,20 +36,20 @@ git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 gem "sinatra"
 ```
 
-Next we want to create the directory where you will create your buildpack
+Now, let's create the directory where your buildpack will live:
 
-```
+```bash
 mkdir -p ~/workspace/ruby-cnb
 cd ~/workspace/ruby-cnb
 ```
 
-Finally, make sure your local docker daemon is running by running the following command
+Finally, make sure your local Docker daemon is running by executing:
 
-```
+```bash
 docker version
 ```
 
-Similar output should appear
+If you see output similar to the following, you're good to go! Otherwise, start Docker and check again.
 
 ```
 Client: Docker Engine - Community
@@ -73,3 +73,5 @@ Server: Docker Engine - Community
 ```
 
 ---
+
+<a href="/docs/create-buildpack/building-blocks-cnb" class="button bg-pink">Next Step</a>
