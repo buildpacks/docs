@@ -15,7 +15,7 @@ That means you'll need to make sure you have `pack` installed:
 <br/><br/>
 <a href="/docs/install-pack" class="download-button button icon-button bg-pink">Install pack</a><br/>
 
-> **NOTE:** `pack` is only one implementation of the [Cloud Native Builpacks Platform Specification][cnb-platform-spec].
+> **NOTE:** `pack` is only one implementation of the [Cloud Native Buildpacks Platform Specification][cnb-platform-spec].
 
 [cnb-platform-spec]: https://github.com/buildpack/spec/blob/master/platform.md
 
