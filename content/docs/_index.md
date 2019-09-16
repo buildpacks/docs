@@ -19,7 +19,7 @@ Detailed explanations and examples of `pack`'s most important commands.
 
 ### [Creating a Cloud Native Buildpack](/docs/create-buildpack)
 
-A tutorial that walks you through the creation of a simple ruby buildpack.
+A tutorial that walks through the creation of a simple Ruby buildpack.
 
 ---
 
