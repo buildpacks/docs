@@ -1,15 +1,15 @@
 <footer>
   <div class="container footer">
-      <a href="https://www.cncf.io/" style="width: 50%;"><img src="/images/cncf-color.svg" class="footer-logo"></a>
-      <p>We are a <a href="https://www.cncf.io/">Cloud Native Sandbox</a> project.</p>
+    <a href="https://www.cncf.io/" style="width: 50%;"><img src="/images/cncf-color.svg" class="footer-logo"></a>
+    <p>We are a <a href="https://www.cncf.io/">Cloud Native Sandbox</a> project.</p>
   </div>
   <div class="bg-blue">
     <div class="container sub-footer">
       <p>Reach out <a href="https://slack.buildpacks.io">on Slack</a> to learn more.</p>
       <ul>
-        <li><a href="https://twitter.com/buildpacks_io">Twitter</a> <span>&bull;</span></li>
-        <!-- <li><a href="#">Facebook</a> <span>&bull;</span></li> -->
-        <li><a href="https://github.com/buildpack">GitHub</a></li>
+        <li><a href="{{ $.Site.Params.slack_invite_url }}" target="_blank">Slack</a> <span>&bull;</span></li>
+        <li><a href="https://twitter.com/{{ $.Site.Params.twitter_handle }}" target="_blank">Twitter</a> <span>&bull;</span></li>
+        <li><a href="{{ $.Site.Params.github_base_url }}" target="_blank">GitHub</a></li>
       </ul>
     </div>
   </div>

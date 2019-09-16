@@ -1,12 +1,21 @@
 <div class='docs'>
-  <div class='container-fluid'>
+  <div class='container'>
     <div class='row'>
       <div class='col-sm-3 docs-sidebar'>
         {{ partial "sidebar.html" . }}
       </div>
       <div class='col-sm-9 docs-content'>
-        <h1>{{ .Title | markdownify }}</h1>
+
+        <div class="text-right">
+          {{ partial "support.html" . }}
+        </div>
+
+        <div class="heading">
+          <h1 class="title">{{ .Title | markdownify }}</h1>
+        </div>
+
         {{ .Content }}
+        
         {{ partial "footline.html" . }}
       </div>
     </div>

@@ -1,0 +1,6 @@
+<div class="support-links text-right">
+  {{ if (or .IsNode .IsPage) }}
+  <a href="{{ $.Site.Params.github_base_url }}/docs/edit/master/content/{{ .File.Path }}"
+     class="btn-light btn-small icon-button github-button bg-gray inline-flex">Edit on Github</a>
+  {{ end }}
+</div>
