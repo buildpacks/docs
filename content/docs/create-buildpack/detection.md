@@ -4,22 +4,23 @@ title="Detecting your application"
 weight=403
 creatordisplayname = "Scott Sisil"
 creatoremail = "ssisil@pivotal.io"
-lastmodifierdisplayname = "Danny Joyce"
-lastmodifieremail = "djoyce@pivotal.io"
+lastmodifierdisplayname = "Javier Romero"
+lastmodifieremail = "jromero@pivotal.io"
 +++
 
-Next you will want to actually detect that the app your are building is a ruby app. In order to do this you will need to check for a `Gemfile`.
+Next, you will want to actually detect that the app your are building is a Ruby app. In order to do this, you will need to check for a `Gemfile`.
 
-Replace `exit 1` in the `bin/detect` file with the following check
+Replace `exit 1` in the `detect` script with the following check:
 
-```
+```bash
 if [[ ! -f Gemfile ]]; then
    exit 100
 fi
 ```
-And now your `bin/detect` script will look like this
 
-```
+Your `detect` script should look like this:
+
+```bash
 #!/usr/bin/env bash
 set -eo pipefail
 
@@ -28,32 +29,34 @@ if [[ ! -f Gemfile ]]; then
 fi
 ```
 
-Next, rebuild your app with your updated buildpack
+Next, rebuild your app with the updated buildpack:
 
-```
-pack build test-ruby-app --buildpack workspace/ruby-cnb  --path workspace/ruby-sample-app/
+```bash
+pack build test-ruby-app --path ~/workspace/ruby-sample-app --buildpack ~/workspace/ruby-cnb
 ```
 
-You will see the following output
+You should see the following output:
 
 ```
 ===> DETECTING
-[detector] Trying group of 1...
 [detector] ======== Results ========
-[detector] Ruby Buildpack: pass
+[detector] pass: com.examples.buildpacks.ruby@0.0.1
+[detector] Resolving plan... (try #1)
+[detector] Success! (1)
 ===> RESTORING
-[restorer] cache image 'pack-cache-5f615b7ee276' not found, nothing to restore
+[restorer] Cache '/cache': metadata not found, nothing to restore
 ===> ANALYZING
-[analyzer] WARNING: image 'test-ruby-app' not found or requires authentication to access
-[analyzer] WARNING: image 'test-ruby-app' has incompatible 'io.buildpacks.lifecycle.metadata' label
+[analyzer] Image 'index.docker.io/library/test-ruby-app:latest' not found
 ===> BUILDING
 [builder] ---> Ruby Buildpack
-[builder] Error: failed to : exit status 1
+[builder] Error: failed to build: exit status 1
 ERROR: failed with status code: 7
 ```
 
-Notice that `detect` now passes because there is a valid `Gemfile` in the ruby app at `~/ruby-sample-app`, but now `build` fails because it is coded to do so.
+Notice that `detect` now passes because there is a valid `Gemfile` in the Ruby app at `~/workspace/ruby-sample-app`, but now `build` fails because it is currently written to error out.
 
-You will also notice `ANALYZING` now appears in the build output.  This steps is part of the buildpack lifecycle that looks to see if any previous image builds have layers that the buildpack can re-use. We will get into this topic in more detail later.
+You will also notice that `ANALYZING` now appears in the build output. This steps is part of the buildpack lifecycle that looks to see if any previous image builds have layers that the buildpack can re-use. We will get into this topic in more detail later.
 
 ---
+
+<a href="/docs/create-buildpack/build-app" class="button bg-pink">Next Step</a>

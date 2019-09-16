@@ -5,10 +5,11 @@ creatordisplayname="Andrew Meyer"
 creatoremail="ameyer@pivotal.io"
 lastmodifierdisplayname="Andrew Meyer"
 lastmodifieremail="ameyer@pivotal.io"
+
 +++
 
 ## Prerequisites
-<a href="https://store.docker.com/search?type=edition&offering=community" class="download-button button icon-button bg-blue">Install Docker Community Edition</a>
+<a href="https://store.docker.com/search?type=edition&offering=community" target="_blank" class="download-button button icon-button bg-blue">Install Docker</a>
 
 
 ## Supported operating systems

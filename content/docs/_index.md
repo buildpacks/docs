@@ -19,13 +19,13 @@ Detailed explanations and examples of `pack`'s most important commands.
 
 ### [Creating a Cloud Native Buildpack](/docs/create-buildpack)
 
-A tutorial that walks you through the creation of a simple ruby buildpack.
+A tutorial that walks through the creation of a simple Ruby buildpack.
 
 ---
 
 # Community and Support
 
-Cloud Native Buildpacks is an active sandbox project in the CNCF.  We welcome contribution from the community.  Here you will find helpful information for interacting with the core team and contributing to the project.
+Cloud Native Buildpacks is an active sandbox project in the CNCF. We welcome contribution from the community. Here you will find helpful information for interacting with the core team and contributing to the project.
 
 ## Contacting the core team
 
@@ -51,12 +51,12 @@ This is a community driven project and our roadmap is publicly available on our 
 
 [Intro To Cloud Native Buildpacks](https://www.youtube.com/watch?v=t3C2nW0WTRo&feature=youtu.be)
 
-  - Terence and and Joe discuss the friction involved in creating docker files, how build packs can help, and give some demos
+  - Terence and and Joe discuss the friction involved in creating docker files, how buildpacks can help, and give some demos
 
-[Cloud Native Build Packs, Spring One 2018](https://www.youtube.com/watch?v=wU5n7Sv8JL8)
+[Cloud Native Buildpacks, Spring One 2018](https://www.youtube.com/watch?v=wU5n7Sv8JL8)
 
   - Stephen and Terence announce CNCF effort to bring build packs to any platform
 
-[The Future of Opinionated Build Packs](https://www.youtube.com/watch?v=spW9ZlJpobM)
+[The Future of Opinionated Buildpacks](https://www.youtube.com/watch?v=spW9ZlJpobM)
 
   - Emily and Stephen discuss the advantages of OCI images and give a demo using a basic node app
