@@ -9,6 +9,8 @@ pygmentsCodefences = true
 
 [params]
 twitter_handle = "buildpacks_io"
+github_base_url = "https://github.com/buildpack"
+slack_invite_url = "https://slack.buildpacks.io/"
 
 [menu]
   [[menu.main]]
