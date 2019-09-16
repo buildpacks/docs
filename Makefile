@@ -3,9 +3,9 @@ UNAME_S=$(shell uname -s)
 # Retrieve latest pack version
 GITHUB_TOKEN?=
 ifdef GITHUB_TOKEN
-_PACK_VERSION?=$(shell curl -s -H "Authorization: token $(GITHUB_TOKEN)" https://api.github.com/repos/buildpack/pack/releases | jq -r '.[0].tag_name' | sed -e 's/^v//')
+_PACK_VERSION?=$(shell curl -s -H "Authorization: token $(GITHUB_TOKEN)" https://api.github.com/repos/buildpack/pack/releases/latest | jq -r '.tag_name' | sed -e 's/^v//')
 else
-_PACK_VERSION?=$(shell curl -s https://api.github.com/repos/buildpack/pack/releases | jq -r '.[0].tag_name' | sed -e 's/^v//')
+_PACK_VERSION?=$(shell curl -s https://api.github.com/repos/buildpack/pack/releases/latest | jq -r '.tag_name' | sed -e 's/^v//')
 endif
 PACK_VERSION:=$(_PACK_VERSION)
 
