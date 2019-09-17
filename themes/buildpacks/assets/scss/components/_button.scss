@@ -84,6 +84,15 @@ a.button:hover {
   min-width: $btn-sm-font-size * $icon-proportion;
 }
 
+.icon-button.blank::before {
+  width: 0px;
+  min-width: 0px;
+}
+
+.btn-small.icon-button.blank::before {
+  width: 0px;
+  min-width: 0px;
+}
 
 .button.download-button::before {
   background-image: url('/images/download-icon.svg');
