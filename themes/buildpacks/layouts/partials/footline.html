@@ -1,18 +1,4 @@
-{{ if or (.Params.LastModifierDisplayName) (not .Page.Lastmod.IsZero) (.Site.Params.editURL) }}
-  <hr>
-  <div class='footline'>
-    {{with .Params.LastModifierDisplayName}}
-      <div class='footline-author'>
-        Last modified by <a href="mailto:{{ $.Params.LastModifierEmail }}">{{ . }}</a>
-      </div>
-    {{end}}
-    {{ if not .Page.Lastmod.IsZero }}
-      <div class='footline-date'>
-        Last updated {{ .Page.Lastmod.Format "01/01/2018" }}
-      </div>
-    {{end}}
-    <div class="text-right">
-      {{ partial "support.html" . }}
-    </div>
-  </div>
-{{end}}
+<hr>
+<div class='footline d-block'>
+  {{ partial "support.html" . }}
+</div>

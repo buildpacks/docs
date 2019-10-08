@@ -1,23 +1,54 @@
-<div class='docs'>
-  <div class='container'>
-    <div class='row'>
-      <div class='col-sm-3 docs-sidebar'>
-        {{ partial "sidebar.html" . }}
+<div class='docs container'>
+  <div class='row'>
+    <div class='col-md-3 docs-sidebar'>
+      {{ partial "sidebar.html" . }}
+    </div>
+    <div class='col-md-9 docs-content'>
+      {{ partial "support.html" . }}
+      
+      <div class="heading">
+        <h1 class="title">{{ .Title | markdownify }}</h1>
       </div>
-      <div class='col-sm-9 docs-content'>
 
-        <div class="text-right">
-          {{ partial "support.html" . }}
-        </div>
+      {{ .Content }}
+      
+      {{ if .Params.include_summaries }}
+        {{- template "subsection-summary" dict "currentSection" . "depth" 0 "titleOnlyAfterDepth" 1 -}}
+      {{ end }}
 
-        <div class="heading">
-          <h1 class="title">{{ .Title | markdownify }}</h1>
-        </div>
-
-        {{ .Content }}
-        
-        {{ partial "footline.html" . }}
-      </div>
+      {{ partial "footline.html" . }}
     </div>
   </div>
 </div>
+
+
+<!-- templates -->
+{{- define "subsection-summary" }}
+  {{- $depth := .depth }}
+  {{- $titleOnlyAfterDepth := .titleOnlyAfterDepth }}
+  {{- $headerLvl := (add (int $depth) 2) -}}
+  {{- with .currentSection}}
+    {{- $pages := (.Pages | union .Sections) }}
+    {{ range $pages }}
+      {{ if (ge $depth $titleOnlyAfterDepth) }}
+        <ul>
+          <li class="list-item-icon"><h{{ $headerLvl }}><a href="{{.Permalink}}" class="">{{ .Title }}</a></h{{ $headerLvl }}></li>
+          {{ if .Params.include_summaries }}
+            {{- template "subsection-summary" dict "currentSection" . "depth" (add (int $depth) 1)  "titleOnlyAfterDepth" $titleOnlyAfterDepth -}}
+          {{ end }}
+        </ul>
+      {{ else }}
+        <h{{ $headerLvl }}><a href="{{.Permalink}}" class="">{{ .Title }}</a></h{{ $headerLvl }}>
+        <p class="m-1">{{ .Summary | replaceRE "<h[0-9].*>.*</h[0-9]>" "" | plainify | safeHTML }}</p>
+
+        {{ if .Params.include_summaries }}
+          {{- template "subsection-summary" dict "currentSection" . "depth" (add (int $depth) 1)  "titleOnlyAfterDepth" $titleOnlyAfterDepth -}}
+        {{ else }}
+          <div class="text-md-right">
+            <a class="small text-pink mr-md-3 text-decoration-none" href="{{.Permalink}}">Learn more →</a>
+          </div>
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  {{- end}}
+{{- end}}

@@ -6,7 +6,6 @@
 @import 'code';
 @import 'syntax';
 
-@import 'components/grid';
 @import 'components/header';
 @import 'components/hero';
 @import 'components/well';
@@ -19,5 +18,6 @@
 @import 'components/sidebar';
 @import 'components/docs';
 @import 'components/footline';
+@import "components/quote";
 
 @import 'helpers';

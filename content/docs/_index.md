@@ -1,10 +1,6 @@
 +++
-title="Getting Started with Buildpacks"
+title="Getting Started"
 weight=1
-creatordisplayname = "Andrew Meyer"
-creatoremail = "ameyer@pivotal.io"
-lastmodifierdisplayname = "Andrew Meyer"
-lastmodifieremail = "ameyer@pivotal.io"
 +++
 
 Follow the tutorials below to learn how to use `pack` and Cloud Native Buildpacks.
@@ -13,11 +9,11 @@ Follow the tutorials below to learn how to use `pack` and Cloud Native Buildpack
 
 An easy-to-follow introduction to `pack` and Cloud Native Buildpacks, this tutorial will get you up and running quickly.
 
-### [Using `pack`](/docs/using-pack)
+### [Concepts](/docs/concepts)
 
-Detailed explanations and examples of `pack`'s most important commands.
+Learn the concepts of Cloud Native Buildpacks.
 
-### [Creating a Cloud Native Buildpack](/docs/create-buildpack)
+### [Creating a Cloud Native Buildpack](/docs/buildpack-author-guide/create-buildpack)
 
 A tutorial that walks through the creation of a simple Ruby buildpack.
 
