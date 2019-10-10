@@ -17,7 +17,7 @@ A stack defines two OCI images: a *build* image and a *run* image. The build ima
 is used to run the buildpack lifecycle, and the run image is the base image the
 final exported image will be built upon.
 
-For more information see [Working with stacks](/docs/using-pack/stacks).
+For more information see [Working with stacks](/docs/concepts/components/stack).
 
 ## Buildpacks
 

@@ -1,7 +1,7 @@
 .sidebar {
   font-size: 1rem;
-  border-bottom: 1px solid rgba($gray-light, 0.1);
-  
+  padding: 10px 0 0 0;
+
   ul {
     list-style: none;
     padding: 0;
@@ -12,74 +12,53 @@
     text-decoration: none;
     color: $gray-light;
     display: inline-block;
-    padding-top: 5px;
-    padding-bottom: 5px;
     transition: opacity 0.2s;
   }
-  
+
   .depth-0 {
     > a {
       display: block;
-      padding: 20px;
+      padding: 0 20px 10px 20px;
       font-weight: 600;
-      margin-left: 20px;
       position: relative;
+
       &:before {
         position: absolute;
         content: "•";
-        left: 0;
-        opacity: 0.25;
+        left: 6px;
+        opacity: 0.30;
       }
     }
-    &.active > a {
-      background: rgba($white, 0.5);
-    }
+
+    padding: 10px 0;
+    border-bottom: 1px solid rgba($gray-light, 0.10);
+  }
+
+  li.parent {
+    background: rgba($white, 0.5);
   }
   
-  .depth-1 {
-    position: relative;
-    &:before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 20px;
-      width: 1px;
-      top: 20px;
-      bottom: 20px;
-      background-color: rgba($gray-light, 0.1);
+  li[class*="depth-"]:not(.depth-0) {
+    margin-left: 15px;
+    
+    a {
+      padding: .25rem 1rem;
     }
-    > a {
-      font-weight: 600;
-    }
-    padding: 10px 0;
-    padding-left: 40px;
-    padding-right: 20px;
-    border-top: 1px solid rgba($gray-light, 0.05);
 
-    // Has active child nodes
     &.parent {
-      background: $white;
+      background: 0 .75rem url("/images/list-item.svg") no-repeat;
+
       > a {
-        font-weight: 600;
-        color: $gray-dark;
+        color: $blue-dark;
       }
-      
-      // Has child nodes with active children
-      .parent > a {
-        color: $gray-dark;
-      }
-      
-      // Active state
-      .active > a {
+    }
+
+    &.active {
+      background: 0 .75rem url("/images/list-item-active.svg") no-repeat;
+
+      > a {
         color: $pink;
       }
-    }
-  }
-
-  // Anything below the first two depth levels
-  li[class*="depth-"]:not(.depth-0):not(.depth-1) {
-    > ul {
-      padding-left: 20px;
     }
   }
 }

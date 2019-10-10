@@ -38,7 +38,7 @@ $icon-proportion: 1.30;
   color: white;
 }
 
-a.button:hover {
+.button:hover {
   color: white;
   text-decoration: none;
   opacity: .9;
@@ -47,6 +47,7 @@ a.button:hover {
 .btn-light {
   @extend %button-base;
   color: #000000;
+  border: 1px solid #e0e0e0;
 }
 
 .btn-light:hover {

@@ -136,5 +136,22 @@
         padding-right: 0;
       }
     }
+    
+    ul {
+      padding: 0;
+      margin: 12px;
+
+      li {
+        list-style: disc;
+        margin-left: 16px;
+      }
+      
+      li.list-item-icon {
+        list-style: none;
+        padding-left: 16px;
+        background: 0 8px url("/images/list-item.svg") no-repeat;
+        background-size: 8px;
+      }
+    }
   }
 }
