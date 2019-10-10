@@ -129,6 +129,8 @@ A buildpack must contain a `buildpack.toml` file in its root directory. This
 descriptor file must contain a `buildpack.id` that is a globally unique
 identifier.
 
+The `buildpack.toml` has an `api` value that indicates the implemented Buildpack API. The format should be `<major>.<minor>` or `<major>`, where `<major>` is equivalent to `<major>.0`. With a pre-stable Buildpack API version, in that `<major>` equals `0`, minors must be equal. If `<major>` is greater than `0`, `<minor>` must be less than or equal to Buildpack API `<minor>`. Major versions must always be equal. The current Buildpack API version is `0.2`.
+
 ### Example
 
 ```
