@@ -1,22 +1,24 @@
-<div class='docs container'>
-  <div class='row'>
-    <div class='col-md-3 docs-sidebar'>
-      {{ partial "sidebar.html" . }}
-    </div>
-    <div class='col-md-9 docs-content'>
-      {{ partial "support.html" . }}
-      
-      <div class="heading">
-        <h1 class="title">{{ .Title | markdownify }}</h1>
+<div class='docs'>
+  <div class="container">
+    <div class='row'>
+      <div class='col-md-3 docs-sidebar'>
+        {{ partial "sidebar.html" . }}
       </div>
+      <div class='col-md-9 docs-content'>
+        {{ partial "support.html" . }}
 
-      {{ .Content }}
-      
-      {{ if .Params.include_summaries }}
-        {{- template "subsection-summary" dict "currentSection" . "depth" 0 "titleOnlyAfterDepth" 1 -}}
-      {{ end }}
+        <div class="heading">
+          <h1 class="title">{{ .Title | markdownify }}</h1>
+        </div>
 
-      {{ partial "footline.html" . }}
+        {{ .Content }}
+
+        {{ if .Params.include_summaries }}
+          {{- template "subsection-summary" dict "currentSection" . "depth" 0 "titleOnlyAfterDepth" 1 -}}
+        {{ end }}
+
+        {{ partial "footline.html" . }}
+      </div>
     </div>
   </div>
 </div>
