@@ -87,7 +87,7 @@ didn't even use the app source code. What they did do was show the environment i
 the app image with `CNB_PROCESS_TYPE=sys-info` we can see the runtime information as well.
 
 ```bash
-docker run --env CNB_PROCESS_TYPE=sys-info -it my-app
+docker run --rm --env CNB_PROCESS_TYPE=sys-info -it my-app
 ```
 
 We're sure you'll be able to create more useful builders.
