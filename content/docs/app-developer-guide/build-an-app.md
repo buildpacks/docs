@@ -48,7 +48,7 @@ pack build sample-app --path samples/apps/java-maven/ --builder cnbs/sample-buil
 ### 3. Run it
 
 ```bash
-docker run -p 8080:8080 sample-app
+docker run --rm -p 8080:8080 sample-app
 ```
 
 **Congratulations!** 

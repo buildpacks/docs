@@ -61,7 +61,7 @@ pack build test-ruby-app --path ~/workspace/ruby-sample-app --buildpack ~/worksp
 You should then be able to run your new Ruby app:
  
 ```bash
-docker run -p 8080:8080 test-ruby-app
+docker run --rm -p 8080:8080 test-ruby-app
 ```
 
 and see the server log output:
