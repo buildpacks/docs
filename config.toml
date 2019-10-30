@@ -1,4 +1,4 @@
-baseURL = "/"
+baseURL = "https://buildpacks.io/"
 languageCode = "en-us"
 
 title = "Cloud Native Buildpack Documentation"
