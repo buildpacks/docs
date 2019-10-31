@@ -34,9 +34,6 @@ name = "Ruby Buildpack"
 id = "heroku-18"
 
 [[stacks]]
-id = "io.buildpacks.stacks.bionic"
-
-[[stacks]]
 id = "org.cloudfoundry.stacks.cflinuxfs3"
 ```
 
@@ -89,9 +86,7 @@ Set your default builder by running one of the following:
 ```bash
 pack set-default-builder cloudfoundry/cnb:cflinuxfs3
 ```
-```bash
-pack set-default-builder cloudfoundry/cnb:bionic
-```
+
 ```bash
 pack set-default-builder heroku/buildpacks:18
 ```
