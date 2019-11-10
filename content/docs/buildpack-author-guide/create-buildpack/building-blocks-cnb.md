@@ -37,7 +37,7 @@ id = "heroku-18"
 id = "org.cloudfoundry.stacks.cflinuxfs3"
 ```
 
-You will notice two specific fields in the file: `buildpack.id` and `stack.id`. The buildpack ID is the way you will reference the buildpack when you create buildpack groups, builders, etc. The stack ID is the root file system in which the buildpack will be run. This example can be run on one of three different stacks, all based upon Ubuntu Bionic.
+You will notice two specific fields in the file: `buildpack.id` and `stack.id`. The buildpack ID is the way you will reference the buildpack when you create buildpack groups, builders, etc. The stack ID is the root file system in which the buildpack will be run. This example can be run on one of two different stacks, both based upon Ubuntu Bionic.
 
 ### `detect` and `build`
 
