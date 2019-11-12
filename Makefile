@@ -20,10 +20,6 @@ pack-version:
 
 serve: export PACK_VERSION:=$(PACK_VERSION)
 serve: pack-version
-ifeq ($(UNAME_S),Darwin)
-	@echo "> Opening browser in 3 seconds..."
-	nohup bash -c 'sleep 3; open http://localhost:1313' > /dev/null 2>&1 &
-endif
 	@echo "> Serving..."
 	hugo server --disableFastRender
 
