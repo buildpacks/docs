@@ -18,6 +18,27 @@
       gtag('config', 'UA-124323167-1');
     </script>  */}}
 
+    <script>
+      function addAnchor(element) {
+        if (element.id === "" || element.getElementsByTagName("a").length > 0) {
+          return;
+        }
+
+        element.innerHTML =
+          `<a href="#${element.id}" class="h-anchor">
+            <i class="fas fa-link icon" ariaLabel="Anchor"></i> ${element.innerHTML}
+          </a>`;
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        var headers = document.querySelectorAll('h1, h2, h3, h4, h5');
+
+        if (headers) {
+          headers.forEach(addAnchor);
+        }
+      });
+    </script>
+
     <title>{{ .Title }} · {{ .Site.Title }}</title>
   </head>
   <body>
