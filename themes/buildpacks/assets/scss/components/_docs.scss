@@ -71,6 +71,20 @@
       a {
         text-decoration: none;
         border-bottom: 1px solid rgba($blue-dark, 0.25);
+        &.h-anchor {
+          margin-left: -0.9em;
+          border-bottom: 0px;
+          i {
+            font-size: 0.7em;
+            visibility: hidden;
+            border-bottom: 0px;
+          }
+          &:hover {
+            i {
+              visibility: visible;
+            }
+          }
+        }
       }
     }
 
