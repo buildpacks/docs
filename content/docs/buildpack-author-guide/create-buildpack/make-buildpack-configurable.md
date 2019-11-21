@@ -90,7 +90,7 @@ if [[ -f Gemfile.lock && $local_bundler_checksum == $remote_bundler_checksum ]] 
 else
     # Determine if there has been a gem dependency change and install new gems to the bundler layer; re-using existing and un-changed gems
     echo "---> Installing gems"
-    mkdir "$bundlerlayer"
+    mkdir "$bundlerlayer" || true
     echo -e "cache = true\nlaunch = true\nmetadata = \"$local_bundler_checksum\"" > "$bundlerlayer.toml"
     bundle install --path "$bundlerlayer" --binstubs "$bundlerlayer/bin"
 fi
