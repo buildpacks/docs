@@ -61,7 +61,7 @@ gem install bundler --no-ri --no-rdoc
 # 6. INSTALL GEMS
 echo "---> Installing gems"
 bundlerlayer="$layersdir/bundler"
-mkdir "$bundlerlayer"
+mkdir -p "$bundlerlayer"
 echo -e 'cache = true\nlaunch = true' > "$bundlerlayer.toml"
 bundle install --path "$bundlerlayer" --binstubs "$bundlerlayer/bin"
 
