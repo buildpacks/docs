@@ -35,7 +35,7 @@ brew install pack
 ### Linux
 
 ```bash
-wget https://github.com/buildpack/pack/releases/download/v{{< latest >}}/pack-v{{< latest >}}-linux.tgz
+wget https://github.com/buildpacks/pack/releases/download/v{{< latest >}}/pack-v{{< latest >}}-linux.tgz
 tar xvf pack-v{{< latest >}}-linux.tgz
 rm pack-v{{< latest >}}-linux.tgz
 ./pack --help
@@ -49,7 +49,7 @@ From there, you can copy the executable to a directory like `/usr/local/bin` or 
 
 ### Windows
 
-You can install the Windows executable for `pack` by downloading the Windows [ZIP file](https://github.com/buildpack/pack/releases/download/v{{< latest >}}/pack-v{{< latest >}}-windows.zip).
+You can install the Windows executable for `pack` by downloading the Windows [ZIP file](https://github.com/buildpacks/pack/releases/download/v{{< latest >}}/pack-v{{< latest >}}-windows.zip).
 
 <hr/>
 
@@ -57,6 +57,6 @@ You can install the Windows executable for `pack` by downloading the Windows [ZI
 
 To configure your bash shell to load completions for each session, add the following to your `.bashrc` or `.bash_profile`:
 
-```bash 
+```bash
 . $(pack completion)
 ```

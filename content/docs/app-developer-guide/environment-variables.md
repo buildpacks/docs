@@ -21,7 +21,7 @@ For this example we will use our [samples][samples] repo for simplicity.
 
 ```bash
 # clone the repo
-git clone https://github.com/buildpack/samples
+git clone https://github.com/buildpacks/samples
 
 # set an environment variable
 export FOO=BAR
@@ -56,7 +56,7 @@ For this example we will use our [samples][samples] repo for simplicity.
 
 ```bash
 # clone the repo
-git clone https://github.com/buildpack/samples
+git clone https://github.com/buildpacks/samples
 
 # set an environment variable
 export FOO=BAR
@@ -83,4 +83,4 @@ The following environment variables were set and available to buildpacks at buil
 
 > **NOTE:** Variables defined using `--env` take precedence over variables defined in `--env-file`.
 
-[samples]: https://github.com/buildpack/samples
+[samples]: https://github.com/buildpacks/samples

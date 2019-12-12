@@ -13,7 +13,7 @@ That means you'll need to make sure you have `pack` installed:
 
 > **NOTE:** `pack` is only one implementation of the [Cloud Native Buildpacks Platform Specification][cnb-platform-spec].
 
-[cnb-platform-spec]: https://github.com/buildpack/spec/blob/master/platform.md
+[cnb-platform-spec]: https://github.com/buildpacks/spec/blob/master/platform.md
 
 ## Buildpack base camp
 
@@ -47,7 +47,7 @@ Run the following commands in a shell to clone and build this [simple Java app][
 
 ```bash
 # clone the repo
-git clone https://github.com/buildpack/samples
+git clone https://github.com/buildpacks/samples
 
 # go to the app directory
 cd samples/apps/java-maven
@@ -56,7 +56,7 @@ cd samples/apps/java-maven
 pack build myapp --builder cnbs/sample-builder:bionic
 ```
 
-> **NOTE:** This is your first time running `pack build` for `myapp`, so you'll notice that 
+> **NOTE:** This is your first time running `pack build` for `myapp`, so you'll notice that
 > **the build might take longer than usual.** Subsequent builds will take advantage of various forms of caching.
 > If you're curious, try running `pack build myapp` a second time to see the difference in build time.
 
@@ -86,4 +86,4 @@ deploying your new image to your favorite cloud!
 
 [builder]: /docs/concepts/components/builder/
 [buildpack]: /docs/concepts/components/buildpack/
-[samples-java-maven]: https://github.com/buildpack/samples/tree/master/apps/java-maven
+[samples-java-maven]: https://github.com/buildpacks/samples/tree/master/apps/java-maven
