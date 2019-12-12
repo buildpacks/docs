@@ -15,7 +15,7 @@ Before we start, let's pull down a few buildpacks from our [samples][samples] re
 
 ```bash
 # clone the repo
-git clone https://github.com/buildpack/samples
+git clone https://github.com/buildpacks/samples
 ```
 
 ### 1. Builder configuration
@@ -39,12 +39,12 @@ uri = "samples/buildpacks/hello-world"
     [[order.group]]
     id = "io.buildpacks.samples.hello-world"
     version = "0.0.1"
-    
+
     # This buildpack will display build-time information (as a dependant)
     [[order.group]]
     id = "io.buildpacks.samples.hello-moon"
     version = "0.0.1"
-    
+
     # This buildpack will create a process type "sys-info" to display runtime information
     [[order.group]]
     id = "io.buildpacks.samples.hello-processes"
@@ -64,7 +64,7 @@ build-image = "cnbs/sample-stack-build:bionic"
 Creating a builder is now as simple as running the following command:
 
 ```bash
-# create builder 
+# create builder
 pack create-builder my-builder:bionic --builder-config ./builder.toml
 ```
 
@@ -82,8 +82,8 @@ pack build my-app --builder my-builder:bionic --path samples/apps/java-maven/
 
 ### 4. Running the app
 
-Remember that we mentioned that the buildpacks we used as part of this builder don't really do much. To be honest, they 
-didn't even use the app source code. What they did do was show the environment in which they run on and now by running 
+Remember that we mentioned that the buildpacks we used as part of this builder don't really do much. To be honest, they
+didn't even use the app source code. What they did do was show the environment in which they run on and now by running
 the app image with `CNB_PROCESS_TYPE=sys-info` we can see the runtime information as well.
 
 ```bash
@@ -99,4 +99,4 @@ For additional sample builders and buildpacks, check out our [samples][samples] 
 [build]: /docs/concepts/operations/build/
 [builder]: /docs/concepts/components/builder/
 [builder-config]: /docs/reference/builder-config/
-[samples]: https://github.com/buildpack/samples
+[samples]: https://github.com/buildpacks/samples

@@ -23,7 +23,7 @@ For this example we will use a few buildpacks from our [samples][samples] repo.
 
 ```bash
 # clone the repo
-git clone https://github.com/buildpack/samples
+git clone https://github.com/buildpacks/samples
 
 # build the app
 pack build sample-java-maven-app \
@@ -38,4 +38,4 @@ pack build sample-java-maven-app \
 > - `--buildpack` multiple times, or
 > - a comma-separated list to `--buildpack` (without spaces)
 
-[samples]: https://github.com/buildpack/samples
+[samples]: https://github.com/buildpacks/samples

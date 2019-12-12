@@ -8,7 +8,7 @@ aliases=[
 
 ## What is a stack?
 
-A stack provides the buildpack lifecycle with build-time and run-time environments in the form of images. 
+A stack provides the buildpack lifecycle with build-time and run-time environments in the form of images.
 
 <!--more-->
 
@@ -88,8 +88,8 @@ To create a custom stack, simply create customized build and run images containi
 | `CNB_GROUP_ID` | GID of the user specified in the image |
 <p class="spacer"></p>
 
-> **NOTE:** The **stack identifier** implies compatibility with other stacks of that same identifier. For instance, a custom stack may use 
-> `io.buildpacks.stacks.bionic` as its identifier so long as it will work with buildpacks that declare compatibility with the 
+> **NOTE:** The **stack identifier** implies compatibility with other stacks of that same identifier. For instance, a custom stack may use
+> `io.buildpacks.stacks.bionic` as its identifier so long as it will work with buildpacks that declare compatibility with the
 > `io.buildpacks.stacks.bionic` stack.
 
 ### Resources
@@ -98,5 +98,5 @@ For sample stacks, see our [samples][samples] repo.
 
 For technical details on stacks, see the [platform specification for stacks][stack-spec].
 
-[samples]: https://github.com/buildpack/samples
-[stack-spec]: https://github.com/buildpack/spec/blob/master/platform.md#stacks
+[samples]: https://github.com/buildpacks/samples
+[stack-spec]: https://github.com/buildpacks/spec/blob/master/platform.md#stacks
