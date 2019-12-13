@@ -33,7 +33,7 @@ The best place to contact the Cloud Native Buildpack team is on our [Slack chann
 
 ## Project Roadmap
 
-This is a community driven project and our roadmap is publicly available on our [Github page](https://github.com/orgs/buildpack/projects/1). We encourage you to contribute with feature requests.
+This is a community driven project and our roadmap is publicly available on our [Github page](https://github.com/orgs/buildpacks/projects/1). We encourage you to contribute with feature requests.
 
 ---
 
