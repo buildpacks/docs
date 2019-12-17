@@ -1,10 +1,6 @@
 +++
 title="Buildpack API"
 weight=2
-creatordisplayname = "Joe Kutner"
-creatoremail = "jpkutner@gmail.com"
-lastmodifierdisplayname = "Joe Kutner"
-lastmodifieremail = "jpkutner@gmail.com"
 +++
 
 This specification defines the interface between a buildpack and the environment that runs it.
@@ -125,11 +121,8 @@ echo "launch = true" > "$PIP_LAYER.toml"
 
 ## `buildpack.toml`
 
-A buildpack must contain a `buildpack.toml` file in its root directory. This
-descriptor file must contain a `buildpack.id` that is a globally unique
-identifier.
+A buildpack must contain a `buildpack.toml` file in its root directory.
 
-The `buildpack.toml` has an `api` value that indicates the implemented Buildpack API. The format should be `<major>.<minor>` or `<major>`, where `<major>` is equivalent to `<major>.0`. With a pre-stable Buildpack API version, in that `<major>` equals `0`, minors must be equal. If `<major>` is greater than `0`, `<minor>` must be less than or equal to Buildpack API `<minor>`. Major versions must always be equal. The current Buildpack API version is `0.2`.
 
 ### Example
 
@@ -144,6 +137,95 @@ version = "1.0"
 id = "io.buildpacks.stacks.bionic"
 ```
 
+### Schema
+
+The schema is as follows:
+   
+- **`api`** _(string, required, current: `0.2`)_\
+    The Buildpack API version the buildpack adheres to. Used to ensure [compatibility](#api-compatibility) against
+    the [lifecycle][lifecycle].
+
+    > Not to be confused with Cloud Foundry or Heroku buildpack versions. This version pertains to the interface
+    > between the [buildpack][buildpack] and the [lifecycle][lifecycle] of Cloud Native Buildpacks.
+
+- **`buildpack`** _(required)_\
+    Information about the buildpack.
+
+    - **`id`** _(string, required)_\
+    A globally unique identifier.
+
+    - **`version`** _(string, required)_\
+    The version of the buildpack.
+    
+    - **`name`** _(string, required)_\
+    Human readable name.
+
+    - **`clear-env`** _(boolean, optional, default: `false`)_\
+    Clears user-defined environment variables when `true` on executions of `bin/detect` and `bin/build`.
+
+- **`stacks`** _(list, optional)_\
+    A list of stacks supported by the buildpack.
+    _If omitted, `order` list must be present. Cannot be used in conjunction with `order` list._
+
+    - **`id`** _(string, required)_\
+    The id of the supported stack.
+
+    - **`mixins`** _(string list, required)_\
+    A list of mixins required on the stack images.
+
+- **`order`** _(list, optional)_\
+  A list of buildpack groups for the purpose of creating a [meta-buildpack][meta-buildpack]. This list determines the
+  order in which groups of buildpacks will be tested during detection. _If omitted, `stacks` list must be present.
+  Cannot be used in conjunction with `stacks` list._
+  
+    - **`group`** _(list, required)_\
+    A list of buildpack references.
+
+        - **`id`** _(string, required)_\
+          The identifier of a buildpack being referred to.
+          Buildpacks with the same ID may appear in multiple groups at once but never in the same group.
+
+        - **`version`** _(string, required)_\
+          The version of the buildpack being referred to.
+    
+        - **`optional`** _(boolean, optional, default: `false`)_\
+          Whether or not this buildpack is optional during detection.
+ 
+- **`metadata`** _(any, optional)_\
+    Arbitrary data for buildpack.
+ 
+
+## API Compatibility
+
+**Given** the buildpack and lifecycle both declare a **Buildpack API version** in format:\
+`<major>.<minor>`
+
+**Then** a buildpack and a lifecycle are considered compatible if all the following conditions are true:
+
+- If versions are pre-release, where `<major>` is `0`, then `<minor>`s must match.
+- If versions are stable, where `<major>` is greater than `0`, then `<minor>` of the buildpack must be less than 
+or equal to that of the lifecycle.
+- `<major>`s must always match.
+
+<br />
+For example,
+
+| Buildpack _implements_ Buildpack API | Lifecycle _implements_ Buildpack API | Compatible?
+| --- | --- | ---
+| `0.2` | `0.2` | <span class="text-success">yes</span>
+| `1.1` | `1.1` | <span class="text-success">yes</span>
+| `1.2` | `1.3` | <span class="text-success">yes</span>
+| `0.2` | `0.3` | <span class="text-muted">no</span>
+| `0.3` | `0.2` | <span class="text-muted">no</span>
+| `1.3` | `1.2` | <span class="text-muted">no</span>
+| `1.3` | `2.3` | <span class="text-muted">no</span>
+| `2.3` | `1.3` | <span class="text-muted">no</span>
+
+ 
 ## Further Reading
 
 You can read the complete [Buildpack API specification on Github](https://github.com/buildpacks/spec/blob/master/buildpack.md).
+
+[buildpack]: /docs/concepts/components/buildpack/
+[lifecycle]: /docs/concepts/components/lifecycle/
+[meta-buildpack]: /docs/concepts/components/buildpack/#meta-buildpack
