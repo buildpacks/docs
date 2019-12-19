@@ -41,21 +41,21 @@ This is a community driven project and our roadmap is publicly available on our 
 
 ## Helpful Videos
 
-[How Pivotal Cloud Foundry Buildpacks Work](https://www.youtube.com/watch?v=1JKLiPBmlIc)
+[Intro to Cloud Native Buildpacks (KubeCon NA 2019)](https://www.youtube.com/watch?v=SK6e_ZatOaw)
 
-  - Provides high level overview of the benefits of buildpacks and advantages in speed, security, and stability that can be realized when compared to using docker images alone
+  - Terence and Emily discuss how buildpacks work, why the project was created, and give some demos
+
+[Deep Dive: Cloud Native Buildpacks (KubeCon NA 2019)](https://www.youtube.com/watch?v=j9Ak5YLrihU)
+
+  - Stephen and Joe describe why you need a buildpack, how to create one, and what you'll gain from using them
+
+[Pack to the Future: Cloud Native Buildpacks on k8s (Spring One 2019)](https://www.youtube.com/watch?v=J2SXkmOo8iQ)
+
+  - Emily and Joe talk about how to use the Pack CLI
 
 [Buildpacks Can Be Better](https://www.youtube.com/watch?v=J6zn3WRqJko)
 
   - Stephen and Tyler present at the 2018 Cloud Foundry Summit and discuss the problems posed by poorly structured Dockerfiles, the solution buildpacks offer, and recent innovations in the buildpacks model (including OCI images!)
-
-[Intro To Cloud Native Buildpacks](https://www.youtube.com/watch?v=t3C2nW0WTRo&feature=youtu.be)
-
-  - Terence and and Joe discuss the friction involved in creating docker files, how buildpacks can help, and give some demos
-
-[Cloud Native Buildpacks, Spring One 2018](https://www.youtube.com/watch?v=wU5n7Sv8JL8)
-
-  - Stephen and Terence announce CNCF effort to bring build packs to any platform
 
 [The Future of Opinionated Buildpacks](https://www.youtube.com/watch?v=spW9ZlJpobM)
 
