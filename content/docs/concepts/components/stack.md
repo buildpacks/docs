@@ -73,13 +73,13 @@ $ pack build example/app
 
 To create a custom stack, simply create customized build and run images containing the following information:
 
-#### Labels
+### Labels
 
-| Name | Description |
-|------|-------------|
-| `io.buildpacks.stack.id` | Identifier for the stack |
+| Name | Description | Format
+|------|-------------|--------
+| `io.buildpacks.stack.id` | Identifier for the stack | String
 
-#### Environment Variables
+### Environment Variables
 
 | Name | Description |
 |------|-------------|
@@ -92,7 +92,57 @@ To create a custom stack, simply create customized build and run images containi
 > `io.buildpacks.stacks.bionic` as its identifier so long as it will work with buildpacks that declare compatibility with the
 > `io.buildpacks.stacks.bionic` stack.
 
-### Resources
+## Mixins
+
+Mixins provide a way to document OS-level dependencies that a stack provides to buildpacks. Mixins can be provided at build-time
+(name prefixed with `build:`), run-time (name prefixed with `run:`), or both (name unprefixed).
+
+### Declaring provided mixins
+
+When declaring provided mixins, both the build and run image of a stack must contain the following label:
+
+| Name | Description | Format
+|------|-------------|--------
+| `io.buildpacks.stack.mixins` | List of provided mixins | JSON string array
+
+\
+The following rules apply for mixin declarations:
+
+ - `build:`-prefixed mixins may not be declared on a run image
+ - `run:`-prefixed mixins may not be declared on a build image
+ - Unprefixed mixins must be declared on both stack images
+
+#### Example
+
+_Build image:_
+```json
+io.buildpack.stack.mixins: ["build:git", "wget"]
+```
+
+_Run image:_
+```json
+io.buildpack.stack.mixins: ["run:imagemagick", "wget"]
+```
+
+### Declaring required mixins
+
+A buildpack must list any required mixins in the `stacks` section of its `buildpack.toml` file.
+
+When validating whether the buildpack's mixins are satisfied by a stack, the following rules apply:
+
+- `build:`-prefixed mixins must be provided by stack's build image
+- `run:`-prefixed mixins must be provided by stack's run image
+- Unprefixed mixins must be provided by both stack images
+
+#### Example
+
+```toml
+[[stacks]]
+id = "io.buildpacks.stacks.bionic"
+mixins = ["build:git", "run:imagemagick", "wget"]
+```
+
+## Resources
 
 For sample stacks, see our [samples][samples] repo.
 
