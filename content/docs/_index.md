@@ -43,11 +43,11 @@ This is a community driven project and our roadmap is publicly available on our 
 
 [Intro to Cloud Native Buildpacks (KubeCon NA 2019)](https://www.youtube.com/watch?v=SK6e_ZatOaw)
 
-  - Terence and Emily discuss how to buildpacks work, why the project was created, and give some demos
+  - Terence and Emily discuss how buildpacks work, why the project was created, and give some demos
 
 [Deep Dive: Cloud Native Buildpacks (KubeCon NA 2019)](https://www.youtube.com/watch?v=j9Ak5YLrihU)
 
-  - Stephen and Joe describe why you need a buildpack, how to create one, and what you'll gain from using them.
+  - Stephen and Joe describe why you need a buildpack, how to create one, and what you'll gain from using them
 
 [How Pivotal Cloud Foundry Buildpacks Work](https://www.youtube.com/watch?v=1JKLiPBmlIc)
 
