@@ -62,7 +62,7 @@ git clone https://github.com/buildpacks/samples
 export FOO=BAR
 
 # create an env file
-echo -n "HELLO=WORLD\nFOO" > ./envfile
+echo -en "HELLO=WORLD\nFOO" > ./envfile
 
 # build the app
 pack build sample-app \
