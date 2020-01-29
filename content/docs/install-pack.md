@@ -13,7 +13,7 @@ lastmodifieremail="ameyer@pivotal.io"
 
 
 ## Supported operating systems
-You can install the most recent version of `pack` (version **{{< latest >}}**) as an executable binary on the following operating systems:
+You can install the most recent version of `pack` as an executable binary on the following operating systems:
 
 * [macOS](#macos)
 * [Linux](#linux)
@@ -35,10 +35,14 @@ brew install pack
 ### Linux
 
 ```bash
-wget https://github.com/buildpacks/pack/releases/download/v{{< latest >}}/pack-v{{< latest >}}-linux.tgz
-tar xvf pack-v{{< latest >}}-linux.tgz
-rm pack-v{{< latest >}}-linux.tgz
-./pack --help
+{
+  PACK_VERSION=$(curl -s https://api.github.com/repos/buildpacks/pack/releases/latest | jq -r '.tag_name' | sed -e 's/^v//')
+  wget "https://github.com/buildpacks/pack/releases/download/v${PACK_VERSION}/pack-v${PACK_VERSION}-linux.tgz"
+  tar xvf "pack-v${PACK_VERSION}-linux.tgz"
+  rm "pack-v${PACK_VERSION}-linux.tgz"
+  chmod +x ./pack
+  ./pack --help
+}
 ```
 
 From there, you can copy the executable to a directory like `/usr/local/bin` or add the current directory to your `PATH`.
@@ -49,7 +53,7 @@ From there, you can copy the executable to a directory like `/usr/local/bin` or 
 
 ### Windows
 
-You can install the Windows executable for `pack` by downloading the Windows [ZIP file](https://github.com/buildpacks/pack/releases/download/v{{< latest >}}/pack-v{{< latest >}}-windows.zip).
+You can install the Windows executable for `pack` by downloading the Windows ZIP file from the [latest pack release](https://github.com/buildpacks/pack/releases/latest).
 
 <hr/>
 
