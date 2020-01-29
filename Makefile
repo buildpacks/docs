@@ -3,11 +3,11 @@ UNAME_S=$(shell uname -s)
 clean:
 	rm -rf ./public ./resources
 
-serve: pack-version
+serve:
 	@echo "> Serving..."
 	hugo server --disableFastRender
 
-build: pack-version
+build:
 	@echo "> Building..."
 	hugo
 	
