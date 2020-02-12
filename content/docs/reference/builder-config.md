@@ -102,7 +102,7 @@ A [builder][builder] configuration schema is as follows:
 
     > If `version` and `uri` are both omitted, `lifecycle` defaults to the version that was last released
     > at the time of `pack`'s release. In other words, for a particular version of `pack`, this default
-    > will not change despite new lifecycle versions being released. The current default lifecycle versin can be [seen here](https://github.com/buildpacks/pack/blob/e4315be24c103e3c5722b08561bf13a55876cbbc/internal/builder/lifecycle.go#L18).
+    > will not change despite new lifecycle versions being released.
 
 ### Supported archives
 
