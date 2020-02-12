@@ -26,13 +26,12 @@
 
         element.innerHTML =
           `<a href="#${element.id}" class="h-anchor">
-            <i class="fas fa-link icon" ariaLabel="Anchor"></i> ${element.innerHTML}
+            ${element.innerHTML} <i class="fas fa-link icon" aria-label="Anchor"></i>
           </a>`;
       }
 
       document.addEventListener('DOMContentLoaded', function () {
-        var headers = document.querySelectorAll('h1, h2, h3, h4, h5');
-
+        const headers = document.querySelectorAll('h1, h2, h3, h4, h5');
         if (headers) {
           headers.forEach(addAnchor);
         }
