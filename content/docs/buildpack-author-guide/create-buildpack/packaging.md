@@ -10,7 +10,7 @@ lastmodifieremail = "narellano@vmware.com"
 Buildpacks can be packaged as OCI images on an image registry or Docker daemon.
 
 ### package.toml
-You will need to create a `package.toml` file to package your buildpack.
+You will need to create a `package.toml` file in order to package your buildpack.
 
 `cd ~/workspace`
 
@@ -30,9 +30,3 @@ If you run `docker images`, you should see `my-buildpack` in the output.
 That's it! Your buildpack is now packaged for distribution.
 
 ---
-
-## Going further
-
-Now that you've finished your buildpack, how about extending it? Try:
-
-- Caching the downloaded Ruby version
