@@ -1,16 +1,11 @@
 +++
 title="Installing `pack`"
 weight=1
-creatordisplayname="Andrew Meyer"
-creatoremail="ameyer@pivotal.io"
-lastmodifierdisplayname="Andrew Meyer"
-lastmodifieremail="ameyer@pivotal.io"
-
+getting-started=true
 +++
 
 ## Prerequisites
-<a href="https://store.docker.com/search?type=edition&offering=community" target="_blank" class="download-button button icon-button bg-blue">Install Docker</a>
-
+{{< download-button href="https://store.docker.com/search?type=edition&offering=community" color="blue" >}} Install Docker {{</>}}
 
 ## Supported operating systems
 You can install the most recent version of `pack` (version **{{< latest >}}**) as an executable binary on the following operating systems:

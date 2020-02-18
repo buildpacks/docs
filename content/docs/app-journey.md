@@ -1,6 +1,7 @@
 +++
 title="An App's Brief Journey from Source to Image"
 weight=2
+getting-started=true
 +++
 
 ## `pack` for the journey
@@ -8,8 +9,8 @@ weight=2
 In this tutorial, we'll explain how to use `pack` and **buildpacks** to create a runnable app image from source code.
 
 That means you'll need to make sure you have `pack` installed:
-<br/><br/>
-<a href="/docs/install-pack" class="download-button button icon-button bg-pink">Install pack</a><br/>
+
+{{< download-button href="/docs/install-pack" color="pink" >}} Install pack {{</>}}
 
 > **NOTE:** `pack` is only one implementation of the [Cloud Native Buildpacks Platform Specification][cnb-platform-spec].
 
