@@ -7,8 +7,8 @@
       <li data-nav-id="{{.URL}}" class="dd-item depth-0">
         <a href="{{ .RelPermalink }}">{{ .Title }}</a>
         <ul class="ml-2">
-          {{- $pages := .Pages -}}
-          {{- range .Pages.ByWeight }}
+          {{- $pages := where .Pages ".Params.getting-started" true -}}
+          {{- range $pages.ByWeight }}
             {{- if (not .Params.hidden) }}
               {{ $expand := (or (eq $currentNode $home) (in $pages $currentNode))}}
               {{- template "section-tree-nav" dict "currentSection" . "currentNode" $currentNode "depth" 1 "expand" $expand }}

@@ -9,8 +9,7 @@ expand=true
 
 A lot of the examples used within this guide will require the following: 
 
-<a href="https://store.docker.com/search?type=edition&offering=community" target="_blank" class="download-button button icon-button bg-blue">Install Docker</a>
-
-<a href="/docs/install-pack" class="download-button button icon-button bg-pink">Install Pack</a>
+{{< download-button href="https://store.docker.com/search?type=edition&offering=community" color="blue" >}} Install Docker {{</>}}
+{{< download-button href="/docs/install-pack" color="pink" >}} Install pack {{</>}}
 
 <hr />
