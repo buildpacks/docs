@@ -22,6 +22,7 @@ This is a step-by-step tutorial for creating a Ruby Cloud Native Buildpack.
 - [Making your application runnable](/docs/buildpack-author-guide/create-buildpack/make-app-runnable)
 - [Improving performance with caching](/docs/buildpack-author-guide/create-buildpack/caching)
 - [Making your buildpack configurable](/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable)
+- [Packaging your buildpack for distribution](/docs/buildpack-author-guide/create-buildpack/packaging)
 
 ---
 

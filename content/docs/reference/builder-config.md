@@ -11,7 +11,7 @@ A [builder][builder] configuration schema is as follows:
   A human-readable description of the builder, to be shown in `inspect-builder` output
   (run `pack inspect-builder -h` for more information).
 
-- #### `buildpacks` _(list, required)_
+- #### `buildpacks` _(list, optional)_
   <br>
 
   A list of buildpacks, each with the following fields:
@@ -27,6 +27,23 @@ A [builder][builder] configuration schema is as follows:
   - **`uri`** _(string, required)_
     <br>
     A URL or path to an [archive](#supported-archives), or a path to a directory. If path is relative, it must be relative to the `builder.toml`.
+
+- #### `packages` _(list, optional)_
+  <br>
+
+  A list of packaged buildpacks, each with the following fields:
+
+  - **`id`** _(string, optional)_
+    <br>
+    as defined above.
+
+  - **`version`** _(string, optional)_
+    <br>
+    as defined above.
+
+  - **`image`** _(string, required)_
+    <br>
+    A registry location (if no registry host is specified in the image name, DockerHub is assumed).
 
 - #### `order` _(list, required)_
   <br>
