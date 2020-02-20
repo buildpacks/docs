@@ -27,7 +27,7 @@ First, let's create a [builder configuration file][builder-config] (`builder.tom
 [[buildpacks]]
 uri = "samples/buildpacks/hello-processes"
 
-[[packages]]
+[[buildpacks]]
 # Packaged buildpacks to include in builder;
 # the "hello-universe" package contains the "hello-world" and "hello-moon" buildpacks
 image = "cnbs/sample-package:hello-universe"
