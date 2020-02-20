@@ -17,7 +17,7 @@ A [package][package] configuration schema is as follows:
 - #### `dependencies` _(list, optional)_
   <br>
 
-  A set of dependent buildpack locations, for packaging a meta-buildpack. Each dependent buildpack location corresponds to an [order group][order group] within the meta-buildpack being packaged, and must have **one** of the following fields: 
+  A set of dependent buildpack locations, for packaging a meta-buildpack. Each dependent buildpack location must correspond to an [order group][order group] within the meta-buildpack being packaged, and must have **one** of the following fields: 
 
   - **`uri`** _(string)_
     <br>
