@@ -13,7 +13,7 @@ The `--buildpack` parameter can be one of the following:
 - path to a directory<sup><small>†</small></sup>, `tar` file, or `tgz` file
 - URL to a `tar` or `tgz` file
 - buildpack located in a builder, in the form of `<id>[@<version>]`<sup><small>‡</small></sup>
-- registry location
+- image name
 
 <small><sup>†</sup> Directory buildpacks are not currently supported on Windows.</small><br />
 <small><sup>‡</sup> Version may be omited if there is only one buildpack in the builder matching the `id`.</small>

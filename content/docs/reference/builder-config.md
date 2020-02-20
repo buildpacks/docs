@@ -24,26 +24,19 @@ A [builder][builder] configuration schema is as follows:
     <br>
     The version of the buildpack. Must match version specified in buildpack's `buildpack.toml` file.
 
-  - **`uri`** _(string, required)_
+  - location _(required)_
     <br>
-    A URL or path to an [archive](#supported-archives), or a path to a directory. If path is relative, it must be relative to the `builder.toml`.
+    The location of the buildpack. Must be **one** of the following:
 
-- #### `packages` _(list, optional)_
-  <br>
+      - **`uri`** _(string)_
+        <br>
+        A URL or path to an [archive](#supported-archives), or a path to a directory. If path is relative, it must be relative to the `builder.toml`.
 
-  A list of packaged buildpacks, each with the following fields:
+        OR
 
-  - **`id`** _(string, optional)_
-    <br>
-    as defined above.
-
-  - **`version`** _(string, optional)_
-    <br>
-    as defined above.
-
-  - **`image`** _(string, required)_
-    <br>
-    A registry location (if no registry host is specified in the image name, DockerHub is assumed).
+      - **`image`** _(string)_
+        <br>
+        A registry location (if no registry host is specified in the image name, DockerHub is assumed).
 
 - #### `order` _(list, required)_
   <br>
