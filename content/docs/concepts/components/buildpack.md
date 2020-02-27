@@ -41,8 +41,11 @@ adding app dependencies (e.g: running `npm install`, `pip install -r requirement
 
 ## Distribution
 
-Buildpacks can be **packaged** as OCI images on an image registry or Docker daemon. This includes meta-buildpacks.
+Buildpacks can be [packaged][package-a-buildpack] as OCI images on an image registry or Docker daemon. This includes meta-buildpacks.
 
 ## Reference
 
-Learn more about buildpacks by referring to the [Buildpack API](/docs/reference/buildpack-api). 
+Learn more about buildpacks by referring to the [Buildpack API][buildpack-api]. 
+
+[buildpack-api]: /docs/reference/buildpack-api
+[package-a-buildpack]: /docs/buildpack-author-guide/package-a-buildpack/

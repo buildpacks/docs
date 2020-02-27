@@ -121,6 +121,11 @@ You will notice that version of Ruby specified in the app's `.ruby-version` file
 
 Congratulations! You've created your first configurable Cloud Native Buildpack that uses detection, image layers, and caching to create a runnable OCI image.
 
----
+## Going further
 
-<a href="/docs/buildpack-author-guide/create-buildpack/packaging" class="button bg-pink">Next Step</a>
+Now that you've finished your buildpack, how about extending it? Try:
+
+- Caching the downloaded Ruby version
+- [Packaging your buildpack for distribution][package-a-buildpack]
+
+[package-a-buildpack]: /docs/buildpack-author-guide/package-a-buildpack/
