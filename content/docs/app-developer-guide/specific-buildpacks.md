@@ -13,6 +13,7 @@ The `--buildpack` parameter can be one of the following:
 - path to a directory<sup><small>†</small></sup>, `tar` file, or `tgz` file
 - URL to a `tar` or `tgz` file
 - buildpack located in a builder, in the form of `<id>[@<version>]`<sup><small>‡</small></sup>
+- image name
 
 <small><sup>†</sup> Directory buildpacks are not currently supported on Windows.</small><br />
 <small><sup>‡</sup> Version may be omited if there is only one buildpack in the builder matching the `id`.</small>
@@ -30,6 +31,7 @@ pack build sample-java-maven-app \
     --builder cnbs/sample-builder:alpine \
     --buildpack io.buildpacks.samples.java-maven \
     --buildpack samples/buildpacks/hello-processes/ \
+    --buildpack cnbs/sample-package:hello-universe \
     --path samples/apps/java-maven/
 ```
 

@@ -39,7 +39,13 @@ During build the buildpacks contribute to the final application image. This cont
 some environment variables within the image, creating a layer containing a binary (e.g: node, python, or ruby), or 
 adding app dependencies (e.g: running `npm install`, `pip install -r requirements.txt`, or `bundle install`).
 
+## Distribution
+
+Buildpacks can be [packaged][package-a-buildpack] as OCI images on an image registry or Docker daemon. This includes meta-buildpacks.
 
 ## Reference
 
-Learn more about buildpacks by referring to the [Buildpack API](/docs/reference/buildpack-api). 
+Learn more about buildpacks by referring to the [Buildpack API][buildpack-api]. 
+
+[buildpack-api]: /docs/reference/buildpack-api
+[package-a-buildpack]: /docs/buildpack-author-guide/package-a-buildpack/
