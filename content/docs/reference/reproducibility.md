@@ -4,38 +4,43 @@ weight=9
 +++
 
 ## Summary
-The Cloud Native Buildpacks project aims to create "Reproducible Builds" of container images. For image creation commands (`create-builder`, `package-buildpackag`, `build`) `pack` aims to create in a reproducible fashion. "Reproducible" is hard to define but we'll do so by example:
+The Cloud Native Buildpacks project aims to create "Reproducible Builds" of container images. For image creation commands (`create-builder`, `package-buildpack`, `build`) `pack` creates container images in a reproducible fashion. "Reproducible" is hard to define but we'll do so by example and with a few caveats:
 
+## Examples
 ---
-Running `pack build` produce a container image with the same image ID (*local* case)
+Running `pack build sample-hello-moon:test` multiple times produces a container image with the same image ID (*local* case)
 
 **Given**:
 - A workspace directory containing the same source code
-- A builder image with a *given*  
-- One or more buildpacks that produce identical layers given their input*
+- The same builder image
+- The same set of buildpacks (see caveat below).
 
 ---
-Running `pack build --publish` produce a container image with the same image digest (*remote* case)
+Running `pack build cnbs/sample-hello-world:test --publish` produce a container image with the same image digest (*remote* case)
 
 **Given**:
 - A workspace directory containing the same source code
-- A builder image with a *given*  
-- One or more buildpacks that produce identical layers given their input
+- The same builder image
+- The same set of buildpacks (see caveat below).
+
+Inspecting the results of the above command, we see the following output:
+
+```bash
+$ docker pull cnbs/sample-hello-kotlin:test && docker images --digest
+REPOSITORY                                   TAG                 DIGEST                                                                    IMAGE ID            CREATED             SIZE
+sample-hello-world                           test                sha256:9e3cfea3f90fb4fbbe855a2cc9ce505087ae10d6805cfcb44bd67a4b72628641   597c49cae461        40 years ago        95.2MB
+sample-hello-moon-app                        test                <none>                                                                    86aab15e22b8        40 years ago        43MB
+```
 
 ### Consequences and Caveats
 
-We achieve reproducible builds by "zeroing" various timestamps of the layers that `pack` creates. When images are inspected (via something like `docker inspect`) they may have confusing creation times:
+There are a couple things to note about the above output:
+- We achieve reproducible builds by "zeroing" various timestamps of the layers that `pack` creates. When images are inspected they may have confusing creation times (40 years ago).
+- The `cnbs/sample-hello-moon:test` image does not have an entry for the "DIGEST" column. This is because the digest is produced from the image's manifest and a manifest is only created when an image is stored in a remote registry.
 
-```bash
-REPOSITORY                                   TAG                 IMAGE ID            CREATED             SIZE
-cnbs/sample-builder                          <none>              def52b23918d        40 years ago        234MB
-sample-kotlin-app                            alpine              45dc2d2681a1        40 years ago        18.9MB
-```
+The CNB lifecycle cannot fix non-reproducible buildpack layer file contents. This means that the underlying buildpack and language ecosystem have to implement reproducible output (for example `go` binaries are reproducible by default). Buildpacks that produce identical layers given the same input could be said to be reproducible buildpacks.
 
-All that said, the CNB lifecycle cannot fix non-reproducible buildpack layer file contents. This means that the underlying buildpack and language ecosystem have to implement reproducible output (for example `go` binaries are reproducible by default).
-
-A local and remote build will not produce the same image digest because:
+Running `pack build cnbs/test-image:test && docker push cnbs/test-image:test` and `pack build cnbs/test-image:test --publish` with the same inputs will not produce the same image digest because:
 - The remote image will have an image digest reference in the `runImage.reference` field in the `io.buildpacks.lifecycle.metadata` label
-- The local image will have an image ID in the `runImage.reference` field in the `io.buildpacks.lifecycle.metadata` label
+- The local image will have an image ID in the `runImage.reference` field in the `io.buildpacks.lifecycle.metadata` label if it was created locally
 
-This occurs because, in the daemon case, the run-image may not have a repository digest reference (if it was created locally). 
