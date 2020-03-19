@@ -11,15 +11,15 @@ The Cloud Native Buildpacks project aims to create "Reproducible Builds" of cont
 Running `pack build sample-hello-moon:test` multiple times produces a container image with the same image ID (*local* case)
 
 **Given**:
-- A workspace directory containing the same source code
+- The same source code
 - The same builder image
 - The same set of buildpacks (see caveat below).
 
 ---
-Running `pack build cnbs/sample-hello-world:test --publish` produce a container image with the same image digest (*remote* case)
+Running `pack build cnbs/sample-hello-world:test --publish` multiple times produce a container image with the same image digest (*remote* case)
 
 **Given**:
-- A workspace directory containing the same source code
+- The same source code
 - The same builder image
 - The same set of buildpacks (see caveat below).
 
