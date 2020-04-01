@@ -26,7 +26,7 @@ When using `pack`, you can run `pack suggest-builders` for a list of suggested b
 pack suggest-builders
 ```
 
-For this turorial we're actually going to use a sample builder, `cnbs/sample-builder:bionic`, which is not listed
+For this tutorial we're actually going to use a sample builder, `cnbs/sample-builder:bionic`, which is not listed
 as a suggested builder for good reason. It's a sample.
 
 ### 2. Build your app
