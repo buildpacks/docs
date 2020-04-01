@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/buildpack/docs.svg?branch=master)](https://travis-ci.org/buildpack/docs)
+[![Build Status](https://travis-ci.org/buildpacks/docs.svg?branch=master)](https://travis-ci.org/buildpacks/docs/branches)
 
 # docs
 Website for [Cloud Native Buildpacks](https://buildpacks.io)
@@ -7,27 +7,16 @@ Website for [Cloud Native Buildpacks](https://buildpacks.io)
 
 * [Hugo](https://gohugo.io/)
 
-## Local development
+## Development
 
-The pack documentation is build using hugo, install it using the guide [here](https://gohugo.io/getting-started/installing/)
+Serve docs at http://localhost:1313
 
 ```bash
-git clone https://github.com/buildpack/docs.git
-cd docs
-hugo server
-# documentation is available at localhost:1313
+make serve
 ```
 
 ## Build
 
 ```bash
-hugo
-```
-
-## Update referenced  `pack` release
-
-Before building (or running the local dev server) run:
-
-```bash
-./update_latest_version.sh
+make build
 ```

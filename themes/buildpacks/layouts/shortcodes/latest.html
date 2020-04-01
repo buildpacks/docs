@@ -1,3 +1,2 @@
-{{- $latestTag   := (getJSON "latest.json").tag_name -}}
-{{- $latest      := replace $latestTag "v" "" -}}
+{{- $latest := (getenv "PACK_VERSION") -}}
 {{- $latest -}}

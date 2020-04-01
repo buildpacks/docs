@@ -54,6 +54,7 @@ header li {
   align-items: center;
   justify-content: center;
   padding-left: 10px;
+
   &:first-child {
     padding-left: 0;
   }
@@ -62,12 +63,15 @@ header li {
 header li a {
   white-space: nowrap;
   text-decoration: none;
+
   &:hover {
     text-decoration: inherit;
   }
+
   &:not(.button) {
     border-bottom: 2px solid rgba($blue-light, 0.25);
   }
+
   &.active {
     border-bottom-color: $blue-light;
   }
@@ -76,7 +80,7 @@ header li a {
 /**** desktop nav ****/
 
 @media (min-width: 768px) {
-  header #mobile-nav-toggle ~ label{
+  header #mobile-nav-toggle ~ label {
     display: none;
   }
 
@@ -87,6 +91,7 @@ header li a {
 
   header li {
     padding-left: 40px;
+
     &:last-of-type {
       margin-right: 0;
     }

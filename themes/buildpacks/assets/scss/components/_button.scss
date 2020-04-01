@@ -4,25 +4,63 @@ Button
 
 **********************************/
 
-.button {
-  color: white;
-  padding: 10px 20px;
+/** Sizes **/
+
+$btn-font-size: 1rem;
+$btn-sm-font-size: .80rem;
+$btn-h-padding: 20px;
+$btn-v-padding: 10px;
+$icon-proportion: 1.30;
+
+%button-base {
+  padding: $btn-v-padding $btn-h-padding;
   border-radius: 5px;
   display: inline-block;
   text-decoration: none;
   line-height: 130%;
+  font-size: $btn-font-size;
 }
 
-a.button:hover {
+%button-base:hover {
+  text-decoration: none;
+  opacity: .9;
+}
+
+.btn-small {
+  font-size: $btn-sm-font-size;
+  padding: $btn-v-padding*.75 $btn-h-padding*.75;
+}
+
+/** Colors **/
+
+.button {
+  @extend %button-base;
+  color: white;
+}
+
+.button:hover {
   color: white;
   text-decoration: none;
   opacity: .9;
 }
 
+.btn-light {
+  @extend %button-base;
+  color: #000000;
+  border: 1px solid #e0e0e0;
+}
+
+.btn-light:hover {
+  color: #000000;
+  opacity: .75;
+}
+
+/** Special **/
+
 .icon-button {
   display: flex;
   width: fit-content;
-  padding-right: 25px; /* makes them look more even to have more right padding */
+  padding-right: $btn-h-padding + 5px; /* makes them look more even to have more right padding */
 }
 
 .icon-button::before {
@@ -30,17 +68,53 @@ a.button:hover {
   display: inline-block;
   align-self: center;
   margin: 0 10px 0 0;
-  height: 20px;
-  width: 20px;
-  min-width: 20px; /* so on other sizes, it never shrinks */
+  height: $btn-font-size * $icon-proportion;
+  width: $btn-font-size * $icon-proportion;
+  min-width: $btn-font-size * $icon-proportion;
   background-repeat: no-repeat;
   background-size: contain;
+}
+
+.btn-small.icon-button {
+  padding-right: ($btn-h-padding + 5px) * .75;
+}
+
+.btn-small.icon-button::before {
+  height: $btn-sm-font-size * $icon-proportion;
+  width: $btn-sm-font-size * $icon-proportion;
+  min-width: $btn-sm-font-size * $icon-proportion;
+}
+
+.icon-button.blank::before {
+  width: 0px;
+  min-width: 0px;
+}
+
+.btn-small.icon-button.blank::before {
+  width: 0px;
+  min-width: 0px;
+}
+
+.button.download-button::before {
+  background-image: url('/images/download-icon.svg');
 }
 
 .button.github-button::before {
   background-image: url('/images/github-mark.svg');
 }
 
-.button.download-button::before {
-  background-image: url('/images/download-icon.svg');
+.btn-light.github-button::before {
+  background-image: url('/images/github-mark.svg');
+  -webkit-filter: brightness(0);
+  filter: brightness(0);
+}
+
+.button.slack-button::before {
+  background-image: url('/images/slack-mark.svg');
+}
+
+.btn-light.slack-button::before {
+  background-image: url('/images/slack-mark.svg');
+  -webkit-filter: brightness(0);
+  filter: brightness(0);
 }

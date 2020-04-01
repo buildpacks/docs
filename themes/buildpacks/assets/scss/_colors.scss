@@ -11,7 +11,7 @@ $blue-light       : #47529E;
 
 /* Shades */
 $white            : #FFFFFF;
-$off-white        : #F7F7F7;
+$off-white        : #F8F9FA;
 $off-gray         : #EFEFEF;
 $gray-light       : #7C6E75;
 $gray-dark        : #302C2E;
@@ -27,4 +27,8 @@ $black            : #000000;
 
 .bg-blue {
   background-color: $blue-light;
+}
+
+.bg-white {
+  background-color: $white;
 }

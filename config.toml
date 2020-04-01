@@ -1,4 +1,4 @@
-baseURL = "/"
+baseURL = "https://buildpacks.io/"
 languageCode = "en-us"
 
 title = "Cloud Native Buildpack Documentation"
@@ -7,8 +7,13 @@ theme = "buildpacks"
 pygmentsUseClasses = true
 pygmentsCodefences = true
 
+[markup.goldmark.renderer]
+unsafe= true
+
 [params]
 twitter_handle = "buildpacks_io"
+github_base_url = "https://github.com/buildpacks"
+slack_invite_url = "https://slack.buildpacks.io/"
 
 [menu]
   [[menu.main]]

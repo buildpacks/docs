@@ -1,58 +1,64 @@
-{{- $currentNode := . }}
-{{- $depth := 0 -}}
+{{- $currentNode := . -}}
 
 <nav class='sidebar'>
-  {{- range .Site.Sections.ByWeight }}
+  {{ with .Site.GetPage "/docs" }}
+    {{- $home := . -}}
     <ul>
-      {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "depth" $depth -}}
+      <li data-nav-id="{{.URL}}" class="dd-item depth-0">
+        <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+        <ul class="ml-2">
+          {{- $pages := where .Pages ".Params.getting-started" true -}}
+          {{- range $pages.ByWeight }}
+            {{- if (not .Params.hidden) }}
+              {{ $expand := (or (eq $currentNode $home) (in $pages $currentNode))}}
+              {{- template "section-tree-nav" dict "currentSection" . "currentNode" $currentNode "depth" 1 "expand" $expand }}
+            {{- end}}
+          {{- end}}
+        </ul>
+      </li>
+    {{- range .Sections.ByWeight }}
+      {{- if (not .Params.hidden) }}
+        {{- template "section-tree-nav" dict "currentSection" . "currentNode" $currentNode "depth" 0 "expand" false }}
+      {{- end}}
+    {{- end}}
     </ul>
-  {{- end}}
+  {{ end }}
 </nav>
 
 <!-- templates -->
 {{- define "section-tree-nav" }}
-  {{- $currentNode := .currentnode }} 
+  {{- $parentExpanded := .parentExpanded }}
+  {{- $currentNode := .currentNode }}
+  {{- $expand := .expand }}
   {{- $depth := .depth }}
-  {{- with .sect}}
-    {{- if and .IsSection (or (not .Params.hidden) $.showhidden)}}
+  {{- with .currentSection}}
+    {{- if (not (.Params.hidden))}}
+      {{- $isCurrent := (eq .URL $currentNode.URL) -}}
+      {{- $isParent := (and (.IsAncestor $currentNode) (.IsSection)) -}}
+      {{- $isCollapsed := (and (gt $depth 0) (not (or $isParent $isCurrent $expand))) }}
       {{- $numberOfPages := (add (len .Pages) (len .Sections)) }}
       {{- safeHTML .Params.head}}
-      <li data-nav-id="{{.URL}}" class="dd-item
-          depth-{{ $depth }}
-          {{- if .IsAncestor $currentNode}} parent{{end}}
-          {{- if eq .URL $currentNode.URL}} active{{end}}
-          {{- if ne $numberOfPages 0 }} haschildren{{end}}
+      <li data-nav-id="{{.URL}}" class="dd-item depth-{{ $depth }}
+          {{- if $isParent }} parent {{- end }}
+          {{- if $isCurrent }} active {{- end }}
+          {{- if $isCollapsed }} collapse {{- end }}
+          {{- if ne $numberOfPages 0 }} haschildren{{end -}}
       ">
-        <a href="{{ .RelPermalink}}">{{safeHTML .Params.Pre}}{{.Title | markdownify}}{{safeHTML .Params.Post}}</a>
+        <a href="{{ .RelPermalink }}">{{safeHTML .Params.Pre}}{{.Title | markdownify}}{{safeHTML .Params.Post}}</a>
 
         {{- if ne $numberOfPages 0 }}
           {{- $depth = add (int $depth) 1 }}
-          <ul>
-            {{- .Scratch.Set "pages" .Pages }}
-            {{- if .Sections}}
-            {{- .Scratch.Set "pages" (.Pages | union .Sections) }}
-            {{- end}}
-            {{- $pages := (.Scratch.Get "pages") }}
-
+          <ul class="ml-2">
+            {{- $expand = .Params.expand -}}
+            {{- $pages := (.Pages | union .Sections) }}
             {{- range $pages.ByWeight }}
-              {{- if and .Params.hidden (not $.showhidden) }}
-              {{- else}}
-              {{- template "section-tree-nav" dict "sect" . "currentnode" $currentNode "depth" $depth }}
+              {{- if (not .Params.hidden) }}
+              {{- template "section-tree-nav" dict "currentSection" . "currentNode" $currentNode "depth" $depth "expand" (or $expand $isParent) }}
               {{- end}}
             {{- end}}
           </ul>
         {{- end}}
       </li>
-    {{- else}}
-      {{- if not .Params.Hidden }}
-        <li data-nav-id="{{.URL}}" class="dd-item
-          {{- if eq .URL $currentNode.URL}} active{{end -}}
-        ">
-          <a href="{{ .RelPermalink}}">
-            {{safeHTML .Params.Pre}}{{.LinkTitle | markdownify}}{{safeHTML .Params.Post}}
-          </a>
-      </li>
-      {{- end}}
     {{- end}}
   {{- end}}
 {{- end}}

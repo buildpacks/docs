@@ -1,0 +1,40 @@
+/**********************************
+
+Quote
+
+**********************************/
+
+.quote {
+  position: relative;
+  padding: 20px 86px;
+  color: rgba($gray-dark, .75);
+  font-style: italic;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-align: center;
+  line-height: 180%;
+  border-radius: 5px;
+  background-color: $off-gray;
+
+  &:before {
+    content: "\"";
+    font-size: 4rem;
+    font-family: "Fira Mono", serif;
+    position: absolute;
+    top: 10px;
+    left: -20px;
+    color: $blue-light;
+  }
+
+  .author {
+    font-size: 1rem;
+    font-style: initial;
+    padding: 0 40px 0 0;
+    text-align: right;
+
+    &:before {
+      content: "- ";
+      color: $gray-light;
+    }
+  }
+}
