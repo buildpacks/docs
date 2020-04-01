@@ -17,8 +17,6 @@ At its core, image rebasing is a simple process. By inspecting an app image, `re
 newer version of the app's base image exists (either locally or in a registry). If so, `rebase` updates the app image's
 layer metadata to reference the newer base image version.
 
-> Like [`build`](/docs/using-pack/building-app), `rebase` has a `--publish` flag. It will make the metadata change directly on the registry, without it the change happens on the daemon (which is actually slower, because the daemon is pretty inefficient for these types of operations).
-
 ### Example: Rebasing an app image
 
 Consider an app image `my-app:my-tag` that was originally built using the default builder. That builder's stack has a
@@ -29,4 +27,7 @@ run image called `pack/run`. Running the following will update the base of `my-a
 $ pack rebase my-app:my-tag
 ```
 
-`rebase` has a `--publish` flag that can be used to publish the updated app image to a registry.
+> **Tip:** `pack rebase` has a `--publish` flag that can be used to publish the updated app image directly to a registry. 
+> Using `--publish` is optimal when using a registry in comparison to the docker daemon.
+
+[build]: /docs/app-developer-guide/build-an-app/
