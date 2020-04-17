@@ -31,7 +31,7 @@ file or some configuration indicating what kind of application has been provided
 It accepts two positional arguments:
 
 * `PLATFORM_DIR` - a directory containing platform provided configuration, such as environment variables.
-* `BUILD_PLAN` - a string containing the [Build Plan](https://github.com/buildpacks/spec/blob/master/buildpack.md#buildpack-plan-toml).
+* `BUILD_PLAN` - a path to a file containing the [Build Plan](https://github.com/buildpacks/spec/blob/master/buildpack.md#buildpack-plan-toml).
 
 In addition, the working directory is defined as the location of the codebase
 the buildpack will execute against.
@@ -68,7 +68,7 @@ It accepts three positional arguments:
 
 * `LAYERS_DIR` - a directory that may contain subdirectories representing each layer created by the buildpack in the final image or build cache.
 * `PLATFORM_DIR` - a directory containing platform provided configuration, such as environment variables.
-* `BUILD_PLAN` - a string containing the [Build Plan](https://github.com/buildpacks/spec/blob/master/buildpack.md#buildpack-plan-toml).
+* `BUILD_PLAN` - a path to a file containing the [Build Plan](https://github.com/buildpacks/spec/blob/master/buildpack.md#buildpack-plan-toml).
 
 In addition, the working directory is defined as the location of the codebase
 this buildpack will execute against.
