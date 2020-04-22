@@ -32,7 +32,11 @@ pack build sample-app \
     --env "FOO" \
     --builder cnbs/sample-builder:bionic \
     --buildpack  samples/buildpacks/hello-world/ \
-    --path  samples/apps/java-maven/
+    --buildpack samples/apps/bash-script/bash-script-buildpack/ \
+    --path  samples/apps/bash-script/
+
+# run the app
+docker run sample-app
 ```
 
 The following environment variables were set and available to buildpacks at build-time:
@@ -69,7 +73,11 @@ pack build sample-app \
     --env-file ./envfile \
     --builder cnbs/sample-builder:bionic \
     --buildpack  samples/buildpacks/hello-world/ \
-    --path  samples/apps/java-maven/
+    --buildpack samples/apps/bash-script/bash-script-buildpack/ \
+    --path  samples/apps/bash-script/
+
+# run the app
+docker run sample-app
 ```
 
 The following environment variables were set and available to buildpacks at build-time:
