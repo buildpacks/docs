@@ -253,7 +253,6 @@ For more information, see the [Build Plan](https://github.com/buildpacks/spec/bl
 
 **Given** the buildpack and lifecycle both declare a **Buildpack API version** in format:\
 `<major>.<minor>`
-–
 **Then** a buildpack and a lifecycle are considered compatible if all the following conditions are true:
 
 - If versions are pre-release, where `<major>` is `0`, then `<minor>`s must match.
