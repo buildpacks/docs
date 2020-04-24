@@ -195,12 +195,12 @@ The schema is as follows:
 
 ## Build Plan
 The [Build Plan](https://github.com/buildpacks/spec/blob/master/buildpack.md#buildpack-plan-toml) is a document the buildpacks can use to pass information between the [detect](#bindetect) and [build](#bindetect) phases. The build plan is passed (by the lifecycle) as a parameter to the `detect` and `build` binaries of the buildpack.
-* During the `detect` phase, the buildpack may (but doesn't have to) write something it requires, or provides (or both) into the Build Plan
-* During the `build` phase, the buildpack(s) may read the Build Plan to determine whether it is needed, and refine the Build Plan with more exact metadata (eg: what version dependency it requires).
+* During the `detect` phase, the buildpack(s) may write something it `requires` or `provides` (or both) into the Build Plan.
+* During the `build` phase, the buildpack(s) may read the Buildpack Plan (a condensed version of the Build Plan, composed by the lifecycle) to determine what it should do, and refine the Buildpack Plan with more exact metadata (eg: what version dependency it requires).
 
 A buildpack can `require` or `provide` multiple dependencies, and even multiple groupings of dependencies (using `or` lists). Additionally, multiple buildpacks may `require` or `provide` the same dependency.
 
-The lifecycle uses the Build Plan as one element in deciding whether or not a particular list of buildpacks is appropriate, by seeing whether all dependencies required can be provided by that list. See the [spec](https://github.com/buildpacks/spec/blob/master/buildpack.md#phase-1-detection) for particulars on how ordering buildpacks can adjust detection results.
+The lifecycle uses the `Build Plan` as one element in deciding whether or not a particular list of buildpacks is appropriate, by seeing whether all dependencies required can be provided by that list. See the [spec](https://github.com/buildpacks/spec/blob/master/buildpack.md#phase-1-detection) for particulars on how ordering buildpacks can adjust detection results.
 
 ### Example
 ```
@@ -253,7 +253,7 @@ For more information, see the [Build Plan](https://github.com/buildpacks/spec/bl
 
 **Given** the buildpack and lifecycle both declare a **Buildpack API version** in format:\
 `<major>.<minor>`
-
+–
 **Then** a buildpack and a lifecycle are considered compatible if all the following conditions are true:
 
 - If versions are pre-release, where `<major>` is `0`, then `<minor>`s must match.

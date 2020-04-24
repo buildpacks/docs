@@ -11,8 +11,7 @@ It's likely that not all Ruby apps will want to use the same version of Ruby. Le
 
 ## Select Ruby version
 
-We'll allow buildpack users to define the desired Ruby version via a `.ruby-version` file in their app. We'll first update the `detect` script to check for
-this file and record its contents into the build plan:
+We'll allow buildpack users to define the desired Ruby version via a `.ruby-version` file in their app. We'll first update the `detect` script to check for this file. We will then record the dependency we can `provide` (Ruby), as well as the specific dependency the application will `require`, in the `Build Plan`, a document the lifecycle uses to determine if the buildpack will provide everything the application needs:
 
 ```bash
 #!/usr/bin/env bash
