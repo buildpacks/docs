@@ -31,7 +31,7 @@ file or some configuration indicating what kind of application has been provided
 It accepts two positional arguments:
 
 * `PLATFORM_DIR` - a directory containing platform provided configuration, such as environment variables.
-* `BUILD_PLAN` - a path to a file containing the [Build Plan](https://github.com/buildpacks/spec/blob/master/buildpack.md#buildpack-plan-toml).
+* `BUILD_PLAN` - a path to a file containing the [Build Plan](#build-plan).
 
 In addition, the working directory is defined as the location of the codebase
 the buildpack will execute against.
@@ -68,7 +68,7 @@ It accepts three positional arguments:
 
 * `LAYERS_DIR` - a directory that may contain subdirectories representing each layer created by the buildpack in the final image or build cache.
 * `PLATFORM_DIR` - a directory containing platform provided configuration, such as environment variables.
-* `BUILD_PLAN` - a path to a file containing the [Build Plan](https://github.com/buildpacks/spec/blob/master/buildpack.md#buildpack-plan-toml).
+* `BUILD_PLAN` - a path to a file containing the [Build Plan](#build-plan).
 
 In addition, the working directory is defined as the location of the codebase
 this buildpack will execute against.
@@ -140,7 +140,6 @@ id = "io.buildpacks.stacks.bionic"
 ### Schema
 
 The schema is as follows:
-   
 - **`api`** _(string, required, current: `0.2`)_\
     The Buildpack API version the buildpack adheres to. Used to ensure [compatibility](#api-compatibility) against
     the [lifecycle][lifecycle].
@@ -156,7 +155,7 @@ The schema is as follows:
 
     - **`version`** _(string, required)_\
     The version of the buildpack.
-    
+
     - **`name`** _(string, required)_\
     Human readable name.
 
@@ -177,7 +176,7 @@ The schema is as follows:
   A list of buildpack groups for the purpose of creating a [meta-buildpack][meta-buildpack]. This list determines the
   order in which groups of buildpacks will be tested during detection. _If omitted, `stacks` list must be present.
   Cannot be used in conjunction with `stacks` list._
-  
+
     - **`group`** _(list, required)_\
     A list of buildpack references.
 
@@ -187,13 +186,68 @@ The schema is as follows:
 
         - **`version`** _(string, required)_\
           The version of the buildpack being referred to.
-    
+
         - **`optional`** _(boolean, optional, default: `false`)_\
           Whether or not this buildpack is optional during detection.
- 
+
 - **`metadata`** _(any, optional)_\
     Arbitrary data for buildpack.
- 
+
+## Build Plan
+The [Build Plan](https://github.com/buildpacks/spec/blob/master/buildpack.md#buildpack-plan-toml) is a document the buildpacks can use to pass information between the [detect](#bindetect) and [build](#bindetect) phases. The build plan is passed (by the lifecycle) as a parameter to the `detect` and `build` binaries of the buildpack.
+* During the `detect` phase, the buildpack may (but doesn't have to) write something it requires, or provides (or both) into the Build Plan
+* During the `build` phase, the buildpack(s) may read the Build Plan to determine whether it is needed, and refine the Build Plan with more exact metadata (eg: what version dependency it requires).
+
+A buildpack can `require` or `provide` multiple dependencies, and even multiple groupings of dependencies (using `or` lists). Additionally, multiple buildpacks may `require` or `provide` the same dependency.
+
+The lifecycle uses the Build Plan as one element in deciding whether or not a particular list of buildpacks is appropriate, by seeing whether all dependencies required can be provided by that list. See the [spec](https://github.com/buildpacks/spec/blob/master/buildpack.md#phase-1-detection) for particulars on how ordering buildpacks can adjust detection results.
+
+### Example
+```
+[[provides]]
+name = "node"
+
+[[requires]]
+name = "node"
+version = "10.x"
+
+[requires.metadata]
+version-source = ".nvmrc"
+
+[[or]]
+
+[[or.provides]]
+name = "node"
+
+[[or.requires]]
+name = "node"
+version = "12.x"
+
+[or.requires.metadata]
+version-source = "buildpack.yml"
+```
+
+### Schema
+- **`provides`** _(list, optional)_\
+  A list of dependencies which the buildpack provides.
+    - **`name`** _(string, required)_\
+    The name of the provided dependency.
+
+- **`requires`** _(list, optional)_\
+  A list of dependencies which the buildpack requires.
+    - **`name`** _(string, required)_\
+    The name of the required dependency.
+
+    - **`version`** _(string, optional)_\
+    The version of the dependency required.
+
+    - **`metadata`** _(object, optional)_\
+    Any additional key-value metadata you wish to store.
+
+- **`or`** _(array, optional)_\
+  A list of alternate requirements which the buildpack provides/requires. Each `or` array must contain a valid Build Plan (with `provides` and `requires`)
+
+For more information, see the [Build Plan](https://github.com/buildpacks/spec/blob/master/buildpack.md#buildpack-plan-toml) section of the spec.
 
 ## API Compatibility
 
@@ -203,25 +257,24 @@ The schema is as follows:
 **Then** a buildpack and a lifecycle are considered compatible if all the following conditions are true:
 
 - If versions are pre-release, where `<major>` is `0`, then `<minor>`s must match.
-- If versions are stable, where `<major>` is greater than `0`, then `<minor>` of the buildpack must be less than 
+- If versions are stable, where `<major>` is greater than `0`, then `<minor>` of the buildpack must be less than
 or equal to that of the lifecycle.
 - `<major>`s must always match.
 
 <br />
 For example,
 
-| Buildpack _implements_ Buildpack API | Lifecycle _implements_ Buildpack API | Compatible?
-| --- | --- | ---
-| `0.2` | `0.2` | <span class="text-success">yes</span>
-| `1.1` | `1.1` | <span class="text-success">yes</span>
-| `1.2` | `1.3` | <span class="text-success">yes</span>
-| `0.2` | `0.3` | <span class="text-muted">no</span>
-| `0.3` | `0.2` | <span class="text-muted">no</span>
-| `1.3` | `1.2` | <span class="text-muted">no</span>
-| `1.3` | `2.3` | <span class="text-muted">no</span>
-| `2.3` | `1.3` | <span class="text-muted">no</span>
+| Buildpack _implements_ Buildpack API | Lifecycle _implements_ Buildpack API | Compatible?                           |
+| ------------------------------------ | ------------------------------------ | ------------------------------------- |
+| `0.2`                                | `0.2`                                | <span class="text-success">yes</span> |
+| `1.1`                                | `1.1`                                | <span class="text-success">yes</span> |
+| `1.2`                                | `1.3`                                | <span class="text-success">yes</span> |
+| `0.2`                                | `0.3`                                | <span class="text-muted">no</span>    |
+| `0.3`                                | `0.2`                                | <span class="text-muted">no</span>    |
+| `1.3`                                | `1.2`                                | <span class="text-muted">no</span>    |
+| `1.3`                                | `2.3`                                | <span class="text-muted">no</span>    |
+| `2.3`                                | `1.3`                                | <span class="text-muted">no</span>    |
 
- 
 ## Further Reading
 
 You can read the complete [Buildpack API specification on Github](https://github.com/buildpacks/spec/blob/master/buildpack.md).

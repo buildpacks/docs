@@ -79,7 +79,7 @@ gem install bundler --no-ri --no-rdoc
 
 # Compares previous Gemfile.lock checksum to the current Gemfile.lock
 bundlerlayer="$layersdir/bundler"
-local_bundler_checksum=$(sha256sum Gemfile.lock | cut -d ' ' -f 1) 
+local_bundler_checksum=$(sha256sum Gemfile.lock | cut -d ' ' -f 1)
 remote_bundler_checksum=$(cat "$bundlerlayer.toml" | /tmp/yj -t | /tmp/jq -r .metadata 2>/dev/null || echo 'not found')
 
 if [[ -f Gemfile.lock && $local_bundler_checksum == $remote_bundler_checksum ]] ; then
