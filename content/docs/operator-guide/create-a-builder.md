@@ -36,17 +36,17 @@ image = "cnbs/sample-package:hello-universe"
 [[order]]
     # This buildpack will display build-time information (as a dependency)
     [[order.group]]
-    id = "io.buildpacks.samples.hello-world"
+    id = "samples/hello-world"
     version = "0.0.1"
 
     # This buildpack will display build-time information (as a dependant)
     [[order.group]]
-    id = "io.buildpacks.samples.hello-moon"
+    id = "samples/hello-moon"
     version = "0.0.1"
 
     # This buildpack will create a process type "sys-info" to display runtime information
     [[order.group]]
-    id = "io.buildpacks.samples.hello-processes"
+    id = "samples/hello-processes"
     version = "0.0.1"
 
 # Stack that will be used by the builder
