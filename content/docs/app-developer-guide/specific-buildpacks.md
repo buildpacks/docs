@@ -29,7 +29,7 @@ git clone https://github.com/buildpacks/samples
 # build the app
 pack build sample-java-maven-app \
     --builder cnbs/sample-builder:alpine \
-    --buildpack io.buildpacks.samples.java-maven \
+    --buildpack samples/java-maven \
     --buildpack samples/buildpacks/hello-processes/ \
     --buildpack cnbs/sample-package:hello-universe \
     --path samples/apps/java-maven/

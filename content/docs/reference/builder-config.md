@@ -40,16 +40,16 @@ A [builder][builder] configuration schema is as follows:
     - **`group`** _(list, required)_\
       A set of buildpack references. Each buildpack reference specified has the following fields:
 
-    - **`id`** _(string, required)_\
-      The identifier of a buildpack from the configuration's top-level `buildpacks` list. Buildpacks with the same ID may
-      appear in multiple groups at once but never in the same group.
-
-    - **`version`** _(string, optional, default: inferred)_\
-      The version of the buildpack being referred to. This field may be omitted if the top-level `buildpacks` list contains
-      only one version of the buildpack.
-
-    - **`optional`** _(boolean, optional, default: `false`)_\
-      Whether or not this buildpack is optional during detection.
+        - **`id`** _(string, required)_\
+          The identifier of a buildpack from the configuration's top-level `buildpacks` list. Buildpacks with the same ID may
+          appear in multiple groups at once but never in the same group.
+    
+        - **`version`** _(string, optional, default: inferred)_\
+          The version of the buildpack being referred to. This field may be omitted if the top-level `buildpacks` list contains
+          only one version of the buildpack.
+    
+        - **`optional`** _(boolean, optional, default: `false`)_\
+          Whether or not this buildpack is optional during detection.
 
 - #### `stack` _(required)_
   The stack to use for the builder. See [Working with stacks](/docs/concepts/components/stack) for more information about this field. It
