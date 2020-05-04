@@ -200,7 +200,7 @@ The [Build Plan](https://github.com/buildpacks/spec/blob/master/buildpack.md#bui
 
 A buildpack can `require` or `provide` multiple dependencies, and even multiple groupings of dependencies (using `or` lists). Additionally, multiple buildpacks may `require` or `provide` the same dependency.
 
-The lifecycle uses the `Build Plan` as one element in deciding whether or not a particular list of buildpacks is appropriate, by seeing whether all dependencies required can be provided by that list. See the [spec](https://github.com/buildpacks/spec/blob/master/buildpack.md#phase-1-detection) for particulars on how ordering buildpacks can adjust detection results.
+The lifecycle uses the Build Plan as one element in deciding whether or not a particular list of buildpacks is appropriate, by seeing whether all dependencies required can be provided by that list.
 
 ### Example
 Let's walk through some possible cases a `node-engine` buildpack may consider:
@@ -217,9 +217,10 @@ A `node-engine` buildpack is always happy to `provide` the `node` dependency. Th
 [[provides]]
 name = "node"
 ```
+> **NOTE:** If this was the only buildpack running, this would fail the `detect` phase. In order to pass, every `provides` must be matched up with a `requires`, whether in the same buildpack or in another buildpack. See the [spec](https://github.com/buildpacks/spec/blob/master/buildpack.md#phase-1-detection) for particulars on how ordering buildpacks can adjust detection results.
 
 #### 2. One Version Requested
-The buildpack sees in one configuration file (e.g. `.nvmrc`) that it is explicitly requested by the application. Seeing that, it may write the below text to the build plan:
+The buildpack sees in one configuration file (e.g. a `.nvmrc` file in the app directory) that `node v10.x` is explicitly requested by the application. Seeing that, it may write the below text to the build plan:
 ```
 [[provides]]
 name = "node"
@@ -232,10 +233,10 @@ version = "10.x"
 version-source = ".nvmrc"
 ```
 
-As always, the buildpack `provides` `node`. In this particular case, a version of `node` (`10.x`) is being `requested` in a configuration file (`.nvmrc`), and the buildpack chooses to add an additional piece of metadata (`version-source`), so that it can understand where that request came from.
+As always, the buildpack `provides` `node`. In this particular case, a version of `node` (`10.x`) is being `requested` in a configuration file (`.nvmrc`). The buildpack chooses to add an additional piece of metadata (`version-source`), so that it can understand where that request came from.
 
 #### 3. Two Versions Requested
-The buildpack sees two configuration files (e.g. `.nvmrc` and `buildpack.yml`) that request two different versions of the `node` dependency. One way of dealing with that, would be writing both `requests` to the build plan, and reconciling which version(s) it will provide during the `build` phase. It can provide two different `requires`:
+The buildpack sees two configuration files (e.g. `.nvmrc` and `buildpack.yml` files in the app directory) that request two different versions of the `node` dependency. One way of dealing with this would be writing both `requires` to the build plan, and reconciling which version(s) it will provide during the `build` phase. It can provide two different `requires`:
 
 ```
 [[provides]]
@@ -261,7 +262,7 @@ As always, the buildpack provides `node`. In this case, it requests two differen
 #### Possible NPM Buildpack
 `NPM`, the default package manager for `node`, is distributed together with node. As a result, a NPM buildpack may require `node`, but not want to `provide` it, trusting that the `node-engine` buildpack will be in charge of `providing` `node`.
 
-It could write the following to the build plan:
+It could write the following to the build plan, if it sees that it is necessary (e.g., it sees a `package.json` file in the app directory):
 ```
 [[requires]]
 name = "node"
@@ -277,7 +278,9 @@ version = "14.1"
 version-source = "package.json"
 ```
 
-That `requires` will be used by the lifecycle to decide that this (`node-engine` and `npm`) is the correct set of buildpacks, given that the `node-engine` buildpack `provides` `node`, while the `npm` buildpack `requires` `node`, and therefore all `requires` and `provides` are fulfilled.
+If combined with the `node-engine` buildpack (which `provides` `node`), the lifecycle will see that all requirements are fulfilled, and select that group as the correct set of buildpacks.
+
+> **NOTE:** As above, if this was the only buildpack running, this would fail the `detect` phase. In order to pass, every `provides` must be matched up with a `requires`, whether in the same buildpack or in another buildpack. See the [spec](https://github.com/buildpacks/spec/blob/master/buildpack.md#phase-1-detection) for particulars on how ordering buildpacks can adjust detection results.
 
 ### Schema
 - **`provides`** _(list, optional)_\
