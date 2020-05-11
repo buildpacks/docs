@@ -220,7 +220,7 @@ name = "node"
 > **NOTE:** If this was the only buildpack running, this would fail the `detect` phase. In order to pass, every `provides` must be matched up with a `requires`, whether in the same buildpack or in another buildpack. See the [spec](https://github.com/buildpacks/spec/blob/master/buildpack.md#phase-1-detection) for particulars on how ordering buildpacks can adjust detection results.
 
 #### 2. One Version Requested
-The buildpack sees in one configuration file (e.g. a `.nvmrc` file in the app directory) that `node v10.x` is explicitly requested by the application. Seeing that, it may write the below text to the build plan:
+During the `detect` phase, the `node-engine` buildpack sees in one configuration file (e.g. a `.nvmrc` file in the app directory) that `node v10.x` is explicitly requested by the application. Seeing that, it may write the below text to the build plan:
 ```
 [[provides]]
 name = "node"
@@ -233,10 +233,10 @@ version = "10.x"
 version-source = ".nvmrc"
 ```
 
-As always, the buildpack `provides` `node`. In this particular case, a version of `node` (`10.x`) is being `requested` in a configuration file (`.nvmrc`). The buildpack chooses to add an additional piece of metadata (`version-source`), so that it can understand where that request came from.
+As always, the buildpack `provides` `node`. In this particular case, a version of `node` (`10.x`) is being requested in a configuration file (`.nvmrc`). The buildpack chooses to add an additional piece of metadata (`version-source`), so that it can understand where that request came from.
 
 #### 3. Two Versions Requested
-The buildpack sees two configuration files (e.g. `.nvmrc` and `buildpack.yml` files in the app directory) that request two different versions of the `node` dependency. One way of dealing with this would be writing both `requires` to the build plan, and reconciling which version(s) it will provide during the `build` phase. It can provide two different `requires`:
+During the `detect` phase, the `node-engine` buildpack sees two configuration files (e.g. `.nvmrc` and `buildpack.yml` files in the app directory) that request two different versions of the `node` dependency. One way of dealing with this would be writing both `requires` to the build plan, and reconciling which version(s) it will provide during the `build` phase. It can provide two different `requires`:
 
 ```
 [[provides]]
@@ -257,10 +257,12 @@ version = "12.x"
 version-source = "buildpack.yml"
 ```
 
-As always, the buildpack provides `node`. In this case, it requests two different things: `node v10.x` and `node v12.x`. During the `build` phase, it will analyze the two `requires`, and decide which (or both) to follow. Alternatively, it could have resolved the appropriate version in the `detect` phase, and only written the corresponding entry to the build plan.
+As always, the buildpack provides `node`. In this case, it requests two different things: `node v10.x` and `node v12.x`. During the `build` phase, it will analyze the two `requires`, and decide which to follow and download. Alternatively, it could have resolved the appropriate version in the `detect` phase (by deciding which configuration file has priority), and only written the corresponding version to the build plan.
 
 #### Possible NPM Buildpack
-`NPM`, the default package manager for `node`, is distributed together with node. As a result, a NPM buildpack may require `node`, but not want to `provide` it, trusting that the `node-engine` buildpack will be in charge of `providing` `node`.
+`NPM` is the default package manager for `node`. An NPM Buildpack could ensure that all the packages for the application are present (running `npm install`), and perhaps cache those packages as well to optimize future builds.
+
+NPM is typically distributed together with node. As a result, a NPM buildpack may require `node`, but not want to `provide` it, trusting that the `node-engine` buildpack will be in charge of `providing` `node`.
 
 It could write the following to the build plan, if it sees that it is necessary (e.g., it sees a `package.json` file in the app directory):
 ```
