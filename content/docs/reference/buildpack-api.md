@@ -207,9 +207,8 @@ Let's walk through some possible cases a `node-engine` buildpack may consider:
 
 1.  Nothing in the app explicitly calls out that it is needed
 2.  It is explicitly referred to in some configuration file
-3.  Two different configuration files request different versions of `node`
 
-We will also consider what a `NPM` buildpack may do.
+We will also consider what a `NPM` and a `JVM` buildpack may do.
 
 #### 1. No Explicit Request
 A `node-engine` buildpack is always happy to `provide` the `node` dependency. The build plan it will write may look something like:
@@ -235,36 +234,12 @@ version-source = ".nvmrc"
 
 As always, the buildpack `provides` `node`. In this particular case, a version of `node` (`10.x`) is being requested in a configuration file (`.nvmrc`). The buildpack chooses to add an additional piece of metadata (`version-source`), so that it can understand where that request came from.
 
-#### 3. Two Versions Requested
-During the `detect` phase, the `node-engine` buildpack sees two configuration files (e.g. `.nvmrc` and `buildpack.yml` files in the app directory) that request two different versions of the `node` dependency. One way of dealing with this would be writing both `requires` to the build plan, and reconciling which version(s) it will provide during the `build` phase. It can provide two different `requires`:
-
-```
-[[provides]]
-name = "node"
-
-[[requires]]
-name = "node"
-version = "10.x"
-
-[requires.metadata]
-version-source = ".nvmrc"
-
-[[requires]]
-name = "node"
-version = "12.x"
-
-[requires.metadata]
-version-source = "buildpack.yml"
-```
-
-As always, the buildpack provides `node`. In this case, it requests two different things: `node v10.x` and `node v12.x`. During the `build` phase, it will analyze the two `requires`, and decide which to follow and download. Alternatively, it could have resolved the appropriate version in the `detect` phase (by deciding which configuration file has priority), and only written the corresponding version to the build plan.
-
-#### Possible NPM Buildpack
-`NPM` is the default package manager for `node`. An NPM Buildpack could ensure that all the packages for the application are present (running `npm install`), and perhaps cache those packages as well to optimize future builds.
+#### NPM Buildpack
+`NPM` is the default package manager for `node`. A NPM Buildpack may ensure that all the packages for the application are present (by running `npm install`), and perhaps cache those packages as well, to optimize future builds.
 
 NPM is typically distributed together with node. As a result, a NPM buildpack may require `node`, but not want to `provide` it, trusting that the `node-engine` buildpack will be in charge of `providing` `node`.
 
-It could write the following to the build plan, if it sees that it is necessary (e.g., it sees a `package.json` file in the app directory):
+The NPM buildpack could write the following to the build plan, if the buildpack sees that `npm` is necessary (e.g., it sees a `package.json` file in the app directory):
 ```
 [[requires]]
 name = "node"
@@ -280,9 +255,36 @@ version = "14.1"
 version-source = "package.json"
 ```
 
-If combined with the `node-engine` buildpack (which `provides` `node`), the lifecycle will see that all requirements are fulfilled, and select that group as the correct set of buildpacks.
-
 > **NOTE:** As above, if this was the only buildpack running, this would fail the `detect` phase. In order to pass, every `provides` must be matched up with a `requires`, whether in the same buildpack or in another buildpack. See the [spec](https://github.com/buildpacks/spec/blob/master/buildpack.md#phase-1-detection) for particulars on how ordering buildpacks can adjust detection results.
+
+However, if the NPM Buildpack was run together with the Node Engine buildpack (which `provides` `node`), the lifecycle will see that all requirements are fulfilled, and select that group as the correct set of buildpacks.
+
+#### Possible JVM Buildpack
+Java is distributed in two formats - the `jdk` (Java Development Kit), which allows for compilation and running of Java programs, and the `jre` (Java Runtime Environment,  which allows for running compiled Java programs). A very naive implementation of the buildpack may have it write several `provides` options to the build plan, detailing everything that it can provide, while later buildpacks would figure out based on the application which options it requires, and would `require` those. In this particular case, we can use the `or` operator to present different possible build plans the buildpack can follow:
+
+```
+[[provides]]
+name = "jre"
+
+[[provides]]
+name = "jdk"
+
+[[or]]
+[[or.provides]]
+name = "jdk"
+
+[[or]]
+[[or.provides]]
+name = "jre"
+
+```
+
+The buildpack gives three options to the lifecycle:
+* It can provide a standalone `jre`
+* It can provide a standalone `jdk`
+* It can provide both the `jdk` and `jre`
+
+As with the other buildpacks, this alone will not be sufficient for the lifecycle. However, other buildpacks that follow may `require` certain things. For example, another buildpack may look into the application and, seeing that it is a Java executable, `require` the `jre` in order to run it. When the lifecycle analyzes the results of the detect phase, it will see that there is a buildpack which provides `jre`, and a buildpack that requires `jre`, and will therefore conclude that those options represent a valid set of buildpacks.
 
 ### Schema
 - **`provides`** _(list, optional)_\
