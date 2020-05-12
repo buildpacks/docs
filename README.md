@@ -3,11 +3,18 @@
 # docs
 Website for [Cloud Native Buildpacks](https://buildpacks.io)
 
-## Prerequisites
-
-* [Hugo](https://gohugo.io/)
-
 ## Development
+
+##### Prerequisites
+
+* [jq](https://stedolan.github.io/jq/)
+    * macOS: `brew install jq`
+    * Windows: `choco install jq`
+* Make
+    * macOS: `xcode-select --install`
+    * Windows: `choco install make`
+
+#### Serve
 
 Serve docs at http://localhost:1313
 
@@ -15,7 +22,7 @@ Serve docs at http://localhost:1313
 make serve
 ```
 
-## Build
+#### Build
 
 ```bash
 make build
