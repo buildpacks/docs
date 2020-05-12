@@ -1,5 +1,10 @@
 dist: xenial
 
+language: go
+
+go:
+  - 1.x
+
 install:
   - sudo apt-get install make curl jq
 
