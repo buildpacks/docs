@@ -3,10 +3,6 @@
 # docs
 Website for [Cloud Native Buildpacks](https://buildpacks.io)
 
-## Prerequisites
-
-* [Hugo](https://gohugo.io/)
-
 ## Development
 
 Serve docs at http://localhost:1313
