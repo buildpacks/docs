@@ -263,20 +263,22 @@ However, if the NPM Buildpack was run together with the Node Engine buildpack (w
 Java is distributed in two formats - the `jdk` (Java Development Kit), which allows for compilation and running of Java programs, and the `jre` (Java Runtime Environment,  which allows for running compiled Java programs). A very naive implementation of the buildpack may have it write several `provides` options to the build plan, detailing everything that it can provide, while later buildpacks would figure out based on the application which options it requires, and would `require` those. In this particular case, we can use the `or` operator to present different possible build plans the buildpack can follow:
 
 ```
+# option 1 (`jre` and `jdk`)
 [[provides]]
 name = "jre"
 
 [[provides]]
 name = "jdk"
 
+# option 2 (or just `jdk`)
 [[or]]
 [[or.provides]]
 name = "jdk"
 
+# option 3 (or just `jre`)
 [[or]]
 [[or.provides]]
 name = "jre"
-
 ```
 
 The buildpack gives three options to the lifecycle:
