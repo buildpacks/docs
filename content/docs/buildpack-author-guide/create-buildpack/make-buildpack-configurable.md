@@ -11,8 +11,7 @@ It's likely that not all Ruby apps will want to use the same version of Ruby. Le
 
 ## Select Ruby version
 
-We'll allow buildpack users to define the desired Ruby version via a `.ruby-version` file in their app. We'll first update the `detect` script to check for
-this file and record its contents into the build plan:
+We'll allow buildpack users to define the desired Ruby version via a `.ruby-version` file in their app. We'll first update the `detect` script to check for this file. We will then record the dependency we can `provide` (Ruby), as well as the specific dependency the application will `require`, in the `Build Plan`, a document the lifecycle uses to determine if the buildpack will provide everything the application needs:
 
 ```bash
 #!/usr/bin/env bash
@@ -79,7 +78,7 @@ gem install bundler --no-ri --no-rdoc
 
 # Compares previous Gemfile.lock checksum to the current Gemfile.lock
 bundlerlayer="$layersdir/bundler"
-local_bundler_checksum=$(sha256sum Gemfile.lock | cut -d ' ' -f 1) 
+local_bundler_checksum=$(sha256sum Gemfile.lock | cut -d ' ' -f 1)
 remote_bundler_checksum=$(cat "$bundlerlayer.toml" | /tmp/yj -t | /tmp/jq -r .metadata 2>/dev/null || echo 'not found')
 
 if [[ -f Gemfile.lock && $local_bundler_checksum == $remote_bundler_checksum ]] ; then

@@ -31,7 +31,7 @@ file or some configuration indicating what kind of application has been provided
 It accepts two positional arguments:
 
 * `PLATFORM_DIR` - a directory containing platform provided configuration, such as environment variables.
-* `BUILD_PLAN` - a path to a file containing the [Build Plan](https://github.com/buildpacks/spec/blob/master/buildpack.md#buildpack-plan-toml).
+* `BUILD_PLAN` - a path to a file containing the [Build Plan](#build-plan).
 
 In addition, the working directory is defined as the location of the codebase
 the buildpack will execute against.
@@ -68,7 +68,7 @@ It accepts three positional arguments:
 
 * `LAYERS_DIR` - a directory that may contain subdirectories representing each layer created by the buildpack in the final image or build cache.
 * `PLATFORM_DIR` - a directory containing platform provided configuration, such as environment variables.
-* `BUILD_PLAN` - a path to a file containing the [Build Plan](https://github.com/buildpacks/spec/blob/master/buildpack.md#buildpack-plan-toml).
+* `BUILD_PLAN` - a path to a file containing the [Build Plan](#build-plan).
 
 In addition, the working directory is defined as the location of the codebase
 this buildpack will execute against.
@@ -140,7 +140,6 @@ id = "io.buildpacks.stacks.bionic"
 ### Schema
 
 The schema is as follows:
-   
 - **`api`** _(string, required, current: `0.2`)_\
     The Buildpack API version the buildpack adheres to. Used to ensure [compatibility](#api-compatibility) against
     the [lifecycle][lifecycle].
@@ -156,7 +155,7 @@ The schema is as follows:
 
     - **`version`** _(string, required)_\
     The version of the buildpack.
-    
+
     - **`name`** _(string, required)_\
     Human readable name.
 
@@ -177,7 +176,7 @@ The schema is as follows:
   A list of buildpack groups for the purpose of creating a [meta-buildpack][meta-buildpack]. This list determines the
   order in which groups of buildpacks will be tested during detection. _If omitted, `stacks` list must be present.
   Cannot be used in conjunction with `stacks` list._
-  
+
     - **`group`** _(list, required)_\
     A list of buildpack references.
 
@@ -187,13 +186,129 @@ The schema is as follows:
 
         - **`version`** _(string, required)_\
           The version of the buildpack being referred to.
-    
+
         - **`optional`** _(boolean, optional, default: `false`)_\
           Whether or not this buildpack is optional during detection.
- 
+
 - **`metadata`** _(any, optional)_\
     Arbitrary data for buildpack.
- 
+
+## Build Plan
+The [Build Plan](https://github.com/buildpacks/spec/blob/master/buildpack.md#build-plan-toml) is a document the buildpacks can use to pass information between the [detect](#bindetect) and [build](#bindetect) phases. The build plan is passed (by the lifecycle) as a parameter to the `detect` and `build` binaries of the buildpack.
+* During the `detect` phase, the buildpack(s) may write something it `requires` or `provides` (or both) into the Build Plan.
+* During the `build` phase, the buildpack(s) may read the Buildpack Plan (a condensed version of the Build Plan, composed by the lifecycle) to determine what it should do, and refine the Buildpack Plan with more exact metadata (eg: what version dependency it requires).
+
+A buildpack can `require` or `provide` multiple dependencies, and even multiple groupings of dependencies (using `or` lists). Additionally, multiple buildpacks may `require` or `provide` the same dependency.
+
+The lifecycle uses the Build Plan as one element in deciding whether or not a particular list of buildpacks is appropriate, by seeing whether all dependencies required can be provided by that list.
+
+### Example
+Let's walk through some possible cases a `node-engine` buildpack may consider:
+
+1.  Nothing in the app explicitly calls out that it is needed
+2.  It is explicitly referred to in some configuration file
+
+We will also consider what a `NPM` and a `JVM` buildpack may do.
+
+#### 1. No Explicit Request
+A `node-engine` buildpack is always happy to `provide` the `node` dependency. The build plan it will write may look something like:
+```
+[[provides]]
+name = "node"
+```
+> **NOTE:** If this was the only buildpack running, this would fail the `detect` phase. In order to pass, every `provides` must be matched up with a `requires`, whether in the same buildpack or in another buildpack. See the [spec](https://github.com/buildpacks/spec/blob/master/buildpack.md#phase-1-detection) for particulars on how ordering buildpacks can adjust detection results.
+
+#### 2. One Version Requested
+During the `detect` phase, the `node-engine` buildpack sees in one configuration file (e.g. a `.nvmrc` file in the app directory) that `node v10.x` is explicitly requested by the application. Seeing that, it may write the below text to the build plan:
+```
+[[provides]]
+name = "node"
+
+[[requires]]
+name = "node"
+version = "10.x"
+
+[requires.metadata]
+version-source = ".nvmrc"
+```
+
+As always, the buildpack `provides` `node`. In this particular case, a version of `node` (`10.x`) is being requested in a configuration file (`.nvmrc`). The buildpack chooses to add an additional piece of metadata (`version-source`), so that it can understand where that request came from.
+
+#### NPM Buildpack
+`NPM` is the default package manager for `node`. A NPM Buildpack may ensure that all the packages for the application are present (by running `npm install`), and perhaps cache those packages as well, to optimize future builds.
+
+NPM is typically distributed together with node. As a result, a NPM buildpack may require `node`, but not want to `provide` it, trusting that the `node-engine` buildpack will be in charge of `providing` `node`.
+
+The NPM buildpack could write the following to the build plan, if the buildpack sees that `npm` is necessary (e.g., it sees a `package.json` file in the app directory):
+```
+[[requires]]
+name = "node"
+```
+
+If, looking in the `package.json` file, the NPM buildpack see a specific version of `node` requested in the [engines](https://docs.npmjs.com/files/package.json#engines) field (e.g. `14.1`), it may write the following to the build plan:
+```
+[[requires]]
+name = "node"
+version = "14.1"
+
+[requires.metadata]
+version-source = "package.json"
+```
+
+> **NOTE:** As above, if this was the only buildpack running, this would fail the `detect` phase. In order to pass, every `provides` must be matched up with a `requires`, whether in the same buildpack or in another buildpack. See the [spec](https://github.com/buildpacks/spec/blob/master/buildpack.md#phase-1-detection) for particulars on how ordering buildpacks can adjust detection results.
+
+However, if the NPM Buildpack was run together with the Node Engine buildpack (which `provides` `node`), the lifecycle will see that all requirements are fulfilled, and select that group as the correct set of buildpacks.
+
+#### Possible JVM Buildpack
+Java is distributed in two formats - the `jdk` (Java Development Kit), which allows for compilation and running of Java programs, and the `jre` (Java Runtime Environment,  which allows for running compiled Java programs). A very naive implementation of the buildpack may have it write several `provides` options to the build plan, detailing everything that it can provide, while later buildpacks would figure out based on the application which options it requires, and would `require` those. In this particular case, we can use the `or` operator to present different possible build plans the buildpack can follow:
+
+```
+# option 1 (`jre` and `jdk`)
+[[provides]]
+name = "jre"
+
+[[provides]]
+name = "jdk"
+
+# option 2 (or just `jdk`)
+[[or]]
+[[or.provides]]
+name = "jdk"
+
+# option 3 (or just `jre`)
+[[or]]
+[[or.provides]]
+name = "jre"
+```
+
+The buildpack gives three options to the lifecycle:
+* It can provide a standalone `jre`
+* It can provide a standalone `jdk`
+* It can provide both the `jdk` and `jre`
+
+As with the other buildpacks, this alone will not be sufficient for the lifecycle. However, other buildpacks that follow may `require` certain things. For example, another buildpack may look into the application and, seeing that it is a Java executable, `require` the `jre` in order to run it. When the lifecycle analyzes the results of the detect phase, it will see that there is a buildpack which provides `jre`, and a buildpack that requires `jre`, and will therefore conclude that those options represent a valid set of buildpacks.
+
+### Schema
+- **`provides`** _(list, optional)_\
+  A list of dependencies which the buildpack provides.
+    - **`name`** _(string, required)_\
+    The name of the provided dependency.
+
+- **`requires`** _(list, optional)_\
+  A list of dependencies which the buildpack requires.
+    - **`name`** _(string, required)_\
+    The name of the required dependency.
+
+    - **`version`** _(string, optional)_\
+    The version of the dependency required.
+
+    - **`metadata`** _(object, optional)_\
+    Any additional key-value metadata you wish to store.
+
+- **`or`** _(array, optional)_\
+  A list of alternate requirements which the buildpack provides/requires. Each `or` array must contain a valid Build Plan (with `provides` and `requires`)
+
+For more information, see the [Build Plan](https://github.com/buildpacks/spec/blob/master/buildpack.md#buildpack-plan-toml) section of the spec.
 
 ## API Compatibility
 
@@ -203,25 +318,24 @@ The schema is as follows:
 **Then** a buildpack and a lifecycle are considered compatible if all the following conditions are true:
 
 - If versions are pre-release, where `<major>` is `0`, then `<minor>`s must match.
-- If versions are stable, where `<major>` is greater than `0`, then `<minor>` of the buildpack must be less than 
+- If versions are stable, where `<major>` is greater than `0`, then `<minor>` of the buildpack must be less than
 or equal to that of the lifecycle.
 - `<major>`s must always match.
 
 <br />
 For example,
 
-| Buildpack _implements_ Buildpack API | Lifecycle _implements_ Buildpack API | Compatible?
-| --- | --- | ---
-| `0.2` | `0.2` | <span class="text-success">yes</span>
-| `1.1` | `1.1` | <span class="text-success">yes</span>
-| `1.2` | `1.3` | <span class="text-success">yes</span>
-| `0.2` | `0.3` | <span class="text-muted">no</span>
-| `0.3` | `0.2` | <span class="text-muted">no</span>
-| `1.3` | `1.2` | <span class="text-muted">no</span>
-| `1.3` | `2.3` | <span class="text-muted">no</span>
-| `2.3` | `1.3` | <span class="text-muted">no</span>
+| Buildpack _implements_ Buildpack API | Lifecycle _implements_ Buildpack API | Compatible?                           |
+| ------------------------------------ | ------------------------------------ | ------------------------------------- |
+| `0.2`                                | `0.2`                                | <span class="text-success">yes</span> |
+| `1.1`                                | `1.1`                                | <span class="text-success">yes</span> |
+| `1.2`                                | `1.3`                                | <span class="text-success">yes</span> |
+| `0.2`                                | `0.3`                                | <span class="text-muted">no</span>    |
+| `0.3`                                | `0.2`                                | <span class="text-muted">no</span>    |
+| `1.3`                                | `1.2`                                | <span class="text-muted">no</span>    |
+| `1.3`                                | `2.3`                                | <span class="text-muted">no</span>    |
+| `2.3`                                | `1.3`                                | <span class="text-muted">no</span>    |
 
- 
 ## Further Reading
 
 You can read the complete [Buildpack API specification on Github](https://github.com/buildpacks/spec/blob/master/buildpack.md).
