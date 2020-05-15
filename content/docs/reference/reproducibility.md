@@ -16,7 +16,7 @@ Running `pack build sample-hello-moon:test` multiple times produces a container 
 - The same set of buildpacks (see caveat below).
 
 ---
-Running `pack build cnbs/sample-hello-world:test --publish` multiple times produce a container image with the same image digest (*remote* case)
+Running `pack build cnbs/sample-hello-world:test --publish` multiple times produces a container image with the same image digest (*remote* case)
 
 **Given**:
 - The same source code
