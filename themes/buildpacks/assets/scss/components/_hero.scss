@@ -5,36 +5,51 @@ Hero
 **********************************/
 
 .hero {
-  padding: 6vw;
-  text-align: center;
-}
+  background-image: url("/images/bg-pattern.png");
+  background-color: $blue-light;
+  background-blend-mode: multiply;
 
-.hero h1 {
-  font-weight: 600;
-  max-width: 580px;
-  margin: 0 auto 20px;
-}
+  .container {
+    padding: 6vw;
+    text-align: center;
 
-.hero .button-holder {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 0;
-}
+    .strong {
+      font-weight: bold;
+    }
 
-.hero .button {
-  margin-bottom: 20px;
-  max-width: 200px;
-}
+    h2 {
+      font-weight: 300;
+      max-width: 620px;
+      margin: 0 auto 20px;
+      color: $white;
+      text-shadow: 2px 2px rgba($black, .2);
+    }
 
-@media (min-width: 768px) {
-  .hero .button-holder {
-    flex-direction: row;
+    .button-holder {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 0;
+    }
+
+    .button {
+      margin: 20px 0 10px;
+      max-width: 200px;
+      box-shadow: 2px 2px rgba($black, .1);
+    }
   }
 
-  .hero .button {
-    margin-right: 20px;
-    margin-bottom: 0;
+  @media (min-width: 768px) {
+    .container.hero {
+      .button-holder {
+        flex-direction: row;
+      }
+
+      .button {
+        margin-right: 20px;
+        margin-bottom: 0;
+      }
+    }
   }
 }
