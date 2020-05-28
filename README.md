@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/buildpacks/docs.svg?branch=master)](https://travis-ci.org/buildpacks/docs/branches)
+![](https://github.com/buildpacks/docs/workflows/Deploy/badge.svg)
 
 # docs
 Website for [Cloud Native Buildpacks](https://buildpacks.io)
