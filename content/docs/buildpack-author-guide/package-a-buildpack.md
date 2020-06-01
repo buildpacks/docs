@@ -54,7 +54,7 @@ image = "cnbs/sample-package:hello-world"
 
 > For more information about the configuration, see [package.toml][package-config] config.
 
-### 4. Package your buildpack
+### 4. Package your buildpack as an image
 
 Lastly, we'll run the `package-buildpack` command to package the buildpack as an OCI image.
 
@@ -62,7 +62,7 @@ Lastly, we'll run the `package-buildpack` command to package the buildpack as an
 pack package-buildpack my-buildpack --package-config ./package.toml
 ```
 
-> **Tip:** You can verify that the image was created by running `docker images`. 
+> **Tip:** You can verify that the image was created by running `docker images`.
 
 That's it! Your buildpack is now packaged for distribution.
 
@@ -70,8 +70,15 @@ You may now use standard `docker push` to host your buildpack on any OCI registr
 
 Alternatively, you can run `pack package-buildpack` with `--publish` to publish it directly to the registry.
 
----
+### 5. Package your buildpack as a file
 
+You can also run `package-buildpack` with a `-f file` flag to save the packaged buildpack as a local file.
+
+```shell script
+pack package-buildpack my-buildpack.cnb --package-config ./package.toml -f file
+```
+
+You can then use this file (called a `.cnb` file) as an input to `package-buildpack`, among other commands.
 
 [package-config]: /docs/reference/package-config/
 [samples]: https://github.com/buildpacks/samples

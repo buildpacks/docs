@@ -12,10 +12,10 @@ A [buildpackage][package] configuration schema is as follows:
     A URL or path to an [archive][supported-archives], or a path to a directory. If path is relative, it must be relative to the `package.toml`.
 
 - #### `dependencies` _(list, optional)_
-  A set of dependent buildpack locations, for packaging a meta-buildpack. Each dependent buildpack location must correspond to an [order group][order-group] within the meta-buildpack being packaged, and must have **one** of the following fields: 
+  A set of dependent buildpack locations, for packaging a meta-buildpack. Each dependent buildpack location must correspond to an [order group][order-group] within the meta-buildpack being packaged, and must have **one** of the following fields:
 
   - **`uri`** _(string)_\
-    A URL or path to an [archive][supported-archives], or a path to a directory. If path is relative, it must be relative to the `package.toml`.
+    A URL or path to an [archive][supported-archives], a packaged buildpack (saved as a `.cnb` file), or a path to a local directory. If path is relative, it must be relative to the `package.toml`.
 
     OR
 
