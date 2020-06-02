@@ -75,7 +75,7 @@ Alternatively, you can run `pack package-buildpack` with `--publish` to publish 
 You can also run `package-buildpack` with a `--format file` flag to save the packaged buildpack as a local file.
 
 ```shell script
-pack package-buildpack my-buildpack.cnb --package-config ./package.toml -f file
+pack package-buildpack my-buildpack.cnb --package-config ./package.toml --format file
 ```
 
 You can then use this file (called a `.cnb` file) as an input to `package-buildpack`, among other commands.
