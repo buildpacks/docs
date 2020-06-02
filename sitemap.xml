@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://buildpacks.io/docs/concepts/operations/build/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/app-developer-guide/build-an-app/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/concepts/components/builder/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/concepts/components/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/operator-guide/create-a-builder/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/app-developer-guide/environment-variables/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/install-pack/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/app-developer-guide/specific-buildpacks/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/app-journey/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/concepts/components/buildpack/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/reference/buildpack-api/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/reference/distribution-api/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/concepts/operations/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/reference/platform-api/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/concepts/operations/rebase/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/concepts/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/concepts/components/lifecycle/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/app-developer-guide/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/buildpack-author-guide/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/concepts/components/stack/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/operator-guide/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/buildpack-author-guide/package-a-buildpack/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/reference/builder-config/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/reference/package-config/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/reference/reproducibility/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/reference/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/setup-local-environment/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/detection/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/build-app/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/make-app-runnable/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/caching/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/categories/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/tags/</loc>
+  </url>
+  
+</urlset>

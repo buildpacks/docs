@@ -1,0 +1,440 @@
+<!doctype html>
+<html>
+  <head>
+    
+
+
+
+
+
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+<meta property="og:title" content="Cloud Native Buildpack Documentation · Stack">
+
+<meta property="og:type" content="documentation">
+
+<meta property="og:url" content="https://buildpacks.io/docs/concepts/components/stack/">
+<meta property="og:locale" content="en_US">
+
+<meta property="og:site_name" content="Cloud Native Buildpack Documentation">
+
+
+<meta name="og:type" content="article">
+<meta name="og:image" content="https://buildpacks.io/images/buildpacks-logo.svg">
+<meta name="og:image:alt" content="Buildpacks project logo">
+<meta name="og:image:type" content="image/svg+xml">
+
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@buildpacks_io">
+<meta name="twitter:creator" content="@buildpacks_io">
+
+<link rel="canonical" content="https://buildpacks.io/docs/concepts/components/stack/">
+<link rel="icon" type="image/png" href="/images/favicon.png">
+<meta name="generator" content="Hugo 0.70.0" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Mono|Source+Sans+Pro:400,400i,600" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://buildpacks.io/scss/site.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+    
+    
+
+    <script>
+      function addAnchor(element) {
+        if (element.id === "" || element.getElementsByTagName("a").length > 0) {
+          return;
+        }
+
+        element.innerHTML =
+          `<a href="#${element.id}" class="h-anchor">
+            ${element.innerHTML} <i class="fas fa-link icon" aria-label="Anchor"></i>
+          </a>`;
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        const headers = document.querySelectorAll('h1, h2, h3, h4, h5');
+        if (headers) {
+          headers.forEach(addAnchor);
+        }
+      });
+    </script>
+
+    <title>Stack · Cloud Native Buildpack Documentation</title>
+  </head>
+  <body>
+    <header class="container">
+  <a href="https://buildpacks.io/" class="logo"><img src="/images/buildpacks-logo.svg" alt="Buildpacks.io Logo"></a>
+  <input type="checkbox" id="mobile-nav-toggle">
+  <label for="mobile-nav-toggle">&#9776;</label>
+  <ul>
+    
+    
+      
+      <li><a class=""  href="/">Home</a></li>
+    
+      
+      <li><a class="active"  href="/docs">Docs</a></li>
+    
+      
+      <li><a class="" target='_blank' href="https://medium.com/buildpacks">Blog</a></li>
+    
+    <li><a href="https://github.com/buildpacks" class="github-button icon-button bg-blue button">GitHub</a></li>
+  </ul>
+</header>
+
+    
+
+<div class='docs'>
+  <div class="container">
+    <div class='row'>
+      <div class='col-md-3 docs-sidebar'>
+        <nav class='sidebar'>
+  <ul>
+      <li data-nav-id="/docs/" class="dd-item depth-0">
+        <a href="/docs/">Getting Started</a>
+        <ul class="ml-2">
+              
+      <li data-nav-id="/docs/install-pack/" class="dd-item depth-1 collapse">
+        <a href="/docs/install-pack/">Installing <code>pack</code></a>
+      </li>
+              
+      <li data-nav-id="/docs/app-journey/" class="dd-item depth-1 collapse">
+        <a href="/docs/app-journey/">An App&rsquo;s Brief Journey from Source to Image</a>
+      </li>
+        </ul>
+      </li>
+      <li data-nav-id="/docs/concepts/" class="dd-item depth-0 parent haschildren">
+        <a href="/docs/concepts/">Concepts</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/concepts/components/" class="dd-item depth-1 parent haschildren">
+        <a href="/docs/concepts/components/">Components</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/concepts/components/builder/" class="dd-item depth-2">
+        <a href="/docs/concepts/components/builder/">Builder</a>
+      </li>
+      <li data-nav-id="/docs/concepts/components/buildpack/" class="dd-item depth-2">
+        <a href="/docs/concepts/components/buildpack/">Buildpack</a>
+      </li>
+      <li data-nav-id="/docs/concepts/components/lifecycle/" class="dd-item depth-2">
+        <a href="/docs/concepts/components/lifecycle/">Lifecycle</a>
+      </li>
+      <li data-nav-id="/docs/concepts/components/stack/" class="dd-item depth-2 active">
+        <a href="/docs/concepts/components/stack/">Stack</a>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/concepts/operations/" class="dd-item depth-1 haschildren">
+        <a href="/docs/concepts/operations/">Operations</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/concepts/operations/build/" class="dd-item depth-2">
+        <a href="/docs/concepts/operations/build/">Build</a>
+      </li>
+      <li data-nav-id="/docs/concepts/operations/rebase/" class="dd-item depth-2">
+        <a href="/docs/concepts/operations/rebase/">Rebase</a>
+      </li>
+          </ul>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/app-developer-guide/" class="dd-item depth-0 haschildren">
+        <a href="/docs/app-developer-guide/">App Developer&rsquo;s Guide</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/app-developer-guide/build-an-app/" class="dd-item depth-1">
+        <a href="/docs/app-developer-guide/build-an-app/">Build an app</a>
+      </li>
+      <li data-nav-id="/docs/app-developer-guide/environment-variables/" class="dd-item depth-1">
+        <a href="/docs/app-developer-guide/environment-variables/">Environment variables</a>
+      </li>
+      <li data-nav-id="/docs/app-developer-guide/specific-buildpacks/" class="dd-item depth-1">
+        <a href="/docs/app-developer-guide/specific-buildpacks/">Specify buildpacks</a>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/" class="dd-item depth-0 haschildren">
+        <a href="/docs/buildpack-author-guide/">Buildpack Author&rsquo;s Guide</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/" class="dd-item depth-1 haschildren">
+        <a href="/docs/buildpack-author-guide/create-buildpack/">Create a buildpack</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/setup-local-environment/" class="dd-item depth-2 collapse">
+        <a href="/docs/buildpack-author-guide/create-buildpack/setup-local-environment/">Set up your local environment</a>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb/" class="dd-item depth-2 collapse">
+        <a href="/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb/">Building blocks of a Cloud Native Buildpack</a>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/detection/" class="dd-item depth-2 collapse">
+        <a href="/docs/buildpack-author-guide/create-buildpack/detection/">Detecting your application</a>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/build-app/" class="dd-item depth-2 collapse">
+        <a href="/docs/buildpack-author-guide/create-buildpack/build-app/">Building your application</a>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/make-app-runnable/" class="dd-item depth-2 collapse">
+        <a href="/docs/buildpack-author-guide/create-buildpack/make-app-runnable/">Make your application runnable</a>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/caching/" class="dd-item depth-2 collapse">
+        <a href="/docs/buildpack-author-guide/create-buildpack/caching/">Improving performance with caching</a>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable/" class="dd-item depth-2 collapse">
+        <a href="/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable/">Making your buildpack configurable</a>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/package-a-buildpack/" class="dd-item depth-1">
+        <a href="/docs/buildpack-author-guide/package-a-buildpack/">Package a buildpack</a>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/operator-guide/" class="dd-item depth-0 haschildren">
+        <a href="/docs/operator-guide/">Operator&rsquo;s Guide</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/operator-guide/create-a-builder/" class="dd-item depth-1">
+        <a href="/docs/operator-guide/create-a-builder/">Create a builder</a>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/reference/" class="dd-item depth-0 haschildren">
+        <a href="/docs/reference/">Reference</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/reference/buildpack-api/" class="dd-item depth-1 collapse">
+        <a href="/docs/reference/buildpack-api/">Buildpack API</a>
+      </li>
+      <li data-nav-id="/docs/reference/distribution-api/" class="dd-item depth-1 collapse">
+        <a href="/docs/reference/distribution-api/">Distribution API</a>
+      </li>
+      <li data-nav-id="/docs/reference/platform-api/" class="dd-item depth-1 collapse">
+        <a href="/docs/reference/platform-api/">Platform API</a>
+      </li>
+      <li data-nav-id="/docs/reference/builder-config/" class="dd-item depth-1 collapse">
+        <a href="/docs/reference/builder-config/">builder.toml</a>
+      </li>
+      <li data-nav-id="/docs/reference/package-config/" class="dd-item depth-1 collapse">
+        <a href="/docs/reference/package-config/">package.toml</a>
+      </li>
+      <li data-nav-id="/docs/reference/reproducibility/" class="dd-item depth-1 collapse">
+        <a href="/docs/reference/reproducibility/">Reproducible Builds</a>
+      </li>
+          </ul>
+      </li>
+    </ul>
+  
+</nav>
+
+
+
+      </div>
+      <div class='col-md-9 docs-content'>
+        <div class="support-links text-right">
+  
+    
+    
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BStack%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fconcepts%2Fcomponents%2Fstack%2F%29"
+       class="btn-light btn-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
+
+    
+    <a href="https://github.com/buildpacks/docs/edit/master/content/docs/concepts/components/stack.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+       class="btn-light btn-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
+  
+</div>
+
+        <div class="heading">
+          <h1 class="title">Stack</h1>
+        </div>
+
+        <h2 id="what-is-a-stack">What is a stack?</h2>
+<p>A stack provides the buildpack lifecycle with build-time and run-time environments in the form of images.</p>
+<blockquote>
+<p>If you&rsquo;re using the <code>pack</code> CLI, running <code>pack suggest-stacks</code> will display a list of recommended
+stacks that can be used when running <code>pack create-builder</code>, along with each stack&rsquo;s associated build and run images.</p>
+</blockquote>
+<h2 id="using-stacks">Using stacks</h2>
+<p>Stacks are used by <a href="/docs/concepts/components/builder/#builders-explained">builders</a> and are configured through a builder&rsquo;s
+<a href="/docs/concepts/components/builder#builder-configuration">configuration file</a>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[[</span><span class="nx">buildpacks</span><span class="p">]]</span>
+  <span class="c"># ...</span>
+
+<span class="p">[[</span><span class="nx">order</span><span class="p">]]</span>
+  <span class="c"># ...</span>
+
+<span class="p">[</span><span class="nx">stack</span><span class="p">]</span>
+  <span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;com.example.stack&#34;</span>
+  <span class="nx">build</span><span class="err">-</span><span class="nx">image</span> <span class="p">=</span> <span class="s2">&#34;example/build&#34;</span>
+  <span class="nx">run</span><span class="err">-</span><span class="nx">image</span> <span class="p">=</span> <span class="s2">&#34;example/run&#34;</span>
+  <span class="nx">run</span><span class="err">-</span><span class="nx">image</span><span class="err">-</span><span class="nx">mirrors</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;gcr.io/example/run&#34;</span><span class="p">,</span> <span class="s2">&#34;registry.example.com/example/run&#34;</span><span class="p">]</span>
+</code></pre></div><p>By providing the required <code>[stack]</code> section, a builder author can configure a stack&rsquo;s ID, build image, and run image
+(including any mirrors).</p>
+<h3 id="run-image-mirrors">Run image mirrors</h3>
+<p>Run image mirrors provide alternate locations for run images, for use during <code>build</code> (or <code>rebase</code>).
+When running <code>build</code> with a builder containing run image mirrors, <code>pack</code> will select a run image
+whose registry location matches that of the specified app image (if no registry host is specified in the image name,
+DockerHub is assumed). This is useful when publishing the resulting app image (via the <code>--publish</code> flag or via
+<code>docker push</code>), as the app&rsquo;s base image (i.e. run image) will be located on the same registry as the app image itself,
+reducing the amount of data transfer required to push the app image.</p>
+<p>In the following example, assuming a builder configured with the example TOML above, the selected run image will be
+<code>registry.example.com/example/run</code>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ pack build registry.example.com/example/app
+</code></pre></div><p>while naming the app without a registry specified, <code>example/app</code>, will cause <code>example/run</code> to be selected as the app&rsquo;s
+run image.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ pack build example/app
+</code></pre></div><blockquote>
+<p>For local development, it&rsquo;s often helpful to override the run image mirrors in a builder. For this, the
+<code>set-run-image-mirrors</code> command can be used. This command does not modify the builder, and instead configures the
+user&rsquo;s local machine.</p>
+<p>To see what run images are configured for a builder, the
+<code>inspect-builder</code> command can be used. <code>inspect-builder</code> will output built-in and locally-configured run images for
+a given builder, among other useful information. The order of the run images in the output denotes the order in
+which they will be matched during <code>build</code>.</p>
+</blockquote>
+<h2 id="creating-custom-stacks">Creating custom stacks</h2>
+<p>To create a custom stack, simply create customized build and run images containing the following information:</p>
+<h3 id="labels">Labels</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>io.buildpacks.stack.id</code></td>
+<td>Identifier for the stack</td>
+<td>String</td>
+</tr>
+</tbody>
+</table>
+<h3 id="environment-variables">Environment Variables</h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CNB_STACK_ID</code></td>
+<td>Identifier for the stack</td>
+</tr>
+<tr>
+<td><code>CNB_USER_ID</code></td>
+<td>UID of the user specified in the image</td>
+</tr>
+<tr>
+<td><code>CNB_GROUP_ID</code></td>
+<td>GID of the user specified in the image</td>
+</tr>
+</tbody>
+</table>
+<p class="spacer"></p>
+<blockquote>
+<p><strong>NOTE:</strong> The <strong>stack identifier</strong> implies compatibility with other stacks of that same identifier. For instance, a custom stack may use
+<code>io.buildpacks.stacks.bionic</code> as its identifier so long as it will work with buildpacks that declare compatibility with the
+<code>io.buildpacks.stacks.bionic</code> stack.</p>
+</blockquote>
+<h2 id="mixins">Mixins</h2>
+<p>Mixins provide a way to document OS-level dependencies that a stack provides to buildpacks. Mixins can be provided at build-time
+(name prefixed with <code>build:</code>), run-time (name prefixed with <code>run:</code>), or both (name unprefixed).</p>
+<h3 id="declaring-provided-mixins">Declaring provided mixins</h3>
+<p>When declaring provided mixins, both the build and run image of a stack must contain the following label:</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th>Format</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>io.buildpacks.stack.mixins</code></td>
+<td>List of provided mixins</td>
+<td>JSON string array</td>
+</tr>
+</tbody>
+</table>
+<p><br>
+The following rules apply for mixin declarations:</p>
+<ul>
+<li><code>build:</code>-prefixed mixins may not be declared on a run image</li>
+<li><code>run:</code>-prefixed mixins may not be declared on a build image</li>
+<li>Unprefixed mixins must be declared on both stack images</li>
+</ul>
+<h4 id="example">Example</h4>
+<p><em>Build image:</em></p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">io.buildpack.stack.mixins:</span> <span class="p">[</span><span class="s2">&#34;build:git&#34;</span><span class="p">,</span> <span class="s2">&#34;wget&#34;</span><span class="p">]</span>
+</code></pre></div><p><em>Run image:</em></p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">io.buildpack.stack.mixins:</span> <span class="p">[</span><span class="s2">&#34;run:imagemagick&#34;</span><span class="p">,</span> <span class="s2">&#34;wget&#34;</span><span class="p">]</span>
+</code></pre></div><h3 id="declaring-required-mixins">Declaring required mixins</h3>
+<p>A buildpack must list any required mixins in the <code>stacks</code> section of its <code>buildpack.toml</code> file.</p>
+<p>When validating whether the buildpack&rsquo;s mixins are satisfied by a stack, the following rules apply:</p>
+<ul>
+<li><code>build:</code>-prefixed mixins must be provided by stack&rsquo;s build image</li>
+<li><code>run:</code>-prefixed mixins must be provided by stack&rsquo;s run image</li>
+<li>Unprefixed mixins must be provided by both stack images</li>
+</ul>
+<h4 id="example-1">Example</h4>
+<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[[</span><span class="nx">stacks</span><span class="p">]]</span>
+<span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;io.buildpacks.stacks.bionic&#34;</span>
+<span class="nx">mixins</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;build:git&#34;</span><span class="p">,</span> <span class="s2">&#34;run:imagemagick&#34;</span><span class="p">,</span> <span class="s2">&#34;wget&#34;</span><span class="p">]</span>
+</code></pre></div><h2 id="resources">Resources</h2>
+<p>For sample stacks, see our <a href="https://github.com/buildpacks/samples">samples</a> repo.</p>
+<p>For technical details on stacks, see the <a href="https://github.com/buildpacks/spec/blob/master/platform.md#stacks">platform specification for stacks</a>.</p>
+
+        
+
+        <hr>
+<div class='footline d-block'>
+  <div class="support-links text-right">
+  
+    
+    
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BStack%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fconcepts%2Fcomponents%2Fstack%2F%29"
+       class="btn-light btn-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
+
+    
+    <a href="https://github.com/buildpacks/docs/edit/master/content/docs/concepts/components/stack.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+       class="btn-light btn-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
+  
+</div>
+</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+    <footer>
+  <div class="container footer">
+    <a href="https://www.cncf.io/" style="width: 50%;"><img src="/images/cncf-color.svg" class="footer-logo"></a>
+    <p>We are a <a href="https://www.cncf.io/">Cloud Native Sandbox</a> project.</p>
+  </div>
+  <div class="bg-blue">
+    <div class="container sub-footer">
+      <p>Reach out <a href="https://slack.buildpacks.io">on Slack</a> to learn more.</p>
+      <ul>
+        <li><a href="https://lists.cncf.io/g/cncf-buildpacks/join" target="_blank">Mailing List</a> <span>&bull;</span></li>
+        <li><a href="https://slack.buildpacks.io/" target="_blank">Slack</a> <span>&bull;</span></li>
+        <li><a href="https://twitter.com/buildpacks_io" target="_blank">Twitter</a> <span>&bull;</span></li>
+        <li><a href="https://github.com/buildpacks" target="_blank">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

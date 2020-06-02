@@ -1,0 +1,357 @@
+<!doctype html>
+<html>
+  <head>
+    
+
+
+
+
+
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+<meta property="og:title" content="Cloud Native Buildpack Documentation · Building blocks of a Cloud Native Buildpack">
+
+<meta property="og:type" content="documentation">
+
+<meta property="og:url" content="https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb/">
+<meta property="og:locale" content="en_US">
+
+<meta property="og:site_name" content="Cloud Native Buildpack Documentation">
+
+
+<meta name="og:type" content="article">
+<meta name="og:image" content="https://buildpacks.io/images/buildpacks-logo.svg">
+<meta name="og:image:alt" content="Buildpacks project logo">
+<meta name="og:image:type" content="image/svg+xml">
+
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@buildpacks_io">
+<meta name="twitter:creator" content="@buildpacks_io">
+
+<link rel="canonical" content="https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb/">
+<link rel="icon" type="image/png" href="/images/favicon.png">
+<meta name="generator" content="Hugo 0.70.0" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Mono|Source+Sans+Pro:400,400i,600" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://buildpacks.io/scss/site.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+    
+    
+
+    <script>
+      function addAnchor(element) {
+        if (element.id === "" || element.getElementsByTagName("a").length > 0) {
+          return;
+        }
+
+        element.innerHTML =
+          `<a href="#${element.id}" class="h-anchor">
+            ${element.innerHTML} <i class="fas fa-link icon" aria-label="Anchor"></i>
+          </a>`;
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        const headers = document.querySelectorAll('h1, h2, h3, h4, h5');
+        if (headers) {
+          headers.forEach(addAnchor);
+        }
+      });
+    </script>
+
+    <title>Building blocks of a Cloud Native Buildpack · Cloud Native Buildpack Documentation</title>
+  </head>
+  <body>
+    <header class="container">
+  <a href="https://buildpacks.io/" class="logo"><img src="/images/buildpacks-logo.svg" alt="Buildpacks.io Logo"></a>
+  <input type="checkbox" id="mobile-nav-toggle">
+  <label for="mobile-nav-toggle">&#9776;</label>
+  <ul>
+    
+    
+      
+      <li><a class=""  href="/">Home</a></li>
+    
+      
+      <li><a class="active"  href="/docs">Docs</a></li>
+    
+      
+      <li><a class="" target='_blank' href="https://medium.com/buildpacks">Blog</a></li>
+    
+    <li><a href="https://github.com/buildpacks" class="github-button icon-button bg-blue button">GitHub</a></li>
+  </ul>
+</header>
+
+    
+
+<div class='docs'>
+  <div class="container">
+    <div class='row'>
+      <div class='col-md-3 docs-sidebar'>
+        <nav class='sidebar'>
+  <ul>
+      <li data-nav-id="/docs/" class="dd-item depth-0">
+        <a href="/docs/">Getting Started</a>
+        <ul class="ml-2">
+              
+      <li data-nav-id="/docs/install-pack/" class="dd-item depth-1 collapse">
+        <a href="/docs/install-pack/">Installing <code>pack</code></a>
+      </li>
+              
+      <li data-nav-id="/docs/app-journey/" class="dd-item depth-1 collapse">
+        <a href="/docs/app-journey/">An App&rsquo;s Brief Journey from Source to Image</a>
+      </li>
+        </ul>
+      </li>
+      <li data-nav-id="/docs/concepts/" class="dd-item depth-0 haschildren">
+        <a href="/docs/concepts/">Concepts</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/concepts/components/" class="dd-item depth-1 collapse haschildren">
+        <a href="/docs/concepts/components/">Components</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/concepts/components/builder/" class="dd-item depth-2">
+        <a href="/docs/concepts/components/builder/">Builder</a>
+      </li>
+      <li data-nav-id="/docs/concepts/components/buildpack/" class="dd-item depth-2">
+        <a href="/docs/concepts/components/buildpack/">Buildpack</a>
+      </li>
+      <li data-nav-id="/docs/concepts/components/lifecycle/" class="dd-item depth-2">
+        <a href="/docs/concepts/components/lifecycle/">Lifecycle</a>
+      </li>
+      <li data-nav-id="/docs/concepts/components/stack/" class="dd-item depth-2">
+        <a href="/docs/concepts/components/stack/">Stack</a>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/concepts/operations/" class="dd-item depth-1 collapse haschildren">
+        <a href="/docs/concepts/operations/">Operations</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/concepts/operations/build/" class="dd-item depth-2">
+        <a href="/docs/concepts/operations/build/">Build</a>
+      </li>
+      <li data-nav-id="/docs/concepts/operations/rebase/" class="dd-item depth-2">
+        <a href="/docs/concepts/operations/rebase/">Rebase</a>
+      </li>
+          </ul>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/app-developer-guide/" class="dd-item depth-0 haschildren">
+        <a href="/docs/app-developer-guide/">App Developer&rsquo;s Guide</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/app-developer-guide/build-an-app/" class="dd-item depth-1">
+        <a href="/docs/app-developer-guide/build-an-app/">Build an app</a>
+      </li>
+      <li data-nav-id="/docs/app-developer-guide/environment-variables/" class="dd-item depth-1">
+        <a href="/docs/app-developer-guide/environment-variables/">Environment variables</a>
+      </li>
+      <li data-nav-id="/docs/app-developer-guide/specific-buildpacks/" class="dd-item depth-1">
+        <a href="/docs/app-developer-guide/specific-buildpacks/">Specify buildpacks</a>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/" class="dd-item depth-0 parent haschildren">
+        <a href="/docs/buildpack-author-guide/">Buildpack Author&rsquo;s Guide</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/" class="dd-item depth-1 parent haschildren">
+        <a href="/docs/buildpack-author-guide/create-buildpack/">Create a buildpack</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/setup-local-environment/" class="dd-item depth-2">
+        <a href="/docs/buildpack-author-guide/create-buildpack/setup-local-environment/">Set up your local environment</a>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb/" class="dd-item depth-2 active">
+        <a href="/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb/">Building blocks of a Cloud Native Buildpack</a>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/detection/" class="dd-item depth-2">
+        <a href="/docs/buildpack-author-guide/create-buildpack/detection/">Detecting your application</a>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/build-app/" class="dd-item depth-2">
+        <a href="/docs/buildpack-author-guide/create-buildpack/build-app/">Building your application</a>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/make-app-runnable/" class="dd-item depth-2">
+        <a href="/docs/buildpack-author-guide/create-buildpack/make-app-runnable/">Make your application runnable</a>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/caching/" class="dd-item depth-2">
+        <a href="/docs/buildpack-author-guide/create-buildpack/caching/">Improving performance with caching</a>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable/" class="dd-item depth-2">
+        <a href="/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable/">Making your buildpack configurable</a>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/package-a-buildpack/" class="dd-item depth-1">
+        <a href="/docs/buildpack-author-guide/package-a-buildpack/">Package a buildpack</a>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/operator-guide/" class="dd-item depth-0 haschildren">
+        <a href="/docs/operator-guide/">Operator&rsquo;s Guide</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/operator-guide/create-a-builder/" class="dd-item depth-1">
+        <a href="/docs/operator-guide/create-a-builder/">Create a builder</a>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/reference/" class="dd-item depth-0 haschildren">
+        <a href="/docs/reference/">Reference</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/reference/buildpack-api/" class="dd-item depth-1 collapse">
+        <a href="/docs/reference/buildpack-api/">Buildpack API</a>
+      </li>
+      <li data-nav-id="/docs/reference/distribution-api/" class="dd-item depth-1 collapse">
+        <a href="/docs/reference/distribution-api/">Distribution API</a>
+      </li>
+      <li data-nav-id="/docs/reference/platform-api/" class="dd-item depth-1 collapse">
+        <a href="/docs/reference/platform-api/">Platform API</a>
+      </li>
+      <li data-nav-id="/docs/reference/builder-config/" class="dd-item depth-1 collapse">
+        <a href="/docs/reference/builder-config/">builder.toml</a>
+      </li>
+      <li data-nav-id="/docs/reference/package-config/" class="dd-item depth-1 collapse">
+        <a href="/docs/reference/package-config/">package.toml</a>
+      </li>
+      <li data-nav-id="/docs/reference/reproducibility/" class="dd-item depth-1 collapse">
+        <a href="/docs/reference/reproducibility/">Reproducible Builds</a>
+      </li>
+          </ul>
+      </li>
+    </ul>
+  
+</nav>
+
+
+
+      </div>
+      <div class='col-md-9 docs-content'>
+        <div class="support-links text-right">
+  
+    
+    
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BBuilding&#43;blocks&#43;of&#43;a&#43;Cloud&#43;Native&#43;Buildpack%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fbuildpack-author-guide%2Fcreate-buildpack%2Fbuilding-blocks-cnb%2F%29"
+       class="btn-light btn-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
+
+    
+    <a href="https://github.com/buildpacks/docs/edit/master/content/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+       class="btn-light btn-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
+  
+</div>
+
+        <div class="heading">
+          <h1 class="title">Building blocks of a Cloud Native Buildpack</h1>
+        </div>
+
+        <p>Now we will set up the buildpack scaffolding. You will need to make these files in your <code>ruby-cnb</code> directory</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> ~/workspace/ruby-cnb
+</code></pre></div><h3 id="buildpacktoml">buildpack.toml</h3>
+<p>Once you are in the <code>ruby-cnb</code> directory, you will need to create a <code>buildpack.toml</code> file in that directory. This file must exist in the root directory of your buildpack so the <code>pack</code> CLI knows it is a buildpack and it can apply the build lifecycle to it.</p>
+<p>Create the <code>buildpack.toml</code> file and copy the following into it:</p>
+<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="c"># Buildpack API version</span>
+<span class="nx">api</span> <span class="p">=</span> <span class="s2">&#34;0.2&#34;</span>
+
+<span class="c"># Buildpack ID and metadata</span>
+<span class="p">[</span><span class="nx">buildpack</span><span class="p">]</span>
+<span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;com.examples.buildpacks.ruby&#34;</span>
+<span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;0.0.1&#34;</span>
+<span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Ruby Buildpack&#34;</span>
+
+<span class="c"># Stacks that the buildpack will work with</span>
+<span class="p">[[</span><span class="nx">stacks</span><span class="p">]]</span>
+<span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;heroku-18&#34;</span>
+
+<span class="p">[[</span><span class="nx">stacks</span><span class="p">]]</span>
+<span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;org.cloudfoundry.stacks.cflinuxfs3&#34;</span>
+</code></pre></div><p>You will notice two specific fields in the file: <code>buildpack.id</code> and <code>stack.id</code>. The buildpack ID is the way you will reference the buildpack when you create buildpack groups, builders, etc. The stack ID is the root file system in which the buildpack will be run. This example can be run on one of two different stacks, both based upon Ubuntu Bionic.</p>
+<h3 id="detect-and-build"><code>detect</code> and <code>build</code></h3>
+<p>Next you will need to create the <code>detect</code> and <code>build</code> scripts. These files must exist in a <code>bin</code> directory in your buildpack directory.</p>
+<p>Create your <code>bin</code> directory and then change to that directory.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">mkdir bin
+<span class="nb">cd</span> bin
+</code></pre></div><p>Now create your <code>detect</code> file in the <code>bin</code> directory and copy in the following contents:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
+</span><span class="cp"></span><span class="nb">set</span> -eo pipefail
+
+<span class="nb">exit</span> <span class="m">1</span>
+</code></pre></div><p>Now create your <code>build</code> file in the <code>bin</code> directory and copy in the following contents:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
+</span><span class="cp"></span><span class="nb">set</span> -eo pipefail
+
+<span class="nb">echo</span> <span class="s2">&#34;---&gt; Ruby Buildpack&#34;</span>
+<span class="nb">exit</span> <span class="m">1</span>
+</code></pre></div><p>You will need to make both of these files executable, so run the following command:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">chmod +x detect build
+</code></pre></div><p>These two files are now executable <code>detect</code> and <code>build</code> scripts. Now you can use your buildpack.</p>
+<h3 id="using-your-buildpack-with-pack">Using your buildpack with <code>pack</code></h3>
+<p>In order to test your buildpack, you will need to run the buildpack against your sample Ruby app using the <code>pack</code> CLI.</p>
+<p>Set your default builder by running one of the following:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack set-default-builder cloudfoundry/cnb:cflinuxfs3
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack set-default-builder heroku/buildpacks:18
+</code></pre></div><p>Then run the following <code>pack</code> command:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ~/workspace/ruby-sample-app --buildpack ~/workspace/ruby-cnb
+</code></pre></div><p>The <code>pack build</code> command takes in your Ruby sample app as the <code>--path</code> argument and your buildpack as the <code>--buildpack</code> argument.</p>
+<p>After running the command, you should see that it failed to detect, as the <code>detect</code> script is currently written to simply error out.</p>
+<pre><code>===&gt; DETECTING
+[detector] Error: failed to detect: detection failed
+[detector] ======== Results ========
+[detector] err:  com.examples.buildpacks.ruby@0.0.1 (1)
+ERROR: failed with status code: 6
+</code></pre><hr>
+<p><a href="/docs/buildpack-author-guide/create-buildpack/detection" class="button bg-pink">Next Step</a></p>
+
+
+        
+
+        <hr>
+<div class='footline d-block'>
+  <div class="support-links text-right">
+  
+    
+    
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BBuilding&#43;blocks&#43;of&#43;a&#43;Cloud&#43;Native&#43;Buildpack%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fbuildpack-author-guide%2Fcreate-buildpack%2Fbuilding-blocks-cnb%2F%29"
+       class="btn-light btn-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
+
+    
+    <a href="https://github.com/buildpacks/docs/edit/master/content/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+       class="btn-light btn-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
+  
+</div>
+</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+    <footer>
+  <div class="container footer">
+    <a href="https://www.cncf.io/" style="width: 50%;"><img src="/images/cncf-color.svg" class="footer-logo"></a>
+    <p>We are a <a href="https://www.cncf.io/">Cloud Native Sandbox</a> project.</p>
+  </div>
+  <div class="bg-blue">
+    <div class="container sub-footer">
+      <p>Reach out <a href="https://slack.buildpacks.io">on Slack</a> to learn more.</p>
+      <ul>
+        <li><a href="https://lists.cncf.io/g/cncf-buildpacks/join" target="_blank">Mailing List</a> <span>&bull;</span></li>
+        <li><a href="https://slack.buildpacks.io/" target="_blank">Slack</a> <span>&bull;</span></li>
+        <li><a href="https://twitter.com/buildpacks_io" target="_blank">Twitter</a> <span>&bull;</span></li>
+        <li><a href="https://github.com/buildpacks" target="_blank">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

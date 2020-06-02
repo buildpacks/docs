@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Reference on Cloud Native Buildpack Documentation</title>
+    <link>https://buildpacks.io/docs/reference/</link>
+    <description>Recent content in Reference on Cloud Native Buildpack Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://buildpacks.io/docs/reference/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Buildpack API</title>
+      <link>https://buildpacks.io/docs/reference/buildpack-api/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/reference/buildpack-api/</guid>
+      <description>This specification defines the interface between a buildpack and the environment that runs it. This API will be used by buildpack authors.
+A buildpack must contain three files:
+ buildpack.toml bin/detect bin/build  The two files in bin/ must be executable. They can be shell scripts written in a language like Bash or they can be executables compiled from a language like Go.
+bin/detect Usage bin/detect PLATFORM_DIR BUILD_PLAN Summary This entrypoint is used to determine if a buildpack should run against a given codebase.</description>
+    </item>
+    
+    <item>
+      <title>Distribution API</title>
+      <link>https://buildpacks.io/docs/reference/distribution-api/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/reference/distribution-api/</guid>
+      <description>This specification defines the artifact format, delivery mechanism, and order resolution process for buildpacks.
+Buildpack Descriptor A buildpack must contain a buildpack.toml file in its root directory.
+Buildpackage A buildpackage is a distributable artifact that contains a buildpack. Its format may be either:
+ An OCI image An uncompressed tar archive with the extension .cnb containing an OCI image.  Further Reading You can read the complete Distribution specification on Github.</description>
+    </item>
+    
+    <item>
+      <title>Platform API</title>
+      <link>https://buildpacks.io/docs/reference/platform-api/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/reference/platform-api/</guid>
+      <description>This specification defines the interface between the buildpack execution environment, referred to as the lifecycle, and a platform that supports it. This API is used by platform implementors.
+Stacks A stack defines two OCI images: a build image and a run image. The build image is used to run the buildpack lifecycle, and the run image is the base image the final exported image will be built upon.
+For more information see Working with stacks.</description>
+    </item>
+    
+    <item>
+      <title>builder.toml</title>
+      <link>https://buildpacks.io/docs/reference/builder-config/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/reference/builder-config/</guid>
+      <description>A builder configuration schema is as follows:
+  description (string, optional) A human-readable description of the builder, to be shown in inspect-builder output (run pack inspect-builder -h for more information).
+  buildpacks (list, optional) A list of buildpacks, each with the following fields:
+  id (string, optional)
+An identifier for the buildpack. Must match ID specified in buildpack&amp;rsquo;s buildpack.toml file.
+  version (string, optional)
+The version of the buildpack.</description>
+    </item>
+    
+    <item>
+      <title>package.toml</title>
+      <link>https://buildpacks.io/docs/reference/package-config/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/reference/package-config/</guid>
+      <description>A buildpackage configuration schema is as follows:
+  buildpack (required) The buildpack to package. It must contain the following field:
+ uri (string, required)
+A URL or path to an archive, or a path to a directory. If path is relative, it must be relative to the package.toml.    dependencies (list, optional) A set of dependent buildpack locations, for packaging a meta-buildpack. Each dependent buildpack location must correspond to an order group within the meta-buildpack being packaged, and must have one of the following fields:</description>
+    </item>
+    
+    <item>
+      <title>Reproducible Builds</title>
+      <link>https://buildpacks.io/docs/reference/reproducibility/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/reference/reproducibility/</guid>
+      <description>Summary The Cloud Native Buildpacks project aims to create &amp;ldquo;Reproducible Builds&amp;rdquo; of container images. For image creation commands (create-builder, package-buildpack, build) pack creates container images in a reproducible fashion. &amp;ldquo;Reproducible&amp;rdquo; is hard to define but we&amp;rsquo;ll do so by example and with a few caveats:
+Examples  Running pack build sample-hello-moon:test multiple times produces a container image with the same image ID (local case)
+Given:
+ The same source code The same builder image The same set of buildpacks (see caveat below).</description>
+    </item>
+    
+  </channel>
+</rss>

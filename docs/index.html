@@ -1,0 +1,340 @@
+<!doctype html>
+<html>
+  <head>
+    
+
+
+
+
+
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+<meta property="og:title" content="Cloud Native Buildpack Documentation · Getting Started">
+
+<meta property="og:type" content="documentation">
+
+<meta property="og:url" content="https://buildpacks.io/docs/">
+<meta property="og:locale" content="en_US">
+
+<meta property="og:site_name" content="Cloud Native Buildpack Documentation">
+
+
+<meta name="og:type" content="article">
+<meta name="og:image" content="https://buildpacks.io/images/buildpacks-logo.svg">
+<meta name="og:image:alt" content="Buildpacks project logo">
+<meta name="og:image:type" content="image/svg+xml">
+
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@buildpacks_io">
+<meta name="twitter:creator" content="@buildpacks_io">
+
+<link rel="canonical" content="https://buildpacks.io/docs/">
+<link rel="icon" type="image/png" href="/images/favicon.png">
+<meta name="generator" content="Hugo 0.70.0" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Mono|Source+Sans+Pro:400,400i,600" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://buildpacks.io/scss/site.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+    
+    
+
+    <script>
+      function addAnchor(element) {
+        if (element.id === "" || element.getElementsByTagName("a").length > 0) {
+          return;
+        }
+
+        element.innerHTML =
+          `<a href="#${element.id}" class="h-anchor">
+            ${element.innerHTML} <i class="fas fa-link icon" aria-label="Anchor"></i>
+          </a>`;
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        const headers = document.querySelectorAll('h1, h2, h3, h4, h5');
+        if (headers) {
+          headers.forEach(addAnchor);
+        }
+      });
+    </script>
+
+    <title>Getting Started · Cloud Native Buildpack Documentation</title>
+  </head>
+  <body>
+    <header class="container">
+  <a href="https://buildpacks.io/" class="logo"><img src="/images/buildpacks-logo.svg" alt="Buildpacks.io Logo"></a>
+  <input type="checkbox" id="mobile-nav-toggle">
+  <label for="mobile-nav-toggle">&#9776;</label>
+  <ul>
+    
+    
+      
+      <li><a class=""  href="/">Home</a></li>
+    
+      
+      <li><a class="active"  href="/docs">Docs</a></li>
+    
+      
+      <li><a class="" target='_blank' href="https://medium.com/buildpacks">Blog</a></li>
+    
+    <li><a href="https://github.com/buildpacks" class="github-button icon-button bg-blue button">GitHub</a></li>
+  </ul>
+</header>
+
+    
+
+<div class='docs'>
+  <div class="container">
+    <div class='row'>
+      <div class='col-md-3 docs-sidebar'>
+        <nav class='sidebar'>
+  <ul>
+      <li data-nav-id="/docs/" class="dd-item depth-0">
+        <a href="/docs/">Getting Started</a>
+        <ul class="ml-2">
+              
+      <li data-nav-id="/docs/install-pack/" class="dd-item depth-1">
+        <a href="/docs/install-pack/">Installing <code>pack</code></a>
+      </li>
+              
+      <li data-nav-id="/docs/app-journey/" class="dd-item depth-1">
+        <a href="/docs/app-journey/">An App&rsquo;s Brief Journey from Source to Image</a>
+      </li>
+        </ul>
+      </li>
+      <li data-nav-id="/docs/concepts/" class="dd-item depth-0 haschildren">
+        <a href="/docs/concepts/">Concepts</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/concepts/components/" class="dd-item depth-1 collapse haschildren">
+        <a href="/docs/concepts/components/">Components</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/concepts/components/builder/" class="dd-item depth-2">
+        <a href="/docs/concepts/components/builder/">Builder</a>
+      </li>
+      <li data-nav-id="/docs/concepts/components/buildpack/" class="dd-item depth-2">
+        <a href="/docs/concepts/components/buildpack/">Buildpack</a>
+      </li>
+      <li data-nav-id="/docs/concepts/components/lifecycle/" class="dd-item depth-2">
+        <a href="/docs/concepts/components/lifecycle/">Lifecycle</a>
+      </li>
+      <li data-nav-id="/docs/concepts/components/stack/" class="dd-item depth-2">
+        <a href="/docs/concepts/components/stack/">Stack</a>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/concepts/operations/" class="dd-item depth-1 collapse haschildren">
+        <a href="/docs/concepts/operations/">Operations</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/concepts/operations/build/" class="dd-item depth-2">
+        <a href="/docs/concepts/operations/build/">Build</a>
+      </li>
+      <li data-nav-id="/docs/concepts/operations/rebase/" class="dd-item depth-2">
+        <a href="/docs/concepts/operations/rebase/">Rebase</a>
+      </li>
+          </ul>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/app-developer-guide/" class="dd-item depth-0 haschildren">
+        <a href="/docs/app-developer-guide/">App Developer&rsquo;s Guide</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/app-developer-guide/build-an-app/" class="dd-item depth-1">
+        <a href="/docs/app-developer-guide/build-an-app/">Build an app</a>
+      </li>
+      <li data-nav-id="/docs/app-developer-guide/environment-variables/" class="dd-item depth-1">
+        <a href="/docs/app-developer-guide/environment-variables/">Environment variables</a>
+      </li>
+      <li data-nav-id="/docs/app-developer-guide/specific-buildpacks/" class="dd-item depth-1">
+        <a href="/docs/app-developer-guide/specific-buildpacks/">Specify buildpacks</a>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/" class="dd-item depth-0 haschildren">
+        <a href="/docs/buildpack-author-guide/">Buildpack Author&rsquo;s Guide</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/" class="dd-item depth-1 haschildren">
+        <a href="/docs/buildpack-author-guide/create-buildpack/">Create a buildpack</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/setup-local-environment/" class="dd-item depth-2 collapse">
+        <a href="/docs/buildpack-author-guide/create-buildpack/setup-local-environment/">Set up your local environment</a>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb/" class="dd-item depth-2 collapse">
+        <a href="/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb/">Building blocks of a Cloud Native Buildpack</a>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/detection/" class="dd-item depth-2 collapse">
+        <a href="/docs/buildpack-author-guide/create-buildpack/detection/">Detecting your application</a>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/build-app/" class="dd-item depth-2 collapse">
+        <a href="/docs/buildpack-author-guide/create-buildpack/build-app/">Building your application</a>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/make-app-runnable/" class="dd-item depth-2 collapse">
+        <a href="/docs/buildpack-author-guide/create-buildpack/make-app-runnable/">Make your application runnable</a>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/caching/" class="dd-item depth-2 collapse">
+        <a href="/docs/buildpack-author-guide/create-buildpack/caching/">Improving performance with caching</a>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable/" class="dd-item depth-2 collapse">
+        <a href="/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable/">Making your buildpack configurable</a>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/package-a-buildpack/" class="dd-item depth-1">
+        <a href="/docs/buildpack-author-guide/package-a-buildpack/">Package a buildpack</a>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/operator-guide/" class="dd-item depth-0 haschildren">
+        <a href="/docs/operator-guide/">Operator&rsquo;s Guide</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/operator-guide/create-a-builder/" class="dd-item depth-1">
+        <a href="/docs/operator-guide/create-a-builder/">Create a builder</a>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/reference/" class="dd-item depth-0 haschildren">
+        <a href="/docs/reference/">Reference</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/reference/buildpack-api/" class="dd-item depth-1 collapse">
+        <a href="/docs/reference/buildpack-api/">Buildpack API</a>
+      </li>
+      <li data-nav-id="/docs/reference/distribution-api/" class="dd-item depth-1 collapse">
+        <a href="/docs/reference/distribution-api/">Distribution API</a>
+      </li>
+      <li data-nav-id="/docs/reference/platform-api/" class="dd-item depth-1 collapse">
+        <a href="/docs/reference/platform-api/">Platform API</a>
+      </li>
+      <li data-nav-id="/docs/reference/builder-config/" class="dd-item depth-1 collapse">
+        <a href="/docs/reference/builder-config/">builder.toml</a>
+      </li>
+      <li data-nav-id="/docs/reference/package-config/" class="dd-item depth-1 collapse">
+        <a href="/docs/reference/package-config/">package.toml</a>
+      </li>
+      <li data-nav-id="/docs/reference/reproducibility/" class="dd-item depth-1 collapse">
+        <a href="/docs/reference/reproducibility/">Reproducible Builds</a>
+      </li>
+          </ul>
+      </li>
+    </ul>
+  
+</nav>
+
+
+
+      </div>
+      <div class='col-md-9 docs-content'>
+        <div class="support-links text-right">
+  
+    
+    
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BGetting&#43;Started%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2F%29"
+       class="btn-light btn-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
+
+    
+    <a href="https://github.com/buildpacks/docs/edit/master/content/docs/_index.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+       class="btn-light btn-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
+  
+</div>
+
+        <div class="heading">
+          <h1 class="title">Getting Started</h1>
+        </div>
+
+        <p>Follow the tutorials below to learn how to use <code>pack</code> and Cloud Native Buildpacks.</p>
+<h3 id="an-apps-brief-journey-from-source-to-imagedocsapp-journey"><a href="/docs/app-journey">An App&rsquo;s Brief Journey from Source to Image</a></h3>
+<p>An easy-to-follow introduction to <code>pack</code> and Cloud Native Buildpacks, this tutorial will get you up and running quickly.</p>
+<h3 id="conceptsdocsconcepts"><a href="/docs/concepts">Concepts</a></h3>
+<p>Learn the concepts of Cloud Native Buildpacks.</p>
+<h3 id="creating-a-cloud-native-buildpackdocsbuildpack-author-guidecreate-buildpack"><a href="/docs/buildpack-author-guide/create-buildpack">Creating a Cloud Native Buildpack</a></h3>
+<p>A tutorial that walks through the creation of a simple Ruby buildpack.</p>
+<h3 id="referencedocsreference"><a href="/docs/reference">Reference</a></h3>
+<p>A overview of the buildpack API specification.</p>
+<hr>
+<h1 id="community-and-support">Community and Support</h1>
+<p>Cloud Native Buildpacks is an active sandbox project in the CNCF. We welcome contribution from the community. Here you will find helpful information for interacting with the core team and contributing to the project.</p>
+<h2 id="contacting-the-core-team">Contacting the core team</h2>
+<p>The best place to contact the Cloud Native Buildpack team is on our <a href="https://slack.buildpacks.io/">Slack channel</a> or <a href="https://lists.cncf.io/g/cncf-buildpacks">mailing list</a>.</p>
+<h2 id="project-roadmap">Project Roadmap</h2>
+<p>This is a community driven project and our roadmap is publicly available on our <a href="https://github.com/orgs/buildpacks/projects/1">Github page</a>. We encourage you to contribute with feature requests.</p>
+<hr>
+<h1 id="additional-resources">Additional Resources</h1>
+<h2 id="helpful-videos">Helpful Videos</h2>
+<p><a href="https://www.youtube.com/watch?v=SK6e_ZatOaw">Intro to Cloud Native Buildpacks (KubeCon NA 2019)</a></p>
+<ul>
+<li>Terence and Emily discuss how buildpacks work, why the project was created, and give some demos</li>
+</ul>
+<p><a href="https://www.youtube.com/watch?v=j9Ak5YLrihU">Deep Dive: Cloud Native Buildpacks (KubeCon NA 2019)</a></p>
+<ul>
+<li>Stephen and Joe describe why you need a buildpack, how to create one, and what you&rsquo;ll gain from using them</li>
+</ul>
+<p><a href="https://www.youtube.com/watch?v=J2SXkmOo8iQ">Pack to the Future: Cloud Native Buildpacks on k8s (Spring One 2019)</a></p>
+<ul>
+<li>Emily and Joe talk about how to use the Pack CLI</li>
+</ul>
+<p><a href="https://www.youtube.com/watch?v=J6zn3WRqJko">Buildpacks Can Be Better</a></p>
+<ul>
+<li>Stephen and Tyler present at the 2018 Cloud Foundry Summit and discuss the problems posed by poorly structured Dockerfiles, the solution buildpacks offer, and recent innovations in the buildpacks model (including OCI images!)</li>
+</ul>
+<p><a href="https://www.youtube.com/watch?v=spW9ZlJpobM">The Future of Opinionated Buildpacks</a></p>
+<ul>
+<li>Emily and Stephen discuss the advantages of OCI images and give a demo using a basic node app</li>
+</ul>
+
+
+        
+
+        <hr>
+<div class='footline d-block'>
+  <div class="support-links text-right">
+  
+    
+    
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BGetting&#43;Started%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2F%29"
+       class="btn-light btn-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
+
+    
+    <a href="https://github.com/buildpacks/docs/edit/master/content/docs/_index.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+       class="btn-light btn-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
+  
+</div>
+</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+    <footer>
+  <div class="container footer">
+    <a href="https://www.cncf.io/" style="width: 50%;"><img src="/images/cncf-color.svg" class="footer-logo"></a>
+    <p>We are a <a href="https://www.cncf.io/">Cloud Native Sandbox</a> project.</p>
+  </div>
+  <div class="bg-blue">
+    <div class="container sub-footer">
+      <p>Reach out <a href="https://slack.buildpacks.io">on Slack</a> to learn more.</p>
+      <ul>
+        <li><a href="https://lists.cncf.io/g/cncf-buildpacks/join" target="_blank">Mailing List</a> <span>&bull;</span></li>
+        <li><a href="https://slack.buildpacks.io/" target="_blank">Slack</a> <span>&bull;</span></li>
+        <li><a href="https://twitter.com/buildpacks_io" target="_blank">Twitter</a> <span>&bull;</span></li>
+        <li><a href="https://github.com/buildpacks" target="_blank">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

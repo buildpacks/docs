@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Operations on Cloud Native Buildpack Documentation</title>
+    <link>https://buildpacks.io/docs/concepts/operations/</link>
+    <description>Recent content in Operations on Cloud Native Buildpack Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://buildpacks.io/docs/concepts/operations/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Build</title>
+      <link>https://buildpacks.io/docs/concepts/operations/build/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/concepts/operations/build/</guid>
+      <description>Build is the process of executing one or more buildpacks against the app’s source code to produce a runnable OCI image.</description>
+    </item>
+    
+    <item>
+      <title>Rebase</title>
+      <link>https://buildpacks.io/docs/concepts/operations/rebase/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/concepts/operations/rebase/</guid>
+      <description>Rebase allows app developers or operators to rapidly update an app image when its stack&amp;rsquo;s run image has changed.</description>
+    </item>
+    
+  </channel>
+</rss>

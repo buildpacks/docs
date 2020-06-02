@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Cloud Native Buildpack Documentation</title>
+    <link>https://buildpacks.io/</link>
+    <description>Recent content on Cloud Native Buildpack Documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    
+	<atom:link href="https://buildpacks.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Build</title>
+      <link>https://buildpacks.io/docs/concepts/operations/build/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/concepts/operations/build/</guid>
+      <description>Build is the process of executing one or more buildpacks against the app’s source code to produce a runnable OCI image.</description>
+    </item>
+    
+    <item>
+      <title>Build an app</title>
+      <link>https://buildpacks.io/docs/app-developer-guide/build-an-app/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/app-developer-guide/build-an-app/</guid>
+      <description>The basics of taking your app from source code to runnable image.</description>
+    </item>
+    
+    <item>
+      <title>Builder</title>
+      <link>https://buildpacks.io/docs/concepts/components/builder/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/concepts/components/builder/</guid>
+      <description>A builder is an image that bundles all the bits and information on how to build your apps, such as buildpacks and build-time image, as well as executes the buildpacks against your app source code.</description>
+    </item>
+    
+    <item>
+      <title>Create a builder</title>
+      <link>https://buildpacks.io/docs/operator-guide/create-a-builder/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/operator-guide/create-a-builder/</guid>
+      <description>&lt;p&gt;Creating a custom &lt;a href=&#34;https://buildpacks.io/docs/concepts/components/builder/&#34;&gt;builder&lt;/a&gt; allows you to control what buildpacks are used and what image apps are based on.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Environment variables</title>
+      <link>https://buildpacks.io/docs/app-developer-guide/environment-variables/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/app-developer-guide/environment-variables/</guid>
+      <description>Environment variables are a common way to configure various buildpacks at build-time.</description>
+    </item>
+    
+    <item>
+      <title>Installing `pack`</title>
+      <link>https://buildpacks.io/docs/install-pack/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/install-pack/</guid>
+      <description>Prerequisites Install Docker 
+Supported operating systems You can install the most recent version of pack (version 0.11.0) as an executable binary on the following operating systems:
+ macOS Linux Windows  macOS To install pack on macOS, the easiest way is to use Homebrew:
+brew tap buildpack/tap brew install pack  Optional: Enable auto-completion
+  Linux wget https://github.com/buildpacks/pack/releases/download/v0.11.0/pack-v0.11.0-linux.tgz tar xvf pack-v0.11.0-linux.tgz rm pack-v0.11.0-linux.tgz ./pack --help From there, you can copy the executable to a directory like /usr/local/bin or add the current directory to your PATH.</description>
+    </item>
+    
+    <item>
+      <title>Specify buildpacks</title>
+      <link>https://buildpacks.io/docs/app-developer-guide/specific-buildpacks/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/app-developer-guide/specific-buildpacks/</guid>
+      <description>Learn how to specify exactly what buildpacks are used during the build process.</description>
+    </item>
+    
+    <item>
+      <title>An App&#39;s Brief Journey from Source to Image</title>
+      <link>https://buildpacks.io/docs/app-journey/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/app-journey/</guid>
+      <description>pack for the journey In this tutorial, we&amp;rsquo;ll explain how to use pack and buildpacks to create a runnable app image from source code.
+That means you&amp;rsquo;ll need to make sure you have pack installed:
+Install pack 
+ NOTE: pack is only one implementation of the Cloud Native Buildpacks Platform Specification.
+ Buildpack base camp Before we set out, you&amp;rsquo;ll need to know the basics of buildpacks and how they work.</description>
+    </item>
+    
+    <item>
+      <title>Buildpack</title>
+      <link>https://buildpacks.io/docs/concepts/components/buildpack/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/concepts/components/buildpack/</guid>
+      <description>&lt;h2 id=&#34;what-is-a-buildpack&#34;&gt;What is a buildpack?&lt;/h2&gt;
+&lt;p&gt;A buildpack is a unit of work that inspects your app source code and formulates a plan to build and run your
+application.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Buildpack API</title>
+      <link>https://buildpacks.io/docs/reference/buildpack-api/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/reference/buildpack-api/</guid>
+      <description>This specification defines the interface between a buildpack and the environment that runs it. This API will be used by buildpack authors.
+A buildpack must contain three files:
+ buildpack.toml bin/detect bin/build  The two files in bin/ must be executable. They can be shell scripts written in a language like Bash or they can be executables compiled from a language like Go.
+bin/detect Usage bin/detect PLATFORM_DIR BUILD_PLAN Summary This entrypoint is used to determine if a buildpack should run against a given codebase.</description>
+    </item>
+    
+    <item>
+      <title>Distribution API</title>
+      <link>https://buildpacks.io/docs/reference/distribution-api/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/reference/distribution-api/</guid>
+      <description>This specification defines the artifact format, delivery mechanism, and order resolution process for buildpacks.
+Buildpack Descriptor A buildpack must contain a buildpack.toml file in its root directory.
+Buildpackage A buildpackage is a distributable artifact that contains a buildpack. Its format may be either:
+ An OCI image An uncompressed tar archive with the extension .cnb containing an OCI image.  Further Reading You can read the complete Distribution specification on Github.</description>
+    </item>
+    
+    <item>
+      <title>Platform API</title>
+      <link>https://buildpacks.io/docs/reference/platform-api/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/reference/platform-api/</guid>
+      <description>This specification defines the interface between the buildpack execution environment, referred to as the lifecycle, and a platform that supports it. This API is used by platform implementors.
+Stacks A stack defines two OCI images: a build image and a run image. The build image is used to run the buildpack lifecycle, and the run image is the base image the final exported image will be built upon.
+For more information see Working with stacks.</description>
+    </item>
+    
+    <item>
+      <title>Rebase</title>
+      <link>https://buildpacks.io/docs/concepts/operations/rebase/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/concepts/operations/rebase/</guid>
+      <description>Rebase allows app developers or operators to rapidly update an app image when its stack&amp;rsquo;s run image has changed.</description>
+    </item>
+    
+    <item>
+      <title>Lifecycle</title>
+      <link>https://buildpacks.io/docs/concepts/components/lifecycle/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/concepts/components/lifecycle/</guid>
+      <description>&lt;h2 id=&#34;what-is-the-lifecycle&#34;&gt;What is the lifecycle?&lt;/h2&gt;
+&lt;p&gt;The lifecycle orchestrates buildpack execution, then assembles the resulting artifacts into a final app image.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Stack</title>
+      <link>https://buildpacks.io/docs/concepts/components/stack/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/concepts/components/stack/</guid>
+      <description>&lt;h2 id=&#34;what-is-a-stack&#34;&gt;What is a stack?&lt;/h2&gt;
+&lt;p&gt;A stack provides the buildpack lifecycle with build-time and run-time environments in the form of images.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Package a buildpack</title>
+      <link>https://buildpacks.io/docs/buildpack-author-guide/package-a-buildpack/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/buildpack-author-guide/package-a-buildpack/</guid>
+      <description>Learn how to package your buildpack for distribution using standard OCI registries.</description>
+    </item>
+    
+    <item>
+      <title>builder.toml</title>
+      <link>https://buildpacks.io/docs/reference/builder-config/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/reference/builder-config/</guid>
+      <description>A builder configuration schema is as follows:
+  description (string, optional) A human-readable description of the builder, to be shown in inspect-builder output (run pack inspect-builder -h for more information).
+  buildpacks (list, optional) A list of buildpacks, each with the following fields:
+  id (string, optional)
+An identifier for the buildpack. Must match ID specified in buildpack&amp;rsquo;s buildpack.toml file.
+  version (string, optional)
+The version of the buildpack.</description>
+    </item>
+    
+    <item>
+      <title>package.toml</title>
+      <link>https://buildpacks.io/docs/reference/package-config/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/reference/package-config/</guid>
+      <description>A buildpackage configuration schema is as follows:
+  buildpack (required) The buildpack to package. It must contain the following field:
+ uri (string, required)
+A URL or path to an archive, or a path to a directory. If path is relative, it must be relative to the package.toml.    dependencies (list, optional) A set of dependent buildpack locations, for packaging a meta-buildpack. Each dependent buildpack location must correspond to an order group within the meta-buildpack being packaged, and must have one of the following fields:</description>
+    </item>
+    
+    <item>
+      <title>Reproducible Builds</title>
+      <link>https://buildpacks.io/docs/reference/reproducibility/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/reference/reproducibility/</guid>
+      <description>Summary The Cloud Native Buildpacks project aims to create &amp;ldquo;Reproducible Builds&amp;rdquo; of container images. For image creation commands (create-builder, package-buildpack, build) pack creates container images in a reproducible fashion. &amp;ldquo;Reproducible&amp;rdquo; is hard to define but we&amp;rsquo;ll do so by example and with a few caveats:
+Examples  Running pack build sample-hello-moon:test multiple times produces a container image with the same image ID (local case)
+Given:
+ The same source code The same builder image The same set of buildpacks (see caveat below).</description>
+    </item>
+    
+    <item>
+      <title>Set up your local environment</title>
+      <link>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/setup-local-environment/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/setup-local-environment/</guid>
+      <description>First, we&amp;rsquo;ll create a sample Ruby app that you can use when developing your buildpack:
+mkdir -p ~/workspace/ruby-sample-app cd ~/workspace/ruby-sample-app Create a file in the current directory called app.rb with the following contents:
+require &amp;#39;sinatra&amp;#39; set :bind, &amp;#39;0.0.0.0&amp;#39; set :port, 8080 get &amp;#39;/&amp;#39; do &amp;#39;Hello World!&amp;#39; end Then, create a file called Gemfile with the following contents:
+source &amp;#34;https://rubygems.org&amp;#34; git_source(:github) {|repo_name| &amp;#34;https://github.com/#{repo_name}&amp;#34; } gem &amp;#34;sinatra&amp;#34; Now, let&amp;rsquo;s create the directory where your buildpack will live:</description>
+    </item>
+    
+    <item>
+      <title>Building blocks of a Cloud Native Buildpack</title>
+      <link>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb/</guid>
+      <description>Now we will set up the buildpack scaffolding. You will need to make these files in your ruby-cnb directory
+cd ~/workspace/ruby-cnb buildpack.toml Once you are in the ruby-cnb directory, you will need to create a buildpack.toml file in that directory. This file must exist in the root directory of your buildpack so the pack CLI knows it is a buildpack and it can apply the build lifecycle to it.
+Create the buildpack.</description>
+    </item>
+    
+    <item>
+      <title>Detecting your application</title>
+      <link>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/detection/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/detection/</guid>
+      <description>Next, you will want to actually detect that the app your are building is a Ruby app. In order to do this, you will need to check for a Gemfile.
+Replace exit 1 in the detect script with the following check:
+if [[ ! -f Gemfile ]]; then exit 100 fi Your detect script should look like this:
+#!/usr/bin/env bash set -eo pipefail if [[ ! -f Gemfile ]]; then exit 100 fi Next, rebuild your app with the updated buildpack:</description>
+    </item>
+    
+    <item>
+      <title>Building your application</title>
+      <link>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/build-app/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/build-app/</guid>
+      <description>Next, we&amp;rsquo;ll make the build step install dependencies. This will require a few updates to the build script. Change it to look like the following:
+#!/usr/bin/env bash set -eo pipefail echo &amp;#34;---&amp;gt; Ruby Buildpack&amp;#34; # 1. GET ARGS layersdir=$1 # 2. DOWNLOAD RUBY echo &amp;#34;---&amp;gt; Downloading and extracting Ruby&amp;#34; rubylayer=&amp;#34;$layersdir&amp;#34;/ruby mkdir -p &amp;#34;$rubylayer&amp;#34; ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-2.5.1.tgz wget -q -O - &amp;#34;$ruby_url&amp;#34; | tar -xzf - -C &amp;#34;$rubylayer&amp;#34; # 3. MAKE RUBY AVAILABLE DURING LAUNCH echo -e &amp;#39;launch = true&amp;#39; &amp;gt; &amp;#34;$rubylayer.</description>
+    </item>
+    
+    <item>
+      <title>Make your application runnable</title>
+      <link>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/make-app-runnable/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/make-app-runnable/</guid>
+      <description>To make your app runnable, we need to set a default start command. Add the following to the end of your build script:
+# Set default start command echo &amp;#39;processes = [{ type = &amp;#34;web&amp;#34;, command = &amp;#34;bundle exec ruby app.rb&amp;#34;}]&amp;#39; &amp;gt; &amp;#34;$layersdir/launch.toml&amp;#34; Your full build script should now look like the following:
+#!/usr/bin/env bash set -eo pipefail echo &amp;#34;---&amp;gt; Ruby Buildpack&amp;#34; # 1. GET ARGS layersdir=$1 # 2. DOWNLOAD RUBY echo &amp;#34;---&amp;gt; Downloading and extracting Ruby&amp;#34; rubylayer=&amp;#34;$layersdir&amp;#34;/ruby mkdir -p &amp;#34;$rubylayer&amp;#34; ruby_url=https://s3-external-1.</description>
+    </item>
+    
+    <item>
+      <title>Improving performance with caching</title>
+      <link>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/caching/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/caching/</guid>
+      <description>We can improve performance by caching dependencies between builds, only re-downloading when necessary. To begin, let&amp;rsquo;s create a cacheable bundler layer.
+Creating the bundler layer To do this replace the following lines in the build script:
+echo &amp;#34;---&amp;gt; Installing gems&amp;#34; bundle install with the following:
+echo &amp;#34;---&amp;gt; Installing gems&amp;#34; bundlerlayer=&amp;#34;$layersdir/bundler&amp;#34; mkdir &amp;#34;$bundlerlayer&amp;#34; echo -e &amp;#39;cache = true\nlaunch = true&amp;#39; &amp;gt; &amp;#34;$bundlerlayer.toml&amp;#34; bundle install --path &amp;#34;$bundlerlayer&amp;#34; --binstubs &amp;#34;$bundlerlayer/bin&amp;#34; Your full build script should now look like the following:</description>
+    </item>
+    
+    <item>
+      <title>Making your buildpack configurable</title>
+      <link>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable/</guid>
+      <description>It&amp;rsquo;s likely that not all Ruby apps will want to use the same version of Ruby. Let&amp;rsquo;s make the Ruby version configurable.
+Select Ruby version We&amp;rsquo;ll allow buildpack users to define the desired Ruby version via a .ruby-version file in their app. We&amp;rsquo;ll first update the detect script to check for this file. We will then record the dependency we can provide (Ruby), as well as the specific dependency the application will require, in the Build Plan, a document the lifecycle uses to determine if the buildpack will provide everything the application needs:</description>
+    </item>
+    
+  </channel>
+</rss>

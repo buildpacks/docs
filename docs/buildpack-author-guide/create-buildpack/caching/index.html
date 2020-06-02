@@ -1,0 +1,486 @@
+<!doctype html>
+<html>
+  <head>
+    
+
+
+
+
+
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+
+<meta property="og:title" content="Cloud Native Buildpack Documentation · Improving performance with caching">
+
+<meta property="og:type" content="documentation">
+
+<meta property="og:url" content="https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/caching/">
+<meta property="og:locale" content="en_US">
+
+<meta property="og:site_name" content="Cloud Native Buildpack Documentation">
+
+
+<meta name="og:type" content="article">
+<meta name="og:image" content="https://buildpacks.io/images/buildpacks-logo.svg">
+<meta name="og:image:alt" content="Buildpacks project logo">
+<meta name="og:image:type" content="image/svg+xml">
+
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@buildpacks_io">
+<meta name="twitter:creator" content="@buildpacks_io">
+
+<link rel="canonical" content="https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/caching/">
+<link rel="icon" type="image/png" href="/images/favicon.png">
+<meta name="generator" content="Hugo 0.70.0" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Mono|Source+Sans+Pro:400,400i,600" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://buildpacks.io/scss/site.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+    
+    
+
+    <script>
+      function addAnchor(element) {
+        if (element.id === "" || element.getElementsByTagName("a").length > 0) {
+          return;
+        }
+
+        element.innerHTML =
+          `<a href="#${element.id}" class="h-anchor">
+            ${element.innerHTML} <i class="fas fa-link icon" aria-label="Anchor"></i>
+          </a>`;
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        const headers = document.querySelectorAll('h1, h2, h3, h4, h5');
+        if (headers) {
+          headers.forEach(addAnchor);
+        }
+      });
+    </script>
+
+    <title>Improving performance with caching · Cloud Native Buildpack Documentation</title>
+  </head>
+  <body>
+    <header class="container">
+  <a href="https://buildpacks.io/" class="logo"><img src="/images/buildpacks-logo.svg" alt="Buildpacks.io Logo"></a>
+  <input type="checkbox" id="mobile-nav-toggle">
+  <label for="mobile-nav-toggle">&#9776;</label>
+  <ul>
+    
+    
+      
+      <li><a class=""  href="/">Home</a></li>
+    
+      
+      <li><a class="active"  href="/docs">Docs</a></li>
+    
+      
+      <li><a class="" target='_blank' href="https://medium.com/buildpacks">Blog</a></li>
+    
+    <li><a href="https://github.com/buildpacks" class="github-button icon-button bg-blue button">GitHub</a></li>
+  </ul>
+</header>
+
+    
+
+<div class='docs'>
+  <div class="container">
+    <div class='row'>
+      <div class='col-md-3 docs-sidebar'>
+        <nav class='sidebar'>
+  <ul>
+      <li data-nav-id="/docs/" class="dd-item depth-0">
+        <a href="/docs/">Getting Started</a>
+        <ul class="ml-2">
+              
+      <li data-nav-id="/docs/install-pack/" class="dd-item depth-1 collapse">
+        <a href="/docs/install-pack/">Installing <code>pack</code></a>
+      </li>
+              
+      <li data-nav-id="/docs/app-journey/" class="dd-item depth-1 collapse">
+        <a href="/docs/app-journey/">An App&rsquo;s Brief Journey from Source to Image</a>
+      </li>
+        </ul>
+      </li>
+      <li data-nav-id="/docs/concepts/" class="dd-item depth-0 haschildren">
+        <a href="/docs/concepts/">Concepts</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/concepts/components/" class="dd-item depth-1 collapse haschildren">
+        <a href="/docs/concepts/components/">Components</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/concepts/components/builder/" class="dd-item depth-2">
+        <a href="/docs/concepts/components/builder/">Builder</a>
+      </li>
+      <li data-nav-id="/docs/concepts/components/buildpack/" class="dd-item depth-2">
+        <a href="/docs/concepts/components/buildpack/">Buildpack</a>
+      </li>
+      <li data-nav-id="/docs/concepts/components/lifecycle/" class="dd-item depth-2">
+        <a href="/docs/concepts/components/lifecycle/">Lifecycle</a>
+      </li>
+      <li data-nav-id="/docs/concepts/components/stack/" class="dd-item depth-2">
+        <a href="/docs/concepts/components/stack/">Stack</a>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/concepts/operations/" class="dd-item depth-1 collapse haschildren">
+        <a href="/docs/concepts/operations/">Operations</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/concepts/operations/build/" class="dd-item depth-2">
+        <a href="/docs/concepts/operations/build/">Build</a>
+      </li>
+      <li data-nav-id="/docs/concepts/operations/rebase/" class="dd-item depth-2">
+        <a href="/docs/concepts/operations/rebase/">Rebase</a>
+      </li>
+          </ul>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/app-developer-guide/" class="dd-item depth-0 haschildren">
+        <a href="/docs/app-developer-guide/">App Developer&rsquo;s Guide</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/app-developer-guide/build-an-app/" class="dd-item depth-1">
+        <a href="/docs/app-developer-guide/build-an-app/">Build an app</a>
+      </li>
+      <li data-nav-id="/docs/app-developer-guide/environment-variables/" class="dd-item depth-1">
+        <a href="/docs/app-developer-guide/environment-variables/">Environment variables</a>
+      </li>
+      <li data-nav-id="/docs/app-developer-guide/specific-buildpacks/" class="dd-item depth-1">
+        <a href="/docs/app-developer-guide/specific-buildpacks/">Specify buildpacks</a>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/" class="dd-item depth-0 parent haschildren">
+        <a href="/docs/buildpack-author-guide/">Buildpack Author&rsquo;s Guide</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/" class="dd-item depth-1 parent haschildren">
+        <a href="/docs/buildpack-author-guide/create-buildpack/">Create a buildpack</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/setup-local-environment/" class="dd-item depth-2">
+        <a href="/docs/buildpack-author-guide/create-buildpack/setup-local-environment/">Set up your local environment</a>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb/" class="dd-item depth-2">
+        <a href="/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb/">Building blocks of a Cloud Native Buildpack</a>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/detection/" class="dd-item depth-2">
+        <a href="/docs/buildpack-author-guide/create-buildpack/detection/">Detecting your application</a>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/build-app/" class="dd-item depth-2">
+        <a href="/docs/buildpack-author-guide/create-buildpack/build-app/">Building your application</a>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/make-app-runnable/" class="dd-item depth-2">
+        <a href="/docs/buildpack-author-guide/create-buildpack/make-app-runnable/">Make your application runnable</a>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/caching/" class="dd-item depth-2 active">
+        <a href="/docs/buildpack-author-guide/create-buildpack/caching/">Improving performance with caching</a>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable/" class="dd-item depth-2">
+        <a href="/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable/">Making your buildpack configurable</a>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/package-a-buildpack/" class="dd-item depth-1">
+        <a href="/docs/buildpack-author-guide/package-a-buildpack/">Package a buildpack</a>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/operator-guide/" class="dd-item depth-0 haschildren">
+        <a href="/docs/operator-guide/">Operator&rsquo;s Guide</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/operator-guide/create-a-builder/" class="dd-item depth-1">
+        <a href="/docs/operator-guide/create-a-builder/">Create a builder</a>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/reference/" class="dd-item depth-0 haschildren">
+        <a href="/docs/reference/">Reference</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/reference/buildpack-api/" class="dd-item depth-1 collapse">
+        <a href="/docs/reference/buildpack-api/">Buildpack API</a>
+      </li>
+      <li data-nav-id="/docs/reference/distribution-api/" class="dd-item depth-1 collapse">
+        <a href="/docs/reference/distribution-api/">Distribution API</a>
+      </li>
+      <li data-nav-id="/docs/reference/platform-api/" class="dd-item depth-1 collapse">
+        <a href="/docs/reference/platform-api/">Platform API</a>
+      </li>
+      <li data-nav-id="/docs/reference/builder-config/" class="dd-item depth-1 collapse">
+        <a href="/docs/reference/builder-config/">builder.toml</a>
+      </li>
+      <li data-nav-id="/docs/reference/package-config/" class="dd-item depth-1 collapse">
+        <a href="/docs/reference/package-config/">package.toml</a>
+      </li>
+      <li data-nav-id="/docs/reference/reproducibility/" class="dd-item depth-1 collapse">
+        <a href="/docs/reference/reproducibility/">Reproducible Builds</a>
+      </li>
+          </ul>
+      </li>
+    </ul>
+  
+</nav>
+
+
+
+      </div>
+      <div class='col-md-9 docs-content'>
+        <div class="support-links text-right">
+  
+    
+    
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BImproving&#43;performance&#43;with&#43;caching%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fbuildpack-author-guide%2Fcreate-buildpack%2Fcaching%2F%29"
+       class="btn-light btn-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
+
+    
+    <a href="https://github.com/buildpacks/docs/edit/master/content/docs/buildpack-author-guide/create-buildpack/caching.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+       class="btn-light btn-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
+  
+</div>
+
+        <div class="heading">
+          <h1 class="title">Improving performance with caching</h1>
+        </div>
+
+        <p>We can improve performance by caching dependencies between builds, only re-downloading when necessary. To begin, let&rsquo;s create a cacheable <code>bundler</code> layer.</p>
+<h2 id="creating-the-bundler-layer">Creating the <code>bundler</code> layer</h2>
+<p>To do this replace the following lines in the <code>build</code> script:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing gems&#34;</span>
+bundle install
+</code></pre></div><p>with the following:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing gems&#34;</span>
+<span class="nv">bundlerlayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler&#34;</span>
+mkdir <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span>
+<span class="nb">echo</span> -e <span class="s1">&#39;cache = true\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">.toml&#34;</span>
+bundle install --path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> --binstubs <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span>
+</code></pre></div><p>Your full <code>build</code> script should now look like the following:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
+</span><span class="cp"></span><span class="nb">set</span> -eo pipefail
+
+<span class="nb">echo</span> <span class="s2">&#34;---&gt; Ruby Buildpack&#34;</span>
+
+<span class="c1"># 1. GET ARGS</span>
+<span class="nv">layersdir</span><span class="o">=</span><span class="nv">$1</span>
+
+<span class="c1"># 2. DOWNLOAD RUBY</span>
+<span class="nb">echo</span> <span class="s2">&#34;---&gt; Downloading and extracting Ruby&#34;</span>
+<span class="nv">rubylayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">&#34;</span>/ruby
+mkdir -p <span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>
+<span class="nv">ruby_url</span><span class="o">=</span>https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-2.5.1.tgz
+wget -q -O - <span class="s2">&#34;</span><span class="nv">$ruby_url</span><span class="s2">&#34;</span> <span class="p">|</span> tar -xzf - -C <span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>
+
+<span class="c1"># 3. MAKE RUBY AVAILABLE DURING LAUNCH</span>
+<span class="nb">echo</span> -e <span class="s1">&#39;launch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">.toml&#34;</span>
+
+<span class="c1"># 4. MAKE RUBY AVAILABLE TO THIS SCRIPT</span>
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>/bin:<span class="nv">$PATH</span>
+<span class="nb">export</span> <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="p">:+</span><span class="si">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="si">}</span><span class="p">:</span><span class="si">}</span><span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">/lib&#34;</span>
+
+<span class="c1"># 5. INSTALL BUNDLER</span>
+<span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing bundler&#34;</span>
+gem install bundler --no-ri --no-rdoc
+
+<span class="c1"># ======= MODIFIED =======</span>
+<span class="c1"># 6. INSTALL GEMS</span>
+<span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing gems&#34;</span>
+<span class="nv">bundlerlayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler&#34;</span>
+mkdir -p <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span>
+<span class="nb">echo</span> -e <span class="s1">&#39;cache = true\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">.toml&#34;</span>
+bundle install --path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> --binstubs <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span>
+
+<span class="c1"># 7. SET DEFAULT START COMMAND</span>
+<span class="nb">echo</span> <span class="s1">&#39;processes = [{ type = &#34;web&#34;, command = &#34;bundle exec ruby app.rb&#34;}]&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/launch.toml&#34;</span>
+</code></pre></div><p>Now when we run:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ~/workspace/ruby-sample-app --buildpack ~/workspace/ruby-cnb
+</code></pre></div><p>You will see something similar to the following during the <code>EXPORTING</code> phase:</p>
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">[exporter] Exporting layer &#39;com.examples.buildpacks.ruby:bundler&#39; with SHA sha256:c912cbcd061162e7ea8a525552e208c68a91c551036f062e588d4cec41ce3700
+</code></pre></div><h2 id="caching-dependencies">Caching dependencies</h2>
+<p>Now, let&rsquo;s implement the caching logic. We&rsquo;ll first need to create a <code>Gemfile.lock</code> in our app with the contents given below:</p>
+<blockquote>
+<p>Typically you would run <code>bundle install</code> locally to generate this file, but for the sake
+of simplicity we&rsquo;ll create <code>~/workspace/ruby-sample-app/Gemfile.lock</code> manually.</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">GEM
+  remote: https://rubygems.org/
+  specs:
+    mustermann (1.0.3)
+    rack (2.0.7)
+    rack-protection (2.0.7)
+      rack
+    sinatra (2.0.7)
+      mustermann (~&gt; 1.0)
+      rack (~&gt; 2.0)
+      rack-protection (= 2.0.7)
+      tilt (~&gt; 2.0)
+    tilt (2.0.9)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  sinatra
+
+BUNDLED WITH
+   2.0.2
+</code></pre></div><p>Next, we&rsquo;ll need to install some helpful tools at the top of the <code>build</code> script:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">wget -qO /tmp/jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 <span class="o">&amp;&amp;</span> chmod +x /tmp/jq
+wget -qO /tmp/yj https://github.com/sclevine/yj/releases/download/v2.0/yj-linux <span class="o">&amp;&amp;</span> chmod +x /tmp/yj
+</code></pre></div><p>Replace the gem installation logic from the previous step:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing gems&#34;</span>
+<span class="nv">bundlerlayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler&#34;</span>
+mkdir -p <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span>
+<span class="nb">echo</span> -e <span class="s1">&#39;cache = true\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">.toml&#34;</span>
+bundle install --path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> --binstubs <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span>
+</code></pre></div><p>with the new logic below that checks to see if any gems have been changed. This simply creates a checksum for the previous <code>Gemfile.lock</code> and compares it to the checksum of the current <code>Gemfile.lock</code>. If they are the same, the gems are reused. If they are not, the new gems are installed.</p>
+<p>We&rsquo;ll now write additional metadata to our <code>bundler.toml</code> of the form <code>cache = true</code> and <code>launch = true</code>. This directs the lifecycle to cache our gems and provide them when launching our application. With <code>cache = true</code> the lifecycle can keep existing gems around so that build times are fast, even with minor <code>Gemfile.lock</code> changes.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># Compares previous Gemfile.lock checksum to the current Gemfile.lock</span>
+<span class="nv">bundlerlayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler&#34;</span>
+<span class="nv">local_bundler_checksum</span><span class="o">=</span><span class="k">$(</span>sha256sum Gemfile.lock <span class="p">|</span> cut -d <span class="s1">&#39; &#39;</span> -f 1<span class="k">)</span> 
+<span class="nv">remote_bundler_checksum</span><span class="o">=</span><span class="k">$(</span>cat <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">.toml&#34;</span> <span class="p">|</span> /tmp/yj -t <span class="p">|</span> /tmp/jq -r .metadata 2&gt;/dev/null <span class="o">||</span> <span class="nb">echo</span> <span class="s1">&#39;not found&#39;</span><span class="k">)</span>
+
+<span class="k">if</span> <span class="o">[[</span> -f Gemfile.lock <span class="o">&amp;&amp;</span> <span class="nv">$local_bundler_checksum</span> <span class="o">==</span> <span class="nv">$remote_bundler_checksum</span> <span class="o">]]</span> <span class="p">;</span> <span class="k">then</span>
+    <span class="c1"># Determine if no gem dependencies have changed, so it can reuse existing gems without running bundle install</span>
+    <span class="nb">echo</span> <span class="s2">&#34;---&gt; Reusing gems&#34;</span>
+    bundle config --local path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> &gt;/dev/null
+    bundle config --local bin <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span> &gt;/dev/null
+<span class="k">else</span>
+    <span class="c1"># Determine if there has been a gem dependency change and install new gems to the bundler layer; re-using existing and un-changed gems</span>
+    <span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing gems&#34;</span>
+    mkdir -p <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span>
+    <span class="nb">echo</span> -e <span class="s2">&#34;cache = true\nlaunch = true\nmetadata = \&#34;</span><span class="nv">$local_bundler_checksum</span><span class="s2">\&#34;&#34;</span> &gt; <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">.toml&#34;</span>
+    bundle install --path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> --binstubs <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span>
+<span class="k">fi</span>
+</code></pre></div><p>Your full <code>build</code> script will now look like this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
+</span><span class="cp"></span><span class="nb">set</span> -eo pipefail
+
+<span class="nb">echo</span> <span class="s2">&#34;---&gt; Ruby Buildpack&#34;</span>
+
+<span class="c1"># ======= ADDED =======</span>
+<span class="c1"># 0. DOWNLOAD TOOLS</span>
+wget -qO /tmp/jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 <span class="o">&amp;&amp;</span> chmod +x /tmp/jq
+wget -qO /tmp/yj https://github.com/sclevine/yj/releases/download/v2.0/yj-linux <span class="o">&amp;&amp;</span> chmod +x /tmp/yj
+
+<span class="c1"># 1. GET ARGS</span>
+<span class="nv">layersdir</span><span class="o">=</span><span class="nv">$1</span>
+
+<span class="c1"># 2. DOWNLOAD RUBY</span>
+<span class="nb">echo</span> <span class="s2">&#34;---&gt; Downloading and extracting Ruby&#34;</span>
+<span class="nv">rubylayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">&#34;</span>/ruby
+mkdir -p <span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>
+<span class="nv">ruby_url</span><span class="o">=</span>https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-2.5.1.tgz
+wget -q -O - <span class="s2">&#34;</span><span class="nv">$ruby_url</span><span class="s2">&#34;</span> <span class="p">|</span> tar -xzf - -C <span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>
+
+<span class="c1"># 3. MAKE RUBY AVAILABLE DURING LAUNCH</span>
+<span class="nb">echo</span> -e <span class="s1">&#39;launch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">.toml&#34;</span>
+
+<span class="c1"># 4. MAKE RUBY AVAILABLE TO THIS SCRIPT</span>
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>/bin:<span class="nv">$PATH</span>
+<span class="nb">export</span> <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="p">:+</span><span class="si">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="si">}</span><span class="p">:</span><span class="si">}</span><span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">/lib&#34;</span>
+
+<span class="c1"># 5. INSTALL BUNDLER</span>
+<span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing bundler&#34;</span>
+gem install bundler --no-ri --no-rdoc
+
+<span class="c1"># ======= MODIFIED =======</span>
+<span class="c1"># 6. INSTALL GEMS</span>
+
+<span class="c1"># Compares previous Gemfile.lock checksum to the current Gemfile.lock</span>
+<span class="nv">bundlerlayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler&#34;</span>
+<span class="nv">local_bundler_checksum</span><span class="o">=</span><span class="k">$(</span>sha256sum Gemfile.lock <span class="p">|</span> cut -d <span class="s1">&#39; &#39;</span> -f 1<span class="k">)</span> 
+<span class="nv">remote_bundler_checksum</span><span class="o">=</span><span class="k">$(</span>cat <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">.toml&#34;</span> <span class="p">|</span> /tmp/yj -t <span class="p">|</span> /tmp/jq -r .metadata 2&gt;/dev/null <span class="o">||</span> <span class="nb">echo</span> <span class="s1">&#39;not found&#39;</span><span class="k">)</span>
+
+<span class="k">if</span> <span class="o">[[</span> -f Gemfile.lock <span class="o">&amp;&amp;</span> <span class="nv">$local_bundler_checksum</span> <span class="o">==</span> <span class="nv">$remote_bundler_checksum</span> <span class="o">]]</span> <span class="p">;</span> <span class="k">then</span>
+    <span class="c1"># Determine if no gem dependencies have changed, so it can reuse existing gems without running bundle install</span>
+    <span class="nb">echo</span> <span class="s2">&#34;---&gt; Reusing gems&#34;</span>
+    bundle config --local path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> &gt;/dev/null
+    bundle config --local bin <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span> &gt;/dev/null
+<span class="k">else</span>
+    <span class="c1"># Determine if there has been a gem dependency change and install new gems to the bundler layer; re-using existing and un-changed gems</span>
+    <span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing gems&#34;</span>
+    mkdir -p <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span>
+    <span class="nb">echo</span> -e <span class="s2">&#34;cache = true\nlaunch = true\nmetadata = \&#34;</span><span class="nv">$local_bundler_checksum</span><span class="s2">\&#34;&#34;</span> &gt; <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">.toml&#34;</span>
+    bundle install --path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> --binstubs <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span>
+<span class="k">fi</span>
+
+<span class="c1"># 7. SET DEFAULT START COMMAND</span>
+<span class="nb">echo</span> <span class="s1">&#39;processes = [{ type = &#34;web&#34;, command = &#34;bundle exec ruby app.rb&#34;}]&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/launch.toml&#34;</span>
+</code></pre></div><p>Now when you build your app:</p>
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">pack build test-ruby-app --path ~/workspace/ruby-sample-app --buildpack ~/workspace/ruby-cnb
+</code></pre></div><p>it will download the gems:</p>
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">===&gt; BUILDING
+[builder] ---&gt; Ruby Buildpack
+[builder] ---&gt; Downloading and extracting Ruby
+[builder] ---&gt; Installing bundler
+[builder] Successfully installed bundler-2.0.2
+[builder] 1 gem installed
+[builder] ---&gt; Installing gems
+</code></pre></div><p>If you build the app again:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ~/workspace/ruby-sample-app --buildpack ~/workspace/ruby-cnb
+</code></pre></div><p>you will see the new caching logic at work during the <code>BUILDING</code> phase:</p>
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">===&gt; BUILDING
+[builder] ---&gt; Ruby Buildpack
+[builder] ---&gt; Downloading and extracting Ruby
+[builder] ---&gt; Installing bundler
+[builder] Successfully installed bundler-2.0.2
+[builder] 1 gem installed
+[builder] ---&gt; Reusing gems
+</code></pre></div><hr>
+<p><a href="/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable" class="button bg-pink">Next Step</a></p>
+
+
+        
+
+        <hr>
+<div class='footline d-block'>
+  <div class="support-links text-right">
+  
+    
+    
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BImproving&#43;performance&#43;with&#43;caching%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fbuildpack-author-guide%2Fcreate-buildpack%2Fcaching%2F%29"
+       class="btn-light btn-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
+
+    
+    <a href="https://github.com/buildpacks/docs/edit/master/content/docs/buildpack-author-guide/create-buildpack/caching.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+       class="btn-light btn-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
+  
+</div>
+</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+    <footer>
+  <div class="container footer">
+    <a href="https://www.cncf.io/" style="width: 50%;"><img src="/images/cncf-color.svg" class="footer-logo"></a>
+    <p>We are a <a href="https://www.cncf.io/">Cloud Native Sandbox</a> project.</p>
+  </div>
+  <div class="bg-blue">
+    <div class="container sub-footer">
+      <p>Reach out <a href="https://slack.buildpacks.io">on Slack</a> to learn more.</p>
+      <ul>
+        <li><a href="https://lists.cncf.io/g/cncf-buildpacks/join" target="_blank">Mailing List</a> <span>&bull;</span></li>
+        <li><a href="https://slack.buildpacks.io/" target="_blank">Slack</a> <span>&bull;</span></li>
+        <li><a href="https://twitter.com/buildpacks_io" target="_blank">Twitter</a> <span>&bull;</span></li>
+        <li><a href="https://github.com/buildpacks" target="_blank">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>
