@@ -72,7 +72,7 @@ Alternatively, you can run `pack package-buildpack` with `--publish` to publish 
 
 ### 5. Package your buildpack as a file
 
-You can also run `package-buildpack` with a `-f file` flag to save the packaged buildpack as a local file.
+You can also run `package-buildpack` with a `--format file` flag to save the packaged buildpack as a local file.
 
 ```shell script
 pack package-buildpack my-buildpack.cnb --package-config ./package.toml -f file
