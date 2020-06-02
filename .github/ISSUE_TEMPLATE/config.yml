@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Buildpacks Slack
+    url: https://slack.buildpacks.io/
+    about: For issues and feature requests related to Buildpacks
