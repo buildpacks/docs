@@ -19,8 +19,7 @@ You can install the most recent version of `pack` (version **{{< latest >}}**) a
 To install `pack` on macOS, the easiest way is to use Homebrew:
 
 ```bash
-brew tap buildpacks/tap
-brew install pack
+brew install buildpacks/tap/pack
 ```
 
 > **Optional:** Enable [auto-completion](#auto-completion)
