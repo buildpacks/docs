@@ -272,14 +272,12 @@ The version of the buildpack. Must match version specified in buildpack&rsquo;s 
 <p>The location of the buildpack. Must be <strong>one</strong> of the following:</p>
 <ul>
 <li>
-<p><strong><code>uri</code></strong> <em>(string)</em>
-<br>
-A URL or path to an <a href="#supported-archives">archive</a>, or a path to a directory. If path is relative, it must be relative to the <code>builder.toml</code>.</p>
+<p><strong><code>uri</code></strong> <em>(string)</em><br>
+A URL or path to an <a href="#supported-archives">archive</a>, a packaged buildpack (saved as a <code>.cnb</code> file), or a directory. If path is relative, it must be relative to the <code>builder.toml</code>.</p>
 <p>OR</p>
 </li>
 <li>
-<p><strong><code>image</code></strong> <em>(string)</em>
-<br>
+<p><strong><code>image</code></strong> <em>(string)</em><br>
 A registry location (if no registry host is specified in the image name, DockerHub is assumed).</p>
 </li>
 </ul>
