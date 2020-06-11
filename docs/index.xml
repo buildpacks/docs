@@ -17,10 +17,10 @@
       
       <guid>https://buildpacks.io/docs/install-pack/</guid>
       <description>Prerequisites Install Docker 
-Supported operating systems You can install the most recent version of pack (version 0.11.0) as an executable binary on the following operating systems:
+Supported operating systems You can install the most recent version of pack (version 0.11.2) as an executable binary on the following operating systems:
  macOS Linux Windows  macOS To install pack on macOS, the easiest way is to use Homebrew:
 brew install buildpacks/tap/pack  Optional: Enable auto-completion
-  Linux wget https://github.com/buildpacks/pack/releases/download/v0.11.0/pack-v0.11.0-linux.tgz tar xvf pack-v0.11.0-linux.tgz rm pack-v0.11.0-linux.tgz ./pack --help From there, you can copy the executable to a directory like /usr/local/bin or add the current directory to your PATH.</description>
+  Linux wget https://github.com/buildpacks/pack/releases/download/v0.11.2/pack-v0.11.2-linux.tgz tar xvf pack-v0.11.2-linux.tgz rm pack-v0.11.2-linux.tgz ./pack --help From there, you can copy the executable to a directory like /usr/local/bin or add the current directory to your PATH.</description>
     </item>
     
     <item>
