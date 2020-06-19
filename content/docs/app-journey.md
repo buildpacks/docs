@@ -14,7 +14,7 @@ That means you'll need to make sure you have `pack` installed:
 
 > **NOTE:** `pack` is only one implementation of the [Cloud Native Buildpacks Platform Specification][cnb-platform-spec].
 
-[cnb-platform-spec]: https://github.com/buildpacks/spec/blob/master/platform.md
+[cnb-platform-spec]: https://github.com/buildpacks/spec/blob/main/platform.md
 
 ## Buildpack base camp
 
