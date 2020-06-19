@@ -18,7 +18,7 @@ install-hugo:
 
 install-pack:
 	@echo "> Installing pack..."
-	cd tools; go get github.com/buildpacks/pack
+	cd tools; go get -u github.com/buildpacks/pack
 
 mk-pack-docs:
 	@echo "> Updating Pack CLI Documentation"

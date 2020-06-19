@@ -1,0 +1,35 @@
+name: Update Docs
+
+on:
+  repository_dispatch:
+    types:
+      - pack-release
+
+jobs:
+  update-docs-and-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Setup Go environment
+        uses: actions/setup-go@v2.0.3
+        with:
+            go-version: '1.x'
+
+      - name: Install Dependencies
+        run: sudo apt-get install make curl jq
+
+      - name: Update Docs
+        run: make update-docs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v2
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          title: '[Automated] Update Pack CLI docs'
+          commit_message: 'Update Pack CLI docs'
