@@ -22,4 +22,4 @@ A buildpackage is a distributable artifact that contains a buildpack. Its format
 
 ## Further Reading
 
-You can read the complete [Distribution specification on Github](https://github.com/buildpacks/spec/blob/master/distribution.md).
+You can read the complete [Distribution specification on Github](https://github.com/buildpacks/spec/blob/main/distribution.md).

@@ -24,7 +24,7 @@ A [buildpackage][package] configuration schema is as follows:
 
 ## Further Reading
 
-You can view [sample buildpackages](https://github.com/buildpacks/samples/tree/master/packages) on Github.
+You can view [sample buildpackages](https://github.com/buildpacks/samples/tree/main/packages) on Github.
 
 [package]: /docs/concepts/components/buildpack#distribution
 [supported-archives]: /docs/reference/builder-config#supported-archives
