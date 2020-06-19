@@ -240,7 +240,7 @@
        class="btn-light btn-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
-    <a href="https://github.com/buildpacks/docs/edit/master/content/docs/reference/buildpack-api.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/reference/buildpack-api.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="btn-light btn-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
   
 </div>
@@ -425,7 +425,7 @@ Arbitrary data for buildpack.</p>
 </li>
 </ul>
 <h2 id="build-plan">Build Plan</h2>
-<p>The <a href="https://github.com/buildpacks/spec/blob/master/buildpack.md#build-plan-toml">Build Plan</a> is a document the buildpacks can use to pass information between the <a href="#bindetect">detect</a> and <a href="#bindetect">build</a> phases. The build plan is passed (by the lifecycle) as a parameter to the <code>detect</code> and <code>build</code> binaries of the buildpack.</p>
+<p>The <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#build-plan-toml">Build Plan</a> is a document the buildpacks can use to pass information between the <a href="#bindetect">detect</a> and <a href="#bindetect">build</a> phases. The build plan is passed (by the lifecycle) as a parameter to the <code>detect</code> and <code>build</code> binaries of the buildpack.</p>
 <ul>
 <li>During the <code>detect</code> phase, the buildpack(s) may write something it <code>requires</code> or <code>provides</code> (or both) into the Build Plan.</li>
 <li>During the <code>build</code> phase, the buildpack(s) may read the Buildpack Plan (a condensed version of the Build Plan, composed by the lifecycle) to determine what it should do, and refine the Buildpack Plan with more exact metadata (eg: what version dependency it requires).</li>
@@ -444,7 +444,7 @@ Arbitrary data for buildpack.</p>
 <pre><code>[[provides]]
 name = &quot;node&quot;
 </code></pre><blockquote>
-<p><strong>NOTE:</strong> If this was the only buildpack running, this would fail the <code>detect</code> phase. In order to pass, every <code>provides</code> must be matched up with a <code>requires</code>, whether in the same buildpack or in another buildpack. See the <a href="https://github.com/buildpacks/spec/blob/master/buildpack.md#phase-1-detection">spec</a> for particulars on how ordering buildpacks can adjust detection results.</p>
+<p><strong>NOTE:</strong> If this was the only buildpack running, this would fail the <code>detect</code> phase. In order to pass, every <code>provides</code> must be matched up with a <code>requires</code>, whether in the same buildpack or in another buildpack. See the <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#phase-1-detection">spec</a> for particulars on how ordering buildpacks can adjust detection results.</p>
 </blockquote>
 <h4 id="2-one-version-requested">2. One Version Requested</h4>
 <p>During the <code>detect</code> phase, the <code>node-engine</code> buildpack sees in one configuration file (e.g. a <code>.nvmrc</code> file in the app directory) that <code>node v10.x</code> is explicitly requested by the application. Seeing that, it may write the below text to the build plan:</p>
@@ -472,7 +472,7 @@ version = &quot;14.1&quot;
 [requires.metadata]
 version-source = &quot;package.json&quot;
 </code></pre><blockquote>
-<p><strong>NOTE:</strong> As above, if this was the only buildpack running, this would fail the <code>detect</code> phase. In order to pass, every <code>provides</code> must be matched up with a <code>requires</code>, whether in the same buildpack or in another buildpack. See the <a href="https://github.com/buildpacks/spec/blob/master/buildpack.md#phase-1-detection">spec</a> for particulars on how ordering buildpacks can adjust detection results.</p>
+<p><strong>NOTE:</strong> As above, if this was the only buildpack running, this would fail the <code>detect</code> phase. In order to pass, every <code>provides</code> must be matched up with a <code>requires</code>, whether in the same buildpack or in another buildpack. See the <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#phase-1-detection">spec</a> for particulars on how ordering buildpacks can adjust detection results.</p>
 </blockquote>
 <p>However, if the NPM Buildpack was run together with the Node Engine buildpack (which <code>provides</code> <code>node</code>), the lifecycle will see that all requirements are fulfilled, and select that group as the correct set of buildpacks.</p>
 <h4 id="possible-jvm-buildpack">Possible JVM Buildpack</h4>
@@ -533,7 +533,7 @@ Any additional key-value metadata you wish to store.</p>
 A list of alternate requirements which the buildpack provides/requires. Each <code>or</code> array must contain a valid Build Plan (with <code>provides</code> and <code>requires</code>)</p>
 </li>
 </ul>
-<p>For more information, see the <a href="https://github.com/buildpacks/spec/blob/master/buildpack.md#buildpack-plan-toml">Build Plan</a> section of the spec.</p>
+<p>For more information, see the <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#buildpack-plan-toml">Build Plan</a> section of the spec.</p>
 <h2 id="api-compatibility">API Compatibility</h2>
 <p><strong>Given</strong> the buildpack and lifecycle both declare a <strong>Buildpack API version</strong> in format:<br>
 <code>&lt;major&gt;.&lt;minor&gt;</code></p>
@@ -598,7 +598,7 @@ For example,</p>
 </tbody>
 </table>
 <h2 id="further-reading">Further Reading</h2>
-<p>You can read the complete <a href="https://github.com/buildpacks/spec/blob/master/buildpack.md">Buildpack API specification on Github</a>.</p>
+<p>You can read the complete <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md">Buildpack API specification on Github</a>.</p>
 
 
         
@@ -613,7 +613,7 @@ For example,</p>
        class="btn-light btn-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
-    <a href="https://github.com/buildpacks/docs/edit/master/content/docs/reference/buildpack-api.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/reference/buildpack-api.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="btn-light btn-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
   
 </div>
