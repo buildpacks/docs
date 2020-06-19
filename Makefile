@@ -16,6 +16,16 @@ install-hugo:
 	@echo "> Installing hugo..."
 	cd tools; go install --tags extended github.com/gohugoio/hugo
 
+install-pack:
+	@echo "> Installing pack..."
+	cd tools; go get github.com/buildpacks/pack
+
+mk-pack-docs:
+	@echo "> Updating Pack CLI Documentation"
+	cd tools; go run get_pack_commands.go
+
+update-docs: install-pack mk-pack-docs
+
 pack-version: export PACK_VERSION:=$(PACK_VERSION)
 pack-version:
 	@echo "> Ensuring pack version is set..."
@@ -32,5 +42,5 @@ build: export PACK_VERSION:=$(PACK_VERSION)
 build: install-hugo pack-version
 	@echo "> Building..."
 	hugo
-	
-.PHONY: pack-version serve build
+
+.PHONY: pack-version serve build update-docs
