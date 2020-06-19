@@ -194,7 +194,7 @@ The schema is as follows:
     Arbitrary data for buildpack.
 
 ## Build Plan
-The [Build Plan](https://github.com/buildpacks/spec/blob/master/buildpack.md#build-plan-toml) is a document the buildpacks can use to pass information between the [detect](#bindetect) and [build](#bindetect) phases. The build plan is passed (by the lifecycle) as a parameter to the `detect` and `build` binaries of the buildpack.
+The [Build Plan](https://github.com/buildpacks/spec/blob/main/buildpack.md#build-plan-toml) is a document the buildpacks can use to pass information between the [detect](#bindetect) and [build](#bindetect) phases. The build plan is passed (by the lifecycle) as a parameter to the `detect` and `build` binaries of the buildpack.
 * During the `detect` phase, the buildpack(s) may write something it `requires` or `provides` (or both) into the Build Plan.
 * During the `build` phase, the buildpack(s) may read the Buildpack Plan (a condensed version of the Build Plan, composed by the lifecycle) to determine what it should do, and refine the Buildpack Plan with more exact metadata (eg: what version dependency it requires).
 
@@ -216,7 +216,7 @@ A `node-engine` buildpack is always happy to `provide` the `node` dependency. Th
 [[provides]]
 name = "node"
 ```
-> **NOTE:** If this was the only buildpack running, this would fail the `detect` phase. In order to pass, every `provides` must be matched up with a `requires`, whether in the same buildpack or in another buildpack. See the [spec](https://github.com/buildpacks/spec/blob/master/buildpack.md#phase-1-detection) for particulars on how ordering buildpacks can adjust detection results.
+> **NOTE:** If this was the only buildpack running, this would fail the `detect` phase. In order to pass, every `provides` must be matched up with a `requires`, whether in the same buildpack or in another buildpack. See the [spec](https://github.com/buildpacks/spec/blob/main/buildpack.md#phase-1-detection) for particulars on how ordering buildpacks can adjust detection results.
 
 #### 2. One Version Requested
 During the `detect` phase, the `node-engine` buildpack sees in one configuration file (e.g. a `.nvmrc` file in the app directory) that `node v10.x` is explicitly requested by the application. Seeing that, it may write the below text to the build plan:
@@ -255,7 +255,7 @@ version = "14.1"
 version-source = "package.json"
 ```
 
-> **NOTE:** As above, if this was the only buildpack running, this would fail the `detect` phase. In order to pass, every `provides` must be matched up with a `requires`, whether in the same buildpack or in another buildpack. See the [spec](https://github.com/buildpacks/spec/blob/master/buildpack.md#phase-1-detection) for particulars on how ordering buildpacks can adjust detection results.
+> **NOTE:** As above, if this was the only buildpack running, this would fail the `detect` phase. In order to pass, every `provides` must be matched up with a `requires`, whether in the same buildpack or in another buildpack. See the [spec](https://github.com/buildpacks/spec/blob/main/buildpack.md#phase-1-detection) for particulars on how ordering buildpacks can adjust detection results.
 
 However, if the NPM Buildpack was run together with the Node Engine buildpack (which `provides` `node`), the lifecycle will see that all requirements are fulfilled, and select that group as the correct set of buildpacks.
 
@@ -308,7 +308,7 @@ As with the other buildpacks, this alone will not be sufficient for the lifecycl
 - **`or`** _(array, optional)_\
   A list of alternate requirements which the buildpack provides/requires. Each `or` array must contain a valid Build Plan (with `provides` and `requires`)
 
-For more information, see the [Build Plan](https://github.com/buildpacks/spec/blob/master/buildpack.md#buildpack-plan-toml) section of the spec.
+For more information, see the [Build Plan](https://github.com/buildpacks/spec/blob/main/buildpack.md#buildpack-plan-toml) section of the spec.
 
 ## API Compatibility
 
@@ -338,7 +338,7 @@ For example,
 
 ## Further Reading
 
-You can read the complete [Buildpack API specification on Github](https://github.com/buildpacks/spec/blob/master/buildpack.md).
+You can read the complete [Buildpack API specification on Github](https://github.com/buildpacks/spec/blob/main/buildpack.md).
 
 [buildpack]: /docs/concepts/components/buildpack/
 [lifecycle]: /docs/concepts/components/lifecycle/

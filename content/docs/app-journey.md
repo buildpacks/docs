@@ -87,4 +87,4 @@ deploying your new image to your favorite cloud!
 
 [builder]: /docs/concepts/components/builder/
 [buildpack]: /docs/concepts/components/buildpack/
-[samples-java-maven]: https://github.com/buildpacks/samples/tree/master/apps/java-maven
+[samples-java-maven]: https://github.com/buildpacks/samples/tree/main/apps/java-maven

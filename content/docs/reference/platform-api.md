@@ -28,4 +28,4 @@ Buildpacks are stored on the filesystem as unarchived files such that:
 
 ## Further Reading
 
-You can read the complete [Platform API specification on Github](https://github.com/buildpacks/spec/blob/master/platform.md).
+You can read the complete [Platform API specification on Github](https://github.com/buildpacks/spec/blob/main/platform.md).
