@@ -878,7 +878,7 @@ Content
     bottom: 0;
     left: 0;
     content: '';
-    width: 40%;
+    width: 10%;
     height: 2px;
     background-color: #47529E; }
 
@@ -1315,6 +1315,16 @@ Footer
   color: #7C6E75; }
   .footline > *:not(:first-child):not(:last-child) {
     padding: 0 20px; }
+
+/**********************************
+
+Highlights
+
+**********************************/
+.highlights svg path {
+  stroke: #EFEFEF;
+  stroke-width: 6px;
+  fill: #242960; }
 
 /**********************************
 
