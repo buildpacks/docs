@@ -4,7 +4,7 @@
   <div class="well bg-transparent">
     <section class="container">
       <h2 class="px-4">
-        <span class="strong">Buildpacks</span> transform your application source code to images that can run on any cloud.
+        <span class="strong">Cloud Native Buildpacks</span><br/> transform your application source code to images that can run on any cloud.
       </h2>
       <p class="button-holder">
         <a href="/docs/" class="bg-pink button">Get Started</a>
@@ -14,22 +14,39 @@
 </div>
 
 <div id="learn-more" class="container content pt-5 pb-4">
-  <h2>What Are Buildpacks?</h2>
+  <h2>Why Cloud Native Buildpacks?</h2>
+  <section class="row highlights text-center mb-4">
+    <div class="col-sm bg-light m-2 p-5 rounded">
+      <h3 class="mb-0">Control</h3>
+      <div class="px-5 py-4">
+        {{ readFile "themes/buildpacks/static/images/handshake.svg" | safeHTML }}
+      </div>
+      <p>Balanced control between App Devs and Operators.</p>
+    </div>
+    <div class="col-sm bg-light m-2 p-5 rounded">
+      <h3 class="mb-0">Compliance</h3>
+      <div class="px-5 py-4">
+        {{ readFile "themes/buildpacks/static/images/clipboard.svg" | safeHTML }}
+      </div>
+      <p>Ensure apps meet security and compliance requirements.</p>
+    </div>
+    <div class="col-sm bg-light m-2 p-5 rounded">
+      <h3 class="mb-0">Maintainability</h3>
+      <div class="px-5 py-4">
+        {{ readFile "themes/buildpacks/static/images/upgrade.svg" | safeHTML }}
+      </div>
+      <p>Perform upgrades with minimal effort and intervention.</p>
+    </div>
+  </section>
 
+  <h2>About the Project</h2>
   <section class="row">
     <div class="col-sm">
-      <p>Buildpacks provide a higher-level abstraction for building apps compared to Dockerfiles.</p>
+      <p><strong>Buildpacks</strong> were first conceived by Heroku in 2011. Since then, they have been adopted by Cloud Foundry and other PaaS such as Gitlab, Knative, Deis, Dokku, and Drie.</p>
 
-      <p>Specifically, buildpacks:</p>
-      <ul>
-        <li>Provide a balance of control that reduces the operational burden on developers and supports enterprise operators who manage apps at scale.</li>
-        <li>Ensure that apps meet security and compliance requirements without developer intervention.</li>
-        <li>Provide automated delivery of both OS-level and application-level dependency upgrades, efficiently handling day-2 app operations that are often difficult to manage with Dockerfiles.</li>
-        <li>Rely on compatibility guarantees to safely apply patches without rebuilding artifacts and without unintentionally changing application behavior.</li>
-      </ul>
-    </div>
-    <div class="col-sm">
-      <p>Buildpacks were first conceived by Heroku in 2011. Since then, they have been adopted by Cloud Foundry and other PaaS such as Gitlab, Knative, Deis, Dokku, and Drie.</p>
+      <div class="text-center mb-4">
+        <img src="/images/history.png" />
+      </div>
 
       <p>The <b>Cloud Native Buildpacks</b> project was initiated by Pivotal and Heroku in January 2018 and joined the <a href="https://www.cncf.io/">Cloud Native Sandbox</a> in October 2018. The project aims to unify the buildpack ecosystems with a <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md" target="blank">platform-to-buildpack contract</a> that is well-defined and that incorporates learnings from maintaining production-grade buildpacks for years at both Pivotal and Heroku.</p>
 
