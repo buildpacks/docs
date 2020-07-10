@@ -10,6 +10,7 @@ import (
 	"strings"
 
 	"github.com/buildpacks/pack/cmd"
+	"github.com/buildpacks/pack/logging"
 	"github.com/spf13/cobra/doc"
 )
 
@@ -36,7 +37,7 @@ var linkHandler = func(name string) string {
 }
 
 func main() {
-	packCmd, err := cmd.NewPackCommand()
+	packCmd, err := cmd.NewPackCommand(newLogger())
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -57,5 +58,20 @@ func main() {
 	err = doc.GenMarkdownTreeCustom(packCmd, outputPath, filePrepender, linkHandler)
 	if err != nil {
 		log.Fatal(err)
+	}
+}
+
+type packLogger struct {
+	logging.Logger
+}
+
+func (l packLogger) WantTime(f bool)    {}
+func (l packLogger) WantQuiet(f bool)   {}
+func (l packLogger) WantVerbose(f bool) {}
+
+func newLogger() packLogger {
+	log := logging.New(ioutil.Discard)
+	return packLogger{
+		log,
 	}
 }

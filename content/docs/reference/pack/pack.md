@@ -36,5 +36,6 @@ CLI for building apps using Cloud Native Buildpacks
 * [pack suggest-builders](/docs/reference/pack/pack_suggest-builders/)	 - Display list of recommended builders
 * [pack suggest-stacks](/docs/reference/pack/pack_suggest-stacks/)	 - Display list of recommended stacks
 * [pack trust-builder](/docs/reference/pack/pack_trust-builder/)	 - Trust builder
+* [pack untrust-builder](/docs/reference/pack/pack_untrust-builder/)	 - Stop trusting builder
 * [pack version](/docs/reference/pack/pack_version/)	 - Show current 'pack' version
 

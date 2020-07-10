@@ -1,25 +1,24 @@
 +++
-title="pack create-builder"
+title="pack untrust-builder"
 +++
-## pack create-builder
+## pack untrust-builder
 
-Create builder image
+Stop trusting builder
 
 ### Synopsis
 
-Create builder image
+Stop trusting builder.
+
+When building with this builder, all lifecycle phases will be no longer be run in a single container using the builder image.
 
 ```
-pack create-builder <image-name> --config <builder-config-path> [flags]
+pack untrust-builder <builder-name> [flags]
 ```
 
 ### Options
 
 ```
-  -c, --config string   Path to builder TOML file (required)
-  -h, --help            Help for 'create-builder'
-      --no-pull         Skip pulling build image before use
-      --publish         Publish to registry
+  -h, --help   Help for 'untrust-builder'
 ```
 
 ### Options inherited from parent commands

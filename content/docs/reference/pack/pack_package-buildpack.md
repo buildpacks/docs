@@ -10,17 +10,17 @@ Package buildpack in OCI format.
 Package buildpack in OCI format.
 
 ```
-pack package-buildpack <name> --package-config <package-config-path> [flags]
+pack package-buildpack <name> --config <package-config-path> [flags]
 ```
 
 ### Options
 
 ```
-  -f, --format string           Format to save package as ("image" or "file")
-  -h, --help                    Help for 'package-buildpack'
-      --no-pull                 Skip pulling packages before use
-  -p, --package-config string   Path to package TOML config (required)
-      --publish                 Publish to registry (applies to "--image" only)
+  -c, --config string   Path to package TOML config (required)
+  -f, --format string   Format to save package as ("image" or "file")
+  -h, --help            Help for 'package-buildpack'
+      --no-pull         Skip pulling packages before use
+      --publish         Publish to registry (applies to "--image" only)
 ```
 
 ### Options inherited from parent commands
