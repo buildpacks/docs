@@ -1,13 +1,11 @@
 +++
 title="Distribution API"
-weight=2
-creatordisplayname = "Joe Kutner"
-creatoremail = "jpkutner@gmail.com"
-lastmodifierdisplayname = "Joe Kutner"
-lastmodifieremail = "jpkutner@gmail.com"
+aliases=["/docs/reference/distribution-api/"]
 +++
 
 This specification defines the artifact format, delivery mechanism, and order resolution process for buildpacks.
+
+<!--more-->
 
 ## Buildpack Descriptor
 
