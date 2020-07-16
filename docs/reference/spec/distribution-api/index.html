@@ -14,11 +14,11 @@
 
 
 
-<meta property="og:title" content="Cloud Native Buildpack Documentation · App Developer&#39;s Guide">
+<meta property="og:title" content="Cloud Native Buildpack Documentation · Distribution API">
 
 <meta property="og:type" content="documentation">
 
-<meta property="og:url" content="https://buildpacks.io/docs/app-developer-guide/">
+<meta property="og:url" content="https://buildpacks.io/docs/reference/spec/distribution-api/">
 <meta property="og:locale" content="en_US">
 
 <meta property="og:site_name" content="Cloud Native Buildpack Documentation">
@@ -35,7 +35,7 @@
 <meta name="twitter:site" content="@buildpacks_io">
 <meta name="twitter:creator" content="@buildpacks_io">
 
-<link rel="canonical" content="https://buildpacks.io/docs/app-developer-guide/">
+<link rel="canonical" content="https://buildpacks.io/docs/reference/spec/distribution-api/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 <meta name="generator" content="Hugo 0.70.0" />
 
@@ -68,7 +68,7 @@
       });
     </script>
 
-    <title>App Developer&#39;s Guide · Cloud Native Buildpack Documentation</title>
+    <title>Distribution API · Cloud Native Buildpack Documentation</title>
   </head>
   <body>
     <header class="container">
@@ -145,7 +145,7 @@
       </li>
           </ul>
       </li>
-      <li data-nav-id="/docs/app-developer-guide/" class="dd-item depth-0 parent active haschildren">
+      <li data-nav-id="/docs/app-developer-guide/" class="dd-item depth-0 haschildren">
         <a href="/docs/app-developer-guide/">App Developer&rsquo;s Guide</a>
           <ul class="ml-2">
       <li data-nav-id="/docs/app-developer-guide/build-an-app/" class="dd-item depth-1">
@@ -201,10 +201,10 @@
       </li>
           </ul>
       </li>
-      <li data-nav-id="/docs/reference/" class="dd-item depth-0 haschildren">
+      <li data-nav-id="/docs/reference/" class="dd-item depth-0 parent haschildren">
         <a href="/docs/reference/">Reference</a>
           <ul class="ml-2">
-      <li data-nav-id="/docs/reference/config/" class="dd-item depth-1 collapse haschildren">
+      <li data-nav-id="/docs/reference/config/" class="dd-item depth-1 haschildren">
         <a href="/docs/reference/config/">Configuration</a>
           <ul class="ml-2">
       <li data-nav-id="/docs/reference/config/builder-config/" class="dd-item depth-2 collapse">
@@ -215,16 +215,16 @@
       </li>
           </ul>
       </li>
-      <li data-nav-id="/docs/reference/reproducibility/" class="dd-item depth-1 collapse">
+      <li data-nav-id="/docs/reference/reproducibility/" class="dd-item depth-1">
         <a href="/docs/reference/reproducibility/">Reproducible Builds</a>
       </li>
-      <li data-nav-id="/docs/reference/spec/" class="dd-item depth-1 collapse haschildren">
+      <li data-nav-id="/docs/reference/spec/" class="dd-item depth-1 parent haschildren">
         <a href="/docs/reference/spec/">Specification</a>
           <ul class="ml-2">
       <li data-nav-id="/docs/reference/spec/buildpack-api/" class="dd-item depth-2">
         <a href="/docs/reference/spec/buildpack-api/">Buildpack API</a>
       </li>
-      <li data-nav-id="/docs/reference/spec/distribution-api/" class="dd-item depth-2">
+      <li data-nav-id="/docs/reference/spec/distribution-api/" class="dd-item depth-2 active">
         <a href="/docs/reference/spec/distribution-api/">Distribution API</a>
       </li>
       <li data-nav-id="/docs/reference/spec/platform-api/" class="dd-item depth-2">
@@ -246,60 +246,32 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BApp&#43;Developer%26%2339%3Bs&#43;Guide%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fapp-developer-guide%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BDistribution&#43;API%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Freference%2Fspec%2Fdistribution-api%2F%29"
        class="btn-light btn-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/app-developer-guide/_index.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/reference/spec/distribution-api.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="btn-light btn-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
   
 </div>
 
         <div class="heading">
-          <h1 class="title">App Developer&rsquo;s Guide</h1>
+          <h1 class="title">Distribution API</h1>
         </div>
 
-        <h2 id="prerequisites">Prerequisites</h2>
-<p>A lot of the examples used within this guide will require the following:</p>
-<p><a href='https://store.docker.com/search?type=edition&amp;offering=community' class='download-button button icon-button bg-blue'> Install Docker </a><br />
-<a href='/docs/install-pack' class='download-button button icon-button bg-pink'> Install pack </a><br /></p>
-<hr />
+        <p>This specification defines the artifact format, delivery mechanism, and order resolution process for buildpacks.</p>
+<h2 id="buildpack-descriptor">Buildpack Descriptor</h2>
+<p>A buildpack must contain a <code>buildpack.toml</code> file in its root directory.</p>
+<h2 id="buildpackage">Buildpackage</h2>
+<p>A buildpackage is a distributable artifact that contains a buildpack. Its format may be either:</p>
+<ul>
+<li>An OCI image</li>
+<li>An uncompressed tar archive with the extension <code>.cnb</code> containing an OCI image.</li>
+</ul>
+<h2 id="further-reading">Further Reading</h2>
+<p>You can read the complete <a href="https://github.com/buildpacks/spec/blob/main/distribution.md">Distribution specification on Github</a>.</p>
 
         
-    
-      
-        <h2><a href="https://buildpacks.io/docs/app-developer-guide/build-an-app/" class="">Build an app</a></h2>
-        <p class="m-1">The basics of taking your app from source code to runnable image.</p>
-
-        
-          <div class="text-md-right">
-            <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/app-developer-guide/build-an-app/">Learn more →</a>
-          </div>
-        
-      
-    
-      
-        <h2><a href="https://buildpacks.io/docs/app-developer-guide/environment-variables/" class="">Environment variables</a></h2>
-        <p class="m-1">Environment variables are a common way to configure various buildpacks at build-time.</p>
-
-        
-          <div class="text-md-right">
-            <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/app-developer-guide/environment-variables/">Learn more →</a>
-          </div>
-        
-      
-    
-      
-        <h2><a href="https://buildpacks.io/docs/app-developer-guide/specific-buildpacks/" class="">Specify buildpacks</a></h2>
-        <p class="m-1">Learn how to specify exactly what buildpacks are used during the build process.</p>
-
-        
-          <div class="text-md-right">
-            <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/app-developer-guide/specific-buildpacks/">Learn more →</a>
-          </div>
-        
-      
-    
 
         <hr>
 <div class='footline d-block'>
@@ -307,11 +279,11 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BApp&#43;Developer%26%2339%3Bs&#43;Guide%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fapp-developer-guide%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BDistribution&#43;API%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Freference%2Fspec%2Fdistribution-api%2F%29"
        class="btn-light btn-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/app-developer-guide/_index.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/reference/spec/distribution-api.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="btn-light btn-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
   
 </div>

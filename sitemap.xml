@@ -47,19 +47,7 @@
   </url>
   
   <url>
-    <loc>https://buildpacks.io/docs/reference/buildpack-api/</loc>
-  </url>
-  
-  <url>
-    <loc>https://buildpacks.io/docs/reference/distribution-api/</loc>
-  </url>
-  
-  <url>
     <loc>https://buildpacks.io/docs/concepts/operations/</loc>
-  </url>
-  
-  <url>
-    <loc>https://buildpacks.io/docs/reference/platform-api/</loc>
   </url>
   
   <url>
@@ -99,18 +87,6 @@
   </url>
   
   <url>
-    <loc>https://buildpacks.io/docs/reference/builder-config/</loc>
-  </url>
-  
-  <url>
-    <loc>https://buildpacks.io/docs/reference/package-config/</loc>
-  </url>
-  
-  <url>
-    <loc>https://buildpacks.io/docs/reference/reproducibility/</loc>
-  </url>
-  
-  <url>
     <loc>https://buildpacks.io/docs/reference/</loc>
   </url>
   
@@ -143,11 +119,43 @@
   </url>
   
   <url>
+    <loc>https://buildpacks.io/docs/reference/config/builder-config/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/reference/spec/buildpack-api/</loc>
+  </url>
+  
+  <url>
     <loc>https://buildpacks.io/categories/</loc>
   </url>
   
   <url>
     <loc>https://buildpacks.io/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/reference/config/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/reference/spec/distribution-api/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/reference/config/package-config/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/reference/spec/platform-api/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/reference/reproducibility/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/reference/spec/</loc>
   </url>
   
   <url>

@@ -204,23 +204,33 @@
       <li data-nav-id="/docs/reference/" class="dd-item depth-0 haschildren">
         <a href="/docs/reference/">Reference</a>
           <ul class="ml-2">
-      <li data-nav-id="/docs/reference/buildpack-api/" class="dd-item depth-1 collapse">
-        <a href="/docs/reference/buildpack-api/">Buildpack API</a>
+      <li data-nav-id="/docs/reference/config/" class="dd-item depth-1 collapse haschildren">
+        <a href="/docs/reference/config/">Configuration</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/reference/config/builder-config/" class="dd-item depth-2 collapse">
+        <a href="/docs/reference/config/builder-config/">builder.toml</a>
       </li>
-      <li data-nav-id="/docs/reference/distribution-api/" class="dd-item depth-1 collapse">
-        <a href="/docs/reference/distribution-api/">Distribution API</a>
+      <li data-nav-id="/docs/reference/config/package-config/" class="dd-item depth-2 collapse">
+        <a href="/docs/reference/config/package-config/">package.toml</a>
       </li>
-      <li data-nav-id="/docs/reference/platform-api/" class="dd-item depth-1 collapse">
-        <a href="/docs/reference/platform-api/">Platform API</a>
-      </li>
-      <li data-nav-id="/docs/reference/builder-config/" class="dd-item depth-1 collapse">
-        <a href="/docs/reference/builder-config/">builder.toml</a>
-      </li>
-      <li data-nav-id="/docs/reference/package-config/" class="dd-item depth-1 collapse">
-        <a href="/docs/reference/package-config/">package.toml</a>
+          </ul>
       </li>
       <li data-nav-id="/docs/reference/reproducibility/" class="dd-item depth-1 collapse">
         <a href="/docs/reference/reproducibility/">Reproducible Builds</a>
+      </li>
+      <li data-nav-id="/docs/reference/spec/" class="dd-item depth-1 collapse haschildren">
+        <a href="/docs/reference/spec/">Specification</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/reference/spec/buildpack-api/" class="dd-item depth-2">
+        <a href="/docs/reference/spec/buildpack-api/">Buildpack API</a>
+      </li>
+      <li data-nav-id="/docs/reference/spec/distribution-api/" class="dd-item depth-2">
+        <a href="/docs/reference/spec/distribution-api/">Distribution API</a>
+      </li>
+      <li data-nav-id="/docs/reference/spec/platform-api/" class="dd-item depth-2">
+        <a href="/docs/reference/spec/platform-api/">Platform API</a>
+      </li>
+          </ul>
       </li>
           </ul>
       </li>
@@ -249,20 +259,33 @@
           <h1 class="title">Getting Started</h1>
         </div>
 
-        <p>Follow the tutorials below to learn how to use <code>pack</code> and Cloud Native Buildpacks.</p>
-<h3 id="an-apps-brief-journey-from-source-to-imagedocsapp-journey"><a href="/docs/app-journey">An App&rsquo;s Brief Journey from Source to Image</a></h3>
-<p>An easy-to-follow introduction to <code>pack</code> and Cloud Native Buildpacks, this tutorial will get you up and running quickly.</p>
+        <h3 id="tutorials">Tutorials</h3>
+<ul>
+<li><a href="/docs/app-journey/">An App’s Brief Journey from Source to Image</a> - An easy-to-follow introduction to Cloud Native Buildpacks using <code>pack</code>.</li>
+<li><a href="/docs/buildpack-author-guide/create-buildpack">Creating a Cloud Native Buildpack</a> - Tutorial walking through the creation of a simple Ruby buildpack.</li>
+</ul>
 <h3 id="conceptsdocsconcepts"><a href="/docs/concepts">Concepts</a></h3>
-<p>Learn the concepts of Cloud Native Buildpacks.</p>
-<h3 id="creating-a-cloud-native-buildpackdocsbuildpack-author-guidecreate-buildpack"><a href="/docs/buildpack-author-guide/create-buildpack">Creating a Cloud Native Buildpack</a></h3>
-<p>A tutorial that walks through the creation of a simple Ruby buildpack.</p>
+<p>Learn the <a href="/docs/concepts">concepts</a> of Cloud Native Buildpacks.</p>
+<h3 id="guides">Guides</h3>
+<p>Set of guides tailored to specific personas:</p>
+<ul>
+<li><a href="/docs/app-developer-guide/">App Developers</a></li>
+<li><a href="/docs/buildpack-author-guide/">Buildpack Authors</a></li>
+<li><a href="/docs/operator-guide/">Operators</a></li>
+</ul>
 <h3 id="referencedocsreference"><a href="/docs/reference">Reference</a></h3>
-<p>A overview of the buildpack API specification.</p>
+<p>Reference documents for various key aspects of the project.</p>
+<ul>
+<li><a href="/docs/config/">Configuration</a> - Schema definitions for configuration files.</li>
+<li><a href="/docs/spec/">Specification</a> - An overview of the Cloud Native Buildpacks API specification.</li>
+</ul>
 <hr>
 <h1 id="community-and-support">Community and Support</h1>
 <p>Cloud Native Buildpacks is an active sandbox project in the CNCF. We welcome contribution from the community. Here you will find helpful information for interacting with the core team and contributing to the project.</p>
-<h2 id="contacting-the-core-team">Contacting the core team</h2>
+<h2 id="community">Community</h2>
 <p>The best place to contact the Cloud Native Buildpack team is on our <a href="https://slack.buildpacks.io/">Slack channel</a> or <a href="https://lists.cncf.io/g/cncf-buildpacks">mailing list</a>.</p>
+<h2 id="contributors-guide">Contributor&rsquo;s Guide</h2>
+<p>Find out the various ways that <em>you</em> can contribute to the Cloud Native Buildpacks project using our <a href="https://github.com/buildpacks/community/blob/main/contributors/guide.md">contributor&rsquo;s guide</a>.</p>
 <h2 id="project-roadmap">Project Roadmap</h2>
 <p>This is a community driven project and our roadmap is publicly available on our <a href="https://github.com/orgs/buildpacks/projects/1">Github page</a>. We encourage you to contribute with feature requests.</p>
 <hr>

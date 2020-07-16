@@ -204,23 +204,33 @@
       <li data-nav-id="/docs/reference/" class="dd-item depth-0 parent active haschildren">
         <a href="/docs/reference/">Reference</a>
           <ul class="ml-2">
-      <li data-nav-id="/docs/reference/buildpack-api/" class="dd-item depth-1">
-        <a href="/docs/reference/buildpack-api/">Buildpack API</a>
+      <li data-nav-id="/docs/reference/config/" class="dd-item depth-1 haschildren">
+        <a href="/docs/reference/config/">Configuration</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/reference/config/builder-config/" class="dd-item depth-2 collapse">
+        <a href="/docs/reference/config/builder-config/">builder.toml</a>
       </li>
-      <li data-nav-id="/docs/reference/distribution-api/" class="dd-item depth-1">
-        <a href="/docs/reference/distribution-api/">Distribution API</a>
+      <li data-nav-id="/docs/reference/config/package-config/" class="dd-item depth-2 collapse">
+        <a href="/docs/reference/config/package-config/">package.toml</a>
       </li>
-      <li data-nav-id="/docs/reference/platform-api/" class="dd-item depth-1">
-        <a href="/docs/reference/platform-api/">Platform API</a>
-      </li>
-      <li data-nav-id="/docs/reference/builder-config/" class="dd-item depth-1">
-        <a href="/docs/reference/builder-config/">builder.toml</a>
-      </li>
-      <li data-nav-id="/docs/reference/package-config/" class="dd-item depth-1">
-        <a href="/docs/reference/package-config/">package.toml</a>
+          </ul>
       </li>
       <li data-nav-id="/docs/reference/reproducibility/" class="dd-item depth-1">
         <a href="/docs/reference/reproducibility/">Reproducible Builds</a>
+      </li>
+      <li data-nav-id="/docs/reference/spec/" class="dd-item depth-1 haschildren">
+        <a href="/docs/reference/spec/">Specification</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/reference/spec/buildpack-api/" class="dd-item depth-2">
+        <a href="/docs/reference/spec/buildpack-api/">Buildpack API</a>
+      </li>
+      <li data-nav-id="/docs/reference/spec/distribution-api/" class="dd-item depth-2">
+        <a href="/docs/reference/spec/distribution-api/">Distribution API</a>
+      </li>
+      <li data-nav-id="/docs/reference/spec/platform-api/" class="dd-item depth-2">
+        <a href="/docs/reference/spec/platform-api/">Platform API</a>
+      </li>
+          </ul>
       </li>
           </ul>
       </li>
@@ -249,18 +259,74 @@
           <h1 class="title">Reference</h1>
         </div>
 
-        <p>This section provides an overview of the Cloud Native Buildpack API specification. Most
-buildpack users won&rsquo;t need this information unless they are writing a buildpack or
-a platform that supports buildpacks.</p>
-<p>The Cloud Native Buildpack API specification consists of the following parts:</p>
-<ul>
-<li><a href="/docs/reference/buildpack-api">Buildpack API</a> - defines the interface between a buildpack and the environment that runs a buildpack.</li>
-<li><a href="/docs/reference/platform-api">Platform API</a> - defines the interface between the environment that runs a buildpack a platform that supports it.</li>
-<li><a href="/docs/reference/distribution-api">Distribution API</a> - defines the artifact format, delivery mechanism, and order resolution process for buildpacks.</li>
-</ul>
-
+        
 
         
+    
+      
+        <h2><a href="https://buildpacks.io/docs/reference/config/" class="">Configuration</a></h2>
+        <p class="m-1"></p>
+
+        
+    
+      
+        <ul>
+          <li class="list-item-icon"><h3><a href="https://buildpacks.io/docs/reference/config/builder-config/" class="">builder.toml</a></h3></li>
+          
+        </ul>
+      
+    
+      
+        <ul>
+          <li class="list-item-icon"><h3><a href="https://buildpacks.io/docs/reference/config/package-config/" class="">package.toml</a></h3></li>
+          
+        </ul>
+      
+    
+      
+    
+      
+        <h2><a href="https://buildpacks.io/docs/reference/spec/" class="">Specification</a></h2>
+        <p class="m-1">This section provides an overview of the Cloud Native Buildpack API specification. Most buildpack users won&rsquo;t need this information unless they are writing a buildpack or a platform that supports buildpacks.
+</p>
+
+        
+    
+      
+        <ul>
+          <li class="list-item-icon"><h3><a href="https://buildpacks.io/docs/reference/spec/buildpack-api/" class="">Buildpack API</a></h3></li>
+          
+        </ul>
+      
+    
+      
+        <ul>
+          <li class="list-item-icon"><h3><a href="https://buildpacks.io/docs/reference/spec/distribution-api/" class="">Distribution API</a></h3></li>
+          
+        </ul>
+      
+    
+      
+        <ul>
+          <li class="list-item-icon"><h3><a href="https://buildpacks.io/docs/reference/spec/platform-api/" class="">Platform API</a></h3></li>
+          
+        </ul>
+      
+    
+      
+    
+      
+        <h2><a href="https://buildpacks.io/docs/reference/reproducibility/" class="">Reproducible Builds</a></h2>
+        <p class="m-1"> The Cloud Native Buildpacks project aims to create &ldquo;Reproducible Builds&rdquo; of container images. For image creation commands (create-builder, package-buildpack, build) pack creates container images in a reproducible fashion. &ldquo;Reproducible&rdquo; is hard to define but we&rsquo;ll do so by example and with a few caveats:
+</p>
+
+        
+          <div class="text-md-right">
+            <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/reference/reproducibility/">Learn more →</a>
+          </div>
+        
+      
+    
 
         <hr>
 <div class='footline d-block'>
