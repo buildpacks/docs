@@ -1,6 +1,5 @@
 +++
-title="Reference"
-weight=99
+title="Config"
 include_summaries=true
 expand=false
 +++

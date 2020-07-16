@@ -1,15 +1,13 @@
 +++
 title="Platform API"
-weight=2
-creatordisplayname = "Joe Kutner"
-creatoremail = "jpkutner@gmail.com"
-lastmodifierdisplayname = "Joe Kutner"
-lastmodifieremail = "jpkutner@gmail.com"
+aliases=["/docs/reference/platform-api/"]
 +++
 
 This specification defines the interface between the buildpack execution environment,
 referred to as the *lifecycle*, and a platform that supports it.
 This API is used by platform implementors.
+
+<!--more-->
 
 ## Stacks
 
