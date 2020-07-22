@@ -1,10 +1,12 @@
 +++
 title="Buildpack API"
-weight=2
+aliases=["/docs/reference/buildpack-api/"]
 +++
 
 This specification defines the interface between a buildpack and the environment that runs it.
 This API will be used by buildpack authors.
+
+<!--more-->
 
 A buildpack must contain three files:
 

@@ -3,23 +3,29 @@ title="Getting Started"
 weight=1
 +++
 
-Follow the tutorials below to learn how to use `pack` and Cloud Native Buildpacks.
+### Tutorials
 
-### [An App's Brief Journey from Source to Image](/docs/app-journey)
-
-An easy-to-follow introduction to `pack` and Cloud Native Buildpacks, this tutorial will get you up and running quickly.
+* [An App’s Brief Journey from Source to Image](/docs/app-journey/) - An easy-to-follow introduction to Cloud Native Buildpacks using `pack`.
+* [Creating a Cloud Native Buildpack](/docs/buildpack-author-guide/create-buildpack) - Tutorial walking through the creation of a simple Ruby buildpack.
 
 ### [Concepts](/docs/concepts)
 
-Learn the concepts of Cloud Native Buildpacks.
+Learn the [concepts](/docs/concepts) of Cloud Native Buildpacks.
 
-### [Creating a Cloud Native Buildpack](/docs/buildpack-author-guide/create-buildpack)
+### Guides
 
-A tutorial that walks through the creation of a simple Ruby buildpack.
+Set of guides tailored to specific personas:
+
+*  [App Developers](/docs/app-developer-guide/)
+*  [Buildpack Authors](/docs/buildpack-author-guide/)
+*  [Operators](/docs/operator-guide/)
 
 ### [Reference](/docs/reference)
 
-A overview of the buildpack API specification.
+Reference documents for various key aspects of the project.
+
+* [Configuration](/docs/config/) - Schema definitions for configuration files.
+* [Specification](/docs/spec/) - An overview of the Cloud Native Buildpacks API specification.
 
 ---
 
@@ -27,9 +33,13 @@ A overview of the buildpack API specification.
 
 Cloud Native Buildpacks is an active sandbox project in the CNCF. We welcome contribution from the community. Here you will find helpful information for interacting with the core team and contributing to the project.
 
-## Contacting the core team
+## Community
 
 The best place to contact the Cloud Native Buildpack team is on our [Slack channel](https://slack.buildpacks.io/) or [mailing list](https://lists.cncf.io/g/cncf-buildpacks).
+
+## Contributor's Guide
+
+Find out the various ways that _you_ can contribute to the Cloud Native Buildpacks project using our [contributor's guide](https://github.com/buildpacks/community/blob/main/contributors/guide.md).
 
 ## Project Roadmap
 

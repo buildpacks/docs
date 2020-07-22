@@ -1,6 +1,7 @@
 +++
 title="package.toml"
-weight=9
+summary="Schema of the buildpack package config file."
+aliases=["/docs/reference/package-config/"]
 +++
 
 A [buildpackage][package] configuration schema is as follows:
