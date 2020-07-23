@@ -246,6 +246,199 @@ This API will be used by buildpack authors.&lt;/p&gt;</description>
     </item>
     
     <item>
+      <title>pack</title>
+      <link>https://buildpacks.io/docs/reference/pack/pack/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/reference/pack/pack/</guid>
+      <description>pack CLI for building apps using Cloud Native Buildpacks
+Synopsis CLI for building apps using Cloud Native Buildpacks
+Options  -h, --help Help for &#39;pack&#39; --no-color Disable color output -q, --quiet Show less output --timestamps Enable timestamps in output -v, --verbose Show more output --version Show current &#39;pack&#39; version SEE ALSO  pack build	- Generate app image from source code pack completion	- Outputs completion script location pack create-builder	- Create builder image pack inspect-builder	- Show information about a builder pack inspect-image	- Show information about a built image pack list-trusted-builders	- List Trusted Builders pack package-buildpack	- Package buildpack in OCI format.</description>
+    </item>
+    
+    <item>
+      <title>pack build</title>
+      <link>https://buildpacks.io/docs/reference/pack/pack_build/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/reference/pack/pack_build/</guid>
+      <description>pack build Generate app image from source code
+Synopsis Generate app image from source code
+pack build &amp;lt;image-name&amp;gt; [flags] Options  -B, --builder string Builder image -b, --buildpack strings Buildpack reference in the form of &#39;&amp;lt;buildpack&amp;gt;@&amp;lt;version&amp;gt;&#39;, path to a buildpack directory (not supported on Windows), path/URL to a buildpack .tar or .tgz file, or the name of a packaged buildpack image Repeat for each buildpack in order, or supply once by comma-separated list --clear-cache Clear image&#39;s associated cache before building -D, --default-process string Set the default process type -d, --descriptor string Path to the project descriptor file -e, --env stringArray Build-time environment variable, in the form &#39;VAR=VALUE&#39; or &#39;VAR&#39;.</description>
+    </item>
+    
+    <item>
+      <title>pack completion</title>
+      <link>https://buildpacks.io/docs/reference/pack/pack_completion/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/reference/pack/pack_completion/</guid>
+      <description>pack completion Outputs completion script location
+Synopsis Generates bash completion script and outputs its location.
+To configure your bash shell to load completions for each session, add the following to your &amp;lsquo;.bashrc&amp;rsquo; or &amp;lsquo;.bash_profile&amp;rsquo;:
+. $(pack completion)  To configure your zsh shell to load completions for each session, add the following to your &amp;lsquo;.zshrc&amp;rsquo;:
+. $(pack completion --shell zsh)  pack completion [flags] Options  -h, --help help for completion -s, --shell string Generates completion file for [bash|zsh] (default &amp;quot;bash&amp;quot;) Options inherited from parent commands  --no-color Disable color output -q, --quiet Show less output --timestamps Enable timestamps in output -v, --verbose Show more output SEE ALSO  pack	- CLI for building apps using Cloud Native Buildpacks  </description>
+    </item>
+    
+    <item>
+      <title>pack create-builder</title>
+      <link>https://buildpacks.io/docs/reference/pack/pack_create-builder/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/reference/pack/pack_create-builder/</guid>
+      <description>pack create-builder Create builder image
+Synopsis Create builder image
+pack create-builder &amp;lt;image-name&amp;gt; --config &amp;lt;builder-config-path&amp;gt; [flags] Options  -c, --config string Path to builder TOML file (required) -h, --help Help for &#39;create-builder&#39; --no-pull Skip pulling build image before use --publish Publish to registry Options inherited from parent commands  --no-color Disable color output -q, --quiet Show less output --timestamps Enable timestamps in output -v, --verbose Show more output SEE ALSO  pack	- CLI for building apps using Cloud Native Buildpacks  </description>
+    </item>
+    
+    <item>
+      <title>pack inspect-builder</title>
+      <link>https://buildpacks.io/docs/reference/pack/pack_inspect-builder/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/reference/pack/pack_inspect-builder/</guid>
+      <description>pack inspect-builder Show information about a builder
+Synopsis Show information about a builder
+pack inspect-builder &amp;lt;builder-image-name&amp;gt; [flags] Options  -h, --help Help for &#39;inspect-builder&#39; Options inherited from parent commands  --no-color Disable color output -q, --quiet Show less output --timestamps Enable timestamps in output -v, --verbose Show more output SEE ALSO  pack	- CLI for building apps using Cloud Native Buildpacks  </description>
+    </item>
+    
+    <item>
+      <title>pack inspect-image</title>
+      <link>https://buildpacks.io/docs/reference/pack/pack_inspect-image/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/reference/pack/pack_inspect-image/</guid>
+      <description>pack inspect-image Show information about a built image
+Synopsis Show information about a built image
+pack inspect-image &amp;lt;image-name&amp;gt; [flags] Options  --bom print bill of materials -h, --help Help for &#39;inspect-image&#39; Options inherited from parent commands  --no-color Disable color output -q, --quiet Show less output --timestamps Enable timestamps in output -v, --verbose Show more output SEE ALSO  pack	- CLI for building apps using Cloud Native Buildpacks  </description>
+    </item>
+    
+    <item>
+      <title>pack list-trusted-builders</title>
+      <link>https://buildpacks.io/docs/reference/pack/pack_list-trusted-builders/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/reference/pack/pack_list-trusted-builders/</guid>
+      <description>pack list-trusted-builders List Trusted Builders
+Synopsis List Trusted Builders.
+Show the builders that are either trusted by default or have been explicitly trusted locally using trust-builder
+pack list-trusted-builders [flags] Options  -h, --help Help for &#39;list-trusted-builders&#39; Options inherited from parent commands  --no-color Disable color output -q, --quiet Show less output --timestamps Enable timestamps in output -v, --verbose Show more output SEE ALSO  pack	- CLI for building apps using Cloud Native Buildpacks  </description>
+    </item>
+    
+    <item>
+      <title>pack package-buildpack</title>
+      <link>https://buildpacks.io/docs/reference/pack/pack_package-buildpack/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/reference/pack/pack_package-buildpack/</guid>
+      <description>pack package-buildpack Package buildpack in OCI format.
+Synopsis Package buildpack in OCI format.
+pack package-buildpack &amp;lt;name&amp;gt; --config &amp;lt;package-config-path&amp;gt; [flags] Options  -c, --config string Path to package TOML config (required) -f, --format string Format to save package as (&amp;quot;image&amp;quot; or &amp;quot;file&amp;quot;) -h, --help Help for &#39;package-buildpack&#39; --no-pull Skip pulling packages before use --publish Publish to registry (applies to &amp;quot;--image&amp;quot; only) Options inherited from parent commands  --no-color Disable color output -q, --quiet Show less output --timestamps Enable timestamps in output -v, --verbose Show more output SEE ALSO  pack	- CLI for building apps using Cloud Native Buildpacks  </description>
+    </item>
+    
+    <item>
+      <title>pack rebase</title>
+      <link>https://buildpacks.io/docs/reference/pack/pack_rebase/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/reference/pack/pack_rebase/</guid>
+      <description>pack rebase Rebase app image with latest run image
+Synopsis Rebase app image with latest run image
+pack rebase &amp;lt;image-name&amp;gt; [flags] Options  -h, --help Help for &#39;rebase&#39; --no-pull Skip pulling app and run images before use --publish Publish to registry --run-image string Run image to use for rebasing Options inherited from parent commands  --no-color Disable color output -q, --quiet Show less output --timestamps Enable timestamps in output -v, --verbose Show more output SEE ALSO  pack	- CLI for building apps using Cloud Native Buildpacks  </description>
+    </item>
+    
+    <item>
+      <title>pack report</title>
+      <link>https://buildpacks.io/docs/reference/pack/pack_report/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/reference/pack/pack_report/</guid>
+      <description>pack report Display useful information for reporting an issue
+Synopsis Display useful information for reporting an issue
+pack report [flags] Options  -h, --help Help for &#39;report&#39; Options inherited from parent commands  --no-color Disable color output -q, --quiet Show less output --timestamps Enable timestamps in output -v, --verbose Show more output SEE ALSO  pack	- CLI for building apps using Cloud Native Buildpacks  </description>
+    </item>
+    
+    <item>
+      <title>pack set-default-builder</title>
+      <link>https://buildpacks.io/docs/reference/pack/pack_set-default-builder/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/reference/pack/pack_set-default-builder/</guid>
+      <description>pack set-default-builder Set default builder used by other commands
+Synopsis Set default builder used by other commands.
+** For suggested builders simply leave builder name empty. **
+pack set-default-builder &amp;lt;builder-name&amp;gt; [flags] Options  -h, --help Help for &#39;set-default-builder&#39; Options inherited from parent commands  --no-color Disable color output -q, --quiet Show less output --timestamps Enable timestamps in output -v, --verbose Show more output SEE ALSO  pack	- CLI for building apps using Cloud Native Buildpacks  </description>
+    </item>
+    
+    <item>
+      <title>pack set-run-image-mirrors</title>
+      <link>https://buildpacks.io/docs/reference/pack/pack_set-run-image-mirrors/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/reference/pack/pack_set-run-image-mirrors/</guid>
+      <description>pack set-run-image-mirrors Set mirrors to other repositories for a given run image
+Synopsis Set mirrors to other repositories for a given run image
+pack set-run-image-mirrors &amp;lt;run-image-name&amp;gt; --mirror &amp;lt;run-image-mirror&amp;gt; [flags] Options  -h, --help Help for &#39;set-run-image-mirrors&#39; -m, --mirror strings Run image mirror Repeat for each mirror in order, or supply once by comma-separated list Options inherited from parent commands  --no-color Disable color output -q, --quiet Show less output --timestamps Enable timestamps in output -v, --verbose Show more output SEE ALSO  pack	- CLI for building apps using Cloud Native Buildpacks  </description>
+    </item>
+    
+    <item>
+      <title>pack suggest-builders</title>
+      <link>https://buildpacks.io/docs/reference/pack/pack_suggest-builders/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/reference/pack/pack_suggest-builders/</guid>
+      <description>pack suggest-builders Display list of recommended builders
+Synopsis Display list of recommended builders
+pack suggest-builders [flags] Options  -h, --help Help for &#39;suggest-builders&#39; Options inherited from parent commands  --no-color Disable color output -q, --quiet Show less output --timestamps Enable timestamps in output -v, --verbose Show more output SEE ALSO  pack	- CLI for building apps using Cloud Native Buildpacks  </description>
+    </item>
+    
+    <item>
+      <title>pack suggest-stacks</title>
+      <link>https://buildpacks.io/docs/reference/pack/pack_suggest-stacks/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/reference/pack/pack_suggest-stacks/</guid>
+      <description>pack suggest-stacks Display list of recommended stacks
+Synopsis Display list of recommended stacks
+pack suggest-stacks [flags] Options  -h, --help Help for &#39;suggest-stacks&#39; Options inherited from parent commands  --no-color Disable color output -q, --quiet Show less output --timestamps Enable timestamps in output -v, --verbose Show more output SEE ALSO  pack	- CLI for building apps using Cloud Native Buildpacks  </description>
+    </item>
+    
+    <item>
+      <title>pack trust-builder</title>
+      <link>https://buildpacks.io/docs/reference/pack/pack_trust-builder/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/reference/pack/pack_trust-builder/</guid>
+      <description>pack trust-builder Trust builder
+Synopsis Trust builder.
+When building with this builder, all lifecycle phases will be run in a single container using the builder image.
+pack trust-builder &amp;lt;builder-name&amp;gt; [flags] Options  -h, --help Help for &#39;trust-builder&#39; Options inherited from parent commands  --no-color Disable color output -q, --quiet Show less output --timestamps Enable timestamps in output -v, --verbose Show more output SEE ALSO  pack	- CLI for building apps using Cloud Native Buildpacks  </description>
+    </item>
+    
+    <item>
+      <title>pack untrust-builder</title>
+      <link>https://buildpacks.io/docs/reference/pack/pack_untrust-builder/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/reference/pack/pack_untrust-builder/</guid>
+      <description>pack untrust-builder Stop trusting builder
+Synopsis Stop trusting builder.
+When building with this builder, all lifecycle phases will be no longer be run in a single container using the builder image.
+pack untrust-builder &amp;lt;builder-name&amp;gt; [flags] Options  -h, --help Help for &#39;untrust-builder&#39; Options inherited from parent commands  --no-color Disable color output -q, --quiet Show less output --timestamps Enable timestamps in output -v, --verbose Show more output SEE ALSO  pack	- CLI for building apps using Cloud Native Buildpacks  </description>
+    </item>
+    
+    <item>
+      <title>pack version</title>
+      <link>https://buildpacks.io/docs/reference/pack/pack_version/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/reference/pack/pack_version/</guid>
+      <description>pack version Show current &amp;lsquo;pack&amp;rsquo; version
+Synopsis Show current &amp;lsquo;pack&amp;rsquo; version
+pack version [flags] Options  -h, --help Help for &#39;version&#39; Options inherited from parent commands  --no-color Disable color output -q, --quiet Show less output --timestamps Enable timestamps in output -v, --verbose Show more output SEE ALSO  pack	- CLI for building apps using Cloud Native Buildpacks  </description>
+    </item>
+    
+    <item>
       <title>package.toml</title>
       <link>https://buildpacks.io/docs/reference/config/package-config/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
