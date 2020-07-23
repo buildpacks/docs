@@ -64,7 +64,7 @@ Creating a builder is now as simple as running the following command:
 
 ```bash
 # create builder
-pack create-builder my-builder:bionic --builder-config ./builder.toml
+pack create-builder my-builder:bionic --config ./builder.toml
 ```
 
 > **Tip:** `create-builder` has a `--publish` flag that can be used to publish the generated builder image to a registry.
