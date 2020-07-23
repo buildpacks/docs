@@ -291,7 +291,7 @@ buildpacks. We will need to declare the location of those dependencies as well.<
 </blockquote>
 <h3 id="4-package-your-buildpack-as-an-image">4. Package your buildpack as an image</h3>
 <p>Lastly, we&rsquo;ll run the <code>package-buildpack</code> command to package the buildpack as an OCI image.</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">pack package-buildpack my-buildpack --package-config ./package.toml
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">pack package-buildpack my-buildpack --config ./package.toml
 </code></pre></div><blockquote>
 <p><strong>Tip:</strong> You can verify that the image was created by running <code>docker images</code>.</p>
 </blockquote>
@@ -300,7 +300,7 @@ buildpacks. We will need to declare the location of those dependencies as well.<
 <p>Alternatively, you can run <code>pack package-buildpack</code> with <code>--publish</code> to publish it directly to the registry.</p>
 <h3 id="5-package-your-buildpack-as-a-file">5. Package your buildpack as a file</h3>
 <p>You can also run <code>package-buildpack</code> with a <code>--format file</code> flag to save the packaged buildpack as a local file.</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">pack package-buildpack my-buildpack.cnb --package-config ./package.toml --format file
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">pack package-buildpack my-buildpack.cnb --config ./package.toml --format file
 </code></pre></div><p>You can then use this file (called a <code>.cnb</code> file) as an input to <code>package-buildpack</code>, among other commands.</p>
 
 

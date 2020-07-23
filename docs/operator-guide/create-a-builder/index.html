@@ -303,7 +303,7 @@ git clone https://github.com/buildpacks/samples
 </code></pre></div><h3 id="2-create-builder">2. Create builder</h3>
 <p>Creating a builder is now as simple as running the following command:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># create builder</span>
-pack create-builder my-builder:bionic --builder-config ./builder.toml
+pack create-builder my-builder:bionic --config ./builder.toml
 </code></pre></div><blockquote>
 <p><strong>Tip:</strong> <code>create-builder</code> has a <code>--publish</code> flag that can be used to publish the generated builder image to a registry.</p>
 </blockquote>
