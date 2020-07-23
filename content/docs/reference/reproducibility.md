@@ -1,10 +1,11 @@
 +++
 title="Reproducible Builds"
-weight=9
 +++
 
 ## Summary
 The Cloud Native Buildpacks project aims to create "Reproducible Builds" of container images. For image creation commands (`create-builder`, `package-buildpack`, `build`) `pack` creates container images in a reproducible fashion. "Reproducible" is hard to define but we'll do so by example and with a few caveats:
+
+<!--more-->
 
 ## Examples
 ---

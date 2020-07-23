@@ -1,6 +1,7 @@
 +++
 title="builder.toml"
-weight=9
+summary="Schema of the builder config file."
+aliases=["/docs/reference/builder-config/"]
 +++
 
 A [builder][builder] configuration schema is as follows:
