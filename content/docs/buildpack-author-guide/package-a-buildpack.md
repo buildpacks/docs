@@ -59,7 +59,7 @@ image = "cnbs/sample-package:hello-world"
 Lastly, we'll run the `package-buildpack` command to package the buildpack as an OCI image.
 
 ```shell script
-pack package-buildpack my-buildpack --package-config ./package.toml
+pack package-buildpack my-buildpack --config ./package.toml
 ```
 
 > **Tip:** You can verify that the image was created by running `docker images`.
@@ -75,7 +75,7 @@ Alternatively, you can run `pack package-buildpack` with `--publish` to publish 
 You can also run `package-buildpack` with a `--format file` flag to save the packaged buildpack as a local file.
 
 ```shell script
-pack package-buildpack my-buildpack.cnb --package-config ./package.toml --format file
+pack package-buildpack my-buildpack.cnb --config ./package.toml --format file
 ```
 
 You can then use this file (called a `.cnb` file) as an input to `package-buildpack`, among other commands.
