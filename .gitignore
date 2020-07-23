@@ -15,3 +15,6 @@ $RECYCLE.BIN/
 # IDEs
 .idea/
 *.iml
+
+# Generated files
+content/docs/reference/pack/pack*
