@@ -21,6 +21,7 @@ const (
 
 	gendocFrontmatterTemplate = `+++
 title="%s"
+no_edit="true"
 +++
 `
 )
