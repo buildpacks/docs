@@ -42,8 +42,12 @@ From there, you can copy the executable to a directory like `/usr/local/bin` or 
 <hr/>
 
 ### Windows
+To install `pack` on Windows, the easiest way is to use Chocolatey:
+```
+choco install pack --version={{< latest >}}
+```
 
-You can install the Windows executable for `pack` by downloading the Windows [ZIP file](https://github.com/buildpacks/pack/releases/download/v{{< latest >}}/pack-v{{< latest >}}-windows.zip).
+Alternatively, you can install the Windows executable for `pack` by downloading the Windows [ZIP file](https://github.com/buildpacks/pack/releases/download/v{{< latest >}}/pack-v{{< latest >}}-windows.zip).
 
 <hr/>
 
