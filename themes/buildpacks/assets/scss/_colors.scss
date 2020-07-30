@@ -5,17 +5,17 @@ Colors
 **********************************/
 
 /* Primary colors */
-$pink             : #DF0A6B;
-$blue-dark        : #242960;
-$blue-light       : #47529E;
+$pink: #DF0A6B;
+$blue-dark: #242960;
+$blue-light: #47529E;
 
 /* Shades */
-$white            : #FFFFFF;
-$off-white        : #F8F9FA;
-$off-gray         : #EFEFEF;
-$gray-light       : #7C6E75;
-$gray-dark        : #302C2E;
-$black            : #000000;
+$white: #FFFFFF;
+$off-white: #F8F9FA;
+$off-gray: #EFEFEF;
+$gray-light: #7C6E75;
+$gray-dark: #302C2E;
+$black: #000000;
 
 .text-pink {
   color: $pink;
@@ -23,6 +23,10 @@ $black            : #000000;
 
 .bg-pink {
   background-color: $pink;
+}
+
+.text-blue {
+  color: $blue-light;
 }
 
 .bg-blue {

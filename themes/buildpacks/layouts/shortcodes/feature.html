@@ -1,0 +1,4 @@
+<div class="text-center m-2 py-5 px-4 bg-white border rounded">
+  <h2>{{ .Get "title" }}</h2>
+  {{- .Inner | markdownify -}}
+</div>
