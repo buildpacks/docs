@@ -56,6 +56,15 @@
     </item>
     
     <item>
+      <title>Features</title>
+      <link>https://buildpacks.io/features/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/features/</guid>
+      <description>Bill-of-MaterialsInsights into the contents of the app image. Build CacheRobust build caching is used to improve performance. ComposableMultiple buildpacks can be used to create an app image. Multi-languageSupports more than one programming language family. Multi-processImage can have multiple entrypoints. Think operational modes. Minimal app imageImage contains only what is necessary. RebasingInstant updates of base images without re-building. ReproducibilityReproduces the same app image digest by re-running the build. ReusabilityLeverage production-ready buildpacks maintained by the community.</description>
+    </item>
+    
+    <item>
       <title>Installing `pack`</title>
       <link>https://buildpacks.io/docs/install-pack/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

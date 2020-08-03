@@ -286,6 +286,9 @@ Colors
 .bg-pink {
   background-color: #DF0A6B; }
 
+.text-blue {
+  color: #47529E; }
+
 .bg-blue {
   background-color: #47529E; }
 
@@ -857,6 +860,16 @@ Hero
       margin-bottom: 0; } }
 /**********************************
 
+Grid
+
+**********************************/
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-gap: 1rem; }
+
+/**********************************
+
 Well
 
 **********************************/
@@ -917,12 +930,21 @@ blockquote {
 table {
   border-collapse: initial;
   border-spacing: 0.5rem; }
+  table.bs-0 {
+    border-spacing: 0; }
   table code {
     padding: 0; }
-
-th {
-  border-bottom: 2px solid #DF0A6B;
-  padding: 0.25rem 0.5rem; }
+  table thead th {
+    border-bottom: 2px solid #DF0A6B;
+    padding: 0.25rem 0.5rem; }
+  table tbody th {
+    text-align: right; }
+  table.fixed {
+    table-layout: fixed; }
+  table tr.border-top th, table tr.border-top td {
+    border-top: 2px solid #EFEFEF; }
+  table tr.border-bottom th, table tr.border-bottom td {
+    border-bottom: 2px solid #EFEFEF; }
 
 td {
   padding: 0.25rem 0.5rem; }
@@ -1358,6 +1380,9 @@ Quote
     .quote .author:before {
       content: "- ";
       color: #7C6E75; }
+
+ul.list-circle > li {
+  list-style-type: circle !important; }
 
 /**********************************
 
