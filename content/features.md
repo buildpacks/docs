@@ -19,10 +19,6 @@ Robust build caching is used to improve performance.
 Multiple buildpacks can be used to create an app image.
 {{</>}}
 
-{{< feature title="Fast" >}}
-Only re-builds and uploads layers when necessary.
-{{</>}}
-
 {{< feature title="Multi-language" >}}
 Supports more than one programming language family.
 {{</>}}
@@ -41,6 +37,10 @@ Instant updates of base images without re-building.
 
 {{< feature title="Reproducibility" >}}
 Reproduces the same app image digest by re-running the build.
+{{</>}}
+
+{{< feature title="Reusability" >}}
+Leverage production-ready buildpacks maintained by the community.
 {{</>}}
 
 </div>
