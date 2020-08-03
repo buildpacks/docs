@@ -1,0 +1,157 @@
+<div style="overflow-x: auto">
+  <table class="text-center bs-0 bg-white border">
+    <colgroup>
+      <col style="width:25%">
+      <col style="width:25%">
+      <col style="width:20%">
+      <col style="width:20%">
+      <col style="width:20%">
+    </colgroup>
+    <thead class="bg-white text-pink" style="vertical-align: bottom">
+    <tr>
+      <th></th>
+      <th class="py-3">
+        <div class="px-5 py-3">
+          {{ readFile "themes/buildpacks/static/images/buildpacks-logo-bug.svg" | safeHTML }}
+        </div>
+        <div>Cloud Native Buildpacks</div>
+      </th>
+      <th class="py-3" style="min-width: 50%">
+        <div class="py-3">
+          <img
+            src="/images/openshift.png"
+            style="max-width: 100px; max-height: 60px" alt="openshift"/>
+        </div>
+        <div>source-to-image (s2i)</div>
+      </th>
+      <th class="py-3">
+        <div class="py-3">
+          <img
+            src="/images/jib.png"
+            style="max-width: 200px; max-height: 50px" alt="jib"/>
+        </div>
+        <div>Jib</div>
+      </th>
+      <th class="py-3">
+        <div class="py-3">
+          <img
+            src="/images/ko.png"
+            style="max-width: 120px; max-height: 60px" alt="ko"/>
+        </div>
+        <div>ko</div>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <th class="p-3">
+        Bill-of-Materials
+      </th>
+      <td class="text-pink font-weight-bold border-left border-right">Yes</td>
+      <td class="text-muted">No</td>
+      <td class="text-muted">No</td>
+      <td class="text-muted">No</td>
+    </tr>
+    <tr>
+      <th class="p-3">
+        Build Cache
+      </th>
+      <td class="text-pink font-weight-bold border-left border-right">Yes</td>
+      <td class="text-pink font-weight-bold">Yes</td>
+      <td class="text-pink font-weight-bold">Yes</td>
+      <td class="text-pink font-weight-bold">Yes</td>
+    </tr>
+    <tr>
+      <th class="p-3">
+        Composable
+      </th>
+      <td class="text-pink font-weight-bold border-left border-right">Yes</td>
+      <td class="text-muted">No</td>
+      <td class="text-muted">No</td>
+      <td class="text-muted">No</td>
+    </tr>
+    <tr>
+      <th class="p-3">
+        Multi-language
+      </th>
+      <td class="text-pink font-weight-bold border-left border-right">Yes</td>
+      <td class="text-pink font-weight-bold">Yes</td>
+      <td class="text-muted">No</td>
+      <td class="text-muted">No</td>
+    </tr>
+    <tr>
+      <th class="p-3">
+        Multi-process
+      </th>
+      <td class="text-pink font-weight-bold border-left border-right">Yes</td>
+      <td class="text-muted">No</td>
+      <td class="text-muted">No</td>
+      <td class="text-muted">No</td>
+    </tr>
+    <tr>
+      <th class="p-3">
+        Minimal app image
+      </th>
+      <td class="text-pink font-weight-bold border-left border-right">Yes</td>
+      <td class="text-pink font-weight-bold">&nbsp;&nbsp;Yes&nbsp;<sup>&dagger;</sup></td>
+      <td class="text-pink font-weight-bold">Yes</td>
+      <td class="text-pink font-weight-bold">Yes</td>
+    </tr>
+    <tr>
+      <th class="p-3">
+        Rebasing
+      </th>
+      <td class="text-pink font-weight-bold border-left border-right">Yes</td>
+      <td class="text-muted">No</td>
+      <td class="text-muted">No</td>
+      <td class="text-muted">No</td>
+    </tr>
+    <tr>
+      <th class="p-3">
+        Reproducibility
+      </th>
+      <td class="text-pink font-weight-bold border-left border-right">Yes</td>
+      <td class="text-muted">No</td>
+      <td class="text-pink font-weight-bold">Yes</td>
+      <td class="text-pink font-weight-bold">Yes</td>
+    </tr>
+    <tr class="border-bottom border-top bg-light">
+      <th class="p-3">Integrations</th>
+      <td class="text-left pl-5 align-text-top border-left border-right">
+        <ul class="list-circle">
+          <li>Azure</li>
+          <li>CircleCI</li>
+          <li>GitLab</li>
+          <li>Google</li>
+          <li>Heroku</li>
+          <li>Spring Boot</li>
+          <li>Tekton</li>
+          <li>...</li>
+        </ul>
+      </td>
+      <td class="text-left pl-5 align-text-top">
+        <ul class="list-circle">
+          <li>OpenShift</li>
+        </ul>
+      </td>
+      <td class="text-left pl-5 align-text-top">
+        <ul class="list-circle">
+          <li>Gradle</li>
+          <li>Maven</li>
+        </ul>
+      </td>
+      <td></td>
+    </tr>
+    <tr>
+      <th class="p-3">Governance</th>
+      <td class="border-left border-right">CNCF</td>
+      <td>Red Hat</td>
+      <td>Google</td>
+      <td>Google</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div class="container py-4 small">
+  <sup>&dagger;</sup> Requires additional configuration which is then incompatible with other features.
+</div>

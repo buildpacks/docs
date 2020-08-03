@@ -1,0 +1,22 @@
+{{ define "main" }}
+
+<div class='docs'>
+  <div class="container">
+    <div class='row'>
+      <div class='col-md-12 docs-content'>
+        {{ partial "support.html" . }}
+
+        <div class="heading">
+          <h1 class="title">{{ .Title | markdownify }}</h1>
+        </div>
+
+        {{ .Content }}
+
+        {{ partial "footline.html" . }}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{{ end }}
