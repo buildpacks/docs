@@ -6,16 +6,16 @@ layout="standalone"
 
 
 <div class='grid'>
+
+{{< feature title="Advanced Caching" align="right" >}}
+Robust build caching is used to improve performance.
+{{</>}}
   
 {{< feature title="Bill-of-Materials" >}}
 Insights into the contents of the app image.
 {{</>}}
 
-{{< feature title="Build Cache" align="right" >}}
-Robust build caching is used to improve performance.
-{{</>}}
-
-{{< feature title="Composable" >}}
+{{< feature title="Modular / Pluggable" >}}
 Multiple buildpacks can be used to create an app image.
 {{</>}}
 
