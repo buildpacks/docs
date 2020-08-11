@@ -6,16 +6,16 @@ layout="standalone"
 
 
 <div class='grid'>
+
+{{< feature title="Advanced Caching" align="right" >}}
+Robust caching is used to improve performance.
+{{</>}}
   
 {{< feature title="Bill-of-Materials" >}}
 Insights into the contents of the app image.
 {{</>}}
 
-{{< feature title="Build Cache" align="right" >}}
-Robust build caching is used to improve performance.
-{{</>}}
-
-{{< feature title="Composable" >}}
+{{< feature title="Modular / Pluggable" >}}
 Multiple buildpacks can be used to create an app image.
 {{</>}}
 
@@ -24,7 +24,7 @@ Supports more than one programming language family.
 {{</>}}
 
 {{< feature title="Multi-process" >}}
-Image can have multiple entrypoints. Think operational modes.
+Image can have multiple entrypoints for each operational mode.
 {{</>}}
 
 {{< feature title="Minimal app image" >}}
