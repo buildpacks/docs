@@ -120,15 +120,15 @@
 
         <div class='grid'>
 <div class="text-center m-2 py-5 px-4 bg-white border rounded">
+  <h2>Advanced Caching</h2>Robust caching is used to improve performance.</div>
+<div class="text-center m-2 py-5 px-4 bg-white border rounded">
   <h2>Bill-of-Materials</h2>Insights into the contents of the app image.</div>
 <div class="text-center m-2 py-5 px-4 bg-white border rounded">
-  <h2>Build Cache</h2>Robust build caching is used to improve performance.</div>
-<div class="text-center m-2 py-5 px-4 bg-white border rounded">
-  <h2>Composable</h2>Multiple buildpacks can be used to create an app image.</div>
+  <h2>Modular / Pluggable</h2>Multiple buildpacks can be used to create an app image.</div>
 <div class="text-center m-2 py-5 px-4 bg-white border rounded">
   <h2>Multi-language</h2>Supports more than one programming language family.</div>
 <div class="text-center m-2 py-5 px-4 bg-white border rounded">
-  <h2>Multi-process</h2>Image can have multiple entrypoints. Think operational modes.</div>
+  <h2>Multi-process</h2>Image can have multiple entrypoints for each operational mode.</div>
 <div class="text-center m-2 py-5 px-4 bg-white border rounded">
   <h2>Minimal app image</h2>Image contains only what is necessary.</div>
 <div class="text-center m-2 py-5 px-4 bg-white border rounded">
@@ -241,6 +241,15 @@
     <tbody>
     <tr>
       <th class="p-3">
+        Advanced Caching
+      </th>
+      <td class="text-pink font-weight-bold border-left border-right">Yes</td>
+      <td class="text-pink font-weight-bold">Yes</td>
+      <td class="text-muted">No</td>
+      <td class="text-muted">No</td>
+    </tr>
+    <tr>
+      <th class="p-3">
         Bill-of-Materials
       </th>
       <td class="text-pink font-weight-bold border-left border-right">Yes</td>
@@ -250,21 +259,12 @@
     </tr>
     <tr>
       <th class="p-3">
-        Build Cache
-      </th>
-      <td class="text-pink font-weight-bold border-left border-right">Yes</td>
-      <td class="text-pink font-weight-bold">Yes</td>
-      <td class="text-pink font-weight-bold">Yes</td>
-      <td class="text-pink font-weight-bold">Yes</td>
-    </tr>
-    <tr>
-      <th class="p-3">
-        Composable
+        Modular / Pluggable
       </th>
       <td class="text-pink font-weight-bold border-left border-right">Yes</td>
       <td class="text-muted">No</td>
-      <td class="text-muted">No</td>
-      <td class="text-muted">No</td>
+      <td class="text-muted">&nbsp;&nbsp;N/A&nbsp;<sup>&dagger;</sup></td>
+      <td class="text-muted">&nbsp;&nbsp;N/A&nbsp;<sup>&dagger;</sup></td>
     </tr>
     <tr>
       <th class="p-3">
@@ -289,7 +289,7 @@
         Minimal app image
       </th>
       <td class="text-pink font-weight-bold border-left border-right">Yes</td>
-      <td class="text-pink font-weight-bold">&nbsp;&nbsp;Yes&nbsp;<sup>&dagger;</sup></td>
+      <td class="text-pink font-weight-bold">&nbsp;&nbsp;Yes&nbsp;<sup>&ddagger;</sup></td>
       <td class="text-pink font-weight-bold">Yes</td>
       <td class="text-pink font-weight-bold">Yes</td>
     </tr>
@@ -310,6 +310,15 @@
       <td class="text-muted">No</td>
       <td class="text-pink font-weight-bold">Yes</td>
       <td class="text-pink font-weight-bold">Yes</td>
+    </tr>
+    <tr>
+      <th class="p-3">
+        Reusability
+      </th>
+      <td class="text-pink font-weight-bold border-left border-right">Yes</td>
+      <td class="text-pink font-weight-bold">Yes</td>
+      <td class="text-muted">&nbsp;&nbsp;N/A&nbsp;<sup>&dagger;</sup></td>
+      <td class="text-muted">&nbsp;&nbsp;N/A&nbsp;<sup>&dagger;</sup></td>
     </tr>
     <tr class="border-bottom border-top bg-light">
       <th class="p-3">Integrations</th>
@@ -348,8 +357,11 @@
     </tbody>
   </table>
 </div>
-<div class="container py-4 small">
-  <sup>&dagger;</sup> Requires additional configuration which is then incompatible with other features.
+<div class="py-4 small">
+  <ul class="list-unstyled">
+    <li><sup>&dagger;</sup> This feature does not apply to solution.</li>
+    <li><sup>&ddagger;</sup> Requires additional configuration which adversely affects other features.</li>
+  </ul>
 </div>
 
 
