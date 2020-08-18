@@ -24,6 +24,9 @@ Buildpacks are stored on the filesystem as unarchived files such that:
 * Each top-level directory is a buildpack ID.
 * Each second-level directory is a buildpack version.
 
+## Users
+For security reasons, images built with platforms, such as `pack`, build and run as non-root users.
+
 ## Further Reading
 
 You can read the complete [Platform API specification on Github](https://github.com/buildpacks/spec/blob/main/platform.md).
