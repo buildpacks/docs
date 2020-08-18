@@ -11,7 +11,7 @@ To make your app runnable, we need to set a default start command. Add the follo
 
 ```bash
 # Set default start command
-echo 'processes = [{ type = "web", command = "bundle exec ruby app.rb"}]' > "$layersdir/launch.toml"
+printf '%s\n' '[[processes]]' 'type = "web"' 'command = "bundle exec ruby app.rb"' > "$layersdir/launch.toml"
 ```
 
 Your full `build` script should now look like the following:
@@ -49,7 +49,7 @@ bundle install
 
 # ========== ADDED ===========
 # 7. SET DEFAULT START COMMAND
-echo 'processes = [{ type = "web", command = "bundle exec ruby app.rb"}]' > "$layersdir/launch.toml"
+printf '%s\n' '[[processes]]' 'type = "web"' 'command = "bundle exec ruby app.rb"' > "$layersdir/launch.toml"
 ```
 
 Then rebuild your app using the updated buildpack:
@@ -77,4 +77,4 @@ Test it out by navigating to [localhost:8080](http://localhost:8080) in your fav
 
 ---
 
-<a href="/docs/buildpack-author-guide/create-buildpack/caching" class="button bg-pink">Next Step</a>
+<a href="/docs/buildpack-author-guide/create-buildpack/specify-multiple-process-types" class="button bg-pink">Next Step</a>

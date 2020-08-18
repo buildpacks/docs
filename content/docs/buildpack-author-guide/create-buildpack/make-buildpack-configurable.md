@@ -1,6 +1,6 @@
 +++
 title="Making your buildpack configurable"
-weight=407
+weight=408
 creatordisplayname = "Scott Sisil"
 creatoremail = "ssisil@pivotal.io"
 lastmodifierdisplayname = "Javier Romero"
@@ -95,7 +95,7 @@ else
 fi
 
 # 7. SET DEFAULT START COMMAND
-echo 'processes = [{ type = "web", command = "bundle exec ruby app.rb"}]' > "$layersdir/launch.toml"
+printf '%s\n' '[[processes]]' 'type = "web"' 'command = "bundle exec ruby app.rb"' > "$layersdir/launch.toml"
 ```
 
 Finally, in your Ruby app directory, create a file named `.ruby-version` with the following contents:

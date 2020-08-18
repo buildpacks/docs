@@ -1,6 +1,6 @@
 +++
 title="Improving performance with caching"
-weight=406
+weight=407
 creatordisplayname = "Scott Sisil"
 creatoremail = "ssisil@pivotal.io"
 lastmodifierdisplayname = "Javier Romero"
@@ -66,7 +66,7 @@ echo -e 'cache = true\nlaunch = true' > "$bundlerlayer.toml"
 bundle install --path "$bundlerlayer" --binstubs "$bundlerlayer/bin"
 
 # 7. SET DEFAULT START COMMAND
-echo 'processes = [{ type = "web", command = "bundle exec ruby app.rb"}]' > "$layersdir/launch.toml"
+printf '%s\n' '[[processes]]' 'type = "web"' 'command = "bundle exec ruby app.rb"' > "$layersdir/launch.toml"
 ```
 
 Now when we run:
@@ -210,7 +210,7 @@ else
 fi
 
 # 7. SET DEFAULT START COMMAND
-echo 'processes = [{ type = "web", command = "bundle exec ruby app.rb"}]' > "$layersdir/launch.toml"
+printf '%s\n' '[[processes]]' 'type = "web"' 'command = "bundle exec ruby app.rb"' > "$layersdir/launch.toml"
 ```
 
 Now when you build your app:
