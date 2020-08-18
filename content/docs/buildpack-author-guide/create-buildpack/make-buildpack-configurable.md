@@ -96,6 +96,7 @@ fi
 
 # 7. SET DEFAULT START COMMAND
 printf '%s\n' '[[processes]]' 'type = "web"' 'command = "bundle exec ruby app.rb"' > "$layersdir/launch.toml"
+printf '%s\n' '[[processes]]' 'type = "worker"' 'command = "bundle exec ruby worker.rb"' >> "$layersdir/launch.toml"
 ```
 
 Finally, in your Ruby app directory, create a file named `.ruby-version` with the following contents:
