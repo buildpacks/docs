@@ -62,7 +62,7 @@ If we had run the `pack build` command above with `--default-process sys-info`, 
 ### Run a multi-process app
 
 Buildpacks are designed to give you much flexibility in how you run your app. The lifecycle includes a binary called the `launcher` which is present in the final app image and is responsible for starting your app.
-By default, the `launcher` will start processes with `bash` (these are referred to as `non-direct` processes). Processes that start without `bash` are referred to as `direct` processes.
+By default, the `launcher` will start processes with `bash` (these are referred to as `non-direct` processes). Processes that are started without `bash` are referred to as `direct` processes.
 The `launcher` will source any profile scripts (for `non-direct` processes) and set buildpack-provided environment variables in the app's execution environment before starting the app process.
 
 #### Default process type

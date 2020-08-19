@@ -1,10 +1,6 @@
 +++
 title="Specify multiple process types"
-weight=407
-creatordisplayname = "Natalie Arellano"
-creatoremail = "narellano@vmware.com"
-lastmodifierdisplayname = "Natalie Arellano"
-lastmodifieremail = "narellano@vmware.com"
+weight=406
 +++
 
 One of the benefits of buildpacks is that they are multi-process - an image can have multiple entrypoints for each operational mode.
@@ -25,7 +21,11 @@ To enable running the worker process, we'll need to have our buildpack define a 
 
 ```bash
 # Specify the worker process
-printf '%s\n' '[[processes]]' 'type = "worker"' 'command = "bundle exec ruby worker.rb"' >> "$layersdir/launch.toml"
+cat >> "$layersdir/launch.toml" <<EOL
+[[processes]]
+type = "worker"
+command = "bundle exec ruby worker.rb"
+EOL
 ```
 
 Your full `build` script should now look like the following:
@@ -63,8 +63,16 @@ bundle install
 
 # ========== ADDED ===========
 # 7. SET DEFAULT START COMMAND
-printf '%s\n' '[[processes]]' 'type = "web"' 'command = "bundle exec ruby app.rb"' > "$layersdir/launch.toml"
-printf '%s\n' '[[processes]]' 'type = "worker"' 'command = "bundle exec ruby worker.rb"' >> "$layersdir/launch.toml"
+cat > "$layersdir/launch.toml" <<EOL
+[[processes]]
+type = "web"
+command = "bundle exec ruby app.rb"
+EOL
+cat >> "$layersdir/launch.toml" <<EOL
+[[processes]]
+type = "worker"
+command = "bundle exec ruby worker.rb"
+EOL
 ```
 
 Now if you rebuild your app using the updated buildpack:
