@@ -41,6 +41,16 @@ application.&lt;/p&gt;</description>
     </item>
     
     <item>
+      <title>Platform</title>
+      <link>https://buildpacks.io/docs/concepts/components/platform/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/concepts/components/platform/</guid>
+      <description>&lt;h2 id=&#34;what-is-a-platform&#34;&gt;What is a Platform?&lt;/h2&gt;
+&lt;p&gt;A &lt;code&gt;platform&lt;/code&gt; uses a &lt;a href=&#34;https://buildpacks.io/docs/concepts/components/lifecycle/&#34;&gt;lifecycle&lt;/a&gt;, &lt;a href=&#34;https://buildpacks.io/docs/concepts/components/buildpack/&#34;&gt;buildpacks&lt;/a&gt; (packaged in a &lt;a href=&#34;https://buildpacks.io/docs/concepts/components/builder/&#34;&gt;builder&lt;/a&gt;), and application source code to produce an OCI image.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>Stack</title>
       <link>https://buildpacks.io/docs/concepts/components/stack/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

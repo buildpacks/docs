@@ -67,6 +67,10 @@
   </url>
   
   <url>
+    <loc>https://buildpacks.io/docs/concepts/components/platform/</loc>
+  </url>
+  
+  <url>
     <loc>https://buildpacks.io/docs/app-developer-guide/</loc>
   </url>
   
