@@ -324,10 +324,10 @@
 <p>Create builder image</p>
 <pre><code>pack create-builder &lt;image-name&gt; --config &lt;builder-config-path&gt; [flags]
 </code></pre><h3 id="options">Options</h3>
-<pre><code>  -c, --config string   Path to builder TOML file (required)
-  -h, --help            Help for 'create-builder'
-      --no-pull         Skip pulling build image before use
-      --publish         Publish to registry
+<pre><code>  -c, --config string        Path to builder TOML file (required)
+  -h, --help                 Help for 'create-builder'
+      --publish              Publish to registry
+      --pull-policy string   Pull policy to use. Accepted values are always, never, and if-not-present. The default is always
 </code></pre><h3 id="options-inherited-from-parent-commands">Options inherited from parent commands</h3>
 <pre><code>      --no-color     Disable color output
   -q, --quiet        Show less output

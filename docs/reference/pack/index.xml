@@ -29,7 +29,7 @@ Options  -h, --help Help for &#39;pack&#39; --no-color Disable color output -q, 
       <guid>https://buildpacks.io/docs/reference/pack/pack_build/</guid>
       <description>pack build Generate app image from source code
 Synopsis Generate app image from source code
-pack build &amp;lt;image-name&amp;gt; [flags] Options  -B, --builder string Builder image -b, --buildpack strings Buildpack reference in the form of &#39;&amp;lt;buildpack&amp;gt;@&amp;lt;version&amp;gt;&#39;, path to a buildpack directory (not supported on Windows), path/URL to a buildpack .tar or .tgz file, or the name of a packaged buildpack image Repeat for each buildpack in order, or supply once by comma-separated list --clear-cache Clear image&#39;s associated cache before building -D, --default-process string Set the default process type -d, --descriptor string Path to the project descriptor file -e, --env stringArray Build-time environment variable, in the form &#39;VAR=VALUE&#39; or &#39;VAR&#39;.</description>
+pack build &amp;lt;image-name&amp;gt; [flags] Options  -B, --builder string Builder image -b, --buildpack strings Buildpack reference in the form of &#39;&amp;lt;buildpack&amp;gt;@&amp;lt;version&amp;gt;&#39;, path to a buildpack directory (not supported on Windows), path/URL to a buildpack .tar or .tgz file, or the name of a packaged buildpack image Repeat for each buildpack in order, or supply once by comma-separated list --clear-cache Clear image&#39;s associated cache before building -D, --default-process string Set the default process type.</description>
     </item>
     
     <item>
@@ -53,7 +53,7 @@ To configure your bash shell to load completions for each session, add the follo
       <guid>https://buildpacks.io/docs/reference/pack/pack_create-builder/</guid>
       <description>pack create-builder Create builder image
 Synopsis Create builder image
-pack create-builder &amp;lt;image-name&amp;gt; --config &amp;lt;builder-config-path&amp;gt; [flags] Options  -c, --config string Path to builder TOML file (required) -h, --help Help for &#39;create-builder&#39; --no-pull Skip pulling build image before use --publish Publish to registry Options inherited from parent commands  --no-color Disable color output -q, --quiet Show less output --timestamps Enable timestamps in output -v, --verbose Show more output SEE ALSO  pack	- CLI for building apps using Cloud Native Buildpacks  </description>
+pack create-builder &amp;lt;image-name&amp;gt; --config &amp;lt;builder-config-path&amp;gt; [flags] Options  -c, --config string Path to builder TOML file (required) -h, --help Help for &#39;create-builder&#39; --publish Publish to registry --pull-policy string Pull policy to use. Accepted values are always, never, and if-not-present. The default is always Options inherited from parent commands  --no-color Disable color output -q, --quiet Show less output --timestamps Enable timestamps in output -v, --verbose Show more output SEE ALSO  pack	- CLI for building apps using Cloud Native Buildpacks  </description>
     </item>
     
     <item>
@@ -64,7 +64,7 @@ pack create-builder &amp;lt;image-name&amp;gt; --config &amp;lt;builder-config-p
       <guid>https://buildpacks.io/docs/reference/pack/pack_inspect-builder/</guid>
       <description>pack inspect-builder Show information about a builder
 Synopsis Show information about a builder
-pack inspect-builder &amp;lt;builder-image-name&amp;gt; [flags] Options  -h, --help Help for &#39;inspect-builder&#39; Options inherited from parent commands  --no-color Disable color output -q, --quiet Show less output --timestamps Enable timestamps in output -v, --verbose Show more output SEE ALSO  pack	- CLI for building apps using Cloud Native Buildpacks  </description>
+pack inspect-builder &amp;lt;builder-image-name&amp;gt; [flags] Options  -d, --depth int Max depth to display for Detection Order. Omission of this flag or values &amp;lt; 0 will display the entire tree. (default -1) -h, --help Help for &#39;inspect-builder&#39; Options inherited from parent commands  --no-color Disable color output -q, --quiet Show less output --timestamps Enable timestamps in output -v, --verbose Show more output SEE ALSO  pack	- CLI for building apps using Cloud Native Buildpacks  </description>
     </item>
     
     <item>
@@ -98,7 +98,7 @@ pack list-trusted-builders [flags] Options  -h, --help Help for &#39;list-truste
       <guid>https://buildpacks.io/docs/reference/pack/pack_package-buildpack/</guid>
       <description>pack package-buildpack Package buildpack in OCI format.
 Synopsis Package buildpack in OCI format.
-pack package-buildpack &amp;lt;name&amp;gt; --config &amp;lt;package-config-path&amp;gt; [flags] Options  -c, --config string Path to package TOML config (required) -f, --format string Format to save package as (&amp;quot;image&amp;quot; or &amp;quot;file&amp;quot;) -h, --help Help for &#39;package-buildpack&#39; --no-pull Skip pulling packages before use --publish Publish to registry (applies to &amp;quot;--image&amp;quot; only) Options inherited from parent commands  --no-color Disable color output -q, --quiet Show less output --timestamps Enable timestamps in output -v, --verbose Show more output SEE ALSO  pack	- CLI for building apps using Cloud Native Buildpacks  </description>
+pack package-buildpack &amp;lt;name&amp;gt; --config &amp;lt;package-config-path&amp;gt; [flags] Options  -c, --config string Path to package TOML config (required) -f, --format string Format to save package as (&amp;quot;image&amp;quot; or &amp;quot;file&amp;quot;) -h, --help Help for &#39;package-buildpack&#39; --publish Publish to registry (applies to &amp;quot;--image&amp;quot; only) --pull-policy string Pull policy to use. Accepted values are always, never, and if-not-present. The default is always Options inherited from parent commands  --no-color Disable color output -q, --quiet Show less output --timestamps Enable timestamps in output -v, --verbose Show more output SEE ALSO  pack	- CLI for building apps using Cloud Native Buildpacks  </description>
     </item>
     
     <item>
@@ -109,7 +109,7 @@ pack package-buildpack &amp;lt;name&amp;gt; --config &amp;lt;package-config-path
       <guid>https://buildpacks.io/docs/reference/pack/pack_rebase/</guid>
       <description>pack rebase Rebase app image with latest run image
 Synopsis Rebase app image with latest run image
-pack rebase &amp;lt;image-name&amp;gt; [flags] Options  -h, --help Help for &#39;rebase&#39; --no-pull Skip pulling app and run images before use --publish Publish to registry --run-image string Run image to use for rebasing Options inherited from parent commands  --no-color Disable color output -q, --quiet Show less output --timestamps Enable timestamps in output -v, --verbose Show more output SEE ALSO  pack	- CLI for building apps using Cloud Native Buildpacks  </description>
+pack rebase &amp;lt;image-name&amp;gt; [flags] Options  -h, --help Help for &#39;rebase&#39; --publish Publish to registry --pull-policy string Pull policy to use. Accepted values are always, never, and if-not-present. The default is always --run-image string Run image to use for rebasing Options inherited from parent commands  --no-color Disable color output -q, --quiet Show less output --timestamps Enable timestamps in output -v, --verbose Show more output SEE ALSO  pack	- CLI for building apps using Cloud Native Buildpacks  </description>
     </item>
     
     <item>
@@ -120,7 +120,7 @@ pack rebase &amp;lt;image-name&amp;gt; [flags] Options  -h, --help Help for &#39
       <guid>https://buildpacks.io/docs/reference/pack/pack_report/</guid>
       <description>pack report Display useful information for reporting an issue
 Synopsis Display useful information for reporting an issue
-pack report [flags] Options  -h, --help Help for &#39;report&#39; Options inherited from parent commands  --no-color Disable color output -q, --quiet Show less output --timestamps Enable timestamps in output -v, --verbose Show more output SEE ALSO  pack	- CLI for building apps using Cloud Native Buildpacks  </description>
+pack report [flags] Options  -e, --explicit Print config without redacting information -h, --help Help for &#39;report&#39; Options inherited from parent commands  --no-color Disable color output -q, --quiet Show less output --timestamps Enable timestamps in output -v, --verbose Show more output SEE ALSO  pack	- CLI for building apps using Cloud Native Buildpacks  </description>
     </item>
     
     <item>

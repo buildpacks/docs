@@ -324,7 +324,9 @@
 <p>Show information about a builder</p>
 <pre><code>pack inspect-builder &lt;builder-image-name&gt; [flags]
 </code></pre><h3 id="options">Options</h3>
-<pre><code>  -h, --help   Help for 'inspect-builder'
+<pre><code>  -d, --depth int   Max depth to display for Detection Order.
+                    Omission of this flag or values &lt; 0 will display the entire tree. (default -1)
+  -h, --help        Help for 'inspect-builder'
 </code></pre><h3 id="options-inherited-from-parent-commands">Options inherited from parent commands</h3>
 <pre><code>      --no-color     Disable color output
   -q, --quiet        Show less output

@@ -324,10 +324,10 @@
 <p>Rebase app image with latest run image</p>
 <pre><code>pack rebase &lt;image-name&gt; [flags]
 </code></pre><h3 id="options">Options</h3>
-<pre><code>  -h, --help               Help for 'rebase'
-      --no-pull            Skip pulling app and run images before use
-      --publish            Publish to registry
-      --run-image string   Run image to use for rebasing
+<pre><code>  -h, --help                 Help for 'rebase'
+      --publish              Publish to registry
+      --pull-policy string   Pull policy to use. Accepted values are always, never, and if-not-present. The default is always
+      --run-image string     Run image to use for rebasing
 </code></pre><h3 id="options-inherited-from-parent-commands">Options inherited from parent commands</h3>
 <pre><code>      --no-color     Disable color output
   -q, --quiet        Show less output

@@ -324,11 +324,11 @@
 <p>Package buildpack in OCI format.</p>
 <pre><code>pack package-buildpack &lt;name&gt; --config &lt;package-config-path&gt; [flags]
 </code></pre><h3 id="options">Options</h3>
-<pre><code>  -c, --config string   Path to package TOML config (required)
-  -f, --format string   Format to save package as (&quot;image&quot; or &quot;file&quot;)
-  -h, --help            Help for 'package-buildpack'
-      --no-pull         Skip pulling packages before use
-      --publish         Publish to registry (applies to &quot;--image&quot; only)
+<pre><code>  -c, --config string        Path to package TOML config (required)
+  -f, --format string        Format to save package as (&quot;image&quot; or &quot;file&quot;)
+  -h, --help                 Help for 'package-buildpack'
+      --publish              Publish to registry (applies to &quot;--image&quot; only)
+      --pull-policy string   Pull policy to use. Accepted values are always, never, and if-not-present. The default is always
 </code></pre><h3 id="options-inherited-from-parent-commands">Options inherited from parent commands</h3>
 <pre><code>      --no-color     Disable color output
   -q, --quiet        Show less output
