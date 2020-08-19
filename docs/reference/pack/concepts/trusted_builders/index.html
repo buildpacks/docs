@@ -14,11 +14,11 @@
 
 
 
-<meta property="og:title" content="Cloud Native Buildpack Documentation · Lifecycle">
+<meta property="og:title" content="Cloud Native Buildpack Documentation · Trusted Builders">
 
 <meta property="og:type" content="documentation">
 
-<meta property="og:url" content="https://buildpacks.io/docs/concepts/components/lifecycle/">
+<meta property="og:url" content="https://buildpacks.io/docs/reference/pack/concepts/trusted_builders/">
 <meta property="og:locale" content="en_US">
 
 <meta property="og:site_name" content="Cloud Native Buildpack Documentation">
@@ -35,7 +35,7 @@
 <meta name="twitter:site" content="@buildpacks_io">
 <meta name="twitter:creator" content="@buildpacks_io">
 
-<link rel="canonical" content="https://buildpacks.io/docs/concepts/components/lifecycle/">
+<link rel="canonical" content="https://buildpacks.io/docs/reference/pack/concepts/trusted_builders/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 <meta name="generator" content="Hugo 0.74.3" />
 
@@ -68,7 +68,7 @@
       });
     </script>
 
-    <title>Lifecycle · Cloud Native Buildpack Documentation</title>
+    <title>Trusted Builders · Cloud Native Buildpack Documentation</title>
   </head>
   <body>
     <header class="container">
@@ -115,10 +115,10 @@
       </li>
         </ul>
       </li>
-      <li data-nav-id="/docs/concepts/" class="dd-item depth-0 parent haschildren">
+      <li data-nav-id="/docs/concepts/" class="dd-item depth-0 haschildren">
         <a href="/docs/concepts/">Concepts</a>
           <ul class="ml-2">
-      <li data-nav-id="/docs/concepts/components/" class="dd-item depth-1 parent haschildren">
+      <li data-nav-id="/docs/concepts/components/" class="dd-item depth-1 collapse haschildren">
         <a href="/docs/concepts/components/">Components</a>
           <ul class="ml-2">
       <li data-nav-id="/docs/concepts/components/builder/" class="dd-item depth-2">
@@ -127,7 +127,7 @@
       <li data-nav-id="/docs/concepts/components/buildpack/" class="dd-item depth-2">
         <a href="/docs/concepts/components/buildpack/">Buildpack</a>
       </li>
-      <li data-nav-id="/docs/concepts/components/lifecycle/" class="dd-item depth-2 active">
+      <li data-nav-id="/docs/concepts/components/lifecycle/" class="dd-item depth-2">
         <a href="/docs/concepts/components/lifecycle/">Lifecycle</a>
       </li>
       <li data-nav-id="/docs/concepts/components/platform/" class="dd-item depth-2">
@@ -138,7 +138,7 @@
       </li>
           </ul>
       </li>
-      <li data-nav-id="/docs/concepts/operations/" class="dd-item depth-1 haschildren">
+      <li data-nav-id="/docs/concepts/operations/" class="dd-item depth-1 collapse haschildren">
         <a href="/docs/concepts/operations/">Operations</a>
           <ul class="ml-2">
       <li data-nav-id="/docs/concepts/operations/build/" class="dd-item depth-2">
@@ -207,10 +207,10 @@
       </li>
           </ul>
       </li>
-      <li data-nav-id="/docs/reference/" class="dd-item depth-0 haschildren">
+      <li data-nav-id="/docs/reference/" class="dd-item depth-0 parent haschildren">
         <a href="/docs/reference/">Reference</a>
           <ul class="ml-2">
-      <li data-nav-id="/docs/reference/config/" class="dd-item depth-1 collapse haschildren">
+      <li data-nav-id="/docs/reference/config/" class="dd-item depth-1 haschildren">
         <a href="/docs/reference/config/">Configuration</a>
           <ul class="ml-2">
       <li data-nav-id="/docs/reference/config/builder-config/" class="dd-item depth-2 collapse">
@@ -221,74 +221,74 @@
       </li>
           </ul>
       </li>
-      <li data-nav-id="/docs/reference/pack/" class="dd-item depth-1 collapse haschildren">
+      <li data-nav-id="/docs/reference/pack/" class="dd-item depth-1 parent haschildren">
         <a href="/docs/reference/pack/">Pack CLI</a>
           <ul class="ml-2">
-      <li data-nav-id="/docs/reference/pack/concepts/" class="dd-item depth-2 collapse haschildren">
+      <li data-nav-id="/docs/reference/pack/concepts/" class="dd-item depth-2 parent haschildren">
         <a href="/docs/reference/pack/concepts/">Concepts</a>
           <ul class="ml-2">
-      <li data-nav-id="/docs/reference/pack/concepts/trusted_builders/" class="dd-item depth-3 collapse">
+      <li data-nav-id="/docs/reference/pack/concepts/trusted_builders/" class="dd-item depth-3 active">
         <a href="/docs/reference/pack/concepts/trusted_builders/">Trusted Builders</a>
       </li>
           </ul>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack/" class="dd-item depth-2 collapse">
+      <li data-nav-id="/docs/reference/pack/pack/" class="dd-item depth-2">
         <a href="/docs/reference/pack/pack/">pack</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_build/" class="dd-item depth-2 collapse">
+      <li data-nav-id="/docs/reference/pack/pack_build/" class="dd-item depth-2">
         <a href="/docs/reference/pack/pack_build/">pack build</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_completion/" class="dd-item depth-2 collapse">
+      <li data-nav-id="/docs/reference/pack/pack_completion/" class="dd-item depth-2">
         <a href="/docs/reference/pack/pack_completion/">pack completion</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_create-builder/" class="dd-item depth-2 collapse">
+      <li data-nav-id="/docs/reference/pack/pack_create-builder/" class="dd-item depth-2">
         <a href="/docs/reference/pack/pack_create-builder/">pack create-builder</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_inspect-builder/" class="dd-item depth-2 collapse">
+      <li data-nav-id="/docs/reference/pack/pack_inspect-builder/" class="dd-item depth-2">
         <a href="/docs/reference/pack/pack_inspect-builder/">pack inspect-builder</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_inspect-image/" class="dd-item depth-2 collapse">
+      <li data-nav-id="/docs/reference/pack/pack_inspect-image/" class="dd-item depth-2">
         <a href="/docs/reference/pack/pack_inspect-image/">pack inspect-image</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_list-trusted-builders/" class="dd-item depth-2 collapse">
+      <li data-nav-id="/docs/reference/pack/pack_list-trusted-builders/" class="dd-item depth-2">
         <a href="/docs/reference/pack/pack_list-trusted-builders/">pack list-trusted-builders</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_package-buildpack/" class="dd-item depth-2 collapse">
+      <li data-nav-id="/docs/reference/pack/pack_package-buildpack/" class="dd-item depth-2">
         <a href="/docs/reference/pack/pack_package-buildpack/">pack package-buildpack</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_rebase/" class="dd-item depth-2 collapse">
+      <li data-nav-id="/docs/reference/pack/pack_rebase/" class="dd-item depth-2">
         <a href="/docs/reference/pack/pack_rebase/">pack rebase</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_report/" class="dd-item depth-2 collapse">
+      <li data-nav-id="/docs/reference/pack/pack_report/" class="dd-item depth-2">
         <a href="/docs/reference/pack/pack_report/">pack report</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_set-default-builder/" class="dd-item depth-2 collapse">
+      <li data-nav-id="/docs/reference/pack/pack_set-default-builder/" class="dd-item depth-2">
         <a href="/docs/reference/pack/pack_set-default-builder/">pack set-default-builder</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_set-run-image-mirrors/" class="dd-item depth-2 collapse">
+      <li data-nav-id="/docs/reference/pack/pack_set-run-image-mirrors/" class="dd-item depth-2">
         <a href="/docs/reference/pack/pack_set-run-image-mirrors/">pack set-run-image-mirrors</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_suggest-builders/" class="dd-item depth-2 collapse">
+      <li data-nav-id="/docs/reference/pack/pack_suggest-builders/" class="dd-item depth-2">
         <a href="/docs/reference/pack/pack_suggest-builders/">pack suggest-builders</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_suggest-stacks/" class="dd-item depth-2 collapse">
+      <li data-nav-id="/docs/reference/pack/pack_suggest-stacks/" class="dd-item depth-2">
         <a href="/docs/reference/pack/pack_suggest-stacks/">pack suggest-stacks</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_trust-builder/" class="dd-item depth-2 collapse">
+      <li data-nav-id="/docs/reference/pack/pack_trust-builder/" class="dd-item depth-2">
         <a href="/docs/reference/pack/pack_trust-builder/">pack trust-builder</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_untrust-builder/" class="dd-item depth-2 collapse">
+      <li data-nav-id="/docs/reference/pack/pack_untrust-builder/" class="dd-item depth-2">
         <a href="/docs/reference/pack/pack_untrust-builder/">pack untrust-builder</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_version/" class="dd-item depth-2 collapse">
+      <li data-nav-id="/docs/reference/pack/pack_version/" class="dd-item depth-2">
         <a href="/docs/reference/pack/pack_version/">pack version</a>
       </li>
           </ul>
       </li>
-      <li data-nav-id="/docs/reference/reproducibility/" class="dd-item depth-1 collapse">
+      <li data-nav-id="/docs/reference/reproducibility/" class="dd-item depth-1">
         <a href="/docs/reference/reproducibility/">Reproducible Builds</a>
       </li>
-      <li data-nav-id="/docs/reference/spec/" class="dd-item depth-1 collapse haschildren">
+      <li data-nav-id="/docs/reference/spec/" class="dd-item depth-1 haschildren">
         <a href="/docs/reference/spec/">Specification</a>
           <ul class="ml-2">
       <li data-nav-id="/docs/reference/spec/buildpack-api/" class="dd-item depth-2">
@@ -316,12 +316,12 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BLifecycle%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fconcepts%2Fcomponents%2Flifecycle%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BTrusted&#43;Builders%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Freference%2Fpack%2Fconcepts%2Ftrusted_builders%2F%29"
        class="btn-light btn-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/concepts/components/lifecycle.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/reference/pack/concepts/trusted_builders.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="btn-light btn-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
@@ -329,18 +329,41 @@
 
 
         <div class="heading">
-          <h1 class="title">Lifecycle</h1>
+          <h1 class="title">Trusted Builders</h1>
         </div>
 
-        <h2 id="what-is-the-lifecycle">What is the lifecycle?</h2>
-<p>The lifecycle orchestrates buildpack execution, then assembles the resulting artifacts into a final app image.</p>
-<h2 id="phases">Phases</h2>
+        <p>From version <a href="https://github.com/buildpacks/pack/releases/tag/v0.11.0">0.11.0</a> onward, <code>pack</code> can be used to identify builders that should be considered trusted. <code>pack build</code> will operate slightly differently under the hood based on whether it considers the specified builder to be trusted.</p>
+<p>Read the <a href="https://medium.com/buildpacks/faster-more-secure-builds-with-pack-0-11-0-4d0c633ca619">announcement</a>.</p>
+<h2 id="what-is-a-trusted-builder">What is a Trusted Builder?</h2>
+<p>When <code>pack</code> considers a builder to be trusted, <code>pack build</code> operations will use a single lifecycle binary called the <code>creator</code>.</p>
+<p>If <code>pack</code> doesn&rsquo;t trust a builder it will continue to execute five separate lifecycle binaries: <code>detect</code>, <code>analyze</code>, <code>restore</code>, <code>build</code> and <code>export</code>. It will run the more privileged phases using a published <a href="https://hub.docker.com/r/buildpacksio/lifecycle/tags">lifecycle image</a>, if one is available.</p>
+<p>This choice strikes a balance between security and performance. The <code>analyze</code>, <code>restore</code> and <code>export</code> phases of the lifecycle require higher levels of privilege or access to sensitive data that is not required by the <code>detect</code> and <code>build</code> phases.</p>
+<h2 id="why-use-a-trusted-builder">Why use a Trusted Builder?</h2>
+<p>When <code>pack</code> trusts a builder <code>pack build</code> will run a single lifecycle binary which will flow through the five lifecycle steps in a single container. This is more efficient than running five separate containers.</p>
+<p>If <code>pack</code> were to use the <code>creator</code> lifecycle phase with an untrusted builder, each of the buildpack&rsquo;s <code>bin/detect</code> and <code>bin/build</code> processes would run within a container that has heightened privileges or access to registry credentials. The buildpacks distributed with the untrusted builder could be constructed to act maliciously with these privileges or credentials.</p>
+<h2 id="which-builders-are-trusted">Which Builders are trusted?</h2>
+<p>You may view which builders are trusted via  <a href="/docs/reference/pack/pack_list-trusted-builders/"><code>pack list-trusted-builders</code></a>.</p>
+<p>Here are some other related commands:</p>
 <ul>
-<li><strong>Detection</strong> &ndash; Finds an ordered group of buildpacks to use during the build phase.</li>
-<li><strong>Analysis</strong> &ndash; Restores files that buildpacks may use to optimize the build and export phases.</li>
-<li><strong>Build</strong> &ndash; Transforms application source code into runnable artifacts that can be packaged into a container.</li>
-<li><strong>Export</strong> &ndash; Creates the final OCI image.</li>
+<li>
+<p>By default, any builder suggested by  <a href="/docs/reference/pack/pack_suggest-builders"><code>pack suggest-builders</code></a> is considered trusted.</p>
+</li>
+<li>
+<p>Any other builder can be trusted using  <a href="/docs/reference/pack/pack_trust-builder/"><code>pack trust-builder &lt;builder-name&gt;</code></a>.</p>
+</li>
+<li>
+<p>To stop trusting a builder use <a href="/docs/reference/pack/pack_untrust-builder/"><code>pack untrust-builder &lt;builder-name</code></a>.</p>
+</li>
+<li>
+<p>You may trust any builder for the duration of a single build by using the <code>--trust-builder</code> flag with <a href="/docs/reference/pack/pack_build/"><code>pack build</code></a>.</p>
+</li>
 </ul>
+<blockquote>
+<p><strong>Note:</strong> A published lifecycle image is available for lifecycle versions 0.7.5+ and 0.6.1. If your builder has been created with an earlier version of the lifecycle <code>pack build</code> will <strong>fail</strong> due to this security related change.
+<br/>
+<br/>
+If you want to trust this older builder, you may mark it as trusted via <code>pack trust-builder &lt;builder-name&gt;</code> or by adding <code>--trust-builder</code> to the <code>pack build</code> command.</p>
+</blockquote>
 
         
 
@@ -350,12 +373,12 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BLifecycle%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fconcepts%2Fcomponents%2Flifecycle%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BTrusted&#43;Builders%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Freference%2Fpack%2Fconcepts%2Ftrusted_builders%2F%29"
        class="btn-light btn-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/concepts/components/lifecycle.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/reference/pack/concepts/trusted_builders.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="btn-light btn-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   

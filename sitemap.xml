@@ -143,6 +143,10 @@
   </url>
   
   <url>
+    <loc>https://buildpacks.io/docs/reference/pack/concepts/</loc>
+  </url>
+  
+  <url>
     <loc>https://buildpacks.io/docs/reference/config/</loc>
   </url>
   
@@ -240,6 +244,10 @@
   
   <url>
     <loc>https://buildpacks.io/tags/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/reference/pack/concepts/trusted_builders/</loc>
   </url>
   
 </urlset>
