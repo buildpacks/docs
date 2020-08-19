@@ -107,7 +107,7 @@ Finally, in your Ruby app directory, create a file named `.ruby-version` with th
 Now when you run:
 
 ```bash
-pack build test-ruby-app --path ~/workspace/ruby-sample-app --buildpack ~/workspace/ruby-cnb
+pack build test-ruby-app --path /tmp/ruby-sample-app --buildpack /tmp/ruby-buildpack
 ```
 
 You will notice that version of Ruby specified in the app's `.ruby-version` file is downloaded.

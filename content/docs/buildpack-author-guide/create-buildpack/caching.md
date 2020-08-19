@@ -72,7 +72,7 @@ echo 'processes = [{ type = "web", command = "bundle exec ruby app.rb"}]' > "$la
 Now when we run:
 
 ```bash
-pack build test-ruby-app --path ~/workspace/ruby-sample-app --buildpack ~/workspace/ruby-cnb
+pack build test-ruby-app --path /tmp/ruby-sample-app --buildpack /tmp/ruby-buildpack
 ```
 
 You will see something similar to the following during the `EXPORTING` phase:
@@ -86,7 +86,7 @@ You will see something similar to the following during the `EXPORTING` phase:
 Now, let's implement the caching logic. We'll first need to create a `Gemfile.lock` in our app with the contents given below:
 
 > Typically you would run `bundle install` locally to generate this file, but for the sake 
-> of simplicity we'll create `~/workspace/ruby-sample-app/Gemfile.lock` manually.
+> of simplicity we'll create `/tmp/ruby-sample-app/Gemfile.lock` manually.
 
 ```text
 GEM
@@ -216,7 +216,7 @@ echo 'processes = [{ type = "web", command = "bundle exec ruby app.rb"}]' > "$la
 Now when you build your app:
 
 ```text
-pack build test-ruby-app --path ~/workspace/ruby-sample-app --buildpack ~/workspace/ruby-cnb
+pack build test-ruby-app --path /tmp/ruby-sample-app --buildpack /tmp/ruby-buildpack
 ```
 
 it will download the gems:
@@ -234,7 +234,7 @@ it will download the gems:
 If you build the app again:
 
 ```bash
-pack build test-ruby-app --path ~/workspace/ruby-sample-app --buildpack ~/workspace/ruby-cnb
+pack build test-ruby-app --path /tmp/ruby-sample-app --buildpack /tmp/ruby-buildpack
 ```
 
 you will see the new caching logic at work during the `BUILDING` phase:

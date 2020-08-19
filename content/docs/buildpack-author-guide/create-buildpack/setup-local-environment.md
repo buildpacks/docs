@@ -1,17 +1,13 @@
 +++
 title="Set up your local environment"
 weight=401
-creatordisplayname = "Scott Sisil"
-creatoremail = "ssisil@pivotal.io"
-lastmodifierdisplayname = "Javier Romero"
-lastmodifieremail = "jromero@pivotal.io"
 +++
 
 First, we'll create a sample Ruby app that you can use when developing your buildpack:
 
 ```bash
-mkdir -p ~/workspace/ruby-sample-app
-cd ~/workspace/ruby-sample-app
+mkdir -p /tmp/ruby-sample-app
+cd /tmp/ruby-sample-app
 ```
 
 Create a file in the current directory called `app.rb` with the following contents:
@@ -39,8 +35,8 @@ gem "sinatra"
 Now, let's create the directory where your buildpack will live:
 
 ```bash
-mkdir -p ~/workspace/ruby-cnb
-cd ~/workspace/ruby-cnb
+mkdir -p /tmp/ruby-buildpack
+cd /tmp/ruby-buildpack
 ```
 
 Finally, make sure your local Docker daemon is running by executing:

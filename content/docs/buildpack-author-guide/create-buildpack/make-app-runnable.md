@@ -55,7 +55,7 @@ echo 'processes = [{ type = "web", command = "bundle exec ruby app.rb"}]' > "$la
 Then rebuild your app using the updated buildpack:
 
 ```bash
-pack build test-ruby-app --path ~/workspace/ruby-sample-app --buildpack ~/workspace/ruby-cnb
+pack build test-ruby-app --path /tmp/ruby-sample-app --buildpack /tmp/ruby-buildpack
 ```
 
 You should then be able to run your new Ruby app:

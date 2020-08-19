@@ -4,14 +4,14 @@ title="Building blocks of a Cloud Native Buildpack"
 weight=402
 +++
 
-Now we will set up the buildpack scaffolding. You will need to make these files in your `ruby-cnb` directory
+Now we will set up the buildpack scaffolding. You will need to make these files in your `ruby-buildpack` directory
 
 ```bash
-cd ~/workspace/ruby-cnb
+cd /tmp/ruby-buildpack
 ```
 
 ### buildpack.toml
-Once you are in the `ruby-cnb` directory, you will need to create a `buildpack.toml` file in that directory. This file must exist in the root directory of your buildpack so the `pack` CLI knows it is a buildpack and it can apply the build lifecycle to it.
+Once you are in the `ruby-buildpack` directory, you will need to create a `buildpack.toml` file in that directory. This file must exist in the root directory of your buildpack so the `pack` CLI knows it is a buildpack and it can apply the build lifecycle to it.
 
 Create the `buildpack.toml` file and copy the following into it:
 
@@ -83,7 +83,7 @@ pack set-default-builder cnbs/sample-builder:bionic
 Then run the following `pack` command:
 
 ```bash
-pack build test-ruby-app --path ~/workspace/ruby-sample-app --buildpack ~/workspace/ruby-cnb
+pack build test-ruby-app --path /tmp/ruby-sample-app --buildpack /tmp/ruby-buildpack
 ```
 
 The `pack build` command takes in your Ruby sample app as the `--path` argument and your buildpack as the `--buildpack` argument.
