@@ -85,7 +85,7 @@ The following environment variables were set and available to buildpacks at buil
 
 > **NOTE:** Variables defined using `--env` take precedence over variables defined in `--env-file`.
 
-### Using Project Descriptor (`project.toml`, or `--descriptor`)
+### Using Project Descriptor
 The `--descriptor` parameter must be a path to a file which follows the project.toml [schema][descriptor-schema].
 You can define environment variables in an `env` table in the file, and pass those into the application.
 
