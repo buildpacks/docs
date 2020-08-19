@@ -14,9 +14,9 @@ You can install the most recent version of `pack` (version **{{< latest >}}**) a
 * [Linux](#linux)
 * [Windows](#windows)
 
-### macOS
+### Homebrew on macOS and Linux
 
-To install `pack` on macOS, the easiest way is to use Homebrew:
+To install `pack` on macOS and Linux, the easiest way is to use Homebrew:
 
 ```bash
 brew install buildpacks/tap/pack
@@ -26,7 +26,9 @@ brew install buildpacks/tap/pack
 
 <hr/>
 
-### Linux
+### Alternative installation on Linux
+
+`pack` is available on GitHub releases so you can directly get and install it.
 
 ```bash
 wget https://github.com/buildpacks/pack/releases/download/v{{< latest >}}/pack-v{{< latest >}}-linux.tgz
