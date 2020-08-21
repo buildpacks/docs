@@ -134,6 +134,8 @@ github.com/buildpacks/pack v0.12.0 h1:S2qFQNx+Tk8ZfmM+aonC9Zu5WaPuUOq8kwz76+84pR
 github.com/buildpacks/pack v0.12.0/go.mod h1:lW6nn3FXzR8NHH12RlOILXf++qGk5BbaclEqwY+rflg=
 github.com/buildpacks/pack v0.13.0 h1:Wc+Ph1UQcizKGTxcK/QfjBW1kxTJxhFRSw8asmI25lM=
 github.com/buildpacks/pack v0.13.0/go.mod h1:P7Hj8ltMWZ/Yt++ZbvAU/Zr8C7iTZT0L5pO5H7dfRKY=
+github.com/buildpacks/pack v0.13.1 h1:x5nbIurGTo8GYexorNxp+YThbU4TsrGbNZLzjZvepo0=
+github.com/buildpacks/pack v0.13.1/go.mod h1:P7Hj8ltMWZ/Yt++ZbvAU/Zr8C7iTZT0L5pO5H7dfRKY=
 github.com/census-instrumentation/opencensus-proto v0.2.0/go.mod h1:f6KPmirojxKA12rnyqOA5BBL4O983OfeGPqjHWSTneU=
 github.com/census-instrumentation/opencensus-proto v0.2.1/go.mod h1:f6KPmirojxKA12rnyqOA5BBL4O983OfeGPqjHWSTneU=
 github.com/cespare/xxhash v1.1.0/go.mod h1:XrSqR1VqqWfGrhpAt58auRo0WTKS1nRRg3ghfAqPWnc=
