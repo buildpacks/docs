@@ -340,7 +340,7 @@ bundle install
 </code></pre></div><p>with the following:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing gems&#34;</span>
 <span class="nv">bundlerlayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler&#34;</span>
-mkdir <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span>
+mkdir -p <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span>
 <span class="nb">echo</span> -e <span class="s1">&#39;cache = true\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">.toml&#34;</span>
 bundle install --path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> --binstubs <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span>
 </code></pre></div><p>Your full <code>build</code> script should now look like the following:</p>

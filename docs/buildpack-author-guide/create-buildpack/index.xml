@@ -75,7 +75,7 @@ if [[ ! -f Gemfile ]]; then exit 100 fi Your detect script should look like this
       <description>We can improve performance by caching dependencies between builds, only re-downloading when necessary. To begin, let&amp;rsquo;s create a cacheable bundler layer.
 Creating the bundler layer To do this replace the following lines in the build script:
 echo &amp;#34;---&amp;gt; Installing gems&amp;#34; bundle install with the following:
-echo &amp;#34;---&amp;gt; Installing gems&amp;#34; bundlerlayer=&amp;#34;$layersdir/bundler&amp;#34; mkdir &amp;#34;$bundlerlayer&amp;#34; echo -e &amp;#39;cache = true\nlaunch = true&amp;#39; &amp;gt; &amp;#34;$bundlerlayer.toml&amp;#34; bundle install --path &amp;#34;$bundlerlayer&amp;#34; --binstubs &amp;#34;$bundlerlayer/bin&amp;#34; Your full build script should now look like the following:</description>
+echo &amp;#34;---&amp;gt; Installing gems&amp;#34; bundlerlayer=&amp;#34;$layersdir/bundler&amp;#34; mkdir -p &amp;#34;$bundlerlayer&amp;#34; echo -e &amp;#39;cache = true\nlaunch = true&amp;#39; &amp;gt; &amp;#34;$bundlerlayer.toml&amp;#34; bundle install --path &amp;#34;$bundlerlayer&amp;#34; --binstubs &amp;#34;$bundlerlayer/bin&amp;#34; Your full build script should now look like the following:</description>
     </item>
     
     <item>
