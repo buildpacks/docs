@@ -37,5 +37,14 @@
       <description>Learn how to specify exactly what buildpacks are used during the build process.</description>
     </item>
     
+    <item>
+      <title>Using project.toml</title>
+      <link>https://buildpacks.io/docs/app-developer-guide/using-project-descriptor/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/app-developer-guide/using-project-descriptor/</guid>
+      <description>Learn how to use a project.toml file to simplify configuring pack.</description>
+    </item>
+    
   </channel>
 </rss>

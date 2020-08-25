@@ -71,6 +71,10 @@
   </url>
   
   <url>
+    <loc>https://buildpacks.io/docs/app-developer-guide/using-project-descriptor/</loc>
+  </url>
+  
+  <url>
     <loc>https://buildpacks.io/docs/app-developer-guide/</loc>
   </url>
   
@@ -232,6 +236,10 @@
   
   <url>
     <loc>https://buildpacks.io/docs/reference/spec/platform-api/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/reference/config/project-descriptor/</loc>
   </url>
   
   <url>

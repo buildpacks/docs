@@ -28,5 +28,14 @@
       <description>Schema of the buildpack package config file.</description>
     </item>
     
+    <item>
+      <title>project.toml</title>
+      <link>https://buildpacks.io/docs/reference/config/project-descriptor/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/reference/config/project-descriptor/</guid>
+      <description>Schema of the project descriptor file.</description>
+    </item>
+    
   </channel>
 </rss>

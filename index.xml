@@ -140,6 +140,15 @@ application.&lt;/p&gt;</description>
     </item>
     
     <item>
+      <title>Using project.toml</title>
+      <link>https://buildpacks.io/docs/app-developer-guide/using-project-descriptor/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/app-developer-guide/using-project-descriptor/</guid>
+      <description>Learn how to use a project.toml file to simplify configuring pack.</description>
+    </item>
+    
+    <item>
       <title>Stack</title>
       <link>https://buildpacks.io/docs/concepts/components/stack/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -475,6 +484,15 @@ pack version [flags] Options  -h, --help Help for &#39;version&#39; Options inhe
       <description>&lt;p&gt;This specification defines the interface between the buildpack execution environment,
 referred to as the &lt;em&gt;lifecycle&lt;/em&gt;, and a platform that supports it.
 This API is used by platform implementors.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>project.toml</title>
+      <link>https://buildpacks.io/docs/reference/config/project-descriptor/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/reference/config/project-descriptor/</guid>
+      <description>Schema of the project descriptor file.</description>
     </item>
     
     <item>

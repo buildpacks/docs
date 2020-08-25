@@ -14,11 +14,11 @@
 
 
 
-<meta property="og:title" content="Cloud Native Buildpack Documentation · Buildpack Author&#39;s Guide">
+<meta property="og:title" content="Cloud Native Buildpack Documentation · project.toml">
 
 <meta property="og:type" content="documentation">
 
-<meta property="og:url" content="https://buildpacks.io/docs/buildpack-author-guide/">
+<meta property="og:url" content="https://buildpacks.io/docs/reference/config/project-descriptor/">
 <meta property="og:locale" content="en_US">
 
 <meta property="og:site_name" content="Cloud Native Buildpack Documentation">
@@ -35,7 +35,7 @@
 <meta name="twitter:site" content="@buildpacks_io">
 <meta name="twitter:creator" content="@buildpacks_io">
 
-<link rel="canonical" content="https://buildpacks.io/docs/buildpack-author-guide/">
+<link rel="canonical" content="https://buildpacks.io/docs/reference/config/project-descriptor/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 <meta name="generator" content="Hugo 0.74.3" />
 
@@ -68,7 +68,7 @@
       });
     </script>
 
-    <title>Buildpack Author&#39;s Guide · Cloud Native Buildpack Documentation</title>
+    <title>project.toml · Cloud Native Buildpack Documentation</title>
   </head>
   <body>
     <header class="container">
@@ -168,7 +168,7 @@
       </li>
           </ul>
       </li>
-      <li data-nav-id="/docs/buildpack-author-guide/" class="dd-item depth-0 parent active haschildren">
+      <li data-nav-id="/docs/buildpack-author-guide/" class="dd-item depth-0 haschildren">
         <a href="/docs/buildpack-author-guide/">Buildpack Author&rsquo;s Guide</a>
           <ul class="ml-2">
       <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/" class="dd-item depth-1 haschildren">
@@ -210,24 +210,24 @@
       </li>
           </ul>
       </li>
-      <li data-nav-id="/docs/reference/" class="dd-item depth-0 haschildren">
+      <li data-nav-id="/docs/reference/" class="dd-item depth-0 parent haschildren">
         <a href="/docs/reference/">Reference</a>
           <ul class="ml-2">
-      <li data-nav-id="/docs/reference/config/" class="dd-item depth-1 collapse haschildren">
+      <li data-nav-id="/docs/reference/config/" class="dd-item depth-1 parent haschildren">
         <a href="/docs/reference/config/">Configuration</a>
           <ul class="ml-2">
-      <li data-nav-id="/docs/reference/config/builder-config/" class="dd-item depth-2 collapse">
+      <li data-nav-id="/docs/reference/config/builder-config/" class="dd-item depth-2">
         <a href="/docs/reference/config/builder-config/">builder.toml</a>
       </li>
-      <li data-nav-id="/docs/reference/config/package-config/" class="dd-item depth-2 collapse">
+      <li data-nav-id="/docs/reference/config/package-config/" class="dd-item depth-2">
         <a href="/docs/reference/config/package-config/">package.toml</a>
       </li>
-      <li data-nav-id="/docs/reference/config/project-descriptor/" class="dd-item depth-2 collapse">
+      <li data-nav-id="/docs/reference/config/project-descriptor/" class="dd-item depth-2 active">
         <a href="/docs/reference/config/project-descriptor/">project.toml</a>
       </li>
           </ul>
       </li>
-      <li data-nav-id="/docs/reference/pack/" class="dd-item depth-1 collapse haschildren">
+      <li data-nav-id="/docs/reference/pack/" class="dd-item depth-1 haschildren">
         <a href="/docs/reference/pack/">Pack CLI</a>
           <ul class="ml-2">
       <li data-nav-id="/docs/reference/pack/concepts/" class="dd-item depth-2 collapse haschildren">
@@ -291,10 +291,10 @@
       </li>
           </ul>
       </li>
-      <li data-nav-id="/docs/reference/reproducibility/" class="dd-item depth-1 collapse">
+      <li data-nav-id="/docs/reference/reproducibility/" class="dd-item depth-1">
         <a href="/docs/reference/reproducibility/">Reproducible Builds</a>
       </li>
-      <li data-nav-id="/docs/reference/spec/" class="dd-item depth-1 collapse haschildren">
+      <li data-nav-id="/docs/reference/spec/" class="dd-item depth-1 haschildren">
         <a href="/docs/reference/spec/">Specification</a>
           <ul class="ml-2">
       <li data-nav-id="/docs/reference/spec/buildpack-api/" class="dd-item depth-2">
@@ -322,12 +322,12 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BBuildpack&#43;Author%26%2339%3Bs&#43;Guide%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fbuildpack-author-guide%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5Bproject.toml%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Freference%2Fconfig%2Fproject-descriptor%2F%29"
        class="btn-light btn-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/buildpack-author-guide/_index.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/reference/config/project-descriptor.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="btn-light btn-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
@@ -335,35 +335,151 @@
 
 
         <div class="heading">
-          <h1 class="title">Buildpack Author&rsquo;s Guide</h1>
+          <h1 class="title">project.toml</h1>
         </div>
 
-        
+        <p>A project descriptor allows users to detail configuration for apps, services, functions and buildpacks. It should, by
+default, be named <code>project.toml</code>, though users can name it differently, and pass the filename to <code>pack</code> by calling</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ pack build --descriptor &lt;project-descriptor path&gt;
+</code></pre></div><p>The schema for the <code>project descriptor</code> is:</p>
+<ul>
+<li>
+<h4 id="project-_table-optional_"><code>project</code> <em>(table, optional)</em></h4>
+<p>A configuration table for a project.</p>
+<ul>
+<li>
+<p><strong><code>id</code></strong> <em>(string, optional)</em><br>
+A machine readable identifier for the <code>project</code>. For example, <code>com.example.myservice</code>.</p>
+</li>
+<li>
+<p><strong><code>name</code></strong> <em>(string, optional)</em><br>
+A human readable identifier for the <code>project</code>. For example, <code>My Example Service</code>.</p>
+</li>
+<li>
+<p><strong><code>version</code></strong> <em>(string, optional)</em><br>
+The version of the <code>project</code>.</p>
+</li>
+<li>
+<p><strong><code>authors</code></strong> <em>(string list, optional)</em><br>
+The names and/or email addresses of the <code>project</code> authors.</p>
+</li>
+<li>
+<p><strong><code>documentation-url</code></strong> <em>(string, optional)</em><br>
+A link to the documentation for the <code>project</code>.</p>
+</li>
+<li>
+<p><strong><code>source-url</code></strong> <em>(string, optional)</em><br>
+A link to the source code of the <code>project</code>.</p>
+</li>
+<li>
+<p><strong><code>licenses</code></strong> <em>(list, optional)</em><br>
+A list of project licenses. Each must contain <strong>at least one</strong> of the following fields:</p>
+<ul>
+<li>
+<p><strong><code>type</code></strong> <em>(string, optional)</em><br>
+The type of license.</p>
+</li>
+<li>
+<p><strong><code>uri</code></strong> <em>(string, optional)</em><br>
+If the project uses a nonstandard license, you may use <code>uri</code> to point to the license.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<h4 id="build-_table-optional_"><code>build</code> <em>(table, optional)</em></h4>
+<p>A list of specifications for build-time configuration of the project.</p>
+<ul>
+<li>
+<p><strong><code>env</code></strong> <em>(list, optional)</em>
+You can set environment variables at build time, by defining each with the following fields:</p>
+<ul>
+<li>
+<p><strong><code>name</code></strong> <em>(string, optional)</em><br>
+The name of the environment variable</p>
+</li>
+<li>
+<p><strong><code>value</code></strong> <em>(string, optional, default: latest)</em><br>
+The assigned version of the environment variable</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>include</code></strong> <em>(string list, optional)</em><br>
+A list of files to include in the build, while excluding everything else.</p>
+<p>OR</p>
+</li>
+<li>
+<p><strong><code>exclude</code></strong> <em>(string list, optional)</em><br>
+A list of files to exclude from the build, while including everything else.</p>
+</li>
+</ul>
+<blockquote>
+<p>If <code>include</code> and <code>exclude</code> are both present, the lifecycle will error out.</p>
+</blockquote>
+<ul>
+<li>
+<p><strong><code>buildpacks</code></strong> <em>(list, optional)</em>
+A list of buildpacks, each with the following fields:</p>
+<ul>
+<li>
+<p><strong><code>id</code></strong> <em>(string, optional)</em><br>
+An identifier for the buildpack. Must match ID specified in buildpack&rsquo;s <code>buildpack.toml</code> file.</p>
+</li>
+<li>
+<p><strong><code>version</code></strong> <em>(string, optional, default: latest)</em><br>
+The version of the buildpack. Must match version specified in buildpack&rsquo;s <code>buildpack.toml</code> file.</p>
+</li>
+<li>
+<p><strong><code>uri</code></strong> <em>(string, default=<code>urn:buildpack:&lt;id&gt;</code>)</em><br>
+A URL or path to an <a href="/docs/reference/builder-config#supported-archives">archive</a>, a packaged buildpack (saved as a <code>.cnb</code> file), or a directory. If path is relative, it must be relative to the <code>project.toml</code>.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<h4 id="metadata-_table-optional_"><code>metadata</code> <em>(table, optional)</em></h4>
+<p>Buildpacks and specific platforms are free to define additional arbitrary key-value pairs in the <code>metadata</code> table.</p>
+</li>
+</ul>
+<h2 id="example">Example</h2>
+<p>An example <code>project.toml</code> is:</p>
+<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">project</span><span class="p">]</span>
+<span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;io.buildpacks.my-app&#34;</span>
+<span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;0.1&#34;</span>
+
+<span class="p">[</span><span class="nx">build</span><span class="p">]</span>
+<span class="nx">include</span> <span class="p">=</span> <span class="p">[</span>
+    <span class="s2">&#34;cmd/&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;go.mod&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;go.sum&#34;</span><span class="p">,</span>
+    <span class="s2">&#34;*.go&#34;</span>
+<span class="p">]</span>
+
+<span class="p">[[</span><span class="nx">build</span><span class="p">.</span><span class="nx">env</span><span class="p">]]</span>
+<span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;JAVA_OPTS&#34;</span>
+<span class="nx">value</span> <span class="p">=</span> <span class="s2">&#34;-Xmx1g&#34;</span>
+
+<span class="p">[[</span><span class="nx">build</span><span class="p">.</span><span class="nx">buildpacks</span><span class="p">]]</span>
+<span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;io.buildpacks/java&#34;</span>
+<span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;1.0&#34;</span>
+
+<span class="p">[[</span><span class="nx">build</span><span class="p">.</span><span class="nx">buildpacks</span><span class="p">]]</span>
+<span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;io.buildpacks/nodejs&#34;</span>
+<span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;1.0&#34;</span>
+
+<span class="p">[</span><span class="nx">metadata</span><span class="p">]</span>
+<span class="nx">foo</span> <span class="p">=</span> <span class="s2">&#34;bar&#34;</span>
+
+<span class="p">[</span><span class="nx">metadata</span><span class="p">.</span><span class="nx">fizz</span><span class="p">]</span>
+<span class="nx">buzz</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">]</span>
+</code></pre></div><h2 id="specification">Specification</h2>
+<p>For more detail, you can check out the <code>project.toml</code> <a href="https://github.com/buildpacks/spec/blob/main/extensions/project-descriptor.md">specification</a></p>
+
 
         
-    
-      
-        <h2><a href="https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/" class="">Create a buildpack</a></h2>
-        <p class="m-1">This is a step-by-step tutorial for creating a Cloud Native Buildpack using simple bash scripts.</p>
-
-        
-          <div class="text-md-right">
-            <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/">Learn more →</a>
-          </div>
-        
-      
-    
-      
-        <h2><a href="https://buildpacks.io/docs/buildpack-author-guide/package-a-buildpack/" class="">Package a buildpack</a></h2>
-        <p class="m-1">Learn how to package your buildpack for distribution using standard OCI registries.</p>
-
-        
-          <div class="text-md-right">
-            <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/buildpack-author-guide/package-a-buildpack/">Learn more →</a>
-          </div>
-        
-      
-    
 
         <hr>
 <div class='footline d-block'>
@@ -371,12 +487,12 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BBuildpack&#43;Author%26%2339%3Bs&#43;Guide%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fbuildpack-author-guide%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5Bproject.toml%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Freference%2Fconfig%2Fproject-descriptor%2F%29"
        class="btn-light btn-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/buildpack-author-guide/_index.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/reference/config/project-descriptor.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="btn-light btn-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
