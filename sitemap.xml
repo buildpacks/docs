@@ -43,6 +43,10 @@
   </url>
   
   <url>
+    <loc>https://buildpacks.io/docs/app-developer-guide/run-an-app/</loc>
+  </url>
+  
+  <url>
     <loc>https://buildpacks.io/docs/app-journey/</loc>
   </url>
   
@@ -120,6 +124,10 @@
   
   <url>
     <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/make-app-runnable/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/specify-multiple-process-types/</loc>
   </url>
   
   <url>

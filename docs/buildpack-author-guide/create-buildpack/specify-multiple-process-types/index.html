@@ -14,11 +14,11 @@
 
 
 
-<meta property="og:title" content="Cloud Native Buildpack Documentation · pack suggest-builders">
+<meta property="og:title" content="Cloud Native Buildpack Documentation · Specify multiple process types">
 
 <meta property="og:type" content="documentation">
 
-<meta property="og:url" content="https://buildpacks.io/docs/reference/pack/pack_suggest-builders/">
+<meta property="og:url" content="https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/specify-multiple-process-types/">
 <meta property="og:locale" content="en_US">
 
 <meta property="og:site_name" content="Cloud Native Buildpack Documentation">
@@ -35,7 +35,7 @@
 <meta name="twitter:site" content="@buildpacks_io">
 <meta name="twitter:creator" content="@buildpacks_io">
 
-<link rel="canonical" content="https://buildpacks.io/docs/reference/pack/pack_suggest-builders/">
+<link rel="canonical" content="https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/specify-multiple-process-types/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 <meta name="generator" content="Hugo 0.74.3" />
 
@@ -68,7 +68,7 @@
       });
     </script>
 
-    <title>pack suggest-builders · Cloud Native Buildpack Documentation</title>
+    <title>Specify multiple process types · Cloud Native Buildpack Documentation</title>
   </head>
   <body>
     <header class="container">
@@ -171,34 +171,34 @@
       </li>
           </ul>
       </li>
-      <li data-nav-id="/docs/buildpack-author-guide/" class="dd-item depth-0 haschildren">
+      <li data-nav-id="/docs/buildpack-author-guide/" class="dd-item depth-0 parent haschildren">
         <a href="/docs/buildpack-author-guide/">Buildpack Author&rsquo;s Guide</a>
           <ul class="ml-2">
-      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/" class="dd-item depth-1 haschildren">
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/" class="dd-item depth-1 parent haschildren">
         <a href="/docs/buildpack-author-guide/create-buildpack/">Create a buildpack</a>
           <ul class="ml-2">
-      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/setup-local-environment/" class="dd-item depth-2 collapse">
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/setup-local-environment/" class="dd-item depth-2">
         <a href="/docs/buildpack-author-guide/create-buildpack/setup-local-environment/">Set up your local environment</a>
       </li>
-      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb/" class="dd-item depth-2 collapse">
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb/" class="dd-item depth-2">
         <a href="/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb/">Building blocks of a Cloud Native Buildpack</a>
       </li>
-      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/detection/" class="dd-item depth-2 collapse">
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/detection/" class="dd-item depth-2">
         <a href="/docs/buildpack-author-guide/create-buildpack/detection/">Detecting your application</a>
       </li>
-      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/build-app/" class="dd-item depth-2 collapse">
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/build-app/" class="dd-item depth-2">
         <a href="/docs/buildpack-author-guide/create-buildpack/build-app/">Building your application</a>
       </li>
-      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/make-app-runnable/" class="dd-item depth-2 collapse">
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/make-app-runnable/" class="dd-item depth-2">
         <a href="/docs/buildpack-author-guide/create-buildpack/make-app-runnable/">Make your application runnable</a>
       </li>
-      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/specify-multiple-process-types/" class="dd-item depth-2 collapse">
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/specify-multiple-process-types/" class="dd-item depth-2 active">
         <a href="/docs/buildpack-author-guide/create-buildpack/specify-multiple-process-types/">Specify multiple process types</a>
       </li>
-      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/caching/" class="dd-item depth-2 collapse">
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/caching/" class="dd-item depth-2">
         <a href="/docs/buildpack-author-guide/create-buildpack/caching/">Improving performance with caching</a>
       </li>
-      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable/" class="dd-item depth-2 collapse">
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable/" class="dd-item depth-2">
         <a href="/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable/">Making your buildpack configurable</a>
       </li>
           </ul>
@@ -216,10 +216,10 @@
       </li>
           </ul>
       </li>
-      <li data-nav-id="/docs/reference/" class="dd-item depth-0 parent haschildren">
+      <li data-nav-id="/docs/reference/" class="dd-item depth-0 haschildren">
         <a href="/docs/reference/">Reference</a>
           <ul class="ml-2">
-      <li data-nav-id="/docs/reference/config/" class="dd-item depth-1 haschildren">
+      <li data-nav-id="/docs/reference/config/" class="dd-item depth-1 collapse haschildren">
         <a href="/docs/reference/config/">Configuration</a>
           <ul class="ml-2">
       <li data-nav-id="/docs/reference/config/builder-config/" class="dd-item depth-2 collapse">
@@ -233,10 +233,10 @@
       </li>
           </ul>
       </li>
-      <li data-nav-id="/docs/reference/pack/" class="dd-item depth-1 parent haschildren">
+      <li data-nav-id="/docs/reference/pack/" class="dd-item depth-1 collapse haschildren">
         <a href="/docs/reference/pack/">Pack CLI</a>
           <ul class="ml-2">
-      <li data-nav-id="/docs/reference/pack/concepts/" class="dd-item depth-2 haschildren">
+      <li data-nav-id="/docs/reference/pack/concepts/" class="dd-item depth-2 collapse haschildren">
         <a href="/docs/reference/pack/concepts/">Concepts</a>
           <ul class="ml-2">
       <li data-nav-id="/docs/reference/pack/concepts/trusted_builders/" class="dd-item depth-3 collapse">
@@ -244,63 +244,63 @@
       </li>
           </ul>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack/" class="dd-item depth-2">
+      <li data-nav-id="/docs/reference/pack/pack/" class="dd-item depth-2 collapse">
         <a href="/docs/reference/pack/pack/">pack</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_build/" class="dd-item depth-2">
+      <li data-nav-id="/docs/reference/pack/pack_build/" class="dd-item depth-2 collapse">
         <a href="/docs/reference/pack/pack_build/">pack build</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_completion/" class="dd-item depth-2">
+      <li data-nav-id="/docs/reference/pack/pack_completion/" class="dd-item depth-2 collapse">
         <a href="/docs/reference/pack/pack_completion/">pack completion</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_create-builder/" class="dd-item depth-2">
+      <li data-nav-id="/docs/reference/pack/pack_create-builder/" class="dd-item depth-2 collapse">
         <a href="/docs/reference/pack/pack_create-builder/">pack create-builder</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_inspect-builder/" class="dd-item depth-2">
+      <li data-nav-id="/docs/reference/pack/pack_inspect-builder/" class="dd-item depth-2 collapse">
         <a href="/docs/reference/pack/pack_inspect-builder/">pack inspect-builder</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_inspect-image/" class="dd-item depth-2">
+      <li data-nav-id="/docs/reference/pack/pack_inspect-image/" class="dd-item depth-2 collapse">
         <a href="/docs/reference/pack/pack_inspect-image/">pack inspect-image</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_list-trusted-builders/" class="dd-item depth-2">
+      <li data-nav-id="/docs/reference/pack/pack_list-trusted-builders/" class="dd-item depth-2 collapse">
         <a href="/docs/reference/pack/pack_list-trusted-builders/">pack list-trusted-builders</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_package-buildpack/" class="dd-item depth-2">
+      <li data-nav-id="/docs/reference/pack/pack_package-buildpack/" class="dd-item depth-2 collapse">
         <a href="/docs/reference/pack/pack_package-buildpack/">pack package-buildpack</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_rebase/" class="dd-item depth-2">
+      <li data-nav-id="/docs/reference/pack/pack_rebase/" class="dd-item depth-2 collapse">
         <a href="/docs/reference/pack/pack_rebase/">pack rebase</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_report/" class="dd-item depth-2">
+      <li data-nav-id="/docs/reference/pack/pack_report/" class="dd-item depth-2 collapse">
         <a href="/docs/reference/pack/pack_report/">pack report</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_set-default-builder/" class="dd-item depth-2">
+      <li data-nav-id="/docs/reference/pack/pack_set-default-builder/" class="dd-item depth-2 collapse">
         <a href="/docs/reference/pack/pack_set-default-builder/">pack set-default-builder</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_set-run-image-mirrors/" class="dd-item depth-2">
+      <li data-nav-id="/docs/reference/pack/pack_set-run-image-mirrors/" class="dd-item depth-2 collapse">
         <a href="/docs/reference/pack/pack_set-run-image-mirrors/">pack set-run-image-mirrors</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_suggest-builders/" class="dd-item depth-2 active">
+      <li data-nav-id="/docs/reference/pack/pack_suggest-builders/" class="dd-item depth-2 collapse">
         <a href="/docs/reference/pack/pack_suggest-builders/">pack suggest-builders</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_suggest-stacks/" class="dd-item depth-2">
+      <li data-nav-id="/docs/reference/pack/pack_suggest-stacks/" class="dd-item depth-2 collapse">
         <a href="/docs/reference/pack/pack_suggest-stacks/">pack suggest-stacks</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_trust-builder/" class="dd-item depth-2">
+      <li data-nav-id="/docs/reference/pack/pack_trust-builder/" class="dd-item depth-2 collapse">
         <a href="/docs/reference/pack/pack_trust-builder/">pack trust-builder</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_untrust-builder/" class="dd-item depth-2">
+      <li data-nav-id="/docs/reference/pack/pack_untrust-builder/" class="dd-item depth-2 collapse">
         <a href="/docs/reference/pack/pack_untrust-builder/">pack untrust-builder</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_version/" class="dd-item depth-2">
+      <li data-nav-id="/docs/reference/pack/pack_version/" class="dd-item depth-2 collapse">
         <a href="/docs/reference/pack/pack_version/">pack version</a>
       </li>
           </ul>
       </li>
-      <li data-nav-id="/docs/reference/reproducibility/" class="dd-item depth-1">
+      <li data-nav-id="/docs/reference/reproducibility/" class="dd-item depth-1 collapse">
         <a href="/docs/reference/reproducibility/">Reproducible Builds</a>
       </li>
-      <li data-nav-id="/docs/reference/spec/" class="dd-item depth-1 haschildren">
+      <li data-nav-id="/docs/reference/spec/" class="dd-item depth-1 collapse haschildren">
         <a href="/docs/reference/spec/">Specification</a>
           <ul class="ml-2">
       <li data-nav-id="/docs/reference/spec/buildpack-api/" class="dd-item depth-2">
@@ -328,35 +328,92 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5Bpack&#43;suggest-builders%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Freference%2Fpack%2Fpack_suggest-builders%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BSpecify&#43;multiple&#43;process&#43;types%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fbuildpack-author-guide%2Fcreate-buildpack%2Fspecify-multiple-process-types%2F%29"
        class="btn-light btn-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
+    
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/buildpack-author-guide/create-buildpack/specify-multiple-process-types.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+       class="btn-light btn-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
 </div>
 
 
         <div class="heading">
-          <h1 class="title">pack suggest-builders</h1>
+          <h1 class="title">Specify multiple process types</h1>
         </div>
 
-        <h2 id="pack-suggest-builders">pack suggest-builders</h2>
-<p>Display list of recommended builders</p>
-<h3 id="synopsis">Synopsis</h3>
-<p>Display list of recommended builders</p>
-<pre><code>pack suggest-builders [flags]
-</code></pre><h3 id="options">Options</h3>
-<pre><code>  -h, --help   Help for 'suggest-builders'
-</code></pre><h3 id="options-inherited-from-parent-commands">Options inherited from parent commands</h3>
-<pre><code>      --no-color     Disable color output
-  -q, --quiet        Show less output
-      --timestamps   Enable timestamps in output
-  -v, --verbose      Show more output
-</code></pre><h3 id="see-also">SEE ALSO</h3>
-<ul>
-<li><a href="/docs/reference/pack/pack/">pack</a>	 - CLI for building apps using Cloud Native Buildpacks</li>
-</ul>
+        <p>One of the benefits of buildpacks is that they are multi-process - an image can have multiple entrypoints for each operational mode.</p>
+<p>Let&rsquo;s see how this works. We will extend our app to have a worker process.</p>
+<p>Create a file in the app directory called <code>worker.rb</code> with the following contents:</p>
+<div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">0</span><span class="o">..</span><span class="mi">5</span>
+    <span class="nb">puts</span> <span class="s2">&#34;Running a worker task...&#34;</span>
+<span class="k">end</span>
+</code></pre></div><p>After building our app, we could run the resulting image with the <code>web</code> process (currently the default) or our new worker process.</p>
+<p>To enable running the worker process, we&rsquo;ll need to have our buildpack define a &ldquo;process type&rdquo; for the worker. Add the following to the end of your <code>build</code> script:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># Specify the worker process</span>
+cat &gt;&gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt;EOL
+</span><span class="s">[[processes]]
+</span><span class="s">type = &#34;worker&#34;
+</span><span class="s">command = &#34;bundle exec ruby worker.rb&#34;
+</span><span class="s">EOL</span>
+</code></pre></div><p>Your full <code>build</code> script should now look like the following:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
+</span><span class="cp"></span><span class="nb">set</span> -eo pipefail
+
+<span class="nb">echo</span> <span class="s2">&#34;---&gt; Ruby Buildpack&#34;</span>
+
+<span class="c1"># 1. GET ARGS</span>
+<span class="nv">layersdir</span><span class="o">=</span><span class="nv">$1</span>
+
+<span class="c1"># 2. DOWNLOAD RUBY</span>
+<span class="nb">echo</span> <span class="s2">&#34;---&gt; Downloading and extracting Ruby&#34;</span>
+<span class="nv">rubylayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">&#34;</span>/ruby
+mkdir -p <span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>
+<span class="nv">ruby_url</span><span class="o">=</span>https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-2.5.1.tgz
+wget -q -O - <span class="s2">&#34;</span><span class="nv">$ruby_url</span><span class="s2">&#34;</span> <span class="p">|</span> tar -xzf - -C <span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>
+
+<span class="c1"># 3. MAKE RUBY AVAILABLE DURING LAUNCH</span>
+<span class="nb">echo</span> -e <span class="s1">&#39;launch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">.toml&#34;</span>
+
+<span class="c1"># 4. MAKE RUBY AVAILABLE TO THIS SCRIPT</span>
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>/bin:<span class="nv">$PATH</span>
+<span class="nb">export</span> <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="p">:+</span><span class="si">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="si">}</span><span class="p">:</span><span class="si">}</span><span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">/lib&#34;</span>
+
+<span class="c1"># 5. INSTALL BUNDLER</span>
+<span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing bundler&#34;</span>
+gem install bundler --no-ri --no-rdoc
+
+<span class="c1"># 6. INSTALL GEMS</span>
+<span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing gems&#34;</span>
+bundle install
+
+<span class="c1"># ========== ADDED ===========</span>
+<span class="c1"># 7. SET DEFAULT START COMMAND</span>
+cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt;EOL
+</span><span class="s">[[processes]]
+</span><span class="s">type = &#34;web&#34;
+</span><span class="s">command = &#34;bundle exec ruby app.rb&#34;
+</span><span class="s">EOL</span>
+cat &gt;&gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt;EOL
+</span><span class="s">[[processes]]
+</span><span class="s">type = &#34;worker&#34;
+</span><span class="s">command = &#34;bundle exec ruby worker.rb&#34;
+</span><span class="s">EOL</span>
+</code></pre></div><p>Now if you rebuild your app using the updated buildpack:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ~/workspace/ruby-sample-app --buildpack ~/workspace/ruby-cnb
+</code></pre></div><p>You should then be able to run your new Ruby worker process:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker run --rm --entrypoint worker test-ruby-app
+</code></pre></div><p>and see the worker log output:</p>
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">Running a worker task...
+Running a worker task...
+Running a worker task...
+Running a worker task...
+Running a worker task...
+Running a worker task...
+</code></pre></div><hr>
+<p><a href="/docs/buildpack-author-guide/create-buildpack/caching" class="button bg-pink">Next Step</a></p>
 
 
         
@@ -367,10 +424,13 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5Bpack&#43;suggest-builders%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Freference%2Fpack%2Fpack_suggest-builders%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BSpecify&#43;multiple&#43;process&#43;types%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fbuildpack-author-guide%2Fcreate-buildpack%2Fspecify-multiple-process-types%2F%29"
        class="btn-light btn-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
+    
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/buildpack-author-guide/create-buildpack/specify-multiple-process-types.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+       class="btn-light btn-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
 </div>

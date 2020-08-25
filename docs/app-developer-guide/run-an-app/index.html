@@ -14,11 +14,11 @@
 
 
 
-<meta property="og:title" content="Cloud Native Buildpack Documentation · pack suggest-builders">
+<meta property="og:title" content="Cloud Native Buildpack Documentation · Specify launch process">
 
 <meta property="og:type" content="documentation">
 
-<meta property="og:url" content="https://buildpacks.io/docs/reference/pack/pack_suggest-builders/">
+<meta property="og:url" content="https://buildpacks.io/docs/app-developer-guide/run-an-app/">
 <meta property="og:locale" content="en_US">
 
 <meta property="og:site_name" content="Cloud Native Buildpack Documentation">
@@ -35,7 +35,7 @@
 <meta name="twitter:site" content="@buildpacks_io">
 <meta name="twitter:creator" content="@buildpacks_io">
 
-<link rel="canonical" content="https://buildpacks.io/docs/reference/pack/pack_suggest-builders/">
+<link rel="canonical" content="https://buildpacks.io/docs/app-developer-guide/run-an-app/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 <meta name="generator" content="Hugo 0.74.3" />
 
@@ -68,7 +68,7 @@
       });
     </script>
 
-    <title>pack suggest-builders · Cloud Native Buildpack Documentation</title>
+    <title>Specify launch process · Cloud Native Buildpack Documentation</title>
   </head>
   <body>
     <header class="container">
@@ -151,7 +151,7 @@
       </li>
           </ul>
       </li>
-      <li data-nav-id="/docs/app-developer-guide/" class="dd-item depth-0 haschildren">
+      <li data-nav-id="/docs/app-developer-guide/" class="dd-item depth-0 parent haschildren">
         <a href="/docs/app-developer-guide/">App Developer&rsquo;s Guide</a>
           <ul class="ml-2">
       <li data-nav-id="/docs/app-developer-guide/build-an-app/" class="dd-item depth-1">
@@ -163,7 +163,7 @@
       <li data-nav-id="/docs/app-developer-guide/specific-buildpacks/" class="dd-item depth-1">
         <a href="/docs/app-developer-guide/specific-buildpacks/">Specify buildpacks</a>
       </li>
-      <li data-nav-id="/docs/app-developer-guide/run-an-app/" class="dd-item depth-1">
+      <li data-nav-id="/docs/app-developer-guide/run-an-app/" class="dd-item depth-1 active">
         <a href="/docs/app-developer-guide/run-an-app/">Specify launch process</a>
       </li>
       <li data-nav-id="/docs/app-developer-guide/using-project-descriptor/" class="dd-item depth-1">
@@ -216,10 +216,10 @@
       </li>
           </ul>
       </li>
-      <li data-nav-id="/docs/reference/" class="dd-item depth-0 parent haschildren">
+      <li data-nav-id="/docs/reference/" class="dd-item depth-0 haschildren">
         <a href="/docs/reference/">Reference</a>
           <ul class="ml-2">
-      <li data-nav-id="/docs/reference/config/" class="dd-item depth-1 haschildren">
+      <li data-nav-id="/docs/reference/config/" class="dd-item depth-1 collapse haschildren">
         <a href="/docs/reference/config/">Configuration</a>
           <ul class="ml-2">
       <li data-nav-id="/docs/reference/config/builder-config/" class="dd-item depth-2 collapse">
@@ -233,10 +233,10 @@
       </li>
           </ul>
       </li>
-      <li data-nav-id="/docs/reference/pack/" class="dd-item depth-1 parent haschildren">
+      <li data-nav-id="/docs/reference/pack/" class="dd-item depth-1 collapse haschildren">
         <a href="/docs/reference/pack/">Pack CLI</a>
           <ul class="ml-2">
-      <li data-nav-id="/docs/reference/pack/concepts/" class="dd-item depth-2 haschildren">
+      <li data-nav-id="/docs/reference/pack/concepts/" class="dd-item depth-2 collapse haschildren">
         <a href="/docs/reference/pack/concepts/">Concepts</a>
           <ul class="ml-2">
       <li data-nav-id="/docs/reference/pack/concepts/trusted_builders/" class="dd-item depth-3 collapse">
@@ -244,63 +244,63 @@
       </li>
           </ul>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack/" class="dd-item depth-2">
+      <li data-nav-id="/docs/reference/pack/pack/" class="dd-item depth-2 collapse">
         <a href="/docs/reference/pack/pack/">pack</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_build/" class="dd-item depth-2">
+      <li data-nav-id="/docs/reference/pack/pack_build/" class="dd-item depth-2 collapse">
         <a href="/docs/reference/pack/pack_build/">pack build</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_completion/" class="dd-item depth-2">
+      <li data-nav-id="/docs/reference/pack/pack_completion/" class="dd-item depth-2 collapse">
         <a href="/docs/reference/pack/pack_completion/">pack completion</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_create-builder/" class="dd-item depth-2">
+      <li data-nav-id="/docs/reference/pack/pack_create-builder/" class="dd-item depth-2 collapse">
         <a href="/docs/reference/pack/pack_create-builder/">pack create-builder</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_inspect-builder/" class="dd-item depth-2">
+      <li data-nav-id="/docs/reference/pack/pack_inspect-builder/" class="dd-item depth-2 collapse">
         <a href="/docs/reference/pack/pack_inspect-builder/">pack inspect-builder</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_inspect-image/" class="dd-item depth-2">
+      <li data-nav-id="/docs/reference/pack/pack_inspect-image/" class="dd-item depth-2 collapse">
         <a href="/docs/reference/pack/pack_inspect-image/">pack inspect-image</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_list-trusted-builders/" class="dd-item depth-2">
+      <li data-nav-id="/docs/reference/pack/pack_list-trusted-builders/" class="dd-item depth-2 collapse">
         <a href="/docs/reference/pack/pack_list-trusted-builders/">pack list-trusted-builders</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_package-buildpack/" class="dd-item depth-2">
+      <li data-nav-id="/docs/reference/pack/pack_package-buildpack/" class="dd-item depth-2 collapse">
         <a href="/docs/reference/pack/pack_package-buildpack/">pack package-buildpack</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_rebase/" class="dd-item depth-2">
+      <li data-nav-id="/docs/reference/pack/pack_rebase/" class="dd-item depth-2 collapse">
         <a href="/docs/reference/pack/pack_rebase/">pack rebase</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_report/" class="dd-item depth-2">
+      <li data-nav-id="/docs/reference/pack/pack_report/" class="dd-item depth-2 collapse">
         <a href="/docs/reference/pack/pack_report/">pack report</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_set-default-builder/" class="dd-item depth-2">
+      <li data-nav-id="/docs/reference/pack/pack_set-default-builder/" class="dd-item depth-2 collapse">
         <a href="/docs/reference/pack/pack_set-default-builder/">pack set-default-builder</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_set-run-image-mirrors/" class="dd-item depth-2">
+      <li data-nav-id="/docs/reference/pack/pack_set-run-image-mirrors/" class="dd-item depth-2 collapse">
         <a href="/docs/reference/pack/pack_set-run-image-mirrors/">pack set-run-image-mirrors</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_suggest-builders/" class="dd-item depth-2 active">
+      <li data-nav-id="/docs/reference/pack/pack_suggest-builders/" class="dd-item depth-2 collapse">
         <a href="/docs/reference/pack/pack_suggest-builders/">pack suggest-builders</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_suggest-stacks/" class="dd-item depth-2">
+      <li data-nav-id="/docs/reference/pack/pack_suggest-stacks/" class="dd-item depth-2 collapse">
         <a href="/docs/reference/pack/pack_suggest-stacks/">pack suggest-stacks</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_trust-builder/" class="dd-item depth-2">
+      <li data-nav-id="/docs/reference/pack/pack_trust-builder/" class="dd-item depth-2 collapse">
         <a href="/docs/reference/pack/pack_trust-builder/">pack trust-builder</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_untrust-builder/" class="dd-item depth-2">
+      <li data-nav-id="/docs/reference/pack/pack_untrust-builder/" class="dd-item depth-2 collapse">
         <a href="/docs/reference/pack/pack_untrust-builder/">pack untrust-builder</a>
       </li>
-      <li data-nav-id="/docs/reference/pack/pack_version/" class="dd-item depth-2">
+      <li data-nav-id="/docs/reference/pack/pack_version/" class="dd-item depth-2 collapse">
         <a href="/docs/reference/pack/pack_version/">pack version</a>
       </li>
           </ul>
       </li>
-      <li data-nav-id="/docs/reference/reproducibility/" class="dd-item depth-1">
+      <li data-nav-id="/docs/reference/reproducibility/" class="dd-item depth-1 collapse">
         <a href="/docs/reference/reproducibility/">Reproducible Builds</a>
       </li>
-      <li data-nav-id="/docs/reference/spec/" class="dd-item depth-1 haschildren">
+      <li data-nav-id="/docs/reference/spec/" class="dd-item depth-1 collapse haschildren">
         <a href="/docs/reference/spec/">Specification</a>
           <ul class="ml-2">
       <li data-nav-id="/docs/reference/spec/buildpack-api/" class="dd-item depth-2">
@@ -328,35 +328,97 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5Bpack&#43;suggest-builders%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Freference%2Fpack%2Fpack_suggest-builders%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BSpecify&#43;launch&#43;process%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fapp-developer-guide%2Frun-an-app%2F%29"
        class="btn-light btn-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
+    
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/app-developer-guide/run-an-app.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+       class="btn-light btn-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
 </div>
 
 
         <div class="heading">
-          <h1 class="title">pack suggest-builders</h1>
+          <h1 class="title">Specify launch process</h1>
         </div>
 
-        <h2 id="pack-suggest-builders">pack suggest-builders</h2>
-<p>Display list of recommended builders</p>
-<h3 id="synopsis">Synopsis</h3>
-<p>Display list of recommended builders</p>
-<pre><code>pack suggest-builders [flags]
-</code></pre><h3 id="options">Options</h3>
-<pre><code>  -h, --help   Help for 'suggest-builders'
-</code></pre><h3 id="options-inherited-from-parent-commands">Options inherited from parent commands</h3>
-<pre><code>      --no-color     Disable color output
-  -q, --quiet        Show less output
-      --timestamps   Enable timestamps in output
-  -v, --verbose      Show more output
-</code></pre><h3 id="see-also">SEE ALSO</h3>
-<ul>
-<li><a href="/docs/reference/pack/pack/">pack</a>	 - CLI for building apps using Cloud Native Buildpacks</li>
-</ul>
+        <h3 id="build-a-multi-process-app">Build a multi-process app</h3>
+<p>For this example we will use the <code>hello-processes</code> buildpack from our <a href="https://github.com/buildpacks/samples">samples</a> repo.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># clone the repo</span>
+git clone https://github.com/buildpacks/samples
+
+<span class="c1"># build the app</span>
+pack build multi-process-app <span class="se">\
+</span><span class="se"></span>    --builder cnbs/sample-builder:alpine <span class="se">\
+</span><span class="se"></span>    --buildpack samples/java-maven <span class="se">\
+</span><span class="se"></span>    --buildpack samples/buildpacks/hello-processes/ <span class="se">\
+</span><span class="se"></span>    --path samples/apps/java-maven/
+</code></pre></div><p>If you inspect the app image with <code>pack</code>, you will see multiple process types defined:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack inspect-image multi-process-app
+</code></pre></div><p>The output should look similar to the below:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">Inspecting image: multi-process-app
+
+REMOTE:
+<span class="o">(</span>not present<span class="o">)</span>
+
+LOCAL:
+
+Stack: io.buildpacks.samples.stacks.alpine
+
+Base Image:
+  Reference: f5898fb2b30c2b66f5a69a424bae6473259fa48b387df35335f04332af7f1091
+  Top Layer: sha256:700c764e7c5d5c75e6a0fc7d272b7e1c70ab327c03fbdf4abd9313e5ec3217f7
+
+Run Images:
+  cnbs/sample-stack-run:alpine
+
+Buildpacks:
+  ID                             VERSION
+  samples/java-maven             0.0.1
+  samples/hello-processes        0.0.1
+
+Processes:
+  TYPE                 SHELL        COMMAND                                                     ARGS
+  web <span class="o">(</span>default<span class="o">)</span>        bash         java -jar target/sample-0.0.1-SNAPSHOT.jar
+  sys-info             bash         /layers/samples_hello-processes/sys-info/sys-info.sh
+</code></pre></div><p>Notice that the default process type is <code>web</code>. This is because <code>pack</code> will always attempt to set the default process type to <code>web</code> unless the <code>--default-process</code> flag is passed.
+If we had run the <code>pack build</code> command above with <code>--default-process sys-info</code>, <code>sys-info</code> would be the default process for the app image!</p>
+<h3 id="run-a-multi-process-app">Run a multi-process app</h3>
+<p>Buildpacks are designed to give you much flexibility in how you run your app. The lifecycle includes a binary called the <code>launcher</code> which is present in the final app image and is responsible for starting your app.
+By default, the <code>launcher</code> will start processes with <code>bash</code> (these are referred to as <code>non-direct</code> processes). Processes that are started without <code>bash</code> are referred to as <code>direct</code> processes.
+The <code>launcher</code> will source any profile scripts (for <code>non-direct</code> processes) and set buildpack-provided environment variables in the app&rsquo;s execution environment before starting the app process.</p>
+<h4 id="default-process-type">Default process type</h4>
+<p>If you would like to run the default process, you can simply run the app image without any additional arguments:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker run --rm -p 8080:8080 multi-process-app
+</code></pre></div><h4 id="default-process-type-with-additional-arguments">Default process type with additional arguments</h4>
+<p>If you would like to pass additional arguments to the default process, you can run the app image with the arguments specified in the command:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker run --rm -p 8080:8080 multi-process-app --spring.profiles.active<span class="o">=</span>mysql
+</code></pre></div><h4 id="non-default-process-type">Non-default process-type</h4>
+<p>To run a non-default process type, set the process type as the entrypoint for the run container:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker run --rm --entrypoint sys-info multi-process-app
+</code></pre></div><h4 id="non-default-process-type-with-additional-arguments">Non-default process-type with additional arguments</h4>
+<p>You can pass additional arguments to a non-default process type:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker run --rm --entrypoint sys-info multi-process-app --spring.profiles.active<span class="o">=</span>mysql
+</code></pre></div><h4 id="user-provided-shell-process">User-provided shell process</h4>
+<p>You can even override the buildpack-defined process types:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker run --rm --entrypoint launcher -it multi-process-app bash
+docker run --rm --entrypoint launcher -it multi-process-app <span class="nb">echo</span> hello <span class="s2">&#34;</span><span class="nv">$WORLD</span><span class="s2">&#34;</span> <span class="c1"># $WORLD is evaluated on the host machine</span>
+docker run --rm --entrypoint launcher -it multi-process-app <span class="nb">echo</span> hello <span class="s1">&#39;$WORLD&#39;</span> <span class="c1"># $WORLD is evaluated in the container after profile scripts are sourced</span>
+</code></pre></div><h4 id="user-provided-shell-process-with-bash-script">User-provided shell process with bash script</h4>
+<p>An entire script may be provided as a single argument:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker run --rm --entrypoint launcher -it multi-process-app <span class="s1">&#39;for opt in $JAVA_OPTS; do echo $opt; done&#39;</span>
+</code></pre></div><h4 id="user-provided-direct-process">User-provided direct process</h4>
+<p>By passing <code>--</code> before the command, we instruct the <code>launcher</code> to start the provided process without <code>bash</code>.
+Note that while buildpack-provided environment variables will be set in the execution environment, no profile scripts will be sourced (as these require <code>bash</code>):</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker run --rm --entrypoint launcher multi-process-app -- env <span class="c1"># output will include buildpack-provided env vars</span>
+docker run --rm --entrypoint launcher multi-process-app -- <span class="nb">echo</span> hello <span class="s2">&#34;</span><span class="nv">$WORLD</span><span class="s2">&#34;</span> <span class="c1"># $WORLD is evaluated on the host machine</span>
+docker run --rm --entrypoint launcher multi-process-app -- <span class="nb">echo</span> hello <span class="s1">&#39;$WORLD&#39;</span> <span class="c1"># $WORLD is not evaluated, output will include string literal `$WORLD`</span>
+</code></pre></div><h4 id="no-launcher">No launcher</h4>
+<p>You can bypass the launcher entirely by setting a new entrypoint for the run container:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker run --rm --entrypoint bash -it multi-process-app <span class="c1"># profile scripts have NOT been sourced and buildpack-provided env vars are NOT set in this shell</span>
+</code></pre></div><p>To learn more about the launcher, see the <a href="https://github.com/buildpacks/spec/blob/main/platform.md#launcher">platform spec</a>.</p>
 
 
         
@@ -367,10 +429,13 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5Bpack&#43;suggest-builders%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Freference%2Fpack%2Fpack_suggest-builders%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BSpecify&#43;launch&#43;process%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fapp-developer-guide%2Frun-an-app%2F%29"
        class="btn-light btn-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
+    
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/app-developer-guide/run-an-app.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+       class="btn-light btn-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
 </div>

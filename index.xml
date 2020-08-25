@@ -87,6 +87,15 @@ brew install buildpacks/tap/pack  Optional: Enable auto-completion
     </item>
     
     <item>
+      <title>Specify launch process</title>
+      <link>https://buildpacks.io/docs/app-developer-guide/run-an-app/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/app-developer-guide/run-an-app/</guid>
+      <description>Learn how to specify the launch process for an app.</description>
+    </item>
+    
+    <item>
       <title>An App&#39;s Brief Journey from Source to Image</title>
       <link>https://buildpacks.io/docs/app-journey/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -219,8 +228,20 @@ if [[ ! -f Gemfile ]]; then exit 100 fi Your detect script should look like this
       
       <guid>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/make-app-runnable/</guid>
       <description>To make your app runnable, we need to set a default start command. Add the following to the end of your build script:
-# Set default start command echo &amp;#39;processes = [{ type = &amp;#34;web&amp;#34;, command = &amp;#34;bundle exec ruby app.rb&amp;#34;}]&amp;#39; &amp;gt; &amp;#34;$layersdir/launch.toml&amp;#34; Your full build script should now look like the following:
+# Set default start command cat &amp;gt; &amp;#34;$layersdir/launch.toml&amp;#34; &amp;lt;&amp;lt;EOL [[processes]] type = &amp;#34;web&amp;#34; command = &amp;#34;bundle exec ruby app.rb&amp;#34; EOL Your full build script should now look like the following:
 #!/usr/bin/env bash set -eo pipefail echo &amp;#34;---&amp;gt; Ruby Buildpack&amp;#34; # 1. GET ARGS layersdir=$1 # 2. DOWNLOAD RUBY echo &amp;#34;---&amp;gt; Downloading and extracting Ruby&amp;#34; rubylayer=&amp;#34;$layersdir&amp;#34;/ruby mkdir -p &amp;#34;$rubylayer&amp;#34; ruby_url=https://s3-external-1.</description>
+    </item>
+    
+    <item>
+      <title>Specify multiple process types</title>
+      <link>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/specify-multiple-process-types/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/specify-multiple-process-types/</guid>
+      <description>One of the benefits of buildpacks is that they are multi-process - an image can have multiple entrypoints for each operational mode.
+Let&amp;rsquo;s see how this works. We will extend our app to have a worker process.
+Create a file in the app directory called worker.rb with the following contents:
+for i in 0..5 puts &amp;#34;Running a worker task...&amp;#34; end After building our app, we could run the resulting image with the web process (currently the default) or our new worker process.</description>
     </item>
     
     <item>

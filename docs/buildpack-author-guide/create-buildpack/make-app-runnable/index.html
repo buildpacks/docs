@@ -163,6 +163,9 @@
       <li data-nav-id="/docs/app-developer-guide/specific-buildpacks/" class="dd-item depth-1">
         <a href="/docs/app-developer-guide/specific-buildpacks/">Specify buildpacks</a>
       </li>
+      <li data-nav-id="/docs/app-developer-guide/run-an-app/" class="dd-item depth-1">
+        <a href="/docs/app-developer-guide/run-an-app/">Specify launch process</a>
+      </li>
       <li data-nav-id="/docs/app-developer-guide/using-project-descriptor/" class="dd-item depth-1">
         <a href="/docs/app-developer-guide/using-project-descriptor/">Using project.toml</a>
       </li>
@@ -188,6 +191,9 @@
       </li>
       <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/make-app-runnable/" class="dd-item depth-2 active">
         <a href="/docs/buildpack-author-guide/create-buildpack/make-app-runnable/">Make your application runnable</a>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/specify-multiple-process-types/" class="dd-item depth-2">
+        <a href="/docs/buildpack-author-guide/create-buildpack/specify-multiple-process-types/">Specify multiple process types</a>
       </li>
       <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/caching/" class="dd-item depth-2">
         <a href="/docs/buildpack-author-guide/create-buildpack/caching/">Improving performance with caching</a>
@@ -340,7 +346,11 @@
 
         <p>To make your app runnable, we need to set a default start command. Add the following to the end of your <code>build</code> script:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># Set default start command</span>
-<span class="nb">echo</span> <span class="s1">&#39;processes = [{ type = &#34;web&#34;, command = &#34;bundle exec ruby app.rb&#34;}]&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/launch.toml&#34;</span>
+cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt;EOL
+</span><span class="s">[[processes]]
+</span><span class="s">type = &#34;web&#34;
+</span><span class="s">command = &#34;bundle exec ruby app.rb&#34;
+</span><span class="s">EOL</span>
 </code></pre></div><p>Your full <code>build</code> script should now look like the following:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
 </span><span class="cp"></span><span class="nb">set</span> -eo pipefail
@@ -374,7 +384,11 @@ bundle install
 
 <span class="c1"># ========== ADDED ===========</span>
 <span class="c1"># 7. SET DEFAULT START COMMAND</span>
-<span class="nb">echo</span> <span class="s1">&#39;processes = [{ type = &#34;web&#34;, command = &#34;bundle exec ruby app.rb&#34;}]&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/launch.toml&#34;</span>
+cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt;EOL
+</span><span class="s">[[processes]]
+</span><span class="s">type = &#34;web&#34;
+</span><span class="s">command = &#34;bundle exec ruby app.rb&#34;
+</span><span class="s">EOL</span>
 </code></pre></div><p>Then rebuild your app using the updated buildpack:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ~/workspace/ruby-sample-app --buildpack ~/workspace/ruby-cnb
 </code></pre></div><p>You should then be able to run your new Ruby app:</p>
@@ -386,7 +400,7 @@ bundle install
 [2019-04-02 18:04:48] INFO  WEBrick::HTTPServer#start: pid=1 port=8080
 </code></pre></div><p>Test it out by navigating to <a href="http://localhost:8080">localhost:8080</a> in your favorite browser!</p>
 <hr>
-<p><a href="/docs/buildpack-author-guide/create-buildpack/caching" class="button bg-pink">Next Step</a></p>
+<p><a href="/docs/buildpack-author-guide/create-buildpack/specify-multiple-process-types" class="button bg-pink">Next Step</a></p>
 
 
         
