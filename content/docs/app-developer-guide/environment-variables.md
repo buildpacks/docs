@@ -95,7 +95,11 @@ You can define environment variables in an `env` table in the file, and pass tho
 git clone https://github.com/buildpacks/samples
 
 # Add an environment variable to the project.toml
-printf "[[build.env]]\nname='HELLO'\nvalue='WORLD'" >> samples/apps/bash-script/project.toml
+cat >> samples/apps/bash-script/project.toml <<EOL
+[[build.env]]
+name="HELLO"
+value="WORLD"
+EOL
 
 # build the app
 pack build sample-app \
