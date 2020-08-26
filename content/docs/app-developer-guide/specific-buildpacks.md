@@ -1,6 +1,6 @@
 +++
 title="Specify buildpacks"
-weight=1
+weight=4
 summary="Learn how to specify exactly what buildpacks are used during the build process."
 +++
 
