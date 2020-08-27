@@ -14,11 +14,11 @@
 
 
 
-<meta property="og:title" content="Cloud Native Buildpack Documentation · Builder">
+<meta property="og:title" content="Cloud Native Buildpack Documentation · Build a Windows app">
 
 <meta property="og:type" content="documentation">
 
-<meta property="og:url" content="https://buildpacks.io/docs/concepts/components/builder/">
+<meta property="og:url" content="https://buildpacks.io/docs/app-developer-guide/build-a-windows-app/">
 <meta property="og:locale" content="en_US">
 
 <meta property="og:site_name" content="Cloud Native Buildpack Documentation">
@@ -35,7 +35,7 @@
 <meta name="twitter:site" content="@buildpacks_io">
 <meta name="twitter:creator" content="@buildpacks_io">
 
-<link rel="canonical" content="https://buildpacks.io/docs/concepts/components/builder/">
+<link rel="canonical" content="https://buildpacks.io/docs/app-developer-guide/build-a-windows-app/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 <meta name="generator" content="Hugo 0.74.3" />
 
@@ -68,7 +68,7 @@
       });
     </script>
 
-    <title>Builder · Cloud Native Buildpack Documentation</title>
+    <title>Build a Windows app · Cloud Native Buildpack Documentation</title>
   </head>
   <body>
     <header class="container">
@@ -115,13 +115,13 @@
       </li>
         </ul>
       </li>
-      <li data-nav-id="/docs/concepts/" class="dd-item depth-0 parent haschildren">
+      <li data-nav-id="/docs/concepts/" class="dd-item depth-0 haschildren">
         <a href="/docs/concepts/">Concepts</a>
           <ul class="ml-2">
-      <li data-nav-id="/docs/concepts/components/" class="dd-item depth-1 parent haschildren">
+      <li data-nav-id="/docs/concepts/components/" class="dd-item depth-1 collapse haschildren">
         <a href="/docs/concepts/components/">Components</a>
           <ul class="ml-2">
-      <li data-nav-id="/docs/concepts/components/builder/" class="dd-item depth-2 active">
+      <li data-nav-id="/docs/concepts/components/builder/" class="dd-item depth-2">
         <a href="/docs/concepts/components/builder/">Builder</a>
       </li>
       <li data-nav-id="/docs/concepts/components/buildpack/" class="dd-item depth-2">
@@ -138,7 +138,7 @@
       </li>
           </ul>
       </li>
-      <li data-nav-id="/docs/concepts/operations/" class="dd-item depth-1 haschildren">
+      <li data-nav-id="/docs/concepts/operations/" class="dd-item depth-1 collapse haschildren">
         <a href="/docs/concepts/operations/">Operations</a>
           <ul class="ml-2">
       <li data-nav-id="/docs/concepts/operations/build/" class="dd-item depth-2">
@@ -151,13 +151,13 @@
       </li>
           </ul>
       </li>
-      <li data-nav-id="/docs/app-developer-guide/" class="dd-item depth-0 haschildren">
+      <li data-nav-id="/docs/app-developer-guide/" class="dd-item depth-0 parent haschildren">
         <a href="/docs/app-developer-guide/">App Developer&rsquo;s Guide</a>
           <ul class="ml-2">
       <li data-nav-id="/docs/app-developer-guide/build-an-app/" class="dd-item depth-1">
         <a href="/docs/app-developer-guide/build-an-app/">Build an app</a>
       </li>
-      <li data-nav-id="/docs/app-developer-guide/build-a-windows-app/" class="dd-item depth-1">
+      <li data-nav-id="/docs/app-developer-guide/build-a-windows-app/" class="dd-item depth-1 active">
         <a href="/docs/app-developer-guide/build-a-windows-app/">Build a Windows app</a>
       </li>
       <li data-nav-id="/docs/app-developer-guide/environment-variables/" class="dd-item depth-1">
@@ -331,12 +331,12 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BBuilder%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fconcepts%2Fcomponents%2Fbuilder%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BBuild&#43;a&#43;Windows&#43;app%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fapp-developer-guide%2Fbuild-a-windows-app%2F%29"
        class="btn-light btn-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/concepts/components/builder.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/app-developer-guide/build-a-windows-app.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="btn-light btn-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
@@ -344,21 +344,55 @@
 
 
         <div class="heading">
-          <h1 class="title">Builder</h1>
+          <h1 class="title">Build a Windows app</h1>
         </div>
 
-        <h2 id="what-is-a-builder">What is a builder?</h2>
-A builder is an image that bundles all the bits and information on how to build your apps, such as buildpacks and build-time image, as well as executes the buildpacks against your app source code.
-<p><img src="/docs/concepts/components/create-builder.svg" alt="create-builder diagram"></p>
-<h2 id="anatomy-of-a-builder">Anatomy of a builder</h2>
-<p>A builder consists of the following components:</p>
+        <blockquote>
+<p><strong>EXPERIMENTAL:</strong></p>
 <ul>
-<li><a href="/docs/concepts/components/buildpack/">Buildpacks</a></li>
-<li><a href="/docs/concepts/components/lifecycle/">Lifecycle</a></li>
-<li><a href="/docs/concepts/components/stack/">Stack&rsquo;s</a> build image</li>
+<li>Please note that <strong>Windows container support is currently experimental</strong>. You may be asked to enable experimental features  in <code>pack</code> when running the following commands. Simply follow the on-screen instructions to do so.</li>
+<li>If you encounter any problems while experimenting, we&rsquo;d love for you to let us know by filing an issue on the <a href="https://github.com/buildpacks/pack/issues">pack</a> or <a href="https://github.com/buildpacks/lifecycle/issues">lifecycle</a> repo.</li>
 </ul>
-<h3 id="resources">Resources</h3>
-<p>To learn how to create your own builder, see our <a href="/docs/operator-guide/">Operator&rsquo;s Guide</a>.</p>
+</blockquote>
+<h3 id="recommended-reading">Recommended reading</h3>
+<p>Before trying out builds for Windows images, we recommend following the <a href="/docs/app-journey">Linux image tutorial</a> under <a href="/docs">Getting Started</a>. Don&rsquo;t worry, you can still run it on a Windows OS if you need to &ndash; just make sure to <a href="https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers">enable Linux containers</a> for Docker first.</p>
+<p>When you&rsquo;re done, head back here.</p>
+<h3 id="understanding-docker-hosts">Understanding Docker hosts</h3>
+<p>The <code>pack</code> CLI supports using the <a href="https://docs.docker.com/engine/reference/commandline/cli/#environment-variables"><code>DOCKER_HOST</code></a> environment variable. Essentially, this points your local Docker client (e.g. <code>docker</code> or <code>pack</code> CLI) to a remote Docker daemon. For instance, if the IP address of your host is <code>192.168.2.100</code>, you can set <code>DOCKER_HOST</code> to <code>tcp://192.168.2.100</code>. Any subsequent <code>pack</code> or <code>docker</code> commands would communicate with the daemon on that machine instead of a local daemon.</p>
+<p>By setting <code>DOCKER_HOST</code>, you can use <code>pack</code> on any OS to build Windows container images, as long as your remote Docker host is configured to support them (i.e. the host runs a Windows OS and has <a href="https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers">Windows container mode enabled</a>).</p>
+<blockquote>
+<p><strong>NOTE</strong>: When setting <code>DOCKER_HOST</code>, keep in mind that:</p>
+<ul>
+<li>any volumes mounted via <code>pack build --volume &lt;volume&gt; ...</code> or <code>docker run --volume &lt;volume&gt; ...</code> must exist on the <em>docker host</em>, not the client machine.</li>
+<li>any ports published via <code>docker run --publish &lt;host-port&gt;:&lt;container-port&gt; ...</code> will be published on the <em>docker host</em>, not the client machine.</li>
+</ul>
+</blockquote>
+<h3 id="enable-windows-container-mode">Enable Windows container mode</h3>
+<p>In order to produce Windows container images, ensure <a href="https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers">Windows container mode</a> is enabled in your Docker settings (available only in Docker for Windows). See <a href="#understanding-docker-hosts">Understanding Docker hosts</a> above if you&rsquo;re using a remote Docker host.</p>
+<p>Then, building a Windows app using Cloud Native Buildpacks is nearly identical to <a href="/docs/app-developer-guide/build-an-app">building for Linux</a>:</p>
+<h3 id="1-select-a-builder">1. Select a builder</h3>
+<p>To <a href="/docs/concepts/operations/build">build</a> an app you must first decide which <a href="/docs/concepts/components/builder">builder</a> you&rsquo;re going to use. A builder
+includes the <a href="/docs/concepts/components/buildpack">buildpacks</a> that will be used as well as the environment for building your
+app.</p>
+<p>For this guide we&rsquo;re going to use a sample builder, <code>cnbs/sample-builder:dotnet-framework-1809</code>.</p>
+<h3 id="2-build-your-app">2. Build your app</h3>
+<p>Now we can build our app. For this example we&rsquo;ll use our <a href="https://github.com/buildpacks/samples">samples</a> repo for simplicity.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># clone the repo</span>
+git clone https://github.com/buildpacks/samples
+
+<span class="c1"># build the app</span>
+pack build sample-app --path samples/apps/aspnet --builder cnbs/sample-builder:dotnet-framework-1809 --trust-builder
+</code></pre></div><blockquote>
+<p><strong>TIP:</strong> If you don&rsquo;t want to keep specifying a builder every time you build, you can set it as your default
+builder by running <code>pack set-default-builder &lt;BUILDER&gt;</code>.</p>
+</blockquote>
+<h3 id="3-run-it">3. Run it</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker run --rm -it -p 8080:80 sample-app
+</code></pre></div><p><strong>Congratulations!</strong></p>
+<p>The app should now be running and accessible via <a href="http://localhost:8080">localhost:8080</a></p>
+<blockquote>
+<p><strong>NOTE:</strong> If <a href="#understanding-docker-hosts"><code>DOCKER_HOST</code> is set</a>, visit <code>&lt;docker-host-ip&gt;:8080</code> instead.</p>
+</blockquote>
 
 
         
@@ -369,12 +403,12 @@ A builder is an image that bundles all the bits and information on how to build 
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BBuilder%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fconcepts%2Fcomponents%2Fbuilder%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BBuild&#43;a&#43;Windows&#43;app%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fapp-developer-guide%2Fbuild-a-windows-app%2F%29"
        class="btn-light btn-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/concepts/components/builder.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/app-developer-guide/build-a-windows-app.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="btn-light btn-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   

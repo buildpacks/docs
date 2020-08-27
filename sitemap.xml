@@ -23,10 +23,6 @@
   </url>
   
   <url>
-    <loc>https://buildpacks.io/docs/app-developer-guide/environment-variables/</loc>
-  </url>
-  
-  <url>
     <loc>https://buildpacks.io/features/</loc>
   </url>
   
@@ -39,15 +35,11 @@
   </url>
   
   <url>
-    <loc>https://buildpacks.io/docs/app-developer-guide/specific-buildpacks/</loc>
-  </url>
-  
-  <url>
-    <loc>https://buildpacks.io/docs/app-developer-guide/run-an-app/</loc>
-  </url>
-  
-  <url>
     <loc>https://buildpacks.io/docs/app-journey/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/app-developer-guide/build-a-windows-app/</loc>
   </url>
   
   <url>
@@ -67,15 +59,15 @@
   </url>
   
   <url>
+    <loc>https://buildpacks.io/docs/app-developer-guide/environment-variables/</loc>
+  </url>
+  
+  <url>
     <loc>https://buildpacks.io/docs/concepts/components/lifecycle/</loc>
   </url>
   
   <url>
     <loc>https://buildpacks.io/docs/concepts/components/platform/</loc>
-  </url>
-  
-  <url>
-    <loc>https://buildpacks.io/docs/app-developer-guide/using-project-descriptor/</loc>
   </url>
   
   <url>
@@ -91,6 +83,10 @@
   </url>
   
   <url>
+    <loc>https://buildpacks.io/docs/app-developer-guide/specific-buildpacks/</loc>
+  </url>
+  
+  <url>
     <loc>https://buildpacks.io/docs/concepts/components/stack/</loc>
   </url>
   
@@ -100,6 +96,14 @@
   
   <url>
     <loc>https://buildpacks.io/docs/buildpack-author-guide/package-a-buildpack/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/app-developer-guide/run-an-app/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/app-developer-guide/using-project-descriptor/</loc>
   </url>
   
   <url>

@@ -157,6 +157,9 @@
       <li data-nav-id="/docs/app-developer-guide/build-an-app/" class="dd-item depth-1">
         <a href="/docs/app-developer-guide/build-an-app/">Build an app</a>
       </li>
+      <li data-nav-id="/docs/app-developer-guide/build-a-windows-app/" class="dd-item depth-1">
+        <a href="/docs/app-developer-guide/build-a-windows-app/">Build a Windows app</a>
+      </li>
       <li data-nav-id="/docs/app-developer-guide/environment-variables/" class="dd-item depth-1">
         <a href="/docs/app-developer-guide/environment-variables/">Environment variables</a>
       </li>
@@ -390,14 +393,17 @@ a JDK, run Maven, or otherwise configure a build environment. <code>pack</code> 
 <h2 id="beyond-the-journey">Beyond the journey</h2>
 <p>To test out your new app image locally, you can run it with Docker:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker run --rm -p 8080:8080 myapp
-</code></pre></div><p>Now hit <code>localhost:8080</code> in your favorite browser and take a minute to enjoy the view.</p>
+</code></pre></div><p>Now hit <a href="http://localhost:8080"><code>localhost:8080</code></a> in your favorite browser and take a minute to enjoy the view.</p>
 <h3 id="take-your-image-to-the-skies">Take your image to the skies</h3>
 <p><code>pack</code> uses <strong>buildpacks</strong> to help you easily create OCI images that you can run just about anywhere. Try
 deploying your new image to your favorite cloud!</p>
 <blockquote>
-<p>In case you need it, <code>pack build</code> has a handy flag called <code>--publish</code> that will publish your app image to a Docker
-registry after building it.</p>
+<p>In case you need it, <code>pack build</code> has a handy flag called <code>--publish</code> that will build your image directly onto a Docker
+registry.</p>
 </blockquote>
+<h2 id="what-about-windows-apps">What about Windows apps?</h2>
+<p>Windows image builds are now supported!</p>
+<p><a href="/docs/app-developer-guide/build-a-windows-app" class="button bg-blue">Windows build guide</a></p>
 
 
         

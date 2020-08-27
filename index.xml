@@ -47,15 +47,6 @@
     </item>
     
     <item>
-      <title>Environment variables</title>
-      <link>https://buildpacks.io/docs/app-developer-guide/environment-variables/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://buildpacks.io/docs/app-developer-guide/environment-variables/</guid>
-      <description>Environment variables are a common way to configure various buildpacks at build-time.</description>
-    </item>
-    
-    <item>
       <title>Features</title>
       <link>https://buildpacks.io/features/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -78,24 +69,6 @@ brew install buildpacks/tap/pack  Optional: Enable auto-completion
     </item>
     
     <item>
-      <title>Specify buildpacks</title>
-      <link>https://buildpacks.io/docs/app-developer-guide/specific-buildpacks/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://buildpacks.io/docs/app-developer-guide/specific-buildpacks/</guid>
-      <description>Learn how to specify exactly what buildpacks are used during the build process.</description>
-    </item>
-    
-    <item>
-      <title>Specify launch process</title>
-      <link>https://buildpacks.io/docs/app-developer-guide/run-an-app/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://buildpacks.io/docs/app-developer-guide/run-an-app/</guid>
-      <description>Learn how to specify the launch process for an app.</description>
-    </item>
-    
-    <item>
       <title>An App&#39;s Brief Journey from Source to Image</title>
       <link>https://buildpacks.io/docs/app-journey/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -106,6 +79,15 @@ That means you&amp;rsquo;ll need to make sure you have pack installed:
 Install pack 
  NOTE: pack is only one implementation of the Cloud Native Buildpacks Platform Specification.
  Buildpack base camp Before we set out, you&amp;rsquo;ll need to know the basics of buildpacks and how they work.</description>
+    </item>
+    
+    <item>
+      <title>Build a Windows app</title>
+      <link>https://buildpacks.io/docs/app-developer-guide/build-a-windows-app/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/app-developer-guide/build-a-windows-app/</guid>
+      <description>The basics of taking your Windows app from source code to runnable image.</description>
     </item>
     
     <item>
@@ -129,6 +111,15 @@ application.&lt;/p&gt;</description>
     </item>
     
     <item>
+      <title>Environment variables</title>
+      <link>https://buildpacks.io/docs/app-developer-guide/environment-variables/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/app-developer-guide/environment-variables/</guid>
+      <description>Environment variables are a common way to configure various buildpacks at build-time.</description>
+    </item>
+    
+    <item>
       <title>Lifecycle</title>
       <link>https://buildpacks.io/docs/concepts/components/lifecycle/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -149,12 +140,12 @@ application.&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>Using project.toml</title>
-      <link>https://buildpacks.io/docs/app-developer-guide/using-project-descriptor/</link>
+      <title>Specify buildpacks</title>
+      <link>https://buildpacks.io/docs/app-developer-guide/specific-buildpacks/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://buildpacks.io/docs/app-developer-guide/using-project-descriptor/</guid>
-      <description>Learn how to use a project.toml file to simplify configuring pack.</description>
+      <guid>https://buildpacks.io/docs/app-developer-guide/specific-buildpacks/</guid>
+      <description>Learn how to specify exactly what buildpacks are used during the build process.</description>
     </item>
     
     <item>
@@ -174,6 +165,24 @@ application.&lt;/p&gt;</description>
       
       <guid>https://buildpacks.io/docs/buildpack-author-guide/package-a-buildpack/</guid>
       <description>Learn how to package your buildpack for distribution using standard OCI registries.</description>
+    </item>
+    
+    <item>
+      <title>Specify launch process</title>
+      <link>https://buildpacks.io/docs/app-developer-guide/run-an-app/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/app-developer-guide/run-an-app/</guid>
+      <description>Learn how to specify the launch process for an app.</description>
+    </item>
+    
+    <item>
+      <title>Using project.toml</title>
+      <link>https://buildpacks.io/docs/app-developer-guide/using-project-descriptor/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/app-developer-guide/using-project-descriptor/</guid>
+      <description>Learn how to use a project.toml file to simplify configuring pack.</description>
     </item>
     
     <item>

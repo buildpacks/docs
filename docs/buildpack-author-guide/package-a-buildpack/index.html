@@ -157,6 +157,9 @@
       <li data-nav-id="/docs/app-developer-guide/build-an-app/" class="dd-item depth-1">
         <a href="/docs/app-developer-guide/build-an-app/">Build an app</a>
       </li>
+      <li data-nav-id="/docs/app-developer-guide/build-a-windows-app/" class="dd-item depth-1">
+        <a href="/docs/app-developer-guide/build-a-windows-app/">Build a Windows app</a>
+      </li>
       <li data-nav-id="/docs/app-developer-guide/environment-variables/" class="dd-item depth-1">
         <a href="/docs/app-developer-guide/environment-variables/">Environment variables</a>
       </li>
@@ -378,7 +381,7 @@ buildpacks. We will need to declare the location of those dependencies as well.<
 <p>Lastly, we&rsquo;ll run the <code>package-buildpack</code> command to package the buildpack as an OCI image.</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">pack package-buildpack my-buildpack --config ./package.toml
 </code></pre></div><blockquote>
-<p><strong>Tip:</strong> You can verify that the image was created by running <code>docker images</code>.</p>
+<p><strong>TIP:</strong> You can verify that the image was created by running <code>docker images</code>.</p>
 </blockquote>
 <p>That&rsquo;s it! Your buildpack is now packaged for distribution.</p>
 <p>You may now use standard <code>docker push</code> to host your buildpack on any OCI registry of your choosing.</p>
