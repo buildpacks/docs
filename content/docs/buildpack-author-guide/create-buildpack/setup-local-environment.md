@@ -6,11 +6,10 @@ weight=401
 First, we'll create a sample Ruby app that you can use when developing your buildpack:
 
 ```bash
-mkdir -p /tmp/ruby-sample-app
-cd /tmp/ruby-sample-app
+mkdir ruby-sample-app
 ```
 
-Create a file in the current directory called `app.rb` with the following contents:
+Create a file in the current directory called `ruby-sample-app/app.rb` with the following contents:
 
 ```ruby
 require 'sinatra'
@@ -23,20 +22,14 @@ get '/' do
 end
 ```
 
-Then, create a file called `Gemfile` with the following contents:
+Then, create a file called `ruby-sample-app/Gemfile` with the following contents:
+
 ```ruby
 source "https://rubygems.org"
 
 git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
 gem "sinatra"
-```
-
-Now, let's create the directory where your buildpack will live:
-
-```bash
-mkdir -p /tmp/ruby-buildpack
-cd /tmp/ruby-buildpack
 ```
 
 Finally, make sure your local Docker daemon is running by executing:

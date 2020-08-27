@@ -3,11 +3,9 @@ title="Specify multiple process types"
 weight=406
 +++
 
-One of the benefits of buildpacks is that they are multi-process - an image can have multiple entrypoints for each operational mode.
+One of the benefits of buildpacks is that they are multi-process - an image can have multiple entrypoints for each operational mode. Let's see how this works. We will extend our app to have a worker process.
 
-Let's see how this works. We will extend our app to have a worker process.
-
-Create a file in the app directory called `worker.rb` with the following contents:
+Let's create a worker file, `ruby-sample-app/worker.rb`, with the following contents:
 
 ```ruby
 for i in 0..5
@@ -17,18 +15,27 @@ end
 
 After building our app, we could run the resulting image with the `web` process (currently the default) or our new worker process. 
 
-To enable running the worker process, we'll need to have our buildpack define a "process type" for the worker. Add the following to the end of your `build` script:
+To enable running the worker process, we'll need to have our buildpack define a "process type" for the worker.  Modify the section where processes are defined to:
 
 ```bash
-# Specify the worker process
-cat >> "$layersdir/launch.toml" <<EOL
+# ...
+
+cat > "$layersdir/launch.toml" <<EOL
+# our web process
+[[processes]]
+type = "web"
+command = "bundle exec ruby app.rb"
+
+# our worker process
 [[processes]]
 type = "worker"
 command = "bundle exec ruby worker.rb"
 EOL
+
+# ...
 ```
 
-Your full `build` script should now look like the following:
+Your full `ruby-buildpack/bin/build` script should now look like the following:
 
 ```bash
 #!/usr/bin/env bash
@@ -61,14 +68,15 @@ gem install bundler --no-ri --no-rdoc
 echo "---> Installing gems"
 bundle install
 
-# ========== ADDED ===========
+# ========== MODIFIED ===========
 # 7. SET DEFAULT START COMMAND
 cat > "$layersdir/launch.toml" <<EOL
+# our web process
 [[processes]]
 type = "web"
 command = "bundle exec ruby app.rb"
-EOL
-cat >> "$layersdir/launch.toml" <<EOL
+
+# our worker process
 [[processes]]
 type = "worker"
 command = "bundle exec ruby worker.rb"
@@ -78,7 +86,7 @@ EOL
 Now if you rebuild your app using the updated buildpack:
 
 ```bash
-pack build test-ruby-app --path ~/workspace/ruby-sample-app --buildpack ~/workspace/ruby-cnb
+pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 ```
 
 You should then be able to run your new Ruby worker process:
@@ -97,6 +105,8 @@ Running a worker task...
 Running a worker task...
 Running a worker task...
 ```
+
+Next, we'll look at how to improve our buildpack by leveraging cache.
 
 ---
 

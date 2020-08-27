@@ -3,8 +3,9 @@ title="Building your application"
 weight=404
 +++
 
+Next, we'll make the build step install dependencies. This will require a few updates to the `build` script.
 
-Next, we'll make the build step install dependencies. This will require a few updates to the `build` script. Change it to look like the following:
+Let's change `ruby-buildpack/bin/build` to look like the following:
 
 ```bash
 #!/usr/bin/env bash
@@ -41,7 +42,7 @@ bundle install
 If you build your app again:
 
 ```bash
-pack build test-ruby-app --path /tmp/ruby-sample-app --buildpack /tmp/ruby-buildpack
+pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 ```
 
 you will see the following output:

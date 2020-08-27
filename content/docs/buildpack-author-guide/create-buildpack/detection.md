@@ -14,7 +14,7 @@ if [[ ! -f Gemfile ]]; then
 fi
 ```
 
-Your `detect` script should look like this:
+Your `ruby-buildpack/bin/detect` script should look like this:
 
 ```bash
 #!/usr/bin/env bash
@@ -28,7 +28,7 @@ fi
 Next, rebuild your app with the updated buildpack:
 
 ```bash
-pack build test-ruby-app --path /tmp/ruby-sample-app --buildpack /tmp/ruby-buildpack
+pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 ```
 
 You should see the following output:
@@ -44,7 +44,7 @@ You should see the following output:
 [builder] ERROR: failed to build: exit status 1
 ```
 
-Notice that `detect` now passes because there is a valid `Gemfile` in the Ruby app at `/tmp/ruby-sample-app`, but now `build` fails because it is currently written to error out.
+Notice that `detect` now passes because there is a valid `Gemfile` in the Ruby app at `ruby-sample-app`, but now `build` fails because it is currently written to error out.
 
 You will also notice that `ANALYZING` now appears in the build output. This steps is part of the buildpack lifecycle that looks to see if any previous image builds have layers that the buildpack can re-use. We will get into this topic in more detail later.
 
