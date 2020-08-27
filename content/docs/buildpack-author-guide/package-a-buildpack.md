@@ -62,7 +62,7 @@ Lastly, we'll run the `package-buildpack` command to package the buildpack as an
 pack package-buildpack my-buildpack --config ./package.toml
 ```
 
-> **Tip:** You can verify that the image was created by running `docker images`.
+> **TIP:** You can verify that the image was created by running `docker images`.
 
 That's it! Your buildpack is now packaged for distribution.
 

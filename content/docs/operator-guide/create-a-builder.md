@@ -67,7 +67,7 @@ Creating a builder is now as simple as running the following command:
 pack create-builder my-builder:bionic --config ./builder.toml
 ```
 
-> **Tip:** `create-builder` has a `--publish` flag that can be used to publish the generated builder image to a registry.
+> **TIP:** `create-builder` has a `--publish` flag that can be used to publish the generated builder image to a registry.
 
 **Congratulations!** You've got a custom builder.
 

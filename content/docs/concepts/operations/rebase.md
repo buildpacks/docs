@@ -27,7 +27,7 @@ run image called `pack/run`. Running the following will update the base of `my-a
 $ pack rebase my-app:my-tag
 ```
 
-> **Tip:** `pack rebase` has a `--publish` flag that can be used to publish the updated app image directly to a registry. 
+> **TIP:** `pack rebase` has a `--publish` flag that can be used to publish the updated app image directly to a registry. 
 > Using `--publish` is optimal when using a registry in comparison to the docker daemon.
 
 [build]: /docs/app-developer-guide/build-an-app/
