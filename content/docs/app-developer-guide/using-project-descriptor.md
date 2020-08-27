@@ -1,6 +1,6 @@
 +++
 title="Using project.toml"
-weight=3
+weight=6
 summary="Learn how to use a project.toml file to simplify configuring pack."
 +++
 
