@@ -2,9 +2,6 @@
 title="Build a Windows app"
 weight=2
 summary="The basics of taking your Windows app from source code to runnable image."
-aliases=[
-    "/docs/using-pack/building-windows-app/"
-]
 +++
 
 > **EXPERIMENTAL:**
@@ -31,7 +28,7 @@ By setting `DOCKER_HOST`, you can use `pack` on any OS to build Windows containe
 
 ### Enable Windows container mode
 
-In order to produce Windows container images, ensure [Windows container mode][container-mode] is enabled in your Docker settings (available only in Docker for Windows). See [Understanding Docker hosts][docker-hosts]) above if you're using a remote Docker host.
+In order to produce Windows container images, ensure [Windows container mode][container-mode] is enabled in your Docker settings (available only in Docker for Windows). See [Understanding Docker hosts][docker-hosts] above if you're using a remote Docker host.
 
 Then, building a Windows app using Cloud Native Buildpacks is nearly identical to [building for Linux][build-linux]:
 
@@ -57,9 +54,6 @@ pack build sample-app --path samples/apps/aspnet --builder cnbs/sample-builder:d
 
 > **TIP:** If you don't want to keep specifying a builder every time you build, you can set it as your default
 > builder by running `pack set-default-builder <BUILDER>`.
-> <br/><br/>
-> **NOTE:** The requirement to trust Windows builders with `--trust-builder` is temporary and will be no longer
-> be required for `pack` version `0.13.2` and later.
 
 ### 3. Run it
 
