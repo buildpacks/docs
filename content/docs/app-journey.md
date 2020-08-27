@@ -74,16 +74,21 @@ To test out your new app image locally, you can run it with Docker:
 docker run --rm -p 8080:8080 myapp
 ```
 
-Now hit `localhost:8080` in your favorite browser and take a minute to enjoy the view.
+Now hit [`localhost:8080`](http://localhost:8080) in your favorite browser and take a minute to enjoy the view.
 
 ### Take your image to the skies
 
 `pack` uses **buildpacks** to help you easily create OCI images that you can run just about anywhere. Try
 deploying your new image to your favorite cloud!
 
-> In case you need it, `pack build` has a handy flag called `--publish` that will publish your app image to a Docker
-> registry after building it.
+> In case you need it, `pack build` has a handy flag called `--publish` that will build your image directly onto a Docker
+> registry.
 
+## What about Windows apps?
+
+Windows image builds are now supported!
+
+<a href="/docs/app-developer-guide/build-a-windows-app" class="button bg-blue">Windows build guide</a>
 
 [builder]: /docs/concepts/components/builder/
 [buildpack]: /docs/concepts/components/buildpack/
