@@ -347,11 +347,12 @@
           <h1 class="title">Building blocks of a Cloud Native Buildpack</h1>
         </div>
 
-        <p>Now we will set up the buildpack scaffolding. You will need to make these files in your <code>ruby-cnb</code> directory</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> ~/workspace/ruby-cnb
+        <p>Now we will set up the buildpack scaffolding.</p>
+<p>Let&rsquo;s create the directory where your buildpack will live:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">mkdir ruby-buildpack
 </code></pre></div><h3 id="buildpacktoml">buildpack.toml</h3>
-<p>Once you are in the <code>ruby-cnb</code> directory, you will need to create a <code>buildpack.toml</code> file in that directory. This file must exist in the root directory of your buildpack so the <code>pack</code> CLI knows it is a buildpack and it can apply the build lifecycle to it.</p>
-<p>Create the <code>buildpack.toml</code> file and copy the following into it:</p>
+<p>You will now need a <code>buildpack.toml</code> to describe our buildpack.</p>
+<p>Create the <code>ruby-buildpack/buildpack.toml</code> file and copy the following into it:</p>
 <div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="c"># Buildpack API version</span>
 <span class="nx">api</span> <span class="p">=</span> <span class="s2">&#34;0.2&#34;</span>
 
@@ -363,44 +364,38 @@
 
 <span class="c"># Stacks that the buildpack will work with</span>
 <span class="p">[[</span><span class="nx">stacks</span><span class="p">]]</span>
-<span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;heroku-18&#34;</span>
-
-<span class="p">[[</span><span class="nx">stacks</span><span class="p">]]</span>
-<span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;org.cloudfoundry.stacks.cflinuxfs3&#34;</span>
+<span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;io.buildpacks.samples.stacks.bionic&#34;</span>
 </code></pre></div><p>You will notice two specific fields in the file: <code>buildpack.id</code> and <code>stack.id</code>. The buildpack ID is the way you will reference the buildpack when you create buildpack groups, builders, etc. The stack ID is the root file system in which the buildpack will be run. This example can be run on one of two different stacks, both based upon Ubuntu Bionic.</p>
 <h3 id="detect-and-build"><code>detect</code> and <code>build</code></h3>
 <p>Next you will need to create the <code>detect</code> and <code>build</code> scripts. These files must exist in a <code>bin</code> directory in your buildpack directory.</p>
 <p>Create your <code>bin</code> directory and then change to that directory.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">mkdir bin
-<span class="nb">cd</span> bin
-</code></pre></div><p>Now create your <code>detect</code> file in the <code>bin</code> directory and copy in the following contents:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">mkdir ruby-buildpack/bin
+</code></pre></div><p>Now create your <code>ruby-buildpack/bin/detect</code> file and copy in the following contents:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
 </span><span class="cp"></span><span class="nb">set</span> -eo pipefail
 
 <span class="nb">exit</span> <span class="m">1</span>
-</code></pre></div><p>Now create your <code>build</code> file in the <code>bin</code> directory and copy in the following contents:</p>
+</code></pre></div><p>Now create your <code>ruby-buildpack/bin/build</code> and copy in the following contents:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
 </span><span class="cp"></span><span class="nb">set</span> -eo pipefail
 
 <span class="nb">echo</span> <span class="s2">&#34;---&gt; Ruby Buildpack&#34;</span>
 <span class="nb">exit</span> <span class="m">1</span>
 </code></pre></div><p>You will need to make both of these files executable, so run the following command:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">chmod +x detect build
-</code></pre></div><p>These two files are now executable <code>detect</code> and <code>build</code> scripts. Now you can use your buildpack.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">chmod +x ruby-buildpack/bin/detect ruby-buildpack/bin/build
+</code></pre></div><p>These two files are now executable <code>detect</code> and <code>build</code> scripts. You are now able to use this buildpack.</p>
 <h3 id="using-your-buildpack-with-pack">Using your buildpack with <code>pack</code></h3>
 <p>In order to test your buildpack, you will need to run the buildpack against your sample Ruby app using the <code>pack</code> CLI.</p>
-<p>Set your default builder by running one of the following:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack set-default-builder cloudfoundry/cnb:cflinuxfs3
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack set-default-builder heroku/buildpacks:18
+<p>Set your default <a href="/docs/concepts/components/builder">builder</a> by running the following:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack set-default-builder cnbs/sample-builder:bionic
 </code></pre></div><p>Then run the following <code>pack</code> command:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ~/workspace/ruby-sample-app --buildpack ~/workspace/ruby-cnb
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 </code></pre></div><p>The <code>pack build</code> command takes in your Ruby sample app as the <code>--path</code> argument and your buildpack as the <code>--buildpack</code> argument.</p>
 <p>After running the command, you should see that it failed to detect, as the <code>detect</code> script is currently written to simply error out.</p>
 <pre><code>===&gt; DETECTING
-[detector] Error: failed to detect: detection failed
-[detector] ======== Results ========
-[detector] err:  com.examples.buildpacks.ruby@0.0.1 (1)
-ERROR: failed with status code: 6
+[detector] ERROR: No buildpack groups passed detection.
+[detector] ERROR: Please check that you are running against the correct path.
+[detector] ERROR: failed to detect: no buildpacks participating
 </code></pre><hr>
 <p><a href="/docs/buildpack-author-guide/create-buildpack/detection" class="button bg-pink">Next Step</a></p>
 

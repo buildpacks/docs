@@ -347,14 +347,18 @@
           <h1 class="title">Make your application runnable</h1>
         </div>
 
-        <p>To make your app runnable, we need to set a default start command. Add the following to the end of your <code>build</code> script:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># Set default start command</span>
+        <p>To make your app runnable, a default start command must be set. You&rsquo;ll need to add the following to the end of your <code>build</code> script:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># ...</span>
+
+<span class="c1"># Set default start command</span>
 cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt;EOL
 </span><span class="s">[[processes]]
 </span><span class="s">type = &#34;web&#34;
 </span><span class="s">command = &#34;bundle exec ruby app.rb&#34;
 </span><span class="s">EOL</span>
-</code></pre></div><p>Your full <code>build</code> script should now look like the following:</p>
+
+<span class="c1"># ...</span>
+</code></pre></div><p>Your full <code>ruby-buildpack/bin/build</code> script should now look like the following:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
 </span><span class="cp"></span><span class="nb">set</span> -eo pipefail
 
@@ -393,7 +397,7 @@ cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span cl
 </span><span class="s">command = &#34;bundle exec ruby app.rb&#34;
 </span><span class="s">EOL</span>
 </code></pre></div><p>Then rebuild your app using the updated buildpack:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ~/workspace/ruby-sample-app --buildpack ~/workspace/ruby-cnb
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 </code></pre></div><p>You should then be able to run your new Ruby app:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker run --rm -p 8080:8080 test-ruby-app
 </code></pre></div><p>and see the server log output:</p>
@@ -402,6 +406,7 @@ cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span cl
 == Sinatra (v2.0.5) has taken the stage on 8080 for development with backup from WEBrick
 [2019-04-02 18:04:48] INFO  WEBrick::HTTPServer#start: pid=1 port=8080
 </code></pre></div><p>Test it out by navigating to <a href="http://localhost:8080">localhost:8080</a> in your favorite browser!</p>
+<p>We can add multiple process types to a single app. We&rsquo;ll do that in the next section.</p>
 <hr>
 <p><a href="/docs/buildpack-author-guide/create-buildpack/specify-multiple-process-types" class="button bg-pink">Next Step</a></p>
 

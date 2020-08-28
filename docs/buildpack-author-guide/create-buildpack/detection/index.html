@@ -352,7 +352,7 @@
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="k">if</span> <span class="o">[[</span> ! -f Gemfile <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
    <span class="nb">exit</span> <span class="m">100</span>
 <span class="k">fi</span>
-</code></pre></div><p>Your <code>detect</code> script should look like this:</p>
+</code></pre></div><p>Your <code>ruby-buildpack/bin/detect</code> script should look like this:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
 </span><span class="cp"></span><span class="nb">set</span> -eo pipefail
 
@@ -360,22 +360,17 @@
    <span class="nb">exit</span> <span class="m">100</span>
 <span class="k">fi</span>
 </code></pre></div><p>Next, rebuild your app with the updated buildpack:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ~/workspace/ruby-sample-app --buildpack ~/workspace/ruby-cnb
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 </code></pre></div><p>You should see the following output:</p>
 <pre><code>===&gt; DETECTING
-[detector] ======== Results ========
-[detector] pass: com.examples.buildpacks.ruby@0.0.1
-[detector] Resolving plan... (try #1)
-[detector] Success! (1)
-===&gt; RESTORING
-[restorer] Cache '/cache': metadata not found, nothing to restore
+[detector] com.examples.buildpacks.ruby 0.0.1
 ===&gt; ANALYZING
-[analyzer] Image 'index.docker.io/library/test-ruby-app:latest' not found
+[analyzer] Previous image with name &quot;index.docker.io/library/test-ruby-app:latest&quot; not found
+===&gt; RESTORING
 ===&gt; BUILDING
 [builder] ---&gt; Ruby Buildpack
-[builder] Error: failed to build: exit status 1
-ERROR: failed with status code: 7
-</code></pre><p>Notice that <code>detect</code> now passes because there is a valid <code>Gemfile</code> in the Ruby app at <code>~/workspace/ruby-sample-app</code>, but now <code>build</code> fails because it is currently written to error out.</p>
+[builder] ERROR: failed to build: exit status 1
+</code></pre><p>Notice that <code>detect</code> now passes because there is a valid <code>Gemfile</code> in the Ruby app at <code>ruby-sample-app</code>, but now <code>build</code> fails because it is currently written to error out.</p>
 <p>You will also notice that <code>ANALYZING</code> now appears in the build output. This steps is part of the buildpack lifecycle that looks to see if any previous image builds have layers that the buildpack can re-use. We will get into this topic in more detail later.</p>
 <hr>
 <p><a href="/docs/buildpack-author-guide/create-buildpack/build-app" class="button bg-pink">Next Step</a></p>

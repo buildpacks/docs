@@ -347,21 +347,29 @@
           <h1 class="title">Specify multiple process types</h1>
         </div>
 
-        <p>One of the benefits of buildpacks is that they are multi-process - an image can have multiple entrypoints for each operational mode.</p>
-<p>Let&rsquo;s see how this works. We will extend our app to have a worker process.</p>
-<p>Create a file in the app directory called <code>worker.rb</code> with the following contents:</p>
+        <p>One of the benefits of buildpacks is that they are multi-process - an image can have multiple entrypoints for each operational mode. Let&rsquo;s see how this works. We will extend our app to have a worker process.</p>
+<p>Let&rsquo;s create a worker file, <code>ruby-sample-app/worker.rb</code>, with the following contents:</p>
 <div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">0</span><span class="o">..</span><span class="mi">5</span>
     <span class="nb">puts</span> <span class="s2">&#34;Running a worker task...&#34;</span>
 <span class="k">end</span>
 </code></pre></div><p>After building our app, we could run the resulting image with the <code>web</code> process (currently the default) or our new worker process.</p>
-<p>To enable running the worker process, we&rsquo;ll need to have our buildpack define a &ldquo;process type&rdquo; for the worker. Add the following to the end of your <code>build</code> script:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># Specify the worker process</span>
-cat &gt;&gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt;EOL
+<p>To enable running the worker process, we&rsquo;ll need to have our buildpack define a &ldquo;process type&rdquo; for the worker.  Modify the section where processes are defined to:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># ...</span>
+
+cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt;EOL
+</span><span class="s"># our web process
+</span><span class="s">[[processes]]
+</span><span class="s">type = &#34;web&#34;
+</span><span class="s">command = &#34;bundle exec ruby app.rb&#34;
+</span><span class="s">
+</span><span class="s"># our worker process
 </span><span class="s">[[processes]]
 </span><span class="s">type = &#34;worker&#34;
 </span><span class="s">command = &#34;bundle exec ruby worker.rb&#34;
 </span><span class="s">EOL</span>
-</code></pre></div><p>Your full <code>build</code> script should now look like the following:</p>
+
+<span class="c1"># ...</span>
+</code></pre></div><p>Your full <code>ruby-buildpack/bin/build</code> script should now look like the following:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
 </span><span class="cp"></span><span class="nb">set</span> -eo pipefail
 
@@ -392,20 +400,21 @@ gem install bundler --no-ri --no-rdoc
 <span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing gems&#34;</span>
 bundle install
 
-<span class="c1"># ========== ADDED ===========</span>
+<span class="c1"># ========== MODIFIED ===========</span>
 <span class="c1"># 7. SET DEFAULT START COMMAND</span>
 cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt;EOL
+</span><span class="s"># our web process
 </span><span class="s">[[processes]]
 </span><span class="s">type = &#34;web&#34;
 </span><span class="s">command = &#34;bundle exec ruby app.rb&#34;
-</span><span class="s">EOL</span>
-cat &gt;&gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt;EOL
+</span><span class="s">
+</span><span class="s"># our worker process
 </span><span class="s">[[processes]]
 </span><span class="s">type = &#34;worker&#34;
 </span><span class="s">command = &#34;bundle exec ruby worker.rb&#34;
 </span><span class="s">EOL</span>
 </code></pre></div><p>Now if you rebuild your app using the updated buildpack:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ~/workspace/ruby-sample-app --buildpack ~/workspace/ruby-cnb
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 </code></pre></div><p>You should then be able to run your new Ruby worker process:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker run --rm --entrypoint worker test-ruby-app
 </code></pre></div><p>and see the worker log output:</p>
@@ -415,7 +424,8 @@ Running a worker task...
 Running a worker task...
 Running a worker task...
 Running a worker task...
-</code></pre></div><hr>
+</code></pre></div><p>Next, we&rsquo;ll look at how to improve our buildpack by leveraging cache.</p>
+<hr>
 <p><a href="/docs/buildpack-author-guide/create-buildpack/caching" class="button bg-pink">Next Step</a></p>
 
 

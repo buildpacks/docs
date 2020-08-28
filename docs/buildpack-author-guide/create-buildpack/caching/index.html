@@ -349,7 +349,7 @@
 
         <p>We can improve performance by caching dependencies between builds, only re-downloading when necessary. To begin, let&rsquo;s create a cacheable <code>bundler</code> layer.</p>
 <h2 id="creating-the-bundler-layer">Creating the <code>bundler</code> layer</h2>
-<p>To do this replace the following lines in the <code>build</code> script:</p>
+<p>To do this, replace the following lines in the <code>build</code> script:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing gems&#34;</span>
 bundle install
 </code></pre></div><p>with the following:</p>
@@ -358,7 +358,7 @@ bundle install
 mkdir -p <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span>
 <span class="nb">echo</span> -e <span class="s1">&#39;cache = true\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">.toml&#34;</span>
 bundle install --path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> --binstubs <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span>
-</code></pre></div><p>Your full <code>build</code> script should now look like the following:</p>
+</code></pre></div><p>Your full <code>ruby-buildpack/bin/build</code> script should now look like the following:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
 </span><span class="cp"></span><span class="nb">set</span> -eo pipefail
 
@@ -395,24 +395,25 @@ bundle install --path <span class="s2">&#34;</span><span class="nv">$bundlerlaye
 
 <span class="c1"># 7. SET DEFAULT START COMMAND</span>
 cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt;EOL
+</span><span class="s"># our web process
 </span><span class="s">[[processes]]
 </span><span class="s">type = &#34;web&#34;
 </span><span class="s">command = &#34;bundle exec ruby app.rb&#34;
-</span><span class="s">EOL</span>
-cat &gt;&gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt;EOL
+</span><span class="s">
+</span><span class="s"># our worker process
 </span><span class="s">[[processes]]
 </span><span class="s">type = &#34;worker&#34;
 </span><span class="s">command = &#34;bundle exec ruby worker.rb&#34;
 </span><span class="s">EOL</span>
 </code></pre></div><p>Now when we run:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ~/workspace/ruby-sample-app --buildpack ~/workspace/ruby-cnb
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 </code></pre></div><p>You will see something similar to the following during the <code>EXPORTING</code> phase:</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">[exporter] Exporting layer &#39;com.examples.buildpacks.ruby:bundler&#39; with SHA sha256:c912cbcd061162e7ea8a525552e208c68a91c551036f062e588d4cec41ce3700
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">[exporter] Adding layer &#39;com.examples.buildpacks.ruby:bundler&#39;
 </code></pre></div><h2 id="caching-dependencies">Caching dependencies</h2>
-<p>Now, let&rsquo;s implement the caching logic. We&rsquo;ll first need to create a <code>Gemfile.lock</code> in our app with the contents given below:</p>
+<p>Now, let&rsquo;s implement the caching logic. We&rsquo;ll first need to create a <code>ruby-sample-app/Gemfile.lock</code> file with the contents given below:</p>
 <blockquote>
 <p>Typically you would run <code>bundle install</code> locally to generate this file, but for the sake
-of simplicity we&rsquo;ll create <code>~/workspace/ruby-sample-app/Gemfile.lock</code> manually.</p>
+of simplicity we&rsquo;ll create <code>ruby-sample-app/Gemfile.lock</code> manually.</p>
 </blockquote>
 <div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">GEM
   remote: https://rubygems.org/
@@ -436,21 +437,22 @@ DEPENDENCIES
 
 BUNDLED WITH
    2.0.2
-</code></pre></div><p>Next, we&rsquo;ll need to install some helpful tools at the top of the <code>build</code> script:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">wget -qO /tmp/jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 <span class="o">&amp;&amp;</span> chmod +x /tmp/jq
-wget -qO /tmp/yj https://github.com/sclevine/yj/releases/download/v2.0/yj-linux <span class="o">&amp;&amp;</span> chmod +x /tmp/yj
 </code></pre></div><p>Replace the gem installation logic from the previous step:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing gems&#34;</span>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># ...</span>
+
+<span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing gems&#34;</span>
 <span class="nv">bundlerlayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler&#34;</span>
 mkdir -p <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span>
 <span class="nb">echo</span> -e <span class="s1">&#39;cache = true\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">.toml&#34;</span>
 bundle install --path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> --binstubs <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span>
+
+<span class="c1"># ...</span>
 </code></pre></div><p>with the new logic below that checks to see if any gems have been changed. This simply creates a checksum for the previous <code>Gemfile.lock</code> and compares it to the checksum of the current <code>Gemfile.lock</code>. If they are the same, the gems are reused. If they are not, the new gems are installed.</p>
 <p>We&rsquo;ll now write additional metadata to our <code>bundler.toml</code> of the form <code>cache = true</code> and <code>launch = true</code>. This directs the lifecycle to cache our gems and provide them when launching our application. With <code>cache = true</code> the lifecycle can keep existing gems around so that build times are fast, even with minor <code>Gemfile.lock</code> changes.</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># Compares previous Gemfile.lock checksum to the current Gemfile.lock</span>
 <span class="nv">bundlerlayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler&#34;</span>
 <span class="nv">local_bundler_checksum</span><span class="o">=</span><span class="k">$(</span>sha256sum Gemfile.lock <span class="p">|</span> cut -d <span class="s1">&#39; &#39;</span> -f 1<span class="k">)</span> 
-<span class="nv">remote_bundler_checksum</span><span class="o">=</span><span class="k">$(</span>cat <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">.toml&#34;</span> <span class="p">|</span> /tmp/yj -t <span class="p">|</span> /tmp/jq -r .metadata 2&gt;/dev/null <span class="o">||</span> <span class="nb">echo</span> <span class="s1">&#39;not found&#39;</span><span class="k">)</span>
+<span class="nv">remote_bundler_checksum</span><span class="o">=</span><span class="k">$(</span>cat <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">.toml&#34;</span> <span class="p">|</span> yj -t <span class="p">|</span> jq -r .metadata 2&gt;/dev/null <span class="o">||</span> <span class="nb">echo</span> <span class="s1">&#39;not found&#39;</span><span class="k">)</span>
 
 <span class="k">if</span> <span class="o">[[</span> -f Gemfile.lock <span class="o">&amp;&amp;</span> <span class="nv">$local_bundler_checksum</span> <span class="o">==</span> <span class="nv">$remote_bundler_checksum</span> <span class="o">]]</span> <span class="p">;</span> <span class="k">then</span>
     <span class="c1"># Determine if no gem dependencies have changed, so it can reuse existing gems without running bundle install</span>
@@ -464,16 +466,11 @@ bundle install --path <span class="s2">&#34;</span><span class="nv">$bundlerlaye
     <span class="nb">echo</span> -e <span class="s2">&#34;cache = true\nlaunch = true\nmetadata = \&#34;</span><span class="nv">$local_bundler_checksum</span><span class="s2">\&#34;&#34;</span> &gt; <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">.toml&#34;</span>
     bundle install --path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> --binstubs <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span>
 <span class="k">fi</span>
-</code></pre></div><p>Your full <code>build</code> script will now look like this:</p>
+</code></pre></div><p>Your full <code>ruby-buildpack/bin/build</code> script will now look like this:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
 </span><span class="cp"></span><span class="nb">set</span> -eo pipefail
 
 <span class="nb">echo</span> <span class="s2">&#34;---&gt; Ruby Buildpack&#34;</span>
-
-<span class="c1"># ======= ADDED =======</span>
-<span class="c1"># 0. DOWNLOAD TOOLS</span>
-wget -qO /tmp/jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 <span class="o">&amp;&amp;</span> chmod +x /tmp/jq
-wget -qO /tmp/yj https://github.com/sclevine/yj/releases/download/v2.0/yj-linux <span class="o">&amp;&amp;</span> chmod +x /tmp/yj
 
 <span class="c1"># 1. GET ARGS</span>
 <span class="nv">layersdir</span><span class="o">=</span><span class="nv">$1</span>
@@ -498,11 +495,10 @@ gem install bundler --no-ri --no-rdoc
 
 <span class="c1"># ======= MODIFIED =======</span>
 <span class="c1"># 6. INSTALL GEMS</span>
-
 <span class="c1"># Compares previous Gemfile.lock checksum to the current Gemfile.lock</span>
 <span class="nv">bundlerlayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler&#34;</span>
 <span class="nv">local_bundler_checksum</span><span class="o">=</span><span class="k">$(</span>sha256sum Gemfile.lock <span class="p">|</span> cut -d <span class="s1">&#39; &#39;</span> -f 1<span class="k">)</span> 
-<span class="nv">remote_bundler_checksum</span><span class="o">=</span><span class="k">$(</span>cat <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">.toml&#34;</span> <span class="p">|</span> /tmp/yj -t <span class="p">|</span> /tmp/jq -r .metadata 2&gt;/dev/null <span class="o">||</span> <span class="nb">echo</span> <span class="s1">&#39;not found&#39;</span><span class="k">)</span>
+<span class="nv">remote_bundler_checksum</span><span class="o">=</span><span class="k">$(</span>cat <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">.toml&#34;</span> <span class="p">|</span> yj -t <span class="p">|</span> jq -r .metadata 2&gt;/dev/null <span class="o">||</span> <span class="nb">echo</span> <span class="s1">&#39;not found&#39;</span><span class="k">)</span>
 
 <span class="k">if</span> <span class="o">[[</span> -f Gemfile.lock <span class="o">&amp;&amp;</span> <span class="nv">$local_bundler_checksum</span> <span class="o">==</span> <span class="nv">$remote_bundler_checksum</span> <span class="o">]]</span> <span class="p">;</span> <span class="k">then</span>
     <span class="c1"># Determine if no gem dependencies have changed, so it can reuse existing gems without running bundle install</span>
@@ -519,36 +515,38 @@ gem install bundler --no-ri --no-rdoc
 
 <span class="c1"># 7. SET DEFAULT START COMMAND</span>
 cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt;EOL
+</span><span class="s"># our web process
 </span><span class="s">[[processes]]
 </span><span class="s">type = &#34;web&#34;
 </span><span class="s">command = &#34;bundle exec ruby app.rb&#34;
-</span><span class="s">EOL</span>
-cat &gt;&gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt;EOL
+</span><span class="s">
+</span><span class="s"># our worker process
 </span><span class="s">[[processes]]
 </span><span class="s">type = &#34;worker&#34;
 </span><span class="s">command = &#34;bundle exec ruby worker.rb&#34;
 </span><span class="s">EOL</span>
 </code></pre></div><p>Now when you build your app:</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">pack build test-ruby-app --path ~/workspace/ruby-sample-app --buildpack ~/workspace/ruby-cnb
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 </code></pre></div><p>it will download the gems:</p>
 <div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">===&gt; BUILDING
 [builder] ---&gt; Ruby Buildpack
 [builder] ---&gt; Downloading and extracting Ruby
 [builder] ---&gt; Installing bundler
-[builder] Successfully installed bundler-2.0.2
+[builder] Successfully installed bundler-2.1.4
 [builder] 1 gem installed
 [builder] ---&gt; Installing gems
 </code></pre></div><p>If you build the app again:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ~/workspace/ruby-sample-app --buildpack ~/workspace/ruby-cnb
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 </code></pre></div><p>you will see the new caching logic at work during the <code>BUILDING</code> phase:</p>
 <div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">===&gt; BUILDING
 [builder] ---&gt; Ruby Buildpack
 [builder] ---&gt; Downloading and extracting Ruby
 [builder] ---&gt; Installing bundler
-[builder] Successfully installed bundler-2.0.2
+[builder] Successfully installed bundler-2.1.4
 [builder] 1 gem installed
 [builder] ---&gt; Reusing gems
-</code></pre></div><hr>
+</code></pre></div><p>Next, let&rsquo;s see how buildpack users may be able to provide configuration to the buildpack.</p>
+<hr>
 <p><a href="/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable" class="button bg-pink">Next Step</a></p>
 
 

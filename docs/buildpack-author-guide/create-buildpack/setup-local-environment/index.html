@@ -348,9 +348,8 @@
         </div>
 
         <p>First, we&rsquo;ll create a sample Ruby app that you can use when developing your buildpack:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">mkdir -p ~/workspace/ruby-sample-app
-<span class="nb">cd</span> ~/workspace/ruby-sample-app
-</code></pre></div><p>Create a file in the current directory called <code>app.rb</code> with the following contents:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">mkdir ruby-sample-app
+</code></pre></div><p>Create a file in the current directory called <code>ruby-sample-app/app.rb</code> with the following contents:</p>
 <div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;sinatra&#39;</span>
 
 <span class="n">set</span> <span class="ss">:bind</span><span class="p">,</span> <span class="s1">&#39;0.0.0.0&#39;</span>
@@ -359,15 +358,12 @@
 <span class="n">get</span> <span class="s1">&#39;/&#39;</span> <span class="k">do</span>
   <span class="s1">&#39;Hello World!&#39;</span>
 <span class="k">end</span>
-</code></pre></div><p>Then, create a file called <code>Gemfile</code> with the following contents:</p>
+</code></pre></div><p>Then, create a file called <code>ruby-sample-app/Gemfile</code> with the following contents:</p>
 <div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="n">source</span> <span class="s2">&#34;https://rubygems.org&#34;</span>
 
 <span class="n">git_source</span><span class="p">(</span><span class="ss">:github</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">repo_name</span><span class="o">|</span> <span class="s2">&#34;https://github.com/</span><span class="si">#{</span><span class="n">repo_name</span><span class="si">}</span><span class="s2">&#34;</span> <span class="p">}</span>
 
 <span class="n">gem</span> <span class="s2">&#34;sinatra&#34;</span>
-</code></pre></div><p>Now, let&rsquo;s create the directory where your buildpack will live:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">mkdir -p ~/workspace/ruby-cnb
-<span class="nb">cd</span> ~/workspace/ruby-cnb
 </code></pre></div><p>Finally, make sure your local Docker daemon is running by executing:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker version
 </code></pre></div><p>If you see output similar to the following, you&rsquo;re good to go! Otherwise, start Docker and check again.</p>

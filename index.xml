@@ -192,9 +192,9 @@ application.&lt;/p&gt;</description>
       
       <guid>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/setup-local-environment/</guid>
       <description>First, we&amp;rsquo;ll create a sample Ruby app that you can use when developing your buildpack:
-mkdir -p ~/workspace/ruby-sample-app cd ~/workspace/ruby-sample-app Create a file in the current directory called app.rb with the following contents:
-require &amp;#39;sinatra&amp;#39; set :bind, &amp;#39;0.0.0.0&amp;#39; set :port, 8080 get &amp;#39;/&amp;#39; do &amp;#39;Hello World!&amp;#39; end Then, create a file called Gemfile with the following contents:
-source &amp;#34;https://rubygems.org&amp;#34; git_source(:github) {|repo_name| &amp;#34;https://github.com/#{repo_name}&amp;#34; } gem &amp;#34;sinatra&amp;#34; Now, let&amp;rsquo;s create the directory where your buildpack will live:</description>
+mkdir ruby-sample-app Create a file in the current directory called ruby-sample-app/app.rb with the following contents:
+require &amp;#39;sinatra&amp;#39; set :bind, &amp;#39;0.0.0.0&amp;#39; set :port, 8080 get &amp;#39;/&amp;#39; do &amp;#39;Hello World!&amp;#39; end Then, create a file called ruby-sample-app/Gemfile with the following contents:
+source &amp;#34;https://rubygems.org&amp;#34; git_source(:github) {|repo_name| &amp;#34;https://github.com/#{repo_name}&amp;#34; } gem &amp;#34;sinatra&amp;#34; Finally, make sure your local Docker daemon is running by executing:</description>
     </item>
     
     <item>
@@ -203,9 +203,11 @@ source &amp;#34;https://rubygems.org&amp;#34; git_source(:github) {|repo_name| &
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb/</guid>
-      <description>Now we will set up the buildpack scaffolding. You will need to make these files in your ruby-cnb directory
-cd ~/workspace/ruby-cnb buildpack.toml Once you are in the ruby-cnb directory, you will need to create a buildpack.toml file in that directory. This file must exist in the root directory of your buildpack so the pack CLI knows it is a buildpack and it can apply the build lifecycle to it.
-Create the buildpack.</description>
+      <description>Now we will set up the buildpack scaffolding.
+Let&amp;rsquo;s create the directory where your buildpack will live:
+mkdir ruby-buildpack buildpack.toml You will now need a buildpack.toml to describe our buildpack.
+Create the ruby-buildpack/buildpack.toml file and copy the following into it:
+# Buildpack API version api = &amp;#34;0.2&amp;#34; # Buildpack ID and metadata [buildpack] id = &amp;#34;com.examples.buildpacks.ruby&amp;#34; version = &amp;#34;0.0.1&amp;#34; name = &amp;#34;Ruby Buildpack&amp;#34; # Stacks that the buildpack will work with [[stacks]] id = &amp;#34;io.</description>
     </item>
     
     <item>
@@ -216,7 +218,7 @@ Create the buildpack.</description>
       <guid>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/detection/</guid>
       <description>Next, you will want to actually detect that the app your are building is a Ruby app. In order to do this, you will need to check for a Gemfile.
 Replace exit 1 in the detect script with the following check:
-if [[ ! -f Gemfile ]]; then exit 100 fi Your detect script should look like this:
+if [[ ! -f Gemfile ]]; then exit 100 fi Your ruby-buildpack/bin/detect script should look like this:
 #!/usr/bin/env bash set -eo pipefail if [[ ! -f Gemfile ]]; then exit 100 fi Next, rebuild your app with the updated buildpack:</description>
     </item>
     
@@ -226,7 +228,8 @@ if [[ ! -f Gemfile ]]; then exit 100 fi Your detect script should look like this
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/build-app/</guid>
-      <description>Next, we&amp;rsquo;ll make the build step install dependencies. This will require a few updates to the build script. Change it to look like the following:
+      <description>Next, we&amp;rsquo;ll make the build step install dependencies. This will require a few updates to the build script.
+Let&amp;rsquo;s change ruby-buildpack/bin/build to look like the following:
 #!/usr/bin/env bash set -eo pipefail echo &amp;#34;---&amp;gt; Ruby Buildpack&amp;#34; # 1. GET ARGS layersdir=$1 # 2. DOWNLOAD RUBY echo &amp;#34;---&amp;gt; Downloading and extracting Ruby&amp;#34; rubylayer=&amp;#34;$layersdir&amp;#34;/ruby mkdir -p &amp;#34;$rubylayer&amp;#34; ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-2.5.1.tgz wget -q -O - &amp;#34;$ruby_url&amp;#34; | tar -xzf - -C &amp;#34;$rubylayer&amp;#34; # 3. MAKE RUBY AVAILABLE DURING LAUNCH echo -e &amp;#39;launch = true&amp;#39; &amp;gt; &amp;#34;$rubylayer.</description>
     </item>
     
@@ -236,9 +239,9 @@ if [[ ! -f Gemfile ]]; then exit 100 fi Your detect script should look like this
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/make-app-runnable/</guid>
-      <description>To make your app runnable, we need to set a default start command. Add the following to the end of your build script:
-# Set default start command cat &amp;gt; &amp;#34;$layersdir/launch.toml&amp;#34; &amp;lt;&amp;lt;EOL [[processes]] type = &amp;#34;web&amp;#34; command = &amp;#34;bundle exec ruby app.rb&amp;#34; EOL Your full build script should now look like the following:
-#!/usr/bin/env bash set -eo pipefail echo &amp;#34;---&amp;gt; Ruby Buildpack&amp;#34; # 1. GET ARGS layersdir=$1 # 2. DOWNLOAD RUBY echo &amp;#34;---&amp;gt; Downloading and extracting Ruby&amp;#34; rubylayer=&amp;#34;$layersdir&amp;#34;/ruby mkdir -p &amp;#34;$rubylayer&amp;#34; ruby_url=https://s3-external-1.</description>
+      <description>To make your app runnable, a default start command must be set. You&amp;rsquo;ll need to add the following to the end of your build script:
+# ... # Set default start command cat &amp;gt; &amp;#34;$layersdir/launch.toml&amp;#34; &amp;lt;&amp;lt;EOL [[processes]] type = &amp;#34;web&amp;#34; command = &amp;#34;bundle exec ruby app.rb&amp;#34; EOL # ... Your full ruby-buildpack/bin/build script should now look like the following:
+#!/usr/bin/env bash set -eo pipefail echo &amp;#34;---&amp;gt; Ruby Buildpack&amp;#34; # 1. GET ARGS layersdir=$1 # 2.</description>
     </item>
     
     <item>
@@ -247,9 +250,8 @@ if [[ ! -f Gemfile ]]; then exit 100 fi Your detect script should look like this
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/specify-multiple-process-types/</guid>
-      <description>One of the benefits of buildpacks is that they are multi-process - an image can have multiple entrypoints for each operational mode.
-Let&amp;rsquo;s see how this works. We will extend our app to have a worker process.
-Create a file in the app directory called worker.rb with the following contents:
+      <description>One of the benefits of buildpacks is that they are multi-process - an image can have multiple entrypoints for each operational mode. Let&amp;rsquo;s see how this works. We will extend our app to have a worker process.
+Let&amp;rsquo;s create a worker file, ruby-sample-app/worker.rb, with the following contents:
 for i in 0..5 puts &amp;#34;Running a worker task...&amp;#34; end After building our app, we could run the resulting image with the web process (currently the default) or our new worker process.</description>
     </item>
     
@@ -260,9 +262,9 @@ for i in 0..5 puts &amp;#34;Running a worker task...&amp;#34; end After building
       
       <guid>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/caching/</guid>
       <description>We can improve performance by caching dependencies between builds, only re-downloading when necessary. To begin, let&amp;rsquo;s create a cacheable bundler layer.
-Creating the bundler layer To do this replace the following lines in the build script:
+Creating the bundler layer To do this, replace the following lines in the build script:
 echo &amp;#34;---&amp;gt; Installing gems&amp;#34; bundle install with the following:
-echo &amp;#34;---&amp;gt; Installing gems&amp;#34; bundlerlayer=&amp;#34;$layersdir/bundler&amp;#34; mkdir -p &amp;#34;$bundlerlayer&amp;#34; echo -e &amp;#39;cache = true\nlaunch = true&amp;#39; &amp;gt; &amp;#34;$bundlerlayer.toml&amp;#34; bundle install --path &amp;#34;$bundlerlayer&amp;#34; --binstubs &amp;#34;$bundlerlayer/bin&amp;#34; Your full build script should now look like the following:</description>
+echo &amp;#34;---&amp;gt; Installing gems&amp;#34; bundlerlayer=&amp;#34;$layersdir/bundler&amp;#34; mkdir -p &amp;#34;$bundlerlayer&amp;#34; echo -e &amp;#39;cache = true\nlaunch = true&amp;#39; &amp;gt; &amp;#34;$bundlerlayer.toml&amp;#34; bundle install --path &amp;#34;$bundlerlayer&amp;#34; --binstubs &amp;#34;$bundlerlayer/bin&amp;#34; Your full ruby-buildpack/bin/build script should now look like the following:</description>
     </item>
     
     <item>
@@ -272,7 +274,7 @@ echo &amp;#34;---&amp;gt; Installing gems&amp;#34; bundlerlayer=&amp;#34;$layers
       
       <guid>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable/</guid>
       <description>It&amp;rsquo;s likely that not all Ruby apps will want to use the same version of Ruby. Let&amp;rsquo;s make the Ruby version configurable.
-Select Ruby version We&amp;rsquo;ll allow buildpack users to define the desired Ruby version via a .ruby-version file in their app. We&amp;rsquo;ll first update the detect script to check for this file. We will then record the dependency we can provide (Ruby), as well as the specific dependency the application will require, in the Build Plan, a document the lifecycle uses to determine if the buildpack will provide everything the application needs:</description>
+Select Ruby version We&amp;rsquo;ll allow buildpack users to define the desired Ruby version via a .ruby-version file in their app. We&amp;rsquo;ll first update the detect script to check for this file. We will then record the dependency we can provide (Ruby), as well as the specific dependency the application will require, in the Build Plan, a document the lifecycle uses to determine if the buildpack will provide everything the application needs.</description>
     </item>
     
     <item>
