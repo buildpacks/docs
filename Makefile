@@ -1,11 +1,14 @@
 # Retrieve latest pack version
+PACK_VERSION?=
 GITHUB_TOKEN?=
+
+ifndef PACK_VERSION
 ifdef GITHUB_TOKEN
-_PACK_VERSION?=$(shell curl -s -H "Authorization: token $(GITHUB_TOKEN)" https://api.github.com/repos/buildpacks/pack/releases/latest | jq -r '.tag_name' | sed -e 's/^v//')
+PACK_VERSION:=$(shell curl -s -H "Authorization: token $(GITHUB_TOKEN)" https://api.github.com/repos/buildpacks/pack/releases/latest | jq -r '.tag_name' | sed -e 's/^v//')
 else
-_PACK_VERSION?=$(shell curl -s https://api.github.com/repos/buildpacks/pack/releases/latest | jq -r '.tag_name' | sed -e 's/^v//')
+PACK_VERSION:=$(shell curl -s https://api.github.com/repos/buildpacks/pack/releases/latest | jq -r '.tag_name' | sed -e 's/^v//')
 endif
-PACK_VERSION:=$(_PACK_VERSION)
+endif
 
 default: serve
 

@@ -1,17 +1,15 @@
 +++
 title="Making your buildpack configurable"
 weight=408
-creatordisplayname = "Scott Sisil"
-creatoremail = "ssisil@pivotal.io"
-lastmodifierdisplayname = "Javier Romero"
-lastmodifieremail = "jromero@pivotal.io"
 +++
 
 It's likely that not all Ruby apps will want to use the same version of Ruby. Let's make the Ruby version configurable.
 
 ## Select Ruby version
 
-We'll allow buildpack users to define the desired Ruby version via a `.ruby-version` file in their app. We'll first update the `detect` script to check for this file. We will then record the dependency we can `provide` (Ruby), as well as the specific dependency the application will `require`, in the `Build Plan`, a document the lifecycle uses to determine if the buildpack will provide everything the application needs:
+We'll allow buildpack users to define the desired Ruby version via a `.ruby-version` file in their app. We'll first update the `detect` script to check for this file. We will then record the dependency we can `provide` (Ruby), as well as the specific dependency the application will `require`, in the `Build Plan`, a document the lifecycle uses to determine if the buildpack will provide everything the application needs.
+
+Update `ruby-buildpack/bin/detect` to look like this:
 
 ```bash
 #!/usr/bin/env bash
@@ -36,17 +34,13 @@ echo "requires = [{ name = \"ruby\", version = \"$version\" }]" >> "$plan"
 
 Then you will need to update your `build` script to look for the recorded Ruby version in the build plan:
 
-Your `build` script should look like the following:
+Your `ruby-buildpack/bin/build` script should look like the following:
 
 ```bash
 #!/usr/bin/env bash
 set -eo pipefail
 
 echo "---> Ruby Buildpack"
-
-# 0. DOWNLOAD TOOLS
-wget -qO /tmp/jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 && chmod +x /tmp/jq
-wget -qO /tmp/yj https://github.com/sclevine/yj/releases/download/v2.0/yj-linux && chmod +x /tmp/yj
 
 # ======= MODIFIED =======
 # 1. GET ARGS
@@ -57,14 +51,13 @@ plan=$3
 # 2. DOWNLOAD RUBY
 rubylayer="$layersdir"/ruby
 mkdir -p "$rubylayer"
-ruby_version=$(cat "$plan" | /tmp/yj -t | /tmp/jq -r '.entries[] | select(.name == "ruby") | .version')
+ruby_version=$(cat "$plan" | yj -t | jq -r '.entries[] | select(.name == "ruby") | .version')
 echo "---> Downloading and extracting Ruby $ruby_version"
 ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-$ruby_version.tgz
 wget -q -O - "$ruby_url" | tar -xzf - -C "$rubylayer"
 
 # 3. MAKE RUBY AVAILABLE DURING LAUNCH
 echo -e 'launch = true' > "$rubylayer.toml"
-echo -e "launch = true\nmetadata = \"$ruby_version\"" > "$rubylayer.toml"
 
 # 4. MAKE RUBY AVAILABLE TO THIS SCRIPT
 export PATH="$rubylayer"/bin:$PATH
@@ -75,11 +68,10 @@ echo "---> Installing bundler"
 gem install bundler --no-ri --no-rdoc
 
 # 6. INSTALL GEMS
-
 # Compares previous Gemfile.lock checksum to the current Gemfile.lock
 bundlerlayer="$layersdir/bundler"
 local_bundler_checksum=$(sha256sum Gemfile.lock | cut -d ' ' -f 1)
-remote_bundler_checksum=$(cat "$bundlerlayer.toml" | /tmp/yj -t | /tmp/jq -r .metadata 2>/dev/null || echo 'not found')
+remote_bundler_checksum=$(cat "$bundlerlayer.toml" | yj -t | jq -r .metadata 2>/dev/null || echo 'not found')
 
 if [[ -f Gemfile.lock && $local_bundler_checksum == $remote_bundler_checksum ]] ; then
     # Determine if no gem dependencies have changed, so it can reuse existing gems without running bundle install
@@ -89,25 +81,26 @@ if [[ -f Gemfile.lock && $local_bundler_checksum == $remote_bundler_checksum ]] 
 else
     # Determine if there has been a gem dependency change and install new gems to the bundler layer; re-using existing and un-changed gems
     echo "---> Installing gems"
-    mkdir "$bundlerlayer" || true
+    mkdir -p "$bundlerlayer"
     echo -e "cache = true\nlaunch = true\nmetadata = \"$local_bundler_checksum\"" > "$bundlerlayer.toml"
     bundle install --path "$bundlerlayer" --binstubs "$bundlerlayer/bin"
 fi
 
 # 7. SET DEFAULT START COMMAND
 cat > "$layersdir/launch.toml" <<EOL
+# our web process
 [[processes]]
 type = "web"
 command = "bundle exec ruby app.rb"
-EOL
-cat >> "$layersdir/launch.toml" <<EOL
+
+# our worker process
 [[processes]]
 type = "worker"
 command = "bundle exec ruby worker.rb"
 EOL
 ```
 
-Finally, in your Ruby app directory, create a file named `.ruby-version` with the following contents:
+Finally, create a file `ruby-sample-app/.ruby-version` with the following contents:
 
 ```
 2.5.0
@@ -116,7 +109,7 @@ Finally, in your Ruby app directory, create a file named `.ruby-version` with th
 Now when you run:
 
 ```bash
-pack build test-ruby-app --path ~/workspace/ruby-sample-app --buildpack ~/workspace/ruby-cnb
+pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 ```
 
 You will notice that version of Ruby specified in the app's `.ruby-version` file is downloaded.

@@ -7,18 +7,22 @@ lastmodifierdisplayname = "Javier Romero"
 lastmodifieremail = "jromero@pivotal.io"
 +++
 
-To make your app runnable, we need to set a default start command. Add the following to the end of your `build` script:
+To make your app runnable, a default start command must be set. You'll need to add the following to the end of your `build` script:
 
 ```bash
+# ...
+
 # Set default start command
 cat > "$layersdir/launch.toml" <<EOL
 [[processes]]
 type = "web"
 command = "bundle exec ruby app.rb"
 EOL
+
+# ...
 ```
 
-Your full `build` script should now look like the following:
+Your full `ruby-buildpack/bin/build` script should now look like the following:
 
 ```bash
 #!/usr/bin/env bash
@@ -63,7 +67,7 @@ EOL
 Then rebuild your app using the updated buildpack:
 
 ```bash
-pack build test-ruby-app --path ~/workspace/ruby-sample-app --buildpack ~/workspace/ruby-cnb
+pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 ```
 
 You should then be able to run your new Ruby app:
@@ -82,6 +86,8 @@ and see the server log output:
 ```
 
 Test it out by navigating to [localhost:8080](http://localhost:8080) in your favorite browser!
+
+We can add multiple process types to a single app. We'll do that in the next section.
 
 ---
 
