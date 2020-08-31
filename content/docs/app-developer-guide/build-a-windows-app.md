@@ -15,22 +15,15 @@ Before trying out builds for Windows images, we recommend following the [Linux i
 
 When you're done, head back here.
 
-### Understanding Docker hosts
-
-The `pack` CLI supports using the [`DOCKER_HOST`][docker-env-vars] environment variable. Essentially, this points your local Docker client (e.g. `docker` or `pack` CLI) to a remote Docker daemon. For instance, if the IP address of your host is `192.168.2.100`, you can set `DOCKER_HOST` to `tcp://192.168.2.100`. Any subsequent `pack` or `docker` commands would communicate with the daemon on that machine instead of a local daemon.
-
-By setting `DOCKER_HOST`, you can use `pack` on any OS to build Windows container images, as long as your remote Docker host is configured to support them (i.e. the host runs a Windows OS and has [Windows container mode enabled][container-mode]).
-
-> **NOTE**: When setting `DOCKER_HOST`, keep in mind that:
->
-> - any volumes mounted via `pack build --volume <volume> ...` or `docker run --volume <volume> ...` must exist on the _docker host_, not the client machine.
-> - any ports published via `docker run --publish <host-port>:<container-port> ...` will be published on the _docker host_, not the client machine.
-
 ### Enable Windows container mode
 
-In order to produce Windows container images, ensure [Windows container mode][container-mode] is enabled in your Docker settings (available only in Docker for Windows). See [Understanding Docker hosts][docker-hosts] above if you're using a remote Docker host.
+In order to produce Windows container images, ensure [Windows container mode][container-mode] is enabled in your Docker settings (available only in Docker for Windows).
 
 Then, building a Windows app using Cloud Native Buildpacks is nearly identical to [building for Linux][build-linux]:
+
+> **Not using Windows?**
+>
+> `pack` can build Windows apps using a remote Windows Docker by setting a `DOCKER_HOST`. [Learn more](#using-remote-docker-hosts)
 
 ### 1. Select a builder
 
@@ -52,6 +45,8 @@ git clone https://github.com/buildpacks/samples
 pack build sample-app --path samples/apps/aspnet --builder cnbs/sample-builder:dotnet-framework-1809 --trust-builder
 ```
 
+> **TIP:** The builder may take a few minutes to download on the first use.
+
 > **TIP:** If you don't want to keep specifying a builder every time you build, you can set it as your default
 > builder by running `pack set-default-builder <BUILDER>`.
 
@@ -65,7 +60,39 @@ docker run --rm -it -p 8080:80 sample-app
 
 The app should now be running and accessible via [localhost:8080](http://localhost:8080)
 
-> **NOTE:** If [`DOCKER_HOST` is set][docker-hosts], visit `<docker-host-ip>:8080` instead.
+---
+
+## Using Remote Docker hosts
+
+`pack` and your source code don't need to be on the same machine as your Docker daemon, thanks to support for the [`DOCKER_HOST`][docker-env-vars] environment variable. 
+
+Essentially, this points your local Docker client (e.g. `docker` or `pack` CLI) to a remote Docker daemon. For instance, if the IP address of your host is `10.0.0.1` and its daemon is listening on port `2375`, you can set `DOCKER_HOST` to `tcp://10.0.0.1:2375`. Any subsequent `pack` or `docker` commands would communicate with the daemon on that machine instead of a local daemon.
+
+This can be used to make `pack` build Windows container images, as long as your remote Docker host is configured to support them (i.e. the host runs a Windows OS, has [Windows container mode enabled][container-mode]).
+
+Here's an example where `pack` on a Linux/MacOS machine can access a Windows 10 machine with Docker Desktop, using the [localhost:2375 listener][docker-general-settings] and the built-in [OpenSSH Server][windows-openssh-server].  
+```
+# ssh port-forward for localhost:2375 to remote daemon
+ssh -f -N -L 2375:127.0.0.1:2375 10.0.0.1
+
+# set to your local forwarded port
+export DOCKER_HOST=tcp://localhost:2375
+
+# build the app
+pack build sample-app --path samples/apps/aspnet --builder cnbs/sample-builder:dotnet-framework-1809 --trust-builder
+
+# run it
+docker run --rm -it -p 8080:80 sample-app
+
+# access your app on your remote docker host
+curl http://10.0.0.1:8080
+```
+
+> **NOTE**: When setting `DOCKER_HOST`, keep in mind:
+>
+> - never expose an insecure Docker daemon to an untrusted network. Use SSH port forwarding or [mTLS][protect-the-daemon-socket] instead.
+> - any volumes mounted via `pack build --volume <volume> ...` or `docker run --volume <volume> ...` must exist on the _docker host_, not the client machine.
+> - any ports published via `docker run --publish <host-port>:<container-port> ...` will be published on the _docker host_, not the client machine.
 
 [pack-issues]: https://github.com/buildpacks/pack/issues
 [lifecycle-issues]: https://github.com/buildpacks/lifecycle/issues
@@ -79,3 +106,6 @@ The app should now be running and accessible via [localhost:8080](http://localho
 [builder]: /docs/concepts/components/builder
 [buildpack]: /docs/concepts/components/buildpack
 [samples]: https://github.com/buildpacks/samples
+[docker-general-settings]: https://docs.docker.com/docker-for-windows/#general
+[windows-openssh-server]: https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse
+[protect-the-daemon-socket]: https://docs.docker.com/engine/security/https/
