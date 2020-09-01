@@ -23,6 +23,7 @@ const (
 title="%s"
 no_edit="true"
 +++
+<!--more-->
 `
 )
 
