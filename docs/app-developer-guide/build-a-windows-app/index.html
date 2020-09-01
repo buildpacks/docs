@@ -388,7 +388,7 @@ builder by running <code>pack set-default-builder &lt;BUILDER&gt;</code>.</p>
 </code></pre></div><p><strong>Congratulations!</strong></p>
 <p>The app should now be running and accessible via <a href="http://localhost:8080">localhost:8080</a></p>
 <hr>
-<h2 id="using-remote-docker-hosts">Using Remote Docker hosts</h2>
+<h2 id="using-remote-docker-hosts">Using remote Docker hosts</h2>
 <p><code>pack</code> and your source code don&rsquo;t need to be on the same machine as your Docker daemon, thanks to support for the <a href="https://docs.docker.com/engine/reference/commandline/cli/#environment-variables"><code>DOCKER_HOST</code></a> environment variable.</p>
 <p>Essentially, this points your local Docker client (e.g. <code>docker</code> or <code>pack</code> CLI) to a remote Docker daemon. For instance, if the IP address of your host is <code>10.0.0.1</code> and its daemon is listening on port <code>2375</code>, you can set <code>DOCKER_HOST</code> to <code>tcp://10.0.0.1:2375</code>. Any subsequent <code>pack</code> or <code>docker</code> commands would communicate with the daemon on that machine instead of a local daemon.</p>
 <p>This can be used to make <code>pack</code> build Windows container images, as long as your remote Docker host is configured to support them (i.e. the host runs a Windows OS, has <a href="https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers">Windows container mode enabled</a>).</p>
