@@ -15,7 +15,7 @@ import (
 )
 
 const (
-	cliDir     = "/docs/reference/pack/"
+	cliDir     = "/docs/reference/pack-cli/"
 	outputPath = "../content" + cliDir
 	indexFile  = `_index.md`
 
