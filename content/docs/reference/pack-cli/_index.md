@@ -1,5 +1,5 @@
 +++
-title="Pack Command Line"
+title="Pack Command Line Tool"
 include_summaries=true
 +++
 

@@ -4,17 +4,17 @@ weight=1
 getting-started=true
 +++
 
-## Prerequisites
+# Prerequisites
 {{< download-button href="https://store.docker.com/search?type=edition&offering=community" color="blue" >}} Install Docker {{</>}}
 
-## Supported operating systems
+# Supported operating systems
 You can install the most recent version of `pack` (version **{{< latest >}}**) as an executable binary on the following operating systems:
 
 * [macOS](#macos)
 * [Linux](#linux)
 * [Windows](#windows)
 
-### Homebrew on macOS and Linux
+## Homebrew on macOS and Linux
 
 To install `pack` on macOS and Linux, the easiest way is to use Homebrew:
 
@@ -26,7 +26,7 @@ brew install buildpacks/tap/pack
 
 <hr/>
 
-### Alternative installation on Linux
+## Alternative installation on Linux
 
 `pack` is available on GitHub releases so you can directly get and install it.
 
@@ -43,7 +43,7 @@ From there, you can copy the executable to a directory like `/usr/local/bin` or 
 
 <hr/>
 
-### Windows
+## Windows
 To install `pack` on Windows, the easiest way is to use Chocolatey:
 ```
 choco install pack --version={{< latest >}}
@@ -60,3 +60,10 @@ To configure your bash shell to load completions for each session, add the follo
 ```bash
 . $(pack completion)
 ```
+
+# Reference
+To learn how to use `pack`, just run:
+```bash
+pack help
+```
+or check out the [documentation](/docs/reference/pack-cli/) here.
