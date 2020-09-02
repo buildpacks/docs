@@ -347,8 +347,10 @@
           <h1 class="title">Specify multiple process types</h1>
         </div>
 
-        <p>One of the benefits of buildpacks is that they are multi-process - an image can have multiple entrypoints for each operational mode. Let&rsquo;s see how this works. We will extend our app to have a worker process.</p>
+        <!-- test:suite=create-buildpack;weight=6 -->
+<p>One of the benefits of buildpacks is that they are multi-process - an image can have multiple entrypoints for each operational mode. Let&rsquo;s see how this works. We will extend our app to have a worker process.</p>
 <p>Let&rsquo;s create a worker file, <code>ruby-sample-app/worker.rb</code>, with the following contents:</p>
+<!-- test:file=ruby-sample-app/worker.rb -->
 <div class="highlight"><pre class="chroma"><code class="language-ruby" data-lang="ruby"><span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">0</span><span class="o">..</span><span class="mi">5</span>
     <span class="nb">puts</span> <span class="s2">&#34;Running a worker task...&#34;</span>
 <span class="k">end</span>
@@ -370,6 +372,7 @@ cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span cl
 
 <span class="c1"># ...</span>
 </code></pre></div><p>Your full <code>ruby-buildpack/bin/build</code> script should now look like the following:</p>
+<!-- test:file=ruby-buildpack/bin/build -->
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
 </span><span class="cp"></span><span class="nb">set</span> -eo pipefail
 
@@ -414,10 +417,13 @@ cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span cl
 </span><span class="s">command = &#34;bundle exec ruby worker.rb&#34;
 </span><span class="s">EOL</span>
 </code></pre></div><p>Now if you rebuild your app using the updated buildpack:</p>
+<!-- test:exec -->
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 </code></pre></div><p>You should then be able to run your new Ruby worker process:</p>
+<!-- test:exec -->
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker run --rm --entrypoint worker test-ruby-app
 </code></pre></div><p>and see the worker log output:</p>
+<!-- test:assert=contains -->
 <div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">Running a worker task...
 Running a worker task...
 Running a worker task...

@@ -347,7 +347,8 @@
           <h1 class="title">Make your application runnable</h1>
         </div>
 
-        <p>To make your app runnable, a default start command must be set. You&rsquo;ll need to add the following to the end of your <code>build</code> script:</p>
+        <!-- test:suite=create-buildpack;weight=5 -->
+<p>To make your app runnable, a default start command must be set. You&rsquo;ll need to add the following to the end of your <code>build</code> script:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># ...</span>
 
 <span class="c1"># Set default start command</span>
@@ -359,6 +360,7 @@ cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span cl
 
 <span class="c1"># ...</span>
 </code></pre></div><p>Your full <code>ruby-buildpack/bin/build</code> script should now look like the following:</p>
+<!-- test:file=ruby-buildpack/bin/build -->
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
 </span><span class="cp"></span><span class="nb">set</span> -eo pipefail
 
@@ -397,6 +399,7 @@ cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span cl
 </span><span class="s">command = &#34;bundle exec ruby app.rb&#34;
 </span><span class="s">EOL</span>
 </code></pre></div><p>Then rebuild your app using the updated buildpack:</p>
+<!-- test:exec -->
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 </code></pre></div><p>You should then be able to run your new Ruby app:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker run --rm -p 8080:8080 test-ruby-app

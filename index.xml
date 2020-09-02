@@ -324,7 +324,7 @@ Options  -h, --help Help for &#39;pack&#39; --no-color Disable color output -q, 
       <guid>https://buildpacks.io/docs/reference/pack/pack_build/</guid>
       <description>pack build Generate app image from source code
 Synopsis Generate app image from source code
-pack build &amp;lt;image-name&amp;gt; [flags] Options  -B, --builder string Builder image -b, --buildpack strings Buildpack reference in the form of &#39;&amp;lt;buildpack&amp;gt;@&amp;lt;version&amp;gt;&#39;, path to a buildpack directory (not supported on Windows), path/URL to a buildpack .tar or .tgz file, or the name of a packaged buildpack image Repeat for each buildpack in order, or supply once by comma-separated list --clear-cache Clear image&#39;s associated cache before building -D, --default-process string Set the default process type.</description>
+pack build &amp;lt;image-name&amp;gt; [flags] Options  -B, --builder string Builder image (default &amp;quot;cnbs/sample-builder:bionic&amp;quot;) -b, --buildpack strings Buildpack reference in the form of &#39;&amp;lt;buildpack&amp;gt;@&amp;lt;version&amp;gt;&#39;, path to a buildpack directory (not supported on Windows), path/URL to a buildpack .tar or .tgz file, or the name of a packaged buildpack image Repeat for each buildpack in order, or supply once by comma-separated list --clear-cache Clear image&#39;s associated cache before building -D, --default-process string Set the default process type.</description>
     </item>
     
     <item>

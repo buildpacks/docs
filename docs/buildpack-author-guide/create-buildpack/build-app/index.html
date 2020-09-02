@@ -347,8 +347,10 @@
           <h1 class="title">Building your application</h1>
         </div>
 
-        <p>Next, we&rsquo;ll make the build step install dependencies. This will require a few updates to the <code>build</code> script.</p>
+        <!-- test:suite=create-buildpack;weight=4 -->
+<p>Next, we&rsquo;ll make the build step install dependencies. This will require a few updates to the <code>build</code> script.</p>
 <p>Let&rsquo;s change <code>ruby-buildpack/bin/build</code> to look like the following:</p>
+<!-- test:file=ruby-buildpack/bin/build -->
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
 </span><span class="cp"></span><span class="nb">set</span> -eo pipefail
 
@@ -379,14 +381,12 @@ gem install bundler --no-ri --no-rdoc
 <span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing gems&#34;</span>
 bundle install
 </code></pre></div><p>If you build your app again:</p>
+<!-- test:exec -->
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 </code></pre></div><p>you will see the following output:</p>
-<pre><code>===&gt; DETECTING
-[detector] com.examples.buildpacks.ruby 0.0.1
-===&gt; ANALYZING
-[analyzer] Previous image with name &quot;index.docker.io/library/test-ruby-app:latest&quot; not found
-===&gt; RESTORING
-===&gt; BUILDING
+<p>The <strong>BUILDING</strong> process&hellip;</p>
+<!-- test:assert=contains -->
+<pre><code>===&gt; BUILDING
 [builder] ---&gt; Ruby Buildpack
 [builder] ---&gt; Downloading and extracting Ruby
 [builder] ---&gt; Installing bundler
@@ -410,15 +410,10 @@ bundle install
 [builder] Installing sinatra 2.0.8.1
 [builder] Bundle complete! 1 Gemfile dependency, 7 gems now installed.
 [builder] Use `bundle info [gemname]` to see where a bundled gem is installed.
-===&gt; EXPORTING
-[exporter] Adding layer 'launcher'
-[exporter] Adding layer 'com.examples.buildpacks.ruby:ruby'
-[exporter] Adding 1/1 app layer(s)
-[exporter] Adding layer 'config'
-[exporter] *** Images (50a49bab37d1):
-[exporter]       index.docker.io/library/test-ruby-app:latest
-Successfully built image test-ruby-app
-</code></pre><p>You should now see a newly created image named <code>test-ruby-app</code> in your Docker daemon. However, your app
+</code></pre><p>&hellip; and the successful completion of the app image creation:</p>
+<!-- test:assert=contains -->
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">Successfully built image test-ruby-app
+</code></pre></div><p>You should now see a newly created image named <code>test-ruby-app</code> in your Docker daemon. However, your app
 image is not yet runnable. We&rsquo;ll make the app image runnable in the next section.</p>
 <hr>
 <p><a href="/docs/buildpack-author-guide/create-buildpack/make-app-runnable" class="button bg-pink">Next Step</a></p>

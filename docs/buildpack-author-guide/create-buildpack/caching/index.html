@@ -347,7 +347,8 @@
           <h1 class="title">Improving performance with caching</h1>
         </div>
 
-        <p>We can improve performance by caching dependencies between builds, only re-downloading when necessary. To begin, let&rsquo;s create a cacheable <code>bundler</code> layer.</p>
+        <!-- test:suite=create-buildpack;weight=7 -->
+<p>We can improve performance by caching dependencies between builds, only re-downloading when necessary. To begin, let&rsquo;s create a cacheable <code>bundler</code> layer.</p>
 <h2 id="creating-the-bundler-layer">Creating the <code>bundler</code> layer</h2>
 <p>To do this, replace the following lines in the <code>build</code> script:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing gems&#34;</span>
@@ -359,6 +360,7 @@ mkdir -p <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span
 <span class="nb">echo</span> -e <span class="s1">&#39;cache = true\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">.toml&#34;</span>
 bundle install --path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> --binstubs <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span>
 </code></pre></div><p>Your full <code>ruby-buildpack/bin/build</code> script should now look like the following:</p>
+<!-- test:file=ruby-buildpack/bin/build -->
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
 </span><span class="cp"></span><span class="nb">set</span> -eo pipefail
 
@@ -406,8 +408,10 @@ cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span cl
 </span><span class="s">command = &#34;bundle exec ruby worker.rb&#34;
 </span><span class="s">EOL</span>
 </code></pre></div><p>Now when we run:</p>
+<!-- test:exec -->
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 </code></pre></div><p>You will see something similar to the following during the <code>EXPORTING</code> phase:</p>
+<!-- test:assert=contains -->
 <div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">[exporter] Adding layer &#39;com.examples.buildpacks.ruby:bundler&#39;
 </code></pre></div><h2 id="caching-dependencies">Caching dependencies</h2>
 <p>Now, let&rsquo;s implement the caching logic. We&rsquo;ll first need to create a <code>ruby-sample-app/Gemfile.lock</code> file with the contents given below:</p>
@@ -415,6 +419,7 @@ cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span cl
 <p>Typically you would run <code>bundle install</code> locally to generate this file, but for the sake
 of simplicity we&rsquo;ll create <code>ruby-sample-app/Gemfile.lock</code> manually.</p>
 </blockquote>
+<!-- test:file=ruby-sample-app/Gemfile.lock -->
 <div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">GEM
   remote: https://rubygems.org/
   specs:
@@ -467,6 +472,7 @@ bundle install --path <span class="s2">&#34;</span><span class="nv">$bundlerlaye
     bundle install --path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> --binstubs <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span>
 <span class="k">fi</span>
 </code></pre></div><p>Your full <code>ruby-buildpack/bin/build</code> script will now look like this:</p>
+<!-- test:file=ruby-buildpack/bin/build -->
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
 </span><span class="cp"></span><span class="nb">set</span> -eo pipefail
 
@@ -526,8 +532,10 @@ cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span cl
 </span><span class="s">command = &#34;bundle exec ruby worker.rb&#34;
 </span><span class="s">EOL</span>
 </code></pre></div><p>Now when you build your app:</p>
+<!-- test:exec -->
 <div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 </code></pre></div><p>it will download the gems:</p>
+<!-- test:assert=contains -->
 <div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">===&gt; BUILDING
 [builder] ---&gt; Ruby Buildpack
 [builder] ---&gt; Downloading and extracting Ruby
@@ -536,8 +544,10 @@ cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span cl
 [builder] 1 gem installed
 [builder] ---&gt; Installing gems
 </code></pre></div><p>If you build the app again:</p>
+<!-- test:exec -->
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 </code></pre></div><p>you will see the new caching logic at work during the <code>BUILDING</code> phase:</p>
+<!-- test:assert=contains -->
 <div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">===&gt; BUILDING
 [builder] ---&gt; Ruby Buildpack
 [builder] ---&gt; Downloading and extracting Ruby
