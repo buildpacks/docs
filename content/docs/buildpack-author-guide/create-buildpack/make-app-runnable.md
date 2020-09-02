@@ -1,11 +1,9 @@
 +++
 title="Make your application runnable"
 weight=405
-creatordisplayname = "Scott Sisil"
-creatoremail = "ssisil@pivotal.io"
-lastmodifierdisplayname = "Javier Romero"
-lastmodifieremail = "jromero@pivotal.io"
 +++
+
+<!-- test:suite=create-buildpack;weight=5 -->
 
 To make your app runnable, a default start command must be set. You'll need to add the following to the end of your `build` script:
 
@@ -24,6 +22,7 @@ EOL
 
 Your full `ruby-buildpack/bin/build` script should now look like the following:
 
+<!-- test:file=ruby-buildpack/bin/build -->
 ```bash
 #!/usr/bin/env bash
 set -eo pipefail
@@ -66,6 +65,7 @@ EOL
 
 Then rebuild your app using the updated buildpack:
 
+<!-- test:exec -->
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 ```

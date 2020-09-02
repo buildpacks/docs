@@ -3,6 +3,8 @@ title="Making your buildpack configurable"
 weight=408
 +++
 
+<!-- test:suite=create-buildpack;weight=8 -->
+
 It's likely that not all Ruby apps will want to use the same version of Ruby. Let's make the Ruby version configurable.
 
 ## Select Ruby version
@@ -11,6 +13,7 @@ We'll allow buildpack users to define the desired Ruby version via a `.ruby-vers
 
 Update `ruby-buildpack/bin/detect` to look like this:
 
+<!-- test:file=ruby-buildpack/bin/detect -->
 ```bash
 #!/usr/bin/env bash
 set -eo pipefail
@@ -36,6 +39,7 @@ Then you will need to update your `build` script to look for the recorded Ruby v
 
 Your `ruby-buildpack/bin/build` script should look like the following:
 
+<!-- test:file=ruby-buildpack/bin/build -->
 ```bash
 #!/usr/bin/env bash
 set -eo pipefail
@@ -102,18 +106,21 @@ EOL
 
 Finally, create a file `ruby-sample-app/.ruby-version` with the following contents:
 
+<!-- test:file=ruby-sample-app/.ruby-version -->
 ```
 2.5.0
 ```
 
 Now when you run:
 
+<!-- test:exec -->
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 ```
 
 You will notice that version of Ruby specified in the app's `.ruby-version` file is downloaded.
 
+<!-- test:assert=contains -->
 ```text
 ===> BUILDING
 [builder] ---> Ruby Buildpack

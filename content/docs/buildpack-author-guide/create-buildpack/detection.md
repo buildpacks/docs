@@ -1,8 +1,9 @@
-
 +++
 title="Detecting your application"
 weight=403
 +++
+
+<!-- test:suite=create-buildpack;weight=3 -->
 
 Next, you will want to actually detect that the app your are building is a Ruby app. In order to do this, you will need to check for a `Gemfile`.
 
@@ -16,6 +17,7 @@ fi
 
 Your `ruby-buildpack/bin/detect` script should look like this:
 
+<!-- test:file=ruby-buildpack/bin/detect -->
 ```bash
 #!/usr/bin/env bash
 set -eo pipefail
@@ -27,12 +29,14 @@ fi
 
 Next, rebuild your app with the updated buildpack:
 
+<!-- test:exec;exit-code=-1 -->
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 ```
 
 You should see the following output:
 
+<!-- test:assert=contains -->
 ```
 ===> DETECTING
 [detector] com.examples.buildpacks.ruby 0.0.1

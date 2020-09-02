@@ -3,10 +3,13 @@ title="Specify multiple process types"
 weight=406
 +++
 
+<!-- test:suite=create-buildpack;weight=6 -->
+
 One of the benefits of buildpacks is that they are multi-process - an image can have multiple entrypoints for each operational mode. Let's see how this works. We will extend our app to have a worker process.
 
 Let's create a worker file, `ruby-sample-app/worker.rb`, with the following contents:
 
+<!-- test:file=ruby-sample-app/worker.rb -->
 ```ruby
 for i in 0..5
     puts "Running a worker task..."
@@ -37,6 +40,7 @@ EOL
 
 Your full `ruby-buildpack/bin/build` script should now look like the following:
 
+<!-- test:file=ruby-buildpack/bin/build -->
 ```bash
 #!/usr/bin/env bash
 set -eo pipefail
@@ -85,18 +89,21 @@ EOL
 
 Now if you rebuild your app using the updated buildpack:
 
+<!-- test:exec -->
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 ```
 
 You should then be able to run your new Ruby worker process:
 
+<!-- test:exec -->
 ```bash
 docker run --rm --entrypoint worker test-ruby-app
 ```
 
 and see the worker log output:
 
+<!-- test:assert=contains -->
 ```text
 Running a worker task...
 Running a worker task...
