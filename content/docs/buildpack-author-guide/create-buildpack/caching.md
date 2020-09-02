@@ -3,6 +3,8 @@ title="Improving performance with caching"
 weight=407
 +++
 
+<!-- test:suite=create-buildpack;weight=7 -->
+
 We can improve performance by caching dependencies between builds, only re-downloading when necessary. To begin, let's create a cacheable `bundler` layer.
 
 ## Creating the `bundler` layer
@@ -26,6 +28,7 @@ bundle install --path "$bundlerlayer" --binstubs "$bundlerlayer/bin"
 
 Your full `ruby-buildpack/bin/build` script should now look like the following:
 
+<!-- test:file=ruby-buildpack/bin/build -->
 ```bash
 #!/usr/bin/env bash
 set -eo pipefail
@@ -77,12 +80,14 @@ EOL
 
 Now when we run:
 
+<!-- test:exec -->
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 ```
 
 You will see something similar to the following during the `EXPORTING` phase:
 
+<!-- test:assert=contains -->
 ```text
 [exporter] Adding layer 'com.examples.buildpacks.ruby:bundler'
 ```
@@ -94,6 +99,7 @@ Now, let's implement the caching logic. We'll first need to create a `ruby-sampl
 > Typically you would run `bundle install` locally to generate this file, but for the sake 
 > of simplicity we'll create `ruby-sample-app/Gemfile.lock` manually.
 
+<!-- test:file=ruby-sample-app/Gemfile.lock -->
 ```text
 GEM
   remote: https://rubygems.org/
@@ -159,6 +165,7 @@ fi
 
 Your full `ruby-buildpack/bin/build` script will now look like this:
 
+<!-- test:file=ruby-buildpack/bin/build -->
 ```bash
 #!/usr/bin/env bash
 set -eo pipefail
@@ -222,12 +229,14 @@ EOL
 
 Now when you build your app:
 
+<!-- test:exec -->
 ```text
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 ```
 
 it will download the gems:
 
+<!-- test:assert=contains -->
 ```text
 ===> BUILDING
 [builder] ---> Ruby Buildpack
@@ -240,12 +249,14 @@ it will download the gems:
 
 If you build the app again:
 
+<!-- test:exec -->
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 ```
 
 you will see the new caching logic at work during the `BUILDING` phase:
 
+<!-- test:assert=contains -->
 ```text
 ===> BUILDING
 [builder] ---> Ruby Buildpack

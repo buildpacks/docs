@@ -3,10 +3,13 @@ title="Building blocks of a Cloud Native Buildpack"
 weight=402
 +++
 
+<!-- test:suite=create-buildpack;weight=2 -->
+
 Now we will set up the buildpack scaffolding. 
 
 Let's create the directory where your buildpack will live:
 
+<!-- test:exec -->
 ```bash
 mkdir ruby-buildpack
 ```
@@ -17,6 +20,7 @@ You will now need a `buildpack.toml` to describe our buildpack.
 
 Create the `ruby-buildpack/buildpack.toml` file and copy the following into it:
 
+<!-- test:file=ruby-buildpack/buildpack.toml -->
 ```toml
 # Buildpack API version
 api = "0.2"
@@ -40,12 +44,14 @@ Next you will need to create the `detect` and `build` scripts. These files must 
 
 Create your `bin` directory and then change to that directory.
 
+<!-- test:exec -->
 ```bash
 mkdir ruby-buildpack/bin
 ```
 
 Now create your `ruby-buildpack/bin/detect` file and copy in the following contents:
 
+<!-- test:file=ruby-buildpack/bin/detect -->
 ```bash
 #!/usr/bin/env bash
 set -eo pipefail
@@ -55,6 +61,7 @@ exit 1
 
 Now create your `ruby-buildpack/bin/build` and copy in the following contents:
 
+<!-- test:file=ruby-buildpack/bin/build -->
 ```bash
 #!/usr/bin/env bash
 set -eo pipefail
@@ -65,6 +72,7 @@ exit 1
 
 You will need to make both of these files executable, so run the following command:
 
+<!-- test:exec -->
 ```bash
 chmod +x ruby-buildpack/bin/detect ruby-buildpack/bin/build
 ```
@@ -77,12 +85,14 @@ In order to test your buildpack, you will need to run the buildpack against your
 
 Set your default [builder][builder] by running the following:
 
+<!-- test:exec -->
 ```bash
 pack set-default-builder cnbs/sample-builder:bionic
 ```
 
 Then run the following `pack` command:
 
+<!-- test:exec;exit-code=1 -->
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 ```
@@ -91,11 +101,12 @@ The `pack build` command takes in your Ruby sample app as the `--path` argument 
 
 After running the command, you should see that it failed to detect, as the `detect` script is currently written to simply error out.
 
+<!-- test:assert=contains -->
 ```
 ===> DETECTING
+[detector] err:  com.examples.buildpacks.ruby@0.0.1 (1)
 [detector] ERROR: No buildpack groups passed detection.
-[detector] ERROR: Please check that you are running against the correct path.
-[detector] ERROR: failed to detect: no buildpacks participating
+[detector] ERROR: failed to detect: buildpack(s) failed with err
 ```
 
 ---

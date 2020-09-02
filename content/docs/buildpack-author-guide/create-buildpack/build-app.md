@@ -3,10 +3,13 @@ title="Building your application"
 weight=404
 +++
 
+<!-- test:suite=create-buildpack;weight=4 -->
+
 Next, we'll make the build step install dependencies. This will require a few updates to the `build` script.
 
 Let's change `ruby-buildpack/bin/build` to look like the following:
 
+<!-- test:file=ruby-buildpack/bin/build -->
 ```bash
 #!/usr/bin/env bash
 set -eo pipefail
@@ -41,18 +44,17 @@ bundle install
 
 If you build your app again:
 
+<!-- test:exec -->
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 ```
 
 you will see the following output:
 
+The **BUILDING** process...
+
+<!-- test:assert=contains -->
 ```
-===> DETECTING
-[detector] com.examples.buildpacks.ruby 0.0.1
-===> ANALYZING
-[analyzer] Previous image with name "index.docker.io/library/test-ruby-app:latest" not found
-===> RESTORING
 ===> BUILDING
 [builder] ---> Ruby Buildpack
 [builder] ---> Downloading and extracting Ruby
@@ -77,13 +79,12 @@ you will see the following output:
 [builder] Installing sinatra 2.0.8.1
 [builder] Bundle complete! 1 Gemfile dependency, 7 gems now installed.
 [builder] Use `bundle info [gemname]` to see where a bundled gem is installed.
-===> EXPORTING
-[exporter] Adding layer 'launcher'
-[exporter] Adding layer 'com.examples.buildpacks.ruby:ruby'
-[exporter] Adding 1/1 app layer(s)
-[exporter] Adding layer 'config'
-[exporter] *** Images (50a49bab37d1):
-[exporter]       index.docker.io/library/test-ruby-app:latest
+```
+
+... and the successful completion of the app image creation:
+
+<!-- test:assert=contains -->
+```text
 Successfully built image test-ruby-app
 ```
 
