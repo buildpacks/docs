@@ -1,7 +1,7 @@
 baseURL = "https://buildpacks.io/"
 languageCode = "en-us"
 
-title = "Cloud Native Buildpack Documentation"
+title = "Cloud Native Buildpacks"
 theme = "buildpacks"
 
 pygmentsUseClasses = true
@@ -14,6 +14,7 @@ unsafe= true
 twitter_handle = "buildpacks_io"
 github_base_url = "https://github.com/buildpacks"
 slack_invite_url = "https://slack.buildpacks.io/"
+description = "Cloud Native Buildpacks transform your application source code into images that can run on any cloud."
 
 [menu]
   [[menu.main]]
