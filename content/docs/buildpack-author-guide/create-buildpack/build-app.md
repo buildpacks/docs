@@ -51,10 +51,13 @@ pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 
 you will see the following output:
 
-The **BUILDING** process...
-
-<!-- test:assert=contains -->
+<!-- test:assert=contains;ignore-lines=... -->
 ```
+===> DETECTING
+...
+===> ANALYZING
+...
+===> RESTORING
 ===> BUILDING
 [builder] ---> Ruby Buildpack
 [builder] ---> Downloading and extracting Ruby
@@ -65,26 +68,9 @@ The **BUILDING** process...
 [builder] Fetching gem metadata from https://rubygems.org/....
 [builder] Resolving dependencies...
 [builder] Using bundler 2.1.4
-[builder] Fetching ruby2_keywords 0.0.2
-[builder] Installing ruby2_keywords 0.0.2
-[builder] Fetching mustermann 1.1.1
-[builder] Installing mustermann 1.1.1
-[builder] Fetching rack 2.2.3
-[builder] Installing rack 2.2.3
-[builder] Fetching rack-protection 2.0.8.1
-[builder] Installing rack-protection 2.0.8.1
-[builder] Fetching tilt 2.0.10
-[builder] Installing tilt 2.0.10
-[builder] Fetching sinatra 2.0.8.1
-[builder] Installing sinatra 2.0.8.1
+...
 [builder] Bundle complete! 1 Gemfile dependency, 7 gems now installed.
-[builder] Use `bundle info [gemname]` to see where a bundled gem is installed.
-```
-
-... and the successful completion of the app image creation:
-
-<!-- test:assert=contains -->
-```text
+...
 Successfully built image test-ruby-app
 ```
 
