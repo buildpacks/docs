@@ -3,14 +3,32 @@ title="Set up your local environment"
 weight=401
 +++
 
+<!-- test:suite=create-buildpack;weight=1 -->
+
+<!-- test:setup:exec;exit-code=-1 -->
+<!--
+```bash
+docker rmi test-ruby-app
+```
+-->
+
+<!-- test:teardown:exec -->
+<!--
+```bash
+docker rmi test-ruby-app
+```
+-->
+
 First, we'll create a sample Ruby app that you can use when developing your buildpack:
 
+<!-- test:exec -->
 ```bash
 mkdir ruby-sample-app
 ```
 
 Create a file in the current directory called `ruby-sample-app/app.rb` with the following contents:
 
+<!-- test:file=ruby-sample-app/app.rb -->
 ```ruby
 require 'sinatra'
 
@@ -24,6 +42,7 @@ end
 
 Then, create a file called `ruby-sample-app/Gemfile` with the following contents:
 
+<!-- test:file=ruby-sample-app/Gemfile -->
 ```ruby
 source "https://rubygems.org"
 
@@ -34,6 +53,7 @@ gem "sinatra"
 
 Finally, make sure your local Docker daemon is running by executing:
 
+<!-- test:exec -->
 ```bash
 docker version
 ```

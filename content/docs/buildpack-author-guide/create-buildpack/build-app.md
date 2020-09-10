@@ -3,10 +3,13 @@ title="Building your application"
 weight=404
 +++
 
+<!-- test:suite=create-buildpack;weight=4 -->
+
 Next, we'll make the build step install dependencies. This will require a few updates to the `build` script.
 
 Let's change `ruby-buildpack/bin/build` to look like the following:
 
+<!-- test:file=ruby-buildpack/bin/build -->
 ```bash
 #!/usr/bin/env bash
 set -eo pipefail
@@ -41,49 +44,29 @@ bundle install
 
 If you build your app again:
 
+<!-- test:exec -->
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 ```
 
 you will see the following output:
 
+<!-- test:assert=contains;ignore-lines=... -->
 ```
 ===> DETECTING
-[detector] com.examples.buildpacks.ruby 0.0.1
+...
 ===> ANALYZING
-[analyzer] Previous image with name "index.docker.io/library/test-ruby-app:latest" not found
+...
 ===> RESTORING
 ===> BUILDING
 [builder] ---> Ruby Buildpack
 [builder] ---> Downloading and extracting Ruby
 [builder] ---> Installing bundler
-[builder] Successfully installed bundler-2.1.4
-[builder] 1 gem installed
+...
 [builder] ---> Installing gems
-[builder] Fetching gem metadata from https://rubygems.org/....
-[builder] Resolving dependencies...
-[builder] Using bundler 2.1.4
-[builder] Fetching ruby2_keywords 0.0.2
-[builder] Installing ruby2_keywords 0.0.2
-[builder] Fetching mustermann 1.1.1
-[builder] Installing mustermann 1.1.1
-[builder] Fetching rack 2.2.3
-[builder] Installing rack 2.2.3
-[builder] Fetching rack-protection 2.0.8.1
-[builder] Installing rack-protection 2.0.8.1
-[builder] Fetching tilt 2.0.10
-[builder] Installing tilt 2.0.10
-[builder] Fetching sinatra 2.0.8.1
-[builder] Installing sinatra 2.0.8.1
-[builder] Bundle complete! 1 Gemfile dependency, 7 gems now installed.
-[builder] Use `bundle info [gemname]` to see where a bundled gem is installed.
+...
 ===> EXPORTING
-[exporter] Adding layer 'launcher'
-[exporter] Adding layer 'com.examples.buildpacks.ruby:ruby'
-[exporter] Adding 1/1 app layer(s)
-[exporter] Adding layer 'config'
-[exporter] *** Images (50a49bab37d1):
-[exporter]       index.docker.io/library/test-ruby-app:latest
+...
 Successfully built image test-ruby-app
 ```
 
