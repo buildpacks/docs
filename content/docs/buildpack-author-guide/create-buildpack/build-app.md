@@ -62,14 +62,10 @@ you will see the following output:
 [builder] ---> Ruby Buildpack
 [builder] ---> Downloading and extracting Ruby
 [builder] ---> Installing bundler
-[builder] Successfully installed bundler-2.1.4
-[builder] 1 gem installed
-[builder] ---> Installing gems
-[builder] Fetching gem metadata from https://rubygems.org/....
-[builder] Resolving dependencies...
-[builder] Using bundler 2.1.4
 ...
-[builder] Bundle complete! 1 Gemfile dependency, 7 gems now installed.
+[builder] ---> Installing gems
+...
+===> EXPORTING
 ...
 Successfully built image test-ruby-app
 ```
