@@ -8,26 +8,25 @@
 
 
 
+
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="We can improve performance by caching dependencies between builds, only re-downloading when necessary. To begin, let&amp;rsquo;s create a cacheable bundler layer.
+Creating the bundler layer To do this,…"/>
 
 
-
-<meta property="og:title" content="Cloud Native Buildpack Documentation · Improving performance with caching">
-
-<meta property="og:type" content="documentation">
-
+<meta property="og:title" content="Cloud Native Buildpacks · Improving performance with caching">
+<meta property="og:type" content="website">
 <meta property="og:url" content="https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/caching/">
 <meta property="og:locale" content="en_US">
-
-<meta property="og:site_name" content="Cloud Native Buildpack Documentation">
-
-
+<meta property="og:site_name" content="Cloud Native Buildpacks">
+<meta property="og:description" content="We can improve performance by caching dependencies between builds, only re-downloading when necessary. To begin, let&amp;rsquo;s create a cacheable bundler layer.
+Creating the bundler layer To do this,…">
 <meta name="og:type" content="article">
-<meta name="og:image" content="https://buildpacks.io/images/buildpacks-logo.svg">
+<meta name="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta name="og:image:alt" content="Buildpacks project logo">
-<meta name="og:image:type" content="image/svg+xml">
+<meta name="og:image:type" content="image/jpeg">
 
 
 
@@ -68,7 +67,7 @@
       });
     </script>
 
-    <title>Improving performance with caching · Cloud Native Buildpack Documentation</title>
+    <title>Improving performance with caching · Cloud Native Buildpacks</title>
   </head>
   <body>
     <header class="container">
@@ -535,25 +534,23 @@ cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span cl
 <!-- test:exec -->
 <div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 </code></pre></div><p>it will download the gems:</p>
-<!-- test:assert=contains -->
+<!-- test:assert=contains;ignore-lines=... -->
 <div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">===&gt; BUILDING
 [builder] ---&gt; Ruby Buildpack
 [builder] ---&gt; Downloading and extracting Ruby
 [builder] ---&gt; Installing bundler
-[builder] Successfully installed bundler-2.1.4
-[builder] 1 gem installed
+...
 [builder] ---&gt; Installing gems
 </code></pre></div><p>If you build the app again:</p>
 <!-- test:exec -->
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 </code></pre></div><p>you will see the new caching logic at work during the <code>BUILDING</code> phase:</p>
-<!-- test:assert=contains -->
+<!-- test:assert=contains;ignore-lines=... -->
 <div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">===&gt; BUILDING
 [builder] ---&gt; Ruby Buildpack
 [builder] ---&gt; Downloading and extracting Ruby
 [builder] ---&gt; Installing bundler
-[builder] Successfully installed bundler-2.1.4
-[builder] 1 gem installed
+...
 [builder] ---&gt; Reusing gems
 </code></pre></div><p>Next, let&rsquo;s see how buildpack users may be able to provide configuration to the buildpack.</p>
 <hr>

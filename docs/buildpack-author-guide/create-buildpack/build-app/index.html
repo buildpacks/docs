@@ -8,26 +8,27 @@
 
 
 
+
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Next, we&amp;rsquo;ll make the build step install dependencies. This will require a few updates to the build script.
+Let&amp;rsquo;s change ruby-buildpack/bin/build to look like the following:
+#!/usr/bin/env…"/>
 
 
-
-<meta property="og:title" content="Cloud Native Buildpack Documentation · Building your application">
-
-<meta property="og:type" content="documentation">
-
+<meta property="og:title" content="Cloud Native Buildpacks · Building your application">
+<meta property="og:type" content="website">
 <meta property="og:url" content="https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/build-app/">
 <meta property="og:locale" content="en_US">
-
-<meta property="og:site_name" content="Cloud Native Buildpack Documentation">
-
-
+<meta property="og:site_name" content="Cloud Native Buildpacks">
+<meta property="og:description" content="Next, we&amp;rsquo;ll make the build step install dependencies. This will require a few updates to the build script.
+Let&amp;rsquo;s change ruby-buildpack/bin/build to look like the following:
+#!/usr/bin/env…">
 <meta name="og:type" content="article">
-<meta name="og:image" content="https://buildpacks.io/images/buildpacks-logo.svg">
+<meta name="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta name="og:image:alt" content="Buildpacks project logo">
-<meta name="og:image:type" content="image/svg+xml">
+<meta name="og:image:type" content="image/jpeg">
 
 
 
@@ -68,7 +69,7 @@
       });
     </script>
 
-    <title>Building your application · Cloud Native Buildpack Documentation</title>
+    <title>Building your application · Cloud Native Buildpacks</title>
   </head>
   <body>
     <header class="container">
@@ -384,36 +385,23 @@ bundle install
 <!-- test:exec -->
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 </code></pre></div><p>you will see the following output:</p>
-<p>The <strong>BUILDING</strong> process&hellip;</p>
-<!-- test:assert=contains -->
-<pre><code>===&gt; BUILDING
+<!-- test:assert=contains;ignore-lines=... -->
+<pre><code>===&gt; DETECTING
+...
+===&gt; ANALYZING
+...
+===&gt; RESTORING
+===&gt; BUILDING
 [builder] ---&gt; Ruby Buildpack
 [builder] ---&gt; Downloading and extracting Ruby
 [builder] ---&gt; Installing bundler
-[builder] Successfully installed bundler-2.1.4
-[builder] 1 gem installed
+...
 [builder] ---&gt; Installing gems
-[builder] Fetching gem metadata from https://rubygems.org/....
-[builder] Resolving dependencies...
-[builder] Using bundler 2.1.4
-[builder] Fetching ruby2_keywords 0.0.2
-[builder] Installing ruby2_keywords 0.0.2
-[builder] Fetching mustermann 1.1.1
-[builder] Installing mustermann 1.1.1
-[builder] Fetching rack 2.2.3
-[builder] Installing rack 2.2.3
-[builder] Fetching rack-protection 2.0.8.1
-[builder] Installing rack-protection 2.0.8.1
-[builder] Fetching tilt 2.0.10
-[builder] Installing tilt 2.0.10
-[builder] Fetching sinatra 2.0.8.1
-[builder] Installing sinatra 2.0.8.1
-[builder] Bundle complete! 1 Gemfile dependency, 7 gems now installed.
-[builder] Use `bundle info [gemname]` to see where a bundled gem is installed.
-</code></pre><p>&hellip; and the successful completion of the app image creation:</p>
-<!-- test:assert=contains -->
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">Successfully built image test-ruby-app
-</code></pre></div><p>You should now see a newly created image named <code>test-ruby-app</code> in your Docker daemon. However, your app
+...
+===&gt; EXPORTING
+...
+Successfully built image test-ruby-app
+</code></pre><p>You should now see a newly created image named <code>test-ruby-app</code> in your Docker daemon. However, your app
 image is not yet runnable. We&rsquo;ll make the app image runnable in the next section.</p>
 <hr>
 <p><a href="/docs/buildpack-author-guide/create-buildpack/make-app-runnable" class="button bg-pink">Next Step</a></p>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>App Developer&#39;s Guide on Cloud Native Buildpack Documentation</title>
+    <title>App Developer&#39;s Guide on Cloud Native Buildpacks</title>
     <link>https://buildpacks.io/docs/app-developer-guide/</link>
-    <description>Recent content in App Developer&#39;s Guide on Cloud Native Buildpack Documentation</description>
+    <description>Recent content in App Developer&#39;s Guide on Cloud Native Buildpacks</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
