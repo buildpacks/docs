@@ -39,7 +39,7 @@
           {{ end }}
         </ul>
       {{ else }}
-        <h{{ $headerLvl }}><a href="{{.Permalink}}" class="">{{ .Title }}</a></h{{ $headerLvl }}>
+        <h{{ $headerLvl }}><a href="{{.Permalink}}" class="">{{ .Title | markdownify }}</a></h{{ $headerLvl }}>
         <p class="m-1">{{ .Summary | replaceRE "<h[0-9].*>.*</h[0-9]>" "" | plainify | safeHTML }}</p>
 
         {{ if .Params.include_summaries }}
