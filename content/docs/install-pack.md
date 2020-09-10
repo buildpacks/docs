@@ -41,7 +41,35 @@ From there, you can copy the executable to a directory like `/usr/local/bin` or 
 
 > **Optional:** Enable [auto-completion](#auto-completion)
 
-<hr/>
+---
+
+### Ready-to-Run Container Images
+
+`pack` is also available as container images on Docker Hub as [`buildpacksio/pack`](https://hub.docker.com/r/buildpacksio/pack)
+([definition files](https://github.com/buildpacks/pack/blob/main/.github/workflows/delivery/docker/Dockerfile)).
+
+#### Tags
+
+* Use this tag to track the latest release:
+    * `buildpacksio/pack:latest`
+* Use a version tag to pin a specific release:
+    * `buildpacksio/pack:{{< latest >}}`
+    * [other versions](https://hub.docker.com/r/buildpacksio/pack/tags)
+
+#### Usage
+
+In some container environments you may be required to mount your local Docker daemon's socket.
+
+For example, using the Docker CLI:
+
+```shell
+docker run \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v $PWD:/workspace -w /workspace \
+  buildpacksio/pack build <my-image> --builder <builder-image>
+```
+
+---
 
 ### Windows
 To install `pack` on Windows, the easiest way is to use Chocolatey:
