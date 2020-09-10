@@ -30,7 +30,7 @@ endif
 
 install-ugo:
 	@echo "> Installing ugo..."
-	cd tools; go get github.com/jromero/ugo/cmd/ugo
+	cd tools; go get -u github.com/jromero/ugo/cmd/ugo@0.0.3
 
 mk-pack-docs:
 	@echo "> Updating Pack CLI Documentation"
