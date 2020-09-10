@@ -236,14 +236,13 @@ pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 
 it will download the gems:
 
-<!-- test:assert=contains -->
+<!-- test:assert=contains;ignore-lines=... -->
 ```text
 ===> BUILDING
 [builder] ---> Ruby Buildpack
 [builder] ---> Downloading and extracting Ruby
 [builder] ---> Installing bundler
-[builder] Successfully installed bundler-2.1.4
-[builder] 1 gem installed
+...
 [builder] ---> Installing gems
 ```
 
@@ -256,14 +255,13 @@ pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 
 you will see the new caching logic at work during the `BUILDING` phase:
 
-<!-- test:assert=contains -->
+<!-- test:assert=contains;ignore-lines=... -->
 ```text
 ===> BUILDING
 [builder] ---> Ruby Buildpack
 [builder] ---> Downloading and extracting Ruby
 [builder] ---> Installing bundler
-[builder] Successfully installed bundler-2.1.4
-[builder] 1 gem installed
+...
 [builder] ---> Reusing gems
 ```
 
