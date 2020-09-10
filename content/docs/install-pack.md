@@ -43,6 +43,21 @@ From there, you can copy the executable to a directory like `/usr/local/bin` or 
 
 <hr/>
 
+### Ready-to-Run Container Images
+
+`pack` is also available as container images on Docker Hub as [`buildpacksio/pack`](https://hub.docker.com/r/buildpacksio/pack)
+([definition files](https://github.com/buildpacks/pack/blob/main/.github/workflows/delivery/docker/Dockerfile)).
+Use `buildpacksio/pack:latest` to track the latest release, or `buildpacksio/pack:0.13.1` to pin to specific releases.
+variables.
+
+Note that some container environments may require mounting your local Docker daemon's socket:
+```
+docker run \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  -v /work:$PWD -w /work \
+  buildpacksio/pack build myimage --builder mybuilder
+```
+
 ### Windows
 To install `pack` on Windows, the easiest way is to use Chocolatey:
 ```
