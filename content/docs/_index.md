@@ -21,13 +21,16 @@ Set of guides tailored to specific personas:
 *  [Buildpack Authors](/docs/buildpack-author-guide/)
 *  [Operators](/docs/operator-guide/)
 
-### [Reference](/docs/reference)
+### [Tools](/docs/tools/)
+
+* [Pack](/docs/tools/pack/) - A command line tool (and Go library) for Cloud Native Buildpacks.
+
+### [Reference](/docs/reference/)
 
 Reference documents for various key aspects of the project.
 
 * [Configuration](/docs/config/) - Schema definitions for configuration files.
 * [Specification](/docs/spec/) - An overview of the Cloud Native Buildpacks API specification.
-* [Pack Command Line Docs](/docs/reference/pack-cli/) - Documentation for the Pack Command Line Interface.
 
 ---
 
