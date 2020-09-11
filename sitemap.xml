@@ -31,7 +31,7 @@
   </url>
   
   <url>
-    <loc>https://buildpacks.io/docs/install-pack/</loc>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/install/</loc>
   </url>
   
   <url>
@@ -107,6 +107,10 @@
   </url>
   
   <url>
+    <loc>https://buildpacks.io/docs/tools/</loc>
+  </url>
+  
+  <url>
     <loc>https://buildpacks.io/docs/reference/</loc>
   </url>
   
@@ -159,7 +163,7 @@
   </url>
   
   <url>
-    <loc>https://buildpacks.io/docs/reference/pack/concepts/</loc>
+    <loc>https://buildpacks.io/docs/tools/pack/concepts/</loc>
   </url>
   
   <url>
@@ -171,75 +175,79 @@
   </url>
   
   <url>
-    <loc>https://buildpacks.io/docs/reference/pack/pack/</loc>
+    <loc>https://buildpacks.io/docs/tools/pack/</loc>
   </url>
   
   <url>
-    <loc>https://buildpacks.io/docs/reference/pack/pack_build/</loc>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack/</loc>
   </url>
   
   <url>
-    <loc>https://buildpacks.io/docs/reference/pack/</loc>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_build/</loc>
   </url>
   
   <url>
-    <loc>https://buildpacks.io/docs/reference/pack/pack_completion/</loc>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/</loc>
   </url>
   
   <url>
-    <loc>https://buildpacks.io/docs/reference/pack/pack_create-builder/</loc>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_completion/</loc>
   </url>
   
   <url>
-    <loc>https://buildpacks.io/docs/reference/pack/pack_inspect-builder/</loc>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_create-builder/</loc>
   </url>
   
   <url>
-    <loc>https://buildpacks.io/docs/reference/pack/pack_inspect-image/</loc>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_inspect-builder/</loc>
   </url>
   
   <url>
-    <loc>https://buildpacks.io/docs/reference/pack/pack_list-trusted-builders/</loc>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_inspect-image/</loc>
   </url>
   
   <url>
-    <loc>https://buildpacks.io/docs/reference/pack/pack_package-buildpack/</loc>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_list-trusted-builders/</loc>
   </url>
   
   <url>
-    <loc>https://buildpacks.io/docs/reference/pack/pack_rebase/</loc>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_package-buildpack/</loc>
   </url>
   
   <url>
-    <loc>https://buildpacks.io/docs/reference/pack/pack_report/</loc>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_rebase/</loc>
   </url>
   
   <url>
-    <loc>https://buildpacks.io/docs/reference/pack/pack_set-default-builder/</loc>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_report/</loc>
   </url>
   
   <url>
-    <loc>https://buildpacks.io/docs/reference/pack/pack_set-run-image-mirrors/</loc>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_set-default-builder/</loc>
   </url>
   
   <url>
-    <loc>https://buildpacks.io/docs/reference/pack/pack_suggest-builders/</loc>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_set-run-image-mirrors/</loc>
   </url>
   
   <url>
-    <loc>https://buildpacks.io/docs/reference/pack/pack_suggest-stacks/</loc>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_suggest-builders/</loc>
   </url>
   
   <url>
-    <loc>https://buildpacks.io/docs/reference/pack/pack_trust-builder/</loc>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_suggest-stacks/</loc>
   </url>
   
   <url>
-    <loc>https://buildpacks.io/docs/reference/pack/pack_untrust-builder/</loc>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_trust-builder/</loc>
   </url>
   
   <url>
-    <loc>https://buildpacks.io/docs/reference/pack/pack_version/</loc>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_untrust-builder/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_version/</loc>
   </url>
   
   <url>
@@ -267,7 +275,7 @@
   </url>
   
   <url>
-    <loc>https://buildpacks.io/docs/reference/pack/concepts/trusted_builders/</loc>
+    <loc>https://buildpacks.io/docs/tools/pack/concepts/trusted_builders/</loc>
   </url>
   
 </urlset>

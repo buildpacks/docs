@@ -12,8 +12,8 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="pack for the journey In this tutorial, we&amp;rsquo;ll explain how to use pack and buildpacks to create a runnable app image from source code.
-That means you&amp;rsquo;ll need to make sure you have pack…"/>
+<meta name="description" content="Pack for the journey In this tutorial, we&amp;rsquo;ll explain how to use pack and buildpacks to create a runnable app image from source code.
+In order to run the build process in an isolated fashion,…"/>
 
 
 <meta property="og:title" content="Cloud Native Buildpacks · An App&#39;s Brief Journey from Source to Image">
@@ -21,8 +21,8 @@ That means you&amp;rsquo;ll need to make sure you have pack…"/>
 <meta property="og:url" content="https://buildpacks.io/docs/app-journey/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-<meta property="og:description" content="pack for the journey In this tutorial, we&amp;rsquo;ll explain how to use pack and buildpacks to create a runnable app image from source code.
-That means you&amp;rsquo;ll need to make sure you have pack…">
+<meta property="og:description" content="Pack for the journey In this tutorial, we&amp;rsquo;ll explain how to use pack and buildpacks to create a runnable app image from source code.
+In order to run the build process in an isolated fashion,…">
 <meta name="og:type" content="article">
 <meta name="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta name="og:image:alt" content="Buildpacks project logo">
@@ -104,10 +104,6 @@ That means you&amp;rsquo;ll need to make sure you have pack…">
       <li data-nav-id="/docs/" class="dd-item depth-0">
         <a href="/docs/">Getting Started</a>
         <ul class="ml-2">
-              
-      <li data-nav-id="/docs/install-pack/" class="dd-item depth-1">
-        <a href="/docs/install-pack/">Installing <code>pack</code></a>
-      </li>
               
       <li data-nav-id="/docs/app-journey/" class="dd-item depth-1 active">
         <a href="/docs/app-journey/">An App&rsquo;s Brief Journey from Source to Image</a>
@@ -218,6 +214,83 @@ That means you&amp;rsquo;ll need to make sure you have pack…">
       </li>
           </ul>
       </li>
+      <li data-nav-id="/docs/tools/" class="dd-item depth-0 haschildren">
+        <a href="/docs/tools/">Tools</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/tools/pack/" class="dd-item depth-1 haschildren">
+        <a href="/docs/tools/pack/">Pack</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/tools/pack/concepts/" class="dd-item depth-2 collapse haschildren">
+        <a href="/docs/tools/pack/concepts/">Concepts</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/tools/pack/concepts/trusted_builders/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/concepts/trusted_builders/">Trusted Builders</a>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/" class="dd-item depth-2 collapse haschildren">
+        <a href="/docs/tools/pack/cli/">Pack CLI</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/tools/pack/cli/install/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/install/">Install</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack/">pack</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_build/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_build/">pack build</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_completion/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_completion/">pack completion</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_create-builder/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_create-builder/">pack create-builder</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_inspect-builder/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_inspect-builder/">pack inspect-builder</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_inspect-image/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_inspect-image/">pack inspect-image</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_list-trusted-builders/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_list-trusted-builders/">pack list-trusted-builders</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_package-buildpack/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_package-buildpack/">pack package-buildpack</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_rebase/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_rebase/">pack rebase</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_report/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_report/">pack report</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_set-default-builder/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_set-default-builder/">pack set-default-builder</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_set-run-image-mirrors/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_set-run-image-mirrors/">pack set-run-image-mirrors</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_suggest-builders/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_suggest-builders/">pack suggest-builders</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_suggest-stacks/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_suggest-stacks/">pack suggest-stacks</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_trust-builder/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_trust-builder/">pack trust-builder</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_untrust-builder/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_untrust-builder/">pack untrust-builder</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_version/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_version/">pack version</a>
+      </li>
+          </ul>
+      </li>
+          </ul>
+      </li>
+          </ul>
+      </li>
       <li data-nav-id="/docs/reference/" class="dd-item depth-0 haschildren">
         <a href="/docs/reference/">Reference</a>
           <ul class="ml-2">
@@ -232,70 +305,6 @@ That means you&amp;rsquo;ll need to make sure you have pack…">
       </li>
       <li data-nav-id="/docs/reference/config/project-descriptor/" class="dd-item depth-2 collapse">
         <a href="/docs/reference/config/project-descriptor/">project.toml</a>
-      </li>
-          </ul>
-      </li>
-      <li data-nav-id="/docs/reference/pack/" class="dd-item depth-1 collapse haschildren">
-        <a href="/docs/reference/pack/">Pack CLI</a>
-          <ul class="ml-2">
-      <li data-nav-id="/docs/reference/pack/concepts/" class="dd-item depth-2 collapse haschildren">
-        <a href="/docs/reference/pack/concepts/">Concepts</a>
-          <ul class="ml-2">
-      <li data-nav-id="/docs/reference/pack/concepts/trusted_builders/" class="dd-item depth-3 collapse">
-        <a href="/docs/reference/pack/concepts/trusted_builders/">Trusted Builders</a>
-      </li>
-          </ul>
-      </li>
-      <li data-nav-id="/docs/reference/pack/pack/" class="dd-item depth-2 collapse">
-        <a href="/docs/reference/pack/pack/">pack</a>
-      </li>
-      <li data-nav-id="/docs/reference/pack/pack_build/" class="dd-item depth-2 collapse">
-        <a href="/docs/reference/pack/pack_build/">pack build</a>
-      </li>
-      <li data-nav-id="/docs/reference/pack/pack_completion/" class="dd-item depth-2 collapse">
-        <a href="/docs/reference/pack/pack_completion/">pack completion</a>
-      </li>
-      <li data-nav-id="/docs/reference/pack/pack_create-builder/" class="dd-item depth-2 collapse">
-        <a href="/docs/reference/pack/pack_create-builder/">pack create-builder</a>
-      </li>
-      <li data-nav-id="/docs/reference/pack/pack_inspect-builder/" class="dd-item depth-2 collapse">
-        <a href="/docs/reference/pack/pack_inspect-builder/">pack inspect-builder</a>
-      </li>
-      <li data-nav-id="/docs/reference/pack/pack_inspect-image/" class="dd-item depth-2 collapse">
-        <a href="/docs/reference/pack/pack_inspect-image/">pack inspect-image</a>
-      </li>
-      <li data-nav-id="/docs/reference/pack/pack_list-trusted-builders/" class="dd-item depth-2 collapse">
-        <a href="/docs/reference/pack/pack_list-trusted-builders/">pack list-trusted-builders</a>
-      </li>
-      <li data-nav-id="/docs/reference/pack/pack_package-buildpack/" class="dd-item depth-2 collapse">
-        <a href="/docs/reference/pack/pack_package-buildpack/">pack package-buildpack</a>
-      </li>
-      <li data-nav-id="/docs/reference/pack/pack_rebase/" class="dd-item depth-2 collapse">
-        <a href="/docs/reference/pack/pack_rebase/">pack rebase</a>
-      </li>
-      <li data-nav-id="/docs/reference/pack/pack_report/" class="dd-item depth-2 collapse">
-        <a href="/docs/reference/pack/pack_report/">pack report</a>
-      </li>
-      <li data-nav-id="/docs/reference/pack/pack_set-default-builder/" class="dd-item depth-2 collapse">
-        <a href="/docs/reference/pack/pack_set-default-builder/">pack set-default-builder</a>
-      </li>
-      <li data-nav-id="/docs/reference/pack/pack_set-run-image-mirrors/" class="dd-item depth-2 collapse">
-        <a href="/docs/reference/pack/pack_set-run-image-mirrors/">pack set-run-image-mirrors</a>
-      </li>
-      <li data-nav-id="/docs/reference/pack/pack_suggest-builders/" class="dd-item depth-2 collapse">
-        <a href="/docs/reference/pack/pack_suggest-builders/">pack suggest-builders</a>
-      </li>
-      <li data-nav-id="/docs/reference/pack/pack_suggest-stacks/" class="dd-item depth-2 collapse">
-        <a href="/docs/reference/pack/pack_suggest-stacks/">pack suggest-stacks</a>
-      </li>
-      <li data-nav-id="/docs/reference/pack/pack_trust-builder/" class="dd-item depth-2 collapse">
-        <a href="/docs/reference/pack/pack_trust-builder/">pack trust-builder</a>
-      </li>
-      <li data-nav-id="/docs/reference/pack/pack_untrust-builder/" class="dd-item depth-2 collapse">
-        <a href="/docs/reference/pack/pack_untrust-builder/">pack untrust-builder</a>
-      </li>
-      <li data-nav-id="/docs/reference/pack/pack_version/" class="dd-item depth-2 collapse">
-        <a href="/docs/reference/pack/pack_version/">pack version</a>
       </li>
           </ul>
       </li>
@@ -346,12 +355,13 @@ That means you&amp;rsquo;ll need to make sure you have pack…">
           <h1 class="title">An App&rsquo;s Brief Journey from Source to Image</h1>
         </div>
 
-        <h2 id="pack-for-the-journey"><code>pack</code> for the journey</h2>
+        <h2 id="pack-for-the-journey">Pack for the journey</h2>
 <p>In this tutorial, we&rsquo;ll explain how to use <code>pack</code> and <strong>buildpacks</strong> to create a runnable app image from source code.</p>
-<p>That means you&rsquo;ll need to make sure you have <code>pack</code> installed:</p>
+<p>In order to run the build process in an isolated fashion, <code>pack</code> uses <strong>Docker</strong>. That means you&rsquo;ll need to make sure you have both <code>docker</code> and <code>pack</code> installed:</p>
+<a href='https://store.docker.com/search?type=edition&amp;offering=community' class='download-button button icon-button bg-blue'> Install Docker </a><br />
 <a href='/docs/install-pack' class='download-button button icon-button bg-pink'> Install pack </a><br />
 <blockquote>
-<p><strong>NOTE:</strong> <code>pack</code> is only one implementation of the <a href="https://github.com/buildpacks/spec/blob/main/platform.md">Cloud Native Buildpacks Platform Specification</a>.</p>
+<p><strong>NOTE:</strong> <code>pack</code> is only one implementation of the <a href="https://github.com/buildpacks/spec/blob/main/platform.md">Cloud Native Buildpacks Platform Specification</a>. Additionally, not all Cloud Native Buildpacks Platforms require Docker.</p>
 </blockquote>
 <h2 id="buildpack-base-camp">Buildpack base camp</h2>
 <p>Before we set out, you&rsquo;ll need to know the basics of <strong>buildpacks</strong> and how they work.</p>
@@ -398,7 +408,7 @@ a JDK, run Maven, or otherwise configure a build environment. <code>pack</code> 
 deploying your new image to your favorite cloud!</p>
 <blockquote>
 <p>In case you need it, <code>pack build</code> has a handy flag called <code>--publish</code> that will build your image directly onto a Docker
-registry.</p>
+registry. You can learn more about <code>pack</code> features in the <a href="/docs/tools/pack/">documentation</a>.</p>
 </blockquote>
 <h2 id="what-about-windows-apps">What about Windows apps?</h2>
 <p>Windows image builds are now supported!</p>
@@ -430,7 +440,6 @@ registry.</p>
     </div>
   </div>
 </div>
-
 
 
 

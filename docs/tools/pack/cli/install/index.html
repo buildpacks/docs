@@ -1,0 +1,476 @@
+<!doctype html>
+<html>
+  <head>
+    
+
+
+
+
+
+
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="How to install the pack CLI using various methods."/>
+
+
+<meta property="og:title" content="Cloud Native Buildpacks · Install">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://buildpacks.io/docs/tools/pack/cli/install/">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Cloud Native Buildpacks">
+<meta property="og:description" content="How to install the pack CLI using various methods.">
+<meta name="og:type" content="article">
+<meta name="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
+<meta name="og:image:alt" content="Buildpacks project logo">
+<meta name="og:image:type" content="image/jpeg">
+
+
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@buildpacks_io">
+<meta name="twitter:creator" content="@buildpacks_io">
+
+<link rel="canonical" content="https://buildpacks.io/docs/tools/pack/cli/install/">
+<link rel="icon" type="image/png" href="/images/favicon.png">
+<meta name="generator" content="Hugo 0.74.3" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Mono|Source+Sans+Pro:400,400i,600" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://buildpacks.io/scss/site.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+    
+    
+
+    <script>
+      function addAnchor(element) {
+        if (element.id === "" || element.getElementsByTagName("a").length > 0) {
+          return;
+        }
+
+        element.innerHTML =
+          `<a href="#${element.id}" class="h-anchor">
+            ${element.innerHTML} <i class="fas fa-link icon" aria-label="Anchor"></i>
+          </a>`;
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        const headers = document.querySelectorAll('h1, h2, h3, h4, h5');
+        if (headers) {
+          headers.forEach(addAnchor);
+        }
+      });
+    </script>
+
+    <title>Install · Cloud Native Buildpacks</title>
+  </head>
+  <body>
+    <header class="container">
+  <a href="https://buildpacks.io/" class="logo"><img src="/images/buildpacks-logo.svg" alt="Buildpacks.io Logo"></a>
+  <input type="checkbox" id="mobile-nav-toggle">
+  <label for="mobile-nav-toggle">&#9776;</label>
+  <ul>
+    
+    
+      
+      <li><a class=""  href="/">Home</a></li>
+    
+      
+      <li><a class=""  href="/features">Features</a></li>
+    
+      
+      <li><a class="active"  href="/docs">Docs</a></li>
+    
+      
+      <li><a class="" target='_blank' href="https://medium.com/buildpacks">Blog</a></li>
+    
+    <li><a href="https://github.com/buildpacks" class="github-button icon-button bg-blue button">GitHub</a></li>
+  </ul>
+</header>
+
+    
+
+<div class='docs'>
+  <div class="container">
+    <div class='row'>
+      <div class='col-md-3 docs-sidebar'>
+        <nav class='sidebar'>
+  <ul>
+      <li data-nav-id="/docs/" class="dd-item depth-0">
+        <a href="/docs/">Getting Started</a>
+        <ul class="ml-2">
+              
+      <li data-nav-id="/docs/app-journey/" class="dd-item depth-1 collapse">
+        <a href="/docs/app-journey/">An App&rsquo;s Brief Journey from Source to Image</a>
+      </li>
+        </ul>
+      </li>
+      <li data-nav-id="/docs/concepts/" class="dd-item depth-0 haschildren">
+        <a href="/docs/concepts/">Concepts</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/concepts/components/" class="dd-item depth-1 collapse haschildren">
+        <a href="/docs/concepts/components/">Components</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/concepts/components/builder/" class="dd-item depth-2">
+        <a href="/docs/concepts/components/builder/">Builder</a>
+      </li>
+      <li data-nav-id="/docs/concepts/components/buildpack/" class="dd-item depth-2">
+        <a href="/docs/concepts/components/buildpack/">Buildpack</a>
+      </li>
+      <li data-nav-id="/docs/concepts/components/lifecycle/" class="dd-item depth-2">
+        <a href="/docs/concepts/components/lifecycle/">Lifecycle</a>
+      </li>
+      <li data-nav-id="/docs/concepts/components/platform/" class="dd-item depth-2">
+        <a href="/docs/concepts/components/platform/">Platform</a>
+      </li>
+      <li data-nav-id="/docs/concepts/components/stack/" class="dd-item depth-2">
+        <a href="/docs/concepts/components/stack/">Stack</a>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/concepts/operations/" class="dd-item depth-1 collapse haschildren">
+        <a href="/docs/concepts/operations/">Operations</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/concepts/operations/build/" class="dd-item depth-2">
+        <a href="/docs/concepts/operations/build/">Build</a>
+      </li>
+      <li data-nav-id="/docs/concepts/operations/rebase/" class="dd-item depth-2">
+        <a href="/docs/concepts/operations/rebase/">Rebase</a>
+      </li>
+          </ul>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/app-developer-guide/" class="dd-item depth-0 haschildren">
+        <a href="/docs/app-developer-guide/">App Developer&rsquo;s Guide</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/app-developer-guide/build-an-app/" class="dd-item depth-1">
+        <a href="/docs/app-developer-guide/build-an-app/">Build an app</a>
+      </li>
+      <li data-nav-id="/docs/app-developer-guide/build-a-windows-app/" class="dd-item depth-1">
+        <a href="/docs/app-developer-guide/build-a-windows-app/">Build a Windows app</a>
+      </li>
+      <li data-nav-id="/docs/app-developer-guide/environment-variables/" class="dd-item depth-1">
+        <a href="/docs/app-developer-guide/environment-variables/">Environment variables</a>
+      </li>
+      <li data-nav-id="/docs/app-developer-guide/specific-buildpacks/" class="dd-item depth-1">
+        <a href="/docs/app-developer-guide/specific-buildpacks/">Specify buildpacks</a>
+      </li>
+      <li data-nav-id="/docs/app-developer-guide/run-an-app/" class="dd-item depth-1">
+        <a href="/docs/app-developer-guide/run-an-app/">Specify launch process</a>
+      </li>
+      <li data-nav-id="/docs/app-developer-guide/using-project-descriptor/" class="dd-item depth-1">
+        <a href="/docs/app-developer-guide/using-project-descriptor/">Using project.toml</a>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/" class="dd-item depth-0 haschildren">
+        <a href="/docs/buildpack-author-guide/">Buildpack Author&rsquo;s Guide</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/" class="dd-item depth-1 haschildren">
+        <a href="/docs/buildpack-author-guide/create-buildpack/">Create a buildpack</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/setup-local-environment/" class="dd-item depth-2 collapse">
+        <a href="/docs/buildpack-author-guide/create-buildpack/setup-local-environment/">Set up your local environment</a>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb/" class="dd-item depth-2 collapse">
+        <a href="/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb/">Building blocks of a Cloud Native Buildpack</a>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/detection/" class="dd-item depth-2 collapse">
+        <a href="/docs/buildpack-author-guide/create-buildpack/detection/">Detecting your application</a>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/build-app/" class="dd-item depth-2 collapse">
+        <a href="/docs/buildpack-author-guide/create-buildpack/build-app/">Building your application</a>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/make-app-runnable/" class="dd-item depth-2 collapse">
+        <a href="/docs/buildpack-author-guide/create-buildpack/make-app-runnable/">Make your application runnable</a>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/specify-multiple-process-types/" class="dd-item depth-2 collapse">
+        <a href="/docs/buildpack-author-guide/create-buildpack/specify-multiple-process-types/">Specify multiple process types</a>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/caching/" class="dd-item depth-2 collapse">
+        <a href="/docs/buildpack-author-guide/create-buildpack/caching/">Improving performance with caching</a>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable/" class="dd-item depth-2 collapse">
+        <a href="/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable/">Making your buildpack configurable</a>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/package-a-buildpack/" class="dd-item depth-1">
+        <a href="/docs/buildpack-author-guide/package-a-buildpack/">Package a buildpack</a>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/operator-guide/" class="dd-item depth-0 haschildren">
+        <a href="/docs/operator-guide/">Operator&rsquo;s Guide</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/operator-guide/create-a-builder/" class="dd-item depth-1">
+        <a href="/docs/operator-guide/create-a-builder/">Create a builder</a>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/tools/" class="dd-item depth-0 parent haschildren">
+        <a href="/docs/tools/">Tools</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/tools/pack/" class="dd-item depth-1 parent haschildren">
+        <a href="/docs/tools/pack/">Pack</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/tools/pack/concepts/" class="dd-item depth-2 haschildren">
+        <a href="/docs/tools/pack/concepts/">Concepts</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/tools/pack/concepts/trusted_builders/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/concepts/trusted_builders/">Trusted Builders</a>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/" class="dd-item depth-2 parent haschildren">
+        <a href="/docs/tools/pack/cli/">Pack CLI</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/tools/pack/cli/install/" class="dd-item depth-3 active">
+        <a href="/docs/tools/pack/cli/install/">Install</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack/" class="dd-item depth-3">
+        <a href="/docs/tools/pack/cli/pack/">pack</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_build/" class="dd-item depth-3">
+        <a href="/docs/tools/pack/cli/pack_build/">pack build</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_completion/" class="dd-item depth-3">
+        <a href="/docs/tools/pack/cli/pack_completion/">pack completion</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_create-builder/" class="dd-item depth-3">
+        <a href="/docs/tools/pack/cli/pack_create-builder/">pack create-builder</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_inspect-builder/" class="dd-item depth-3">
+        <a href="/docs/tools/pack/cli/pack_inspect-builder/">pack inspect-builder</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_inspect-image/" class="dd-item depth-3">
+        <a href="/docs/tools/pack/cli/pack_inspect-image/">pack inspect-image</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_list-trusted-builders/" class="dd-item depth-3">
+        <a href="/docs/tools/pack/cli/pack_list-trusted-builders/">pack list-trusted-builders</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_package-buildpack/" class="dd-item depth-3">
+        <a href="/docs/tools/pack/cli/pack_package-buildpack/">pack package-buildpack</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_rebase/" class="dd-item depth-3">
+        <a href="/docs/tools/pack/cli/pack_rebase/">pack rebase</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_report/" class="dd-item depth-3">
+        <a href="/docs/tools/pack/cli/pack_report/">pack report</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_set-default-builder/" class="dd-item depth-3">
+        <a href="/docs/tools/pack/cli/pack_set-default-builder/">pack set-default-builder</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_set-run-image-mirrors/" class="dd-item depth-3">
+        <a href="/docs/tools/pack/cli/pack_set-run-image-mirrors/">pack set-run-image-mirrors</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_suggest-builders/" class="dd-item depth-3">
+        <a href="/docs/tools/pack/cli/pack_suggest-builders/">pack suggest-builders</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_suggest-stacks/" class="dd-item depth-3">
+        <a href="/docs/tools/pack/cli/pack_suggest-stacks/">pack suggest-stacks</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_trust-builder/" class="dd-item depth-3">
+        <a href="/docs/tools/pack/cli/pack_trust-builder/">pack trust-builder</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_untrust-builder/" class="dd-item depth-3">
+        <a href="/docs/tools/pack/cli/pack_untrust-builder/">pack untrust-builder</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_version/" class="dd-item depth-3">
+        <a href="/docs/tools/pack/cli/pack_version/">pack version</a>
+      </li>
+          </ul>
+      </li>
+          </ul>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/reference/" class="dd-item depth-0 haschildren">
+        <a href="/docs/reference/">Reference</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/reference/config/" class="dd-item depth-1 collapse haschildren">
+        <a href="/docs/reference/config/">Configuration</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/reference/config/builder-config/" class="dd-item depth-2 collapse">
+        <a href="/docs/reference/config/builder-config/">builder.toml</a>
+      </li>
+      <li data-nav-id="/docs/reference/config/package-config/" class="dd-item depth-2 collapse">
+        <a href="/docs/reference/config/package-config/">package.toml</a>
+      </li>
+      <li data-nav-id="/docs/reference/config/project-descriptor/" class="dd-item depth-2 collapse">
+        <a href="/docs/reference/config/project-descriptor/">project.toml</a>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/reference/reproducibility/" class="dd-item depth-1 collapse">
+        <a href="/docs/reference/reproducibility/">Reproducible Builds</a>
+      </li>
+      <li data-nav-id="/docs/reference/spec/" class="dd-item depth-1 collapse haschildren">
+        <a href="/docs/reference/spec/">Specification</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/reference/spec/buildpack-api/" class="dd-item depth-2">
+        <a href="/docs/reference/spec/buildpack-api/">Buildpack API</a>
+      </li>
+      <li data-nav-id="/docs/reference/spec/distribution-api/" class="dd-item depth-2">
+        <a href="/docs/reference/spec/distribution-api/">Distribution API</a>
+      </li>
+      <li data-nav-id="/docs/reference/spec/platform-api/" class="dd-item depth-2">
+        <a href="/docs/reference/spec/platform-api/">Platform API</a>
+      </li>
+          </ul>
+      </li>
+          </ul>
+      </li>
+    </ul>
+  
+</nav>
+
+
+
+      </div>
+      <div class='col-md-9 docs-content'>
+        <div class="support-links text-right">
+  
+    
+    
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BInstall%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ftools%2Fpack%2Fcli%2Finstall%2F%29"
+       class="btn-light btn-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
+
+    
+    
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/tools/pack/cli/install.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+       class="btn-light btn-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
+    
+  
+</div>
+
+
+        <div class="heading">
+          <h1 class="title">Install</h1>
+        </div>
+
+        <h2 id="supported-operating-systems">Supported operating systems</h2>
+<p>You can install the most recent version of <code>pack</code> (version <strong>0.13.1</strong>) as an executable binary on the following operating systems:</p>
+<ul>
+<li><a href="#linux">Linux</a></li>
+<li><a href="#macos">macOS</a></li>
+<li><a href="#windows">Windows</a></li>
+</ul>
+<hr>
+<h1 id="linux">Linux</h1>
+<h2 id="distro-specific">Distro-Specific</h2>
+<h4 id="arch-linux">Arch Linux</h4>
+<ul>
+<li><a href="https://aur.archlinux.org/packages/pack-cli/">pack-cli</a></li>
+<li><a href="https://aur.archlinux.org/packages/pack-cli-bin/">pack-cli-bin</a></li>
+</ul>
+<h2 id="homebrew">Homebrew</h2>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">brew install buildpacks/tap/pack
+</code></pre></div><h2 id="command">Command</h2>
+<p><code>pack</code> is available on GitHub releases so you can directly get and install it.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">(</span>curl -sSL <span class="s2">&#34;https://github.com/buildpacks/pack/releases/download/v0.13.1/pack-v0.13.1-linux.tgz&#34;</span> <span class="p">|</span> sudo tar -C /usr/local/bin/ --no-same-owner -xzv pack<span class="o">)</span>
+</code></pre></div><blockquote>
+<p><strong>Optional:</strong> Enable <a href="#auto-completion">auto-completion</a></p>
+</blockquote>
+<hr>
+<h1 id="macos">macOS</h1>
+<h2 id="homebrew-1">Homebrew</h2>
+<p>To install <code>pack</code> on macOS, the easiest way is to use Homebrew:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">brew install buildpacks/tap/pack
+</code></pre></div><blockquote>
+<p><strong>Optional:</strong> Enable <a href="#auto-completion">auto-completion</a></p>
+</blockquote>
+<hr>
+<h2 id="windows">Windows</h2>
+<p>To install <code>pack</code> on Windows, we recommend using Chocolatey:</p>
+<pre><code>choco install pack --version=0.13.1
+</code></pre><p>Alternatively, you can install the Windows executable for <code>pack</code> by downloading the Windows <a href="https://github.com/buildpacks/pack/releases/download/v0.13.1/pack-v0.13.1-windows.zip">ZIP file</a>.</p>
+<hr>
+<h2 id="ready-to-run-container-images">Ready-to-Run Container Images</h2>
+<p><code>pack</code> is also available as container images on Docker Hub as <a href="https://hub.docker.com/r/buildpacksio/pack"><code>buildpacksio/pack</code></a>
+(<a href="https://github.com/buildpacks/pack/blob/main/.github/workflows/delivery/docker/Dockerfile">definition files</a>).</p>
+<h4 id="tags">Tags</h4>
+<ul>
+<li>Use this tag to track the latest release:
+<ul>
+<li><code>buildpacksio/pack:latest</code></li>
+</ul>
+</li>
+<li>Use a version tag to pin a specific release:
+<ul>
+<li><code>buildpacksio/pack:0.13.1</code></li>
+<li><a href="https://hub.docker.com/r/buildpacksio/pack/tags">other versions</a></li>
+</ul>
+</li>
+</ul>
+<h4 id="usage">Usage</h4>
+<p>In some container environments you may be required to mount your local Docker daemon&rsquo;s socket.</p>
+<p>For example, using the Docker CLI:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker run <span class="se">\
+</span><span class="se"></span>  -v /var/run/docker.sock:/var/run/docker.sock <span class="se">\
+</span><span class="se"></span>  -v <span class="nv">$PWD</span>:/workspace -w /workspace <span class="se">\
+</span><span class="se"></span>  buildpacksio/pack build &lt;my-image&gt; --builder &lt;builder-image&gt;
+</code></pre></div><hr>
+<h1 id="auto-completion">Auto-completion</h1>
+<p>To configure your bash shell to load completions for each session, add the following to your <code>.bashrc</code> or <code>.bash_profile</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">. <span class="k">$(</span>pack completion<span class="k">)</span>
+</code></pre></div><h1 id="reference">Reference</h1>
+<p>To learn how to use <code>pack</code>, just run:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack <span class="nb">help</span>
+</code></pre></div><p>or check out the <a href="/docs/tools/pack/cli/">documentation</a> here.</p>
+
+
+        
+
+        <hr>
+<div class='footline d-block'>
+  <div class="support-links text-right">
+  
+    
+    
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BInstall%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ftools%2Fpack%2Fcli%2Finstall%2F%29"
+       class="btn-light btn-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
+
+    
+    
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/tools/pack/cli/install.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+       class="btn-light btn-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
+    
+  
+</div>
+
+</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+    <footer>
+  <div class="container footer">
+    <a href="https://www.cncf.io/" style="width: 50%;"><img src="/images/cncf-color.svg" class="footer-logo"></a>
+    <p>We are a <a href="https://www.cncf.io/">Cloud Native Sandbox</a> project.</p>
+  </div>
+  <div class="bg-blue">
+    <div class="container sub-footer">
+      <p>Reach out <a href="https://slack.buildpacks.io">on Slack</a> to learn more.</p>
+      <ul>
+        <li><a href="https://lists.cncf.io/g/cncf-buildpacks/join" target="_blank">Mailing List</a> <span>&bull;</span></li>
+        <li><a href="https://slack.buildpacks.io/" target="_blank">Slack</a> <span>&bull;</span></li>
+        <li><a href="https://twitter.com/buildpacks_io" target="_blank">Twitter</a> <span>&bull;</span></li>
+        <li><a href="https://github.com/buildpacks" target="_blank">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>
