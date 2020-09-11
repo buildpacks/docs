@@ -23,7 +23,7 @@ Set of guides tailored to specific personas:
 
 ### [Tools](/docs/tools/)
 
-* [Pack](/docs/tools/pack/) - A command line tool (and Go library) for Cloud Native Buildpacks.
+* [Pack](/docs/tools/pack/) - A command line tool, and Go library, for utilizing and packaging Cloud Native Buildpacks.
 
 ### [Reference](/docs/reference/)
 

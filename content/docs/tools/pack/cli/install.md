@@ -45,7 +45,7 @@ brew install buildpacks/tap/pack
 
 ## Homebrew
 
-To install `pack` on macOS and Linux, the easiest way is to use Homebrew:
+To install `pack` on macOS, the easiest way is to use Homebrew:
 
 ```bash
 brew install buildpacks/tap/pack
@@ -56,7 +56,7 @@ brew install buildpacks/tap/pack
 ---
 
 ## Windows
-To install `pack` on Windows, the easiest way is to use Chocolatey:
+To install `pack` on Windows, we recommend using Chocolatey:
 ```
 choco install pack --version={{< latest >}}
 ```

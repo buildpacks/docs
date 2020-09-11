@@ -14,7 +14,7 @@ In order to run the build process in an isolated fashion, `pack` uses **Docker**
 
 {{< download-button href="/docs/install-pack" color="pink" >}} Install pack {{</>}}
 
-> **NOTE:** `pack` is only one implementation of the [Cloud Native Buildpacks Platform Specification][cnb-platform-spec]. Also worth noting, not all Cloud Native Buildpacks Platforms require Docker.
+> **NOTE:** `pack` is only one implementation of the [Cloud Native Buildpacks Platform Specification][cnb-platform-spec]. Additionally, not all Cloud Native Buildpacks Platforms require Docker.
 
 [cnb-platform-spec]: https://github.com/buildpacks/spec/blob/main/platform.md
 
