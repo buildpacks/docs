@@ -1,22 +1,51 @@
 +++
-title="Installing `pack`"
+title="Install"
 weight=1
-getting-started=true
+aliases=["/docs/install-pack/"]
+summary="How to install the `pack` CLI using various methods."
 +++
-
-## Prerequisites
-{{< download-button href="https://store.docker.com/search?type=edition&offering=community" color="blue" >}} Install Docker {{</>}}
 
 ## Supported operating systems
 You can install the most recent version of `pack` (version **{{< latest >}}**) as an executable binary on the following operating systems:
 
-* [macOS](#macos)
 * [Linux](#linux)
+* [macOS](#macos)
 * [Windows](#windows)
 
-### Homebrew on macOS and Linux
+---
 
-To install `pack` on macOS and Linux, the easiest way is to use Homebrew:
+# Linux
+
+## Distro-Specific
+
+#### Arch Linux
+
+- [pack-cli](https://aur.archlinux.org/packages/pack-cli/)
+- [pack-cli-bin](https://aur.archlinux.org/packages/pack-cli-bin/)
+
+## Homebrew
+
+```bash
+brew install buildpacks/tap/pack
+```
+
+## Command
+
+`pack` is available on GitHub releases so you can directly get and install it.
+
+```bash
+(curl -sSL "https://github.com/buildpacks/pack/releases/download/v0.13.1/pack-v{{< latest >}}-linux.tgz" | sudo tar -C /usr/local/bin/ --no-same-owner -xzv pack)
+```
+
+> **Optional:** Enable [auto-completion](#auto-completion)
+
+---
+
+# macOS
+
+## Homebrew
+
+To install `pack` on macOS, the easiest way is to use Homebrew:
 
 ```bash
 brew install buildpacks/tap/pack
@@ -24,26 +53,19 @@ brew install buildpacks/tap/pack
 
 > **Optional:** Enable [auto-completion](#auto-completion)
 
-<hr/>
+---
 
-### Alternative installation on Linux
-
-`pack` is available on GitHub releases so you can directly get and install it.
-
-```bash
-wget https://github.com/buildpacks/pack/releases/download/v{{< latest >}}/pack-v{{< latest >}}-linux.tgz
-tar xvf pack-v{{< latest >}}-linux.tgz
-rm pack-v{{< latest >}}-linux.tgz
-./pack --help
+## Windows
+To install `pack` on Windows, we recommend using Chocolatey:
+```
+choco install pack --version={{< latest >}}
 ```
 
-From there, you can copy the executable to a directory like `/usr/local/bin` or add the current directory to your `PATH`.
-
-> **Optional:** Enable [auto-completion](#auto-completion)
+Alternatively, you can install the Windows executable for `pack` by downloading the Windows [ZIP file](https://github.com/buildpacks/pack/releases/download/v{{< latest >}}/pack-v{{< latest >}}-windows.zip).
 
 ---
 
-### Ready-to-Run Container Images
+## Ready-to-Run Container Images
 
 `pack` is also available as container images on Docker Hub as [`buildpacksio/pack`](https://hub.docker.com/r/buildpacksio/pack)
 ([definition files](https://github.com/buildpacks/pack/blob/main/.github/workflows/delivery/docker/Dockerfile)).
@@ -71,15 +93,6 @@ docker run \
 
 ---
 
-### Windows
-To install `pack` on Windows, the easiest way is to use Chocolatey:
-```
-choco install pack --version={{< latest >}}
-```
-
-Alternatively, you can install the Windows executable for `pack` by downloading the Windows [ZIP file](https://github.com/buildpacks/pack/releases/download/v{{< latest >}}/pack-v{{< latest >}}-windows.zip).
-
-<hr/>
 
 # Auto-completion
 
@@ -88,3 +101,13 @@ To configure your bash shell to load completions for each session, add the follo
 ```bash
 . $(pack completion)
 ```
+
+# Reference
+
+To learn how to use `pack`, just run:
+
+```bash
+pack help
+```
+
+or check out the [documentation](/docs/tools/pack/cli/) here.

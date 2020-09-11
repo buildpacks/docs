@@ -6,7 +6,7 @@ summary="Get started with Cloud Native Buildpacks."
 
 ### Tutorials
 
-* [An App’s Brief Journey from Source to Image](/docs/app-journey/) - An easy-to-follow introduction to Cloud Native Buildpacks using `pack`.
+* [An App’s Brief Journey from Source to Image](/docs/app-journey/) - An easy-to-follow introduction to Cloud Native Buildpacks using `pack`, a command line tool for Cloud Native Buildpacks.
 * [Creating a Cloud Native Buildpack](/docs/buildpack-author-guide/create-buildpack) - Tutorial walking through the creation of a simple Ruby buildpack.
 
 ### [Concepts](/docs/concepts)
@@ -21,7 +21,11 @@ Set of guides tailored to specific personas:
 *  [Buildpack Authors](/docs/buildpack-author-guide/)
 *  [Operators](/docs/operator-guide/)
 
-### [Reference](/docs/reference)
+### [Tools](/docs/tools/)
+
+* [Pack](/docs/tools/pack/) - A command line tool, and Go library, for utilizing and packaging Cloud Native Buildpacks.
+
+### [Reference](/docs/reference/)
 
 Reference documents for various key aspects of the project.
 
