@@ -15,7 +15,7 @@ import (
 )
 
 const (
-	cliDir     = "/docs/reference/pack/"
+	cliDir     = "/docs/tools/pack/cli/"
 	outputPath = "../content" + cliDir
 	indexFile  = `_index.md`
 
@@ -23,6 +23,7 @@ const (
 title="%s"
 no_edit="true"
 +++
+<!--more-->
 `
 )
 

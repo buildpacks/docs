@@ -38,7 +38,7 @@
       });
     </script>
 
-    <title>{{ .Title }} · {{ .Site.Title }}</title>
+    <title>{{ .Title | plainify }} · {{ .Site.Title }}</title>
   </head>
   <body>
     {{ partial "header.html" . }}

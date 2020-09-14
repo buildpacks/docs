@@ -4,15 +4,17 @@ weight=2
 getting-started=true
 +++
 
-## `pack` for the journey
+## Pack for the journey
 
 In this tutorial, we'll explain how to use `pack` and **buildpacks** to create a runnable app image from source code.
 
-That means you'll need to make sure you have `pack` installed:
+In order to run the build process in an isolated fashion, `pack` uses **Docker**. That means you'll need to make sure you have both `docker` and `pack` installed:
+
+{{< download-button href="https://store.docker.com/search?type=edition&offering=community" color="blue" >}} Install Docker {{</>}}
 
 {{< download-button href="/docs/install-pack" color="pink" >}} Install pack {{</>}}
 
-> **NOTE:** `pack` is only one implementation of the [Cloud Native Buildpacks Platform Specification][cnb-platform-spec].
+> **NOTE:** `pack` is only one implementation of the [Cloud Native Buildpacks Platform Specification][cnb-platform-spec]. Additionally, not all Cloud Native Buildpacks Platforms require Docker.
 
 [cnb-platform-spec]: https://github.com/buildpacks/spec/blob/main/platform.md
 
@@ -82,7 +84,7 @@ Now hit [`localhost:8080`](http://localhost:8080) in your favorite browser and t
 deploying your new image to your favorite cloud!
 
 > In case you need it, `pack build` has a handy flag called `--publish` that will build your image directly onto a Docker
-> registry.
+> registry. You can learn more about `pack` features in the [documentation][pack-docs].
 
 ## What about Windows apps?
 
@@ -93,3 +95,4 @@ Windows image builds are now supported!
 [builder]: /docs/concepts/components/builder/
 [buildpack]: /docs/concepts/components/buildpack/
 [samples-java-maven]: https://github.com/buildpacks/samples/tree/main/apps/java-maven
+[pack-docs]: /docs/tools/pack/
