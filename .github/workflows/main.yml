@@ -1,7 +1,10 @@
-name: Deploy
+name: Build
 
 on:
   push:
+    branches:
+      - main
+  pull_request:
     branches:
       - main
   repository_dispatch:
@@ -9,25 +12,42 @@ on:
       - pack-release
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Git Checkout
         uses: actions/checkout@v2
-
       - name: Setup Go environment
         uses: actions/setup-go@v2.0.3
         with:
-            go-version: '1.x'
-
+          go-version: '1.x'
       - name: Install Dependencies
         run: sudo apt-get install make curl jq
-
+      - name: Test
+        run: make test
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Build
         run: make build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload public folder
+        uses: actions/upload-artifact@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          name: public
+          path: ./public
 
+  deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download public folder
+        uses: actions/download-artifact@v1
+        with:
+          name: public
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:

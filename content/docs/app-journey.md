@@ -4,15 +4,17 @@ weight=2
 getting-started=true
 +++
 
-## `pack` for the journey
+## Pack for the journey
 
 In this tutorial, we'll explain how to use `pack` and **buildpacks** to create a runnable app image from source code.
 
-That means you'll need to make sure you have `pack` installed:
+In order to run the build process in an isolated fashion, `pack` uses **Docker**. That means you'll need to make sure you have both `docker` and `pack` installed:
+
+{{< download-button href="https://store.docker.com/search?type=edition&offering=community" color="blue" >}} Install Docker {{</>}}
 
 {{< download-button href="/docs/install-pack" color="pink" >}} Install pack {{</>}}
 
-> **NOTE:** `pack` is only one implementation of the [Cloud Native Buildpacks Platform Specification][cnb-platform-spec].
+> **NOTE:** `pack` is only one implementation of the [Cloud Native Buildpacks Platform Specification][cnb-platform-spec]. Additionally, not all Cloud Native Buildpacks Platforms require Docker.
 
 [cnb-platform-spec]: https://github.com/buildpacks/spec/blob/main/platform.md
 
@@ -74,17 +76,23 @@ To test out your new app image locally, you can run it with Docker:
 docker run --rm -p 8080:8080 myapp
 ```
 
-Now hit `localhost:8080` in your favorite browser and take a minute to enjoy the view.
+Now hit [`localhost:8080`](http://localhost:8080) in your favorite browser and take a minute to enjoy the view.
 
 ### Take your image to the skies
 
 `pack` uses **buildpacks** to help you easily create OCI images that you can run just about anywhere. Try
 deploying your new image to your favorite cloud!
 
-> In case you need it, `pack build` has a handy flag called `--publish` that will publish your app image to a Docker
-> registry after building it.
+> In case you need it, `pack build` has a handy flag called `--publish` that will build your image directly onto a Docker
+> registry. You can learn more about `pack` features in the [documentation][pack-docs].
 
+## What about Windows apps?
+
+Windows image builds are now supported!
+
+<a href="/docs/app-developer-guide/build-a-windows-app" class="button bg-blue">Windows build guide</a>
 
 [builder]: /docs/concepts/components/builder/
 [buildpack]: /docs/concepts/components/buildpack/
 [samples-java-maven]: https://github.com/buildpacks/samples/tree/main/apps/java-maven
+[pack-docs]: /docs/tools/pack/

@@ -17,4 +17,4 @@ $RECYCLE.BIN/
 *.iml
 
 # Generated files
-content/docs/reference/pack/pack*
+content/docs/tools/pack/cli/pack*

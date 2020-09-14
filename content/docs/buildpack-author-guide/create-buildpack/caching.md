@@ -1,17 +1,15 @@
 +++
 title="Improving performance with caching"
-weight=406
-creatordisplayname = "Scott Sisil"
-creatoremail = "ssisil@pivotal.io"
-lastmodifierdisplayname = "Javier Romero"
-lastmodifieremail = "jromero@pivotal.io"
+weight=407
 +++
+
+<!-- test:suite=create-buildpack;weight=7 -->
 
 We can improve performance by caching dependencies between builds, only re-downloading when necessary. To begin, let's create a cacheable `bundler` layer.
 
 ## Creating the `bundler` layer
 
-To do this replace the following lines in the `build` script:
+To do this, replace the following lines in the `build` script:
 
 ```bash
 echo "---> Installing gems"
@@ -23,13 +21,14 @@ with the following:
 ```bash
 echo "---> Installing gems"
 bundlerlayer="$layersdir/bundler"
-mkdir "$bundlerlayer"
+mkdir -p "$bundlerlayer"
 echo -e 'cache = true\nlaunch = true' > "$bundlerlayer.toml"
 bundle install --path "$bundlerlayer" --binstubs "$bundlerlayer/bin"
 ```
 
-Your full `build` script should now look like the following:
+Your full `ruby-buildpack/bin/build` script should now look like the following:
 
+<!-- test:file=ruby-buildpack/bin/build -->
 ```bash
 #!/usr/bin/env bash
 set -eo pipefail
@@ -66,28 +65,41 @@ echo -e 'cache = true\nlaunch = true' > "$bundlerlayer.toml"
 bundle install --path "$bundlerlayer" --binstubs "$bundlerlayer/bin"
 
 # 7. SET DEFAULT START COMMAND
-echo 'processes = [{ type = "web", command = "bundle exec ruby app.rb"}]' > "$layersdir/launch.toml"
+cat > "$layersdir/launch.toml" <<EOL
+# our web process
+[[processes]]
+type = "web"
+command = "bundle exec ruby app.rb"
+
+# our worker process
+[[processes]]
+type = "worker"
+command = "bundle exec ruby worker.rb"
+EOL
 ```
 
 Now when we run:
 
+<!-- test:exec -->
 ```bash
-pack build test-ruby-app --path ~/workspace/ruby-sample-app --buildpack ~/workspace/ruby-cnb
+pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 ```
 
 You will see something similar to the following during the `EXPORTING` phase:
 
+<!-- test:assert=contains -->
 ```text
-[exporter] Exporting layer 'com.examples.buildpacks.ruby:bundler' with SHA sha256:c912cbcd061162e7ea8a525552e208c68a91c551036f062e588d4cec41ce3700
+[exporter] Adding layer 'com.examples.buildpacks.ruby:bundler'
 ```
 
 ## Caching dependencies
 
-Now, let's implement the caching logic. We'll first need to create a `Gemfile.lock` in our app with the contents given below:
+Now, let's implement the caching logic. We'll first need to create a `ruby-sample-app/Gemfile.lock` file with the contents given below:
 
 > Typically you would run `bundle install` locally to generate this file, but for the sake 
-> of simplicity we'll create `~/workspace/ruby-sample-app/Gemfile.lock` manually.
+> of simplicity we'll create `ruby-sample-app/Gemfile.lock` manually.
 
+<!-- test:file=ruby-sample-app/Gemfile.lock -->
 ```text
 GEM
   remote: https://rubygems.org/
@@ -113,21 +125,18 @@ BUNDLED WITH
    2.0.2
 ```
 
-Next, we'll need to install some helpful tools at the top of the `build` script:
-
-```bash
-wget -qO /tmp/jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 && chmod +x /tmp/jq
-wget -qO /tmp/yj https://github.com/sclevine/yj/releases/download/v2.0/yj-linux && chmod +x /tmp/yj
-```
-
 Replace the gem installation logic from the previous step:
 
 ```bash
+# ...
+
 echo "---> Installing gems"
 bundlerlayer="$layersdir/bundler"
 mkdir -p "$bundlerlayer"
 echo -e 'cache = true\nlaunch = true' > "$bundlerlayer.toml"
 bundle install --path "$bundlerlayer" --binstubs "$bundlerlayer/bin"
+
+# ...
 ```
 
 with the new logic below that checks to see if any gems have been changed. This simply creates a checksum for the previous `Gemfile.lock` and compares it to the checksum of the current `Gemfile.lock`. If they are the same, the gems are reused. If they are not, the new gems are installed.
@@ -138,7 +147,7 @@ We'll now write additional metadata to our `bundler.toml` of the form `cache = t
 # Compares previous Gemfile.lock checksum to the current Gemfile.lock
 bundlerlayer="$layersdir/bundler"
 local_bundler_checksum=$(sha256sum Gemfile.lock | cut -d ' ' -f 1) 
-remote_bundler_checksum=$(cat "$bundlerlayer.toml" | /tmp/yj -t | /tmp/jq -r .metadata 2>/dev/null || echo 'not found')
+remote_bundler_checksum=$(cat "$bundlerlayer.toml" | yj -t | jq -r .metadata 2>/dev/null || echo 'not found')
 
 if [[ -f Gemfile.lock && $local_bundler_checksum == $remote_bundler_checksum ]] ; then
     # Determine if no gem dependencies have changed, so it can reuse existing gems without running bundle install
@@ -154,18 +163,14 @@ else
 fi
 ```
 
-Your full `build` script will now look like this:
+Your full `ruby-buildpack/bin/build` script will now look like this:
 
+<!-- test:file=ruby-buildpack/bin/build -->
 ```bash
 #!/usr/bin/env bash
 set -eo pipefail
 
 echo "---> Ruby Buildpack"
-
-# ======= ADDED =======
-# 0. DOWNLOAD TOOLS
-wget -qO /tmp/jq https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 && chmod +x /tmp/jq
-wget -qO /tmp/yj https://github.com/sclevine/yj/releases/download/v2.0/yj-linux && chmod +x /tmp/yj
 
 # 1. GET ARGS
 layersdir=$1
@@ -190,11 +195,10 @@ gem install bundler --no-ri --no-rdoc
 
 # ======= MODIFIED =======
 # 6. INSTALL GEMS
-
 # Compares previous Gemfile.lock checksum to the current Gemfile.lock
 bundlerlayer="$layersdir/bundler"
 local_bundler_checksum=$(sha256sum Gemfile.lock | cut -d ' ' -f 1) 
-remote_bundler_checksum=$(cat "$bundlerlayer.toml" | /tmp/yj -t | /tmp/jq -r .metadata 2>/dev/null || echo 'not found')
+remote_bundler_checksum=$(cat "$bundlerlayer.toml" | yj -t | jq -r .metadata 2>/dev/null || echo 'not found')
 
 if [[ -f Gemfile.lock && $local_bundler_checksum == $remote_bundler_checksum ]] ; then
     # Determine if no gem dependencies have changed, so it can reuse existing gems without running bundle install
@@ -210,44 +214,58 @@ else
 fi
 
 # 7. SET DEFAULT START COMMAND
-echo 'processes = [{ type = "web", command = "bundle exec ruby app.rb"}]' > "$layersdir/launch.toml"
+cat > "$layersdir/launch.toml" <<EOL
+# our web process
+[[processes]]
+type = "web"
+command = "bundle exec ruby app.rb"
+
+# our worker process
+[[processes]]
+type = "worker"
+command = "bundle exec ruby worker.rb"
+EOL
 ```
 
 Now when you build your app:
 
+<!-- test:exec -->
 ```text
-pack build test-ruby-app --path ~/workspace/ruby-sample-app --buildpack ~/workspace/ruby-cnb
+pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 ```
 
 it will download the gems:
 
+<!-- test:assert=contains;ignore-lines=... -->
 ```text
 ===> BUILDING
 [builder] ---> Ruby Buildpack
 [builder] ---> Downloading and extracting Ruby
 [builder] ---> Installing bundler
-[builder] Successfully installed bundler-2.0.2
-[builder] 1 gem installed
+...
 [builder] ---> Installing gems
 ```
 
 If you build the app again:
 
+<!-- test:exec -->
 ```bash
-pack build test-ruby-app --path ~/workspace/ruby-sample-app --buildpack ~/workspace/ruby-cnb
+pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 ```
 
 you will see the new caching logic at work during the `BUILDING` phase:
 
+<!-- test:assert=contains;ignore-lines=... -->
 ```text
 ===> BUILDING
 [builder] ---> Ruby Buildpack
 [builder] ---> Downloading and extracting Ruby
 [builder] ---> Installing bundler
-[builder] Successfully installed bundler-2.0.2
-[builder] 1 gem installed
+...
 [builder] ---> Reusing gems
 ```
+
+Next, let's see how buildpack users may be able to provide configuration to the buildpack.
 
 ---
 

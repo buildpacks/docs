@@ -1,21 +1,34 @@
 +++
 title="Set up your local environment"
 weight=401
-creatordisplayname = "Scott Sisil"
-creatoremail = "ssisil@pivotal.io"
-lastmodifierdisplayname = "Javier Romero"
-lastmodifieremail = "jromero@pivotal.io"
 +++
+
+<!-- test:suite=create-buildpack;weight=1 -->
+
+<!-- test:setup:exec;exit-code=-1 -->
+<!--
+```bash
+docker rmi test-ruby-app
+```
+-->
+
+<!-- test:teardown:exec -->
+<!--
+```bash
+docker rmi test-ruby-app
+```
+-->
 
 First, we'll create a sample Ruby app that you can use when developing your buildpack:
 
+<!-- test:exec -->
 ```bash
-mkdir -p ~/workspace/ruby-sample-app
-cd ~/workspace/ruby-sample-app
+mkdir ruby-sample-app
 ```
 
-Create a file in the current directory called `app.rb` with the following contents:
+Create a file in the current directory called `ruby-sample-app/app.rb` with the following contents:
 
+<!-- test:file=ruby-sample-app/app.rb -->
 ```ruby
 require 'sinatra'
 
@@ -27,7 +40,9 @@ get '/' do
 end
 ```
 
-Then, create a file called `Gemfile` with the following contents:
+Then, create a file called `ruby-sample-app/Gemfile` with the following contents:
+
+<!-- test:file=ruby-sample-app/Gemfile -->
 ```ruby
 source "https://rubygems.org"
 
@@ -36,15 +51,9 @@ git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 gem "sinatra"
 ```
 
-Now, let's create the directory where your buildpack will live:
-
-```bash
-mkdir -p ~/workspace/ruby-cnb
-cd ~/workspace/ruby-cnb
-```
-
 Finally, make sure your local Docker daemon is running by executing:
 
+<!-- test:exec -->
 ```bash
 docker version
 ```
