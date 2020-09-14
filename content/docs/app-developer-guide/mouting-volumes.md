@@ -44,16 +44,16 @@ a `pack build`.
 # create a new docker volume
 docker volume create test-volume
 
-# put a text file in it
+# put a text file in it. Contents will be read during the build.
 docker run --rm --name=populate-volume \
     --volume test-volume:/tmp/volume:rw \
     bash \
     bash -c 'echo "Hello from a volume!" > /tmp/volume/volume_contents.txt'
 
-# pack build using volume! 
+# pack build using volume!
 pack build volume-example \
     --builder cnbs/sample-builder:bionic \
-    --buildpack samples/buildpacks/hello-world \
+    --buildpack samples/hello-world \
     --path samples/apps/bash-script \
     --volume test-volume:/platform/volume:ro
 ```
@@ -64,16 +64,16 @@ pack build volume-example \
 # create a new docker volume
 docker volume create test-volume
 
-# put a text file in it
+# put a text file in it. Contents will be read during the build.
 docker run --rm --name=populate-volume `
     --volume test-volume:/tmp/volume:rw `
     bash `
     bash -c "echo 'Hello from a volume!' > /tmp/volume/volume_contents.txt"
 
-#
+# pack build using volume on windows. 
 pack build volume-example `
     --builder cnbs/sample-builder:bionic `
-    --buildpack .\samples\buildpacks\hello-world.tgz `
+    --buildpack samples/hello-world `
     --path .\samples\apps\bash-script\ `
     --volume test-volume:/platform/volume:ro `
 ```
