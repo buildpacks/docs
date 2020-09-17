@@ -1,17 +1,18 @@
 {{ $isHome        := .IsHome }}
-{{ $isDoc         := eq .Section "docs" }}
-{{ $title         := cond $isHome site.Title (printf "%s · %s" site.Title .Title) }}
 {{ $summary       := .Summary | plainify | truncate 199 "…" }}
 {{ $description   := cond $isHome site.Params.description $summary }}
-{{ $pageType      := cond $isHome "website" "article" }}
-{{ $imageUrl      := "images/buildpacks-social-card.jpg" | absURL }}
-{{ $twitterHandle := site.Params.twitter_handle }}
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 {{ with $description -}}
-<meta name="description" content="{{ . }}"/>
+  <meta name="description" content="{{ . }}"/>
 {{- end }}
+<link rel="canonical" content="{{ .Permalink }}">
+<link rel="icon" type="image/png" href="/images/favicon.png">
+
+{{ $title         := cond $isHome site.Title (printf "%s · %s" .Title site.Title) }}
+{{ $ogImageUrl    := ("images/buildpacks-social-card.jpg" | absURL) }}
+{{ $ogType        := cond $isHome "website" "article" }}
 
 <!-- Facebook / OpenGraph metadata-->
 <meta property="og:title" content="{{ $title }}">
@@ -20,19 +21,21 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="{{ site.Title }}">
 {{ with $description -}}
-<meta property="og:description" content="{{ . }}">
+  <meta property="og:description" content="{{ . }}">
 {{- end }}
-<meta name="og:type" content="{{ $pageType }}">
-<meta name="og:image" content="{{ $imageUrl }}">
-<meta name="og:image:alt" content="Buildpacks project logo">
-<meta name="og:image:type" content="image/jpeg">
+<meta property="og:type" content="{{ $ogType }}">
+<meta property="og:image" content="{{ $ogImageUrl }}">
+<meta property="og:image:alt" content="Buildpacks project logo">
+<meta property="og:image:type" content="image/jpeg">
 
 
 <!-- Twitter Card metadata -->
-<meta name="twitter:card" content="summary">
-<meta name="twitter:site" content="@{{ $twitterHandle }}">
-<meta name="twitter:creator" content="@{{ $twitterHandle }}">
-
-<link rel="canonical" content="{{ .Permalink }}">
-<link rel="icon" type="image/png" href="/images/favicon.png">
-{{ hugo.Generator }}
+{{ $twType      := cond $isHome "summary_large_image" "summary"}}
+{{ $twImageUrl  := (cond $isHome "images/buildpacks-social-card.jpg" "images/buildpacks-social-card-square.jpg" ) | absURL }}
+{{ $twHandle    := site.Params.twitter_handle }}
+<meta property="twitter:title" content="{{ $title }}">
+<meta property="twitter:card" content="{{ $twType }}">
+<meta property="twitter:image" content="{{ $twImageUrl }}">
+<meta property="twitter:image:alt" content="Buildpacks project logo">
+<meta property="twitter:site" content="@{{ $twHandle }}">
+<meta property="twitter:creator" content="@{{ $twHandle }}">

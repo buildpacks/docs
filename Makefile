@@ -2,6 +2,7 @@
 PACK_VERSION?=
 GITHUB_TOKEN?=
 PACK_BIN?=$(shell which pack)
+BASE_URL?=
 
 ifndef PACK_VERSION
 ifdef GITHUB_TOKEN
@@ -48,7 +49,11 @@ pack-version:
 serve: export PACK_VERSION:=$(PACK_VERSION)
 serve: install-hugo pack-version update-pack-docs
 	@echo "> Serving..."
+ifeq ($(BASE_URL),)
 	hugo server --disableFastRender
+else
+	hugo server --disableFastRender --baseURL=$(BASE_URL) --appendPort=false
+endif
 
 build: export PACK_VERSION:=$(PACK_VERSION)
 build: install-hugo pack-version update-pack-docs
