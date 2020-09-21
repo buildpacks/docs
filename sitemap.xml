@@ -83,6 +83,10 @@
   </url>
   
   <url>
+    <loc>https://buildpacks.io/docs/app-developer-guide/mouting-volumes/</loc>
+  </url>
+  
+  <url>
     <loc>https://buildpacks.io/docs/app-developer-guide/specific-buildpacks/</loc>
   </url>
   
