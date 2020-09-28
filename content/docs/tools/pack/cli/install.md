@@ -56,9 +56,13 @@ brew install buildpacks/tap/pack
 ---
 
 ## Windows
-To install `pack` on Windows, we recommend using Chocolatey:
+To install `pack` on Windows, we recommend using [Chocolatey](https://chocolatey.org/):
 ```
 choco install pack --version={{< latest >}}
+```
+or [scoop](https://scoop.sh/):
+```
+scoop install pack
 ```
 
 Alternatively, you can install the Windows executable for `pack` by downloading the Windows [ZIP file](https://github.com/buildpacks/pack/releases/download/v{{< latest >}}/pack-v{{< latest >}}-windows.zip).
