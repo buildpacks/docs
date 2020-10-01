@@ -257,6 +257,9 @@ Let&amp;rsquo;s change ruby-buildpack/bin/build to look like the following:
       <li data-nav-id="/docs/tools/pack/cli/pack_inspect-builder/" class="dd-item depth-3 collapse">
         <a href="/docs/tools/pack/cli/pack_inspect-builder/">pack inspect-builder</a>
       </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_inspect-buildpack/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_inspect-buildpack/">pack inspect-buildpack</a>
+      </li>
       <li data-nav-id="/docs/tools/pack/cli/pack_inspect-image/" class="dd-item depth-3 collapse">
         <a href="/docs/tools/pack/cli/pack_inspect-image/">pack inspect-image</a>
       </li>
@@ -400,7 +403,6 @@ bundle install
 <!-- test:exec -->
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 </code></pre></div><p>you will see the following output:</p>
-<!-- test:assert=contains;ignore-lines=... -->
 <pre><code>===&gt; DETECTING
 ...
 ===&gt; ANALYZING

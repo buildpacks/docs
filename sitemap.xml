@@ -207,6 +207,10 @@
   </url>
   
   <url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_inspect-buildpack/</loc>
+  </url>
+  
+  <url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_inspect-image/</loc>
   </url>
   
