@@ -101,7 +101,6 @@ The `pack build` command takes in your Ruby sample app as the `--path` argument 
 
 After running the command, you should see that it failed to detect, as the `detect` script is currently written to simply error out.
 
-<!-- test:assert=contains -->
 ```
 ===> DETECTING
 [detector] err:  com.examples.buildpacks.ruby@0.0.1 (1)
