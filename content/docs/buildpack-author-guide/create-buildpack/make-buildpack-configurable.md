@@ -120,7 +120,6 @@ pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 
 You will notice that version of Ruby specified in the app's `.ruby-version` file is downloaded.
 
-<!-- test:assert=contains -->
 ```text
 ===> BUILDING
 [builder] ---> Ruby Buildpack
