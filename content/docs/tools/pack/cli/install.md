@@ -34,7 +34,7 @@ brew install buildpacks/tap/pack
 `pack` is available on GitHub releases so you can directly get and install it.
 
 ```bash
-(curl -sSL "https://github.com/buildpacks/pack/releases/download/v0.13.1/pack-v{{< latest >}}-linux.tgz" | sudo tar -C /usr/local/bin/ --no-same-owner -xzv pack)
+(curl -sSL "https://github.com/buildpacks/pack/releases/download/v{{< latest >}}/pack-v{{< latest >}}-linux.tgz" | sudo tar -C /usr/local/bin/ --no-same-owner -xzv pack)
 ```
 
 > **Optional:** Enable [auto-completion](#auto-completion)
