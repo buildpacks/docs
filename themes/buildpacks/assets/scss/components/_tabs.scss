@@ -1,0 +1,33 @@
+.tabbable {
+  .nav-tabs:not(.nav-pills) {
+    a.nav-link {
+      text-decoration: none;
+      border-width: 0 0 3px 0;
+      border-radius: 0;
+
+      &.active {
+        background-color: transparent;
+        border-color: $blue-light;
+        color: $blue-dark;
+      }
+    }
+  }
+
+  .nav-pills {
+    a.nav-link {
+      text-decoration: none;
+      border-width: 1px;
+
+      &:not(.active) {
+        border-style: dashed;
+        border-color: #CCC;
+      }
+
+      &.active {
+        background-color: transparent;
+        border-color: $blue-light;
+        color: $blue-dark;
+      }
+    }
+  }
+}

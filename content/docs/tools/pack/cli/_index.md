@@ -1,5 +1,5 @@
 +++
-title="Pack CLI"
+title="CLI Docs"
 include_summaries=true
 +++
 

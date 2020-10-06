@@ -1,0 +1,5 @@
+{{- $pack_version := (getenv $.Site.Params.pack_version_env_var) -}}
+{{ if not $pack_version }}
+  {{ errorf "Unable to find 'pack_version': %s" $.Site.Params.pack_version_env_var }}
+{{ end }}
+{{- $pack_version -}}
