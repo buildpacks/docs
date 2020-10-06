@@ -236,6 +236,7 @@ pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 
 it will download the gems:
 
+<!-- test:assert=contains;ignore-lines=... -->
 ```text
 ===> BUILDING
 [builder] ---> Ruby Buildpack
@@ -254,6 +255,7 @@ pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 
 you will see the new caching logic at work during the `BUILDING` phase:
 
+<!-- test:assert=contains;ignore-lines=... -->
 ```text
 ===> BUILDING
 [builder] ---> Ruby Buildpack

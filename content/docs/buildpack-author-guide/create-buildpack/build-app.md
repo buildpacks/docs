@@ -51,6 +51,7 @@ pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 
 you will see the following output:
 
+<!-- test:assert=contains;ignore-lines=... -->
 ```
 ===> DETECTING
 ...

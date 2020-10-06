@@ -36,6 +36,7 @@ pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 
 You should see the following output:
 
+<!-- test:assert=contains -->
 ```
 ===> DETECTING
 [detector] com.examples.buildpacks.ruby 0.0.1
