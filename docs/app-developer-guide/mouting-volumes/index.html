@@ -418,7 +418,7 @@ pack build volume-example <span class="se">\
 </span><span class="se"></span>    --buildpack samples/buildpacks/hello-world <span class="se">\
 </span><span class="se"></span>    --path samples/apps/bash-script <span class="se">\
 </span><span class="se"></span>    --volume test-volume:/platform/volume:ro
-</code></pre></div><p>The above <code>pack build ...</code> command will mount the <code>volume-example</code> volume in the platform <code>/platform</code> directory.</p>
+</code></pre></div><p>The above <code>pack build ...</code> command will mount the <code>test-volume</code> volume in the <code>/platform</code> directory of the container.</p>
 <p>Since we are using the <code>samples/hello-world</code> buildpack, we should see the <code>/platform</code> directory files listed:</p>
 <div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">[builder]      platform_dir files:
 ...
