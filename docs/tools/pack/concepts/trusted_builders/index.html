@@ -372,20 +372,20 @@
 <p>When <code>pack</code> trusts a builder <code>pack build</code> will run a single lifecycle binary which will flow through the five lifecycle steps in a single container. This is more efficient than running five separate containers.</p>
 <p>If <code>pack</code> were to use the <code>creator</code> lifecycle phase with an untrusted builder, each of the buildpack&rsquo;s <code>bin/detect</code> and <code>bin/build</code> processes would run within a container that has heightened privileges or access to registry credentials. The buildpacks distributed with the untrusted builder could be constructed to act maliciously with these privileges or credentials.</p>
 <h2 id="which-builders-are-trusted">Which Builders are trusted?</h2>
-<p>You may view which builders are trusted via  <a href="/docs/reference/pack/pack_list-trusted-builders/"><code>pack list-trusted-builders</code></a>.</p>
+<p>You may view which builders are trusted via  <a href="/docs/tools/pack/cli/pack_list-trusted-builders/"><code>pack list-trusted-builders</code></a>.</p>
 <p>Here are some other related commands:</p>
 <ul>
 <li>
-<p>By default, any builder suggested by  <a href="/docs/reference/pack/pack_suggest-builders"><code>pack suggest-builders</code></a> is considered trusted.</p>
+<p>By default, any builder suggested by  <a href="/docs/tools/pack/cli/pack_suggest-builders/"><code>pack suggest-builders</code></a> is considered trusted.</p>
 </li>
 <li>
-<p>Any other builder can be trusted using  <a href="/docs/reference/pack/pack_trust-builder/"><code>pack trust-builder &lt;builder-name&gt;</code></a>.</p>
+<p>Any other builder can be trusted using  <a href="/docs/tools/pack/cli/pack_trust-builder/"><code>pack trust-builder &lt;builder-name&gt;</code></a>.</p>
 </li>
 <li>
-<p>To stop trusting a builder use <a href="/docs/reference/pack/pack_untrust-builder/"><code>pack untrust-builder &lt;builder-name</code></a>.</p>
+<p>To stop trusting a builder use <a href="/docs/tools/pack/cli/pack_untrust-builder/"><code>pack untrust-builder &lt;builder-name</code></a>.</p>
 </li>
 <li>
-<p>You may trust any builder for the duration of a single build by using the <code>--trust-builder</code> flag with <a href="/docs/reference/pack/pack_build/"><code>pack build</code></a>.</p>
+<p>You may trust any builder for the duration of a single build by using the <code>--trust-builder</code> flag with <a href="/docs/tools/pack/cli/pack_build/"><code>pack build</code></a>.</p>
 </li>
 </ul>
 <blockquote>
