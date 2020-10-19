@@ -6,7 +6,7 @@
         
         - [pack-cli](https://aur.archlinux.org/packages/pack-cli/)
         - [pack-cli-bin](https://aur.archlinux.org/packages/pack-cli-bin/)
-    - name: Command
+    - name: Script Install
       content: |
         The following command will download the latest version of `pack` from [GitHub](https://github.com/buildpacks/pack/releases) and install it in `/usr/local/bin/`.
 
@@ -16,7 +16,7 @@
     - &container
       name: Container
       content: |
-        `pack` is also available as container images on Docker Hub as [`buildpacksio/pack`](https://hub.docker.com/r/buildpacksio/pack)
+        `pack` is available as a container image on Docker Hub as [`buildpacksio/pack`](https://hub.docker.com/r/buildpacksio/pack)
         ([definition files](https://github.com/buildpacks/pack/blob/main/.github/workflows/delivery/docker/Dockerfile)).
 
         #### Tags
@@ -73,6 +73,7 @@
     - *container
     - name: Scoop
       content: |
+       `pack` can be installed via [Scoop](https://scoop.sh/):
         ```
         scoop install pack
         ```
