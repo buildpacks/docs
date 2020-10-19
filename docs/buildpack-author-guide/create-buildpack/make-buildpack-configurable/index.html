@@ -459,6 +459,7 @@ cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span cl
 <!-- test:exec -->
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 </code></pre></div><p>You will notice that version of Ruby specified in the app&rsquo;s <code>.ruby-version</code> file is downloaded.</p>
+<!-- test:assert=contains -->
 <div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">===&gt; BUILDING
 [builder] ---&gt; Ruby Buildpack
 [builder] ---&gt; Downloading and extracting Ruby 2.5.0

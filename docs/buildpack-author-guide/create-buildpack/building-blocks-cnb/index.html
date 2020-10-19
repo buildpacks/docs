@@ -420,6 +420,7 @@ mkdir ruby-buildpack buildpack.toml You will now need a buildpack.toml to descri
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 </code></pre></div><p>The <code>pack build</code> command takes in your Ruby sample app as the <code>--path</code> argument and your buildpack as the <code>--buildpack</code> argument.</p>
 <p>After running the command, you should see that it failed to detect, as the <code>detect</code> script is currently written to simply error out.</p>
+<!-- test:assert=contains -->
 <pre><code>===&gt; DETECTING
 [detector] err:  com.examples.buildpacks.ruby@0.0.1 (1)
 [detector] ERROR: No buildpack groups passed detection.

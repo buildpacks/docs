@@ -552,6 +552,7 @@ cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span cl
 <!-- test:exec -->
 <div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 </code></pre></div><p>it will download the gems:</p>
+<!-- test:assert=contains;ignore-lines=... -->
 <div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">===&gt; BUILDING
 [builder] ---&gt; Ruby Buildpack
 [builder] ---&gt; Downloading and extracting Ruby
@@ -562,6 +563,7 @@ cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span cl
 <!-- test:exec -->
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 </code></pre></div><p>you will see the new caching logic at work during the <code>BUILDING</code> phase:</p>
+<!-- test:assert=contains;ignore-lines=... -->
 <div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">===&gt; BUILDING
 [builder] ---&gt; Ruby Buildpack
 [builder] ---&gt; Downloading and extracting Ruby
