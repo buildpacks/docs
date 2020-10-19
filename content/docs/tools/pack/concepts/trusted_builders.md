@@ -21,16 +21,16 @@ When `pack` trusts a builder `pack build` will run a single lifecycle binary whi
 If `pack` were to use the `creator` lifecycle phase with an untrusted builder, each of the buildpack's `bin/detect` and `bin/build` processes would run within a container that has heightened privileges or access to registry credentials. The buildpacks distributed with the untrusted builder could be constructed to act maliciously with these privileges or credentials.
 
 ## Which Builders are trusted?
-You may view which builders are trusted via  [`pack list-trusted-builders`](/docs/reference/pack/pack_list-trusted-builders/).
+You may view which builders are trusted via  [`pack list-trusted-builders`](/docs/tools/pack/cli/pack_list-trusted-builders/).
 
 Here are some other related commands:
 
-* By default, any builder suggested by  [`pack suggest-builders`](/docs/reference/pack/pack_suggest-builders) is considered trusted.
-* Any other builder can be trusted using  [`pack trust-builder <builder-name>`](/docs/reference/pack/pack_trust-builder/).
+* By default, any builder suggested by  [`pack suggest-builders`](/docs/tools/pack/cli/pack_suggest-builders/) is considered trusted.
+* Any other builder can be trusted using  [`pack trust-builder <builder-name>`](/docs/tools/pack/cli/pack_trust-builder/).
 
-* To stop trusting a builder use [`pack untrust-builder <builder-name`](/docs/reference/pack/pack_untrust-builder/).
+* To stop trusting a builder use [`pack untrust-builder <builder-name`](/docs/tools/pack/cli/pack_untrust-builder/).
 
-* You may trust any builder for the duration of a single build by using the `--trust-builder` flag with [`pack build`](/docs/reference/pack/pack_build/).
+* You may trust any builder for the duration of a single build by using the `--trust-builder` flag with [`pack build`](/docs/tools/pack/cli/pack_build/).
 
 > **Note:** A published lifecycle image is available for lifecycle versions 0.7.5+ and 0.6.1. If your builder has been created with an earlier version of the lifecycle `pack build` will **fail** due to this security related change.
 ><br/>

@@ -85,7 +85,7 @@ pack build volume-example \
     --volume test-volume:/platform/volume:ro
 ```
 
-The above `pack build ...` command will mount the `volume-example` volume in the platform `/platform` directory.
+The above `pack build ...` command will mount the `test-volume` volume in the `/platform` directory of the container.
 
 Since we are using the `samples/hello-world` buildpack, we should see the `/platform` directory files listed:
 
