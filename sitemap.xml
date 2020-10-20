@@ -31,10 +31,6 @@
   </url>
   
   <url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/install/</loc>
-  </url>
-  
-  <url>
     <loc>https://buildpacks.io/docs/app-journey/</loc>
   </url>
   
@@ -44,6 +40,10 @@
   
   <url>
     <loc>https://buildpacks.io/docs/concepts/components/buildpack/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/tools/pack/concepts/</loc>
   </url>
   
   <url>
@@ -163,11 +163,11 @@
   </url>
   
   <url>
-    <loc>https://buildpacks.io/</loc>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/</loc>
   </url>
   
   <url>
-    <loc>https://buildpacks.io/docs/tools/pack/concepts/</loc>
+    <loc>https://buildpacks.io/</loc>
   </url>
   
   <url>
@@ -188,10 +188,6 @@
   
   <url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_build/</loc>
-  </url>
-  
-  <url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/</loc>
   </url>
   
   <url>

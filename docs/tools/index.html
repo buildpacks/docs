@@ -39,14 +39,14 @@
 <meta property="twitter:site" content="@buildpacks_io">
 <meta property="twitter:creator" content="@buildpacks_io">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Fira+Mono|Source+Sans+Pro:400,400i,600" rel="stylesheet">
     
     <link rel="stylesheet" href="https://buildpacks.io/scss/site.css" integrity="" media="screen">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-
-    
-    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
     <script>
       function addAnchor(element) {
@@ -233,11 +233,8 @@
           </ul>
       </li>
       <li data-nav-id="/docs/tools/pack/cli/" class="dd-item depth-2 collapse haschildren">
-        <a href="/docs/tools/pack/cli/">Pack CLI</a>
+        <a href="/docs/tools/pack/cli/">CLI Docs</a>
           <ul class="ml-2">
-      <li data-nav-id="/docs/tools/pack/cli/install/" class="dd-item depth-3 collapse">
-        <a href="/docs/tools/pack/cli/install/">Install</a>
-      </li>
       <li data-nav-id="/docs/tools/pack/cli/pack/" class="dd-item depth-3 collapse">
         <a href="/docs/tools/pack/cli/pack/">pack</a>
       </li>
@@ -369,166 +366,15 @@
     
       
         <h2><a href="https://buildpacks.io/docs/tools/pack/" class="">Pack</a></h2>
-        <p class="m-1"></p>
+        <p class="m-1">Pack is a tool maintained by the Cloud Native Buildpacks project to support the use of buildpacks. It enables the following functionality:
+ build an application using buildpacks. rebase application images created using buildpacks. Creation of various components used within the ecosystem.  Pack works as both a Command Line Interface (CLI) and a Go library.
+ pack CLI Install You can install the most recent version of the pack CLI (version 0.</p>
 
         
-    
-      
-        <ul>
-          <li class="list-item-icon"><h3><a href="https://buildpacks.io/docs/tools/pack/concepts/" class="">Concepts</a></h3></li>
-          
-    
-      
-        <ul>
-          <li class="list-item-icon"><h4><a href="https://buildpacks.io/docs/tools/pack/concepts/trusted_builders/" class="">Trusted Builders</a></h4></li>
-          
-        </ul>
-      
-    
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h3><a href="https://buildpacks.io/docs/tools/pack/cli/" class="">Pack CLI</a></h3></li>
-          
-    
-      
-        <ul>
-          <li class="list-item-icon"><h4><a href="https://buildpacks.io/docs/tools/pack/cli/install/" class="">Install</a></h4></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h4><a href="https://buildpacks.io/docs/tools/pack/cli/pack/" class="">pack</a></h4></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h4><a href="https://buildpacks.io/docs/tools/pack/cli/pack_build/" class="">pack build</a></h4></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h4><a href="https://buildpacks.io/docs/tools/pack/cli/pack_completion/" class="">pack completion</a></h4></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h4><a href="https://buildpacks.io/docs/tools/pack/cli/pack_create-builder/" class="">pack create-builder</a></h4></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h4><a href="https://buildpacks.io/docs/tools/pack/cli/pack_inspect-builder/" class="">pack inspect-builder</a></h4></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h4><a href="https://buildpacks.io/docs/tools/pack/cli/pack_inspect-buildpack/" class="">pack inspect-buildpack</a></h4></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h4><a href="https://buildpacks.io/docs/tools/pack/cli/pack_inspect-image/" class="">pack inspect-image</a></h4></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h4><a href="https://buildpacks.io/docs/tools/pack/cli/pack_list-trusted-builders/" class="">pack list-trusted-builders</a></h4></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h4><a href="https://buildpacks.io/docs/tools/pack/cli/pack_package-buildpack/" class="">pack package-buildpack</a></h4></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h4><a href="https://buildpacks.io/docs/tools/pack/cli/pack_rebase/" class="">pack rebase</a></h4></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h4><a href="https://buildpacks.io/docs/tools/pack/cli/pack_report/" class="">pack report</a></h4></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h4><a href="https://buildpacks.io/docs/tools/pack/cli/pack_set-default-builder/" class="">pack set-default-builder</a></h4></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h4><a href="https://buildpacks.io/docs/tools/pack/cli/pack_set-run-image-mirrors/" class="">pack set-run-image-mirrors</a></h4></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h4><a href="https://buildpacks.io/docs/tools/pack/cli/pack_suggest-builders/" class="">pack suggest-builders</a></h4></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h4><a href="https://buildpacks.io/docs/tools/pack/cli/pack_suggest-stacks/" class="">pack suggest-stacks</a></h4></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h4><a href="https://buildpacks.io/docs/tools/pack/cli/pack_trust-builder/" class="">pack trust-builder</a></h4></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h4><a href="https://buildpacks.io/docs/tools/pack/cli/pack_untrust-builder/" class="">pack untrust-builder</a></h4></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h4><a href="https://buildpacks.io/docs/tools/pack/cli/pack_version/" class="">pack version</a></h4></li>
-          
-        </ul>
-      
-    
-        </ul>
-      
-    
+          <div class="text-md-right">
+            <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/tools/pack/">Learn more →</a>
+          </div>
+        
       
     
 

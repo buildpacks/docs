@@ -7,7 +7,8 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+<meta name="description" content="Pack is a tool maintained by the Cloud Native Buildpacks project to support the use of buildpacks. It enables the following functionality:
+ build an application using buildpacks. rebase application…"/>
 <link rel="canonical" content="https://buildpacks.io/docs/tools/pack/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
@@ -21,7 +22,8 @@
 <meta property="og:url" content="https://buildpacks.io/docs/tools/pack/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-
+<meta property="og:description" content="Pack is a tool maintained by the Cloud Native Buildpacks project to support the use of buildpacks. It enables the following functionality:
+ build an application using buildpacks. rebase application…">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -39,14 +41,14 @@
 <meta property="twitter:site" content="@buildpacks_io">
 <meta property="twitter:creator" content="@buildpacks_io">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Fira+Mono|Source+Sans+Pro:400,400i,600" rel="stylesheet">
     
     <link rel="stylesheet" href="https://buildpacks.io/scss/site.css" integrity="" media="screen">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-
-    
-    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
     <script>
       function addAnchor(element) {
@@ -233,11 +235,8 @@
           </ul>
       </li>
       <li data-nav-id="/docs/tools/pack/cli/" class="dd-item depth-2 haschildren">
-        <a href="/docs/tools/pack/cli/">Pack CLI</a>
+        <a href="/docs/tools/pack/cli/">CLI Docs</a>
           <ul class="ml-2">
-      <li data-nav-id="/docs/tools/pack/cli/install/" class="dd-item depth-3 collapse">
-        <a href="/docs/tools/pack/cli/install/">Install</a>
-      </li>
       <li data-nav-id="/docs/tools/pack/cli/pack/" class="dd-item depth-3 collapse">
         <a href="/docs/tools/pack/cli/pack/">pack</a>
       </li>
@@ -362,166 +361,344 @@
           <h1 class="title">Pack</h1>
         </div>
 
+        <p>Pack is a tool maintained by the Cloud Native Buildpacks project to support the use of buildpacks. It enables the following functionality:</p>
+<ol>
+<li><a href="/docs/concepts/operations/build/"><code>build</code></a> an application using buildpacks.</li>
+<li><a href="/docs/concepts/operations/rebase/"><code>rebase</code></a> application images created using buildpacks.</li>
+<li>Creation of various <a href="/docs/concepts/components/">components</a> used within the ecosystem.</li>
+</ol>
+<p>Pack works as both a <a href="#pack-cli">Command Line Interface (CLI)</a> and a <a href="#go-library">Go library</a>.</p>
+<hr>
+<h2 id="pack-cli"><code>pack</code> CLI</h2>
+<h3 id="install">Install</h3>
+<p>You can install the most recent version of the <code>pack</code> CLI (version <strong>0.14.2</strong>) on the following operating systems:</p>
+
+
+
+<div class="tabbable">
+  <ul class="nav nav-tabs mx-0">
+    
+      
+      
+      <li><a href="#linux" class="nav-link ">Linux</a></li>
+    
+      
+      
         
+      
+      <li><a href="#macos" class="nav-link active">macOS</a></li>
+    
+      
+      
+      <li><a href="#windows" class="nav-link ">Windows</a></li>
+    
+  </ul>
+  <div class="tab-content">
+    
+      
+      
+      <div class="tab-pane fade " id="linux">
+        <div class="tabbable">
+          <ul class="nav nav-tabs nav-pills pb-3 m-0">
+            
+              
+              
+              <li><a href="#linux-arch-linux" class="nav-link small ">Arch Linux</a></li>
+            
+              
+              
+              <li><a href="#linux-script-install" class="nav-link small ">Script Install</a></li>
+            
+              
+              
+              <li><a href="#linux-container" class="nav-link small ">Container</a></li>
+            
+              
+              
+                
+              
+              <li><a href="#linux-homebrew" class="nav-link small active">Homebrew</a></li>
+            
+              
+              
+              <li><a href="#linux-manually" class="nav-link small ">Manually</a></li>
+            
+          </ul>
+          <div class="tab-content bg-off-blue py-3">
+            
+              
+              
+              <div class="tab-pane px-3 fade " id="linux-arch-linux">
+                <p>On Arch Linux, there are two packages available:</p>
+<ul>
+<li><a href="https://aur.archlinux.org/packages/pack-cli/">pack-cli</a></li>
+<li><a href="https://aur.archlinux.org/packages/pack-cli-bin/">pack-cli-bin</a></li>
+</ul>
+
+              </div>
+            
+              
+              
+              <div class="tab-pane px-3 fade " id="linux-script-install">
+                <p>The following command will download the latest version of <code>pack</code> from <a href="https://github.com/buildpacks/pack/releases">GitHub</a> and install it in <code>/usr/local/bin/</code>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">(</span>curl -sSL <span class="s2">&#34;https://github.com/buildpacks/pack/releases/download/v0.14.2/pack-v0.14.2-linux.tgz&#34;</span> <span class="p">|</span> sudo tar -C /usr/local/bin/ --no-same-owner -xzv pack<span class="o">)</span>
+</code></pre></div>
+              </div>
+            
+              
+              
+              <div class="tab-pane px-3 fade " id="linux-container">
+                <p><code>pack</code> is available as a container image on Docker Hub as <a href="https://hub.docker.com/r/buildpacksio/pack"><code>buildpacksio/pack</code></a>
+(<a href="https://github.com/buildpacks/pack/blob/main/.github/workflows/delivery/docker/Dockerfile">definition files</a>).</p>
+<h4 id="tags">Tags</h4>
+<ul>
+<li>Use this tag to track the latest release:
+<ul>
+<li><code>buildpacksio/pack:latest</code></li>
+</ul>
+</li>
+<li>Use a version tag to pin a specific release:
+<ul>
+<li><code>buildpacksio/pack:0.14.2</code></li>
+<li><a href="https://hub.docker.com/r/buildpacksio/pack/tags">other versions</a></li>
+</ul>
+</li>
+</ul>
+<h4 id="usage">Usage</h4>
+<p>In some container environments you may be required to mount your local Docker daemon&rsquo;s socket.</p>
+<p>For example, using the Docker CLI:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker run <span class="se">\
+</span><span class="se"></span>  -v /var/run/docker.sock:/var/run/docker.sock <span class="se">\
+</span><span class="se"></span>  -v <span class="nv">$PWD</span>:/workspace -w /workspace <span class="se">\
+</span><span class="se"></span>  buildpacksio/pack build &lt;my-image&gt; --builder &lt;builder-image&gt;
+</code></pre></div>
+              </div>
+            
+              
+              
+                
+              
+              <div class="tab-pane px-3 fade active in show" id="linux-homebrew">
+                <p><code>pack</code> can be installed via <a href="https://brew.sh/">Homebrew</a>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">brew install buildpacks/tap/pack
+</code></pre></div>
+              </div>
+            
+              
+              
+              <div class="tab-pane px-3 fade " id="linux-manually">
+                <p>To manually install <code>pack</code>, visit the <a href="https://github.com/buildpacks/pack/releases">releases page on GitHub</a>.</p>
+<ol>
+<li>Download the <code>.tgz</code> or <code>.zip</code> file for your platform</li>
+<li>Extract the <code>pack</code> binary</li>
+<li>(Optional) Add the directory containing <code>pack</code> to <code>PATH</code></li>
+</ol>
+
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    
+      
+      
+        
+      
+      <div class="tab-pane fade active in show" id="macos">
+        <div class="tabbable">
+          <ul class="nav nav-tabs nav-pills pb-3 m-0">
+            
+              
+              
+              <li><a href="#macos-container" class="nav-link small ">Container</a></li>
+            
+              
+              
+                
+              
+              <li><a href="#macos-homebrew" class="nav-link small active">Homebrew</a></li>
+            
+              
+              
+              <li><a href="#macos-manually" class="nav-link small ">Manually</a></li>
+            
+          </ul>
+          <div class="tab-content bg-off-blue py-3">
+            
+              
+              
+              <div class="tab-pane px-3 fade " id="macos-container">
+                <p><code>pack</code> is available as a container image on Docker Hub as <a href="https://hub.docker.com/r/buildpacksio/pack"><code>buildpacksio/pack</code></a>
+(<a href="https://github.com/buildpacks/pack/blob/main/.github/workflows/delivery/docker/Dockerfile">definition files</a>).</p>
+<h4 id="tags">Tags</h4>
+<ul>
+<li>Use this tag to track the latest release:
+<ul>
+<li><code>buildpacksio/pack:latest</code></li>
+</ul>
+</li>
+<li>Use a version tag to pin a specific release:
+<ul>
+<li><code>buildpacksio/pack:0.14.2</code></li>
+<li><a href="https://hub.docker.com/r/buildpacksio/pack/tags">other versions</a></li>
+</ul>
+</li>
+</ul>
+<h4 id="usage">Usage</h4>
+<p>In some container environments you may be required to mount your local Docker daemon&rsquo;s socket.</p>
+<p>For example, using the Docker CLI:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker run <span class="se">\
+</span><span class="se"></span>  -v /var/run/docker.sock:/var/run/docker.sock <span class="se">\
+</span><span class="se"></span>  -v <span class="nv">$PWD</span>:/workspace -w /workspace <span class="se">\
+</span><span class="se"></span>  buildpacksio/pack build &lt;my-image&gt; --builder &lt;builder-image&gt;
+</code></pre></div>
+              </div>
+            
+              
+              
+                
+              
+              <div class="tab-pane px-3 fade active in show" id="macos-homebrew">
+                <p><code>pack</code> can be installed via <a href="https://brew.sh/">Homebrew</a>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">brew install buildpacks/tap/pack
+</code></pre></div>
+              </div>
+            
+              
+              
+              <div class="tab-pane px-3 fade " id="macos-manually">
+                <p>To manually install <code>pack</code>, visit the <a href="https://github.com/buildpacks/pack/releases">releases page on GitHub</a>.</p>
+<ol>
+<li>Download the <code>.tgz</code> or <code>.zip</code> file for your platform</li>
+<li>Extract the <code>pack</code> binary</li>
+<li>(Optional) Add the directory containing <code>pack</code> to <code>PATH</code></li>
+</ol>
+
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    
+      
+      
+      <div class="tab-pane fade " id="windows">
+        <div class="tabbable">
+          <ul class="nav nav-tabs nav-pills pb-3 m-0">
+            
+              
+              
+                
+              
+              <li><a href="#windows-chocolatey" class="nav-link small active">Chocolatey</a></li>
+            
+              
+              
+              <li><a href="#windows-container" class="nav-link small ">Container</a></li>
+            
+              
+              
+              <li><a href="#windows-scoop" class="nav-link small ">Scoop</a></li>
+            
+              
+              
+              <li><a href="#windows-manually" class="nav-link small ">Manually</a></li>
+            
+          </ul>
+          <div class="tab-content bg-off-blue py-3">
+            
+              
+              
+                
+              
+              <div class="tab-pane px-3 fade active in show" id="windows-chocolatey">
+                <p>To install <code>pack</code> on Windows, we recommend using <a href="https://chocolatey.org/">Chocolatey</a>:</p>
+<pre><code>choco install pack --version=0.14.2
+</code></pre>
+              </div>
+            
+              
+              
+              <div class="tab-pane px-3 fade " id="windows-container">
+                <p><code>pack</code> is available as a container image on Docker Hub as <a href="https://hub.docker.com/r/buildpacksio/pack"><code>buildpacksio/pack</code></a>
+(<a href="https://github.com/buildpacks/pack/blob/main/.github/workflows/delivery/docker/Dockerfile">definition files</a>).</p>
+<h4 id="tags">Tags</h4>
+<ul>
+<li>Use this tag to track the latest release:
+<ul>
+<li><code>buildpacksio/pack:latest</code></li>
+</ul>
+</li>
+<li>Use a version tag to pin a specific release:
+<ul>
+<li><code>buildpacksio/pack:0.14.2</code></li>
+<li><a href="https://hub.docker.com/r/buildpacksio/pack/tags">other versions</a></li>
+</ul>
+</li>
+</ul>
+<h4 id="usage">Usage</h4>
+<p>In some container environments you may be required to mount your local Docker daemon&rsquo;s socket.</p>
+<p>For example, using the Docker CLI:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker run <span class="se">\
+</span><span class="se"></span>  -v /var/run/docker.sock:/var/run/docker.sock <span class="se">\
+</span><span class="se"></span>  -v <span class="nv">$PWD</span>:/workspace -w /workspace <span class="se">\
+</span><span class="se"></span>  buildpacksio/pack build &lt;my-image&gt; --builder &lt;builder-image&gt;
+</code></pre></div>
+              </div>
+            
+              
+              
+              <div class="tab-pane px-3 fade " id="windows-scoop">
+                <p><code>pack</code> can be installed via <a href="https://scoop.sh/">Scoop</a>:</p>
+<pre><code>scoop install pack
+</code></pre>
+              </div>
+            
+              
+              
+              <div class="tab-pane px-3 fade " id="windows-manually">
+                <p>To manually install <code>pack</code>, visit the <a href="https://github.com/buildpacks/pack/releases">releases page on GitHub</a>.</p>
+<ol>
+<li>Download the <code>.tgz</code> or <code>.zip</code> file for your platform</li>
+<li>Extract the <code>pack</code> binary</li>
+<li>(Optional) Add the directory containing <code>pack</code> to <code>PATH</code></li>
+</ol>
+
+              </div>
+            
+          </div>
+        </div>
+      </div>
+    
+  </div>
+</div>
+<script type="application/javascript">
+  $("ul.nav-tabs a").click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+  });
+</script>
+<h5 id="auto-completion">Auto-completion</h5>
+<p>If you are using <code>bash</code>, you can configure your <code>bash</code> shell to load completions for each session.</p>
+<p>Add the following to your <code>.bashrc</code> or <code>.bash_profile</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">. <span class="k">$(</span>pack completion<span class="k">)</span>
+</code></pre></div><h3 id="references">References</h3>
+<ul>
+<li><a href="/docs/tools/pack/cli/pack/">Docs</a></li>
+<li><a href="https://github.com/buildpacks/pack/">Source</a></li>
+</ul>
+<hr>
+<h2 id="go-library">Go library</h2>
+<h3 id="install-1">Install</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">go get -u github.com/buildpacks/pack    
+</code></pre></div><h3 id="references-1">References</h3>
+<ul>
+<li><a href="https://pkg.go.dev/github.com/buildpacks/pack">Docs</a></li>
+<li><a href="https://github.com/buildpacks/pack/">Source</a></li>
+</ul>
+
 
         
-    
-      
-        <h2><a href="https://buildpacks.io/docs/tools/pack/concepts/" class="">Concepts</a></h2>
-        <p class="m-1">This section describes some concepts related to the Pack CLI.</p>
-
-        
-    
-      
-        <ul>
-          <li class="list-item-icon"><h3><a href="https://buildpacks.io/docs/tools/pack/concepts/trusted_builders/" class="">Trusted Builders</a></h3></li>
-          
-        </ul>
-      
-    
-      
-    
-      
-        <h2><a href="https://buildpacks.io/docs/tools/pack/cli/" class="">Pack CLI</a></h2>
-        <p class="m-1">This section describes the Pack Command Line Interface (CLI).</p>
-
-        
-    
-      
-        <ul>
-          <li class="list-item-icon"><h3><a href="https://buildpacks.io/docs/tools/pack/cli/install/" class="">Install</a></h3></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h3><a href="https://buildpacks.io/docs/tools/pack/cli/pack/" class="">pack</a></h3></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h3><a href="https://buildpacks.io/docs/tools/pack/cli/pack_build/" class="">pack build</a></h3></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h3><a href="https://buildpacks.io/docs/tools/pack/cli/pack_completion/" class="">pack completion</a></h3></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h3><a href="https://buildpacks.io/docs/tools/pack/cli/pack_create-builder/" class="">pack create-builder</a></h3></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h3><a href="https://buildpacks.io/docs/tools/pack/cli/pack_inspect-builder/" class="">pack inspect-builder</a></h3></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h3><a href="https://buildpacks.io/docs/tools/pack/cli/pack_inspect-buildpack/" class="">pack inspect-buildpack</a></h3></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h3><a href="https://buildpacks.io/docs/tools/pack/cli/pack_inspect-image/" class="">pack inspect-image</a></h3></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h3><a href="https://buildpacks.io/docs/tools/pack/cli/pack_list-trusted-builders/" class="">pack list-trusted-builders</a></h3></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h3><a href="https://buildpacks.io/docs/tools/pack/cli/pack_package-buildpack/" class="">pack package-buildpack</a></h3></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h3><a href="https://buildpacks.io/docs/tools/pack/cli/pack_rebase/" class="">pack rebase</a></h3></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h3><a href="https://buildpacks.io/docs/tools/pack/cli/pack_report/" class="">pack report</a></h3></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h3><a href="https://buildpacks.io/docs/tools/pack/cli/pack_set-default-builder/" class="">pack set-default-builder</a></h3></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h3><a href="https://buildpacks.io/docs/tools/pack/cli/pack_set-run-image-mirrors/" class="">pack set-run-image-mirrors</a></h3></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h3><a href="https://buildpacks.io/docs/tools/pack/cli/pack_suggest-builders/" class="">pack suggest-builders</a></h3></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h3><a href="https://buildpacks.io/docs/tools/pack/cli/pack_suggest-stacks/" class="">pack suggest-stacks</a></h3></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h3><a href="https://buildpacks.io/docs/tools/pack/cli/pack_trust-builder/" class="">pack trust-builder</a></h3></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h3><a href="https://buildpacks.io/docs/tools/pack/cli/pack_untrust-builder/" class="">pack untrust-builder</a></h3></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h3><a href="https://buildpacks.io/docs/tools/pack/cli/pack_version/" class="">pack version</a></h3></li>
-          
-        </ul>
-      
-    
-      
-    
 
         <hr>
 <div class='footline d-block'>

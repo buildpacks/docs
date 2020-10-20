@@ -292,6 +292,9 @@ Colors
 .bg-blue {
   background-color: #47529E; }
 
+.bg-off-blue {
+  background-color: #f4f5fd; }
+
 .bg-white {
   background-color: #FFFFFF; }
 
@@ -1379,6 +1382,26 @@ Quote
     .quote .author:before {
       content: "- ";
       color: #7C6E75; }
+
+.tabbable .nav-tabs:not(.nav-pills) a.nav-link {
+  text-decoration: none;
+  border-width: 0 0 3px 0;
+  border-radius: 0; }
+  .tabbable .nav-tabs:not(.nav-pills) a.nav-link.active {
+    background-color: transparent;
+    border-color: #47529E;
+    color: #242960; }
+
+.tabbable .nav-pills a.nav-link {
+  text-decoration: none;
+  border-width: 1px; }
+  .tabbable .nav-pills a.nav-link:not(.active) {
+    border-style: dashed;
+    border-color: #CCC; }
+  .tabbable .nav-pills a.nav-link.active {
+    background-color: transparent;
+    border-color: #47529E;
+    color: #242960; }
 
 ul.list-circle > li {
   list-style-type: circle !important; }

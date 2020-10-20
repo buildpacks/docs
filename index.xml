@@ -56,15 +56,6 @@
     </item>
     
     <item>
-      <title>Install</title>
-      <link>https://buildpacks.io/docs/tools/pack/cli/install/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://buildpacks.io/docs/tools/pack/cli/install/</guid>
-      <description>How to install the &lt;code&gt;pack&lt;/code&gt; CLI using various methods.</description>
-    </item>
-    
-    <item>
       <title>An App&#39;s Brief Journey from Source to Image</title>
       <link>https://buildpacks.io/docs/app-journey/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
