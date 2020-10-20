@@ -16,6 +16,8 @@ github_base_url = "https://github.com/buildpacks"
 slack_invite_url = "https://slack.buildpacks.io/"
 description = "Cloud Native Buildpacks transform your application source code into images that can run on any cloud."
 
+pack_version_env_var = "PACK_VERSION"
+
 [menu]
   [[menu.main]]
   identifier = "home"

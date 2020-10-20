@@ -1,0 +1,80 @@
+- name: Linux
+  methods:
+    - name: Arch Linux
+      content: |
+        On Arch Linux, there are two packages available:
+        
+        - [pack-cli](https://aur.archlinux.org/packages/pack-cli/)
+        - [pack-cli-bin](https://aur.archlinux.org/packages/pack-cli-bin/)
+    - name: Script Install
+      content: |
+        The following command will download the latest version of `pack` from [GitHub](https://github.com/buildpacks/pack/releases) and install it in `/usr/local/bin/`.
+
+        ```bash
+        (curl -sSL "https://github.com/buildpacks/pack/releases/download/v<PACK_VERSION>/pack-v<PACK_VERSION>-linux.tgz" | sudo tar -C /usr/local/bin/ --no-same-owner -xzv pack)
+        ```
+    - &container
+      name: Container
+      content: |
+        `pack` is available as a container image on Docker Hub as [`buildpacksio/pack`](https://hub.docker.com/r/buildpacksio/pack)
+        ([definition files](https://github.com/buildpacks/pack/blob/main/.github/workflows/delivery/docker/Dockerfile)).
+
+        #### Tags
+
+        * Use this tag to track the latest release:
+            * `buildpacksio/pack:latest`
+        * Use a version tag to pin a specific release:
+            * `buildpacksio/pack:<PACK_VERSION>`
+            * [other versions](https://hub.docker.com/r/buildpacksio/pack/tags)
+
+        #### Usage
+
+        In some container environments you may be required to mount your local Docker daemon's socket.
+
+        For example, using the Docker CLI:
+
+        ```shell
+        docker run \
+          -v /var/run/docker.sock:/var/run/docker.sock \
+          -v $PWD:/workspace -w /workspace \
+          buildpacksio/pack build <my-image> --builder <builder-image>
+        ```
+    - &homebrew
+      name: Homebrew
+      default: true
+      content: |
+        `pack` can be installed via [Homebrew](https://brew.sh/):
+        
+        ```bash
+        brew install buildpacks/tap/pack
+        ```
+    - &manually
+      name: Manually
+      content: |
+        To manually install `pack`, visit the [releases page on GitHub](https://github.com/buildpacks/pack/releases). 
+        1. Download the `.tgz` or `.zip` file for your platform
+        2. Extract the `pack` binary
+        3. (Optional) Add the directory containing `pack` to `PATH`
+- name: macOS
+  default: true
+  methods:
+    - *container
+    - *homebrew
+    - *manually
+- name: Windows
+  methods:
+    - name: Chocolatey
+      default: true
+      content: |
+        To install `pack` on Windows, we recommend using [Chocolatey](https://chocolatey.org/):
+        ```
+        choco install pack --version=<PACK_VERSION>
+        ```
+    - *container
+    - name: Scoop
+      content: |
+       `pack` can be installed via [Scoop](https://scoop.sh/):
+        ```
+        scoop install pack
+        ```
+    - *manually
