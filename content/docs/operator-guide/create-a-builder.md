@@ -95,6 +95,8 @@ We're sure you'll be able to create more useful builders.
 
 For additional sample builders and buildpacks, check out our [samples][samples] repo.
 
+You can also check out our reference of the builder config [here][builder-config].
+
 [build]: /docs/concepts/operations/build/
 [builder]: /docs/concepts/components/builder/
 [builder-config]: /docs/reference/builder-config/
