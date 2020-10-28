@@ -9,6 +9,8 @@ as well as any actions that may be necessary.
 
 This guide is most relevant to platform operators.
 
+See the [spec release](https://github.com/buildpacks/spec/releases/tag/platform%2Fv0.4) for platform API 0.4 for the full list of changes and further details.
+
 ### Windows support
 
 Windows image builds are now supported! See the [Windows build guide](/docs/app-developer-guide/build-a-windows-app)
@@ -38,5 +40,3 @@ Related: as of buildpack API 0.3, `version` is [deprecated](https://github.com/b
 The lifecycle now defines [specific error codes](https://github.com/buildpacks/spec/pull/115) to signal the lifecycle phase where the error occurred, and for API incompatibilities.
 When building, the new error codes can be interpreted according to the new definition.
 This is particularly helpful when using the `creator`.
-
-See the [spec release](https://github.com/buildpacks/spec/releases/tag/platform%2Fv0.4) for platform API 0.4 for the full list of changes and further details.
