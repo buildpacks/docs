@@ -179,6 +179,10 @@
   </url>
   
   <url>
+    <loc>https://buildpacks.io/docs/reference/spec/migration/</loc>
+  </url>
+  
+  <url>
     <loc>https://buildpacks.io/docs/tools/pack/</loc>
   </url>
   
@@ -260,6 +264,10 @@
   
   <url>
     <loc>https://buildpacks.io/docs/reference/spec/platform-api/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/reference/spec/migration/platform-api-0.3-0.4/</loc>
   </url>
   
   <url>
