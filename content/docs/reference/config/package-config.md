@@ -23,6 +23,13 @@ A [buildpackage][package] configuration schema is as follows:
   - **`image`** _(string)_\
     A registry location (if no registry host is specified in the image name, DockerHub is assumed).
 
+- #### `platform` _(optional)_
+  The expected runtime environment for the buildpackage. It should contain the following field:
+
+  - **`os`** _(string, optional)_\
+    The operating system type that the buildpackage will run on. Only `linux` or `windows` is supported. If omitted, `linux` will be the default. 
+
+
 ## Further Reading
 
 You can view [sample buildpackages](https://github.com/buildpacks/samples/tree/main/packages) on Github.
