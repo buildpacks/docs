@@ -3,9 +3,13 @@ title="Pack"
 include_summaries=false
 expand=false
 aliases=["/docs/install-pack/", "/docs/tools/pack/cli/install/"]
+weight=100
 +++
 
-Pack is a tool maintained by the Cloud Native Buildpacks project to support the use of buildpacks. It enables the following functionality:
+Pack is a tool maintained by the Cloud Native Buildpacks project to support the use of buildpacks. 
+<!--more-->
+
+It enables the following functionality:
 
 1. [`build`][build] an application using buildpacks.
 1. [`rebase`][rebase] application images created using buildpacks.
