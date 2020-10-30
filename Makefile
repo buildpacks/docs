@@ -70,10 +70,14 @@ install-htmltest:
 	  curl https://htmltest.wjdp.uk | bash; \
 	fi;
 
-check-links: install-htmltest build
+run-htmltest: install-htmltest build
 	@echo "> Checking links..."
-	./bin/htmltest ./public -l 3 -s &> /dev/null || true
-	@if [ ! -z "$(shell cat ./tmp/.htmltest/htmltest.log | grep -i "does not exist")" ]; then \
+	./bin/htmltest ./public -l 3 -s 2>&1 > /dev/null || true
+
+check-links: run-htmltest
+check-links: ERRORS=$(shell cat ./tmp/.htmltest/htmltest.log | grep -i "does not exist")
+check-links:
+	@if [ ! -z "$(ERRORS)" ]; then \
 	  echo "ERROR: found broken links:"; \
 	  cat ./tmp/.htmltest/htmltest.log | grep -i "does not exist"; \
 	  exit 1; \
