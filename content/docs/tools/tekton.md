@@ -2,8 +2,8 @@
 title="Tekton"
 +++
 
-[Tekton][tekton] is an open-source CI/CD system platform implementation running on k8s. There are two Tekton `tasks` maintained by 
-the CNB project, both of which use the [lifecycle][lifecycle] directly.
+[Tekton][tekton] is an open-source CI/CD system platform implementation running on k8s. There are two Tekton `tasks`
+maintained by the CNB project, both of which use the [lifecycle][lifecycle] directly.
 <!--more-->
 They are:
 1. [buildpacks][buildpacks-task] `task` &rarr; This task, which we recommend using, calls the `creator` binary of the 
@@ -15,9 +15,13 @@ run each phase in a separate container.
 > NOTE: Prior to installing `Tekton`, we recommend reviewing the basic Tekton concepts. Documentation for that can be 
 > found [here][tekton-concepts]
 
+### Prerequisites
+Before we get started, make sure you've got the following installed:
+
+{{< download-button href="https://kubernetes.io/docs/tasks/tools/install-kubectl/" color="blue" >}} Install kubectl {{</>}}
+
 ### 1. Install Tekton and Tekton Dashboard
-To start, set up `Tekton`, using the Tekton [documentation][tekton-setup]. As a prerequisite, you will need to have 
-`kubectl` installed. If you don't, follow the installation documentation [here][kubectl-install].
+To start, set up `Tekton`, using the Tekton [documentation][tekton-setup].
 
 We also recommend using the `Tekton dashboard`. To install it, follow the steps in the [dashboard docs][tekton-dashboard-setup], and
 start the dashboard server. 
@@ -36,11 +40,15 @@ kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/master/task/
 
 ### 4. Define and Apply Tekton Pipeline Resources
 In order to set up our pipeline, we will need to define a few things:
-- PersistentVolumeClaim
-- Pipeline
-- PipelineResource
+- Pipeline &rarr; A `Pipeline` defines a series of `Tasks` that accomplish a specific build or delivery goal. The `Pipeline`
+  can be triggered by an event or invoked from a `PipelineRun`.
+- PipelineResource &rarr; A `PipelineResource` defines locations for inputs ingested and outputs produced by the steps in `Tasks`.
+- PersistentVolumeClaim &rarr; A `PersistentVolumeClaim` (a general Kubernetes concept, generally shortened to PVC) is
+  a request for storage by a user.
+
 #### 4.1 PVCs
-Create a file (e.g. `resources.yml`), which defines a buildpacks pvc and a cache pvc:
+Create a file (e.g. `resources.yml`), which defines two PVCs, one which contains the source code, and the other to serve
+as a cache between builds:
 ```yaml
 ---
 apiVersion: v1

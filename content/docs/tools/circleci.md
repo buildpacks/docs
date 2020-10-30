@@ -8,7 +8,7 @@ which allows users to utilize [pack][pack] inside their pipelines.
 <!--more-->
 
 ## Use
-To use the CNB integration, all you need to do is declare that you are using the `buildpacks/pack` "orb”, and then utilize 
+To use the CNB integration, you need to declare that you are using the `buildpacks/pack` "orb”, and then utilize
 it in your workflow.
 
 For instance, your `.circleci/config.yml` file may look like this:
