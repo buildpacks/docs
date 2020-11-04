@@ -47,7 +47,7 @@ In order to set up our pipeline, we will need to define a few things:
   a request for storage by a user.
 
 #### 4.1 PVCs
-Create a file (e.g. `resources.yml`), which defines two PVCs, one which contains the source code, and the other to serve
+Create a file (e.g. `resources.yml`), which defines two `PersistentVolumeClaim`s, one which contains the source code, and the other to serve
 as a cache between builds:
 ```yaml
 ---
@@ -100,7 +100,7 @@ secrets:
 ```
 
 #### 4.3 Pipeline
-Create a file (e.g. `pipeline.yml`) which defines the pipeline, and relevant resources:
+Create a file (e.g. `pipeline.yml`) which defines the `Pipeline`, and relevant resources:
 ```yaml
 apiVersion: tekton.dev/v1alpha1
 kind: PipelineResource
@@ -158,13 +158,13 @@ spec:
 ```
 
 #### 4.4 Apply Configuration
-Apply these configurations, using kubectl:
+Apply these configurations, using `kubectl`:
 ```shell
 kubectl apply -f resources.yml -f auth.yml -f pipeline.yml
 ```
 
 ### 5. Create & Apply PipelineRun
-Create a file (e.g. `run.yml`), which defines the PipelineRun object
+Create a file (e.g. `run.yml`), which defines the `PipelineRun`:
 ```yaml
 apiVersion: tekton.dev/v1beta1
 kind: PipelineRun
@@ -189,13 +189,13 @@ spec:
         claimName: buildpacks-cache-pvc
 ```
 
-And apply it with:
+Apply it with:
 ```shell
 kubectl apply -f run.yml
 ```
 
 ### 6. See it Build
-Look at the PipelineRun logs by running
+Look at the `PipelineRun` logs by running
 ```shell
 kubectl describe pipelinerun buildpacks-test-pipeline-run
 ```
@@ -205,6 +205,15 @@ or by using the Tekton Dashboard.
 Once the application is successfully built, you can pull it and run it by running:
 ```shell
 docker pull some-output-image
+```
+
+### 7. Cleanup (Optional)
+To clean up, run:
+
+```shell
+kubectl delete taskrun --all
+kubectl delete pvc --all
+kubectl delete pv --all
 ```
 
 ## References
