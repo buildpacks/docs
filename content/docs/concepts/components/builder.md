@@ -1,7 +1,7 @@
 +++
 title="Builder"
 weight=1
-summary="A builder is an image that bundles all the bits and information on how to build your apps, such as buildpacks, an implementation of the lifecycle, and a build-time environment that platforms may use when executing the lifecycle."
+summary="A builder is an image that bundles all the bits and information on how to build your app. It contains buildpacks, an implementation of the lifecycle program, and a build-time environment that platforms may use when executing the lifecycle."
 aliases=[
     "/docs/using-pack/working-with-builders/"
 ]
