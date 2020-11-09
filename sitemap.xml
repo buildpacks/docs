@@ -119,6 +119,10 @@
   </url>
   
   <url>
+    <loc>https://buildpacks.io/docs/tools/pack/</loc>
+  </url>
+  
+  <url>
     <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/setup-local-environment/</loc>
   </url>
   
@@ -163,6 +167,10 @@
   </url>
   
   <url>
+    <loc>https://buildpacks.io/docs/tools/circleci/</loc>
+  </url>
+  
+  <url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/</loc>
   </url>
   
@@ -179,11 +187,11 @@
   </url>
   
   <url>
-    <loc>https://buildpacks.io/docs/reference/spec/migration/</loc>
+    <loc>https://buildpacks.io/docs/tools/gitlab/</loc>
   </url>
   
   <url>
-    <loc>https://buildpacks.io/docs/tools/pack/</loc>
+    <loc>https://buildpacks.io/docs/reference/spec/migration/</loc>
   </url>
   
   <url>
@@ -284,6 +292,10 @@
   
   <url>
     <loc>https://buildpacks.io/tags/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/tools/tekton/</loc>
   </url>
   
   <url>

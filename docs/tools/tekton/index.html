@@ -1,0 +1,619 @@
+<!doctype html>
+<html>
+  <head>
+    
+
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Tekton is an open-source CI/CD system platform implementation running on k8s. There are two Tekton tasks maintained by the CNB project, both of which use the lifecycle directly (i.e. they do not use…"/>
+<link rel="canonical" content="https://buildpacks.io/docs/tools/tekton/">
+<link rel="icon" type="image/png" href="/images/favicon.png">
+
+
+
+
+
+
+<meta property="og:title" content="Tekton · Cloud Native Buildpacks">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://buildpacks.io/docs/tools/tekton/">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Cloud Native Buildpacks">
+<meta property="og:description" content="Tekton is an open-source CI/CD system platform implementation running on k8s. There are two Tekton tasks maintained by the CNB project, both of which use the lifecycle directly (i.e. they do not use…">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
+<meta property="og:image:alt" content="Buildpacks project logo">
+<meta property="og:image:type" content="image/jpeg">
+
+
+
+
+
+
+<meta property="twitter:title" content="Tekton · Cloud Native Buildpacks">
+<meta property="twitter:card" content="summary">
+<meta property="twitter:image" content="https://buildpacks.io/images/buildpacks-social-card-square.jpg">
+<meta property="twitter:image:alt" content="Buildpacks project logo">
+<meta property="twitter:site" content="@buildpacks_io">
+<meta property="twitter:creator" content="@buildpacks_io">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Fira+Mono|Source+Sans+Pro:400,400i,600" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://buildpacks.io/scss/site.css" integrity="" media="screen">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+
+    <script>
+      function addAnchor(element) {
+        if (element.id === "" || element.getElementsByTagName("a").length > 0) {
+          return;
+        }
+
+        element.innerHTML =
+          `<a href="#${element.id}" class="h-anchor">
+            ${element.innerHTML} <i class="fas fa-link icon" aria-label="Anchor"></i>
+          </a>`;
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        const headers = document.querySelectorAll('h1, h2, h3, h4, h5');
+        if (headers) {
+          headers.forEach(addAnchor);
+        }
+      });
+    </script>
+
+    <title>Tekton · Cloud Native Buildpacks</title>
+  </head>
+  <body>
+    <header class="container">
+  <a href="https://buildpacks.io/" class="logo"><img src="/images/buildpacks-logo.svg" alt="Buildpacks.io Logo"></a>
+  <input type="checkbox" id="mobile-nav-toggle">
+  <label for="mobile-nav-toggle">&#9776;</label>
+  <ul>
+    
+    
+      
+      <li><a class=""  href="/">Home</a></li>
+    
+      
+      <li><a class=""  href="/features">Features</a></li>
+    
+      
+      <li><a class="active"  href="/docs">Docs</a></li>
+    
+      
+      <li><a class="" target='_blank' href="https://medium.com/buildpacks">Blog</a></li>
+    
+    <li><a href="https://github.com/buildpacks" class="github-button icon-button bg-blue button">GitHub</a></li>
+  </ul>
+</header>
+
+    
+
+<div class='docs'>
+  <div class="container">
+    <div class='row'>
+      <div class='col-md-3 docs-sidebar'>
+        <nav class='sidebar'>
+  <ul>
+      <li data-nav-id="/docs/" class="dd-item depth-0">
+        <a href="/docs/">Getting Started</a>
+        <ul class="ml-2">
+              
+      <li data-nav-id="/docs/app-journey/" class="dd-item depth-1 collapse">
+        <a href="/docs/app-journey/">An App&rsquo;s Brief Journey from Source to Image</a>
+      </li>
+        </ul>
+      </li>
+      <li data-nav-id="/docs/concepts/" class="dd-item depth-0 haschildren">
+        <a href="/docs/concepts/">Concepts</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/concepts/components/" class="dd-item depth-1 collapse haschildren">
+        <a href="/docs/concepts/components/">Components</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/concepts/components/builder/" class="dd-item depth-2">
+        <a href="/docs/concepts/components/builder/">Builder</a>
+      </li>
+      <li data-nav-id="/docs/concepts/components/buildpack/" class="dd-item depth-2">
+        <a href="/docs/concepts/components/buildpack/">Buildpack</a>
+      </li>
+      <li data-nav-id="/docs/concepts/components/lifecycle/" class="dd-item depth-2">
+        <a href="/docs/concepts/components/lifecycle/">Lifecycle</a>
+      </li>
+      <li data-nav-id="/docs/concepts/components/platform/" class="dd-item depth-2">
+        <a href="/docs/concepts/components/platform/">Platform</a>
+      </li>
+      <li data-nav-id="/docs/concepts/components/stack/" class="dd-item depth-2">
+        <a href="/docs/concepts/components/stack/">Stack</a>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/concepts/operations/" class="dd-item depth-1 collapse haschildren">
+        <a href="/docs/concepts/operations/">Operations</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/concepts/operations/build/" class="dd-item depth-2">
+        <a href="/docs/concepts/operations/build/">Build</a>
+      </li>
+      <li data-nav-id="/docs/concepts/operations/rebase/" class="dd-item depth-2">
+        <a href="/docs/concepts/operations/rebase/">Rebase</a>
+      </li>
+          </ul>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/app-developer-guide/" class="dd-item depth-0 haschildren">
+        <a href="/docs/app-developer-guide/">App Developer&rsquo;s Guide</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/app-developer-guide/build-an-app/" class="dd-item depth-1">
+        <a href="/docs/app-developer-guide/build-an-app/">Build an app</a>
+      </li>
+      <li data-nav-id="/docs/app-developer-guide/build-a-windows-app/" class="dd-item depth-1">
+        <a href="/docs/app-developer-guide/build-a-windows-app/">Build a Windows app</a>
+      </li>
+      <li data-nav-id="/docs/app-developer-guide/environment-variables/" class="dd-item depth-1">
+        <a href="/docs/app-developer-guide/environment-variables/">Environment variables</a>
+      </li>
+      <li data-nav-id="/docs/app-developer-guide/mouting-volumes/" class="dd-item depth-1">
+        <a href="/docs/app-developer-guide/mouting-volumes/">Mounting Volumes</a>
+      </li>
+      <li data-nav-id="/docs/app-developer-guide/specific-buildpacks/" class="dd-item depth-1">
+        <a href="/docs/app-developer-guide/specific-buildpacks/">Specify buildpacks</a>
+      </li>
+      <li data-nav-id="/docs/app-developer-guide/run-an-app/" class="dd-item depth-1">
+        <a href="/docs/app-developer-guide/run-an-app/">Specify launch process</a>
+      </li>
+      <li data-nav-id="/docs/app-developer-guide/using-project-descriptor/" class="dd-item depth-1">
+        <a href="/docs/app-developer-guide/using-project-descriptor/">Using project.toml</a>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/" class="dd-item depth-0 haschildren">
+        <a href="/docs/buildpack-author-guide/">Buildpack Author&rsquo;s Guide</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/" class="dd-item depth-1 haschildren">
+        <a href="/docs/buildpack-author-guide/create-buildpack/">Create a buildpack</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/setup-local-environment/" class="dd-item depth-2 collapse">
+        <a href="/docs/buildpack-author-guide/create-buildpack/setup-local-environment/">Set up your local environment</a>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb/" class="dd-item depth-2 collapse">
+        <a href="/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb/">Building blocks of a Cloud Native Buildpack</a>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/detection/" class="dd-item depth-2 collapse">
+        <a href="/docs/buildpack-author-guide/create-buildpack/detection/">Detecting your application</a>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/build-app/" class="dd-item depth-2 collapse">
+        <a href="/docs/buildpack-author-guide/create-buildpack/build-app/">Building your application</a>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/make-app-runnable/" class="dd-item depth-2 collapse">
+        <a href="/docs/buildpack-author-guide/create-buildpack/make-app-runnable/">Make your application runnable</a>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/specify-multiple-process-types/" class="dd-item depth-2 collapse">
+        <a href="/docs/buildpack-author-guide/create-buildpack/specify-multiple-process-types/">Specify multiple process types</a>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/caching/" class="dd-item depth-2 collapse">
+        <a href="/docs/buildpack-author-guide/create-buildpack/caching/">Improving performance with caching</a>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable/" class="dd-item depth-2 collapse">
+        <a href="/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable/">Making your buildpack configurable</a>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/buildpack-author-guide/package-a-buildpack/" class="dd-item depth-1">
+        <a href="/docs/buildpack-author-guide/package-a-buildpack/">Package a buildpack</a>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/operator-guide/" class="dd-item depth-0 haschildren">
+        <a href="/docs/operator-guide/">Operator&rsquo;s Guide</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/operator-guide/create-a-builder/" class="dd-item depth-1">
+        <a href="/docs/operator-guide/create-a-builder/">Create a builder</a>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/tools/" class="dd-item depth-0 parent haschildren">
+        <a href="/docs/tools/">Tools</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/tools/pack/" class="dd-item depth-1 haschildren">
+        <a href="/docs/tools/pack/">Pack</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/tools/pack/concepts/" class="dd-item depth-2 collapse haschildren">
+        <a href="/docs/tools/pack/concepts/">Concepts</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/tools/pack/concepts/trusted_builders/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/concepts/trusted_builders/">Trusted Builders</a>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/" class="dd-item depth-2 collapse haschildren">
+        <a href="/docs/tools/pack/cli/">CLI Docs</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/tools/pack/cli/pack/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack/">pack</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_build/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_build/">pack build</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_completion/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_completion/">pack completion</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_create-builder/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_create-builder/">pack create-builder</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_inspect-builder/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_inspect-builder/">pack inspect-builder</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_inspect-buildpack/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_inspect-buildpack/">pack inspect-buildpack</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_inspect-image/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_inspect-image/">pack inspect-image</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_list-trusted-builders/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_list-trusted-builders/">pack list-trusted-builders</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_package-buildpack/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_package-buildpack/">pack package-buildpack</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_rebase/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_rebase/">pack rebase</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_report/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_report/">pack report</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_set-default-builder/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_set-default-builder/">pack set-default-builder</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_set-run-image-mirrors/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_set-run-image-mirrors/">pack set-run-image-mirrors</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_suggest-builders/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_suggest-builders/">pack suggest-builders</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_suggest-stacks/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_suggest-stacks/">pack suggest-stacks</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_trust-builder/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_trust-builder/">pack trust-builder</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_untrust-builder/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_untrust-builder/">pack untrust-builder</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_version/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_version/">pack version</a>
+      </li>
+          </ul>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/tools/circleci/" class="dd-item depth-1">
+        <a href="/docs/tools/circleci/">CircleCI</a>
+      </li>
+      <li data-nav-id="/docs/tools/gitlab/" class="dd-item depth-1">
+        <a href="/docs/tools/gitlab/">Gitlab Auto DevOps</a>
+      </li>
+      <li data-nav-id="/docs/tools/tekton/" class="dd-item depth-1 active">
+        <a href="/docs/tools/tekton/">Tekton</a>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/reference/" class="dd-item depth-0 haschildren">
+        <a href="/docs/reference/">Reference</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/reference/config/" class="dd-item depth-1 collapse haschildren">
+        <a href="/docs/reference/config/">Configuration</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/reference/config/builder-config/" class="dd-item depth-2 collapse">
+        <a href="/docs/reference/config/builder-config/">builder.toml</a>
+      </li>
+      <li data-nav-id="/docs/reference/config/package-config/" class="dd-item depth-2 collapse">
+        <a href="/docs/reference/config/package-config/">package.toml</a>
+      </li>
+      <li data-nav-id="/docs/reference/config/project-descriptor/" class="dd-item depth-2 collapse">
+        <a href="/docs/reference/config/project-descriptor/">project.toml</a>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/reference/reproducibility/" class="dd-item depth-1 collapse">
+        <a href="/docs/reference/reproducibility/">Reproducible Builds</a>
+      </li>
+      <li data-nav-id="/docs/reference/spec/" class="dd-item depth-1 collapse haschildren">
+        <a href="/docs/reference/spec/">Specification</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/reference/spec/buildpack-api/" class="dd-item depth-2">
+        <a href="/docs/reference/spec/buildpack-api/">Buildpack API</a>
+      </li>
+      <li data-nav-id="/docs/reference/spec/distribution-api/" class="dd-item depth-2">
+        <a href="/docs/reference/spec/distribution-api/">Distribution API</a>
+      </li>
+      <li data-nav-id="/docs/reference/spec/migration/" class="dd-item depth-2 haschildren">
+        <a href="/docs/reference/spec/migration/">Migration</a>
+          <ul class="ml-2">
+      <li data-nav-id="/docs/reference/spec/migration/platform-api-0.3-0.4/" class="dd-item depth-3 collapse">
+        <a href="/docs/reference/spec/migration/platform-api-0.3-0.4/">Platform API 0.3 -&gt; 0.4</a>
+      </li>
+          </ul>
+      </li>
+      <li data-nav-id="/docs/reference/spec/platform-api/" class="dd-item depth-2">
+        <a href="/docs/reference/spec/platform-api/">Platform API</a>
+      </li>
+          </ul>
+      </li>
+          </ul>
+      </li>
+    </ul>
+  
+</nav>
+
+
+
+      </div>
+      <div class='col-md-9 docs-content'>
+        <div class="support-links text-right">
+  
+    
+    
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BTekton%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ftools%2Ftekton%2F%29"
+       class="btn-light btn-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
+
+    
+    
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/tools/tekton.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+       class="btn-light btn-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
+    
+  
+</div>
+
+
+        <div class="heading">
+          <h1 class="title">Tekton</h1>
+        </div>
+
+        <p><a href="https://tekton.dev/">Tekton</a> is an open-source CI/CD system platform implementation running on k8s. There are two Tekton <code>tasks</code>
+maintained by the CNB project, both of which use the <a href="/docs/concepts/components/lifecycle">lifecycle</a> directly (i.e. they do not use <code>pack</code>).</p>
+<p>They are:</p>
+<ol>
+<li><a href="https://github.com/tektoncd/catalog/tree/master/task/buildpacks">buildpacks</a> <code>task</code> → This task, which we recommend using, calls the <code>creator</code> binary of the
+<a href="/docs/concepts/components/lifecycle">lifecycle</a> to construct, and optionally publish, a runnable image.</li>
+<li><a href="https://github.com/tektoncd/catalog/tree/master/task/buildpacks-phases">buildpacks-phases</a> <code>task</code> → This task calls the individual <a href="/docs/concepts/components/lifecycle">lifecycle</a> binaries, to
+run each phase in a separate container.</li>
+</ol>
+<h2 id="set-up">Set Up</h2>
+<blockquote>
+<p>NOTE: Prior to installing <code>Tekton</code>, we recommend reviewing the basic Tekton concepts in the <a href="https://tekton.dev/docs/concepts/">documentation</a>.</p>
+</blockquote>
+<h3 id="prerequisites">Prerequisites</h3>
+<p>Before we get started, make sure you&rsquo;ve got the following installed:</p>
+<a href='https://kubernetes.io/docs/tasks/tools/install-kubectl/' class='download-button button icon-button bg-blue'> Install kubectl </a><br />
+<h3 id="1-install-tekton-and-tekton-dashboard">1. Install Tekton and Tekton Dashboard</h3>
+<p>To start, set up <code>Tekton</code>, using the Tekton <a href="https://tekton.dev/docs/getting-started/">documentation</a>.</p>
+<p>We also recommend using the <code>Tekton dashboard</code>. To install it, follow the steps in the <a href="https://tekton.dev/docs/dashboard/">dashboard docs</a>, and
+start the dashboard server.</p>
+<h3 id="2-install-the-buildpacks-task">2. Install the Buildpacks Task</h3>
+<p>Install the latest version of the buildpacks task (currently <code>0.1</code>), by running:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/master/task/buildpacks/0.1/buildpacks.yaml
+</code></pre></div><h3 id="3-install-git-clone-task">3. Install git-clone Task</h3>
+<p>For our <code>pipeline</code>, we will use the <code>git-clone</code> task to clone a repository. Install the latest version (currently <code>0.2</code>), by running:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/master/task/git-clone/0.2/git-clone.yaml
+</code></pre></div><h3 id="4-define-and-apply-tekton-pipeline-resources">4. Define and Apply Tekton Pipeline Resources</h3>
+<p>In order to set up our pipeline, we will need to define a few things:</p>
+<ul>
+<li>Pipeline → A <code>Pipeline</code> defines a series of <code>Tasks</code> that accomplish a specific build or delivery goal. The <code>Pipeline</code>
+can be triggered by an event or invoked from a <code>PipelineRun</code>.</li>
+<li>PipelineResource → A <code>PipelineResource</code> defines locations for inputs ingested and outputs produced by the steps in <code>Tasks</code>.</li>
+<li>PersistentVolumeClaim → A <code>PersistentVolumeClaim</code> (a general Kubernetes concept, generally shortened to PVC) is
+a request for storage by a user.</li>
+</ul>
+<h4 id="41-pvcs">4.1 PVCs</h4>
+<p>Create a file (e.g. <code>resources.yml</code>), which defines two <code>PersistentVolumeClaim</code>s, one which contains the source code, and the other to serve
+as a cache between builds:</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">---<span class="w">
+</span><span class="w"></span><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>v1<span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>PersistentVolumeClaim<span class="w">
+</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>buildpacks-source-pvc<span class="w">
+</span><span class="w"></span><span class="k">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">accessModes</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- ReadWriteOnce<span class="w">
+</span><span class="w">  </span><span class="k">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">requests</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="k">storage</span><span class="p">:</span><span class="w"> </span>500Mi<span class="w">
+</span><span class="w"></span>---<span class="w">
+</span><span class="w"></span><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>v1<span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>PersistentVolumeClaim<span class="w">
+</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>buildpacks-cache-pvc<span class="w">
+</span><span class="w"></span><span class="k">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">accessModes</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- ReadWriteOnce<span class="w">
+</span><span class="w">  </span><span class="k">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">requests</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="k">storage</span><span class="p">:</span><span class="w"> </span>500Mi<span class="w">
+</span></code></pre></div><h4 id="42-authorization">4.2 Authorization</h4>
+<blockquote>
+<p>NOTE: You don&rsquo;t need to use authorization if you are pushing to a local registry. However, if you are pushing to a
+remote registry (e.g. <code>DockerHub</code>, <code>GCR</code>), you need to add authorization</p>
+</blockquote>
+<p>Create a file (e.g. <code>auth.yml</code>) which defines the authorization secrets:</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>v1<span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>Secret<span class="w">
+</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>basic-user-pass<span class="w">
+</span><span class="w">    </span><span class="k">annotations</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="k">tekton.dev/docker-0</span><span class="p">:</span><span class="w"> </span>&lt;LINK<span class="w"> </span>TO<span class="w"> </span>REGISTRY<span class="p">,</span><span class="w"> </span>e.g.<span class="w"> </span>https<span class="p">:</span>//index.docker.io/v1&gt;<span class="w">
+</span><span class="w"></span><span class="k">type</span><span class="p">:</span><span class="w"> </span>kubernetes.io/basic-auth<span class="w">
+</span><span class="w"></span><span class="k">stringData</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">username</span><span class="p">:</span><span class="w"> </span>&lt;USERNAME<span class="sd">&gt;
+</span><span class="sd">    password: &lt;PASSWORD&gt;</span><span class="w">
+</span><span class="w"></span>---<span class="w">
+</span><span class="w"></span><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>v1<span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>ServiceAccount<span class="w">
+</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>buildpacks-service-account<span class="w">
+</span><span class="w"></span><span class="k">secrets</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>basic-user-pass<span class="w">
+</span></code></pre></div><h4 id="43-pipeline">4.3 Pipeline</h4>
+<p>Create a file (e.g. <code>pipeline.yml</code>) which defines the <code>Pipeline</code>, and relevant resources:</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>tekton.dev/v1alpha1<span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>PipelineResource<span class="w">
+</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>buildpacks-app-image<span class="w"> 
+</span><span class="w"></span><span class="k">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">type</span><span class="p">:</span><span class="w"> </span>image<span class="w">
+</span><span class="w">  </span><span class="k">params</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>url<span class="w">
+</span><span class="w">      </span><span class="k">value</span><span class="p">:</span><span class="w"> </span>&lt;REGISTRY/IMAGE<span class="w"> </span>NAME<span class="p">,</span><span class="w"> </span>eg<span class="w"> </span>gcr.io/test/image<span class="w"> </span>&gt;<span class="w"> </span><span class="c">#This defines the name of output image</span><span class="w">
+</span><span class="w"></span>---<span class="w">
+</span><span class="w"></span><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>tekton.dev/v1beta1<span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>Pipeline<span class="w">
+</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>buildpacks-test-pipeline<span class="w">
+</span><span class="w"></span><span class="k">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">workspaces</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>shared-workspace<span class="w">
+</span><span class="w">  </span><span class="k">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>build-image<span class="w">
+</span><span class="w">    </span><span class="k">type</span><span class="p">:</span><span class="w"> </span>image<span class="w">
+</span><span class="w">  </span><span class="k">tasks</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>fetch-repository<span class="w"> </span><span class="c"># This task fetches a repository from github, using the `git-clone` task we installed</span><span class="w">
+</span><span class="w">    </span><span class="k">taskRef</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>git-clone<span class="w">
+</span><span class="w">    </span><span class="k">workspaces</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>output<span class="w">
+</span><span class="w">      </span><span class="k">workspace</span><span class="p">:</span><span class="w"> </span>shared-workspace<span class="w">
+</span><span class="w">    </span><span class="k">params</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>url<span class="w">
+</span><span class="w">      </span><span class="k">value</span><span class="p">:</span><span class="w"> </span>https<span class="p">:</span>//github.com/buildpacks/samples<span class="w">
+</span><span class="w">    </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>subdirectory<span class="w">
+</span><span class="w">      </span><span class="k">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
+</span><span class="w">    </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>deleteExisting<span class="w">
+</span><span class="w">      </span><span class="k">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;true&#34;</span><span class="w">
+</span><span class="w">  </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>buildpacks<span class="w"> </span><span class="c"># This task uses the `buildpacks` task to build the application</span><span class="w">
+</span><span class="w">    </span><span class="k">taskRef</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>buildpacks<span class="w">
+</span><span class="w">    </span><span class="k">runAfter</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- fetch-repository<span class="w">
+</span><span class="w">    </span><span class="k">workspaces</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>source<span class="w">
+</span><span class="w">      </span><span class="k">workspace</span><span class="p">:</span><span class="w"> </span>shared-workspace<span class="w">
+</span><span class="w">    </span><span class="k">params</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>SOURCE_SUBPATH<span class="w">
+</span><span class="w">      </span><span class="k">value</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;apps/java-maven&#39;</span><span class="w"> </span><span class="c"># This is the path within our samples repo we want to build</span><span class="w">
+</span><span class="w">    </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>BUILDER_IMAGE<span class="w">
+</span><span class="w">      </span><span class="k">value</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;paketobuildpacks/builder:base&#39;</span><span class="w"> </span><span class="c"># This is the builder we want the task to use</span><span class="w">
+</span><span class="w">    </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>CACHE<span class="w">
+</span><span class="w">      </span><span class="k">value</span><span class="p">:</span><span class="w"> </span>buildpacks-cache<span class="w">
+</span><span class="w">    </span><span class="k">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="k">outputs</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>image<span class="w">
+</span><span class="w">        </span><span class="k">resource</span><span class="p">:</span><span class="w"> </span>build-image<span class="w">
+</span></code></pre></div><h4 id="44-apply-configuration">4.4 Apply Configuration</h4>
+<p>Apply these configurations, using <code>kubectl</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">kubectl apply -f resources.yml -f auth.yml -f pipeline.yml
+</code></pre></div><h3 id="5-create--apply-pipelinerun">5. Create &amp; Apply PipelineRun</h3>
+<p>Create a file (e.g. <code>run.yml</code>), which defines the <code>PipelineRun</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>tekton.dev/v1beta1<span class="w">
+</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>PipelineRun<span class="w">
+</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>buildpacks-test-pipeline-run<span class="w">
+</span><span class="w"></span><span class="k">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">serviceAccountName</span><span class="p">:</span><span class="w"> </span>buildpacks-service-account<span class="w"> </span><span class="c"># Only needed if you set up authorization</span><span class="w">
+</span><span class="w">  </span><span class="k">pipelineRef</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>buildpacks-test-pipeline<span class="w">
+</span><span class="w">  </span><span class="k">workspaces</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>shared-workspace<span class="w">
+</span><span class="w">    </span><span class="k">persistentvolumeclaim</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="k">claimName</span><span class="p">:</span><span class="w"> </span>buildpacks-source-pvc<span class="w">
+</span><span class="w">  </span><span class="k">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>build-image<span class="w">
+</span><span class="w">    </span><span class="k">resourceRef</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>buildpacks-app-image<span class="w">
+</span><span class="w">  </span><span class="k">podTemplate</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>buildpacks-cache<span class="w">
+</span><span class="w">      </span><span class="k">persistentVolumeClaim</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="k">claimName</span><span class="p">:</span><span class="w"> </span>buildpacks-cache-pvc<span class="w">
+</span></code></pre></div><p>Apply it with:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">kubectl apply -f run.yml
+</code></pre></div><h3 id="6-see-it-build">6. See it Build</h3>
+<p>Look at the <code>PipelineRun</code> logs by running</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">kubectl describe pipelinerun buildpacks-test-pipeline-run
+</code></pre></div><p>or by using the Tekton Dashboard.</p>
+<p>Once the application is successfully built, you can pull it and run it by running:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker pull some-output-image
+</code></pre></div><h3 id="7-cleanup-optional">7. Cleanup (Optional)</h3>
+<p>To clean up, run:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">kubectl delete taskrun --all
+kubectl delete pvc --all
+kubectl delete pv --all
+</code></pre></div><h2 id="references">References</h2>
+<p>The Buildpacks tasks can be accessed at:</p>
+<ul>
+<li><a href="https://github.com/tektoncd/catalog/tree/master/task/buildpacks">Buildpacks Task Source</a></li>
+<li><a href="https://github.com/tektoncd/catalog/tree/master/task/buildpacks-phases">Buildpacks Phases Task Source</a></li>
+</ul>
+<p>Some general resources for Tekton are:</p>
+<ul>
+<li><a href="https://tekton.dev/docs/getting-started/">Tekton: Getting Started</a></li>
+<li><a href="https://tekton.dev/docs/dashboard/">Tekton Dashboard: Setup</a></li>
+<li><a href="https://tekton.dev/docs/concepts/">Tekton Concepts</a></li>
+<li><a href="https://tekton.dev/docs/pipelines/auth/">Tekton Authorization Documentation</a></li>
+</ul>
+
+        
+
+        <hr>
+<div class='footline d-block'>
+  <div class="support-links text-right">
+  
+    
+    
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BTekton%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ftools%2Ftekton%2F%29"
+       class="btn-light btn-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
+
+    
+    
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/tools/tekton.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+       class="btn-light btn-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
+    
+  
+</div>
+
+</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+    <footer>
+  <div class="container footer">
+    <a href="https://www.cncf.io/" style="width: 50%;"><img src="/images/cncf-color.svg" class="footer-logo"></a>
+    <p>We are a <a href="https://www.cncf.io/">Cloud Native Sandbox</a> project.</p>
+  </div>
+  <div class="bg-blue">
+    <div class="container sub-footer">
+      <p>Reach out <a href="https://slack.buildpacks.io">on Slack</a> to learn more.</p>
+      <ul>
+        <li><a href="https://lists.cncf.io/g/cncf-buildpacks/join" target="_blank">Mailing List</a> <span>&bull;</span></li>
+        <li><a href="https://slack.buildpacks.io/" target="_blank">Slack</a> <span>&bull;</span></li>
+        <li><a href="https://twitter.com/buildpacks_io" target="_blank">Twitter</a> <span>&bull;</span></li>
+        <li><a href="https://github.com/buildpacks" target="_blank">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+  </body>
+</html>

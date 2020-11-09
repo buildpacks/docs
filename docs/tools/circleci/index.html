@@ -7,8 +7,9 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="This section describes some concepts related to the Pack CLI."/>
-<link rel="canonical" content="https://buildpacks.io/docs/tools/pack/concepts/">
+<meta name="description" content="CircleCI is a continuous integration and delivery platform. The CNB project maintains an integration, called an orb, which allows users to run pack commands inside their pipelines.
+"/>
+<link rel="canonical" content="https://buildpacks.io/docs/tools/circleci/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
 
@@ -16,12 +17,13 @@
 
 
 
-<meta property="og:title" content="Concepts · Cloud Native Buildpacks">
+<meta property="og:title" content="CircleCI · Cloud Native Buildpacks">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://buildpacks.io/docs/tools/pack/concepts/">
+<meta property="og:url" content="https://buildpacks.io/docs/tools/circleci/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-<meta property="og:description" content="This section describes some concepts related to the Pack CLI.">
+<meta property="og:description" content="CircleCI is a continuous integration and delivery platform. The CNB project maintains an integration, called an orb, which allows users to run pack commands inside their pipelines.
+">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -32,7 +34,7 @@
 
 
 
-<meta property="twitter:title" content="Concepts · Cloud Native Buildpacks">
+<meta property="twitter:title" content="CircleCI · Cloud Native Buildpacks">
 <meta property="twitter:card" content="summary">
 <meta property="twitter:image" content="https://buildpacks.io/images/buildpacks-social-card-square.jpg">
 <meta property="twitter:image:alt" content="Buildpacks project logo">
@@ -68,7 +70,7 @@
       });
     </script>
 
-    <title>Concepts · Cloud Native Buildpacks</title>
+    <title>CircleCI · Cloud Native Buildpacks</title>
   </head>
   <body>
     <header class="container">
@@ -221,18 +223,18 @@
       <li data-nav-id="/docs/tools/" class="dd-item depth-0 parent haschildren">
         <a href="/docs/tools/">Tools</a>
           <ul class="ml-2">
-      <li data-nav-id="/docs/tools/pack/" class="dd-item depth-1 parent haschildren">
+      <li data-nav-id="/docs/tools/pack/" class="dd-item depth-1 haschildren">
         <a href="/docs/tools/pack/">Pack</a>
           <ul class="ml-2">
-      <li data-nav-id="/docs/tools/pack/concepts/" class="dd-item depth-2 parent active haschildren">
+      <li data-nav-id="/docs/tools/pack/concepts/" class="dd-item depth-2 collapse haschildren">
         <a href="/docs/tools/pack/concepts/">Concepts</a>
           <ul class="ml-2">
-      <li data-nav-id="/docs/tools/pack/concepts/trusted_builders/" class="dd-item depth-3">
+      <li data-nav-id="/docs/tools/pack/concepts/trusted_builders/" class="dd-item depth-3 collapse">
         <a href="/docs/tools/pack/concepts/trusted_builders/">Trusted Builders</a>
       </li>
           </ul>
       </li>
-      <li data-nav-id="/docs/tools/pack/cli/" class="dd-item depth-2 haschildren">
+      <li data-nav-id="/docs/tools/pack/cli/" class="dd-item depth-2 collapse haschildren">
         <a href="/docs/tools/pack/cli/">CLI Docs</a>
           <ul class="ml-2">
       <li data-nav-id="/docs/tools/pack/cli/pack/" class="dd-item depth-3 collapse">
@@ -293,7 +295,7 @@
       </li>
           </ul>
       </li>
-      <li data-nav-id="/docs/tools/circleci/" class="dd-item depth-1">
+      <li data-nav-id="/docs/tools/circleci/" class="dd-item depth-1 active">
         <a href="/docs/tools/circleci/">CircleCI</a>
       </li>
       <li data-nav-id="/docs/tools/gitlab/" class="dd-item depth-1">
@@ -360,12 +362,12 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BConcepts%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ftools%2Fpack%2Fconcepts%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BCircleCI%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ftools%2Fcircleci%2F%29"
        class="btn-light btn-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/tools/pack/concepts/_index.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/tools/circleci.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="btn-light btn-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
@@ -373,26 +375,32 @@
 
 
         <div class="heading">
-          <h1 class="title">Concepts</h1>
+          <h1 class="title">CircleCI</h1>
         </div>
 
-        <p>This section describes some concepts related to the Pack CLI.</p>
-
+        <p><a href="https://circleci.com/">CircleCI</a> is a continuous integration and delivery platform. The CNB project maintains an integration, called an <a href="https://circleci.com/orbs/">orb</a>,
+which allows users to run <a href="/docs/install-pack">pack</a> commands inside their pipelines.</p>
+<h2 id="use">Use</h2>
+<p>To use the CNB integration, you need to declare that you are using the <a href="https://circleci.com/developer/orbs/orb/buildpacks/pack"><code>buildpacks/pack</code> orb</a>, and then use
+it in your workflow.</p>
+<p>For instance, your <code>.circleci/config.yml</code> file may look like this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="k">version</span><span class="p">:</span><span class="w"> </span><span class="m">2.1</span><span class="w">
+</span><span class="w"></span><span class="k">orbs</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">pack</span><span class="p">:</span><span class="w"> </span>buildpacks/pack@<span class="m">0.2.0</span><span class="w">
+</span><span class="w"></span><span class="k">workflows</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">main</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">jobs</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="k">pack/build</span><span class="p">:</span><span class="w">
+</span><span class="w">          </span><span class="k">image-name</span><span class="p">:</span><span class="w"> </span>sample<span class="w">
+</span><span class="w">          </span><span class="k">builder</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;paketobuildpacks/builder:base&#39;</span><span class="w">
+</span></code></pre></div><p>For more precise steps, see the <code>pack-orb</code> <a href="https://circleci.com/developer/orbs/orb/buildpacks/pack">documentation</a></p>
+<h2 id="references">References</h2>
+<ul>
+<li><a href="https://github.com/buildpacks/pack-orb">Source Code</a></li>
+<li><a href="https://circleci.com/developer/orbs/orb/buildpacks/pack">Pack Orb Documentation</a></li>
+</ul>
 
         
-    
-      
-        <h2><a href="https://buildpacks.io/docs/tools/pack/concepts/trusted_builders/" class="">Trusted Builders</a></h2>
-        <p class="m-1">From version 0.11.0 onward, pack can be used to identify builders that should be considered trusted. pack build will operate slightly differently under the hood based on whether it considers the specified builder to be trusted.
-</p>
-
-        
-          <div class="text-md-right">
-            <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/tools/pack/concepts/trusted_builders/">Learn more →</a>
-          </div>
-        
-      
-    
 
         <hr>
 <div class='footline d-block'>
@@ -400,12 +408,12 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BConcepts%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ftools%2Fpack%2Fconcepts%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BCircleCI%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ftools%2Fcircleci%2F%29"
        class="btn-light btn-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/tools/pack/concepts/_index.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/tools/circleci.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="btn-light btn-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   

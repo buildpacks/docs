@@ -7,8 +7,9 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="This section describes some concepts related to the Pack CLI."/>
-<link rel="canonical" content="https://buildpacks.io/docs/tools/pack/concepts/">
+<meta name="description" content="Gitlab is a web based DevOps platform. It uses pack as part of the Auto DevOps feature, to build applications prior to deploying them.
+"/>
+<link rel="canonical" content="https://buildpacks.io/docs/tools/gitlab/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
 
@@ -16,12 +17,13 @@
 
 
 
-<meta property="og:title" content="Concepts · Cloud Native Buildpacks">
+<meta property="og:title" content="Gitlab Auto DevOps · Cloud Native Buildpacks">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://buildpacks.io/docs/tools/pack/concepts/">
+<meta property="og:url" content="https://buildpacks.io/docs/tools/gitlab/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-<meta property="og:description" content="This section describes some concepts related to the Pack CLI.">
+<meta property="og:description" content="Gitlab is a web based DevOps platform. It uses pack as part of the Auto DevOps feature, to build applications prior to deploying them.
+">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -32,7 +34,7 @@
 
 
 
-<meta property="twitter:title" content="Concepts · Cloud Native Buildpacks">
+<meta property="twitter:title" content="Gitlab Auto DevOps · Cloud Native Buildpacks">
 <meta property="twitter:card" content="summary">
 <meta property="twitter:image" content="https://buildpacks.io/images/buildpacks-social-card-square.jpg">
 <meta property="twitter:image:alt" content="Buildpacks project logo">
@@ -68,7 +70,7 @@
       });
     </script>
 
-    <title>Concepts · Cloud Native Buildpacks</title>
+    <title>Gitlab Auto DevOps · Cloud Native Buildpacks</title>
   </head>
   <body>
     <header class="container">
@@ -221,18 +223,18 @@
       <li data-nav-id="/docs/tools/" class="dd-item depth-0 parent haschildren">
         <a href="/docs/tools/">Tools</a>
           <ul class="ml-2">
-      <li data-nav-id="/docs/tools/pack/" class="dd-item depth-1 parent haschildren">
+      <li data-nav-id="/docs/tools/pack/" class="dd-item depth-1 haschildren">
         <a href="/docs/tools/pack/">Pack</a>
           <ul class="ml-2">
-      <li data-nav-id="/docs/tools/pack/concepts/" class="dd-item depth-2 parent active haschildren">
+      <li data-nav-id="/docs/tools/pack/concepts/" class="dd-item depth-2 collapse haschildren">
         <a href="/docs/tools/pack/concepts/">Concepts</a>
           <ul class="ml-2">
-      <li data-nav-id="/docs/tools/pack/concepts/trusted_builders/" class="dd-item depth-3">
+      <li data-nav-id="/docs/tools/pack/concepts/trusted_builders/" class="dd-item depth-3 collapse">
         <a href="/docs/tools/pack/concepts/trusted_builders/">Trusted Builders</a>
       </li>
           </ul>
       </li>
-      <li data-nav-id="/docs/tools/pack/cli/" class="dd-item depth-2 haschildren">
+      <li data-nav-id="/docs/tools/pack/cli/" class="dd-item depth-2 collapse haschildren">
         <a href="/docs/tools/pack/cli/">CLI Docs</a>
           <ul class="ml-2">
       <li data-nav-id="/docs/tools/pack/cli/pack/" class="dd-item depth-3 collapse">
@@ -296,7 +298,7 @@
       <li data-nav-id="/docs/tools/circleci/" class="dd-item depth-1">
         <a href="/docs/tools/circleci/">CircleCI</a>
       </li>
-      <li data-nav-id="/docs/tools/gitlab/" class="dd-item depth-1">
+      <li data-nav-id="/docs/tools/gitlab/" class="dd-item depth-1 active">
         <a href="/docs/tools/gitlab/">Gitlab Auto DevOps</a>
       </li>
       <li data-nav-id="/docs/tools/tekton/" class="dd-item depth-1">
@@ -360,12 +362,12 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BConcepts%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ftools%2Fpack%2Fconcepts%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BGitlab&#43;Auto&#43;DevOps%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ftools%2Fgitlab%2F%29"
        class="btn-light btn-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/tools/pack/concepts/_index.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/tools/gitlab.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="btn-light btn-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
@@ -373,26 +375,26 @@
 
 
         <div class="heading">
-          <h1 class="title">Concepts</h1>
+          <h1 class="title">Gitlab Auto DevOps</h1>
         </div>
 
-        <p>This section describes some concepts related to the Pack CLI.</p>
-
+        <p><a href="https://about.gitlab.com/">Gitlab</a> is a web based DevOps platform. It uses <a href="/docs/install-pack"><code>pack</code></a> as part of the <a href="https://docs.gitlab.com/ee/topics/autodevops/">Auto DevOps</a> feature, to
+build applications prior to deploying them.</p>
+<h2 id="use">Use</h2>
+<p>To use the CNB integration, you need to configure the Auto DevOps feature, as discussed in <a href="https://docs.gitlab.com/ee/topics/autodevops/quick_start_guide.html">the DevOps guide</a>. At that point,
+you can opt in to using Cloud Native Buildpacks by following the steps in their <a href="https://docs.gitlab.com/ee/topics/autodevops/stages.html#auto-build-using-cloud-native-buildpacks-beta">CNB documentation</a>.</p>
+<p>This may look like the following in your <code>.gitlab-ci.yml</code> file:</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="k">include</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="k">template</span><span class="p">:</span><span class="w"> </span>Auto-DevOps.gitlab-ci.yml<span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">variables</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">AUTO_DEVOPS_BUILD_IMAGE_CNB_ENABLED</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;true&#34;</span><span class="w">
+</span></code></pre></div><h3 id="references">References</h3>
+<ul>
+<li><a href="https://docs.gitlab.com/ee/topics/autodevops/stages.html#auto-build-using-cloud-native-buildpacks-beta">Auto Build with CNB Docs</a></li>
+</ul>
 
         
-    
-      
-        <h2><a href="https://buildpacks.io/docs/tools/pack/concepts/trusted_builders/" class="">Trusted Builders</a></h2>
-        <p class="m-1">From version 0.11.0 onward, pack can be used to identify builders that should be considered trusted. pack build will operate slightly differently under the hood based on whether it considers the specified builder to be trusted.
-</p>
-
-        
-          <div class="text-md-right">
-            <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/tools/pack/concepts/trusted_builders/">Learn more →</a>
-          </div>
-        
-      
-    
 
         <hr>
 <div class='footline d-block'>
@@ -400,12 +402,12 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BConcepts%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ftools%2Fpack%2Fconcepts%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BGitlab&#43;Auto&#43;DevOps%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ftools%2Fgitlab%2F%29"
        class="btn-light btn-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/tools/pack/concepts/_index.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/tools/gitlab.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="btn-light btn-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
