@@ -2,13 +2,13 @@
 title="CircleCI"
 +++
 
-[CircleCI][circleci] is a continuous integration and delivery platform. The CNB project maintains an integration, called an “orb”, 
-which allows users to utilize [pack][pack] inside their pipelines.
+[CircleCI][circleci] is a continuous integration and delivery platform. The CNB project maintains an integration, called an [orb](https://circleci.com/orbs/), 
+which allows users to run [pack][pack] commands inside their pipelines.
 
 <!--more-->
 
 ## Use
-To use the CNB integration, you need to declare that you are using the `buildpacks/pack` "orb”, and then utilize
+To use the CNB integration, you need to declare that you are using the [`buildpacks/pack` orb](https://circleci.com/developer/orbs/orb/buildpacks/pack), and then use
 it in your workflow.
 
 For instance, your `.circleci/config.yml` file may look like this:

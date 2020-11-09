@@ -3,7 +3,7 @@ title="Tekton"
 +++
 
 [Tekton][tekton] is an open-source CI/CD system platform implementation running on k8s. There are two Tekton `tasks`
-maintained by the CNB project, both of which use the [lifecycle][lifecycle] directly.
+maintained by the CNB project, both of which use the [lifecycle][lifecycle] directly (i.e. they do not use `pack`).
 <!--more-->
 They are:
 1. [buildpacks][buildpacks-task] `task` &rarr; This task, which we recommend using, calls the `creator` binary of the 
@@ -12,8 +12,7 @@ They are:
 run each phase in a separate container.
 
 ## Set Up
-> NOTE: Prior to installing `Tekton`, we recommend reviewing the basic Tekton concepts. Documentation for that can be 
-> found [here][tekton-concepts]
+> NOTE: Prior to installing `Tekton`, we recommend reviewing the basic Tekton concepts in the [documentation][tekton-concepts].
 
 ### Prerequisites
 Before we get started, make sure you've got the following installed:

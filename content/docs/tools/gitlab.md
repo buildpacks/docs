@@ -7,7 +7,7 @@ build applications prior to deploying them.
 <!--more-->
 
 ## Use
-To use the CNB integration, you need to configure the Auto DevOps feature, as discussed [here][devops-guide]. At that point,
+To use the CNB integration, you need to configure the Auto DevOps feature, as discussed in [the DevOps guide][devops-guide]. At that point,
 you can opt in to using Cloud Native Buildpacks by following the steps in their [CNB documentation][use-cnbs].
 
 This may look like the following in your `.gitlab-ci.yml` file:
@@ -28,4 +28,3 @@ variables:
 [devops]: https://docs.gitlab.com/ee/topics/autodevops/
 [devops-guide]: https://docs.gitlab.com/ee/topics/autodevops/quick_start_guide.html
 [use-cnbs]: https://docs.gitlab.com/ee/topics/autodevops/stages.html#auto-build-using-cloud-native-buildpacks-beta
-
