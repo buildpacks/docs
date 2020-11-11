@@ -83,10 +83,10 @@ pack build my-app --builder my-builder:bionic --path samples/apps/java-maven/
 
 Remember that we mentioned that the buildpacks we used as part of this builder don't really do much. To be honest, they
 didn't even use the app source code. What they did do was show the environment in which they run on and now by running
-the app image with `CNB_PROCESS_TYPE=sys-info` we can see the runtime information as well.
+the app image with `--entrypoint sys-info` we can see the runtime information as well.
 
 ```bash
-docker run --rm --env CNB_PROCESS_TYPE=sys-info -it my-app
+docker run --rm --entrypoint sys-info -it my-app
 ```
 
 We're sure you'll be able to create more useful builders.
