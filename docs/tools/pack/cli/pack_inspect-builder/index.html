@@ -274,11 +274,14 @@
       <li data-nav-id="/docs/tools/pack/cli/pack_set-run-image-mirrors/" class="dd-item depth-3">
         <a href="/docs/tools/pack/cli/pack_set-run-image-mirrors/">pack set-run-image-mirrors</a>
       </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_stack/" class="dd-item depth-3">
+        <a href="/docs/tools/pack/cli/pack_stack/">pack stack</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_stack_suggest/" class="dd-item depth-3">
+        <a href="/docs/tools/pack/cli/pack_stack_suggest/">pack stack suggest</a>
+      </li>
       <li data-nav-id="/docs/tools/pack/cli/pack_suggest-builders/" class="dd-item depth-3">
         <a href="/docs/tools/pack/cli/pack_suggest-builders/">pack suggest-builders</a>
-      </li>
-      <li data-nav-id="/docs/tools/pack/cli/pack_suggest-stacks/" class="dd-item depth-3">
-        <a href="/docs/tools/pack/cli/pack_suggest-stacks/">pack suggest-stacks</a>
       </li>
       <li data-nav-id="/docs/tools/pack/cli/pack_trust-builder/" class="dd-item depth-3">
         <a href="/docs/tools/pack/cli/pack_trust-builder/">pack trust-builder</a>
@@ -375,13 +378,15 @@
 
         <h2 id="pack-inspect-builder">pack inspect-builder</h2>
 <p>Show information about a builder</p>
-<h3 id="synopsis">Synopsis</h3>
-<p>Show information about a builder</p>
 <pre><code>pack inspect-builder &lt;builder-image-name&gt; [flags]
+</code></pre><h3 id="examples">Examples</h3>
+<pre><code>pack inspect-builder cnbs/sample-builder:bionic
 </code></pre><h3 id="options">Options</h3>
-<pre><code>  -d, --depth int   Max depth to display for Detection Order.
-                    Omission of this flag or values &lt; 0 will display the entire tree. (default -1)
-  -h, --help        Help for 'inspect-builder'
+<pre><code>  -d, --depth int       Max depth to display for Detection Order.
+                        Omission of this flag or values &lt; 0 will display the entire tree. (default -1)
+  -h, --help            Help for 'inspect-builder'
+  -o, --output string   Output format to display builder detail (json, yaml, toml, human-readable).
+                        Omission of this flag will display as human-readable. (default &quot;human-readable&quot;)
 </code></pre><h3 id="options-inherited-from-parent-commands">Options inherited from parent commands</h3>
 <pre><code>      --no-color     Disable color output
   -q, --quiet        Show less output

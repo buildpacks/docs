@@ -128,20 +128,29 @@
     </item>
     
     <item>
+      <title>pack stack</title>
+      <link>https://buildpacks.io/docs/tools/pack/cli/pack_stack/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_stack/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pack stack suggest</title>
+      <link>https://buildpacks.io/docs/tools/pack/cli/pack_stack_suggest/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_stack_suggest/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>pack suggest-builders</title>
       <link>https://buildpacks.io/docs/tools/pack/cli/pack_suggest-builders/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://buildpacks.io/docs/tools/pack/cli/pack_suggest-builders/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>pack suggest-stacks</title>
-      <link>https://buildpacks.io/docs/tools/pack/cli/pack_suggest-stacks/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_suggest-stacks/</guid>
       <description></description>
     </item>
     

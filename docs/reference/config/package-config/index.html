@@ -274,11 +274,14 @@
       <li data-nav-id="/docs/tools/pack/cli/pack_set-run-image-mirrors/" class="dd-item depth-3 collapse">
         <a href="/docs/tools/pack/cli/pack_set-run-image-mirrors/">pack set-run-image-mirrors</a>
       </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_stack/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_stack/">pack stack</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_stack_suggest/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_stack_suggest/">pack stack suggest</a>
+      </li>
       <li data-nav-id="/docs/tools/pack/cli/pack_suggest-builders/" class="dd-item depth-3 collapse">
         <a href="/docs/tools/pack/cli/pack_suggest-builders/">pack suggest-builders</a>
-      </li>
-      <li data-nav-id="/docs/tools/pack/cli/pack_suggest-stacks/" class="dd-item depth-3 collapse">
-        <a href="/docs/tools/pack/cli/pack_suggest-stacks/">pack suggest-stacks</a>
       </li>
       <li data-nav-id="/docs/tools/pack/cli/pack_trust-builder/" class="dd-item depth-3 collapse">
         <a href="/docs/tools/pack/cli/pack_trust-builder/">pack trust-builder</a>
@@ -399,6 +402,14 @@ A URL or path to an <a href="/docs/reference/builder-config#supported-archives">
 <p><strong><code>image</code></strong> <em>(string)</em><br>
 A registry location (if no registry host is specified in the image name, DockerHub is assumed).</p>
 </li>
+</ul>
+</li>
+<li>
+<h4 id="platform-_optional_"><code>platform</code> <em>(optional)</em></h4>
+<p>The expected runtime environment for the buildpackage. It should contain the following field:</p>
+<ul>
+<li><strong><code>os</code></strong> <em>(string, optional)</em><br>
+The operating system type that the buildpackage will run on. Only <code>linux</code> or <code>windows</code> is supported. If omitted, <code>linux</code> will be the default.</li>
 </ul>
 </li>
 </ul>

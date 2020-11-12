@@ -247,11 +247,15 @@
   </url>
   
   <url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_suggest-builders/</loc>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_stack/</loc>
   </url>
   
   <url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_suggest-stacks/</loc>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_stack_suggest/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_suggest-builders/</loc>
   </url>
   
   <url>
