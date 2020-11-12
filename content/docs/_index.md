@@ -29,8 +29,8 @@ Set of guides tailored to specific personas:
 
 Reference documents for various key aspects of the project.
 
-* [Configuration](/docs/config/) - Schema definitions for configuration files.
-* [Specification](/docs/spec/) - An overview of the Cloud Native Buildpacks API specification.
+* [Configuration](/docs/reference/config/) - Schema definitions for configuration files.
+* [Specification](/docs/reference/spec/) - An overview of the Cloud Native Buildpacks API specification.
 
 ---
 

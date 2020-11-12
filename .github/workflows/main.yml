@@ -31,6 +31,9 @@ jobs:
         run: make build
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Check links
+        run: |
+          make check-links
       - name: Upload public folder
         uses: actions/upload-artifact@v1
         env:

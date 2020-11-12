@@ -36,4 +36,4 @@ You can view [sample buildpackages](https://github.com/buildpacks/samples/tree/m
 
 [package]: /docs/concepts/components/buildpack#distribution
 [supported-archives]: /docs/reference/builder-config#supported-archives
-[order-group]: /docs/reference/buildpack-api/#schema
+[order-group]: /docs/reference/spec/buildpack-api/#schema

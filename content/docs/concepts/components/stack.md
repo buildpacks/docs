@@ -17,7 +17,7 @@ stacks that can be used when running `pack create-builder`, along with each stac
 
 ## Using stacks
 
-Stacks are used by [builders](/docs/concepts/components/builder/#builders-explained) and are configured through a builder's
+Stacks are used by [builders][builder] and are configured through a builder's
 [configuration file](/docs/concepts/components/builder#builder-configuration):
 
 ```toml

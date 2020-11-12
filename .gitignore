@@ -18,3 +18,7 @@ $RECYCLE.BIN/
 
 # Generated files
 content/docs/tools/pack/cli/pack*
+
+# Tools
+/bin
+/tmp

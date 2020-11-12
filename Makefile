@@ -64,4 +64,25 @@ test: install-pack-cli install-ugo
 	@echo "> Testing..."
 	ugo run -r -p ./content/docs/
 
-.PHONY: pack-version serve build update-pack-docs test
+install-htmltest:
+	@if ! test -f ./bin/htmltest; then \
+	  echo "> Installing htmltest..."; \
+	  curl https://htmltest.wjdp.uk | bash; \
+	fi;
+
+run-htmltest: install-htmltest build
+	@echo "> Checking links..."
+	./bin/htmltest ./public -l 3 -s 2>&1 > /dev/null || true
+
+check-links: run-htmltest
+check-links: ERRORS=$(shell cat ./tmp/.htmltest/htmltest.log | grep -i "does not exist")
+check-links:
+	@if [ ! -z "$(ERRORS)" ]; then \
+	  echo "ERROR: found broken links:"; \
+	  cat ./tmp/.htmltest/htmltest.log | grep -i "does not exist"; \
+	  exit 1; \
+	else \
+	  echo "No broken links found."; \
+	fi;
+
+.PHONY: pack-version serve build update-pack-docs test check-links
