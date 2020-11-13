@@ -393,15 +393,8 @@ A URL or path to an <a href="/docs/reference/builder-config#supported-archives">
 <h4 id="dependencies-_list-optional_"><code>dependencies</code> <em>(list, optional)</em></h4>
 <p>A set of dependent buildpack locations, for packaging a meta-buildpack. Each dependent buildpack location must correspond to an <a href="/docs/reference/spec/buildpack-api/#schema">order group</a> within the meta-buildpack being packaged, and must have <strong>one</strong> of the following fields:</p>
 <ul>
-<li>
-<p><strong><code>uri</code></strong> <em>(string)</em><br>
-A URL or path to an <a href="/docs/reference/builder-config#supported-archives">archive</a>, a packaged buildpack (saved as a <code>.cnb</code> file), or a directory. If path is relative, it must be relative to the <code>package.toml</code>.</p>
-<p>OR</p>
-</li>
-<li>
-<p><strong><code>image</code></strong> <em>(string)</em><br>
-A registry location (if no registry host is specified in the image name, DockerHub is assumed).</p>
-</li>
+<li><strong><code>uri</code></strong> <em>(string)</em><br>
+A URL or path to an <a href="/docs/reference/builder-config#supported-archives">archive</a>, a packaged buildpack (saved as a <code>.cnb</code> file), or a directory. If path is relative, it must be relative to the <code>package.toml</code>.</li>
 </ul>
 </li>
 <li>
