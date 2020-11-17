@@ -24,11 +24,6 @@ A [builder][builder] configuration schema is as follows:
       - **`uri`** _(string)_\
         A URL or path to an [archive](#supported-archives), a packaged buildpack (saved as a `.cnb` file), or a directory. If path is relative, it must be relative to the `builder.toml`.
 
-        OR
-
-      - **`image`** _(string)_\
-        A registry location (if no registry host is specified in the image name, DockerHub is assumed).
-
 - #### `order` _(list, required)_
   A list of buildpack groups. This list determines the order in which groups of buildpacks
   will be tested during detection. Detection is a phase of the [lifecycle][lifecycle] where
