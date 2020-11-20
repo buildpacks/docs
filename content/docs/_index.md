@@ -36,7 +36,7 @@ Reference documents for various key aspects of the project.
 
 # Community and Support
 
-Cloud Native Buildpacks is an active sandbox project in the CNCF. We welcome contribution from the community. Here you will find helpful information for interacting with the core team and contributing to the project.
+Cloud Native Buildpacks is an incubating project in the CNCF. We welcome contribution from the community. Here you will find helpful information for interacting with the core team and contributing to the project.
 
 ## Community
 
