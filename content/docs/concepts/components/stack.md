@@ -116,12 +116,12 @@ The following rules apply for mixin declarations:
 
 _Build image:_
 ```json
-io.buildpack.stack.mixins: ["build:git", "wget"]
+io.buildpacks.stack.mixins: ["build:git", "wget"]
 ```
 
 _Run image:_
 ```json
-io.buildpack.stack.mixins: ["run:imagemagick", "wget"]
+io.buildpacks.stack.mixins: ["run:imagemagick", "wget"]
 ```
 
 ### Declaring required mixins
