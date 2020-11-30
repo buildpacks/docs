@@ -436,8 +436,8 @@ pack create-builder my-builder:bionic --config ./builder.toml
 </code></pre></div><h3 id="4-running-the-app">4. Running the app</h3>
 <p>Remember that we mentioned that the buildpacks we used as part of this builder don&rsquo;t really do much. To be honest, they
 didn&rsquo;t even use the app source code. What they did do was show the environment in which they run on and now by running
-the app image with <code>CNB_PROCESS_TYPE=sys-info</code> we can see the runtime information as well.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker run --rm --env <span class="nv">CNB_PROCESS_TYPE</span><span class="o">=</span>sys-info -it my-app
+the app image with <code>--entrypoint sys-info</code> we can see the runtime information as well.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker run --rm --entrypoint sys-info -it my-app
 </code></pre></div><p>We&rsquo;re sure you&rsquo;ll be able to create more useful builders.</p>
 <h3 id="references">References</h3>
 <p>For additional sample builders and buildpacks, check out our <a href="https://github.com/buildpacks/samples">samples</a> repo.</p>
@@ -476,7 +476,7 @@ the app image with <code>CNB_PROCESS_TYPE=sys-info</code> we can see the runtime
     <footer>
   <div class="container footer">
     <a href="https://www.cncf.io/" style="width: 50%;"><img src="/images/cncf-color.svg" class="footer-logo"></a>
-    <p>We are a <a href="https://www.cncf.io/">Cloud Native Sandbox</a> project.</p>
+    <p>We are a <a href="https://www.cncf.io/">Cloud Native Computing Foundation</a> incubating project.</p>
   </div>
   <div class="bg-blue">
     <div class="container sub-footer">

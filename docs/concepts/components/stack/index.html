@@ -503,9 +503,9 @@ The following rules apply for mixin declarations:</p>
 </ul>
 <h4 id="example">Example</h4>
 <p><em>Build image:</em></p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">io.buildpack.stack.mixins:</span> <span class="p">[</span><span class="s2">&#34;build:git&#34;</span><span class="p">,</span> <span class="s2">&#34;wget&#34;</span><span class="p">]</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">io.buildpacks.stack.mixins:</span> <span class="p">[</span><span class="s2">&#34;build:git&#34;</span><span class="p">,</span> <span class="s2">&#34;wget&#34;</span><span class="p">]</span>
 </code></pre></div><p><em>Run image:</em></p>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">io.buildpack.stack.mixins:</span> <span class="p">[</span><span class="s2">&#34;run:imagemagick&#34;</span><span class="p">,</span> <span class="s2">&#34;wget&#34;</span><span class="p">]</span>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="err">io.buildpacks.stack.mixins:</span> <span class="p">[</span><span class="s2">&#34;run:imagemagick&#34;</span><span class="p">,</span> <span class="s2">&#34;wget&#34;</span><span class="p">]</span>
 </code></pre></div><h3 id="declaring-required-mixins">Declaring required mixins</h3>
 <p>A buildpack must list any required mixins in the <code>stacks</code> section of its <code>buildpack.toml</code> file.</p>
 <p>When validating whether the buildpack&rsquo;s mixins are satisfied by a stack, the following rules apply:</p>
@@ -555,7 +555,7 @@ The following rules apply for mixin declarations:</p>
     <footer>
   <div class="container footer">
     <a href="https://www.cncf.io/" style="width: 50%;"><img src="/images/cncf-color.svg" class="footer-logo"></a>
-    <p>We are a <a href="https://www.cncf.io/">Cloud Native Sandbox</a> project.</p>
+    <p>We are a <a href="https://www.cncf.io/">Cloud Native Computing Foundation</a> incubating project.</p>
   </div>
   <div class="bg-blue">
     <div class="container sub-footer">
