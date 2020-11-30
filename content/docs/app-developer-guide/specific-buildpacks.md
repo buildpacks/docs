@@ -52,7 +52,7 @@ pack build sample-java-maven-app \
 
 ## Using a Project Descriptor
 
-The [`project.toml`](project-toml) format allows for Buildpack URIs to be specified in the `[[build.buildpacks]]` table with the `uri` key.
+The [`project.toml`][project-toml] format allows for Buildpack URIs to be specified in the `[[build.buildpacks]]` table with the `uri` key.
 
 ##### Example:
 
