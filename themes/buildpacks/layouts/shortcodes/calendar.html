@@ -1,0 +1,78 @@
+<script type="application/javascript">
+    let calendars = [];
+
+    {{- range $calData:= $.Site.Data.calendar }}
+    var c = {{ $calData | jsonify | safeJS }};
+    c.data = {{ printf "%s/%s" "static/ics" $calData.ics | readFile }};
+    calendars.push(c);
+    {{ end }}
+
+    let calendarEvents = calendars
+        .map(calendar => {
+            calendar.ical = new ICAL.Component(ICAL.parse(calendar.data));
+            return calendar
+        })
+        .flatMap(calendar => {
+            return calendar.ical.getAllSubcomponents('vevent')
+                .map(e => {
+                    let reccurance = e.getFirstProperty("rrule") &&
+                        e.getFirstProperty("rrule").getFirstValue().toString();
+                    let url = e.getFirstProperty("url") &&
+                        e.getFirstProperty("url").getFirstValue().toString();
+
+                    let event = new ICAL.Event(e);
+                    return {
+                        id: event.uid,
+                        title: event.summary,
+                        description: event.description,
+                        location: event.location,
+                        url: url,
+                        backgroundColor: calendar.color,
+                        start: event.startDate.convertToZone(ICAL.Timezone.localTimezone).toJSDate(),
+                        end: event.endDate.toJSDate(),
+                        rrule: `DTSTART:${event.startDate.toICALString()}\n${reccurance}`
+                    }
+                });
+        });
+
+    console.log(calendarEvents);
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar-view');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridWeek',
+            height: 'auto',
+            headerToolbar: {
+                start: 'title',
+                end: 'dayGridWeek,dayGridMonth prev,today,next'
+            },
+            events: calendarEvents,
+            views: {
+                dayGridMonth: {
+                    weekends: true,
+                    fixedWeekCount: false,
+                    showNonCurrentDates: false,
+                },
+                dayGridWeek: {
+                    weekends: false
+                }
+            }
+        });
+        calendar.render();
+    });
+</script>
+
+
+<div id='calendar-view' class="calendar"></div>
+<div class='text-right pt-3 small d-none d-sm-block'>
+    <span class="font-italic">
+        Add these events to your calendar:
+    </span>
+    <ul class="d-inline">
+        {{- range $calData := $.Site.Data.calendar }}
+        <li class="d-inline text-white rounded px-2 py-1" style="background-color: {{ $calData.color }};">
+            <a style="text-decoration: none;" href="/ics/{{ $calData.ics }}">{{ $calData.name }}</a>
+        </li>
+        {{ end }}
+    </ul>
+</div>

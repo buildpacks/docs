@@ -1,0 +1,9 @@
+- # human readable name
+  name: Sub-Team Syncs
+  # file must be located in {root}/static/ics
+  ics: subteam-sync.ics
+  # html color of events on calendar
+  color: '#5a619b'
+- name: Working Group
+  ics: working-group.ics
+  color: '#df166c'

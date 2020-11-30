@@ -1,0 +1,74 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//ical.marudot.com//iCal Event Maker
+X-WR-CALNAME:Sub-Team Syncs
+NAME:Sub-Team Syncs
+CALSCALE:GREGORIAN
+BEGIN:VTIMEZONE
+TZID:America/New_York
+TZURL:http://tzurl.org/zoneinfo-outlook/America/New_York
+X-LIC-LOCATION:America/New_York
+BEGIN:DAYLIGHT
+TZOFFSETFROM:-0500
+TZOFFSETTO:-0400
+TZNAME:EDT
+DTSTART:19700308T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:-0400
+TZOFFSETTO:-0500
+TZNAME:EST
+DTSTART:19701101T020000
+RRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+DTSTAMP:20201120T183214Z
+UID:20201120T183214Z-2111403239@marudot.com
+DTSTART;TZID=America/New_York:20201117T100000
+RRULE:FREQ=WEEKLY;BYDAY=TU
+DTEND;TZID=America/New_York:20201117T103000
+SUMMARY:Learning Sub-Team Sync
+URL:https://docs.google.com/document/d/1zBYJsBwcwLZ5huG4nt7t7kYqaL1W_J12WuLsr2a9mAo/edit#heading=h.9gielcks2sy9
+DESCRIPTION:Weekly Learning Sub-team sync.\n\n<a href="https://docs.google.com/document/d/1zBYJsBwcwLZ5huG4nt7t7kYqaL1W_J12WuLsr2a9mAo/edit">More details and meeting notes</a>
+LOCATION:https://vmware.zoom.us/j/91707269913?pwd=bnl1V1JRWWZrSllqaE5rWWp1UHNZdz09
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Learning Sub-Team Sync
+TRIGGER:-PT0M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20201120T183214Z
+UID:20201120T183214Z-1352571168@marudot.com
+DTSTART;TZID=America/New_York:20201118T113000
+RRULE:FREQ=WEEKLY;BYDAY=WE
+DTEND;TZID=America/New_York:20201118T120000
+SUMMARY:Platform Sub-Team Sync
+URL:https://docs.google.com/document/d/1zBYJsBwcwLZ5huG4nt7t7kYqaL1W_J12WuLsr2a9mAo/edit#heading=h.9gielcks2sy9
+DESCRIPTION:Weekly Platform Sub-team sync.\n\n<a href="https://docs.google.com/document/d/1zBYJsBwcwLZ5huG4nt7t7kYqaL1W_J12WuLsr2a9mAo/edit">More details and meeting notes</a>
+LOCATION:https://vmware.zoom.us/j/91707269913?pwd=bnl1V1JRWWZrSllqaE5rWWp1UHNZdz09
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Platform Sub-Team Sync
+TRIGGER:-PT0M
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20201120T183214Z
+UID:20201120T183214Z-1298654663@marudot.com
+DTSTART;TZID=America/New_York:20201119T113000
+RRULE:FREQ=WEEKLY;BYDAY=TH
+DTEND;TZID=America/New_York:20201119T120000
+SUMMARY:Implementations Sub-Team Sync
+URL:https://docs.google.com/document/d/1zBYJsBwcwLZ5huG4nt7t7kYqaL1W_J12WuLsr2a9mAo/edit#heading=h.9gielcks2sy9
+DESCRIPTION:Weekly Platform Sub-team sync.\n\n<a href="https://docs.google.com/document/d/1zBYJsBwcwLZ5huG4nt7t7kYqaL1W_J12WuLsr2a9mAo/edit">More details and meeting notes</a>
+LOCATION:https://vmware.zoom.us/j/91707269913?pwd=bnl1V1JRWWZrSllqaE5rWWp1UHNZdz09
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Implementations Sub-Team Sync
+TRIGGER:-PT0M
+END:VALARM
+END:VEVENT
+END:VCALENDAR

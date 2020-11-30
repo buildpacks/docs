@@ -1,0 +1,39 @@
+// NOTE: most changes should be done via JavaScript
+.calendar {
+    .fc-header-toolbar > .fc-toolbar-chunk {
+        align-self: flex-end !important;
+
+        > .fc-toolbar-title {
+            font-size: 1.25rem;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+    }
+
+    @media(max-width: 767px) {
+        .fc-toolbar.fc-header-toolbar {
+            .fc-dayGridWeek-button,.fc-dayGridMonth-button {
+                display: none;
+            }
+        }
+    }
+
+    @media(max-width: 576px) {
+        .fc-toolbar.fc-header-toolbar {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .fc-toolbar.fc-header-toolbar .fc-left {
+          order: 3;
+        }
+
+        .fc-toolbar.fc-header-toolbar .fc-center {
+          order: 1;
+        }
+        
+        .fc-toolbar.fc-header-toolbar .fc-right {
+          order: 2;
+        }
+    }
+}

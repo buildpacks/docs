@@ -32,9 +32,9 @@ pack_version_env_var = "PACK_VERSION"
   weight     = 2
 
   [[menu.main]]
-  identifier = "docs"
-  name       = "Docs"
-  url        = "/docs"
+  identifier = "community"
+  name       = "Community"
+  url        = "/community"
   weight     = 3
 
   [[menu.main]]
