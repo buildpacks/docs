@@ -6,7 +6,7 @@ summary="Learn how to specify exactly what buildpacks are used during the build 
 
 You may specify exactly what buildpacks are used during the build process by referencing them with a URI in any of the following formats.
 
-| Name | Format |
+| Type | Format |
 |----- |------- |
 | Relative | `<path>` |
 | Filesystem | `file://[<host>]/<path>` |
@@ -21,6 +21,8 @@ When a string does not include a scheme prefix (ex. `docker://`) and also does n
 - If it matches a buildpack ID in the builder, it will be treated as a `urn:cnb:builder` URI
 - If it looks like a Docker ref, it will be treated as a `docker://` URI
 - If it looks like a Buildpack Registry ID, it will be treated as a `urn:cnb:registry` URI
+
+If you need to disambiguate a particular reference, use a fully qualified URI.
 
 ## Using the Pack CLI
 
