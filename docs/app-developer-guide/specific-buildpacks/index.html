@@ -379,17 +379,51 @@
           <h1 class="title">Specify buildpacks</h1>
         </div>
 
-        Learn how to specify exactly what buildpacks are used during the build process.
-<h3 id="--buildpacks"><code>--buildpacks</code></h3>
-<p>The <code>--buildpack</code> parameter can be one of the following:</p>
+        <p>You may specify exactly what buildpacks are used during the build process by referencing them with a URI in any of the following formats.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Format</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Relative</td>
+<td><code>&lt;path&gt;</code></td>
+</tr>
+<tr>
+<td>Filesystem</td>
+<td><code>file://[&lt;host&gt;]/&lt;path&gt;</code></td>
+</tr>
+<tr>
+<td>URL</td>
+<td><code>http[s]://&lt;host&gt;/&lt;path&gt;</code></td>
+</tr>
+<tr>
+<td>Docker</td>
+<td><code>docker://[&lt;host&gt;]/&lt;path&gt;[:&lt;tag&gt;⏐@&lt;digest&gt;]</code></td>
+</tr>
+<tr>
+<td>CNB Builder Resource</td>
+<td><code>urn:cnb:builder[:&lt;id&gt;[@&lt;version&gt;]]</code></td>
+</tr>
+<tr>
+<td>CNB Registry Resource</td>
+<td><code>urn:cnb:registry[:&lt;id&gt;[@&lt;version&gt;]]</code></td>
+</tr>
+</tbody>
+</table>
+<h5 id="fallback-behavior">Fallback Behavior</h5>
+<p>When a string does not include a scheme prefix (ex. <code>docker://</code>) and also does not match a path on the filesystem, a platform may attempt to resolve it to a URI in the following order:</p>
 <ul>
-<li>path to a directory<sup><small>†</small></sup>, <code>tar</code> file, or <code>tgz</code> file</li>
-<li>URL to a <code>tar</code> or <code>tgz</code> file</li>
-<li>buildpack located in a builder, in the form of <code>&lt;id&gt;[@&lt;version&gt;]</code><sup><small>‡</small></sup></li>
-<li>image name</li>
+<li>If it matches a buildpack ID in the builder, it will be treated as a <code>urn:cnb:builder</code> URI</li>
+<li>If it looks like a Docker ref, it will be treated as a <code>docker://</code> URI</li>
+<li>If it looks like a Buildpack Registry ID, it will be treated as a <code>urn:cnb:registry</code> URI</li>
 </ul>
-<p><small><sup>†</sup> Directory buildpacks are not currently supported on Windows.</small><br />
-<small><sup>‡</sup> Version may be omited if there is only one buildpack in the builder matching the <code>id</code>.</small></p>
+<p>If you need to disambiguate a particular reference, use a fully qualified URI.</p>
+<h2 id="using-the-pack-cli">Using the Pack CLI</h2>
+<p>The <code>--buildpack</code> parameter accepts a URI in any of the formats described above.</p>
 <h5 id="example">Example:</h5>
 <p>For this example we will use a few buildpacks from our <a href="https://github.com/buildpacks/samples">samples</a> repo.</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># clone the repo</span>
@@ -400,7 +434,7 @@ pack build sample-java-maven-app <span class="se">\
 </span><span class="se"></span>    --builder cnbs/sample-builder:alpine <span class="se">\
 </span><span class="se"></span>    --buildpack samples/java-maven <span class="se">\
 </span><span class="se"></span>    --buildpack samples/buildpacks/hello-processes/ <span class="se">\
-</span><span class="se"></span>    --buildpack cnbs/sample-package:hello-universe <span class="se">\
+</span><span class="se"></span>    --buildpack docker://cnbs/sample-package:hello-universe <span class="se">\
 </span><span class="se"></span>    --path samples/apps/java-maven/
 </code></pre></div><blockquote>
 <p>Multiple buildpacks can be specified, in order, by supplying:</p>
@@ -409,6 +443,54 @@ pack build sample-java-maven-app <span class="se">\
 <li>a comma-separated list to <code>--buildpack</code> (without spaces)</li>
 </ul>
 </blockquote>
+<h2 id="using-a-project-descriptor">Using a Project Descriptor</h2>
+<p>The <a href="/docs/app-developer-guide/using-project-descriptor/"><code>project.toml</code></a> format allows for Buildpack URIs to be specified in the <code>[[build.buildpacks]]</code> table with the <code>uri</code> key.</p>
+<h5 id="example-1">Example:</h5>
+<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">project</span><span class="p">]</span>
+<span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;sample-java-maven-app&#34;</span>
+<span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Sample Java App&#34;</span>
+<span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;1.0.0&#34;</span>
+
+<span class="p">[[</span><span class="nx">build</span><span class="p">.</span><span class="nx">buildpacks</span><span class="p">]]</span>
+<span class="nx">uri</span> <span class="p">=</span> <span class="s2">&#34;samples/java-maven&#34;</span>
+
+<span class="p">[[</span><span class="nx">build</span><span class="p">.</span><span class="nx">buildpacks</span><span class="p">]]</span>
+<span class="nx">uri</span> <span class="p">=</span> <span class="s2">&#34;samples/buildpacks/hello-processes/&#34;</span>
+
+<span class="p">[[</span><span class="nx">build</span><span class="p">.</span><span class="nx">buildpacks</span><span class="p">]]</span>
+<span class="nx">uri</span> <span class="p">=</span> <span class="s2">&#34;docker://cnbs/sample-package:hello-univers&#34;</span>
+</code></pre></div><h2 id="uri-examples">URI Examples</h2>
+<p>A path to a directory<sup><small>†</small></sup>, <code>tar</code> file, or <code>tgz</code> file</p>
+<ul>
+<li><code>./my/buildpack/</code></li>
+<li><code>./my/buildpack.tgz</code></li>
+<li><code>/home/user/my/buildpack.tgz</code></li>
+<li><code>file:///my/buildpack.tgz</code></li>
+<li><code>file:///home/user/my/buildpack.tgz</code></li>
+</ul>
+<p>A URL to a <code>tar</code> or <code>tgz</code> file containing a buildpackage</p>
+<ul>
+<li><code>http://example.com/my/buildpack.tgz</code></li>
+<li><code>https://example.com/my/buildpack.tgz</code></li>
+</ul>
+<p>A Docker image containing a buildpackage</p>
+<ul>
+<li><code>docker://gcr.io/distroless/nodejs</code></li>
+<li><code>docker:///ubuntu:latest</code></li>
+<li><code>docker:///ubuntu@sha256:45b23dee08...</code></li>
+</ul>
+<p>A buildpack located in a CNB Builder</p>
+<ul>
+<li><code>urn:cnb:builder:bp.id</code></li>
+<li><code>urn:cnb:builder:bp.id@bp.version</code></li>
+</ul>
+<p>A buildpack located in a CNB Registry</p>
+<ul>
+<li><code>urn:cnb:registry:bp-id</code></li>
+<li><code>urn:cnb:registry:bp-id@bp.version</code></li>
+</ul>
+<p><small><sup>†</sup> Directory buildpacks are not currently supported on Windows.</small><br />
+<small><sup>‡</sup> Version may be omited if there is only one buildpack in the builder matching the <code>id</code>.</small></p>
 
 
         
