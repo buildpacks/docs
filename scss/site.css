@@ -795,7 +795,7 @@ header li a {
   text-decoration: none; }
   header li a:hover {
     text-decoration: inherit; }
-  header li a:not(.button) {
+  header li a:not(.button):not(.button-light) {
     border-bottom: 2px solid rgba(71, 82, 158, 0.25); }
   header li a.active {
     border-bottom-color: #47529E; }
@@ -958,7 +958,7 @@ Button
 
 **********************************/
 /** Sizes **/
-.btn-light, .button {
+.button-light, .button {
   padding: 10px 20px;
   border-radius: 5px;
   display: inline-block;
@@ -966,11 +966,11 @@ Button
   line-height: 130%;
   font-size: 1rem; }
 
-.btn-light:hover, .button:hover {
+.button-light:hover, .button:hover {
   text-decoration: none;
   opacity: .9; }
 
-.btn-small {
+.button-small {
   font-size: 0.8rem;
   padding: 7.5px 15px; }
 
@@ -983,11 +983,11 @@ Button
   text-decoration: none;
   opacity: .9; }
 
-.btn-light {
+.button-light {
   color: #000000;
   border: 1px solid #e0e0e0; }
 
-.btn-light:hover {
+.button-light:hover {
   color: #000000;
   opacity: .75; }
 
@@ -1009,10 +1009,10 @@ Button
   background-repeat: no-repeat;
   background-size: contain; }
 
-.btn-small.icon-button {
+.button-small.icon-button {
   padding-right: 18.75px; }
 
-.btn-small.icon-button::before {
+.button-small.icon-button::before {
   height: 1.04rem;
   width: 1.04rem;
   min-width: 1.04rem; }
@@ -1021,7 +1021,7 @@ Button
   width: 0px;
   min-width: 0px; }
 
-.btn-small.icon-button.blank::before {
+.button-small.icon-button.blank::before {
   width: 0px;
   min-width: 0px; }
 
@@ -1031,7 +1031,7 @@ Button
 .button.github-button::before {
   background-image: url("/images/github-mark.svg"); }
 
-.btn-light.github-button::before {
+.button-light.github-button::before {
   background-image: url("/images/github-mark.svg");
   -webkit-filter: brightness(0);
   filter: brightness(0); }
@@ -1039,7 +1039,7 @@ Button
 .button.slack-button::before {
   background-image: url("/images/slack-mark.svg"); }
 
-.btn-light.slack-button::before {
+.button-light.slack-button::before {
   background-image: url("/images/slack-mark.svg");
   -webkit-filter: brightness(0);
   filter: brightness(0); }
@@ -1405,6 +1405,28 @@ Quote
 
 ul.list-circle > li {
   list-style-type: circle !important; }
+
+.calendar .fc-header-toolbar > .fc-toolbar-chunk {
+  align-self: flex-end !important; }
+  .calendar .fc-header-toolbar > .fc-toolbar-chunk > .fc-toolbar-title {
+    font-size: 1.25rem;
+    margin-bottom: 0;
+    padding-bottom: 0; }
+
+@media (max-width: 767px) {
+  .calendar .fc-toolbar.fc-header-toolbar .fc-dayGridWeek-button, .calendar .fc-toolbar.fc-header-toolbar .fc-dayGridMonth-button {
+    display: none; } }
+
+@media (max-width: 576px) {
+  .calendar .fc-toolbar.fc-header-toolbar {
+    display: flex;
+    flex-direction: column; }
+  .calendar .fc-toolbar.fc-header-toolbar .fc-left {
+    order: 3; }
+  .calendar .fc-toolbar.fc-header-toolbar .fc-center {
+    order: 1; }
+  .calendar .fc-toolbar.fc-header-toolbar .fc-right {
+    order: 2; } }
 
 /**********************************
 

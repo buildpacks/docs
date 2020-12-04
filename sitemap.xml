@@ -43,6 +43,10 @@
   </url>
   
   <url>
+    <loc>https://buildpacks.io/community/</loc>
+  </url>
+  
+  <url>
     <loc>https://buildpacks.io/docs/tools/pack/concepts/</loc>
   </url>
   
