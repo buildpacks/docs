@@ -4,5 +4,5 @@
 
 Adding events to the calendar requires the following:
 
-- A `.ics` file placed in [static/ics](static/ics)
+- An `.ics` file placed in [static/ics](static/ics) ([online generator](https://ical.marudot.com/))
 - An entry in [data/calendar](data/calendar)

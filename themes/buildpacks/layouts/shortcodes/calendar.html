@@ -13,6 +13,13 @@
             return calendar
         })
         .flatMap(calendar => {
+            let timezoneComp = calendar.ical.getFirstSubcomponent('vtimezone');
+            let tzid = timezoneComp.getFirstPropertyValue('tzid');
+            let timezone = new ICAL.Timezone({
+                component: timezoneComp,
+                tzid
+            });
+
             return calendar.ical.getAllSubcomponents('vevent')
                 .map(e => {
                     let reccurance = e.getFirstProperty("rrule") &&
@@ -20,22 +27,28 @@
                     let url = e.getFirstProperty("url") &&
                         e.getFirstProperty("url").getFirstValue().toString();
 
-                    let event = new ICAL.Event(e);
-                    return {
-                        id: event.uid,
-                        title: event.summary,
-                        description: event.description,
-                        location: event.location,
+                    let iEvent = new ICAL.Event(e);
+                    let startDate = iEvent.startDate.convertToZone(timezone).toJSDate();
+                    let endDate = iEvent.endDate.convertToZone(timezone).toJSDate();
+
+                    let event = {
+                        id: iEvent.uid,
+                        title: iEvent.summary,
+                        description: iEvent.description,
+                        location: iEvent.location,
                         url: url,
                         backgroundColor: calendar.color,
-                        start: event.startDate.convertToZone(ICAL.Timezone.localTimezone).toJSDate(),
-                        end: event.endDate.toJSDate(),
-                        rrule: `DTSTART:${event.startDate.toICALString()}\n${reccurance}`
+                        start: startDate,
+                        end: endDate
+                    };
+
+                    if (reccurance) {
+                        event.rrule = `DTSTART:${ICAL.Time.fromJSDate(startDate).toICALString()}\n${reccurance}`
                     }
+
+                    return event;
                 });
         });
-
-    console.log(calendarEvents);
 
     document.addEventListener('DOMContentLoaded', function () {
         var calendarEl = document.getElementById('calendar-view');
@@ -64,15 +77,23 @@
 
 
 <div id='calendar-view' class="calendar"></div>
-<div class='text-right pt-3 small d-none d-sm-block'>
-    <span class="font-italic">
-        Add these events to your calendar:
-    </span>
-    <ul class="d-inline">
-        {{- range $calData := $.Site.Data.calendar }}
-        <li class="d-inline text-white rounded px-2 py-1" style="background-color: {{ $calData.color }};">
-            <a style="text-decoration: none;" href="/ics/{{ $calData.ics }}">{{ $calData.name }}</a>
-        </li>
-        {{ end }}
-    </ul>
+
+<div class="row pt-3 small">
+    <div class='col-md-6'>
+        <span class="font-italic text-muted">
+            * Events displayed in local time.
+        </span>
+    </div>
+    <div class='col-md-6 text-right d-none d-xl-block'>
+        <span>
+            Download events as <code>.ics</code>:
+        </span>
+        <ul class="d-inline">
+            {{- range $calData := $.Site.Data.calendar }}
+            <li class="d-inline text-white rounded px-2 py-1" style="background-color: {{ $calData.color }};">
+                <a style="text-decoration: none; white-space: nowrap;" href="/ics/{{ $calData.ics }}">{{ $calData.name }}</a>
+            </li>
+            {{ end }}
+        </ul>
+    </div>
 </div>
