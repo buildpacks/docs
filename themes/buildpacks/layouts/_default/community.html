@@ -1,0 +1,44 @@
+{{ define "main" }}
+
+<div class='docs'>
+
+  <div class="bg-blue">
+    <div class="container">
+      <div class="row pt-4">
+        <div class='col-md-7 pt-1 d-none d-lg-flex justify-content-center'>
+          <div class='align-self-end col-md-8'>
+            {{ readFile "themes/buildpacks/static/images/community.svg" | safeHTML }}
+          </div>
+        </div>
+        <div
+          class='docs-content text-white col-12 col-lg-5 d-flex justify-content-center justify-content-lg-start text-center text-lg-left'>
+          <div>
+            <h1 class="mt-1 mb-3 text-white">Join our community</h1>
+            <div>
+              <script async defer src="https://slack.buildpacks.io/slackin.js?large"></script>
+            </div>
+            <div class="mt-3 text-left pl-4 pl-lg-0">
+              <strong>Also...</strong>
+              <ul class="text-left">
+                <li><a href="https://github.com/buildpacks/community">GitHub</a></li>
+                <li><a href="https://lists.cncf.io/g/cncf-buildpacks">Mailing List</a></li>
+                <li><a href="https://stackoverflow.com/questions/tagged/buildpack">StackOverflow</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class='row my-4'>
+      <div class='col-md-12 docs-content'>
+        {{ .Content }}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{{ end }}

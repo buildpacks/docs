@@ -68,7 +68,7 @@ header li a {
     text-decoration: inherit;
   }
 
-  &:not(.button) {
+  &:not(.button):not(.button-light) {
     border-bottom: 2px solid rgba($blue-light, 0.25);
   }
 

@@ -26,7 +26,7 @@ $icon-proportion: 1.30;
   opacity: .9;
 }
 
-.btn-small {
+.button-small {
   font-size: $btn-sm-font-size;
   padding: $btn-v-padding*.75 $btn-h-padding*.75;
 }
@@ -44,13 +44,13 @@ $icon-proportion: 1.30;
   opacity: .9;
 }
 
-.btn-light {
+.button-light {
   @extend %button-base;
   color: #000000;
   border: 1px solid #e0e0e0;
 }
 
-.btn-light:hover {
+.button-light:hover {
   color: #000000;
   opacity: .75;
 }
@@ -75,11 +75,11 @@ $icon-proportion: 1.30;
   background-size: contain;
 }
 
-.btn-small.icon-button {
+.button-small.icon-button {
   padding-right: ($btn-h-padding + 5px) * .75;
 }
 
-.btn-small.icon-button::before {
+.button-small.icon-button::before {
   height: $btn-sm-font-size * $icon-proportion;
   width: $btn-sm-font-size * $icon-proportion;
   min-width: $btn-sm-font-size * $icon-proportion;
@@ -90,7 +90,7 @@ $icon-proportion: 1.30;
   min-width: 0px;
 }
 
-.btn-small.icon-button.blank::before {
+.button-small.icon-button.blank::before {
   width: 0px;
   min-width: 0px;
 }
@@ -103,7 +103,7 @@ $icon-proportion: 1.30;
   background-image: url('/images/github-mark.svg');
 }
 
-.btn-light.github-button::before {
+.button-light.github-button::before {
   background-image: url('/images/github-mark.svg');
   -webkit-filter: brightness(0);
   filter: brightness(0);
@@ -113,7 +113,7 @@ $icon-proportion: 1.30;
   background-image: url('/images/slack-mark.svg');
 }
 
-.btn-light.slack-button::before {
+.button-light.slack-button::before {
   background-image: url('/images/slack-mark.svg');
   -webkit-filter: brightness(0);
   filter: brightness(0);

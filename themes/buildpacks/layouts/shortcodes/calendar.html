@@ -1,0 +1,99 @@
+<script type="application/javascript">
+    let calendars = [];
+
+    {{- range $calData:= $.Site.Data.calendar }}
+    var c = {{ $calData | jsonify | safeJS }};
+    c.data = {{ printf "%s/%s" "static/ics" $calData.ics | readFile }};
+    calendars.push(c);
+    {{ end }}
+
+    let calendarEvents = calendars
+        .map(calendar => {
+            calendar.ical = new ICAL.Component(ICAL.parse(calendar.data));
+            return calendar
+        })
+        .flatMap(calendar => {
+            let timezoneComp = calendar.ical.getFirstSubcomponent('vtimezone');
+            let tzid = timezoneComp.getFirstPropertyValue('tzid');
+            let timezone = new ICAL.Timezone({
+                component: timezoneComp,
+                tzid
+            });
+
+            return calendar.ical.getAllSubcomponents('vevent')
+                .map(e => {
+                    let reccurance = e.getFirstProperty("rrule") &&
+                        e.getFirstProperty("rrule").getFirstValue().toString();
+                    let url = e.getFirstProperty("url") &&
+                        e.getFirstProperty("url").getFirstValue().toString();
+
+                    let iEvent = new ICAL.Event(e);
+                    let startDate = iEvent.startDate.convertToZone(timezone).toJSDate();
+                    let endDate = iEvent.endDate.convertToZone(timezone).toJSDate();
+
+                    let event = {
+                        id: iEvent.uid,
+                        title: iEvent.summary,
+                        description: iEvent.description,
+                        location: iEvent.location,
+                        url: url,
+                        backgroundColor: calendar.color,
+                        start: startDate,
+                        end: endDate
+                    };
+
+                    if (reccurance) {
+                        event.rrule = `DTSTART:${ICAL.Time.fromJSDate(startDate).toICALString()}\n${reccurance}`
+                    }
+
+                    return event;
+                });
+        });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar-view');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridWeek',
+            height: 'auto',
+            headerToolbar: {
+                start: 'title',
+                end: 'dayGridWeek,dayGridMonth prev,today,next'
+            },
+            events: calendarEvents,
+            views: {
+                dayGridMonth: {
+                    weekends: true,
+                    fixedWeekCount: false,
+                    showNonCurrentDates: false,
+                },
+                dayGridWeek: {
+                    weekends: false
+                }
+            }
+        });
+        calendar.render();
+    });
+</script>
+
+
+<div id='calendar-view' class="calendar"></div>
+
+<div class="row pt-3 small">
+    <div class='col-md-6'>
+        <span class="font-italic text-muted">
+            * Events displayed in local time.
+        </span>
+    </div>
+    <div class='col-md-6 text-right d-none d-xl-block'>
+        <span>
+            Download events as <code>.ics</code>:
+        </span>
+        <ul class="d-inline">
+            {{- range $calData := $.Site.Data.calendar }}
+            <li class="d-inline text-white rounded px-2 py-1" style="background-color: {{ $calData.color }};">
+                <a style="text-decoration: none; white-space: nowrap;" href="/ics/{{ $calData.ics }}">{{ $calData.name }}</a>
+            </li>
+            {{ end }}
+        </ul>
+    </div>
+</div>

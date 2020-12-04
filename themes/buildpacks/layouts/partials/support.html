@@ -3,13 +3,13 @@
     {{ $issueBody := printf "**On Page:** [%s](%s)" .Title .Permalink | htmlEscape }}
     {{ $issueQuery := (querify "body" $issueBody) }}
     <a href="{{ $.Site.Params.github_base_url }}/docs/issues/new?{{ $issueQuery | safeURL }}"
-       class="btn-light btn-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
+       class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     {{ if .Params.no_edit }}
     {{ else }}
     {{ $editQuery := (querify "description" "Signed-off-by: NAME <EMAIL_ADDRESS>\n\n> _By signing off you acknowledge adhering to the requirements listed here: https://probot.github.io/apps/dco/_") }}
     <a href="{{ $.Site.Params.github_base_url }}/docs/edit/main/content/{{ with .File }}{{ .Path }}{{ end }}?{{ $editQuery | safeURL }}"
-       class="btn-light btn-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
+       class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     {{ end }}
   {{ end }}
 </div>
