@@ -38,7 +38,7 @@ It accepts two positional arguments:
 In addition, the working directory is defined as the location of the codebase
 the buildpack will execute against.
 
-The executable must return an exit code of `0` if the codebase can be serviced by this buildpack. If the exit code is `0`, the script must print a human-readable name to `stdout`.
+The executable must return an exit code of `0` if the codebase can be serviced by this buildpack.
 
 ### Example
 
