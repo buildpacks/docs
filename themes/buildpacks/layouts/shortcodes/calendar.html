@@ -42,9 +42,8 @@
                         backgroundColor: subcalendar.color,
                         start: teamup_event.start_dt,
                         end: teamup_event.end_dt,
+                        url: "javascript:void(0);",
                         extendedProps: {
-                            url: `${CAL_BASE_URL}${CAL_CONFIG.id}/events/${teamup_event.id}/pointer`,
-                            location: teamup_event.location,
                             teamup_event,
                         }
                     };
@@ -62,8 +61,9 @@
                     },
                     events: events,
                     eventClick: function ({ event }) {
+                        let url = `${CAL_BASE_URL}${CAL_CONFIG.id}/events/${event.extendedProps.teamup_event.id}/pointer`;
                         let modal = $("#event-modal");
-                        modal.find('iframe').attr('src', event.extendedProps.url);
+                        modal.find('iframe').attr('src', url);
                         modal.on("hidden.bs.modal", function () {
                             $(this).find('iframe').attr("src", "");
                         });
