@@ -1,5 +1,6 @@
 <script type="application/javascript">
     const CAL_CONFIG = {{ $.Site.Data.calendar | jsonify | safeJS }};
+    const CAL_BASE_URL = "https://teamup.com/";
     const API_BASE_URL = "https://api.teamup.com/";
     const API_OPTIONS = {
         headers: {
@@ -36,14 +37,16 @@
             return subcalendars.flatMap(subcalendar => {
                 return subcalendar.events.map(teamup_event => {
                     let event = {
-                        teamup_event,
                         id: teamup_event.id,
                         title: teamup_event.title,
-                        location: teamup_event.location,
-                        //     url: url, TODO
                         backgroundColor: subcalendar.color,
                         start: teamup_event.start_dt,
-                        end: teamup_event.end_dt
+                        end: teamup_event.end_dt,
+                        extendedProps: {
+                            url: `${CAL_BASE_URL}${CAL_CONFIG.id}/events/${teamup_event.id}/pointer`,
+                            location: teamup_event.location,
+                            teamup_event,
+                        }
                     };
                     return event;
                 })
@@ -58,6 +61,14 @@
                         end: 'dayGridWeek,dayGridMonth prev,today,next'
                     },
                     events: events,
+                    eventClick: function ({ event }) {
+                        let modal = $("#event-modal");
+                        modal.find('iframe').attr('src', event.extendedProps.url);
+                        modal.on("hidden.bs.modal", function () {
+                            $(this).find('iframe').attr("src", "");
+                        });
+                        modal.modal('show');
+                    },
                     views: {
                         dayGridMonth: {
                             weekends: true,
@@ -75,7 +86,6 @@
 
 
 <div id='calendar-view' class="calendar"></div>
-
 <div class="row pt-3 small">
     <div class='col-md-6'>
         <span class="font-italic text-muted">
@@ -89,9 +99,23 @@
         <ul class="d-inline">
             {{- range $calData := $.Site.Data.calendar.subcalendars }}
             <li class="d-inline text-white rounded px-2 py-1" style="background-color: {{ $calData.color }};">
-                <a style="text-decoration: none; white-space: nowrap;" href="https://ics.teamup.com/feed/{{ $.Site.Data.calendar.id }}/{{ $calData.id }}.ics">{{ $calData.name }}</a>
+                <a style="text-decoration: none; white-space: nowrap;"
+                    href="https://ics.teamup.com/feed/{{ $.Site.Data.calendar.id }}/{{ $calData.id }}.ics">{{ $calData.name }}</a>
             </li>
             {{ end }}
         </ul>
+    </div>
+</div>
+
+<div class="modal" id="event-modal" role="dialog" style="overflow-y: hidden;">
+    <div class="modal-dialog h-100">
+        <div class="modal-header bg-transparent border-0 p-3">
+            <button type="button" class="close text-white py-0 pr-2 opacity-100" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-content h-75 border-0 rounded-0">
+            <div class="modal-body m-0 p-0">
+                <iframe class="h-100 w-100 d-block" frameborder="0"></iframe>
+            </div>
+        </div>
     </div>
 </div>
