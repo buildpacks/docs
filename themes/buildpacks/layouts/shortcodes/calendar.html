@@ -1,78 +1,76 @@
 <script type="application/javascript">
-    let calendars = [];
+    const CAL_CONFIG = {{ $.Site.Data.calendar | jsonify | safeJS }};
+    const API_BASE_URL = "https://api.teamup.com/";
+    const API_OPTIONS = {
+        headers: {
+            "Teamup-Token": CAL_CONFIG.token
+        }
+    };
+    const START_DATE = function () {
+        let date = new Date();
+        date.setMonth(date.getMonth() - 3);
+        return date.toISOString().split('T')[0];
+    }();
+    const END_DATE = function () {
+        let date = new Date();
+        date.setMonth(date.getMonth() + 6);
+        return date.toISOString().split('T')[0];
+    }();
 
-    {{- range $calData:= $.Site.Data.calendar }}
-    var c = {{ $calData | jsonify | safeJS }};
-    c.data = {{ printf "%s/%s" "static/ics" $calData.ics | readFile }};
-    calendars.push(c);
-    {{ end }}
-
-    let calendarEvents = calendars
-        .map(calendar => {
-            calendar.ical = new ICAL.Component(ICAL.parse(calendar.data));
-            return calendar
-        })
-        .flatMap(calendar => {
-            let timezoneComp = calendar.ical.getFirstSubcomponent('vtimezone');
-            let tzid = timezoneComp.getFirstPropertyValue('tzid');
-            let timezone = new ICAL.Timezone({
-                component: timezoneComp,
-                tzid
-            });
-
-            return calendar.ical.getAllSubcomponents('vevent')
-                .map(e => {
-                    let reccurance = e.getFirstProperty("rrule") &&
-                        e.getFirstProperty("rrule").getFirstValue().toString();
-                    let url = e.getFirstProperty("url") &&
-                        e.getFirstProperty("url").getFirstValue().toString();
-
-                    let iEvent = new ICAL.Event(e);
-                    let startDate = iEvent.startDate.convertToZone(timezone).toJSDate();
-                    let endDate = iEvent.endDate.convertToZone(timezone).toJSDate();
-
+    Promise.all(
+        CAL_CONFIG.subcalendars.map(subcalendar => {
+            // get subcalendar data from teamup
+            return axios.get(
+                `${API_BASE_URL}${CAL_CONFIG.id}/events?`
+                    .concat(
+                        `startDate=${START_DATE}`,
+                        `&endDate=${END_DATE}`,
+                        `&subcalendarId[]=${subcalendar.id}`
+                    ), API_OPTIONS)
+                .then(result => {
+                    subcalendar.events = result.data.events;
+                    return subcalendar;
+                })
+        })).then(subcalendars => {
+            // convert to usable events and merge all calendar events to a single array
+            return subcalendars.flatMap(subcalendar => {
+                return subcalendar.events.map(teamup_event => {
                     let event = {
-                        id: iEvent.uid,
-                        title: iEvent.summary,
-                        description: iEvent.description,
-                        location: iEvent.location,
-                        url: url,
-                        backgroundColor: calendar.color,
-                        start: startDate,
-                        end: endDate
+                        teamup_event,
+                        id: teamup_event.id,
+                        title: teamup_event.title,
+                        location: teamup_event.location,
+                        //     url: url, TODO
+                        backgroundColor: subcalendar.color,
+                        start: teamup_event.start_dt,
+                        end: teamup_event.end_dt
                     };
-
-                    if (reccurance) {
-                        event.rrule = `DTSTART:${ICAL.Time.fromJSDate(startDate).toICALString()}\n${reccurance}`
-                    }
-
                     return event;
-                });
+                })
+            })
+        }).then(events => {
+            $(function () {
+                (new FullCalendar.Calendar(document.getElementById('calendar-view'), {
+                    initialView: 'dayGridWeek',
+                    height: 'auto',
+                    headerToolbar: {
+                        start: 'title',
+                        end: 'dayGridWeek,dayGridMonth prev,today,next'
+                    },
+                    events: events,
+                    views: {
+                        dayGridMonth: {
+                            weekends: true,
+                            fixedWeekCount: false,
+                            showNonCurrentDates: false,
+                        },
+                        dayGridWeek: {
+                            weekends: false
+                        }
+                    }
+                })).render();
+            });
         });
-
-    document.addEventListener('DOMContentLoaded', function () {
-        var calendarEl = document.getElementById('calendar-view');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridWeek',
-            height: 'auto',
-            headerToolbar: {
-                start: 'title',
-                end: 'dayGridWeek,dayGridMonth prev,today,next'
-            },
-            events: calendarEvents,
-            views: {
-                dayGridMonth: {
-                    weekends: true,
-                    fixedWeekCount: false,
-                    showNonCurrentDates: false,
-                },
-                dayGridWeek: {
-                    weekends: false
-                }
-            }
-        });
-        calendar.render();
-    });
 </script>
 
 
@@ -89,9 +87,9 @@
             Download events as <code>.ics</code>:
         </span>
         <ul class="d-inline">
-            {{- range $calData := $.Site.Data.calendar }}
+            {{- range $calData := $.Site.Data.calendar.subcalendars }}
             <li class="d-inline text-white rounded px-2 py-1" style="background-color: {{ $calData.color }};">
-                <a style="text-decoration: none; white-space: nowrap;" href="/ics/{{ $calData.ics }}">{{ $calData.name }}</a>
+                <a style="text-decoration: none; white-space: nowrap;" href="https://ics.teamup.com/feed/{{ $.Site.Data.calendar.id }}/{{ $calData.id }}.ics">{{ $calData.name }}</a>
             </li>
             {{ end }}
         </ul>

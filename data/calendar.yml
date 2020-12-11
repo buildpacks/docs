@@ -1,9 +1,14 @@
-- # human readable name
-  name: Sub-Team Syncs
-  # file must be located in {root}/static/ics
-  ics: subteam-sync.ics
-  # html color of events on calendar
-  color: '#5a619b'
-- name: Working Group
-  ics: working-group.ics
-  color: '#df166c'
+# teamup calendar id (read-only)
+id: ksxw26c3km72mq3imn
+# teamup token
+token: 2144578740eb908ea5b160b649d25300e559a59522f8b528757cf6e75381ab88
+subcalendars:
+  - # teamup id
+    id: 9046533
+    # human readable name
+    name: Sub-Team Syncs
+    # html color of events on calendar
+    color: '#5a619b'
+  - id: 9046534
+    name: Working Group
+    color: '#df166c'
