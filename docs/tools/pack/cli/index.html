@@ -1,7 +1,8 @@
 <!doctype html>
 <html>
-  <head>
-    
+
+<head>
+  
 
 
 <meta charset="utf-8">
@@ -38,47 +39,45 @@
 <meta property="twitter:image:alt" content="Buildpacks project logo">
 <meta property="twitter:site" content="@buildpacks_io">
 <meta property="twitter:creator" content="@buildpacks_io">
-    
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-    
-    <link href="https://fonts.googleapis.com/css?family=Fira+Mono|Source+Sans+Pro:400,400i,600" rel="stylesheet">
 
-    
-    <link rel="stylesheet" href="https://buildpacks.io/scss/site.css" integrity="" media="screen">
-    
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
-    integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.4.0/main.min.css">
-    <script src="https://cdn.jsdelivr.net/combine/npm/fullcalendar@5.4.0,npm/ical.js@1.4.0,npm/rrule@2.6.6,npm/@fullcalendar/rrule@5.4.0"></script>
+  <script
+    src="https://cdn.jsdelivr.net/combine/npm/axios@0.21.0,npm/jquery@3.5.1,npm/bootstrap@4.5.3,npm/fullcalendar@5.4.0"></script>
 
-    <script>
-      function addAnchor(element) {
-        if (element.id === "" || element.getElementsByTagName("a").length > 0) {
-          return;
-        }
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css"
+    crossorigin="anonymous">
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/combine/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css,npm/fullcalendar@5.4.0/main.min.css"
+    crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Fira+Mono|Source+Sans+Pro:400,400i,600" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://buildpacks.io/scss/site.css" integrity="" media="screen">
 
-        element.innerHTML =
-          `<a href="#${element.id}" class="h-anchor">
-            ${element.innerHTML} <i class="fas fa-link icon" aria-label="Anchor"></i>
-          </a>`;
+  <script>
+    function addAnchor(element) {
+      if (element.id === "" || element.getElementsByTagName("a").length > 0) {
+        return;
       }
 
-      document.addEventListener('DOMContentLoaded', function () {
-        const headers = document.querySelectorAll('h1, h2, h3, h4, h5');
-        if (headers) {
-          headers.forEach(addAnchor);
-        }
-      });
-    </script>
+      element.innerHTML =
+        `<a href="#${element.id}" class="h-anchor">
+            ${element.innerHTML} <i class="fas fa-link icon" aria-label="Anchor"></i>
+          </a>`;
+    }
 
-    <title>CLI Docs · Cloud Native Buildpacks</title>
-  </head>
-  <body>
-    <header class="container">
+    document.addEventListener('DOMContentLoaded', function () {
+      const headers = document.querySelectorAll('h1, h2, h3, h4, h5');
+      if (headers) {
+        headers.forEach(addAnchor);
+      }
+    });
+  </script>
+
+  <title>CLI Docs · Cloud Native Buildpacks</title>
+</head>
+
+<body>
+  <header class="container">
   <a href="https://buildpacks.io/" class="logo"><img src="/images/buildpacks-logo.svg" alt="Buildpacks.io Logo"></a>
   <input type="checkbox" id="mobile-nav-toggle">
   <label for="mobile-nav-toggle">&#9776;</label>
@@ -102,7 +101,7 @@
   </ul>
 </header>
 
-    
+  
 
 <div class='docs'>
   <div class="container">
@@ -630,7 +629,7 @@
 
 
 
-    <footer>
+  <footer>
   <div class="container footer">
     <a href="https://www.cncf.io/" style="width: 50%;"><img src="/images/cncf-color.svg" class="footer-logo"></a>
     <p>We are a <a href="https://www.cncf.io/">Cloud Native Computing Foundation</a> incubating project.</p>
@@ -648,5 +647,6 @@
   </div>
 </footer>
 
-  </body>
+</body>
+
 </html>

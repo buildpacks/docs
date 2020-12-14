@@ -1,14 +1,14 @@
 <!doctype html>
 <html>
-  <head>
-    
+
+<head>
+  
 
 
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Calendar Partake in one or many of our following public events:
-let calendars = []; var c = {&#34;color&#34;:&#34;#5a619b&#34;,&#34;ics&#34;:&#34;subteam-sync.ics&#34;,&#34;name&#34;:&#34;Sub-Team Syncs&#34;}; c.data =…"/>
+<meta name="description" content="Join other users, contributors and providers of Cloud Native Buildpacks."/>
 <link rel="canonical" content="https://buildpacks.io/community/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
@@ -22,8 +22,7 @@ let calendars = []; var c = {&#34;color&#34;:&#34;#5a619b&#34;,&#34;ics&#34;:&#3
 <meta property="og:url" content="https://buildpacks.io/community/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-<meta property="og:description" content="Calendar Partake in one or many of our following public events:
-let calendars = []; var c = {&#34;color&#34;:&#34;#5a619b&#34;,&#34;ics&#34;:&#34;subteam-sync.ics&#34;,&#34;name&#34;:&#34;Sub-Team Syncs&#34;}; c.data =…">
+<meta property="og:description" content="Join other users, contributors and providers of Cloud Native Buildpacks.">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -40,47 +39,45 @@ let calendars = []; var c = {&#34;color&#34;:&#34;#5a619b&#34;,&#34;ics&#34;:&#3
 <meta property="twitter:image:alt" content="Buildpacks project logo">
 <meta property="twitter:site" content="@buildpacks_io">
 <meta property="twitter:creator" content="@buildpacks_io">
-    
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-    
-    <link href="https://fonts.googleapis.com/css?family=Fira+Mono|Source+Sans+Pro:400,400i,600" rel="stylesheet">
 
-    
-    <link rel="stylesheet" href="https://buildpacks.io/scss/site.css" integrity="" media="screen">
-    
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
-    integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.4.0/main.min.css">
-    <script src="https://cdn.jsdelivr.net/combine/npm/fullcalendar@5.4.0,npm/ical.js@1.4.0,npm/rrule@2.6.6,npm/@fullcalendar/rrule@5.4.0"></script>
+  <script
+    src="https://cdn.jsdelivr.net/combine/npm/axios@0.21.0,npm/jquery@3.5.1,npm/bootstrap@4.5.3,npm/fullcalendar@5.4.0"></script>
 
-    <script>
-      function addAnchor(element) {
-        if (element.id === "" || element.getElementsByTagName("a").length > 0) {
-          return;
-        }
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css"
+    crossorigin="anonymous">
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/combine/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css,npm/fullcalendar@5.4.0/main.min.css"
+    crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Fira+Mono|Source+Sans+Pro:400,400i,600" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://buildpacks.io/scss/site.css" integrity="" media="screen">
 
-        element.innerHTML =
-          `<a href="#${element.id}" class="h-anchor">
-            ${element.innerHTML} <i class="fas fa-link icon" aria-label="Anchor"></i>
-          </a>`;
+  <script>
+    function addAnchor(element) {
+      if (element.id === "" || element.getElementsByTagName("a").length > 0) {
+        return;
       }
 
-      document.addEventListener('DOMContentLoaded', function () {
-        const headers = document.querySelectorAll('h1, h2, h3, h4, h5');
-        if (headers) {
-          headers.forEach(addAnchor);
-        }
-      });
-    </script>
+      element.innerHTML =
+        `<a href="#${element.id}" class="h-anchor">
+            ${element.innerHTML} <i class="fas fa-link icon" aria-label="Anchor"></i>
+          </a>`;
+    }
 
-    <title>Community · Cloud Native Buildpacks</title>
-  </head>
-  <body>
-    <header class="container">
+    document.addEventListener('DOMContentLoaded', function () {
+      const headers = document.querySelectorAll('h1, h2, h3, h4, h5');
+      if (headers) {
+        headers.forEach(addAnchor);
+      }
+    });
+  </script>
+
+  <title>Community · Cloud Native Buildpacks</title>
+</head>
+
+<body>
+  <header class="container">
   <a href="https://buildpacks.io/" class="logo"><img src="/images/buildpacks-logo.svg" alt="Buildpacks.io Logo"></a>
   <input type="checkbox" id="mobile-nav-toggle">
   <label for="mobile-nav-toggle">&#9776;</label>
@@ -104,7 +101,7 @@ let calendars = []; var c = {&#34;color&#34;:&#34;#5a619b&#34;,&#34;ics&#34;:&#3
   </ul>
 </header>
 
-    
+  
 
 <div class='docs'>
 
@@ -143,87 +140,93 @@ let calendars = []; var c = {&#34;color&#34;:&#34;#5a619b&#34;,&#34;ics&#34;:&#3
         <h2 id="calendar">Calendar</h2>
 <p>Partake in one or many of our following public events:</p>
 <script type="application/javascript">
-    let calendars = [];
-    var c = {"color":"#5a619b","ics":"subteam-sync.ics","name":"Sub-Team Syncs"};
-    c.data = "BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//ical.marudot.com//iCal Event Maker\r\nX-WR-CALNAME:Sub-Team Syncs\r\nNAME:Sub-Team Syncs\r\nCALSCALE:GREGORIAN\r\nBEGIN:VTIMEZONE\r\nTZID:America/New_York\r\nTZURL:http://tzurl.org/zoneinfo-outlook/America/New_York\r\nX-LIC-LOCATION:America/New_York\r\nBEGIN:DAYLIGHT\r\nTZOFFSETFROM:-0500\r\nTZOFFSETTO:-0400\r\nTZNAME:EDT\r\nDTSTART:19700308T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\r\nEND:DAYLIGHT\r\nBEGIN:STANDARD\r\nTZOFFSETFROM:-0400\r\nTZOFFSETTO:-0500\r\nTZNAME:EST\r\nDTSTART:19701101T020000\r\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\r\nEND:STANDARD\r\nEND:VTIMEZONE\r\nBEGIN:VEVENT\r\nDTSTAMP:20201120T183214Z\r\nUID:20201120T183214Z-2111403239@marudot.com\r\nDTSTART;TZID=America/New_York:20201117T100000\r\nRRULE:FREQ=WEEKLY;BYDAY=TU\r\nDTEND;TZID=America/New_York:20201117T103000\r\nSUMMARY:Learning Sub-Team Sync\r\nURL:https://docs.google.com/document/d/1zBYJsBwcwLZ5huG4nt7t7kYqaL1W_J12WuLsr2a9mAo/edit#heading=h.9gielcks2sy9\r\nDESCRIPTION:Weekly Learning Sub-team sync.\\n\\n\u003ca href=\"https://docs.google.com/document/d/1zBYJsBwcwLZ5huG4nt7t7kYqaL1W_J12WuLsr2a9mAo/edit\"\u003eMore details and meeting notes\u003c/a\u003e\r\nLOCATION:https://vmware.zoom.us/j/91707269913?pwd=bnl1V1JRWWZrSllqaE5rWWp1UHNZdz09\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:Learning Sub-Team Sync\r\nTRIGGER:-PT0M\r\nEND:VALARM\r\nEND:VEVENT\r\nBEGIN:VEVENT\r\nDTSTAMP:20201120T183214Z\r\nUID:20201120T183214Z-1352571168@marudot.com\r\nDTSTART;TZID=America/New_York:20201118T113000\r\nRRULE:FREQ=WEEKLY;BYDAY=WE\r\nDTEND;TZID=America/New_York:20201118T120000\r\nSUMMARY:Platform Sub-Team Sync\r\nURL:https://docs.google.com/document/d/1zBYJsBwcwLZ5huG4nt7t7kYqaL1W_J12WuLsr2a9mAo/edit#heading=h.9gielcks2sy9\r\nDESCRIPTION:Weekly Platform Sub-team sync.\\n\\n\u003ca href=\"https://docs.google.com/document/d/1zBYJsBwcwLZ5huG4nt7t7kYqaL1W_J12WuLsr2a9mAo/edit\"\u003eMore details and meeting notes\u003c/a\u003e\r\nLOCATION:https://vmware.zoom.us/j/91707269913?pwd=bnl1V1JRWWZrSllqaE5rWWp1UHNZdz09\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:Platform Sub-Team Sync\r\nTRIGGER:-PT0M\r\nEND:VALARM\r\nEND:VEVENT\r\nBEGIN:VEVENT\r\nDTSTAMP:20201120T183214Z\r\nUID:20201120T183214Z-1298654663@marudot.com\r\nDTSTART;TZID=America/New_York:20201119T113000\r\nRRULE:FREQ=WEEKLY;BYDAY=TH\r\nDTEND;TZID=America/New_York:20201119T120000\r\nSUMMARY:Implementations Sub-Team Sync\r\nURL:https://docs.google.com/document/d/1zBYJsBwcwLZ5huG4nt7t7kYqaL1W_J12WuLsr2a9mAo/edit#heading=h.9gielcks2sy9\r\nDESCRIPTION:Weekly Platform Sub-team sync.\\n\\n\u003ca href=\"https://docs.google.com/document/d/1zBYJsBwcwLZ5huG4nt7t7kYqaL1W_J12WuLsr2a9mAo/edit\"\u003eMore details and meeting notes\u003c/a\u003e\r\nLOCATION:https://vmware.zoom.us/j/91707269913?pwd=bnl1V1JRWWZrSllqaE5rWWp1UHNZdz09\r\nBEGIN:VALARM\r\nACTION:DISPLAY\r\nDESCRIPTION:Implementations Sub-Team Sync\r\nTRIGGER:-PT0M\r\nEND:VALARM\r\nEND:VEVENT\r\nEND:VCALENDAR";
-    calendars.push(c);
-    
-    var c = {"color":"#df166c","ics":"working-group.ics","name":"Working Group"};
-    c.data = "BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:-//ical.marudot.com//iCal Event Maker\nX-WR-CALNAME:Working Group\nNAME:Working Group\nCALSCALE:GREGORIAN\nBEGIN:VTIMEZONE\nTZID:America/New_York\nTZURL:http://tzurl.org/zoneinfo-outlook/America/New_York\nX-LIC-LOCATION:America/New_York\nBEGIN:DAYLIGHT\nTZOFFSETFROM:-0500\nTZOFFSETTO:-0400\nTZNAME:EDT\nDTSTART:19700308T020000\nRRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=2SU\nEND:DAYLIGHT\nBEGIN:STANDARD\nTZOFFSETFROM:-0400\nTZOFFSETTO:-0500\nTZNAME:EST\nDTSTART:19701101T020000\nRRULE:FREQ=YEARLY;BYMONTH=11;BYDAY=1SU\nEND:STANDARD\nEND:VTIMEZONE\nBEGIN:VEVENT\nDTSTAMP:20201120T184930Z\nUID:20201120T184930Z-1969404240@marudot.com\nDTSTART;TZID=America/New_York:20201118T150000\nRRULE:FREQ=WEEKLY;BYDAY=WE\nDTEND;TZID=America/New_York:20201118T160000\nSUMMARY:Working Group\nURL:https://docs.google.com/document/d/1sq5TpJO-m8aTzgbAiVlS1QdNovne-3ku9FxxC2S_Zs4/edit#heading=h.86qurq8y61ri\nDESCRIPTION:Have some ideas on how Cloud Native Buildpacks can be improved? Want to know what's coming up next? Join our weekly working group meetings.\nLOCATION:https://vmware.zoom.us/j/95751108957?pwd=Vlg5dndyL1pYeUxPck1BL2ZSMjQ1UT09\nBEGIN:VALARM\nACTION:DISPLAY\nDESCRIPTION:Working Group\nTRIGGER:-PT0M\nEND:VALARM\nEND:VEVENT\nBEGIN:VEVENT\nDTSTAMP:20201120T184930Z\nUID:20201120T184930Z-927803861@marudot.com\nDTSTART;TZID=America/New_York:20201119T140000\nRRULE:FREQ=WEEKLY;BYDAY=TH\nDTEND;TZID=America/New_York:20201119T150000\nSUMMARY:Working Group\nURL:https://docs.google.com/document/d/1sq5TpJO-m8aTzgbAiVlS1QdNovne-3ku9FxxC2S_Zs4/edit#heading=h.86qurq8y61ri\nDESCRIPTION:Have some ideas on how Cloud Native Buildpacks can be improved? Want to know what's coming up next? Join our weekly working group meetings.\nLOCATION:https://vmware.zoom.us/j/95751108957?pwd=Vlg5dndyL1pYeUxPck1BL2ZSMjQ1UT09\nBEGIN:VALARM\nACTION:DISPLAY\nDESCRIPTION:Working Group\nTRIGGER:-PT0M\nEND:VALARM\nEND:VEVENT\nEND:VCALENDAR";
-    calendars.push(c);
-    
+    const CAL_CONFIG = {"id":"ksxw26c3km72mq3imn","subcalendars":[{"color":"#5a619b","id":9046533,"name":"Sub-Team Syncs"},{"color":"#df166c","id":9046534,"name":"Working Group"}],"token":"2144578740eb908ea5b160b649d25300e559a59522f8b528757cf6e75381ab88"};
+    const CAL_BASE_URL = "https://teamup.com/";
+    const API_BASE_URL = "https://api.teamup.com/";
+    const API_OPTIONS = {
+        headers: {
+            "Teamup-Token": CAL_CONFIG.token
+        }
+    };
+    const START_DATE = function () {
+        let date = new Date();
+        date.setMonth(date.getMonth() - 3);
+        return date.toISOString().split('T')[0];
+    }();
+    const END_DATE = function () {
+        let date = new Date();
+        date.setMonth(date.getMonth() + 6);
+        return date.toISOString().split('T')[0];
+    }();
 
-    let calendarEvents = calendars
-        .map(calendar => {
-            calendar.ical = new ICAL.Component(ICAL.parse(calendar.data));
-            return calendar
-        })
-        .flatMap(calendar => {
-            let timezoneComp = calendar.ical.getFirstSubcomponent('vtimezone');
-            let tzid = timezoneComp.getFirstPropertyValue('tzid');
-            let timezone = new ICAL.Timezone({
-                component: timezoneComp,
-                tzid
-            });
-
-            return calendar.ical.getAllSubcomponents('vevent')
-                .map(e => {
-                    let reccurance = e.getFirstProperty("rrule") &&
-                        e.getFirstProperty("rrule").getFirstValue().toString();
-                    let url = e.getFirstProperty("url") &&
-                        e.getFirstProperty("url").getFirstValue().toString();
-
-                    let iEvent = new ICAL.Event(e);
-                    let startDate = iEvent.startDate.convertToZone(timezone).toJSDate();
-                    let endDate = iEvent.endDate.convertToZone(timezone).toJSDate();
-
+    Promise.all(
+        CAL_CONFIG.subcalendars.map(subcalendar => {
+            
+            return axios.get(
+                `${API_BASE_URL}${CAL_CONFIG.id}/events?`
+                    .concat(
+                        `startDate=${START_DATE}`,
+                        `&endDate=${END_DATE}`,
+                        `&subcalendarId[]=${subcalendar.id}`
+                    ), API_OPTIONS)
+                .then(result => {
+                    subcalendar.events = result.data.events;
+                    return subcalendar;
+                })
+        })).then(subcalendars => {
+            // convert to usable events and merge all calendar events to a single array
+            return subcalendars.flatMap(subcalendar => {
+                return subcalendar.events.map(teamup_event => {
                     let event = {
-                        id: iEvent.uid,
-                        title: iEvent.summary,
-                        description: iEvent.description,
-                        location: iEvent.location,
-                        url: url,
-                        backgroundColor: calendar.color,
-                        start: startDate,
-                        end: endDate
+                        id: teamup_event.id,
+                        title: teamup_event.title,
+                        backgroundColor: subcalendar.color,
+                        start: teamup_event.start_dt,
+                        end: teamup_event.end_dt,
+                        url: "javascript:void(0);",
+                        extendedProps: {
+                            teamup_event,
+                        }
                     };
-
-                    if (reccurance) {
-                        event.rrule = `DTSTART:${ICAL.Time.fromJSDate(startDate).toICALString()}\n${reccurance}`
-                    }
-
                     return event;
-                });
+                })
+            })
+        }).then(events => {
+            $(function () {
+                (new FullCalendar.Calendar(document.getElementById('calendar-view'), {
+                    initialView: 'dayGridWeek',
+                    height: 'auto',
+                    headerToolbar: {
+                        start: 'title',
+                        end: 'dayGridWeek,dayGridMonth prev,today,next'
+                    },
+                    events: events,
+                    eventClick: function ({ event }) {
+                        let url = `${CAL_BASE_URL}${CAL_CONFIG.id}/events/${event.extendedProps.teamup_event.id}/pointer`;
+                        let modal = $("#event-modal");
+                        modal.find('iframe').attr('src', url);
+                        modal.on("hidden.bs.modal", function () {
+                            $(this).find('iframe').attr("src", "");
+                        });
+                        modal.modal('show');
+                    },
+                    views: {
+                        dayGridMonth: {
+                            weekends: true,
+                            fixedWeekCount: false,
+                            showNonCurrentDates: false,
+                        },
+                        dayGridWeek: {
+                            weekends: false
+                        }
+                    }
+                })).render();
+            });
         });
-
-    document.addEventListener('DOMContentLoaded', function () {
-        var calendarEl = document.getElementById('calendar-view');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridWeek',
-            height: 'auto',
-            headerToolbar: {
-                start: 'title',
-                end: 'dayGridWeek,dayGridMonth prev,today,next'
-            },
-            events: calendarEvents,
-            views: {
-                dayGridMonth: {
-                    weekends: true,
-                    fixedWeekCount: false,
-                    showNonCurrentDates: false,
-                },
-                dayGridWeek: {
-                    weekends: false
-                }
-            }
-        });
-        calendar.render();
-    });
 </script>
 
 
 <div id='calendar-view' class="calendar"></div>
-
 <div class="row pt-3 small">
     <div class='col-md-6'>
         <span class="font-italic text-muted">
@@ -236,14 +239,29 @@ let calendars = []; var c = {&#34;color&#34;:&#34;#5a619b&#34;,&#34;ics&#34;:&#3
         </span>
         <ul class="d-inline">
             <li class="d-inline text-white rounded px-2 py-1" style="background-color: #5a619b;">
-                <a style="text-decoration: none; white-space: nowrap;" href="/ics/subteam-sync.ics">Sub-Team Syncs</a>
+                <a style="text-decoration: none; white-space: nowrap;"
+                    href="https://ics.teamup.com/feed/ksxw26c3km72mq3imn/9046533.ics">Sub-Team Syncs</a>
             </li>
             
             <li class="d-inline text-white rounded px-2 py-1" style="background-color: #df166c;">
-                <a style="text-decoration: none; white-space: nowrap;" href="/ics/working-group.ics">Working Group</a>
+                <a style="text-decoration: none; white-space: nowrap;"
+                    href="https://ics.teamup.com/feed/ksxw26c3km72mq3imn/9046534.ics">Working Group</a>
             </li>
             
         </ul>
+    </div>
+</div>
+
+<div class="modal" id="event-modal" role="dialog" style="overflow-y: hidden;">
+    <div class="modal-dialog h-100">
+        <div class="modal-header bg-transparent border-0 p-3">
+            <button type="button" class="close text-white py-0 pr-2 opacity-100" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-content h-75 border-0 rounded-0">
+            <div class="modal-body m-0 p-0">
+                <iframe class="h-100 w-100 d-block" frameborder="0"></iframe>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -254,7 +272,7 @@ let calendars = []; var c = {&#34;color&#34;:&#34;#5a619b&#34;,&#34;ics&#34;:&#3
 
 
 
-    <footer>
+  <footer>
   <div class="container footer">
     <a href="https://www.cncf.io/" style="width: 50%;"><img src="/images/cncf-color.svg" class="footer-logo"></a>
     <p>We are a <a href="https://www.cncf.io/">Cloud Native Computing Foundation</a> incubating project.</p>
@@ -272,5 +290,6 @@ let calendars = []; var c = {&#34;color&#34;:&#34;#5a619b&#34;,&#34;ics&#34;:&#3
   </div>
 </footer>
 
-  </body>
+</body>
+
 </html>
