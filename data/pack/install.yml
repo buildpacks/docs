@@ -6,13 +6,6 @@
         
         - [pack-cli](https://aur.archlinux.org/packages/pack-cli/)
         - [pack-cli-bin](https://aur.archlinux.org/packages/pack-cli-bin/)
-    - name: Script Install
-      content: |
-        The following command will download the latest version of `pack` from [GitHub](https://github.com/buildpacks/pack/releases) and install it in `/usr/local/bin/`.
-
-        ```bash
-        (curl -sSL "https://github.com/buildpacks/pack/releases/download/v<PACK_VERSION>/pack-v<PACK_VERSION>-linux.tgz" | sudo tar -C /usr/local/bin/ --no-same-owner -xzv pack)
-        ```
     - &container
       name: Container
       content: |
@@ -47,6 +40,22 @@
         
         ```bash
         brew install buildpacks/tap/pack
+        ```
+    - name: Ubuntu
+      content: |
+        `pack` can be installed using the [official PPA](https://launchpad.net/~cncf-buildpacks/+archive/ubuntu/pack-cli) by running the following commands:
+
+        ```shell bash
+        sudo add-apt-repository ppa:cncf-buildpacks/pack-cli
+        sudo apt-get update
+        sudo apt-get install pack-cli
+        ```
+    - name: Script Install
+      content: |
+        The following command will download the latest version of `pack` from [GitHub](https://github.com/buildpacks/pack/releases) and install it in `/usr/local/bin/`.
+
+        ```bash
+        (curl -sSL "https://github.com/buildpacks/pack/releases/download/v<PACK_VERSION>/pack-v<PACK_VERSION>-linux.tgz" | sudo tar -C /usr/local/bin/ --no-same-owner -xzv pack)
         ```
     - &manually
       name: Manually
