@@ -20,10 +20,10 @@ To [build][build] an app you must first decide which [builder][builder] you're g
 includes the [buildpacks][buildpack] that will be used as well as the environment for building your
 app.
 
-When using `pack`, you can run `pack suggest-builders` for a list of suggested builders.
+When using `pack`, you can run `pack builder suggest` for a list of suggested builders.
 
 ```bash
-pack suggest-builders
+pack builder suggest
 ```
 
 For this guide we're actually going to use a sample builder, `cnbs/sample-builder:bionic`, which is not listed
