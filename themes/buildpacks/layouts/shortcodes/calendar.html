@@ -1,83 +1,91 @@
 <script type="application/javascript">
-    let calendars = [];
+    const CAL_CONFIG = {{ $.Site.Data.calendar | jsonify | safeJS }};
+    const CAL_BASE_URL = "https://teamup.com/";
+    const API_BASE_URL = "https://api.teamup.com/";
+    const API_OPTIONS = {
+        headers: {
+            "Teamup-Token": CAL_CONFIG.token
+        }
+    };
+    const START_DATE = function () {
+        let date = new Date();
+        date.setMonth(date.getMonth() - 3);
+        return date.toISOString().split('T')[0];
+    }();
+    const END_DATE = function () {
+        let date = new Date();
+        date.setMonth(date.getMonth() + 6);
+        return date.toISOString().split('T')[0];
+    }();
 
-    {{- range $calData:= $.Site.Data.calendar }}
-    var c = {{ $calData | jsonify | safeJS }};
-    c.data = {{ printf "%s/%s" "static/ics" $calData.ics | readFile }};
-    calendars.push(c);
-    {{ end }}
-
-    let calendarEvents = calendars
-        .map(calendar => {
-            calendar.ical = new ICAL.Component(ICAL.parse(calendar.data));
-            return calendar
-        })
-        .flatMap(calendar => {
-            let timezoneComp = calendar.ical.getFirstSubcomponent('vtimezone');
-            let tzid = timezoneComp.getFirstPropertyValue('tzid');
-            let timezone = new ICAL.Timezone({
-                component: timezoneComp,
-                tzid
-            });
-
-            return calendar.ical.getAllSubcomponents('vevent')
-                .map(e => {
-                    let reccurance = e.getFirstProperty("rrule") &&
-                        e.getFirstProperty("rrule").getFirstValue().toString();
-                    let url = e.getFirstProperty("url") &&
-                        e.getFirstProperty("url").getFirstValue().toString();
-
-                    let iEvent = new ICAL.Event(e);
-                    let startDate = iEvent.startDate.convertToZone(timezone).toJSDate();
-                    let endDate = iEvent.endDate.convertToZone(timezone).toJSDate();
-
+    Promise.all(
+        CAL_CONFIG.subcalendars.map(subcalendar => {
+            // get subcalendar data from teamup
+            return axios.get(
+                `${API_BASE_URL}${CAL_CONFIG.id}/events?`
+                    .concat(
+                        `startDate=${START_DATE}`,
+                        `&endDate=${END_DATE}`,
+                        `&subcalendarId[]=${subcalendar.id}`
+                    ), API_OPTIONS)
+                .then(result => {
+                    subcalendar.events = result.data.events;
+                    return subcalendar;
+                })
+        })).then(subcalendars => {
+            // convert to usable events and merge all calendar events to a single array
+            return subcalendars.flatMap(subcalendar => {
+                return subcalendar.events.map(teamup_event => {
                     let event = {
-                        id: iEvent.uid,
-                        title: iEvent.summary,
-                        description: iEvent.description,
-                        location: iEvent.location,
-                        url: url,
-                        backgroundColor: calendar.color,
-                        start: startDate,
-                        end: endDate
+                        id: teamup_event.id,
+                        title: teamup_event.title,
+                        backgroundColor: subcalendar.color,
+                        start: teamup_event.start_dt,
+                        end: teamup_event.end_dt,
+                        url: "javascript:void(0);",
+                        extendedProps: {
+                            teamup_event,
+                        }
                     };
-
-                    if (reccurance) {
-                        event.rrule = `DTSTART:${ICAL.Time.fromJSDate(startDate).toICALString()}\n${reccurance}`
-                    }
-
                     return event;
-                });
+                })
+            })
+        }).then(events => {
+            $(function () {
+                (new FullCalendar.Calendar(document.getElementById('calendar-view'), {
+                    initialView: 'dayGridWeek',
+                    height: 'auto',
+                    headerToolbar: {
+                        start: 'title',
+                        end: 'dayGridWeek,dayGridMonth prev,today,next'
+                    },
+                    events: events,
+                    eventClick: function ({ event }) {
+                        let url = `${CAL_BASE_URL}${CAL_CONFIG.id}/events/${event.extendedProps.teamup_event.id}/pointer`;
+                        let modal = $("#event-modal");
+                        modal.find('iframe').attr('src', url);
+                        modal.on("hidden.bs.modal", function () {
+                            $(this).find('iframe').attr("src", "");
+                        });
+                        modal.modal('show');
+                    },
+                    views: {
+                        dayGridMonth: {
+                            weekends: true,
+                            fixedWeekCount: false,
+                            showNonCurrentDates: false,
+                        },
+                        dayGridWeek: {
+                            weekends: false
+                        }
+                    }
+                })).render();
+            });
         });
-
-    document.addEventListener('DOMContentLoaded', function () {
-        var calendarEl = document.getElementById('calendar-view');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridWeek',
-            height: 'auto',
-            headerToolbar: {
-                start: 'title',
-                end: 'dayGridWeek,dayGridMonth prev,today,next'
-            },
-            events: calendarEvents,
-            views: {
-                dayGridMonth: {
-                    weekends: true,
-                    fixedWeekCount: false,
-                    showNonCurrentDates: false,
-                },
-                dayGridWeek: {
-                    weekends: false
-                }
-            }
-        });
-        calendar.render();
-    });
 </script>
 
 
 <div id='calendar-view' class="calendar"></div>
-
 <div class="row pt-3 small">
     <div class='col-md-6'>
         <span class="font-italic text-muted">
@@ -89,11 +97,25 @@
             Download events as <code>.ics</code>:
         </span>
         <ul class="d-inline">
-            {{- range $calData := $.Site.Data.calendar }}
+            {{- range $calData := $.Site.Data.calendar.subcalendars }}
             <li class="d-inline text-white rounded px-2 py-1" style="background-color: {{ $calData.color }};">
-                <a style="text-decoration: none; white-space: nowrap;" href="/ics/{{ $calData.ics }}">{{ $calData.name }}</a>
+                <a style="text-decoration: none; white-space: nowrap;"
+                    href="https://ics.teamup.com/feed/{{ $.Site.Data.calendar.id }}/{{ $calData.id }}.ics">{{ $calData.name }}</a>
             </li>
             {{ end }}
         </ul>
+    </div>
+</div>
+
+<div class="modal" id="event-modal" role="dialog" style="overflow-y: hidden;">
+    <div class="modal-dialog h-100">
+        <div class="modal-header bg-transparent border-0 p-3">
+            <button type="button" class="close text-white py-0 pr-2 opacity-100" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-content h-75 border-0 rounded-0">
+            <div class="modal-body m-0 p-0">
+                <iframe class="h-100 w-100 d-block" frameborder="0"></iframe>
+            </div>
+        </div>
     </div>
 </div>

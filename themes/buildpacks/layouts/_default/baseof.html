@@ -1,49 +1,49 @@
 <!doctype html>
 <html>
-  <head>
-    {{ partial "meta.html" . }}
-    
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-    
-    <link href="https://fonts.googleapis.com/css?family=Fira+Mono|Source+Sans+Pro:400,400i,600" rel="stylesheet">
 
-    {{ $style := resources.Get "scss/site.scss" | resources.ToCSS }}
-    <link rel="stylesheet" href="{{ $style.Permalink }}" integrity="{{ $style.Data.Integrity }}" media="screen">
-    
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
-    integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.4.0/main.min.css">
-    <script src="https://cdn.jsdelivr.net/combine/npm/fullcalendar@5.4.0,npm/ical.js@1.4.0,npm/rrule@2.6.6,npm/@fullcalendar/rrule@5.4.0"></script>
+<head>
+  {{ partial "meta.html" . }}
 
-    <script>
-      function addAnchor(element) {
-        if (element.id === "" || element.getElementsByTagName("a").length > 0) {
-          return;
-        }
+  <script
+    src="https://cdn.jsdelivr.net/combine/npm/axios@0.21.0,npm/jquery@3.5.1,npm/bootstrap@4.5.3,npm/fullcalendar@5.4.0"></script>
 
-        element.innerHTML =
-          `<a href="#${element.id}" class="h-anchor">
-            ${element.innerHTML} <i class="fas fa-link icon" aria-label="Anchor"></i>
-          </a>`;
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css"
+    crossorigin="anonymous">
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/combine/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css,npm/fullcalendar@5.4.0/main.min.css"
+    crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Fira+Mono|Source+Sans+Pro:400,400i,600" rel="stylesheet">
+  {{ $style := resources.Get "scss/site.scss" | resources.ToCSS }}
+  <link rel="stylesheet" href="{{ $style.Permalink }}" integrity="{{ $style.Data.Integrity }}" media="screen">
+
+  <script>
+    function addAnchor(element) {
+      if (element.id === "" || element.getElementsByTagName("a").length > 0) {
+        return;
       }
 
-      document.addEventListener('DOMContentLoaded', function () {
-        const headers = document.querySelectorAll('h1, h2, h3, h4, h5');
-        if (headers) {
-          headers.forEach(addAnchor);
-        }
-      });
-    </script>
+      element.innerHTML =
+        `<a href="#${element.id}" class="h-anchor">
+            ${element.innerHTML} <i class="fas fa-link icon" aria-label="Anchor"></i>
+          </a>`;
+    }
 
-    <title>{{ .Title | plainify }} · {{ .Site.Title }}</title>
-  </head>
-  <body>
-    {{ partial "header.html" . }}
-    {{ block "main" . }}{{ end }}
-    {{ partial "footer.html" . }}
-  </body>
+    document.addEventListener('DOMContentLoaded', function () {
+      const headers = document.querySelectorAll('h1, h2, h3, h4, h5');
+      if (headers) {
+        headers.forEach(addAnchor);
+      }
+    });
+  </script>
+
+  <title>{{ .Title | plainify }} · {{ .Site.Title }}</title>
+</head>
+
+<body>
+  {{ partial "header.html" . }}
+  {{ block "main" . }}{{ end }}
+  {{ partial "footer.html" . }}
+</body>
+
 </html>
