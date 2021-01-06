@@ -4,9 +4,6 @@ title="Platform API 0.4 -> 0.5"
 
 <!--more-->
 
-This guide describes changes from platform API 0.4 to 0.5, who these changes are relevant for,
-as well as any actions that may be necessary.
-
 This guide is most relevant to platform operators and stack authors.
 
 See the [spec release](https://github.com/buildpacks/spec/releases/tag/platform%2Fv0.5) for platform API 0.5 for the full list of changes and further details.
@@ -38,10 +35,10 @@ All default file paths that were previously relative to the working directory ar
 ### Stack image metadata
 
 When creating stack images, the following labels may be added to additionally describe the image:
-* io.buildpacks.stack.maintainer
-* io.buildpacks.stack.homepage
-* io.buildpacks.stack.distro.name
-* io.buildpacks.stack.distro.version
-* io.buildpacks.stack.released
-* io.buildpacks.stack.description
-* io.buildpacks.stack.metadata
+* `io.buildpacks.stack.maintainer`
+* `io.buildpacks.stack.homepage`
+* `io.buildpacks.stack.distro.name`
+* `io.buildpacks.stack.distro.version`
+* `io.buildpacks.stack.released`
+* `io.buildpacks.stack.description`
+* `io.buildpacks.stack.metadata`

@@ -8,6 +8,9 @@ Cloud Native Buildpack API specification (either buildpack or platform) to the n
 buildpack users won't need this information unless they are writing a buildpack or
 a platform that supports buildpacks.
 
+Each guide describes changes from the previous minor, who these changes impact,
+as well as any actions that may be necessary.
+
 <!--more-->
 
 The following guides are available:
