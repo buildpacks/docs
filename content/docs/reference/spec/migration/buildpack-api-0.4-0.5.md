@@ -13,9 +13,6 @@ The buildpack may now indicate compatibility with any stack by specifying the sp
 
 ### Character restrictions for process types
 For each process in `launch.toml`, `type` is now restricted to only contain numbers, letters, and the characters `.`, `_`, and `-`, so symlinks on both linux and windows filesystems can be created.
-
-### Cached layers
-Cached layers are now part of the list of Layers Types for clarity.
  
 ### Override env vars
 Override is now the default behavior for env files without a suffix.
