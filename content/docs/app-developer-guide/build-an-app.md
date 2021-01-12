@@ -43,7 +43,7 @@ pack build sample-app --path samples/apps/java-maven --builder cnbs/sample-build
 ```
 
 > **TIP:** If you don't want to keep specifying a builder every time you build, you can set it as your default
-> builder by running `pack set-default-builder <BUILDER>`.
+> builder by running `pack config default-builder <BUILDER>`.
 
 ### 3. Run it
 

@@ -87,7 +87,7 @@ Set your default [builder][builder] by running the following:
 
 <!-- test:exec -->
 ```bash
-pack set-default-builder cnbs/sample-builder:bionic
+pack config default-builder cnbs/sample-builder:bionic
 ```
 
 Then run the following `pack` command:
