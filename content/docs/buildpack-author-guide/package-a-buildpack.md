@@ -49,7 +49,7 @@ uri = "samples/buildpacks/hello-universe/"
 uri = "samples/buildpacks/hello-moon"
 
 [[dependencies]]
-image = "cnbs/sample-package:hello-world"
+uri = "docker://cnbs/sample-package:hello-world"
 ```
 
 > For more information about the configuration, see [package.toml][package-config] config.
