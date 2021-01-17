@@ -1,0 +1,110 @@
++++
+title="Publish a buildpack"
+weight=5
+summary="Learn how to publish your buildpack to the Buildpack Registry."
++++
+
+{{< param "summary" >}}
+
+### 0. Packaging your buildpack
+
+Make sure you've followed the steps in [Package a buildpack][package] to create your buildpack image and publish it to an OCI registry.
+
+### 1. Running the CLI command
+
+With your buildpack image published to a public OCI registry, you can now run the follow command to register that buildpack with the Buildpack Registry
+
+```shell script
+pack buildpack register <image>
+```
+
+This will open GitHub in a browser and may ask you to authenticate with GitHub. After doing so, you'll see a pre-populated GitHub Issue with the details of your buildpack. For example:
+
+<img src="/images/registry-add-buildpack.png" />
+
+Click "Submit new issue", and your request will be automatically processed within seconds. If the image is a valid buildpack, it will be added to the registry. If there is a problem, the issue will be tagged as a "Failure" and a comment will be added with a link to get more details. Whether successful or not, the issue will be closed.
+
+### 2. Automating the registration
+
+If you would like to publish your buildpack image to the registry without requiring a human click a button in a browser, you can automate the process using the helpers in the [buildpacks/github-actions][github-actions] repository.
+
+To begin, you must store your buildpack source code in GitHub and [enable GitHub Actions](https://github.com/features/actions). Then create a directory named `.github/workflows` in your repository, and add a file named `release.yml` to it. The `release.yml` workflow can be [triggered](https://docs.github.com/en/actions/reference/events-that-trigger-workflows) in many ways, but it's common to use a Release event as a trigger. To do so, add the following to your `release.yml`:
+
+```yaml
+name: Release
+on:
+    release:
+        types:
+            - published
+```
+
+Next, you must configure a job to run when this workflow is triggered. Create a `register` job by adding the following code to your `release.yml`:
+
+```yaml
+jobs:
+    register:
+        name: Package, Publish, and Register
+        runs-on:
+            - ubuntu-latest
+```
+
+Each workflow job is a set of steps. The steps you'll need to run will depend on how your buildpack is built (for example, you may need to compile some code or download some artifacts). But every buildpack will need the following steps:
+
+1. Checkout the source code
+1. Authenticate with an OCI Registry
+1. Install Pack
+1. Run Pack to package the buildpack and publish the image
+1. Register the image with the Buildpack Registry
+
+You can implement the first four of these steps in your GitHub Action by adding the following code to your `release.yml` (but change the `example/my-buildpack` ID to your own buildpack ID):
+
+```yaml
+steps:
+    - id: checkout
+      uses: actions/checkout@v2
+    - if: ${{ github.event_name != 'pull_request' || ! github.event.pull_request.head.repo.fork }}
+      uses: docker/login-action@v1
+      with:
+        registry: ghcr.io
+        username: ${{ github.repository_owner }}
+        password: ${{ secrets.GITHUB_RELEASE_TOKEN }}
+    - id: setup-pack
+      uses: buildpacks/github-actions/setup-pack@v4.0.0
+    - id: package
+      run: |
+        #!/usr/bin/env bash
+        set -euo pipefail
+        VERSION="$(cat buildpack.toml | yj -t | jq -r .buildpack.version)"
+        pack package-buildpack --publish ${PACKAGE}:${VERSION}
+        DIGEST="$(crane digest ${PACKAGE}:${VERSION})"
+        echo "::set-output name=version::$VERSION"
+        echo "::set-output name=address::${PACKAGE}@${DIGEST}"
+      shell: bash
+      env:
+        PACKAGE: ghcr.io/${{ github.repository_owner }}/buildpacks/example_my-buildpack
+```
+
+Before you execute this GitHub Action, you must add a `GITHUB_RELEASE_TOKEN` secret to your GitHub repository with the value of a [GitHub token](https://github.com/settings/tokens/new) having the `write:packages` and `repo:public_repo` scopes. The default `GITHUB_TOKEN` provided for GitHub Actions is not sufficient.
+
+After you've created the token, added the secret to the repo, and pushed your `release.yml` file to GitHub you can trigger the workflow by creating a new Release using the [GitHub Releases UI](https://docs.github.com/en/github/administering-a-repository/about-releases).
+
+From [GitHub.com](https://github.com), click on _Your Repositories_, then click the _Packages_ tab and look for the image you just created. Click it and then select _Package Settings_. From this page, click the button to make this package public, and confirm the name of the image when promoted.
+
+Now you can add the last step in the job, registering, to your `release.yml`:
+
+```yaml
+    - id: register
+      uses: docker://ghcr.io/buildpacks/actions/registry/request-add-entry:4.0.0
+      with:
+        token:   ${{ secrets.GITHUB_RELEASE_TOKEN }}
+        id:      example/my-buildpack
+        version: ${{ steps.package.outputs.version }}
+        address: ${{ steps.package.outputs.address }}
+```
+
+Push the `release.yml` changes to GitHub and trigger a new release. This time, the workflow will create a GitHub Issue on the Buildpack Registry and your buildpack will be added to the index.
+
+It is possible to perform these same step on any automated CI platform, but the Buildpack project only provides helpers for GitHub Actions.
+
+[package]: /docs/buildpack-author-guide/package-a-buildpack/
+[github-actions]: https://github.com/buildpacks/github-actions
