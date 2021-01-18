@@ -51,17 +51,7 @@ on:
       - published
 ```
 
-Next, you must configure a job to run when this workflow is triggered. Create a `register` job by adding the following code to your `release.yml`:
-
-```yaml
-jobs:
-  register:
-    name: Package, Publish, and Register
-    runs-on:
-      - ubuntu-latest
-```
-
-Each workflow job is a set of steps. The steps you'll need to run will depend on how your buildpack is built (for example, you may need to compile some code or download some artifacts). But every buildpack will need the following steps:
+Next, you must configure a job to run when this workflow is triggered. Each workflow job is a set of steps. The steps you'll need to run will depend on how your buildpack is built (for example, you may need to compile some code or download some artifacts). But every buildpack will need the following steps:
 
 1. Checkout the source code
 1. Authenticate with an OCI Registry
@@ -69,9 +59,14 @@ Each workflow job is a set of steps. The steps you'll need to run will depend on
 1. Run Pack to package the buildpack and publish the image
 1. Register the image with the Buildpack Registry
 
-You can implement these steps in your GitHub Action by adding the following code to your `release.yml` (note the indentation):
+You can implement a job with these steps in your GitHub Action by adding the following code to your `release.yml` (note the indentation):
 
 ```yaml
+jobs:
+  register:
+    name: Package, Publish, and Register
+    runs-on:
+    - ubuntu-latest
     steps:
     - id: checkout
       uses: actions/checkout@v2
@@ -117,7 +112,7 @@ After you've created these secrets and pushed your `release.yml` file to GitHub 
 
 From [GitHub.com](https://github.com), click on _Your Repositories_, then click the _Packages_ tab and look for the image you just created. Click it and then select _Package Settings_. From this page, click the button to make this package public, and confirm the name of the image when promoted.
 
-Push the `release.yml` changes to GitHub and trigger a new release. This time, the workflow will create a GitHub Issue on the Buildpack Registry and your buildpack will be added to the index.
+Push the `release.yml` changes to GitHub and trigger a new release. The workflow will create a GitHub Issue on the Buildpack Registry and your buildpack will be added to the index.
 
 It is possible to perform these same step on any automated CI platform, but the Buildpack project only provides helpers for GitHub Actions.
 
