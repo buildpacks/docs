@@ -302,6 +302,15 @@ This API will be used by buildpack authors.&lt;/p&gt;</description>
     </item>
     
     <item>
+      <title>Buildpack API 0.4 -&gt; 0.5</title>
+      <link>https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.4-0.5/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.4-0.5/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>CircleCI</title>
       <link>https://buildpacks.io/docs/tools/circleci/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -349,6 +358,51 @@ build applications prior to deploying them.&lt;/p&gt;</description>
     </item>
     
     <item>
+      <title>pack builder</title>
+      <link>https://buildpacks.io/docs/tools/pack/cli/pack_builder/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_builder/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pack builder create</title>
+      <link>https://buildpacks.io/docs/tools/pack/cli/pack_builder_create/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_builder_create/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pack builder suggest</title>
+      <link>https://buildpacks.io/docs/tools/pack/cli/pack_builder_suggest/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_builder_suggest/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pack buildpack</title>
+      <link>https://buildpacks.io/docs/tools/pack/cli/pack_buildpack/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_buildpack/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pack buildpack package</title>
+      <link>https://buildpacks.io/docs/tools/pack/cli/pack_buildpack_package/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_buildpack_package/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>pack completion</title>
       <link>https://buildpacks.io/docs/tools/pack/cli/pack_completion/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -358,11 +412,101 @@ build applications prior to deploying them.&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>pack create-builder</title>
-      <link>https://buildpacks.io/docs/tools/pack/cli/pack_create-builder/</link>
+      <title>pack config</title>
+      <link>https://buildpacks.io/docs/tools/pack/cli/pack_config/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_create-builder/</guid>
+      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_config/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pack config default-builder</title>
+      <link>https://buildpacks.io/docs/tools/pack/cli/pack_config_default-builder/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_config_default-builder/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pack config experimental</title>
+      <link>https://buildpacks.io/docs/tools/pack/cli/pack_config_experimental/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_config_experimental/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pack config run-image-mirrors</title>
+      <link>https://buildpacks.io/docs/tools/pack/cli/pack_config_run-image-mirrors/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_config_run-image-mirrors/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pack config run-image-mirrors add</title>
+      <link>https://buildpacks.io/docs/tools/pack/cli/pack_config_run-image-mirrors_add/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_config_run-image-mirrors_add/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pack config run-image-mirrors list</title>
+      <link>https://buildpacks.io/docs/tools/pack/cli/pack_config_run-image-mirrors_list/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_config_run-image-mirrors_list/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pack config run-image-mirrors remove</title>
+      <link>https://buildpacks.io/docs/tools/pack/cli/pack_config_run-image-mirrors_remove/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_config_run-image-mirrors_remove/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pack config trusted-builders</title>
+      <link>https://buildpacks.io/docs/tools/pack/cli/pack_config_trusted-builders/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_config_trusted-builders/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pack config trusted-builders add</title>
+      <link>https://buildpacks.io/docs/tools/pack/cli/pack_config_trusted-builders_add/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_config_trusted-builders_add/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pack config trusted-builders list</title>
+      <link>https://buildpacks.io/docs/tools/pack/cli/pack_config_trusted-builders_list/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_config_trusted-builders_list/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pack config trusted-builders remove</title>
+      <link>https://buildpacks.io/docs/tools/pack/cli/pack_config_trusted-builders_remove/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_config_trusted-builders_remove/</guid>
       <description></description>
     </item>
     
@@ -394,24 +538,6 @@ build applications prior to deploying them.&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>pack list-trusted-builders</title>
-      <link>https://buildpacks.io/docs/tools/pack/cli/pack_list-trusted-builders/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_list-trusted-builders/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>pack package-buildpack</title>
-      <link>https://buildpacks.io/docs/tools/pack/cli/pack_package-buildpack/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_package-buildpack/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>pack rebase</title>
       <link>https://buildpacks.io/docs/tools/pack/cli/pack_rebase/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -430,24 +556,6 @@ build applications prior to deploying them.&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>pack set-default-builder</title>
-      <link>https://buildpacks.io/docs/tools/pack/cli/pack_set-default-builder/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_set-default-builder/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>pack set-run-image-mirrors</title>
-      <link>https://buildpacks.io/docs/tools/pack/cli/pack_set-run-image-mirrors/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_set-run-image-mirrors/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>pack stack</title>
       <link>https://buildpacks.io/docs/tools/pack/cli/pack_stack/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -462,33 +570,6 @@ build applications prior to deploying them.&lt;/p&gt;</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://buildpacks.io/docs/tools/pack/cli/pack_stack_suggest/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>pack suggest-builders</title>
-      <link>https://buildpacks.io/docs/tools/pack/cli/pack_suggest-builders/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_suggest-builders/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>pack trust-builder</title>
-      <link>https://buildpacks.io/docs/tools/pack/cli/pack_trust-builder/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_trust-builder/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>pack untrust-builder</title>
-      <link>https://buildpacks.io/docs/tools/pack/cli/pack_untrust-builder/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_untrust-builder/</guid>
       <description></description>
     </item>
     
@@ -531,6 +612,15 @@ This API is used by platform implementors.&lt;/p&gt;</description>
     </item>
     
     <item>
+      <title>Platform API 0.4 -&gt; 0.5</title>
+      <link>https://buildpacks.io/docs/reference/spec/migration/platform-api-0.4-0.5/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/reference/spec/migration/platform-api-0.4-0.5/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>project.toml</title>
       <link>https://buildpacks.io/docs/reference/config/project-descriptor/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -546,7 +636,7 @@ This API is used by platform implementors.&lt;/p&gt;</description>
       
       <guid>https://buildpacks.io/docs/reference/reproducibility/</guid>
       <description>&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
-&lt;p&gt;The Cloud Native Buildpacks project aims to create &amp;ldquo;Reproducible Builds&amp;rdquo; of container images. For image creation commands (&lt;code&gt;create-builder&lt;/code&gt;, &lt;code&gt;package-buildpack&lt;/code&gt;, &lt;code&gt;build&lt;/code&gt;) &lt;code&gt;pack&lt;/code&gt; creates container images in a reproducible fashion. &amp;ldquo;Reproducible&amp;rdquo; is hard to define but we&amp;rsquo;ll do so by example and with a few caveats:&lt;/p&gt;</description>
+&lt;p&gt;The Cloud Native Buildpacks project aims to create &amp;ldquo;Reproducible Builds&amp;rdquo; of container images. For image creation commands (&lt;code&gt;builder create&lt;/code&gt;, &lt;code&gt;buildpack package&lt;/code&gt;, &lt;code&gt;build&lt;/code&gt;) &lt;code&gt;pack&lt;/code&gt; creates container images in a reproducible fashion. &amp;ldquo;Reproducible&amp;rdquo; is hard to define but we&amp;rsquo;ll do so by example and with a few caveats:&lt;/p&gt;</description>
     </item>
     
     <item>

@@ -167,6 +167,10 @@
   </url>
   
   <url>
+    <loc>https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.4-0.5/</loc>
+  </url>
+  
+  <url>
     <loc>https://buildpacks.io/categories/</loc>
   </url>
   
@@ -207,11 +211,71 @@
   </url>
   
   <url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_builder/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_builder_create/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_builder_suggest/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_buildpack/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_buildpack_package/</loc>
+  </url>
+  
+  <url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_completion/</loc>
   </url>
   
   <url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_create-builder/</loc>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_default-builder/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_experimental/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_run-image-mirrors/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_run-image-mirrors_add/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_run-image-mirrors_list/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_run-image-mirrors_remove/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_trusted-builders/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_trusted-builders_add/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_trusted-builders_list/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_trusted-builders_remove/</loc>
   </url>
   
   <url>
@@ -227,14 +291,6 @@
   </url>
   
   <url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_list-trusted-builders/</loc>
-  </url>
-  
-  <url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_package-buildpack/</loc>
-  </url>
-  
-  <url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_rebase/</loc>
   </url>
   
@@ -243,31 +299,11 @@
   </url>
   
   <url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_set-default-builder/</loc>
-  </url>
-  
-  <url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_set-run-image-mirrors/</loc>
-  </url>
-  
-  <url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_stack/</loc>
   </url>
   
   <url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_stack_suggest/</loc>
-  </url>
-  
-  <url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_suggest-builders/</loc>
-  </url>
-  
-  <url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_trust-builder/</loc>
-  </url>
-  
-  <url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_untrust-builder/</loc>
   </url>
   
   <url>
@@ -284,6 +320,10 @@
   
   <url>
     <loc>https://buildpacks.io/docs/reference/spec/migration/platform-api-0.3-0.4/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/reference/spec/migration/platform-api-0.4-0.5/</loc>
   </url>
   
   <url>
