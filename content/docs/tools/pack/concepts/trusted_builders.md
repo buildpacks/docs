@@ -21,14 +21,14 @@ When `pack` trusts a builder `pack build` will run a single lifecycle binary whi
 If `pack` were to use the `creator` lifecycle phase with an untrusted builder, each of the buildpack's `bin/detect` and `bin/build` processes would run within a container that has heightened privileges or access to registry credentials. The buildpacks distributed with the untrusted builder could be constructed to act maliciously with these privileges or credentials.
 
 ## Which Builders are trusted?
-You may view which builders are trusted via  [`pack list-trusted-builders`](/docs/tools/pack/cli/pack_list-trusted-builders/).
+You may view which builders are trusted via  [`pack config trusted-builders list`](/docs/tools/pack/cli/pack_config_trusted-builders_list/).
 
 Here are some other related commands:
 
-* By default, any builder suggested by  [`pack suggest-builders`](/docs/tools/pack/cli/pack_suggest-builders/) is considered trusted.
-* Any other builder can be trusted using  [`pack trust-builder <builder-name>`](/docs/tools/pack/cli/pack_trust-builder/).
+* By default, any builder suggested by  [`pack builder suggest`](/docs/tools/pack/cli/pack_builder_suggest/) is considered trusted.
+* Any other builder can be trusted using  [`pack config trusted-builders add <builder-name>`](/docs/tools/pack/cli/pack_config_trusted-builders_add/).
 
-* To stop trusting a builder use [`pack untrust-builder <builder-name`](/docs/tools/pack/cli/pack_untrust-builder/).
+* To stop trusting a builder use [`pack config trusted-builders remove <builder-name`](/docs/tools/pack/cli/pack_config_trusted-builders_remove/).
 
 * You may trust any builder for the duration of a single build by using the `--trust-builder` flag with [`pack build`](/docs/tools/pack/cli/pack_build/).
 

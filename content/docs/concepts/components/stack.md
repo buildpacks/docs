@@ -12,8 +12,8 @@ A stack provides the buildpack lifecycle with build-time and run-time environmen
 
 <!--more-->
 
-> If you're using the `pack` CLI, running `pack suggest-stacks` will display a list of recommended
-stacks that can be used when running `pack create-builder`, along with each stack's associated build and run images.
+> If you're using the `pack` CLI, running `pack stack suggest` will display a list of recommended
+stacks that can be used when running `pack builder create`, along with each stack's associated build and run images.
 
 ## Using stacks
 
@@ -61,7 +61,7 @@ $ pack build example/app
 ```
 
 > For local development, it's often helpful to override the run image mirrors in a builder. For this, the
-> `set-run-image-mirrors` command can be used. This command does not modify the builder, and instead configures the
+> `pack config run-image-mirrors` command can be used. This command does not modify the builder, and instead configures the
 > user's local machine.
 >
 > To see what run images are configured for a builder, the
