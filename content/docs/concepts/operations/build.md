@@ -20,4 +20,4 @@ the [Working with stacks](/docs/concepts/components/stack) section.
 Buildpacks can be bundled together with a specific stack's build image, resulting in a
 [builder](/docs/concepts/components/builder) image (note the "er" ending). Builders provide the most
 convenient way to distribute buildpacks for a given stack. For more information on working with builders, see the
-[Working with builders using `create-builder`](/docs/concepts/components/builder) section.
+[Working with builders using `builder create`](/docs/concepts/components/builder) section.
