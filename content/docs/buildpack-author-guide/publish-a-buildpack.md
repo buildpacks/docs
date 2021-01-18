@@ -31,9 +31,11 @@ This will open GitHub in a browser and may ask you to authenticate with GitHub. 
 
 Click "Submit new issue", and your request will be automatically processed within seconds. If the image is a valid buildpack, it will be added to the registry. If there is a problem, the issue will be tagged as a "Failure" and a comment will be added with a link to get more details. Whether successful or not, the issue will be closed.
 
-### 2. Managing your Namespace
+### 2. Managing your namespace
 
 The first time you publish a buildpack with a given namespace, the registry will automatically assign your GitHub user as that namespace's owner. From then on, only you can publish new buildpacks or buildpack versions under that namespace.
+
+If you try to publish a buildpack with a namespace that's already in use, the request will fail and the GitHub issue will be closed.
 
 You can add or change namespace owners by submitting a Pull Request to the [buildpacks/registry-namespaces](https://github.com/buildpacks/registry-namespaces/).
 
@@ -116,5 +118,11 @@ Push the `release.yml` changes to GitHub and trigger a new release. The workflow
 
 It is possible to perform these same step on any automated CI platform, but the Buildpack project only provides helpers for GitHub Actions.
 
+You may store your buildpack image in any standard OCI registry, such as [Docker Hub][docker-hub], [Google Container Registry][gcr], or [GitHub Container Registry][ghcr]. However, [GitHub Packages][github-packages] are not supported as they provide a non-standard implementation of the OCI Registry specification.
+
 [package]: /docs/buildpack-author-guide/package-a-buildpack/
 [github-actions]: https://github.com/buildpacks/github-actions
+[docker-hub]: https://hub.docker.com/
+[gcr]: https://cloud.google.com/container-registry/
+[ghcr]: https://docs.github.com/en/packages/guides/about-github-container-registry
+[github-packages]: https://docs.github.com/en/packages/guides/configuring-docker-for-use-with-github-packages
