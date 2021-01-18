@@ -56,7 +56,7 @@ Each workflow job is a set of steps. The steps you'll need to run will depend on
 1. Run Pack to package the buildpack and publish the image
 1. Register the image with the Buildpack Registry
 
-You can implement these steps in your GitHub Action by adding the following code to your `release.yml`:
+You can implement these steps in your GitHub Action by adding the following code to your `release.yml` (note the indentation):
 
 ```yaml
     steps:
