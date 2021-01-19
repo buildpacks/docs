@@ -33,13 +33,13 @@ The pre-populated text in the body of the issue is consider structured data, and
 
 Click _Submit new issue_, and your request will be processed within seconds. If the image is a valid buildpack, it will be added to the registry. If there is a problem, the issue will be tagged as a "Failure" and a comment will be added with a link to get more details. Whether successful or not, the issue will be closed.
 
-### 2. Managing your namespace
-
-The first time you publish a buildpack with a given namespace, the registry will automatically assign your GitHub user as that namespace's owner. From then on, only you can publish new buildpacks or buildpack versions under that namespace.
-
-If you try to publish a buildpack with a namespace that's already in use, the request will fail and the GitHub issue will be closed.
-
-You can add or change namespace owners by submitting a Pull Request to the [buildpacks/registry-namespaces](https://github.com/buildpacks/registry-namespaces/).
+> **Managing your namespace**
+> 
+> The first time you publish a buildpack with a given namespace, the registry will automatically assign your GitHub user as that namespace's owner. From then on, only you can publish new buildpacks or buildpack versions under that namespace.
+> 
+> If you try to publish a buildpack with a namespace that's already in use, the request will fail and the GitHub issue will be closed.
+> 
+> You can add or change namespace owners by submitting a Pull Request to the [buildpacks/registry-namespaces](https://github.com/buildpacks/registry-namespaces/).
 
 ### 3. Automating the registration
 
