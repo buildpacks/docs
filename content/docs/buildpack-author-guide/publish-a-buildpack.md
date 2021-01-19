@@ -17,7 +17,7 @@ Make sure you've followed the steps in [Package a buildpack][package] to create 
 id = "example/my-cnb"
 ```
 
-### 1. Running the CLI command
+### 1. Register your buildpack
 
 With your buildpack image published to a public OCI registry, you can now run the following command to register that buildpack with the Buildpack Registry (but you must replace `example/my-cnb` with your _image_ name):
 
