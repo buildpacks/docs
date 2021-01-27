@@ -147,7 +147,7 @@ We'll now write additional metadata to our `bundler.toml` of the form `cache = t
 # Compares previous Gemfile.lock checksum to the current Gemfile.lock
 bundlerlayer="$layersdir/bundler"
 local_bundler_checksum=$(sha256sum Gemfile.lock | cut -d ' ' -f 1) 
-remote_bundler_checksum=$(cat "$bundlerlayer.toml" | yj -t | jq -r .metadata 2>/dev/null || echo 'not found')
+remote_bundler_checksum=$(cat "$bundlerlayer.toml" | yj -t | jq -r .metadata.checksum 2>/dev/null || echo 'not found')
 
 if [[ -f Gemfile.lock && $local_bundler_checksum == $remote_bundler_checksum ]] ; then
     # Determine if no gem dependencies have changed, so it can reuse existing gems without running bundle install
@@ -158,7 +158,13 @@ else
     # Determine if there has been a gem dependency change and install new gems to the bundler layer; re-using existing and un-changed gems
     echo "---> Installing gems"
     mkdir -p "$bundlerlayer"
-    echo -e "cache = true\nlaunch = true\nmetadata = \"$local_bundler_checksum\"" > "$bundlerlayer.toml"
+    cat > "bundlerlayer.toml" <<EOL
+cache = true
+launch = true
+
+[metadata]
+checksum = "$local_bundler_checkssum"
+EOL
     bundle install --path "$bundlerlayer" --binstubs "$bundlerlayer/bin"
 fi
 ```
