@@ -8,8 +8,8 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Learn how to use a project.toml file to simplify configuring pack."/>
-<link rel="canonical" content="https://buildpacks.io/docs/app-developer-guide/using-project-descriptor/">
+<meta name="description" content="Learn how to use cache-images to share cached layers"/>
+<link rel="canonical" content="https://buildpacks.io/docs/app-developer-guide/using-cache-image/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
 
@@ -17,12 +17,12 @@
 
 
 
-<meta property="og:title" content="Using project.toml · Cloud Native Buildpacks">
+<meta property="og:title" content="Cache Images · Cloud Native Buildpacks">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://buildpacks.io/docs/app-developer-guide/using-project-descriptor/">
+<meta property="og:url" content="https://buildpacks.io/docs/app-developer-guide/using-cache-image/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-<meta property="og:description" content="Learn how to use a project.toml file to simplify configuring pack.">
+<meta property="og:description" content="Learn how to use cache-images to share cached layers">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -33,7 +33,7 @@
 
 
 
-<meta property="twitter:title" content="Using project.toml · Cloud Native Buildpacks">
+<meta property="twitter:title" content="Cache Images · Cloud Native Buildpacks">
 <meta property="twitter:card" content="summary">
 <meta property="twitter:image" content="https://buildpacks.io/images/buildpacks-social-card-square.jpg">
 <meta property="twitter:image:alt" content="Buildpacks project logo">
@@ -73,7 +73,7 @@
     });
   </script>
 
-  <title>Using project.toml · Cloud Native Buildpacks</title>
+  <title>Cache Images · Cloud Native Buildpacks</title>
 </head>
 
 <body>
@@ -166,7 +166,7 @@
       <li data-nav-id="/docs/app-developer-guide/environment-variables/" class="dd-item depth-1">
         <a href="/docs/app-developer-guide/environment-variables/">Environment variables</a>
       </li>
-      <li data-nav-id="/docs/app-developer-guide/using-cache-image/" class="dd-item depth-1">
+      <li data-nav-id="/docs/app-developer-guide/using-cache-image/" class="dd-item depth-1 active">
         <a href="/docs/app-developer-guide/using-cache-image/">Cache Images</a>
       </li>
       <li data-nav-id="/docs/app-developer-guide/mouting-volumes/" class="dd-item depth-1">
@@ -178,7 +178,7 @@
       <li data-nav-id="/docs/app-developer-guide/run-an-app/" class="dd-item depth-1">
         <a href="/docs/app-developer-guide/run-an-app/">Specify launch process</a>
       </li>
-      <li data-nav-id="/docs/app-developer-guide/using-project-descriptor/" class="dd-item depth-1 active">
+      <li data-nav-id="/docs/app-developer-guide/using-project-descriptor/" class="dd-item depth-1">
         <a href="/docs/app-developer-guide/using-project-descriptor/">Using project.toml</a>
       </li>
           </ul>
@@ -403,12 +403,12 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BUsing&#43;project.toml%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fapp-developer-guide%2Fusing-project-descriptor%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BCache&#43;Images%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fapp-developer-guide%2Fusing-cache-image%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/app-developer-guide/using-project-descriptor.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/app-developer-guide/using-cache-image.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
@@ -416,88 +416,55 @@
 
 
         <div class="heading">
-          <h1 class="title">Using project.toml</h1>
+          <h1 class="title">Cache Images</h1>
         </div>
 
-        <p>A <code>project descriptor</code> (alternatively referred to as a <code>project.toml</code> file) allows users to detail configuration for a
-repository. Users can, for instance, specify which buildpacks should be used when building the repository, what files
-should be included/excluded in the build, and <a href="/docs/app-developer-guide/environment-variables/#using-project-descriptor">set environment variables at build time</a>.</p>
-<h3 id="example">Example</h3>
-<p>We will use our <a href="https://github.com/buildpacks/samples">samples</a> repo to demonstrate how to use a <code>project.toml</code> file.</p>
-<p>In the below example (<code>samples/apps/bash-script/project.toml</code>), we define project information (in this case, the <code>id</code>
-and human-readable <code>name</code> of the application we are building, and a <code>version</code>), and specify build information to pack.</p>
-<p>Note the <code>include</code> and <code>exclude</code> sections in the below <code>project.toml</code> file use <code>gitignore</code> syntax. So <code>&quot;/README.md&quot;</code> excludes the <code>README</code>
-file at the root of the application. For more on <code>gitignore</code> matching see <a href="https://linuxize.com/post/gitignore-ignoring-files-in-git/#literal-file-names">these docs</a>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">project</span><span class="p">]</span>
-<span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;io.buildpacks.bash-script&#34;</span>
-<span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Bash Script&#34;</span>
-<span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;1.0.0&#34;</span>
+        <p>Cache Images are a way to preserve build optimizing layers across different host machines.
+These images can improve performance when using <code>pack</code> in ephemeral environments such as CI/CD pipelines.</p>
+<h2 id="using-cache-images---cache-image">Using Cache Images (<code>--cache-image</code>)</h2>
+<p>The <code>--cache-image</code> parameter must be in the following format</p>
+<pre><code>--cache-image &lt;remote-image-location&gt;
+</code></pre><p>The <code>--cache-images</code> flag must be specified in conjunction with the <code>--publish</code> flag.</p>
+<h3 id="examples">Examples</h3>
+<p>For the following examples we will use:</p>
+<ul>
+<li>The Dockerhub registry</li>
+<li>A sample Dockerhub user account named <code>buildpack-examples</code></li>
+<li>Our <a href="https://github.com/buildpack/samples">samples</a> repo</li>
+</ul>
+<p>First we need to authenticate with <code>docker</code> to allow us to push images</p>
+<pre><code>    docker login
+    ...
+</code></pre><p>Next we trust the <code>cnbs/sample-builder:bionic</code> builder
+in order to allow access to docker credentials when publishing.</p>
+<pre><code>pack config trusted-builders add cnbs/sample-builder:bionic
+</code></pre><p>To build an the <code>index.docker.io/buildpack-examples/cache-image-example</code> application image
+and the <code>index.docker.io/buildpack-examples/maven-cache-image:latest</code> cache image
+we may run the following</p>
+<pre><code>pack build index.docker.io/buildpack-examples/cache-image-example \
+    --builder cnbs/sample-builder:bionic \
+    --buildpack samples/java-maven \
+    --path samples/apps/java-maven \
+    --cache-image index.docker.io/buildpack-examples/maven-cache-image:latest \
+    --publish
+</code></pre><p>Now we may inspect both the application image, and the cache image by pulling them</p>
+<pre><code># application image inspect
+docker pull index.docker.io/buildpack-examples/cache-image-example
+docker inspect index.docker.io/buildpack-examples/cache-image-example
 
-<span class="p">[</span><span class="nx">build</span><span class="p">]</span>
-<span class="nx">exclude</span> <span class="p">=</span> <span class="p">[</span>
-    <span class="s2">&#34;/README.md&#34;</span><span class="p">,</span>
-    <span class="s2">&#34;bash-script-buildpack&#34;</span>
-<span class="p">]</span>
-
-<span class="nx">include</span> <span class="p">=</span> <span class="p">[]</span>
-
-<span class="p">[[</span><span class="nx">build</span><span class="p">.</span><span class="nx">buildpacks</span><span class="p">]]</span>
-<span class="nx">uri</span> <span class="p">=</span> <span class="s2">&#34;bash-script-buildpack/&#34;</span>
-</code></pre></div><p>To use a <code>project.toml</code> file, simply:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># build the app</span>
-pack build sample-app <span class="se">\
-</span><span class="se"></span>    --builder cnbs/sample-builder:bionic <span class="se">\
-</span><span class="se"></span>    --path  samples/apps/bash-script/
-
-<span class="c1"># run the app</span>
-docker run sample-app
-</code></pre></div><p>If the descriptor is named <code>project.toml</code>, it will be read by <code>pack</code> automatically. Otherwise, you can run:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">pack build sample-app <span class="se">\
-</span><span class="se"></span>    --builder cnbs/sample-builder:bionic <span class="se">\
-</span><span class="se"></span>    --path  samples/apps/bash-script/ <span class="se">\
-</span><span class="se"></span>    --descriptor  samples/apps/bash-script/&lt;project-descriptor-file.toml&gt;
-</code></pre></div><p>to specify an alternatively named <code>project descriptor</code>.</p>
-<h3 id="specify-buildpacks-and-envs">Specify Buildpacks and Envs</h3>
-<p>As with other methods of <a href="/docs/app-developer-guide/specific-buildpacks/">specifying buildpacks</a>, the only ones used are those that are specifically
-requested. Therefore, if we&rsquo;d want to include another buildpack in our build (like a <code>hello-world</code> buildpack, to help us
-understand the environment), we would want to add it to our <code>project.toml</code>.</p>
-<blockquote>
-<p><strong>Note:</strong> Flags passed directly into <code>pack</code> have precedence over anything in the <code>project.toml</code>. Therefore, if we wanted
-to use different buildpacks in the above case, we could also call <code>pack build ... --buildpack ...</code></p>
-</blockquote>
-<p>Below is an expanded <code>project.toml</code>, with an additional buildpack and environment variable included.</p>
-<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">project</span><span class="p">]</span>
-<span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;io.buildpacks.bash-script&#34;</span>
-<span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Bash Script&#34;</span>
-<span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;1.0.0&#34;</span>
-
-<span class="p">[</span><span class="nx">build</span><span class="p">]</span>
-<span class="nx">exclude</span> <span class="p">=</span> <span class="p">[</span>
-    <span class="s2">&#34;README.md&#34;</span><span class="p">,</span>
-    <span class="s2">&#34;bash-script-buildpack&#34;</span>
-<span class="p">]</span>
-<span class="p">[[</span><span class="nx">build</span><span class="p">.</span><span class="nx">buildpacks</span><span class="p">]]</span>
-<span class="nx">uri</span> <span class="p">=</span> <span class="s2">&#34;../../buildpacks/hello-world/&#34;</span>
-
-
-<span class="p">[[</span><span class="nx">build</span><span class="p">.</span><span class="nx">buildpacks</span><span class="p">]]</span>
-<span class="nx">uri</span> <span class="p">=</span> <span class="s2">&#34;bash-script-buildpack/&#34;</span>
-
-<span class="p">[[</span><span class="nx">build</span><span class="p">.</span><span class="nx">env</span><span class="p">]]</span>
-<span class="nx">name</span><span class="p">=</span><span class="s1">&#39;HELLO&#39;</span>
-<span class="nx">value</span><span class="p">=</span><span class="s1">&#39;WORLD&#39;</span>
-</code></pre></div><p>Paste the above <code>toml</code> as <code>new-project.toml</code> in the <code>samples/apps/bash-script/</code> directory, and simply:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># build the app</span>
-pack build sample-app <span class="se">\
-</span><span class="se"></span>    --builder cnbs/sample-builder:bionic <span class="se">\
-</span><span class="se"></span>    --path  samples/apps/bash-script/ <span class="se">\
-</span><span class="se"></span>    --descriptor samples/apps/bash-script/new-project.toml
-
-<span class="c1"># run the app</span>
-docker run sample-app
-</code></pre></div><h3 id="further-reading">Further Reading</h3>
-<p>For more about project descriptors, look at the <a href="/docs/reference/project-descriptor/">schema</a>, as well as the <a href="https://github.com/buildpacks/spec/blob/main/extensions/project-descriptor.md">specification</a>.</p>
-
+#cache image inspect
+docker pull index.docker.io/buildpacks-examples/maven-cache-image:latest
+docker inspect index.docker.io/buildpacks-examples/maven-cache-image:latest
+</code></pre><p>The cache image we produced may now be used by builds on other machines. Note these
+builds may also update the specified <code>cache-image</code>.</p>
+<p>The following command will restore data for the <code>samples/java-maven:maven_m2</code> layer from the cache image.</p>
+<pre><code>pack build index.docker.io/buildpack-examples/second-cache-image-example \
+    --builder cnbs/sample-builder:bionic \
+    --buildpack samples/java-maven \
+    --path samples/apps/java-maven \
+    --cache-image index.docker.io/buildpack-examples/maven-cache-image:latest \
+    --publish
+</code></pre>
 
         
 
@@ -507,12 +474,12 @@ docker run sample-app
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BUsing&#43;project.toml%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fapp-developer-guide%2Fusing-project-descriptor%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BCache&#43;Images%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fapp-developer-guide%2Fusing-cache-image%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/app-developer-guide/using-project-descriptor.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/app-developer-guide/using-cache-image.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   

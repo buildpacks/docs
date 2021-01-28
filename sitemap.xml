@@ -83,6 +83,10 @@
   </url>
   
   <url>
+    <loc>https://buildpacks.io/docs/app-developer-guide/using-cache-image/</loc>
+  </url>
+  
+  <url>
     <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/</loc>
   </url>
   
