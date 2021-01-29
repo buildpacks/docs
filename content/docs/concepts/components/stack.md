@@ -148,5 +148,6 @@ For sample stacks, see our [samples][samples] repo.
 
 For technical details on stacks, see the [platform specification for stacks][stack-spec].
 
+[builder]: /docs/concepts/components/builder/
 [samples]: https://github.com/buildpacks/samples
 [stack-spec]: https://github.com/buildpacks/spec/blob/main/platform.md#stacks
