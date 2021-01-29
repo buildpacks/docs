@@ -79,3 +79,4 @@ A [builder][builder] configuration schema is as follows:
 Currently, when specifying a URI to a buildpack or lifecycle, only `tar` or `tgz` archive types are supported.
 
 [builder]: /docs/concepts/components/builder
+[lifecycle]: /docs/concepts/components/lifecycle
