@@ -450,7 +450,7 @@ A URL or path to an <a href="#supported-archives">archive</a>, a packaged buildp
 <li>
 <h4 id="order-_list-required_"><code>order</code> <em>(list, required)</em></h4>
 <p>A list of buildpack groups. This list determines the order in which groups of buildpacks
-will be tested during detection. Detection is a phase of the [lifecycle][lifecycle] where
+will be tested during detection. Detection is a phase of the <a href="/docs/concepts/components/lifecycle">lifecycle</a> where
 buildpacks are tested, one group at a time, for compatibility with the provided application source code. The first
 group whose non-optional buildpacks all pass detection will be the group selected for the remainder of the build. Each
 group currently contains a single required field:</p>
@@ -502,7 +502,7 @@ Run image for the stack</p>
 </li>
 <li>
 <h4 id="lifecycle-_optional_"><code>lifecycle</code> <em>(optional)</em></h4>
-<p>The [lifecycle][lifecycle] to embed into the builder. It must contain <strong>at most one</strong> the following fields:</p>
+<p>The <a href="/docs/concepts/components/lifecycle">lifecycle</a> to embed into the builder. It must contain <strong>at most one</strong> the following fields:</p>
 <ul>
 <li>
 <p><strong><code>version</code></strong> <em>(string, optional)</em><br>
