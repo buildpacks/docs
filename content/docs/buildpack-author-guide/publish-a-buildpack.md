@@ -29,7 +29,7 @@ This will open GitHub in a browser and may ask you to authenticate with GitHub. 
 
 <img src="/images/registry-add-buildpack.png" />
 
-The pre-populated text in the body of the issue is consider structured data, and will be used to automatically add the buildpack to the registry index. Do not change it.
+The pre-populated text in the body of the issue is considered structured data, and will be used to automatically add the buildpack to the registry index. Do not change it.
 
 Click _Submit new issue_, and your request will be processed within seconds. If the image is a valid buildpack, it will be added to the registry. If there is a problem, the issue will be tagged as a "Failure" and a comment will be added with a link to get more details. Whether successful or not, the issue will be closed.
 
