@@ -111,6 +111,14 @@
   </url>
   
   <url>
+    <loc>https://buildpacks.io/docs/buildpack-author-guide/publish-a-buildpack/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/buildpack-author-guide/publishing-with-github-actions/</loc>
+  </url>
+  
+  <url>
     <loc>https://buildpacks.io/docs/app-developer-guide/run-an-app/</loc>
   </url>
   

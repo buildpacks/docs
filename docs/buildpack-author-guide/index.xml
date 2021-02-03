@@ -19,5 +19,23 @@
       <description>Learn how to package your buildpack for distribution using standard OCI registries.</description>
     </item>
     
+    <item>
+      <title>Publish a buildpack</title>
+      <link>https://buildpacks.io/docs/buildpack-author-guide/publish-a-buildpack/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/buildpack-author-guide/publish-a-buildpack/</guid>
+      <description>Learn how to publish your buildpack to the Buildpack Registry.</description>
+    </item>
+    
+    <item>
+      <title>Publishing with Github Actions</title>
+      <link>https://buildpacks.io/docs/buildpack-author-guide/publishing-with-github-actions/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/buildpack-author-guide/publishing-with-github-actions/</guid>
+      <description>Learn how to automatically publish your buildpack to the Buildpack Registry from a Github Action.</description>
+    </item>
+    
   </channel>
 </rss>

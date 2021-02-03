@@ -8,8 +8,8 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<link rel="canonical" content="https://buildpacks.io/docs/reference/spec/migration/platform-api-0.3-0.4/">
+<meta name="description" content="Learn how to automatically publish your buildpack to the Buildpack Registry from a Github Action."/>
+<link rel="canonical" content="https://buildpacks.io/docs/buildpack-author-guide/publishing-with-github-actions/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
 
@@ -17,12 +17,12 @@
 
 
 
-<meta property="og:title" content="Platform API 0.3 -&gt; 0.4 · Cloud Native Buildpacks">
+<meta property="og:title" content="Publishing with Github Actions · Cloud Native Buildpacks">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://buildpacks.io/docs/reference/spec/migration/platform-api-0.3-0.4/">
+<meta property="og:url" content="https://buildpacks.io/docs/buildpack-author-guide/publishing-with-github-actions/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-
+<meta property="og:description" content="Learn how to automatically publish your buildpack to the Buildpack Registry from a Github Action.">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -33,7 +33,7 @@
 
 
 
-<meta property="twitter:title" content="Platform API 0.3 -&gt; 0.4 · Cloud Native Buildpacks">
+<meta property="twitter:title" content="Publishing with Github Actions · Cloud Native Buildpacks">
 <meta property="twitter:card" content="summary">
 <meta property="twitter:image" content="https://buildpacks.io/images/buildpacks-social-card-square.jpg">
 <meta property="twitter:image:alt" content="Buildpacks project logo">
@@ -73,7 +73,7 @@
     });
   </script>
 
-  <title>Platform API 0.3 - 0.4 · Cloud Native Buildpacks</title>
+  <title>Publishing with Github Actions · Cloud Native Buildpacks</title>
 </head>
 
 <body>
@@ -183,7 +183,7 @@
       </li>
           </ul>
       </li>
-      <li data-nav-id="/docs/buildpack-author-guide/" class="dd-item depth-0 haschildren">
+      <li data-nav-id="/docs/buildpack-author-guide/" class="dd-item depth-0 parent haschildren">
         <a href="/docs/buildpack-author-guide/">Buildpack Author&rsquo;s Guide</a>
           <ul class="ml-2">
       <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/" class="dd-item depth-1 haschildren">
@@ -221,7 +221,7 @@
       <li data-nav-id="/docs/buildpack-author-guide/publish-a-buildpack/" class="dd-item depth-1">
         <a href="/docs/buildpack-author-guide/publish-a-buildpack/">Publish a buildpack</a>
       </li>
-      <li data-nav-id="/docs/buildpack-author-guide/publishing-with-github-actions/" class="dd-item depth-1">
+      <li data-nav-id="/docs/buildpack-author-guide/publishing-with-github-actions/" class="dd-item depth-1 active">
         <a href="/docs/buildpack-author-guide/publishing-with-github-actions/">Publishing with Github Actions</a>
       </li>
           </ul>
@@ -347,10 +347,10 @@
       </li>
           </ul>
       </li>
-      <li data-nav-id="/docs/reference/" class="dd-item depth-0 parent haschildren">
+      <li data-nav-id="/docs/reference/" class="dd-item depth-0 haschildren">
         <a href="/docs/reference/">Reference</a>
           <ul class="ml-2">
-      <li data-nav-id="/docs/reference/config/" class="dd-item depth-1 haschildren">
+      <li data-nav-id="/docs/reference/config/" class="dd-item depth-1 collapse haschildren">
         <a href="/docs/reference/config/">Configuration</a>
           <ul class="ml-2">
       <li data-nav-id="/docs/reference/config/builder-config/" class="dd-item depth-2 collapse">
@@ -364,10 +364,10 @@
       </li>
           </ul>
       </li>
-      <li data-nav-id="/docs/reference/reproducibility/" class="dd-item depth-1">
+      <li data-nav-id="/docs/reference/reproducibility/" class="dd-item depth-1 collapse">
         <a href="/docs/reference/reproducibility/">Reproducible Builds</a>
       </li>
-      <li data-nav-id="/docs/reference/spec/" class="dd-item depth-1 parent haschildren">
+      <li data-nav-id="/docs/reference/spec/" class="dd-item depth-1 collapse haschildren">
         <a href="/docs/reference/spec/">Specification</a>
           <ul class="ml-2">
       <li data-nav-id="/docs/reference/spec/buildpack-api/" class="dd-item depth-2">
@@ -376,16 +376,16 @@
       <li data-nav-id="/docs/reference/spec/distribution-api/" class="dd-item depth-2">
         <a href="/docs/reference/spec/distribution-api/">Distribution API</a>
       </li>
-      <li data-nav-id="/docs/reference/spec/migration/" class="dd-item depth-2 parent haschildren">
+      <li data-nav-id="/docs/reference/spec/migration/" class="dd-item depth-2 haschildren">
         <a href="/docs/reference/spec/migration/">Migration</a>
           <ul class="ml-2">
-      <li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.4-0.5/" class="dd-item depth-3">
+      <li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.4-0.5/" class="dd-item depth-3 collapse">
         <a href="/docs/reference/spec/migration/buildpack-api-0.4-0.5/">Buildpack API 0.4 -&gt; 0.5</a>
       </li>
-      <li data-nav-id="/docs/reference/spec/migration/platform-api-0.3-0.4/" class="dd-item depth-3 active">
+      <li data-nav-id="/docs/reference/spec/migration/platform-api-0.3-0.4/" class="dd-item depth-3 collapse">
         <a href="/docs/reference/spec/migration/platform-api-0.3-0.4/">Platform API 0.3 -&gt; 0.4</a>
       </li>
-      <li data-nav-id="/docs/reference/spec/migration/platform-api-0.4-0.5/" class="dd-item depth-3">
+      <li data-nav-id="/docs/reference/spec/migration/platform-api-0.4-0.5/" class="dd-item depth-3 collapse">
         <a href="/docs/reference/spec/migration/platform-api-0.4-0.5/">Platform API 0.4 -&gt; 0.5</a>
       </li>
           </ul>
@@ -409,12 +409,12 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BPlatform&#43;API&#43;0.3&#43;-%26gt%3B&#43;0.4%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Freference%2Fspec%2Fmigration%2Fplatform-api-0.3-0.4%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BPublishing&#43;with&#43;Github&#43;Actions%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fbuildpack-author-guide%2Fpublishing-with-github-actions%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/reference/spec/migration/platform-api-0.3-0.4.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/buildpack-author-guide/publishing-with-github-actions.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
@@ -422,31 +422,75 @@
 
 
         <div class="heading">
-          <h1 class="title">Platform API 0.3 -&gt; 0.4</h1>
+          <h1 class="title">Publishing with Github Actions</h1>
         </div>
 
-        <p>This guide is most relevant to platform operators.</p>
-<p>See the <a href="https://github.com/buildpacks/spec/releases/tag/platform%2Fv0.4">spec release</a> for platform API 0.4 for the full list of changes and further details.</p>
-<h3 id="windows-support">Windows support</h3>
-<p>Windows image builds are now supported! See the <a href="/docs/app-developer-guide/build-a-windows-app">Windows build guide</a>
-for more details.</p>
-<h3 id="multicall-launcher">Multicall launcher</h3>
-<p>When running the exported application image, it is now possible to provide arguments to pre-defined process types.
-The new flow is described <a href="/docs/app-developer-guide/run-an-app/#run-a-multi-process-app">here</a>.
-As part of these changes, the exporter will not set, and the launcher no longer accepts, the <code>CNB_PROCESS_TYPE</code> variable.
-See the associated <a href="https://github.com/buildpacks/rfcs/blob/main/text/0045-launcher-arguments.md">RFC</a> and <a href="https://github.com/buildpacks/spec/pull/118">spec PR</a>
-for more details.</p>
-<h3 id="export--rebase-report">Export &amp; rebase report</h3>
-<p>The exporter and rebaser now produce a <a href="https://github.com/buildpacks/spec/pull/113">report.toml</a> containing the identifier of the application image.
-When building, platforms can optionally specify the location of the report, or save it off somewhere.</p>
-<h3 id="removal-of-top-level-version-from-bom">Removal of top-level <code>version</code> from <code>BOM</code></h3>
-<p>When interpreting the Bill-of-Materials (BOM), <code>version</code> <a href="https://github.com/buildpacks/spec/pull/117">will no longer be found at the top level</a>.
-The lifecycle will convert any <code>version</code> provided by buildpacks to <code>metadata.version</code>.
-Related: as of buildpack API 0.3, <code>version</code> is <a href="https://github.com/buildpacks/spec/pull/97">deprecated</a> as a top-level key in the build plan.</p>
-<h3 id="new-exit-code-definition">New exit code definition</h3>
-<p>The lifecycle now defines <a href="https://github.com/buildpacks/spec/pull/115">specific error codes</a> to signal the lifecycle phase where the error occurred, and for API incompatibilities.
-When building, the new error codes can be interpreted according to the new definition.
-This is particularly helpful when using the <code>creator</code>.</p>
+        <p>If you would like to publish your buildpack image to the registry without requiring a human click a button in a browser, you can automate the process using the helpers in the <a href="https://github.com/buildpacks/github-actions">buildpacks/github-actions</a> repository.</p>
+<p>To begin, you must store your buildpack source code in GitHub and <a href="https://github.com/features/actions">enable GitHub Actions</a>. Then create a directory named <code>.github/workflows</code> in your repository, and add a file named <code>release.yml</code> to it. The <code>release.yml</code> workflow can be <a href="https://docs.github.com/en/actions/reference/events-that-trigger-workflows">triggered</a> in many ways, but it&rsquo;s common to use a Release event as a trigger. To do so, add the following to your <code>release.yml</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="k">name</span><span class="p">:</span><span class="w"> </span>Release<span class="w">
+</span><span class="w"></span><span class="k">on</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">release</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">types</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- published<span class="w">
+</span></code></pre></div><p>Next, you must configure a job to run when this workflow is triggered. Each workflow job is a set of steps. The steps you&rsquo;ll need to run will depend on how your buildpack is built (for example, you may need to compile some code or download some artifacts). But every buildpack will need the following steps:</p>
+<ol>
+<li>Checkout the source code</li>
+<li>Authenticate with an OCI Registry</li>
+<li>Install Pack</li>
+<li>Run Pack to package the buildpack and publish the image</li>
+<li>Register the image with the Buildpack Registry</li>
+</ol>
+<p>You can implement a job with these steps in your GitHub Action by adding the following code to your <code>release.yml</code> (note the indentation):</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="k">jobs</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="k">register</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>Package<span class="p">,</span><span class="w"> </span>Publish<span class="p">,</span><span class="w"> </span>and<span class="w"> </span>Register<span class="w">
+</span><span class="w">    </span><span class="k">runs-on</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- ubuntu-latest<span class="w">
+</span><span class="w">    </span><span class="k">steps</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="k">id</span><span class="p">:</span><span class="w"> </span>checkout<span class="w">
+</span><span class="w">      </span><span class="k">uses</span><span class="p">:</span><span class="w"> </span>actions/checkout@v2<span class="w">
+</span><span class="w">    </span>- <span class="k">if</span><span class="p">:</span><span class="w"> </span>${{<span class="w"> </span>github.event_name<span class="w"> </span>!=<span class="w"> </span><span class="s1">&#39;pull_request&#39;</span><span class="w"> </span>||<span class="w"> </span>!<span class="w"> </span>github.event.pull_request.head.repo.fork<span class="w"> </span>}}<span class="w">
+</span><span class="w">      </span><span class="k">uses</span><span class="p">:</span><span class="w"> </span>docker/login-action@v1<span class="w">
+</span><span class="w">      </span><span class="k">with</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="k">registry</span><span class="p">:</span><span class="w"> </span>docker.io<span class="w">
+</span><span class="w">        </span><span class="k">username</span><span class="p">:</span><span class="w"> </span>${{<span class="w"> </span>secrets.DOCKER_HUB_USER<span class="w"> </span>}}<span class="w">
+</span><span class="w">        </span><span class="k">password</span><span class="p">:</span><span class="w"> </span>${{<span class="w"> </span>secrets.DOCKER_HUB_PASS<span class="w"> </span>}}<span class="w">
+</span><span class="w">    </span>- <span class="k">id</span><span class="p">:</span><span class="w"> </span>setup-pack<span class="w">
+</span><span class="w">      </span><span class="k">uses</span><span class="p">:</span><span class="w"> </span>buildpacks/github-actions/setup-pack@v4<span class="m">.0.0</span><span class="w">
+</span><span class="w">    </span>- <span class="k">id</span><span class="p">:</span><span class="w"> </span>package<span class="w">
+</span><span class="w">      </span><span class="k">run</span><span class="p">:</span><span class="w"> </span><span class="sd">|
+</span><span class="sd">        #!/usr/bin/env bash</span><span class="w">
+</span><span class="w">        </span>set<span class="w"> </span>-euo<span class="w"> </span>pipefail<span class="w">
+</span><span class="w">        </span>BP_ID=<span class="s2">&#34;$(cat buildpack.toml | yj -t | jq -r .buildpack.id)&#34;</span><span class="w">
+</span><span class="w">        </span>VERSION=<span class="s2">&#34;$(cat buildpack.toml | yj -t | jq -r .buildpack.version)&#34;</span><span class="w">
+</span><span class="w">        </span>PACKAGE=<span class="s2">&#34;${REPO}/$(echo &#34;</span>$BP_ID<span class="s2">&#34; | sed &#39;s/\//_/g&#39;)&#34;</span><span class="w">
+</span><span class="w">        </span>pack<span class="w"> </span>package-buildpack<span class="w"> </span>--publish<span class="w"> </span>${PACKAGE}<span class="p">:</span>${VERSION}<span class="w">
+</span><span class="w">        </span>DIGEST=<span class="s2">&#34;$(crane digest ${PACKAGE}:${VERSION})&#34;</span><span class="w">
+</span><span class="w">        </span>echo<span class="w"> </span><span class="s2">&#34;::set-output name=bp_id::$BP_ID&#34;</span><span class="w">
+</span><span class="w">        </span>echo<span class="w"> </span><span class="s2">&#34;::set-output name=version::$VERSION&#34;</span><span class="w">
+</span><span class="w">        </span>echo<span class="w"> </span><span class="s2">&#34;::set-output name=address::${PACKAGE}@${DIGEST}&#34;</span><span class="w">
+</span><span class="w">      </span><span class="k">shell</span><span class="p">:</span><span class="w"> </span>bash<span class="w">
+</span><span class="w">      </span><span class="k">env</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="k">REPO</span><span class="p">:</span><span class="w"> </span>docker.io/${{<span class="w"> </span>secrets.DOCKER_HUB_USER<span class="w"> </span>}}<span class="w">
+</span><span class="w">    </span>- <span class="k">id</span><span class="p">:</span><span class="w"> </span>register<span class="w">
+</span><span class="w">      </span><span class="k">uses</span><span class="p">:</span><span class="w"> </span>docker<span class="p">:</span>//ghcr.io/buildpacks/actions/registry/request-add-entry<span class="p">:</span><span class="m">4.0.0</span><span class="w">
+</span><span class="w">      </span><span class="k">with</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="k">token</span><span class="p">:</span><span class="w">   </span>${{<span class="w"> </span>secrets.PUBLIC_REPO_TOKEN<span class="w"> </span>}}<span class="w">
+</span><span class="w">        </span><span class="k">id</span><span class="p">:</span><span class="w">      </span>${{<span class="w"> </span>steps.package.outputs.bp_id<span class="w"> </span>}}<span class="w">
+</span><span class="w">        </span><span class="k">version</span><span class="p">:</span><span class="w"> </span>${{<span class="w"> </span>steps.package.outputs.version<span class="w"> </span>}}<span class="w">
+</span><span class="w">        </span><span class="k">address</span><span class="p">:</span><span class="w"> </span>${{<span class="w"> </span>steps.package.outputs.address<span class="w"> </span>}}<span class="w">
+</span></code></pre></div><p>Before you execute this GitHub Action, you must add three secrets to your GitHub repository:</p>
+<ul>
+<li><code>DOCKER_HUB_USER</code> - your <a href="https://hub.docker.com/settings/general">Docker Hub</a> username.</li>
+<li><code>DOCKER_HUB_PASS</code> - a <a href="https://hub.docker.com/settings/security">Docker Hub access token</a>.</li>
+<li><code>PUBLIC_REPO_TOKEN</code> - the value of a <a href="https://github.com/settings/tokens/new">GitHub token</a> with the <code>repo:public_repo</code> scope (the default <code>GITHUB_TOKEN</code> provided for GitHub Actions is not sufficient).</li>
+</ul>
+<p>After you&rsquo;ve created these secrets and pushed your <code>release.yml</code> file to GitHub you can trigger the workflow by creating a new Release using the <a href="https://docs.github.com/en/github/administering-a-repository/about-releases">GitHub Releases UI</a>.</p>
+<p>From <a href="https://github.com">GitHub.com</a>, click on <em>Your Repositories</em>, then click the <em>Packages</em> tab and look for the image you just created. Click it and then select <em>Package Settings</em>. From this page, click the button to make this package public, and confirm the name of the image when promoted.</p>
+<p>Push the <code>release.yml</code> changes to GitHub and trigger a new release. The workflow will create a GitHub Issue on the Buildpack Registry and your buildpack will be added to the index.</p>
+<p>It is possible to perform these same step on any automated CI platform, but the Buildpack project only provides helpers for GitHub Actions.</p>
+<p>You may store your buildpack image in any standard OCI registry, such as <a href="https://hub.docker.com/">Docker Hub</a>, <a href="https://cloud.google.com/container-registry/">Google Container Registry</a>, or <a href="https://docs.github.com/en/packages/guides/about-github-container-registry">GitHub Container Registry</a>. However, <a href="https://docs.github.com/en/packages/guides/configuring-docker-for-use-with-github-packages">GitHub Packages</a> are not supported as they provide a non-standard implementation of the OCI Registry specification.</p>
+
 
         
 
@@ -456,12 +500,12 @@ This is particularly helpful when using the <code>creator</code>.</p>
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BPlatform&#43;API&#43;0.3&#43;-%26gt%3B&#43;0.4%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Freference%2Fspec%2Fmigration%2Fplatform-api-0.3-0.4%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BPublishing&#43;with&#43;Github&#43;Actions%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fbuildpack-author-guide%2Fpublishing-with-github-actions%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/reference/spec/migration/platform-api-0.3-0.4.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/buildpack-author-guide/publishing-with-github-actions.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
