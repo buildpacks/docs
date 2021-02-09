@@ -57,7 +57,7 @@ echo -e 'launch = true' > "$rubylayer.toml"
 
 ### Installing Dependencies
 
-Next, we'll use the Ruby runtime you installed to download the applications dependencies. First, we need to make the Ruby executables available to our script by putting it on the Path. Add the following code to the end of the `build` script:
+Next, we'll use the Ruby runtime you installed to download the application's dependencies. First, we need to make the Ruby executables available to our script by putting it on the Path. Add the following code to the end of the `build` script:
 
 ```bash
 # 4. MAKE RUBY AVAILABLE TO THIS SCRIPT
