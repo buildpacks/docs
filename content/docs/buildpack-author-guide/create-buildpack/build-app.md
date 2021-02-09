@@ -5,9 +5,20 @@ weight=404
 
 <!-- test:suite=create-buildpack;weight=4 -->
 
-Next, we'll make the build step install dependencies. This will require a few updates to the `build` script.
+Now we'll change the build step you created to install application dependencies. This will require updates to the `build` script such that it performs the following steps:
 
-Let's change `ruby-buildpack/bin/build` to look like the following:
+1. Creates a layer for the Ruby runtime
+1. Downloads the Ruby runtime and installs it to the layer
+1. Installs Bundler (the Ruby dependency manager)
+1. Uses Bundler to install dependencies
+
+By doing this, you'll learn how to create arbitrary layers with your buildpack, and how to read the contents of the app in order to perform actions like downloading dependencies.
+
+Let's begin by changing the `ruby-buildpack/bin/build` so that it creates a layer for Ruby.
+
+### Creating a Layer
+
+A Buildpack layer is represented by a directory inside the [layers directory][layers-dir] provided to our buildpack by the Buildpack execution environment. To create a new layer directory representing the Ruby runtime, change the `build` script to look like this:
 
 <!-- test:file=ruby-buildpack/bin/build -->
 ```bash
@@ -19,20 +30,44 @@ echo "---> Ruby Buildpack"
 # 1. GET ARGS
 layersdir=$1
 
-# 2. DOWNLOAD RUBY
-echo "---> Downloading and extracting Ruby"
+# 2. CREATE THE LAYER DIRECTORY
 rubylayer="$layersdir"/ruby
 mkdir -p "$rubylayer"
+```
+
+The `rubylayer` directory is a sub-directory of the directory provided as the first positional argument to the script (the [layers directory][layers-dir]), and this is where we'll store the Ruby runtime.
+
+Next, we'll download the Ruby runtime and install it into the layer directory. Add the following code to the end of the `build` script:
+
+```bash
+# 3. DOWNLOAD RUBY
+echo "---> Downloading and extracting Ruby"
 ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-2.5.1.tgz
 wget -q -O - "$ruby_url" | tar -xzf - -C "$rubylayer"
+```
 
-# 3. MAKE RUBY AVAILABLE DURING LAUNCH
+This code uses the `wget` tool to download the Ruby binaries from the given URL, and extracts it to the `rubylayer` directory.
+
+The last step in creating a layer is writing a TOML file that contains metadata about the layer. Without this file, the Buildpack lifecycle will ignore the layer directory. For the Ruby layer, we need to ensure it is available in the launch image by setting the `launch` key to `true`. Add the following code to script:
+
+```bash
+# 4. MAKE RUBY AVAILABLE DURING LAUNCH
 echo -e 'launch = true' > "$rubylayer.toml"
+```
 
+### Installing Dependencies
+
+Next, we'll use the Ruby runtime you installed to download the applications dependencies. First, we need to make the Ruby executables available to our script by putting it on the Path. Add the following code to the end of the `build` script:
+
+```bash
 # 4. MAKE RUBY AVAILABLE TO THIS SCRIPT
 export PATH="$rubylayer"/bin:$PATH
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}"$rubylayer/lib"
+```
 
+Now we can install Bundler, a dependency manager for Ruby, and run the `bundle install` command. Append the following code to the script:
+
+```bash
 # 5. INSTALL BUNDLER
 echo "---> Installing bundler"
 gem install bundler --no-ri --no-rdoc
@@ -42,14 +77,14 @@ echo "---> Installing gems"
 bundle install
 ```
 
-If you build your app again:
+Now the Buildpack is ready to test. Build your app again:
 
 <!-- test:exec -->
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 ```
 
-you will see the following output:
+You will see the following output:
 
 <!-- test:assert=contains;ignore-lines=... -->
 ```
@@ -70,9 +105,10 @@ you will see the following output:
 Successfully built image test-ruby-app
 ```
 
-You should now see a newly created image named `test-ruby-app` in your Docker daemon. However, your app
-image is not yet runnable. We'll make the app image runnable in the next section.
+A new image named `test-ruby-app` was created in your Docker daemon with a layer containing the Ruby runtime. However, your app image is not yet runnable. We'll make the app image runnable in the next section.
 
 ---
 
 <a href="/docs/buildpack-author-guide/create-buildpack/make-app-runnable" class="button bg-pink">Next Step</a>
+
+[layers-dir]: /docs/reference/spec/buildpack-api/#layers
