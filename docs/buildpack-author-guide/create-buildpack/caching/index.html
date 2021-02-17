@@ -564,7 +564,7 @@ bundle install --path <span class="s2">&#34;</span><span class="nv">$bundlerlaye
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># Compares previous Gemfile.lock checksum to the current Gemfile.lock</span>
 <span class="nv">bundlerlayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler&#34;</span>
 <span class="nv">local_bundler_checksum</span><span class="o">=</span><span class="k">$(</span>sha256sum Gemfile.lock <span class="p">|</span> cut -d <span class="s1">&#39; &#39;</span> -f 1<span class="k">)</span> 
-<span class="nv">remote_bundler_checksum</span><span class="o">=</span><span class="k">$(</span>cat <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">.toml&#34;</span> <span class="p">|</span> yj -t <span class="p">|</span> jq -r .metadata 2&gt;/dev/null <span class="o">||</span> <span class="nb">echo</span> <span class="s1">&#39;not found&#39;</span><span class="k">)</span>
+<span class="nv">remote_bundler_checksum</span><span class="o">=</span><span class="k">$(</span>cat <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">.toml&#34;</span> <span class="p">|</span> yj -t <span class="p">|</span> jq -r .metadata.checksum 2&gt;/dev/null <span class="o">||</span> <span class="nb">echo</span> <span class="s1">&#39;not found&#39;</span><span class="k">)</span>
 
 <span class="k">if</span> <span class="o">[[</span> -f Gemfile.lock <span class="o">&amp;&amp;</span> <span class="nv">$local_bundler_checksum</span> <span class="o">==</span> <span class="nv">$remote_bundler_checksum</span> <span class="o">]]</span> <span class="p">;</span> <span class="k">then</span>
     <span class="c1"># Determine if no gem dependencies have changed, so it can reuse existing gems without running bundle install</span>
@@ -575,7 +575,13 @@ bundle install --path <span class="s2">&#34;</span><span class="nv">$bundlerlaye
     <span class="c1"># Determine if there has been a gem dependency change and install new gems to the bundler layer; re-using existing and un-changed gems</span>
     <span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing gems&#34;</span>
     mkdir -p <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span>
-    <span class="nb">echo</span> -e <span class="s2">&#34;cache = true\nlaunch = true\nmetadata = \&#34;</span><span class="nv">$local_bundler_checksum</span><span class="s2">\&#34;&#34;</span> &gt; <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">.toml&#34;</span>
+    cat &gt; <span class="s2">&#34;bundlerlayer.toml&#34;</span> <span class="s">&lt;&lt;EOL
+</span><span class="s">cache = true
+</span><span class="s">launch = true
+</span><span class="s">
+</span><span class="s">[metadata]
+</span><span class="s">checksum = &#34;$local_bundler_checkssum&#34;
+</span><span class="s">EOL</span>
     bundle install --path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> --binstubs <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span>
 <span class="k">fi</span>
 </code></pre></div><p>Your full <code>ruby-buildpack/bin/build</code> script will now look like this:</p>
