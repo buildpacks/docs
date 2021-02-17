@@ -27,8 +27,10 @@ You can install the most recent version of the `pack` CLI (version **{{< pack-ve
 
 {{< pack-install >}}
 
+#### RCs
+Prior to publishing releases, we publish RC (release candidate) builds of `pack`. You can install those by downloading the releases from the [releases page on GitHub][github-releases].
 
-##### Auto-completion
+#### Auto-completion
 
 If you are using `bash`, you can configure your `bash` shell to load completions for each session. 
 
@@ -61,3 +63,4 @@ go get -u github.com/buildpacks/pack
 [build]: /docs/concepts/operations/build/
 [rebase]: /docs/concepts/operations/rebase/
 [components]: /docs/concepts/components/
+[github-releases]: https://github.com/buildpacks/pack/releases
