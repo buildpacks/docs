@@ -430,6 +430,33 @@ build applications prior to deploying them.&lt;/p&gt;</description>
     </item>
     
     <item>
+      <title>pack buildpack pull</title>
+      <link>https://buildpacks.io/docs/tools/pack/cli/pack_buildpack_pull/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_buildpack_pull/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pack buildpack register</title>
+      <link>https://buildpacks.io/docs/tools/pack/cli/pack_buildpack_register/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_buildpack_register/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pack buildpack yank</title>
+      <link>https://buildpacks.io/docs/tools/pack/cli/pack_buildpack_yank/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_buildpack_yank/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>pack completion</title>
       <link>https://buildpacks.io/docs/tools/pack/cli/pack_completion/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -462,6 +489,60 @@ build applications prior to deploying them.&lt;/p&gt;</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://buildpacks.io/docs/tools/pack/cli/pack_config_experimental/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pack config pull-policy</title>
+      <link>https://buildpacks.io/docs/tools/pack/cli/pack_config_pull-policy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_config_pull-policy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pack config registries</title>
+      <link>https://buildpacks.io/docs/tools/pack/cli/pack_config_registries/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_config_registries/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pack config registries add</title>
+      <link>https://buildpacks.io/docs/tools/pack/cli/pack_config_registries_add/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_config_registries_add/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pack config registries default</title>
+      <link>https://buildpacks.io/docs/tools/pack/cli/pack_config_registries_default/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_config_registries_default/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pack config registries list</title>
+      <link>https://buildpacks.io/docs/tools/pack/cli/pack_config_registries_list/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_config_registries_list/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pack config registries remove</title>
+      <link>https://buildpacks.io/docs/tools/pack/cli/pack_config_registries_remove/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_config_registries_remove/</guid>
       <description></description>
     </item>
     

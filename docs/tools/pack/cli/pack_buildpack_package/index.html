@@ -272,6 +272,15 @@
       <li data-nav-id="/docs/tools/pack/cli/pack_buildpack_package/" class="dd-item depth-3 active">
         <a href="/docs/tools/pack/cli/pack_buildpack_package/">pack buildpack package</a>
       </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_buildpack_pull/" class="dd-item depth-3">
+        <a href="/docs/tools/pack/cli/pack_buildpack_pull/">pack buildpack pull</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_buildpack_register/" class="dd-item depth-3">
+        <a href="/docs/tools/pack/cli/pack_buildpack_register/">pack buildpack register</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_buildpack_yank/" class="dd-item depth-3">
+        <a href="/docs/tools/pack/cli/pack_buildpack_yank/">pack buildpack yank</a>
+      </li>
       <li data-nav-id="/docs/tools/pack/cli/pack_completion/" class="dd-item depth-3">
         <a href="/docs/tools/pack/cli/pack_completion/">pack completion</a>
       </li>
@@ -283,6 +292,24 @@
       </li>
       <li data-nav-id="/docs/tools/pack/cli/pack_config_experimental/" class="dd-item depth-3">
         <a href="/docs/tools/pack/cli/pack_config_experimental/">pack config experimental</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_config_pull-policy/" class="dd-item depth-3">
+        <a href="/docs/tools/pack/cli/pack_config_pull-policy/">pack config pull-policy</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_config_registries/" class="dd-item depth-3">
+        <a href="/docs/tools/pack/cli/pack_config_registries/">pack config registries</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_config_registries_add/" class="dd-item depth-3">
+        <a href="/docs/tools/pack/cli/pack_config_registries_add/">pack config registries add</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_config_registries_default/" class="dd-item depth-3">
+        <a href="/docs/tools/pack/cli/pack_config_registries_default/">pack config registries default</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_config_registries_list/" class="dd-item depth-3">
+        <a href="/docs/tools/pack/cli/pack_config_registries_list/">pack config registries list</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_config_registries_remove/" class="dd-item depth-3">
+        <a href="/docs/tools/pack/cli/pack_config_registries_remove/">pack config registries remove</a>
       </li>
       <li data-nav-id="/docs/tools/pack/cli/pack_config_run-image-mirrors/" class="dd-item depth-3">
         <a href="/docs/tools/pack/cli/pack_config_run-image-mirrors/">pack config run-image-mirrors</a>
@@ -430,11 +457,12 @@
 </code></pre><h3 id="examples">Examples</h3>
 <pre><code>pack buildpack package my-buildpack --config ./package.toml
 </code></pre><h3 id="options">Options</h3>
-<pre><code>  -c, --config string        Path to package TOML config (required)
-  -f, --format string        Format to save package as (&quot;image&quot; or &quot;file&quot;)
-  -h, --help                 Help for 'package'
-      --publish              Publish to registry (applies to &quot;--format=image&quot; only)
-      --pull-policy string   Pull policy to use. Accepted values are always, never, and if-not-present. The default is always
+<pre><code>  -r, --buildpack-registry string   Buildpack Registry name
+  -c, --config string               Path to package TOML config (required)
+  -f, --format string               Format to save package as (&quot;image&quot; or &quot;file&quot;)
+  -h, --help                        Help for 'package'
+      --publish                     Publish to registry (applies to &quot;--format=image&quot; only)
+      --pull-policy string          Pull policy to use. Accepted values are always, never, and if-not-present. The default is always
 </code></pre><h3 id="options-inherited-from-parent-commands">Options inherited from parent commands</h3>
 <pre><code>      --no-color     Disable color output
   -q, --quiet        Show less output

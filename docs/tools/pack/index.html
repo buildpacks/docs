@@ -274,6 +274,15 @@
       <li data-nav-id="/docs/tools/pack/cli/pack_buildpack_package/" class="dd-item depth-3 collapse">
         <a href="/docs/tools/pack/cli/pack_buildpack_package/">pack buildpack package</a>
       </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_buildpack_pull/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_buildpack_pull/">pack buildpack pull</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_buildpack_register/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_buildpack_register/">pack buildpack register</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_buildpack_yank/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_buildpack_yank/">pack buildpack yank</a>
+      </li>
       <li data-nav-id="/docs/tools/pack/cli/pack_completion/" class="dd-item depth-3 collapse">
         <a href="/docs/tools/pack/cli/pack_completion/">pack completion</a>
       </li>
@@ -285,6 +294,24 @@
       </li>
       <li data-nav-id="/docs/tools/pack/cli/pack_config_experimental/" class="dd-item depth-3 collapse">
         <a href="/docs/tools/pack/cli/pack_config_experimental/">pack config experimental</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_config_pull-policy/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_config_pull-policy/">pack config pull-policy</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_config_registries/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_config_registries/">pack config registries</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_config_registries_add/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_config_registries_add/">pack config registries add</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_config_registries_default/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_config_registries_default/">pack config registries default</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_config_registries_list/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_config_registries_list/">pack config registries list</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_config_registries_remove/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_config_registries_remove/">pack config registries remove</a>
       </li>
       <li data-nav-id="/docs/tools/pack/cli/pack_config_run-image-mirrors/" class="dd-item depth-3 collapse">
         <a href="/docs/tools/pack/cli/pack_config_run-image-mirrors/">pack config run-image-mirrors</a>
@@ -759,7 +786,9 @@ sudo apt-get install pack-cli
     $(this).tab('show');
   });
 </script>
-<h5 id="auto-completion">Auto-completion</h5>
+<h4 id="rcs">RCs</h4>
+<p>Prior to publishing releases, we publish RC (release candidate) builds of <code>pack</code>. You can install those by downloading the releases from the <a href="https://github.com/buildpacks/pack/releases">releases page on GitHub</a>.</p>
+<h4 id="auto-completion">Auto-completion</h4>
 <p>If you are using <code>bash</code>, you can configure your <code>bash</code> shell to load completions for each session.</p>
 <p>Add the following to your <code>.bashrc</code> or <code>.bash_profile</code>:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">. <span class="k">$(</span>pack completion<span class="k">)</span>

@@ -243,6 +243,18 @@
   </url>
   
   <url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_buildpack_pull/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_buildpack_register/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_buildpack_yank/</loc>
+  </url>
+  
+  <url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_completion/</loc>
   </url>
   
@@ -256,6 +268,30 @@
   
   <url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_experimental/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_pull-policy/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_registries/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_registries_add/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_registries_default/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_registries_list/</loc>
+  </url>
+  
+  <url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_registries_remove/</loc>
   </url>
   
   <url>
