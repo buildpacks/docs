@@ -14,6 +14,10 @@ We will use our [samples][samples] repo to demonstrate how to use a `project.tom
 In the below example (`samples/apps/bash-script/project.toml`), we define project information (in this case, the `id`
 and human-readable `name` of the application we are building, and a `version`), and specify build information to pack.
 
+
+Note the `include` and `exclude` sections in the below `project.toml` file use `gitignore` syntax. So `"/README.md"` excludes the `README`
+file at the root of the application. For more on `gitignore` matching see [these docs](https://linuxize.com/post/gitignore-ignoring-files-in-git/#literal-file-names).
+
 ```toml
 [project]
 id = "io.buildpacks.bash-script"
@@ -22,9 +26,11 @@ version = "1.0.0"
 
 [build]
 exclude = [
-    "README.md",
+    "/README.md",
     "bash-script-buildpack"
 ]
+
+include = []
 
 [[build.buildpacks]]
 uri = "bash-script-buildpack/"
