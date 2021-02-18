@@ -215,6 +215,9 @@ Select Ruby version We&amp;rsquo;ll allow buildpack users to define the…">
       <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable/" class="dd-item depth-2 active">
         <a href="/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable/">Making your buildpack configurable</a>
       </li>
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials/" class="dd-item depth-2">
+        <a href="/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials/">Adding Bill-of-Materials</a>
+      </li>
           </ul>
       </li>
       <li data-nav-id="/docs/buildpack-author-guide/package-a-buildpack/" class="dd-item depth-1">
@@ -560,13 +563,9 @@ cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span cl
 <div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">===&gt; BUILDING
 [builder] ---&gt; Ruby Buildpack
 [builder] ---&gt; Downloading and extracting Ruby 2.5.0
-</code></pre></div><p>Congratulations! You&rsquo;ve created your first configurable Cloud Native Buildpack that uses detection, image layers, and caching to create a runnable OCI image.</p>
-<h2 id="going-further">Going further</h2>
-<p>Now that you&rsquo;ve finished your buildpack, how about extending it? Try:</p>
-<ul>
-<li>Caching the downloaded Ruby version</li>
-<li><a href="/docs/buildpack-author-guide/package-a-buildpack/">Packaging your buildpack for distribution</a></li>
-</ul>
+</code></pre></div><p>Next, let&rsquo;s see how buildpacks can store information about the dependencies provided in the output app image for introspection.</p>
+<hr>
+<p><a href="/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials" class="button bg-pink">Next Step</a></p>
 
 
         

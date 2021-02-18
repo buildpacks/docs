@@ -102,5 +102,15 @@ echo &amp;#34;---&amp;gt; Installing gems&amp;#34; bundlerlayer=&amp;#34;$layers
 Select Ruby version We&amp;rsquo;ll allow buildpack users to define the desired Ruby version via a .ruby-version file in their app. We&amp;rsquo;ll first update the detect script to check for this file. We will then record the dependency we can provide (Ruby), as well as the specific dependency the application will require, in the Build Plan, a document the lifecycle uses to determine if the buildpack will provide everything the application needs.</description>
     </item>
     
+    <item>
+      <title>Adding Bill-of-Materials</title>
+      <link>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials/</guid>
+      <description>One of the benefits of buildpacks is they can also populate the app image with metadata from the build process, allowing you to audit the app image for information like:
+ The process types that are available and the commands associated with them The run-image the app image was based on The buildpacks were used to create the app image And more&amp;hellip;!  You can find all of this information using pack via its inspect-image command.</description>
+    </item>
+    
   </channel>
 </rss>

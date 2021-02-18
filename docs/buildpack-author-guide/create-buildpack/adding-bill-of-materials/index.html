@@ -8,9 +8,9 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="This specification defines the artifact format, delivery mechanism, and order resolution process for buildpacks.
-"/>
-<link rel="canonical" content="https://buildpacks.io/docs/reference/spec/distribution-api/">
+<meta name="description" content="One of the benefits of buildpacks is they can also populate the app image with metadata from the build process, allowing you to audit the app image for information like:
+ The process types that are…"/>
+<link rel="canonical" content="https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
 
@@ -18,13 +18,13 @@
 
 
 
-<meta property="og:title" content="Distribution API · Cloud Native Buildpacks">
+<meta property="og:title" content="Adding Bill-of-Materials · Cloud Native Buildpacks">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://buildpacks.io/docs/reference/spec/distribution-api/">
+<meta property="og:url" content="https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-<meta property="og:description" content="This specification defines the artifact format, delivery mechanism, and order resolution process for buildpacks.
-">
+<meta property="og:description" content="One of the benefits of buildpacks is they can also populate the app image with metadata from the build process, allowing you to audit the app image for information like:
+ The process types that are…">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -35,7 +35,7 @@
 
 
 
-<meta property="twitter:title" content="Distribution API · Cloud Native Buildpacks">
+<meta property="twitter:title" content="Adding Bill-of-Materials · Cloud Native Buildpacks">
 <meta property="twitter:card" content="summary">
 <meta property="twitter:image" content="https://buildpacks.io/images/buildpacks-social-card-square.jpg">
 <meta property="twitter:image:alt" content="Buildpacks project logo">
@@ -75,7 +75,7 @@
     });
   </script>
 
-  <title>Distribution API · Cloud Native Buildpacks</title>
+  <title>Adding Bill-of-Materials · Cloud Native Buildpacks</title>
 </head>
 
 <body>
@@ -185,37 +185,37 @@
       </li>
           </ul>
       </li>
-      <li data-nav-id="/docs/buildpack-author-guide/" class="dd-item depth-0 haschildren">
+      <li data-nav-id="/docs/buildpack-author-guide/" class="dd-item depth-0 parent haschildren">
         <a href="/docs/buildpack-author-guide/">Buildpack Author&rsquo;s Guide</a>
           <ul class="ml-2">
-      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/" class="dd-item depth-1 haschildren">
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/" class="dd-item depth-1 parent haschildren">
         <a href="/docs/buildpack-author-guide/create-buildpack/">Create a buildpack</a>
           <ul class="ml-2">
-      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/setup-local-environment/" class="dd-item depth-2 collapse">
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/setup-local-environment/" class="dd-item depth-2">
         <a href="/docs/buildpack-author-guide/create-buildpack/setup-local-environment/">Set up your local environment</a>
       </li>
-      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb/" class="dd-item depth-2 collapse">
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb/" class="dd-item depth-2">
         <a href="/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb/">Building blocks of a Cloud Native Buildpack</a>
       </li>
-      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/detection/" class="dd-item depth-2 collapse">
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/detection/" class="dd-item depth-2">
         <a href="/docs/buildpack-author-guide/create-buildpack/detection/">Detecting your application</a>
       </li>
-      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/build-app/" class="dd-item depth-2 collapse">
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/build-app/" class="dd-item depth-2">
         <a href="/docs/buildpack-author-guide/create-buildpack/build-app/">Building your application</a>
       </li>
-      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/make-app-runnable/" class="dd-item depth-2 collapse">
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/make-app-runnable/" class="dd-item depth-2">
         <a href="/docs/buildpack-author-guide/create-buildpack/make-app-runnable/">Make your application runnable</a>
       </li>
-      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/specify-multiple-process-types/" class="dd-item depth-2 collapse">
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/specify-multiple-process-types/" class="dd-item depth-2">
         <a href="/docs/buildpack-author-guide/create-buildpack/specify-multiple-process-types/">Specify multiple process types</a>
       </li>
-      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/caching/" class="dd-item depth-2 collapse">
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/caching/" class="dd-item depth-2">
         <a href="/docs/buildpack-author-guide/create-buildpack/caching/">Improving performance with caching</a>
       </li>
-      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable/" class="dd-item depth-2 collapse">
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable/" class="dd-item depth-2">
         <a href="/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable/">Making your buildpack configurable</a>
       </li>
-      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials/" class="dd-item depth-2 collapse">
+      <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials/" class="dd-item depth-2 active">
         <a href="/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials/">Adding Bill-of-Materials</a>
       </li>
           </ul>
@@ -379,10 +379,10 @@
       </li>
           </ul>
       </li>
-      <li data-nav-id="/docs/reference/" class="dd-item depth-0 parent haschildren">
+      <li data-nav-id="/docs/reference/" class="dd-item depth-0 haschildren">
         <a href="/docs/reference/">Reference</a>
           <ul class="ml-2">
-      <li data-nav-id="/docs/reference/config/" class="dd-item depth-1 haschildren">
+      <li data-nav-id="/docs/reference/config/" class="dd-item depth-1 collapse haschildren">
         <a href="/docs/reference/config/">Configuration</a>
           <ul class="ml-2">
       <li data-nav-id="/docs/reference/config/builder-config/" class="dd-item depth-2 collapse">
@@ -396,16 +396,16 @@
       </li>
           </ul>
       </li>
-      <li data-nav-id="/docs/reference/reproducibility/" class="dd-item depth-1">
+      <li data-nav-id="/docs/reference/reproducibility/" class="dd-item depth-1 collapse">
         <a href="/docs/reference/reproducibility/">Reproducible Builds</a>
       </li>
-      <li data-nav-id="/docs/reference/spec/" class="dd-item depth-1 parent haschildren">
+      <li data-nav-id="/docs/reference/spec/" class="dd-item depth-1 collapse haschildren">
         <a href="/docs/reference/spec/">Specification</a>
           <ul class="ml-2">
       <li data-nav-id="/docs/reference/spec/buildpack-api/" class="dd-item depth-2">
         <a href="/docs/reference/spec/buildpack-api/">Buildpack API</a>
       </li>
-      <li data-nav-id="/docs/reference/spec/distribution-api/" class="dd-item depth-2 active">
+      <li data-nav-id="/docs/reference/spec/distribution-api/" class="dd-item depth-2">
         <a href="/docs/reference/spec/distribution-api/">Distribution API</a>
       </li>
       <li data-nav-id="/docs/reference/spec/migration/" class="dd-item depth-2 haschildren">
@@ -441,12 +441,12 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BDistribution&#43;API%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Freference%2Fspec%2Fdistribution-api%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BAdding&#43;Bill-of-Materials%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fbuildpack-author-guide%2Fcreate-buildpack%2Fadding-bill-of-materials%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/reference/spec/distribution-api.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
@@ -454,20 +454,148 @@
 
 
         <div class="heading">
-          <h1 class="title">Distribution API</h1>
+          <h1 class="title">Adding Bill-of-Materials</h1>
         </div>
 
-        <p>This specification defines the artifact format, delivery mechanism, and order resolution process for buildpacks.</p>
-<h2 id="buildpack-descriptor">Buildpack Descriptor</h2>
-<p>A buildpack must contain a <code>buildpack.toml</code> file in its root directory.</p>
-<h2 id="buildpackage">Buildpackage</h2>
-<p>A buildpackage is a distributable artifact that contains a buildpack. Its format may be either:</p>
+        <!-- test:suite=create-buildpack;weight=9 -->
+<p>One of the benefits of buildpacks is they can also populate the app image with metadata from the build process, allowing you to audit the app image for information like:</p>
 <ul>
-<li>An OCI image</li>
-<li>An uncompressed tar archive with the extension <code>.cnb</code> containing an OCI image.</li>
+<li>The process types that are available and the commands associated with them</li>
+<li>The run-image the app image was based on</li>
+<li>The buildpacks were used to create the app image</li>
+<li>And more&hellip;!</li>
 </ul>
-<h2 id="further-reading">Further Reading</h2>
-<p>You can read the complete <a href="https://github.com/buildpacks/spec/blob/main/distribution.md">Distribution specification on Github</a>.</p>
+<p>You can find all of this information using <code>pack</code> via its <code>inspect-image</code> command.</p>
+<!-- test:exec -->
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack inspect-image test-ruby-app
+</code></pre></div><p>You should see the following:</p>
+<!-- test:assert=contains -->
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">Run Images:
+  cnbs/sample-stack-run:bionic
+
+Buildpacks:
+  ID                                  VERSION
+  com.examples.buildpacks.ruby        0.0.1
+
+Processes:
+  TYPE                 SHELL        COMMAND                        ARGS
+  web (default)        bash         bundle exec ruby app.rb        
+  worker               bash         bundle exec ruby worker.rb
+</code></pre></div><p>Apart from the above standard metadata, buildpacks can also populate information about the dependencies they have provided in form of a <code>Bill-of-Materials</code>. Let&rsquo;s see how we can use this to populate information about the version of <code>ruby</code> that was installed in the output app image.</p>
+<p>To add the <code>ruby</code> version to the output of <code>pack inspect-image</code>, we will have to provide a <code>Bill-of-Materials</code> (<code>BOM</code>) containing this information. You&rsquo;ll need to update the <code>launch.toml</code> created at the end of your <code>build</code> script:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># ...</span>
+
+<span class="c1"># Append a Bill-of-Materials containing metadata about the provided ruby version</span>
+cat &gt;&gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt;EOL
+</span><span class="s">[[bom]]
+</span><span class="s">name = &#34;ruby&#34;
+</span><span class="s">[bom.metadata]
+</span><span class="s">version = &#34;$ruby_version&#34;
+</span><span class="s">EOL</span>
+</code></pre></div><p>Your <code>ruby-buildpack/bin/build</code> script should look like the following:</p>
+<!-- test:file=ruby-buildpack/bin/build -->
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
+</span><span class="cp"></span><span class="nb">set</span> -eo pipefail
+
+<span class="nb">echo</span> <span class="s2">&#34;---&gt; Ruby Buildpack&#34;</span>
+
+<span class="c1"># 1. GET ARGS</span>
+<span class="nv">layersdir</span><span class="o">=</span><span class="nv">$1</span>
+<span class="nv">plan</span><span class="o">=</span><span class="nv">$3</span>
+
+<span class="c1"># 2. DOWNLOAD RUBY</span>
+<span class="nv">rubylayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">&#34;</span>/ruby
+mkdir -p <span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>
+<span class="nv">ruby_version</span><span class="o">=</span><span class="k">$(</span>cat <span class="s2">&#34;</span><span class="nv">$plan</span><span class="s2">&#34;</span> <span class="p">|</span> yj -t <span class="p">|</span> jq -r <span class="s1">&#39;.entries[] | select(.name == &#34;ruby&#34;) | .metadata.version&#39;</span><span class="k">)</span>
+<span class="nb">echo</span> <span class="s2">&#34;---&gt; Downloading and extracting Ruby </span><span class="nv">$ruby_version</span><span class="s2">&#34;</span>
+<span class="nv">ruby_url</span><span class="o">=</span>https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-<span class="nv">$ruby_version</span>.tgz
+wget -q -O - <span class="s2">&#34;</span><span class="nv">$ruby_url</span><span class="s2">&#34;</span> <span class="p">|</span> tar -xzf - -C <span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>
+
+<span class="c1"># 3. MAKE RUBY AVAILABLE DURING LAUNCH</span>
+<span class="nb">echo</span> -e <span class="s1">&#39;launch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">.toml&#34;</span>
+
+<span class="c1"># 4. MAKE RUBY AVAILABLE TO THIS SCRIPT</span>
+<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>/bin:<span class="nv">$PATH</span>
+<span class="nb">export</span> <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="p">:+</span><span class="si">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="si">}</span><span class="p">:</span><span class="si">}</span><span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">/lib&#34;</span>
+
+<span class="c1"># 5. INSTALL BUNDLER</span>
+<span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing bundler&#34;</span>
+gem install bundler --no-ri --no-rdoc
+
+<span class="c1"># 6. INSTALL GEMS</span>
+<span class="c1"># Compares previous Gemfile.lock checksum to the current Gemfile.lock</span>
+<span class="nv">bundlerlayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler&#34;</span>
+<span class="nv">local_bundler_checksum</span><span class="o">=</span><span class="k">$((</span>sha256sum Gemfile.lock &gt;/dev/null <span class="m">2</span>&gt;<span class="o">&amp;</span><span class="m">1</span> <span class="o">||</span> <span class="nb">echo</span> <span class="s1">&#39;DOES_NOT_EXIST&#39;</span><span class="o">)</span> <span class="o">|</span> cut <span class="o">-</span>d <span class="s1">&#39; &#39;</span> <span class="o">-</span>f <span class="m">1</span><span class="o">)</span>
+<span class="nv">remote_bundler_checksum</span><span class="o">=</span><span class="k">$(</span>cat <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">.toml&#34;</span> <span class="p">|</span> yj -t <span class="p">|</span> jq -r .metadata.checksum 2&gt;/dev/null <span class="o">||</span> <span class="nb">echo</span> <span class="s1">&#39;DOES_NOT_EXIST&#39;</span><span class="k">)</span>
+
+<span class="k">if</span> <span class="o">[[</span> <span class="o">-</span>f Gemfile.lock <span class="o">&amp;&amp;</span> <span class="nv">$local_bundler_checksum</span> <span class="o">==</span> <span class="nv">$remote_bundler_checksum</span> <span class="o">]]</span> <span class="p">;</span> <span class="k">then</span>
+    <span class="c1"># Determine if no gem dependencies have changed, so it can reuse existing gems without running bundle install</span>
+    <span class="nb">echo</span> <span class="s2">&#34;---&gt; Reusing gems&#34;</span>
+    bundle config <span class="o">--</span><span class="nb">local</span> path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> &gt;/dev/null
+    bundle config <span class="o">--</span><span class="nb">local</span> bin <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span> &gt;/dev/null
+<span class="k">else</span>
+    <span class="c1"># Determine if there has been a gem dependency change and install new gems to the bundler layer; re-using existing and un-changed gems</span>
+    <span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing gems&#34;</span>
+    mkdir <span class="o">-</span>p <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span>
+    cat &gt; <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">.toml&#34;</span> <span class="s">&lt;&lt;EOL
+</span><span class="s">cache = true
+</span><span class="s">launch = true
+</span><span class="s">
+</span><span class="s">[metadata]
+</span><span class="s">checksum = &#34;$local_bundler_checksum&#34;
+</span><span class="s">EOL</span>
+    bundle config <span class="nb">set</span> <span class="o">--</span><span class="nb">local</span> path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> <span class="o">&amp;&amp;</span> bundle install <span class="o">&amp;&amp;</span> bundle binstubs <span class="o">--</span>all <span class="o">--</span>path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span>
+
+<span class="k">fi</span>
+
+<span class="c1"># 7. SET DEFAULT START COMMAND</span>
+cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt;EOL
+</span><span class="s"># our web process
+</span><span class="s">[[processes]]
+</span><span class="s">type = &#34;web&#34;
+</span><span class="s">command = &#34;bundle exec ruby app.rb&#34;
+</span><span class="s">
+</span><span class="s"># our worker process
+</span><span class="s">[[processes]]
+</span><span class="s">type = &#34;worker&#34;
+</span><span class="s">command = &#34;bundle exec ruby worker.rb&#34;
+</span><span class="s">EOL</span>
+
+<span class="c1"># 8. ADD A BOM</span>
+cat &gt;&gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt;EOL
+</span><span class="s">[[bom]]
+</span><span class="s">name = &#34;ruby&#34;
+</span><span class="s">[bom.metadata]
+</span><span class="s">version = &#34;$ruby_version&#34;
+</span><span class="s">EOL</span>
+
+</code></pre></div><p>Then rebuild your app using the updated buildpack:</p>
+<!-- test:exec -->
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
+</code></pre></div><p>You should then be able to inspect your Ruby app for its Bill-of-Materials via:</p>
+<!-- test:exec -->
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack inspect-image test-ruby-app --bom
+</code></pre></div><p>You should find that the included <code>ruby</code> version is <code>2.5.0</code> as expected.</p>
+<!-- test:assert=contains -->
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">    {
+      &#34;name&#34;: &#34;ruby&#34;,
+      &#34;metadata&#34;: {
+        &#34;version&#34;: &#34;2.5.0&#34;
+      },
+      &#34;buildpacks&#34;: {
+        &#34;id&#34;: &#34;com.examples.buildpacks.ruby&#34;,
+        &#34;version&#34;: &#34;0.0.1&#34;
+      }
+    }
+</code></pre></div><p>Congratulations! You’ve created your first configurable Cloud Native Buildpack that uses detection, image layers, and caching to create an introspectable and runnable OCI image.</p>
+<h2 id="going-further">Going further</h2>
+<p>Now that you&rsquo;ve finished your buildpack, how about extending it? Try:</p>
+<ul>
+<li>Caching the downloaded Ruby version</li>
+<li>Updating the BOM with all the gems provided by bundler</li>
+<li><a href="/docs/buildpack-author-guide/package-a-buildpack/">Packaging your buildpack for distribution</a></li>
+</ul>
+
 
         
 
@@ -477,12 +605,12 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BDistribution&#43;API%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Freference%2Fspec%2Fdistribution-api%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BAdding&#43;Bill-of-Materials%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fbuildpack-author-guide%2Fcreate-buildpack%2Fadding-bill-of-materials%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/reference/spec/distribution-api.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   

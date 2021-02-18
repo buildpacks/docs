@@ -171,6 +171,10 @@
   </url>
   
   <url>
+    <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials/</loc>
+  </url>
+  
+  <url>
     <loc>https://buildpacks.io/docs/reference/config/builder-config/</loc>
   </url>
   
