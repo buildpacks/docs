@@ -31,7 +31,7 @@ if [[ -f .ruby-version ]]; then
 fi
 
 echo "provides = [{ name = \"ruby\" }]" > "$plan"
-echo "requires = [{ name = \"ruby\", version = \"$version\" }]" >> "$plan"
+echo "requires = [{ name = \"ruby\", metadata = { version = \"$version\" } }]" >> "$plan"
 # ======= /ADDED =======
 ```
 
@@ -55,7 +55,7 @@ plan=$3
 # 2. DOWNLOAD RUBY
 rubylayer="$layersdir"/ruby
 mkdir -p "$rubylayer"
-ruby_version=$(cat "$plan" | yj -t | jq -r '.entries[] | select(.name == "ruby") | .version')
+ruby_version=$(cat "$plan" | yj -t | jq -r '.entries[] | select(.name == "ruby") | .metadata.version')
 echo "---> Downloading and extracting Ruby $ruby_version"
 ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-$ruby_version.tgz
 wget -q -O - "$ruby_url" | tar -xzf - -C "$rubylayer"
@@ -74,8 +74,8 @@ gem install bundler --no-ri --no-rdoc
 # 6. INSTALL GEMS
 # Compares previous Gemfile.lock checksum to the current Gemfile.lock
 bundlerlayer="$layersdir/bundler"
-local_bundler_checksum=$(sha256sum Gemfile.lock | cut -d ' ' -f 1)
-remote_bundler_checksum=$(cat "$bundlerlayer.toml" | yj -t | jq -r .metadata 2>/dev/null || echo 'not found')
+local_bundler_checksum=$((sha256sum Gemfile.lock >/dev/null 2>&1 || echo 'DOES_NOT_EXIST') | cut -d ' ' -f 1)
+remote_bundler_checksum=$(cat "$bundlerlayer.toml" | yj -t | jq -r .metadata.checksum 2>/dev/null || echo 'DOES_NOT_EXIST')
 
 if [[ -f Gemfile.lock && $local_bundler_checksum == $remote_bundler_checksum ]] ; then
     # Determine if no gem dependencies have changed, so it can reuse existing gems without running bundle install
@@ -86,8 +86,15 @@ else
     # Determine if there has been a gem dependency change and install new gems to the bundler layer; re-using existing and un-changed gems
     echo "---> Installing gems"
     mkdir -p "$bundlerlayer"
-    echo -e "cache = true\nlaunch = true\nmetadata = \"$local_bundler_checksum\"" > "$bundlerlayer.toml"
-    bundle install --path "$bundlerlayer" --binstubs "$bundlerlayer/bin"
+    cat > "$bundlerlayer.toml" <<EOL
+cache = true
+launch = true
+
+[metadata]
+checksum = "$local_bundler_checksum"
+EOL
+    bundle config set --local path "$bundlerlayer" && bundle install && bundle binstubs --all --path "$bundlerlayer/bin"
+
 fi
 
 # 7. SET DEFAULT START COMMAND

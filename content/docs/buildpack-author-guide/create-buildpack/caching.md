@@ -23,7 +23,8 @@ echo "---> Installing gems"
 bundlerlayer="$layersdir/bundler"
 mkdir -p "$bundlerlayer"
 echo -e 'cache = true\nlaunch = true' > "$bundlerlayer.toml"
-bundle install --path "$bundlerlayer" --binstubs "$bundlerlayer/bin"
+bundle config set --local path "$bundlerlayer" && bundle install && bundle binstubs --all --path "$bundlerlayer/bin"
+
 ```
 
 Your full `ruby-buildpack/bin/build` script should now look like the following:
@@ -62,7 +63,8 @@ echo "---> Installing gems"
 bundlerlayer="$layersdir/bundler"
 mkdir -p "$bundlerlayer"
 echo -e 'cache = true\nlaunch = true' > "$bundlerlayer.toml"
-bundle install --path "$bundlerlayer" --binstubs "$bundlerlayer/bin"
+bundle config set --local path "$bundlerlayer" && bundle install && bundle binstubs --all --path "$bundlerlayer/bin"
+
 
 # 7. SET DEFAULT START COMMAND
 cat > "$layersdir/launch.toml" <<EOL
@@ -134,7 +136,8 @@ echo "---> Installing gems"
 bundlerlayer="$layersdir/bundler"
 mkdir -p "$bundlerlayer"
 echo -e 'cache = true\nlaunch = true' > "$bundlerlayer.toml"
-bundle install --path "$bundlerlayer" --binstubs "$bundlerlayer/bin"
+bundle config set --local path "$bundlerlayer" && bundle install && bundle binstubs --all --path "$bundlerlayer/bin"
+
 
 # ...
 ```
@@ -143,11 +146,13 @@ with the new logic below that checks to see if any gems have been changed. This 
 
 We'll now write additional metadata to our `bundler.toml` of the form `cache = true` and `launch = true`. This directs the lifecycle to cache our gems and provide them when launching our application. With `cache = true` the lifecycle can keep existing gems around so that build times are fast, even with minor `Gemfile.lock` changes.
 
+Note that there may be times when you would want to clean the cached layer from the previous build, in which case you should always ensure to remove the contents of the layer before proceeding with the build. In the case below this can be done using a simple `rm -rf "$bundlerlayer"/*` after the `mkdir -p "$bundlerlayer"` command.
+
 ```bash
 # Compares previous Gemfile.lock checksum to the current Gemfile.lock
 bundlerlayer="$layersdir/bundler"
-local_bundler_checksum=$(sha256sum Gemfile.lock | cut -d ' ' -f 1) 
-remote_bundler_checksum=$(cat "$bundlerlayer.toml" | yj -t | jq -r .metadata.checksum 2>/dev/null || echo 'not found')
+local_bundler_checksum=$((sha256sum Gemfile.lock >/dev/null 2>&1 || echo 'DOES_NOT_EXIST') | cut -d ' ' -f 1)
+remote_bundler_checksum=$(cat "$bundlerlayer.toml" | yj -t | jq -r .metadata.checksum 2>/dev/null || echo 'DOES_NOT_EXIST')
 
 if [[ -f Gemfile.lock && $local_bundler_checksum == $remote_bundler_checksum ]] ; then
     # Determine if no gem dependencies have changed, so it can reuse existing gems without running bundle install
@@ -158,14 +163,15 @@ else
     # Determine if there has been a gem dependency change and install new gems to the bundler layer; re-using existing and un-changed gems
     echo "---> Installing gems"
     mkdir -p "$bundlerlayer"
-    cat > "bundlerlayer.toml" <<EOL
+    cat > "$bundlerlayer.toml" <<EOL
 cache = true
 launch = true
 
 [metadata]
-checksum = "$local_bundler_checkssum"
+checksum = "$local_bundler_checksum"
 EOL
-    bundle install --path "$bundlerlayer" --binstubs "$bundlerlayer/bin"
+    bundle config set --local path "$bundlerlayer" && bundle install && bundle binstubs --all --path "$bundlerlayer/bin"
+
 fi
 ```
 
@@ -203,8 +209,8 @@ gem install bundler --no-ri --no-rdoc
 # 6. INSTALL GEMS
 # Compares previous Gemfile.lock checksum to the current Gemfile.lock
 bundlerlayer="$layersdir/bundler"
-local_bundler_checksum=$(sha256sum Gemfile.lock | cut -d ' ' -f 1) 
-remote_bundler_checksum=$(cat "$bundlerlayer.toml" | yj -t | jq -r .metadata 2>/dev/null || echo 'not found')
+local_bundler_checksum=$((sha256sum Gemfile.lock >/dev/null 2>&1 || echo 'DOES_NOT_EXIST') | cut -d ' ' -f 1)
+remote_bundler_checksum=$(cat "$bundlerlayer.toml" | yj -t | jq -r .metadata.checksum 2>/dev/null || echo 'DOES_NOT_EXIST')
 
 if [[ -f Gemfile.lock && $local_bundler_checksum == $remote_bundler_checksum ]] ; then
     # Determine if no gem dependencies have changed, so it can reuse existing gems without running bundle install
@@ -215,8 +221,15 @@ else
     # Determine if there has been a gem dependency change and install new gems to the bundler layer; re-using existing and un-changed gems
     echo "---> Installing gems"
     mkdir -p "$bundlerlayer"
-    echo -e "cache = true\nlaunch = true\nmetadata = \"$local_bundler_checksum\"" > "$bundlerlayer.toml"
-    bundle install --path "$bundlerlayer" --binstubs "$bundlerlayer/bin"
+    cat > "$bundlerlayer.toml" <<EOL
+cache = true
+launch = true
+
+[metadata]
+checksum = "$local_bundler_checksum"
+EOL
+    bundle config set --local path "$bundlerlayer" && bundle install && bundle binstubs --all --path "$bundlerlayer/bin"
+
 fi
 
 # 7. SET DEFAULT START COMMAND
