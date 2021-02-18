@@ -486,7 +486,7 @@
 </span><span class="w">        </span><span class="k">username</span><span class="p">:</span><span class="w"> </span>${{<span class="w"> </span>secrets.DOCKER_HUB_USER<span class="w"> </span>}}<span class="w">
 </span><span class="w">        </span><span class="k">password</span><span class="p">:</span><span class="w"> </span>${{<span class="w"> </span>secrets.DOCKER_HUB_PASS<span class="w"> </span>}}<span class="w">
 </span><span class="w">    </span>- <span class="k">id</span><span class="p">:</span><span class="w"> </span>setup-pack<span class="w">
-</span><span class="w">      </span><span class="k">uses</span><span class="p">:</span><span class="w"> </span>buildpacks/github-actions/setup-pack@v4<span class="m">.0.0</span><span class="w">
+</span><span class="w">      </span><span class="k">uses</span><span class="p">:</span><span class="w"> </span>buildpacks/github-actions/setup-pack@v4<span class="m">.1.0</span><span class="w">
 </span><span class="w">    </span>- <span class="k">id</span><span class="p">:</span><span class="w"> </span>package<span class="w">
 </span><span class="w">      </span><span class="k">run</span><span class="p">:</span><span class="w"> </span><span class="sd">|
 </span><span class="sd">        #!/usr/bin/env bash</span><span class="w">
@@ -503,7 +503,7 @@
 </span><span class="w">      </span><span class="k">env</span><span class="p">:</span><span class="w">
 </span><span class="w">        </span><span class="k">REPO</span><span class="p">:</span><span class="w"> </span>docker.io/${{<span class="w"> </span>secrets.DOCKER_HUB_USER<span class="w"> </span>}}<span class="w">
 </span><span class="w">    </span>- <span class="k">id</span><span class="p">:</span><span class="w"> </span>register<span class="w">
-</span><span class="w">      </span><span class="k">uses</span><span class="p">:</span><span class="w"> </span>docker<span class="p">:</span>//ghcr.io/buildpacks/actions/registry/request-add-entry<span class="p">:</span><span class="m">4.0.0</span><span class="w">
+</span><span class="w">      </span><span class="k">uses</span><span class="p">:</span><span class="w"> </span>docker<span class="p">:</span>//ghcr.io/buildpacks/actions/registry/request-add-entry<span class="p">:</span><span class="m">4.1.0</span><span class="w">
 </span><span class="w">      </span><span class="k">with</span><span class="p">:</span><span class="w">
 </span><span class="w">        </span><span class="k">token</span><span class="p">:</span><span class="w">   </span>${{<span class="w"> </span>secrets.PUBLIC_REPO_TOKEN<span class="w"> </span>}}<span class="w">
 </span><span class="w">        </span><span class="k">id</span><span class="p">:</span><span class="w">      </span>${{<span class="w"> </span>steps.package.outputs.bp_id<span class="w"> </span>}}<span class="w">
