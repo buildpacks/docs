@@ -792,9 +792,18 @@ sudo apt-get install pack-cli
 <h4 id="rcs">RCs</h4>
 <p>Prior to publishing releases, we publish RC (release candidate) builds of <code>pack</code>. You can install those by downloading the releases from the <a href="https://github.com/buildpacks/pack/releases">releases page on GitHub</a>.</p>
 <h4 id="auto-completion">Auto-completion</h4>
-<p>If you are using <code>bash</code>, you can configure your <code>bash</code> shell to load completions for each session.</p>
-<p>Add the following to your <code>.bashrc</code> or <code>.bash_profile</code>:</p>
+<p><code>pack</code> supports shell completions for the following shells -</p>
+<ul>
+<li><code>bash</code></li>
+<li><code>fish</code></li>
+<li><code>zsh</code></li>
+</ul>
+<p>To configure your <code>bash</code> shell to load completions for each session, add the following to your <code>.bashrc</code> or <code>.bash_profile</code>:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">. <span class="k">$(</span>pack completion<span class="k">)</span>
+</code></pre></div><p>To configure your <code>fish</code> shell to load completions for each session, add the following to your <code>~/.config/fish/config.fish</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">source</span> <span class="o">(</span>pack completion --shell fish<span class="o">)</span>
+</code></pre></div><p>To configure your <code>zsh</code> shell to load completions for each session, add the following to your <code>.zshrc</code>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">. <span class="k">$(</span>pack completion --shell zsh<span class="k">)</span>
 </code></pre></div><h3 id="references">References</h3>
 <ul>
 <li><a href="/docs/tools/pack/cli/pack/">Docs</a></li>
