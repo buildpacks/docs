@@ -23,6 +23,7 @@ This is a step-by-step tutorial for creating a Ruby Cloud Native Buildpack.
 - [Specifying multiple process types](/docs/buildpack-author-guide/create-buildpack/specify-multiple-process-types)
 - [Improving performance with caching](/docs/buildpack-author-guide/create-buildpack/caching)
 - [Making your buildpack configurable](/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable)
+- [Adding a Bill-of-Materials](/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials)
 
 ---
 
