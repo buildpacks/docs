@@ -465,7 +465,8 @@ bundle install
 <span class="nv">bundlerlayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler&#34;</span>
 mkdir -p <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span>
 <span class="nb">echo</span> -e <span class="s1">&#39;cache = true\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">.toml&#34;</span>
-bundle install --path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> --binstubs <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span>
+bundle config <span class="nb">set</span> --local path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> <span class="o">&amp;&amp;</span> bundle install <span class="o">&amp;&amp;</span> bundle binstubs --all --path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span>
+
 </code></pre></div><p>Your full <code>ruby-buildpack/bin/build</code> script should now look like the following:</p>
 <!-- test:file=ruby-buildpack/bin/build -->
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
@@ -500,7 +501,8 @@ gem install bundler --no-ri --no-rdoc
 <span class="nv">bundlerlayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler&#34;</span>
 mkdir -p <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span>
 <span class="nb">echo</span> -e <span class="s1">&#39;cache = true\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">.toml&#34;</span>
-bundle install --path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> --binstubs <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span>
+bundle config <span class="nb">set</span> --local path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> <span class="o">&amp;&amp;</span> bundle install <span class="o">&amp;&amp;</span> bundle binstubs --all --path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span>
+
 
 <span class="c1"># 7. SET DEFAULT START COMMAND</span>
 cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt;EOL
@@ -556,33 +558,36 @@ BUNDLED WITH
 <span class="nv">bundlerlayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler&#34;</span>
 mkdir -p <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span>
 <span class="nb">echo</span> -e <span class="s1">&#39;cache = true\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">.toml&#34;</span>
-bundle install --path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> --binstubs <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span>
+bundle config <span class="nb">set</span> --local path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> <span class="o">&amp;&amp;</span> bundle install <span class="o">&amp;&amp;</span> bundle binstubs --all --path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span>
+
 
 <span class="c1"># ...</span>
 </code></pre></div><p>with the new logic below that checks to see if any gems have been changed. This simply creates a checksum for the previous <code>Gemfile.lock</code> and compares it to the checksum of the current <code>Gemfile.lock</code>. If they are the same, the gems are reused. If they are not, the new gems are installed.</p>
 <p>We&rsquo;ll now write additional metadata to our <code>bundler.toml</code> of the form <code>cache = true</code> and <code>launch = true</code>. This directs the lifecycle to cache our gems and provide them when launching our application. With <code>cache = true</code> the lifecycle can keep existing gems around so that build times are fast, even with minor <code>Gemfile.lock</code> changes.</p>
+<p>Note that there may be times when you would want to clean the cached layer from the previous build, in which case you should always ensure to remove the contents of the layer before proceeding with the build. In the case below this can be done using a simple <code>rm -rf &quot;$bundlerlayer&quot;/*</code> after the <code>mkdir -p &quot;$bundlerlayer&quot;</code> command.</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># Compares previous Gemfile.lock checksum to the current Gemfile.lock</span>
 <span class="nv">bundlerlayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler&#34;</span>
-<span class="nv">local_bundler_checksum</span><span class="o">=</span><span class="k">$(</span>sha256sum Gemfile.lock <span class="p">|</span> cut -d <span class="s1">&#39; &#39;</span> -f 1<span class="k">)</span> 
-<span class="nv">remote_bundler_checksum</span><span class="o">=</span><span class="k">$(</span>cat <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">.toml&#34;</span> <span class="p">|</span> yj -t <span class="p">|</span> jq -r .metadata.checksum 2&gt;/dev/null <span class="o">||</span> <span class="nb">echo</span> <span class="s1">&#39;not found&#39;</span><span class="k">)</span>
+<span class="nv">local_bundler_checksum</span><span class="o">=</span><span class="k">$((</span>sha256sum Gemfile.lock &gt;/dev/null <span class="m">2</span>&gt;<span class="o">&amp;</span><span class="m">1</span> <span class="o">||</span> <span class="nb">echo</span> <span class="s1">&#39;DOES_NOT_EXIST&#39;</span><span class="o">)</span> <span class="o">|</span> cut <span class="o">-</span>d <span class="s1">&#39; &#39;</span> <span class="o">-</span>f <span class="m">1</span><span class="o">)</span>
+<span class="nv">remote_bundler_checksum</span><span class="o">=</span><span class="k">$(</span>cat <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">.toml&#34;</span> <span class="p">|</span> yj -t <span class="p">|</span> jq -r .metadata.checksum 2&gt;/dev/null <span class="o">||</span> <span class="nb">echo</span> <span class="s1">&#39;DOES_NOT_EXIST&#39;</span><span class="k">)</span>
 
-<span class="k">if</span> <span class="o">[[</span> -f Gemfile.lock <span class="o">&amp;&amp;</span> <span class="nv">$local_bundler_checksum</span> <span class="o">==</span> <span class="nv">$remote_bundler_checksum</span> <span class="o">]]</span> <span class="p">;</span> <span class="k">then</span>
+<span class="k">if</span> <span class="o">[[</span> <span class="o">-</span>f Gemfile.lock <span class="o">&amp;&amp;</span> <span class="nv">$local_bundler_checksum</span> <span class="o">==</span> <span class="nv">$remote_bundler_checksum</span> <span class="o">]]</span> <span class="p">;</span> <span class="k">then</span>
     <span class="c1"># Determine if no gem dependencies have changed, so it can reuse existing gems without running bundle install</span>
     <span class="nb">echo</span> <span class="s2">&#34;---&gt; Reusing gems&#34;</span>
-    bundle config --local path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> &gt;/dev/null
-    bundle config --local bin <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span> &gt;/dev/null
+    bundle config <span class="o">--</span><span class="nb">local</span> path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> &gt;/dev/null
+    bundle config <span class="o">--</span><span class="nb">local</span> bin <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span> &gt;/dev/null
 <span class="k">else</span>
     <span class="c1"># Determine if there has been a gem dependency change and install new gems to the bundler layer; re-using existing and un-changed gems</span>
     <span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing gems&#34;</span>
-    mkdir -p <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span>
-    cat &gt; <span class="s2">&#34;bundlerlayer.toml&#34;</span> <span class="s">&lt;&lt;EOL
+    mkdir <span class="o">-</span>p <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span>
+    cat &gt; <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">.toml&#34;</span> <span class="s">&lt;&lt;EOL
 </span><span class="s">cache = true
 </span><span class="s">launch = true
 </span><span class="s">
 </span><span class="s">[metadata]
-</span><span class="s">checksum = &#34;$local_bundler_checkssum&#34;
+</span><span class="s">checksum = &#34;$local_bundler_checksum&#34;
 </span><span class="s">EOL</span>
-    bundle install --path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> --binstubs <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span>
+    bundle config <span class="nb">set</span> <span class="o">--</span><span class="nb">local</span> path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> <span class="o">&amp;&amp;</span> bundle install <span class="o">&amp;&amp;</span> bundle binstubs <span class="o">--</span>all <span class="o">--</span>path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span>
+
 <span class="k">fi</span>
 </code></pre></div><p>Your full <code>ruby-buildpack/bin/build</code> script will now look like this:</p>
 <!-- test:file=ruby-buildpack/bin/build -->
@@ -616,20 +621,27 @@ gem install bundler --no-ri --no-rdoc
 <span class="c1"># 6. INSTALL GEMS</span>
 <span class="c1"># Compares previous Gemfile.lock checksum to the current Gemfile.lock</span>
 <span class="nv">bundlerlayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler&#34;</span>
-<span class="nv">local_bundler_checksum</span><span class="o">=</span><span class="k">$(</span>sha256sum Gemfile.lock <span class="p">|</span> cut -d <span class="s1">&#39; &#39;</span> -f 1<span class="k">)</span> 
-<span class="nv">remote_bundler_checksum</span><span class="o">=</span><span class="k">$(</span>cat <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">.toml&#34;</span> <span class="p">|</span> yj -t <span class="p">|</span> jq -r .metadata 2&gt;/dev/null <span class="o">||</span> <span class="nb">echo</span> <span class="s1">&#39;not found&#39;</span><span class="k">)</span>
+<span class="nv">local_bundler_checksum</span><span class="o">=</span><span class="k">$((</span>sha256sum Gemfile.lock &gt;/dev/null <span class="m">2</span>&gt;<span class="o">&amp;</span><span class="m">1</span> <span class="o">||</span> <span class="nb">echo</span> <span class="s1">&#39;DOES_NOT_EXIST&#39;</span><span class="o">)</span> <span class="o">|</span> cut <span class="o">-</span>d <span class="s1">&#39; &#39;</span> <span class="o">-</span>f <span class="m">1</span><span class="o">)</span>
+<span class="nv">remote_bundler_checksum</span><span class="o">=</span><span class="k">$(</span>cat <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">.toml&#34;</span> <span class="p">|</span> yj -t <span class="p">|</span> jq -r .metadata.checksum 2&gt;/dev/null <span class="o">||</span> <span class="nb">echo</span> <span class="s1">&#39;DOES_NOT_EXIST&#39;</span><span class="k">)</span>
 
-<span class="k">if</span> <span class="o">[[</span> -f Gemfile.lock <span class="o">&amp;&amp;</span> <span class="nv">$local_bundler_checksum</span> <span class="o">==</span> <span class="nv">$remote_bundler_checksum</span> <span class="o">]]</span> <span class="p">;</span> <span class="k">then</span>
+<span class="k">if</span> <span class="o">[[</span> <span class="o">-</span>f Gemfile.lock <span class="o">&amp;&amp;</span> <span class="nv">$local_bundler_checksum</span> <span class="o">==</span> <span class="nv">$remote_bundler_checksum</span> <span class="o">]]</span> <span class="p">;</span> <span class="k">then</span>
     <span class="c1"># Determine if no gem dependencies have changed, so it can reuse existing gems without running bundle install</span>
     <span class="nb">echo</span> <span class="s2">&#34;---&gt; Reusing gems&#34;</span>
-    bundle config --local path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> &gt;/dev/null
-    bundle config --local bin <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span> &gt;/dev/null
+    bundle config <span class="o">--</span><span class="nb">local</span> path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> &gt;/dev/null
+    bundle config <span class="o">--</span><span class="nb">local</span> bin <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span> &gt;/dev/null
 <span class="k">else</span>
     <span class="c1"># Determine if there has been a gem dependency change and install new gems to the bundler layer; re-using existing and un-changed gems</span>
     <span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing gems&#34;</span>
-    mkdir -p <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span>
-    <span class="nb">echo</span> -e <span class="s2">&#34;cache = true\nlaunch = true\nmetadata = \&#34;</span><span class="nv">$local_bundler_checksum</span><span class="s2">\&#34;&#34;</span> &gt; <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">.toml&#34;</span>
-    bundle install --path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> --binstubs <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span>
+    mkdir <span class="o">-</span>p <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span>
+    cat &gt; <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">.toml&#34;</span> <span class="s">&lt;&lt;EOL
+</span><span class="s">cache = true
+</span><span class="s">launch = true
+</span><span class="s">
+</span><span class="s">[metadata]
+</span><span class="s">checksum = &#34;$local_bundler_checksum&#34;
+</span><span class="s">EOL</span>
+    bundle config <span class="nb">set</span> <span class="o">--</span><span class="nb">local</span> path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> <span class="o">&amp;&amp;</span> bundle install <span class="o">&amp;&amp;</span> bundle binstubs <span class="o">--</span>all <span class="o">--</span>path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span>
+
 <span class="k">fi</span>
 
 <span class="c1"># 7. SET DEFAULT START COMMAND</span>

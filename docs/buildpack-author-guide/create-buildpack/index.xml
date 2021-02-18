@@ -32,7 +32,7 @@ source &amp;#34;https://rubygems.org&amp;#34; git_source(:github) {|repo_name| &
 Let&amp;rsquo;s create the directory where your buildpack will live:
 mkdir ruby-buildpack buildpack.toml You will now need a buildpack.toml to describe our buildpack.
 Create the ruby-buildpack/buildpack.toml file and copy the following into it:
-# Buildpack API version api = &amp;#34;0.2&amp;#34; # Buildpack ID and metadata [buildpack] id = &amp;#34;com.examples.buildpacks.ruby&amp;#34; version = &amp;#34;0.0.1&amp;#34; name = &amp;#34;Ruby Buildpack&amp;#34; # Stacks that the buildpack will work with [[stacks]] id = &amp;#34;io.</description>
+# Buildpack API version api = &amp;#34;0.5&amp;#34; # Buildpack ID and metadata [buildpack] id = &amp;#34;com.examples.buildpacks.ruby&amp;#34; version = &amp;#34;0.0.1&amp;#34; name = &amp;#34;Ruby Buildpack&amp;#34; # Stacks that the buildpack will work with [[stacks]] id = &amp;#34;io.</description>
     </item>
     
     <item>
@@ -89,7 +89,7 @@ for i in 0..5 puts &amp;#34;Running a worker task...&amp;#34; end After building
       <description>We can improve performance by caching dependencies between builds, only re-downloading when necessary. To begin, let&amp;rsquo;s create a cacheable bundler layer.
 Creating the bundler layer To do this, replace the following lines in the build script:
 echo &amp;#34;---&amp;gt; Installing gems&amp;#34; bundle install with the following:
-echo &amp;#34;---&amp;gt; Installing gems&amp;#34; bundlerlayer=&amp;#34;$layersdir/bundler&amp;#34; mkdir -p &amp;#34;$bundlerlayer&amp;#34; echo -e &amp;#39;cache = true\nlaunch = true&amp;#39; &amp;gt; &amp;#34;$bundlerlayer.toml&amp;#34; bundle install --path &amp;#34;$bundlerlayer&amp;#34; --binstubs &amp;#34;$bundlerlayer/bin&amp;#34; Your full ruby-buildpack/bin/build script should now look like the following:</description>
+echo &amp;#34;---&amp;gt; Installing gems&amp;#34; bundlerlayer=&amp;#34;$layersdir/bundler&amp;#34; mkdir -p &amp;#34;$bundlerlayer&amp;#34; echo -e &amp;#39;cache = true\nlaunch = true&amp;#39; &amp;gt; &amp;#34;$bundlerlayer.toml&amp;#34; bundle config set --local path &amp;#34;$bundlerlayer&amp;#34; &amp;amp;&amp;amp; bundle install &amp;amp;&amp;amp; bundle binstubs --all --path &amp;#34;$bundlerlayer/bin&amp;#34; Your full ruby-buildpack/bin/build script should now look like the following:</description>
     </item>
     
     <item>
