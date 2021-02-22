@@ -44,7 +44,7 @@ wget -q -O - "$ruby_url" | tar -xzf - -C "$rubylayer"
 
 This code uses the `wget` tool to download the Ruby binaries from the given URL, and extracts it to the `rubylayer` directory.
 
-The last step in creating a layer is writing a TOML file that contains metadata about the layer. Without this file, the Buildpack lifecycle will ignore the layer directory. For the Ruby layer, we need to ensure it is available in the launch image by setting the `launch` key to `true`. Add the following code to script:
+The last step in creating a layer is writing a TOML file that contains metadata about the layer. Without this file, the Buildpack lifecycle will ignore the layer directory. For the Ruby layer, we need to ensure it is available in the launch image by setting the `launch` key to `true`. Add the following code to the build script:
 
 ```bash
 echo -e 'launch = true' > "$rubylayer.toml"
