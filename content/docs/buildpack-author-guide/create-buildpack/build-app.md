@@ -32,7 +32,7 @@ rubylayer="$layersdir"/ruby
 mkdir -p "$rubylayer"
 ```
 
-The `rubylayer` directory is a sub-directory of the directory provided as the first positional argument to the script (the [layers directory][layers-dir]), and this is where we'll store the Ruby runtime.
+The `rubylayer` directory is a sub-directory of the directory provided as the first positional argument to the build script (the [layers directory][layers-dir]), and this is where we'll store the Ruby runtime.
 
 Next, we'll download the Ruby runtime and install it into the layer directory. Add the following code to the end of the `build` script:
 
