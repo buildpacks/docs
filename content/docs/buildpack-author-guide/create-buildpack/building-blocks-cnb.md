@@ -23,7 +23,7 @@ Create the `ruby-buildpack/buildpack.toml` file and copy the following into it:
 <!-- test:file=ruby-buildpack/buildpack.toml -->
 ```toml
 # Buildpack API version
-api = "0.2"
+api = "0.5"
 
 # Buildpack ID and metadata
 [buildpack]
