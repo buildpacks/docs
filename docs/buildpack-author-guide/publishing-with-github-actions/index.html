@@ -497,7 +497,7 @@
 </span><span class="w">        </span>BP_ID=<span class="s2">&#34;$(cat buildpack.toml | yj -t | jq -r .buildpack.id)&#34;</span><span class="w">
 </span><span class="w">        </span>VERSION=<span class="s2">&#34;$(cat buildpack.toml | yj -t | jq -r .buildpack.version)&#34;</span><span class="w">
 </span><span class="w">        </span>PACKAGE=<span class="s2">&#34;${REPO}/$(echo &#34;</span>$BP_ID<span class="s2">&#34; | sed &#39;s/\//_/g&#39;)&#34;</span><span class="w">
-</span><span class="w">        </span>pack<span class="w"> </span>package-buildpack<span class="w"> </span>--publish<span class="w"> </span>${PACKAGE}<span class="p">:</span>${VERSION}<span class="w">
+</span><span class="w">        </span>pack<span class="w"> </span>buildpack<span class="w"> </span>package<span class="w"> </span>--publish<span class="w"> </span>${PACKAGE}<span class="p">:</span>${VERSION}<span class="w">
 </span><span class="w">        </span>DIGEST=<span class="s2">&#34;$(crane digest ${PACKAGE}:${VERSION})&#34;</span><span class="w">
 </span><span class="w">        </span>echo<span class="w"> </span><span class="s2">&#34;::set-output name=bp_id::$BP_ID&#34;</span><span class="w">
 </span><span class="w">        </span>echo<span class="w"> </span><span class="s2">&#34;::set-output name=version::$VERSION&#34;</span><span class="w">
