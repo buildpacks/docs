@@ -10,8 +10,8 @@ aliases=[
 
 A stack is composed of two images that are intended to work together:
 
-1. The **build image** of a stack provides the _build-time_ environment in which the [lifecycle][lifecycle] (and thereby [buildpacks][buildpack]) are executed.
-2. The **run image** of a stack provides the _runtime_ environment in which the built application(s) would execute.
+1. The **build image** of a stack provides the base image from which the build environment is constructed. The build environment is the containerized environment in which the [lifecycle][lifecycle] (and thereby [buildpacks][buildpack]) are executed.
+2. The **run image** of a stack provides the base image from which application images are built.
 
 <!--more-->
 
