@@ -8,7 +8,10 @@ aliases=[
 
 ## What is a stack?
 
-A stack provides the buildpack lifecycle with build-time and run-time environments in the form of images.
+A stack is composed of two images that are intended to work together:
+
+1. The **build image** of a stack provides the base image from which the build environment is constructed. The build environment is the containerized environment in which the [lifecycle][lifecycle] (and thereby [buildpacks][buildpack]) are executed.
+2. The **run image** of a stack provides the base image from which application images are built.
 
 <!--more-->
 
@@ -149,5 +152,7 @@ For sample stacks, see our [samples][samples] repo.
 For technical details on stacks, see the [platform specification for stacks][stack-spec].
 
 [builder]: /docs/concepts/components/builder/
+[buildpack]: /docs/concepts/components/buildpack/
+[lifecycle]: /docs/concepts/components/lifecycle/
 [samples]: https://github.com/buildpacks/samples
 [stack-spec]: https://github.com/buildpacks/spec/blob/main/platform.md#stacks
