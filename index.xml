@@ -169,7 +169,11 @@ application.&lt;/p&gt;</description>
       
       <guid>https://buildpacks.io/docs/concepts/components/stack/</guid>
       <description>&lt;h2 id=&#34;what-is-a-stack&#34;&gt;What is a stack?&lt;/h2&gt;
-&lt;p&gt;A stack provides the buildpack lifecycle with build-time and run-time environments in the form of images.&lt;/p&gt;</description>
+&lt;p&gt;A stack is composed of two images that are intended to work together:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The &lt;strong&gt;build image&lt;/strong&gt; of a stack provides the base image from which the build environment is constructed. The build environment is the containerized environment in which the &lt;a href=&#34;https://buildpacks.io/docs/concepts/components/lifecycle/&#34;&gt;lifecycle&lt;/a&gt; (and thereby &lt;a href=&#34;https://buildpacks.io/docs/concepts/components/buildpack/&#34;&gt;buildpacks&lt;/a&gt;) are executed.&lt;/li&gt;
+&lt;li&gt;The &lt;strong&gt;run image&lt;/strong&gt; of a stack provides the base image from which application images are built.&lt;/li&gt;
+&lt;/ol&gt;</description>
     </item>
     
     <item>

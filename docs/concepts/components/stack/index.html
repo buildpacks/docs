@@ -8,8 +8,8 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="What is a stack? A stack provides the buildpack lifecycle with build-time and run-time environments in the form of images.
-"/>
+<meta name="description" content="What is a stack? A stack is composed of two images that are intended to work together:
+ The build image of a stack provides the base image from which the build environment is constructed. The build…"/>
 <link rel="canonical" content="https://buildpacks.io/docs/concepts/components/stack/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
@@ -23,8 +23,8 @@
 <meta property="og:url" content="https://buildpacks.io/docs/concepts/components/stack/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-<meta property="og:description" content="What is a stack? A stack provides the buildpack lifecycle with build-time and run-time environments in the form of images.
-">
+<meta property="og:description" content="What is a stack? A stack is composed of two images that are intended to work together:
+ The build image of a stack provides the base image from which the build environment is constructed. The build…">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -461,7 +461,11 @@
         </div>
 
         <h2 id="what-is-a-stack">What is a stack?</h2>
-<p>A stack provides the buildpack lifecycle with build-time and run-time environments in the form of images.</p>
+<p>A stack is composed of two images that are intended to work together:</p>
+<ol>
+<li>The <strong>build image</strong> of a stack provides the base image from which the build environment is constructed. The build environment is the containerized environment in which the <a href="/docs/concepts/components/lifecycle/">lifecycle</a> (and thereby <a href="/docs/concepts/components/buildpack/">buildpacks</a>) are executed.</li>
+<li>The <strong>run image</strong> of a stack provides the base image from which application images are built.</li>
+</ol>
 <blockquote>
 <p>If you&rsquo;re using the <code>pack</code> CLI, running <code>pack stack suggest</code> will display a list of recommended
 stacks that can be used when running <code>pack builder create</code>, along with each stack&rsquo;s associated build and run images.</p>
