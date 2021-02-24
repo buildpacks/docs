@@ -264,9 +264,8 @@ if [[ ! -f Gemfile ]]; then exit 100 fi Your ruby-buildpack/bin/detect script sh
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/build-app/</guid>
-      <description>Next, we&amp;rsquo;ll make the build step install dependencies. This will require a few updates to the build script.
-Let&amp;rsquo;s change ruby-buildpack/bin/build to look like the following:
-#!/usr/bin/env bash set -eo pipefail echo &amp;#34;---&amp;gt; Ruby Buildpack&amp;#34; # 1. GET ARGS layersdir=$1 # 2. DOWNLOAD RUBY echo &amp;#34;---&amp;gt; Downloading and extracting Ruby&amp;#34; rubylayer=&amp;#34;$layersdir&amp;#34;/ruby mkdir -p &amp;#34;$rubylayer&amp;#34; ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-2.5.1.tgz wget -q -O - &amp;#34;$ruby_url&amp;#34; | tar -xzf - -C &amp;#34;$rubylayer&amp;#34; # 3. MAKE RUBY AVAILABLE DURING LAUNCH echo -e &amp;#39;launch = true&amp;#39; &amp;gt; &amp;#34;$rubylayer.</description>
+      <description>Now we&amp;rsquo;ll change the build step you created to install application dependencies. This will require updates to the build script such that it performs the following steps:
+ Creates a layer for the Ruby runtime Downloads the Ruby runtime and installs it to the layer Installs Bundler (the Ruby dependency manager) Uses Bundler to install dependencies  By doing this, you&amp;rsquo;ll learn how to create arbitrary layers with your buildpack, and how to read the contents of the app in order to perform actions like downloading dependencies.</description>
     </item>
     
     <item>
