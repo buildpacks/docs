@@ -19,7 +19,7 @@ clean:
 
 install-hugo:
 	@echo "> Installing hugo..."
-	cd tools; go install --tags extended github.com/gohugoio/hugo
+	cd tools; go install -mod=mod --tags extended github.com/gohugoio/hugo
 
 install-pack-cli:
 	@echo "> Installing pack bin..."
