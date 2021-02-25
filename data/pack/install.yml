@@ -9,8 +9,7 @@
     - &container
       name: Container
       content: |
-        `pack` is available as a container image on Docker Hub as [`buildpacksio/pack`](https://hub.docker.com/r/buildpacksio/pack)
-        ([definition files](https://github.com/buildpacks/pack/blob/main/.github/workflows/delivery/docker/Dockerfile)).
+        `pack` is available as a container image on Docker Hub as [`buildpacksio/pack`](https://hub.docker.com/r/buildpacksio/pack).
 
         #### Tags
 
