@@ -22,7 +22,7 @@ with the following:
 echo "---> Installing gems"
 bundlerlayer="$layersdir/bundler"
 mkdir -p "$bundlerlayer"
-echo -e 'cache = true\nlaunch = true' > "$bundlerlayer.toml"
+echo -e 'cache = true\nlaunch = true' > "$layersdir/bundler.toml"
 bundle config set --local path "$bundlerlayer" && bundle install && bundle binstubs --all --path "$bundlerlayer/bin"
 
 ```
@@ -39,34 +39,35 @@ echo "---> Ruby Buildpack"
 # 1. GET ARGS
 layersdir=$1
 
-# 2. DOWNLOAD RUBY
-echo "---> Downloading and extracting Ruby"
+# 2. CREATE THE LAYER DIRECTORY
 rubylayer="$layersdir"/ruby
 mkdir -p "$rubylayer"
+
+# 3. DOWNLOAD RUBY
+echo "---> Downloading and extracting Ruby"
 ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-2.5.1.tgz
 wget -q -O - "$ruby_url" | tar -xzf - -C "$rubylayer"
 
-# 3. MAKE RUBY AVAILABLE DURING LAUNCH
-echo -e 'launch = true' > "$rubylayer.toml"
+# 4. MAKE RUBY AVAILABLE DURING LAUNCH
+echo -e 'launch = true' > "$layersdir/ruby.toml"
 
-# 4. MAKE RUBY AVAILABLE TO THIS SCRIPT
+# 5. MAKE RUBY AVAILABLE TO THIS SCRIPT
 export PATH="$rubylayer"/bin:$PATH
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}"$rubylayer/lib"
 
-# 5. INSTALL BUNDLER
+# 6. INSTALL BUNDLER
 echo "---> Installing bundler"
 gem install bundler --no-ri --no-rdoc
 
 # ======= MODIFIED =======
-# 6. INSTALL GEMS
+# 7. INSTALL GEMS
 echo "---> Installing gems"
 bundlerlayer="$layersdir/bundler"
 mkdir -p "$bundlerlayer"
-echo -e 'cache = true\nlaunch = true' > "$bundlerlayer.toml"
+echo -e 'cache = true\nlaunch = true' > "$layersdir/bundler.toml"
 bundle config set --local path "$bundlerlayer" && bundle install && bundle binstubs --all --path "$bundlerlayer/bin"
 
-
-# 7. SET DEFAULT START COMMAND
+# 8. SET DEFAULT START COMMAND
 cat > "$layersdir/launch.toml" <<EOL
 # our web process
 [[processes]]
@@ -135,7 +136,7 @@ Replace the gem installation logic from the previous step:
 echo "---> Installing gems"
 bundlerlayer="$layersdir/bundler"
 mkdir -p "$bundlerlayer"
-echo -e 'cache = true\nlaunch = true' > "$bundlerlayer.toml"
+echo -e 'cache = true\nlaunch = true' > "$layersdir/bundler.toml"
 bundle config set --local path "$bundlerlayer" && bundle install && bundle binstubs --all --path "$bundlerlayer/bin"
 
 
@@ -152,7 +153,7 @@ Note that there may be times when you would want to clean the cached layer from 
 # Compares previous Gemfile.lock checksum to the current Gemfile.lock
 bundlerlayer="$layersdir/bundler"
 local_bundler_checksum=$((sha256sum Gemfile.lock >/dev/null 2>&1 || echo 'DOES_NOT_EXIST') | cut -d ' ' -f 1)
-remote_bundler_checksum=$(cat "$bundlerlayer.toml" | yj -t | jq -r .metadata.checksum 2>/dev/null || echo 'DOES_NOT_EXIST')
+remote_bundler_checksum=$(cat "$layersdir/bundler.toml" | yj -t | jq -r .metadata.checksum 2>/dev/null || echo 'DOES_NOT_EXIST')
 
 if [[ -f Gemfile.lock && $local_bundler_checksum == $remote_bundler_checksum ]] ; then
     # Determine if no gem dependencies have changed, so it can reuse existing gems without running bundle install
@@ -163,7 +164,7 @@ else
     # Determine if there has been a gem dependency change and install new gems to the bundler layer; re-using existing and un-changed gems
     echo "---> Installing gems"
     mkdir -p "$bundlerlayer"
-    cat > "$bundlerlayer.toml" <<EOL
+    cat > "$layersdir/bundler.toml" <<EOL
 cache = true
 launch = true
 
@@ -187,30 +188,32 @@ echo "---> Ruby Buildpack"
 # 1. GET ARGS
 layersdir=$1
 
-# 2. DOWNLOAD RUBY
-echo "---> Downloading and extracting Ruby"
+# 2. CREATE THE LAYER DIRECTORY
 rubylayer="$layersdir"/ruby
 mkdir -p "$rubylayer"
+
+# 3. DOWNLOAD RUBY
+echo "---> Downloading and extracting Ruby"
 ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-2.5.1.tgz
 wget -q -O - "$ruby_url" | tar -xzf - -C "$rubylayer"
 
-# 3. MAKE RUBY AVAILABLE DURING LAUNCH
-echo -e 'launch = true' > "$rubylayer.toml"
+# 4. MAKE RUBY AVAILABLE DURING LAUNCH
+echo -e 'launch = true' > "$layersdir/ruby.toml"
 
-# 4. MAKE RUBY AVAILABLE TO THIS SCRIPT
+# 5. MAKE RUBY AVAILABLE TO THIS SCRIPT
 export PATH="$rubylayer"/bin:$PATH
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}"$rubylayer/lib"
 
-# 5. INSTALL BUNDLER
+# 6. INSTALL BUNDLER
 echo "---> Installing bundler"
 gem install bundler --no-ri --no-rdoc
 
 # ======= MODIFIED =======
-# 6. INSTALL GEMS
+# 7. INSTALL GEMS
 # Compares previous Gemfile.lock checksum to the current Gemfile.lock
 bundlerlayer="$layersdir/bundler"
 local_bundler_checksum=$((sha256sum Gemfile.lock >/dev/null 2>&1 || echo 'DOES_NOT_EXIST') | cut -d ' ' -f 1)
-remote_bundler_checksum=$(cat "$bundlerlayer.toml" | yj -t | jq -r .metadata.checksum 2>/dev/null || echo 'DOES_NOT_EXIST')
+remote_bundler_checksum=$(cat "$layersdir/bundler.toml" | yj -t | jq -r .metadata.checksum 2>/dev/null || echo 'DOES_NOT_EXIST')
 
 if [[ -f Gemfile.lock && $local_bundler_checksum == $remote_bundler_checksum ]] ; then
     # Determine if no gem dependencies have changed, so it can reuse existing gems without running bundle install
@@ -221,7 +224,7 @@ else
     # Determine if there has been a gem dependency change and install new gems to the bundler layer; re-using existing and un-changed gems
     echo "---> Installing gems"
     mkdir -p "$bundlerlayer"
-    cat > "$bundlerlayer.toml" <<EOL
+    cat > "$layersdir/bundler.toml" <<EOL
 cache = true
 launch = true
 
@@ -232,7 +235,7 @@ EOL
 
 fi
 
-# 7. SET DEFAULT START COMMAND
+# 8. SET DEFAULT START COMMAND
 cat > "$layersdir/launch.toml" <<EOL
 # our web process
 [[processes]]
