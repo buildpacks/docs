@@ -497,31 +497,33 @@ Select Ruby version We&amp;rsquo;ll allow buildpack users to define the…">
 <span class="nv">layersdir</span><span class="o">=</span><span class="nv">$1</span>
 <span class="nv">plan</span><span class="o">=</span><span class="nv">$3</span>
 
-<span class="c1"># ======= MODIFIED =======</span>
-<span class="c1"># 2. DOWNLOAD RUBY</span>
+<span class="c1"># 2. CREATE THE LAYER DIRECTORY</span>
 <span class="nv">rubylayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">&#34;</span>/ruby
 mkdir -p <span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>
+
+<span class="c1"># ======= MODIFIED =======</span>
+<span class="c1"># 3. DOWNLOAD RUBY</span>
 <span class="nv">ruby_version</span><span class="o">=</span><span class="k">$(</span>cat <span class="s2">&#34;</span><span class="nv">$plan</span><span class="s2">&#34;</span> <span class="p">|</span> yj -t <span class="p">|</span> jq -r <span class="s1">&#39;.entries[] | select(.name == &#34;ruby&#34;) | .metadata.version&#39;</span><span class="k">)</span>
 <span class="nb">echo</span> <span class="s2">&#34;---&gt; Downloading and extracting Ruby </span><span class="nv">$ruby_version</span><span class="s2">&#34;</span>
 <span class="nv">ruby_url</span><span class="o">=</span>https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-<span class="nv">$ruby_version</span>.tgz
 wget -q -O - <span class="s2">&#34;</span><span class="nv">$ruby_url</span><span class="s2">&#34;</span> <span class="p">|</span> tar -xzf - -C <span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>
 
-<span class="c1"># 3. MAKE RUBY AVAILABLE DURING LAUNCH</span>
-<span class="nb">echo</span> -e <span class="s1">&#39;launch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">.toml&#34;</span>
+<span class="c1"># 4. MAKE RUBY AVAILABLE DURING LAUNCH</span>
+<span class="nb">echo</span> -e <span class="s1">&#39;launch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/ruby.toml&#34;</span>
 
-<span class="c1"># 4. MAKE RUBY AVAILABLE TO THIS SCRIPT</span>
+<span class="c1"># 5. MAKE RUBY AVAILABLE TO THIS SCRIPT</span>
 <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>/bin:<span class="nv">$PATH</span>
 <span class="nb">export</span> <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="p">:+</span><span class="si">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="si">}</span><span class="p">:</span><span class="si">}</span><span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">/lib&#34;</span>
 
-<span class="c1"># 5. INSTALL BUNDLER</span>
+<span class="c1"># 6. INSTALL BUNDLER</span>
 <span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing bundler&#34;</span>
 gem install bundler --no-ri --no-rdoc
 
-<span class="c1"># 6. INSTALL GEMS</span>
+<span class="c1"># 7. INSTALL GEMS</span>
 <span class="c1"># Compares previous Gemfile.lock checksum to the current Gemfile.lock</span>
 <span class="nv">bundlerlayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler&#34;</span>
 <span class="nv">local_bundler_checksum</span><span class="o">=</span><span class="k">$((</span>sha256sum Gemfile.lock &gt;/dev/null <span class="m">2</span>&gt;<span class="o">&amp;</span><span class="m">1</span> <span class="o">||</span> <span class="nb">echo</span> <span class="s1">&#39;DOES_NOT_EXIST&#39;</span><span class="o">)</span> <span class="o">|</span> cut <span class="o">-</span>d <span class="s1">&#39; &#39;</span> <span class="o">-</span>f <span class="m">1</span><span class="o">)</span>
-<span class="nv">remote_bundler_checksum</span><span class="o">=</span><span class="k">$(</span>cat <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">.toml&#34;</span> <span class="p">|</span> yj -t <span class="p">|</span> jq -r .metadata.checksum 2&gt;/dev/null <span class="o">||</span> <span class="nb">echo</span> <span class="s1">&#39;DOES_NOT_EXIST&#39;</span><span class="k">)</span>
+<span class="nv">remote_bundler_checksum</span><span class="o">=</span><span class="k">$(</span>cat <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler.toml&#34;</span> <span class="p">|</span> yj -t <span class="p">|</span> jq -r .metadata.checksum 2&gt;/dev/null <span class="o">||</span> <span class="nb">echo</span> <span class="s1">&#39;DOES_NOT_EXIST&#39;</span><span class="k">)</span>
 
 <span class="k">if</span> <span class="o">[[</span> <span class="o">-</span>f Gemfile.lock <span class="o">&amp;&amp;</span> <span class="nv">$local_bundler_checksum</span> <span class="o">==</span> <span class="nv">$remote_bundler_checksum</span> <span class="o">]]</span> <span class="p">;</span> <span class="k">then</span>
     <span class="c1"># Determine if no gem dependencies have changed, so it can reuse existing gems without running bundle install</span>
@@ -532,7 +534,7 @@ gem install bundler --no-ri --no-rdoc
     <span class="c1"># Determine if there has been a gem dependency change and install new gems to the bundler layer; re-using existing and un-changed gems</span>
     <span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing gems&#34;</span>
     mkdir <span class="o">-</span>p <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span>
-    cat &gt; <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">.toml&#34;</span> <span class="s">&lt;&lt;EOL
+    cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler.toml&#34;</span> <span class="s">&lt;&lt;EOL
 </span><span class="s">cache = true
 </span><span class="s">launch = true
 </span><span class="s">
@@ -543,7 +545,7 @@ gem install bundler --no-ri --no-rdoc
 
 <span class="k">fi</span>
 
-<span class="c1"># 7. SET DEFAULT START COMMAND</span>
+<span class="c1"># 8. SET DEFAULT START COMMAND</span>
 cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt;EOL
 </span><span class="s"># our web process
 </span><span class="s">[[processes]]

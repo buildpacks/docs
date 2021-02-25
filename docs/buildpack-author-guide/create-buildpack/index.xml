@@ -88,7 +88,7 @@ for i in 0..5 puts &amp;#34;Running a worker task...&amp;#34; end After building
       <description>We can improve performance by caching dependencies between builds, only re-downloading when necessary. To begin, let&amp;rsquo;s create a cacheable bundler layer.
 Creating the bundler layer To do this, replace the following lines in the build script:
 echo &amp;#34;---&amp;gt; Installing gems&amp;#34; bundle install with the following:
-echo &amp;#34;---&amp;gt; Installing gems&amp;#34; bundlerlayer=&amp;#34;$layersdir/bundler&amp;#34; mkdir -p &amp;#34;$bundlerlayer&amp;#34; echo -e &amp;#39;cache = true\nlaunch = true&amp;#39; &amp;gt; &amp;#34;$bundlerlayer.toml&amp;#34; bundle config set --local path &amp;#34;$bundlerlayer&amp;#34; &amp;amp;&amp;amp; bundle install &amp;amp;&amp;amp; bundle binstubs --all --path &amp;#34;$bundlerlayer/bin&amp;#34; Your full ruby-buildpack/bin/build script should now look like the following:</description>
+echo &amp;#34;---&amp;gt; Installing gems&amp;#34; bundlerlayer=&amp;#34;$layersdir/bundler&amp;#34; mkdir -p &amp;#34;$bundlerlayer&amp;#34; echo -e &amp;#39;cache = true\nlaunch = true&amp;#39; &amp;gt; &amp;#34;$layersdir/bundler.toml&amp;#34; bundle config set --local path &amp;#34;$bundlerlayer&amp;#34; &amp;amp;&amp;amp; bundle install &amp;amp;&amp;amp; bundle binstubs --all --path &amp;#34;$bundlerlayer/bin&amp;#34; Your full ruby-buildpack/bin/build script should now look like the following:</description>
     </item>
     
     <item>
