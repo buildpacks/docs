@@ -19,5 +19,14 @@
       <description>&lt;p&gt;Creating a custom &lt;a href=&#34;https://buildpacks.io/docs/concepts/components/builder/&#34;&gt;builder&lt;/a&gt; allows you to control what buildpacks are used and what image apps are based on.&lt;/p&gt;</description>
     </item>
     
+    <item>
+      <title>Create a stack</title>
+      <link>https://buildpacks.io/docs/operator-guide/create-a-stack/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/operator-guide/create-a-stack/</guid>
+      <description>&lt;p&gt;Creating a custom &lt;a href=&#34;https://buildpacks.io/docs/concepts/components/stack/&#34;&gt;stack&lt;/a&gt; allows you to configure the base images for the build-time environment for your &lt;a href=&#34;https://buildpacks.io/docs/concepts/components/builder/&#34;&gt;builder&lt;/a&gt; and the run-time for your application.&lt;/p&gt;</description>
+    </item>
+    
   </channel>
 </rss>

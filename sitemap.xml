@@ -51,6 +51,10 @@
   </url>
   
   <url>
+    <loc>https://buildpacks.io/docs/operator-guide/create-a-stack/</loc>
+  </url>
+  
+  <url>
     <loc>https://buildpacks.io/docs/concepts/operations/</loc>
   </url>
   
