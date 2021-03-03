@@ -46,9 +46,9 @@ Run Images:
   cnbs/sample-stack-run:alpine
 
 Buildpacks:
-  ID                             VERSION
-  samples/java-maven             0.0.1
-  samples/hello-processes        0.0.1
+  ID                             VERSION           HOMEPAGE
+  samples/java-maven             0.0.1             https://github.com/buildpacks/samples/tree/main/buildpacks/java-maven
+  samples/hello-processes        0.0.1             https://github.com/buildpacks/samples/tree/main/buildpacks/hello-process
 
 Processes:
   TYPE                 SHELL        COMMAND                                                     ARGS
