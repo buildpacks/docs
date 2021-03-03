@@ -19,10 +19,8 @@ A [builder][builder] configuration schema is as follows:
   - **`version`** _(string, optional)_\
     The version of the buildpack. Must match version specified in buildpack's `buildpack.toml` file.
 
-  - The location of the buildpack. Must be **one** of the following:
-
-      - **`uri`** _(string)_\
-        A URL or path to an [archive](#supported-archives), a packaged buildpack (saved as a `.cnb` file), or a directory. If path is relative, it must be relative to the `builder.toml`.
+  - **`uri`** _(string)_\
+      A URL or path to an [archive](#supported-archives), a packaged buildpack (saved as a `.cnb` file), or a directory. If path is relative, it must be relative to the `builder.toml`.
 
 - #### `order` _(list, required)_
   A list of buildpack groups. This list determines the order in which groups of buildpacks
