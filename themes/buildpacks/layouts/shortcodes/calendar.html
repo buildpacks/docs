@@ -87,16 +87,16 @@
 
 <div id='calendar-view' class="calendar"></div>
 <div class="row pt-3 small">
-    <div class='col-md-6'>
+    <div class='col-md-4'>
         <span class="font-italic text-muted">
             * Events displayed in local time.
         </span>
     </div>
-    <div class='col-md-6 text-right d-none d-xl-block'>
+    <div class='col-md-8 text-right d-none d-xl-block'>
         <span>
             Download events as <code>.ics</code>:
         </span>
-        <ul class="d-inline">
+        <ul class="ml-0 d-inline">
             {{- range $calData := $.Site.Data.calendar.subcalendars }}
             <li class="d-inline text-white rounded px-2 py-1" style="background-color: {{ $calData.color }};">
                 <a style="text-decoration: none; white-space: nowrap;"
