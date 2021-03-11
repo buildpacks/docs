@@ -1,0 +1,76 @@
+<div id="talks" class="px-2">
+  <div class="row border">
+    <div id="talks-player" class="col-md-8 px-0">
+      <!-- https://css-tricks.com/aspect-ratio-boxes/#the-core-concept-padding-in-percentages-is-based-on-width -->
+      <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+        <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;"
+          allowfullscreen></iframe>
+      </div>
+    </div>
+    <div id="talks-playlist" class="col-md-4 px-0">
+      <!-- https://css-tricks.com/aspect-ratio-boxes/#the-core-concept-padding-in-percentages-is-based-on-width -->
+      <div style="position: relative; padding-bottom: 109.25%; height: 0; overflow: auto;">
+        {{ range $i, $talk := $.Site.Data.talks }}
+        <div data-talk-index="{{$i}}" class="border-bottom pl-3 pr-1 py-1" style="overflow-y: auto;">
+          <div class="talks-name small font-weight-bold">{{ $talk.name }}</div>
+          <div class="talks-name small font-italic">
+            {{ range $i, $presenter := $talk.presenters }}
+            {{if ne $i 0}} & {{ end }}
+            <span style="font-size: 0.8rem; white-space:nowrap;">{{$presenter}}</span>
+            {{ end }}
+          </div>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+  <div class="row p-2">
+    <div>
+      <div class="font-weight-bold">Description</div>
+      <div id="talk-description"></div>
+    </div>
+  </div>
+  <div class="row p-2">
+    <div>
+      <div class="font-weight-bold">Resources</div>
+      <div id="talk-resources"></div>
+    </div>
+  </div>
+</div>
+
+<script type="application/javascript">
+  let talks = {{ $.Site.Data.talks | jsonify | safeJS }};
+
+  $(function () {
+    let $talkDescription = $("#talk-description");
+    let $talkResources = $("#talk-resources");
+
+    $("#talks-playlist div[data-talk-index]").on('click', function () {
+      let index = $(this).attr('data-talk-index');
+      let talk = talks[index];
+
+      // update video player
+      let $video_player = $("#talks-player iframe");
+      let url = "https://www.youtube.com/embed/" + talk.youtube_id + "?autoplay=0&modestbranding=1&rel=0&iv_load_policy=3&controls=1";
+      if (url != $video_player.attr("src")) {
+        $video_player.attr("src", url);
+        $video_player.attr("title", talk.name);
+      }
+
+      // populate description
+      $talkDescription.empty().html(talk.description);
+
+      // populate resources
+      $talkResources.empty();
+      (talk.resources || []).forEach(resource => {
+        $talkResources.append(`
+        <a class="d-inline-block button-light button rounded border p-1" href="${resource.url}" target="_blank">
+          <i class="fas fa-${resource.icon}"></i> ${resource.name}
+        </a>
+        `);
+      });
+    });
+
+    $("#talks-playlist div[data-talk-index]")[0].click();
+  });
+</script>
