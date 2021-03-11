@@ -482,7 +482,7 @@ mkdir ruby-buildpack buildpack.toml You will now need a buildpack.toml to descri
 
 <span class="c"># Buildpack ID and metadata</span>
 <span class="p">[</span><span class="nx">buildpack</span><span class="p">]</span>
-<span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;com.examples.buildpacks.ruby&#34;</span>
+<span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;examples/ruby&#34;</span>
 <span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;0.0.1&#34;</span>
 <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Ruby Buildpack&#34;</span>
 
@@ -524,7 +524,7 @@ mkdir ruby-buildpack buildpack.toml You will now need a buildpack.toml to descri
 <p>After running the command, you should see that it failed to detect, as the <code>detect</code> script is currently written to simply error out.</p>
 <!-- test:assert=contains -->
 <pre><code>===&gt; DETECTING
-[detector] err:  com.examples.buildpacks.ruby@0.0.1 (1)
+[detector] err:  examples/ruby@0.0.1 (1)
 [detector] ERROR: No buildpack groups passed detection.
 [detector] ERROR: failed to detect: buildpack(s) failed with err
 </code></pre><hr>

@@ -32,7 +32,7 @@ source &amp;#34;https://rubygems.org&amp;#34; git_source(:github) {|repo_name| &
 Let&amp;rsquo;s create the directory where your buildpack will live:
 mkdir ruby-buildpack buildpack.toml You will now need a buildpack.toml to describe our buildpack.
 Create the ruby-buildpack/buildpack.toml file and copy the following into it:
-# Buildpack API version api = &amp;#34;0.5&amp;#34; # Buildpack ID and metadata [buildpack] id = &amp;#34;com.examples.buildpacks.ruby&amp;#34; version = &amp;#34;0.0.1&amp;#34; name = &amp;#34;Ruby Buildpack&amp;#34; # Stacks that the buildpack will work with [[stacks]] id = &amp;#34;io.</description>
+# Buildpack API version api = &amp;#34;0.5&amp;#34; # Buildpack ID and metadata [buildpack] id = &amp;#34;examples/ruby&amp;#34; version = &amp;#34;0.0.1&amp;#34; name = &amp;#34;Ruby Buildpack&amp;#34; # Stacks that the buildpack will work with [[stacks]] id = &amp;#34;io.</description>
     </item>
     
     <item>

@@ -534,7 +534,7 @@ cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span cl
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 </code></pre></div><p>You will see something similar to the following during the <code>EXPORTING</code> phase:</p>
 <!-- test:assert=contains -->
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">[exporter] Adding layer &#39;com.examples.buildpacks.ruby:bundler&#39;
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">[exporter] Adding layer &#39;examples/ruby:bundler&#39;
 </code></pre></div><h2 id="caching-dependencies">Caching dependencies</h2>
 <p>Now, let&rsquo;s implement the caching logic. We&rsquo;ll first need to create a <code>ruby-sample-app/Gemfile.lock</code> file with the contents given below:</p>
 <blockquote>
