@@ -219,6 +219,10 @@
   </url>
   
   <url>
+    <loc>https://buildpacks.io/docs/tools/kpack/</loc>
+  </url>
+  
+  <url>
     <loc>https://buildpacks.io/docs/reference/spec/migration/</loc>
   </url>
   
