@@ -498,28 +498,143 @@
 <h2 id="project-roadmap">Project Roadmap</h2>
 <p>This is a community driven project and our roadmap is publicly available on our <a href="https://github.com/orgs/buildpacks/projects/1">Github page</a>. We encourage you to contribute with feature requests.</p>
 <hr>
-<h1 id="additional-resources">Additional Resources</h1>
-<h2 id="helpful-videos">Helpful Videos</h2>
-<p><a href="https://www.youtube.com/watch?v=SK6e_ZatOaw">Intro to Cloud Native Buildpacks (KubeCon NA 2019)</a></p>
-<ul>
-<li>Terence and Emily discuss how buildpacks work, why the project was created, and give some demos</li>
-</ul>
-<p><a href="https://www.youtube.com/watch?v=j9Ak5YLrihU">Deep Dive: Cloud Native Buildpacks (KubeCon NA 2019)</a></p>
-<ul>
-<li>Stephen and Joe describe why you need a buildpack, how to create one, and what you&rsquo;ll gain from using them</li>
-</ul>
-<p><a href="https://www.youtube.com/watch?v=J2SXkmOo8iQ">Pack to the Future: Cloud Native Buildpacks on k8s (Spring One 2019)</a></p>
-<ul>
-<li>Emily and Joe talk about how to use the Pack CLI</li>
-</ul>
-<p><a href="https://www.youtube.com/watch?v=J6zn3WRqJko">Buildpacks Can Be Better</a></p>
-<ul>
-<li>Stephen and Tyler present at the 2018 Cloud Foundry Summit and discuss the problems posed by poorly structured Dockerfiles, the solution buildpacks offer, and recent innovations in the buildpacks model (including OCI images!)</li>
-</ul>
-<p><a href="https://www.youtube.com/watch?v=spW9ZlJpobM">The Future of Opinionated Buildpacks</a></p>
-<ul>
-<li>Emily and Stephen discuss the advantages of OCI images and give a demo using a basic node app</li>
-</ul>
+<h1 id="talks">Talks</h1>
+<div id="talks" class="px-2">
+  <div class="row border">
+    <div id="talks-player" class="col-md-8 px-0">
+      
+      <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+        <iframe style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;"
+          allowfullscreen></iframe>
+      </div>
+    </div>
+    <div id="talks-playlist" class="col-md-4 px-0">
+      
+      <div style="position: relative; padding-bottom: 109.25%; height: 0; overflow: auto;">
+        
+        <div data-talk-index="0" class="talk border-bottom pl-2 pr-1 py-1 pointer">
+          <div class="small font-weight-bold">Intro: Cloud Native Buildpacks</div>
+          <div class="small font-italic">
+            
+            
+            <span class="talks-presenter">Terence Lee, Heroku</span>
+            
+             & 
+            <span class="talks-presenter">Emily Casey, Pivotal</span>
+            
+          </div>
+        </div>
+        
+        <div data-talk-index="1" class="talk border-bottom pl-2 pr-1 py-1 pointer">
+          <div class="small font-weight-bold">Deep Dive: Cloud Native Buildpacks</div>
+          <div class="small font-italic">
+            
+            
+            <span class="talks-presenter">Joe Kutner, Heroku</span>
+            
+             & 
+            <span class="talks-presenter">Stephen Levine, Pivotal</span>
+            
+          </div>
+        </div>
+        
+        <div data-talk-index="2" class="talk border-bottom pl-2 pr-1 py-1 pointer">
+          <div class="small font-weight-bold">Pack to the Future: Cloud-Native Buildpacks on k8s</div>
+          <div class="small font-italic">
+            
+            
+            <span class="talks-presenter">Emily Casey, Pivotal</span>
+            
+             & 
+            <span class="talks-presenter">Joe Kutner, Heroku</span>
+            
+          </div>
+        </div>
+        
+        <div data-talk-index="3" class="talk border-bottom pl-2 pr-1 py-1 pointer">
+          <div class="small font-weight-bold">Cloud Native Buildpacks: Containers for Everyone</div>
+          <div class="small font-italic">
+            
+            
+            <span class="talks-presenter">Danielle Adams, Heroku</span>
+            
+          </div>
+        </div>
+        
+        <div data-talk-index="4" class="talk border-bottom pl-2 pr-1 py-1 pointer">
+          <div class="small font-weight-bold">Production CI/CD w/CNBs: Tekton, Gitlab &amp; CircleCI(plus), Oh My!</div>
+          <div class="small font-italic">
+            
+            
+            <span class="talks-presenter">David Freilich, VMware</span>
+            
+             & 
+            <span class="talks-presenter">Natalie Arellano, VMware</span>
+            
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="row p-2">
+    <div>
+      <div class="font-weight-bold">Description</div>
+      <div id="talk-description"></div>
+    </div>
+  </div>
+  <div class="row p-2">
+    <div>
+      <div class="font-weight-bold">Resources</div>
+      <div id="talk-resources"></div>
+    </div>
+  </div>
+</div>
+
+<script type="application/javascript">
+  let talks = [{"description":"You're great at running containers but you shouldn't have to be great at building them. In this talk, you'll learn about Cloud Native Buildpacks, a higher-level abstraction for building apps compared to Dockerfiles. Buildpacks are a standardized tool for creating images in a secure, reproducible, and efficient manner. As an app developer, you don't need to know best practices around ordering commands for layer reuse. As an operator, you don't need to worry about exposing developers to the responsibilities that come with Dockerfile. Come learn how buildpacks meet developers at their source code, automate the delivery of both OS-level and application-level dependency upgrades, and help you efficiently handle day-2 app operations.","name":"Intro: Cloud Native Buildpacks","presenters":["Terence Lee, Heroku","Emily Casey, Pivotal"],"resources":[{"icon":"file-powerpoint","name":"Slides","url":"https://docs.google.com/presentation/d/14cjPH520VGx9aGi4rHRIqgl7RHdUmCRj6PYFEBINPhs/view"}],"year":2019,"youtube_id":"SK6e_ZatOaw"},{"description":"Learn why you need a buildpack and how to create one. We'll take advantage of caching and Docker layers to speed up rebuilds and deploys. Unlike Dockerfiles, buildpacks are composable. Finally, you'll learn how to rebase your application layers on a new image. This allow operators to efficiently handle the delivery of OS-level dependency upgrades. ","name":"Deep Dive: Cloud Native Buildpacks","presenters":["Joe Kutner, Heroku","Stephen Levine, Pivotal"],"resources":[{"icon":"file-powerpoint","name":"Slides","url":"https://docs.google.com/presentation/d/14cjPH520VGx9aGi4rHRIqgl7RHdUmCRj6PYFEBINPhs/view"}],"youtube_id":"j9Ak5YLrihU"},{"description":"Are you a developer that would rather build features than maintain Dockerfiles? Is your organization excited about Kubernetes but worried about patching vulnerable dependencies across a great number of containers? In this talk, you’ll learn how to use the pack CLI to go from source to image in seconds and patch a pod even faster. Cloud Foundry and Heroku users have long appreciated the developer experience and security guarantees provided by buildpacks. Cloud-Native Buildpacks (a CNCF sandbox project) represents a generational leap in buildpacks, bringing the power of buildpacks to k8s and beyond.","name":"Pack to the Future: Cloud-Native Buildpacks on k8s","presenters":["Emily Casey, Pivotal","Joe Kutner, Heroku"],"resources":[{"icon":"file-powerpoint","name":"Slides","url":"https://docs.google.com/presentation/d/14rkLA2hn3nVu_liiW6Y7hy3hSsnz1HueEdLkhvChONM/view"}],"year":2019,"youtube_id":"J2SXkmOo8iQ"},{"description":"Buildpacks are the core of Heroku - they lower the operational burden of creating and maintaining application environments. Cloud Native Buildpacks combine Heroku’s seamless developer experience with modern container standards, making it easy to build Docker images from Node.js source code. In this talk, Node developers can learn how to perform both OS and application-level upgrades, create Docker images without Dockerfiles, and run containerized Node.js apps with little configuration. (Docker experience not required.)","name":"Cloud Native Buildpacks: Containers for Everyone","presenters":["Danielle Adams, Heroku"],"resources":[{"icon":"file-powerpoint","name":"Slides","url":"https://slides.com/danielleadams/cnbs-node-js-interactive-19"}],"year":2019,"youtube_id":"-u5FIbi3Gs8"},{"description":"Dive into some new functionality of Cloud Native Buildpacks which can be powerful in the enterprise context, such as the ability to narrowly define trusted builders, allowing developers and operators to restrict access to registry credentials, as well as the ability to create Windows images in a number of CI/CD systems, including Tekton, Gitlab and CircleCI.","name":"Production CI/CD w/CNBs: Tekton, Gitlab \u0026 CircleCI(plus), Oh My!","presenters":["David Freilich, VMware","Natalie Arellano, VMware"],"resources":[{"icon":"file-powerpoint","name":"Slides","url":"https://docs.google.com/presentation/d/1vDv33oHU277mh6oCP7vBqQomMpPFIuzSmMTtfaQyBoY/view"}],"year":2020,"youtube_id":"RNN8XwRWGjk"}];
+
+  $(function () {
+    let $talkDescription = $("#talk-description");
+    let $talkResources = $("#talk-resources");
+
+    $("#talks-playlist div[data-talk-index]").on('click', function () {
+      $el = $(this);
+      let index = $el.attr('data-talk-index');
+      let talk = talks[index];
+
+      
+      $("#talks-playlist div[data-talk-index]").each(function() {
+        $(this).attr('data-active', 'false');
+      })
+      $(this).attr('data-active', 'true');
+
+      
+      let $video_player = $("#talks-player iframe");
+      let url = "https://www.youtube.com/embed/" + talk.youtube_id + "?autoplay=0&modestbranding=1&rel=0&iv_load_policy=3&controls=1";
+      if (url != $video_player.attr("src")) {
+        $video_player.attr("src", url);
+        $video_player.attr("title", talk.name);
+      }
+
+      
+      $talkDescription.empty().html(talk.description);
+
+      
+      $talkResources.empty();
+      (talk.resources || []).forEach(resource => {
+        $talkResources.append(`
+        <a class="d-inline-block button-light button rounded border p-1" href="${resource.url}" target="_blank">
+          <i class="fas fa-${resource.icon}"></i> ${resource.name}
+        </a>
+        `);
+      });
+    });
+
+    $("#talks-playlist div[data-talk-index]")[0].click();
+  });
+</script>
+<hr>
 
 
         

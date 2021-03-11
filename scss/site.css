@@ -1403,6 +1403,20 @@ Quote
     border-color: #47529E;
     color: #242960; }
 
+/**********************************
+
+Talks Widget
+
+**********************************/
+.talks-presenter {
+  font-size: 0.8rem;
+  white-space: nowrap; }
+
+.talk {
+  border-left: 6px solid transparent; }
+  .talk[data-active="true"] {
+    border-left-color: #DF0A6B; }
+
 ul.list-circle > li {
   list-style-type: circle !important; }
 
@@ -1455,3 +1469,6 @@ img {
 
 .opacity-100 {
   opacity: 1; }
+
+.pointer {
+  cursor: pointer; }
