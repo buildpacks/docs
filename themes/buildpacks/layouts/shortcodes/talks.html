@@ -11,12 +11,12 @@
       <!-- https://css-tricks.com/aspect-ratio-boxes/#the-core-concept-padding-in-percentages-is-based-on-width -->
       <div style="position: relative; padding-bottom: 109.25%; height: 0; overflow: auto;">
         {{ range $i, $talk := $.Site.Data.talks }}
-        <div data-talk-index="{{$i}}" class="border-bottom pl-3 pr-1 py-1" style="overflow-y: auto;">
-          <div class="talks-name small font-weight-bold">{{ $talk.name }}</div>
-          <div class="talks-name small font-italic">
+        <div data-talk-index="{{$i}}" class="talk border-bottom pl-2 pr-1 py-1 pointer">
+          <div class="small font-weight-bold">{{ $talk.name }}</div>
+          <div class="small font-italic">
             {{ range $i, $presenter := $talk.presenters }}
             {{if ne $i 0}} & {{ end }}
-            <span style="font-size: 0.8rem; white-space:nowrap;">{{$presenter}}</span>
+            <span class="talks-presenter">{{$presenter}}</span>
             {{ end }}
           </div>
         </div>
@@ -46,8 +46,15 @@
     let $talkResources = $("#talk-resources");
 
     $("#talks-playlist div[data-talk-index]").on('click', function () {
-      let index = $(this).attr('data-talk-index');
+      $el = $(this);
+      let index = $el.attr('data-talk-index');
       let talk = talks[index];
+
+      // set active talk in playlist
+      $("#talks-playlist div[data-talk-index]").each(function() {
+        $(this).attr('data-active', 'false');
+      })
+      $(this).attr('data-active', 'true');
 
       // update video player
       let $video_player = $("#talks-player iframe");

@@ -1,0 +1,19 @@
+/**********************************
+
+Talks Widget
+
+**********************************/
+
+.talks-presenter {
+  font-size: 0.8rem;
+  white-space:nowrap;
+}
+
+.talk {
+  border-left: 6px solid transparent;
+
+  &[data-active="true"] {
+    border-left-color: $pink;
+  }
+}
+
