@@ -27,7 +27,7 @@ api = "0.5"
 
 # Buildpack ID and metadata
 [buildpack]
-id = "com.examples.buildpacks.ruby"
+id = "examples/ruby"
 version = "0.0.1"
 name = "Ruby Buildpack"
 
@@ -104,7 +104,7 @@ After running the command, you should see that it failed to detect, as the `dete
 <!-- test:assert=contains -->
 ```
 ===> DETECTING
-[detector] err:  com.examples.buildpacks.ruby@0.0.1 (1)
+[detector] err:  examples/ruby@0.0.1 (1)
 [detector] ERROR: No buildpack groups passed detection.
 [detector] ERROR: failed to detect: buildpack(s) failed with err
 ```
