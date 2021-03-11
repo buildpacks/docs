@@ -27,8 +27,8 @@ Run Images:
   cnbs/sample-stack-run:bionic
 
 Buildpacks:
-  ID                                  VERSION
-  com.examples.buildpacks.ruby        0.0.1
+  ID                   VERSION
+  examples/ruby        0.0.1
 
 Processes:
   TYPE                 SHELL        COMMAND                        ARGS
@@ -160,7 +160,7 @@ You should find that the included `ruby` version is `2.5.0` as expected.
         "version": "2.5.0"
       },
       "buildpacks": {
-        "id": "com.examples.buildpacks.ruby",
+        "id": "examples/ruby",
         "version": "0.0.1"
       }
     }

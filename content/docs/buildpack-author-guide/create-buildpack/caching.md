@@ -92,7 +92,7 @@ You will see something similar to the following during the `EXPORTING` phase:
 
 <!-- test:assert=contains -->
 ```text
-[exporter] Adding layer 'com.examples.buildpacks.ruby:bundler'
+[exporter] Adding layer 'examples/ruby:bundler'
 ```
 
 ## Caching dependencies
