@@ -57,8 +57,8 @@ docker pull index.docker.io/buildpack-examples/cache-image-example
 docker inspect index.docker.io/buildpack-examples/cache-image-example
 
 #cache image inspect
-docker pull index.docker.io/buildpacks-examples/maven-cache-image:latest
-docker inspect index.docker.io/buildpacks-examples/maven-cache-image:latest
+docker pull index.docker.io/buildpack-examples/maven-cache-image:latest
+docker inspect index.docker.io/buildpack-examples/maven-cache-image:latest
 ```
 
 The cache image we produced may now be used by builds on other machines. Note these
