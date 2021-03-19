@@ -498,8 +498,8 @@ docker pull index.docker.io/buildpack-examples/cache-image-example
 docker inspect index.docker.io/buildpack-examples/cache-image-example
 
 #cache image inspect
-docker pull index.docker.io/buildpacks-examples/maven-cache-image:latest
-docker inspect index.docker.io/buildpacks-examples/maven-cache-image:latest
+docker pull index.docker.io/buildpack-examples/maven-cache-image:latest
+docker inspect index.docker.io/buildpack-examples/maven-cache-image:latest
 </code></pre><p>The cache image we produced may now be used by builds on other machines. Note these
 builds may also update the specified <code>cache-image</code>.</p>
 <p>The following command will restore data for the <code>samples/java-maven:maven_m2</code> layer from the cache image.</p>
