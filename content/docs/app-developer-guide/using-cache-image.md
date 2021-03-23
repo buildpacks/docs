@@ -36,7 +36,7 @@ Next we trust the `cnbs/sample-builder:bionic` builder
 pack config trusted-builders add cnbs/sample-builder:bionic
 ```
 
-To build an the `index.docker.io/buildpack-examples/cache-image-example` application image
+To build the `index.docker.io/buildpack-examples/cache-image-example` application image
  and the `index.docker.io/buildpack-examples/maven-cache-image:latest` cache image
  we may run the following 
 
