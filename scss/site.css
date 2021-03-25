@@ -301,6 +301,9 @@ Colors
 .bg-transparent {
   background-color: transparent; }
 
+.bg-green {
+  background-color: #1bb9a5; }
+
 /**********************************
 
 Base
@@ -1027,6 +1030,9 @@ Button
 
 .button.download-button::before {
   background-image: url("/images/download-icon.svg"); }
+
+.button.learn-button::before {
+  background-image: url("/images/learn-icon.svg"); }
 
 .button.github-button::before {
   background-image: url("/images/github-mark.svg"); }

@@ -13,6 +13,7 @@
       
       <guid>https://buildpacks.io/docs/app-journey/</guid>
       <description>Pack for the journey In this tutorial, we&amp;rsquo;ll explain how to use pack and buildpacks to create a runnable app image from source code.
+Learn on Katacoda 
 In order to run the build process in an isolated fashion, pack uses Docker. That means you&amp;rsquo;ll need to make sure you have both docker and pack installed:
 Install Docker 
 Install pack 
