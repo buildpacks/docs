@@ -52,26 +52,8 @@ This is a community driven project and our roadmap is publicly available on our 
 
 ---
 
-# Additional Resources
+# Talks
 
-## Helpful Videos
+{{< talks >}}
 
-[Intro to Cloud Native Buildpacks (KubeCon NA 2019)](https://www.youtube.com/watch?v=SK6e_ZatOaw)
-
-  - Terence and Emily discuss how buildpacks work, why the project was created, and give some demos
-
-[Deep Dive: Cloud Native Buildpacks (KubeCon NA 2019)](https://www.youtube.com/watch?v=j9Ak5YLrihU)
-
-  - Stephen and Joe describe why you need a buildpack, how to create one, and what you'll gain from using them
-
-[Pack to the Future: Cloud Native Buildpacks on k8s (Spring One 2019)](https://www.youtube.com/watch?v=J2SXkmOo8iQ)
-
-  - Emily and Joe talk about how to use the Pack CLI
-
-[Buildpacks Can Be Better](https://www.youtube.com/watch?v=J6zn3WRqJko)
-
-  - Stephen and Tyler present at the 2018 Cloud Foundry Summit and discuss the problems posed by poorly structured Dockerfiles, the solution buildpacks offer, and recent innovations in the buildpacks model (including OCI images!)
-
-[The Future of Opinionated Buildpacks](https://www.youtube.com/watch?v=spW9ZlJpobM)
-
-  - Emily and Stephen discuss the advantages of OCI images and give a demo using a basic node app
+---

@@ -3,12 +3,16 @@ id: ksxw26c3km72mq3imn
 # teamup token
 token: 2144578740eb908ea5b160b649d25300e559a59522f8b528757cf6e75381ab88
 subcalendars:
-  - # teamup id
-    id: 9046533
-    # human readable name
+  # format:
+  #   - id: teamup id
+  #   - name: human readable name
+  #   - color: html color of events on calendar
+  - id: 9330130
+    name: Office Hours
+    color: '#2951b9'
+  - id: 9046533
     name: Sub-Team Syncs
-    # html color of events on calendar
-    color: '#5a619b'
+    color: '#542382'
   - id: 9046534
     name: Working Group
-    color: '#df166c'
+    color: '#d96fbf'

@@ -27,15 +27,33 @@ You can install the most recent version of the `pack` CLI (version **{{< pack-ve
 
 {{< pack-install >}}
 
+#### RCs
+Prior to publishing releases, we publish RC (release candidate) builds of `pack`. You can install those by downloading the releases from the [releases page on GitHub][github-releases].
 
-##### Auto-completion
+#### Auto-completion
 
-If you are using `bash`, you can configure your `bash` shell to load completions for each session. 
+`pack` supports shell completions for the following shells -
 
-Add the following to your `.bashrc` or `.bash_profile`:
+* `bash`
+* `fish`
+* `zsh`
+
+To configure your `bash` shell to load completions for each session, add the following to your `.bashrc` or `.bash_profile`:
 
 ```bash
 . $(pack completion)
+```
+
+To configure your `fish` shell to load completions for each session, add the following to your `~/.config/fish/config.fish`:
+
+```bash
+source (pack completion --shell fish)
+```
+
+To configure your `zsh` shell to load completions for each session, add the following to your `.zshrc`:
+
+```bash
+. $(pack completion --shell zsh)
 ```
 
 ### References
@@ -61,3 +79,4 @@ go get -u github.com/buildpacks/pack
 [build]: /docs/concepts/operations/build/
 [rebase]: /docs/concepts/operations/rebase/
 [components]: /docs/concepts/components/
+[github-releases]: https://github.com/buildpacks/pack/releases

@@ -42,7 +42,7 @@ jobs:
         username: ${{ secrets.DOCKER_HUB_USER }}
         password: ${{ secrets.DOCKER_HUB_PASS }}
     - id: setup-pack
-      uses: buildpacks/github-actions/setup-pack@v4.0.0
+      uses: buildpacks/github-actions/setup-pack@v4.1.0
     - id: package
       run: |
         #!/usr/bin/env bash
@@ -50,7 +50,7 @@ jobs:
         BP_ID="$(cat buildpack.toml | yj -t | jq -r .buildpack.id)"
         VERSION="$(cat buildpack.toml | yj -t | jq -r .buildpack.version)"
         PACKAGE="${REPO}/$(echo "$BP_ID" | sed 's/\//_/g')"
-        pack package-buildpack --publish ${PACKAGE}:${VERSION}
+        pack buildpack package --publish ${PACKAGE}:${VERSION}
         DIGEST="$(crane digest ${PACKAGE}:${VERSION})"
         echo "::set-output name=bp_id::$BP_ID"
         echo "::set-output name=version::$VERSION"
@@ -59,7 +59,7 @@ jobs:
       env:
         REPO: docker.io/${{ secrets.DOCKER_HUB_USER }}
     - id: register
-      uses: docker://ghcr.io/buildpacks/actions/registry/request-add-entry:4.0.0
+      uses: docker://ghcr.io/buildpacks/actions/registry/request-add-entry:4.1.0
       with:
         token:   ${{ secrets.PUBLIC_REPO_TOKEN }}
         id:      ${{ steps.package.outputs.bp_id }}

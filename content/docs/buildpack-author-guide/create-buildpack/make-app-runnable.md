@@ -32,30 +32,32 @@ echo "---> Ruby Buildpack"
 # 1. GET ARGS
 layersdir=$1
 
-# 2. DOWNLOAD RUBY
-echo "---> Downloading and extracting Ruby"
+# 2. CREATE THE LAYER DIRECTORY
 rubylayer="$layersdir"/ruby
 mkdir -p "$rubylayer"
+
+# 3. DOWNLOAD RUBY
+echo "---> Downloading and extracting Ruby"
 ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-2.5.1.tgz
 wget -q -O - "$ruby_url" | tar -xzf - -C "$rubylayer"
 
-# 3. MAKE RUBY AVAILABLE DURING LAUNCH
-echo -e 'launch = true' > "$rubylayer.toml"
+# 4. MAKE RUBY AVAILABLE DURING LAUNCH
+echo -e 'launch = true' > "$layersdir/ruby.toml"
 
-# 4. MAKE RUBY AVAILABLE TO THIS SCRIPT
+# 5. MAKE RUBY AVAILABLE TO THIS SCRIPT
 export PATH="$rubylayer"/bin:$PATH
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}"$rubylayer/lib"
 
-# 5. INSTALL BUNDLER
+# 6. INSTALL BUNDLER
 echo "---> Installing bundler"
 gem install bundler --no-ri --no-rdoc
 
-# 6. INSTALL GEMS
+# 7. INSTALL GEMS
 echo "---> Installing gems"
 bundle install
 
 # ========== ADDED ===========
-# 7. SET DEFAULT START COMMAND
+# 8. SET DEFAULT START COMMAND
 cat > "$layersdir/launch.toml" <<EOL
 [[processes]]
 type = "web"

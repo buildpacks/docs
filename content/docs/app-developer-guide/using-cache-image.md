@@ -36,7 +36,7 @@ Next we trust the `cnbs/sample-builder:bionic` builder
 pack config trusted-builders add cnbs/sample-builder:bionic
 ```
 
-To build an the `index.docker.io/buildpack-examples/cache-image-example` application image
+To build the `index.docker.io/buildpack-examples/cache-image-example` application image
  and the `index.docker.io/buildpack-examples/maven-cache-image:latest` cache image
  we may run the following 
 
@@ -57,8 +57,8 @@ docker pull index.docker.io/buildpack-examples/cache-image-example
 docker inspect index.docker.io/buildpack-examples/cache-image-example
 
 #cache image inspect
-docker pull index.docker.io/buildpacks-examples/maven-cache-image:latest
-docker inspect index.docker.io/buildpacks-examples/maven-cache-image:latest
+docker pull index.docker.io/buildpack-examples/maven-cache-image:latest
+docker inspect index.docker.io/buildpack-examples/maven-cache-image:latest
 ```
 
 The cache image we produced may now be used by builds on other machines. Note these
