@@ -9,7 +9,7 @@
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<link rel="canonical" content="https://buildpacks.io/docs/tools/pack/cli/pack_inspect-builder/">
+<link rel="canonical" content="https://buildpacks.io/docs/tools/pack/cli/pack_builder_inspect/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
 
@@ -17,9 +17,9 @@
 
 
 
-<meta property="og:title" content="pack inspect-builder · Cloud Native Buildpacks">
+<meta property="og:title" content="pack builder inspect · Cloud Native Buildpacks">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://buildpacks.io/docs/tools/pack/cli/pack_inspect-builder/">
+<meta property="og:url" content="https://buildpacks.io/docs/tools/pack/cli/pack_builder_inspect/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
 
@@ -33,7 +33,7 @@
 
 
 
-<meta property="twitter:title" content="pack inspect-builder · Cloud Native Buildpacks">
+<meta property="twitter:title" content="pack builder inspect · Cloud Native Buildpacks">
 <meta property="twitter:card" content="summary">
 <meta property="twitter:image" content="https://buildpacks.io/images/buildpacks-social-card-square.jpg">
 <meta property="twitter:image:alt" content="Buildpacks project logo">
@@ -73,7 +73,7 @@
     });
   </script>
 
-  <title>pack inspect-builder · Cloud Native Buildpacks</title>
+  <title>pack builder inspect · Cloud Native Buildpacks</title>
 </head>
 
 <body>
@@ -272,11 +272,20 @@
       <li data-nav-id="/docs/tools/pack/cli/pack_builder_create/" class="dd-item depth-3">
         <a href="/docs/tools/pack/cli/pack_builder_create/">pack builder create</a>
       </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_builder_inspect/" class="dd-item depth-3 active">
+        <a href="/docs/tools/pack/cli/pack_builder_inspect/">pack builder inspect</a>
+      </li>
       <li data-nav-id="/docs/tools/pack/cli/pack_builder_suggest/" class="dd-item depth-3">
         <a href="/docs/tools/pack/cli/pack_builder_suggest/">pack builder suggest</a>
       </li>
       <li data-nav-id="/docs/tools/pack/cli/pack_buildpack/" class="dd-item depth-3">
         <a href="/docs/tools/pack/cli/pack_buildpack/">pack buildpack</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_buildpack_inspect/" class="dd-item depth-3">
+        <a href="/docs/tools/pack/cli/pack_buildpack_inspect/">pack buildpack inspect</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_buildpack_new/" class="dd-item depth-3">
+        <a href="/docs/tools/pack/cli/pack_buildpack_new/">pack buildpack new</a>
       </li>
       <li data-nav-id="/docs/tools/pack/cli/pack_buildpack_package/" class="dd-item depth-3">
         <a href="/docs/tools/pack/cli/pack_buildpack_package/">pack buildpack package</a>
@@ -301,6 +310,9 @@
       </li>
       <li data-nav-id="/docs/tools/pack/cli/pack_config_experimental/" class="dd-item depth-3">
         <a href="/docs/tools/pack/cli/pack_config_experimental/">pack config experimental</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_config_lifecycle-image/" class="dd-item depth-3">
+        <a href="/docs/tools/pack/cli/pack_config_lifecycle-image/">pack config lifecycle-image</a>
       </li>
       <li data-nav-id="/docs/tools/pack/cli/pack_config_pull-policy/" class="dd-item depth-3">
         <a href="/docs/tools/pack/cli/pack_config_pull-policy/">pack config pull-policy</a>
@@ -344,14 +356,8 @@
       <li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders_remove/" class="dd-item depth-3">
         <a href="/docs/tools/pack/cli/pack_config_trusted-builders_remove/">pack config trusted-builders remove</a>
       </li>
-      <li data-nav-id="/docs/tools/pack/cli/pack_inspect-builder/" class="dd-item depth-3 active">
-        <a href="/docs/tools/pack/cli/pack_inspect-builder/">pack inspect-builder</a>
-      </li>
-      <li data-nav-id="/docs/tools/pack/cli/pack_inspect-buildpack/" class="dd-item depth-3">
-        <a href="/docs/tools/pack/cli/pack_inspect-buildpack/">pack inspect-buildpack</a>
-      </li>
-      <li data-nav-id="/docs/tools/pack/cli/pack_inspect-image/" class="dd-item depth-3">
-        <a href="/docs/tools/pack/cli/pack_inspect-image/">pack inspect-image</a>
+      <li data-nav-id="/docs/tools/pack/cli/pack_inspect/" class="dd-item depth-3">
+        <a href="/docs/tools/pack/cli/pack_inspect/">pack inspect</a>
       </li>
       <li data-nav-id="/docs/tools/pack/cli/pack_rebase/" class="dd-item depth-3">
         <a href="/docs/tools/pack/cli/pack_rebase/">pack rebase</a>
@@ -448,7 +454,7 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5Bpack&#43;inspect-builder%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ftools%2Fpack%2Fcli%2Fpack_inspect-builder%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5Bpack&#43;builder&#43;inspect%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ftools%2Fpack%2Fcli%2Fpack_builder_inspect%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
@@ -458,18 +464,20 @@
 
 
         <div class="heading">
-          <h1 class="title">pack inspect-builder</h1>
+          <h1 class="title">pack builder inspect</h1>
         </div>
 
-        <h2 id="pack-inspect-builder">pack inspect-builder</h2>
+        <h2 id="pack-builder-inspect">pack builder inspect</h2>
 <p>Show information about a builder</p>
-<pre><code>pack inspect-builder &lt;builder-image-name&gt; [flags]
+<h3 id="synopsis">Synopsis</h3>
+<p>Show information about the builder provided. If no argument is provided, it will inspect the default builder, if one has been set.</p>
+<pre><code>pack builder inspect &lt;builder-image-name&gt; [flags]
 </code></pre><h3 id="examples">Examples</h3>
-<pre><code>pack inspect-builder cnbs/sample-builder:bionic
+<pre><code>pack builder inspect cnbs/sample-builder:bionic
 </code></pre><h3 id="options">Options</h3>
 <pre><code>  -d, --depth int       Max depth to display for Detection Order.
                         Omission of this flag or values &lt; 0 will display the entire tree. (default -1)
-  -h, --help            Help for 'inspect-builder'
+  -h, --help            Help for 'inspect'
   -o, --output string   Output format to display builder detail (json, yaml, toml, human-readable).
                         Omission of this flag will display as human-readable. (default &quot;human-readable&quot;)
 </code></pre><h3 id="options-inherited-from-parent-commands">Options inherited from parent commands</h3>
@@ -479,7 +487,7 @@
   -v, --verbose      Show more output
 </code></pre><h3 id="see-also">SEE ALSO</h3>
 <ul>
-<li><a href="/docs/tools/pack/cli/pack/">pack</a>	 - CLI for building apps using Cloud Native Buildpacks</li>
+<li><a href="/docs/tools/pack/cli/pack_builder/">pack builder</a>	 - Interact with builders</li>
 </ul>
 
         
@@ -490,7 +498,7 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5Bpack&#43;inspect-builder%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ftools%2Fpack%2Fcli%2Fpack_inspect-builder%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5Bpack&#43;builder&#43;inspect%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ftools%2Fpack%2Fcli%2Fpack_builder_inspect%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     

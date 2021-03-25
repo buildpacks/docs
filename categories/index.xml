@@ -5,10 +5,6 @@
     <link>https://buildpacks.io/categories/</link>
     <description>Recent content in Categories on Cloud Native Buildpacks</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    
-	<atom:link href="https://buildpacks.io/categories/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>en-us</language><atom:link href="https://buildpacks.io/categories/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

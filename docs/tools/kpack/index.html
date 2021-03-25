@@ -272,11 +272,20 @@
       <li data-nav-id="/docs/tools/pack/cli/pack_builder_create/" class="dd-item depth-3 collapse">
         <a href="/docs/tools/pack/cli/pack_builder_create/">pack builder create</a>
       </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_builder_inspect/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_builder_inspect/">pack builder inspect</a>
+      </li>
       <li data-nav-id="/docs/tools/pack/cli/pack_builder_suggest/" class="dd-item depth-3 collapse">
         <a href="/docs/tools/pack/cli/pack_builder_suggest/">pack builder suggest</a>
       </li>
       <li data-nav-id="/docs/tools/pack/cli/pack_buildpack/" class="dd-item depth-3 collapse">
         <a href="/docs/tools/pack/cli/pack_buildpack/">pack buildpack</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_buildpack_inspect/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_buildpack_inspect/">pack buildpack inspect</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_buildpack_new/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_buildpack_new/">pack buildpack new</a>
       </li>
       <li data-nav-id="/docs/tools/pack/cli/pack_buildpack_package/" class="dd-item depth-3 collapse">
         <a href="/docs/tools/pack/cli/pack_buildpack_package/">pack buildpack package</a>
@@ -301,6 +310,9 @@
       </li>
       <li data-nav-id="/docs/tools/pack/cli/pack_config_experimental/" class="dd-item depth-3 collapse">
         <a href="/docs/tools/pack/cli/pack_config_experimental/">pack config experimental</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_config_lifecycle-image/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_config_lifecycle-image/">pack config lifecycle-image</a>
       </li>
       <li data-nav-id="/docs/tools/pack/cli/pack_config_pull-policy/" class="dd-item depth-3 collapse">
         <a href="/docs/tools/pack/cli/pack_config_pull-policy/">pack config pull-policy</a>
@@ -344,14 +356,8 @@
       <li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders_remove/" class="dd-item depth-3 collapse">
         <a href="/docs/tools/pack/cli/pack_config_trusted-builders_remove/">pack config trusted-builders remove</a>
       </li>
-      <li data-nav-id="/docs/tools/pack/cli/pack_inspect-builder/" class="dd-item depth-3 collapse">
-        <a href="/docs/tools/pack/cli/pack_inspect-builder/">pack inspect-builder</a>
-      </li>
-      <li data-nav-id="/docs/tools/pack/cli/pack_inspect-buildpack/" class="dd-item depth-3 collapse">
-        <a href="/docs/tools/pack/cli/pack_inspect-buildpack/">pack inspect-buildpack</a>
-      </li>
-      <li data-nav-id="/docs/tools/pack/cli/pack_inspect-image/" class="dd-item depth-3 collapse">
-        <a href="/docs/tools/pack/cli/pack_inspect-image/">pack inspect-image</a>
+      <li data-nav-id="/docs/tools/pack/cli/pack_inspect/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_inspect/">pack inspect</a>
       </li>
       <li data-nav-id="/docs/tools/pack/cli/pack_rebase/" class="dd-item depth-3 collapse">
         <a href="/docs/tools/pack/cli/pack_rebase/">pack rebase</a>
@@ -468,21 +474,21 @@
 <h2 id="use">Use</h2>
 <p>To use <a href="https://github.com/pivotal/kpack">kpack</a> you can follow their <a href="https://github.com/pivotal/kpack/blob/master/docs/tutorial.md">tutorial</a> for details on how to create a builder and use it to create application images.
 An example <code>kpack Image</code> configuration looks like -</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>kpack.io/v1alpha1<span class="w">
-</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>Image<span class="w">
-</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>example-image<span class="w">
-</span><span class="w">  </span><span class="k">namespace</span><span class="p">:</span><span class="w"> </span>default<span class="w">
-</span><span class="w"></span><span class="k">spec</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="k">tag</span><span class="p">:</span><span class="w"> </span>&lt;DOCKER-IMAGE-TAG<span class="sd">&gt;
-</span><span class="sd">  serviceAccount: &lt;SERVICE-ACCOUNT&gt;</span><span class="w">
-</span><span class="w">  </span><span class="k">builder</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>&lt;BUILDER<span class="sd">&gt;
-</span><span class="sd">    kind: Builder</span><span class="w">
-</span><span class="w">  </span><span class="k">source</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="k">git</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span><span class="k">url</span><span class="p">:</span><span class="w"> </span>&lt;APPLICATION-SOURCE-REPOSITORY<span class="sd">&gt;
-</span><span class="sd">      revision: &lt;APPLICATION-SOURCE-REVISION&gt;</span><span class="w">
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">kpack.io/v1alpha1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Image</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">example-image</span><span class="w">
+</span><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">default</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l">&lt;DOCKER-IMAGE-TAG&gt;</span><span class="w">
+</span><span class="w">  </span><span class="nt">serviceAccount</span><span class="p">:</span><span class="w"> </span><span class="l">&lt;SERVICE-ACCOUNT&gt;</span><span class="w">
+</span><span class="w">  </span><span class="nt">builder</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">&lt;BUILDER&gt;</span><span class="w">
+</span><span class="w">    </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Builder</span><span class="w">
+</span><span class="w">  </span><span class="nt">source</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">git</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l">&lt;APPLICATION-SOURCE-REPOSITORY&gt;</span><span class="w">
+</span><span class="w">      </span><span class="nt">revision</span><span class="p">:</span><span class="w"> </span><span class="l">&lt;APPLICATION-SOURCE-REVISION&gt;</span><span class="w">
 </span></code></pre></div><p>kpack is also accompanied by a handy CLI utility called <a href="https://github.com/vmware-tanzu/kpack-cli/blob/master/docs/kp.md">kpack CLI</a> that lets you interact with kpack resources.</p>
 <h3 id="references">References</h3>
 <ul>

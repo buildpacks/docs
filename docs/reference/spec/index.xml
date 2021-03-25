@@ -5,11 +5,7 @@
     <link>https://buildpacks.io/docs/reference/spec/</link>
     <description>Recent content in Specification on Cloud Native Buildpacks</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    
-	<atom:link href="https://buildpacks.io/docs/reference/spec/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>en-us</language><atom:link href="https://buildpacks.io/docs/reference/spec/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Buildpack API</title>
       <link>https://buildpacks.io/docs/reference/spec/buildpack-api/</link>

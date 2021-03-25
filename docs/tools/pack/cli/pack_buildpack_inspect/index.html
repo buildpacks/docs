@@ -9,7 +9,7 @@
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<link rel="canonical" content="https://buildpacks.io/docs/tools/pack/cli/pack_config_trusted-builders_add/">
+<link rel="canonical" content="https://buildpacks.io/docs/tools/pack/cli/pack_buildpack_inspect/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
 
@@ -17,9 +17,9 @@
 
 
 
-<meta property="og:title" content="pack config trusted-builders add · Cloud Native Buildpacks">
+<meta property="og:title" content="pack buildpack inspect · Cloud Native Buildpacks">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://buildpacks.io/docs/tools/pack/cli/pack_config_trusted-builders_add/">
+<meta property="og:url" content="https://buildpacks.io/docs/tools/pack/cli/pack_buildpack_inspect/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
 
@@ -33,7 +33,7 @@
 
 
 
-<meta property="twitter:title" content="pack config trusted-builders add · Cloud Native Buildpacks">
+<meta property="twitter:title" content="pack buildpack inspect · Cloud Native Buildpacks">
 <meta property="twitter:card" content="summary">
 <meta property="twitter:image" content="https://buildpacks.io/images/buildpacks-social-card-square.jpg">
 <meta property="twitter:image:alt" content="Buildpacks project logo">
@@ -73,7 +73,7 @@
     });
   </script>
 
-  <title>pack config trusted-builders add · Cloud Native Buildpacks</title>
+  <title>pack buildpack inspect · Cloud Native Buildpacks</title>
 </head>
 
 <body>
@@ -281,7 +281,7 @@
       <li data-nav-id="/docs/tools/pack/cli/pack_buildpack/" class="dd-item depth-3">
         <a href="/docs/tools/pack/cli/pack_buildpack/">pack buildpack</a>
       </li>
-      <li data-nav-id="/docs/tools/pack/cli/pack_buildpack_inspect/" class="dd-item depth-3">
+      <li data-nav-id="/docs/tools/pack/cli/pack_buildpack_inspect/" class="dd-item depth-3 active">
         <a href="/docs/tools/pack/cli/pack_buildpack_inspect/">pack buildpack inspect</a>
       </li>
       <li data-nav-id="/docs/tools/pack/cli/pack_buildpack_new/" class="dd-item depth-3">
@@ -347,7 +347,7 @@
       <li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders/" class="dd-item depth-3">
         <a href="/docs/tools/pack/cli/pack_config_trusted-builders/">pack config trusted-builders</a>
       </li>
-      <li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders_add/" class="dd-item depth-3 active">
+      <li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders_add/" class="dd-item depth-3">
         <a href="/docs/tools/pack/cli/pack_config_trusted-builders_add/">pack config trusted-builders add</a>
       </li>
       <li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders_list/" class="dd-item depth-3">
@@ -454,7 +454,7 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5Bpack&#43;config&#43;trusted-builders&#43;add%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ftools%2Fpack%2Fcli%2Fpack_config_trusted-builders_add%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5Bpack&#43;buildpack&#43;inspect%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ftools%2Fpack%2Fcli%2Fpack_buildpack_inspect%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
@@ -464,19 +464,19 @@
 
 
         <div class="heading">
-          <h1 class="title">pack config trusted-builders add</h1>
+          <h1 class="title">pack buildpack inspect</h1>
         </div>
 
-        <h2 id="pack-config-trusted-builders-add">pack config trusted-builders add</h2>
-<p>Add a trusted-builders</p>
-<h3 id="synopsis">Synopsis</h3>
-<p>Trust builder.</p>
-<p>When building with this builder, all lifecycle phases will be run in a single container using the builder image.</p>
-<pre><code>pack config trusted-builders add [flags]
+        <h2 id="pack-buildpack-inspect">pack buildpack inspect</h2>
+<p>Show information about a buildpack</p>
+<pre><code>pack buildpack inspect &lt;image-name&gt; [flags]
 </code></pre><h3 id="examples">Examples</h3>
-<pre><code>pack config trusted-builders add cnbs/sample-stack-run:bionic
+<pre><code>pack buildpack inspect cnbs/sample-package:hello-universe
 </code></pre><h3 id="options">Options</h3>
-<pre><code>  -h, --help   help for add
+<pre><code>  -d, --depth int         Max depth to display for Detection Order.
+                          Omission of this flag or values &lt; 0 will display the entire tree. (default -1)
+  -h, --help              Help for 'inspect'
+  -r, --registry string   buildpack registry that may be searched
 </code></pre><h3 id="options-inherited-from-parent-commands">Options inherited from parent commands</h3>
 <pre><code>      --no-color     Disable color output
   -q, --quiet        Show less output
@@ -484,7 +484,7 @@
   -v, --verbose      Show more output
 </code></pre><h3 id="see-also">SEE ALSO</h3>
 <ul>
-<li><a href="/docs/tools/pack/cli/pack_config_trusted-builders/">pack config trusted-builders</a>	 - List, add and remove trusted builders</li>
+<li><a href="/docs/tools/pack/cli/pack_buildpack/">pack buildpack</a>	 - Interact with buildpacks</li>
 </ul>
 
         
@@ -495,7 +495,7 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5Bpack&#43;config&#43;trusted-builders&#43;add%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ftools%2Fpack%2Fcli%2Fpack_config_trusted-builders_add%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5Bpack&#43;buildpack&#43;inspect%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ftools%2Fpack%2Fcli%2Fpack_buildpack_inspect%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     

@@ -5,11 +5,7 @@
     <link>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/</link>
     <description>Recent content in Create a buildpack on Cloud Native Buildpacks</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    
-	<atom:link href="https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>en-us</language><atom:link href="https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Set up your local environment</title>
       <link>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/setup-local-environment/</link>

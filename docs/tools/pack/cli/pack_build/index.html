@@ -272,11 +272,20 @@
       <li data-nav-id="/docs/tools/pack/cli/pack_builder_create/" class="dd-item depth-3">
         <a href="/docs/tools/pack/cli/pack_builder_create/">pack builder create</a>
       </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_builder_inspect/" class="dd-item depth-3">
+        <a href="/docs/tools/pack/cli/pack_builder_inspect/">pack builder inspect</a>
+      </li>
       <li data-nav-id="/docs/tools/pack/cli/pack_builder_suggest/" class="dd-item depth-3">
         <a href="/docs/tools/pack/cli/pack_builder_suggest/">pack builder suggest</a>
       </li>
       <li data-nav-id="/docs/tools/pack/cli/pack_buildpack/" class="dd-item depth-3">
         <a href="/docs/tools/pack/cli/pack_buildpack/">pack buildpack</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_buildpack_inspect/" class="dd-item depth-3">
+        <a href="/docs/tools/pack/cli/pack_buildpack_inspect/">pack buildpack inspect</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_buildpack_new/" class="dd-item depth-3">
+        <a href="/docs/tools/pack/cli/pack_buildpack_new/">pack buildpack new</a>
       </li>
       <li data-nav-id="/docs/tools/pack/cli/pack_buildpack_package/" class="dd-item depth-3">
         <a href="/docs/tools/pack/cli/pack_buildpack_package/">pack buildpack package</a>
@@ -301,6 +310,9 @@
       </li>
       <li data-nav-id="/docs/tools/pack/cli/pack_config_experimental/" class="dd-item depth-3">
         <a href="/docs/tools/pack/cli/pack_config_experimental/">pack config experimental</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_config_lifecycle-image/" class="dd-item depth-3">
+        <a href="/docs/tools/pack/cli/pack_config_lifecycle-image/">pack config lifecycle-image</a>
       </li>
       <li data-nav-id="/docs/tools/pack/cli/pack_config_pull-policy/" class="dd-item depth-3">
         <a href="/docs/tools/pack/cli/pack_config_pull-policy/">pack config pull-policy</a>
@@ -344,14 +356,8 @@
       <li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders_remove/" class="dd-item depth-3">
         <a href="/docs/tools/pack/cli/pack_config_trusted-builders_remove/">pack config trusted-builders remove</a>
       </li>
-      <li data-nav-id="/docs/tools/pack/cli/pack_inspect-builder/" class="dd-item depth-3">
-        <a href="/docs/tools/pack/cli/pack_inspect-builder/">pack inspect-builder</a>
-      </li>
-      <li data-nav-id="/docs/tools/pack/cli/pack_inspect-buildpack/" class="dd-item depth-3">
-        <a href="/docs/tools/pack/cli/pack_inspect-buildpack/">pack inspect-buildpack</a>
-      </li>
-      <li data-nav-id="/docs/tools/pack/cli/pack_inspect-image/" class="dd-item depth-3">
-        <a href="/docs/tools/pack/cli/pack_inspect-image/">pack inspect-image</a>
+      <li data-nav-id="/docs/tools/pack/cli/pack_inspect/" class="dd-item depth-3">
+        <a href="/docs/tools/pack/cli/pack_inspect/">pack inspect</a>
       </li>
       <li data-nav-id="/docs/tools/pack/cli/pack_rebase/" class="dd-item depth-3">
         <a href="/docs/tools/pack/cli/pack_rebase/">pack rebase</a>
@@ -482,6 +488,11 @@
       --clear-cache                 Clear image's associated cache before building
   -D, --default-process string      Set the default process type. (default &quot;web&quot;)
   -d, --descriptor string           Path to the project descriptor file
+      --docker-host string          Address to docker daemon that will be exposed to the build container.
+                                    If not set (or set to empty string) the standard socket location will be used.
+                                    Special value 'inherit' may be used in which case DOCKER_HOST environment variable will be used.
+                                    This option may set DOCKER_HOST environment variable for the build container if needed.
+                                    
   -e, --env stringArray             Build-time environment variable, in the form 'VAR=VALUE' or 'VAR'.
                                     When using latter value-less form, value will be taken from current
                                       environment at the time this command is executed.
@@ -495,6 +506,7 @@
                                       environment at the time this command is executed
                                     NOTE: These are NOT available at image runtime.&quot;
   -h, --help                        Help for 'build'
+      --lifecycle-image string      Custom lifecycle image to use for analysis, restore, and export when builder is untrusted.
       --network string              Connect detect and build containers to network
   -p, --path string                 Path to app dir or zip-formatted file (defaults to current working directory)
       --publish                     Publish to registry

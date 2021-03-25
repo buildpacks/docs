@@ -5,11 +5,7 @@
     <link>https://buildpacks.io/docs/concepts/components/</link>
     <description>Recent content in Components on Cloud Native Buildpacks</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    
-	<atom:link href="https://buildpacks.io/docs/concepts/components/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>en-us</language><atom:link href="https://buildpacks.io/docs/concepts/components/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Builder</title>
       <link>https://buildpacks.io/docs/concepts/components/builder/</link>

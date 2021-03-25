@@ -5,11 +5,7 @@
     <link>https://buildpacks.io/docs/reference/spec/migration/</link>
     <description>Recent content in Migration on Cloud Native Buildpacks</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    
-	<atom:link href="https://buildpacks.io/docs/reference/spec/migration/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>en-us</language><atom:link href="https://buildpacks.io/docs/reference/spec/migration/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Buildpack API 0.4 -&gt; 0.5</title>
       <link>https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.4-0.5/</link>

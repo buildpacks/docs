@@ -5,11 +5,7 @@
     <link>https://buildpacks.io/docs/tools/</link>
     <description>Recent content in Tools on Cloud Native Buildpacks</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    
-	<atom:link href="https://buildpacks.io/docs/tools/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <language>en-us</language><atom:link href="https://buildpacks.io/docs/tools/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>CircleCI</title>
       <link>https://buildpacks.io/docs/tools/circleci/</link>

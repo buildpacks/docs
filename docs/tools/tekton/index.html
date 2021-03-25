@@ -272,11 +272,20 @@
       <li data-nav-id="/docs/tools/pack/cli/pack_builder_create/" class="dd-item depth-3 collapse">
         <a href="/docs/tools/pack/cli/pack_builder_create/">pack builder create</a>
       </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_builder_inspect/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_builder_inspect/">pack builder inspect</a>
+      </li>
       <li data-nav-id="/docs/tools/pack/cli/pack_builder_suggest/" class="dd-item depth-3 collapse">
         <a href="/docs/tools/pack/cli/pack_builder_suggest/">pack builder suggest</a>
       </li>
       <li data-nav-id="/docs/tools/pack/cli/pack_buildpack/" class="dd-item depth-3 collapse">
         <a href="/docs/tools/pack/cli/pack_buildpack/">pack buildpack</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_buildpack_inspect/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_buildpack_inspect/">pack buildpack inspect</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_buildpack_new/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_buildpack_new/">pack buildpack new</a>
       </li>
       <li data-nav-id="/docs/tools/pack/cli/pack_buildpack_package/" class="dd-item depth-3 collapse">
         <a href="/docs/tools/pack/cli/pack_buildpack_package/">pack buildpack package</a>
@@ -301,6 +310,9 @@
       </li>
       <li data-nav-id="/docs/tools/pack/cli/pack_config_experimental/" class="dd-item depth-3 collapse">
         <a href="/docs/tools/pack/cli/pack_config_experimental/">pack config experimental</a>
+      </li>
+      <li data-nav-id="/docs/tools/pack/cli/pack_config_lifecycle-image/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_config_lifecycle-image/">pack config lifecycle-image</a>
       </li>
       <li data-nav-id="/docs/tools/pack/cli/pack_config_pull-policy/" class="dd-item depth-3 collapse">
         <a href="/docs/tools/pack/cli/pack_config_pull-policy/">pack config pull-policy</a>
@@ -344,14 +356,8 @@
       <li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders_remove/" class="dd-item depth-3 collapse">
         <a href="/docs/tools/pack/cli/pack_config_trusted-builders_remove/">pack config trusted-builders remove</a>
       </li>
-      <li data-nav-id="/docs/tools/pack/cli/pack_inspect-builder/" class="dd-item depth-3 collapse">
-        <a href="/docs/tools/pack/cli/pack_inspect-builder/">pack inspect-builder</a>
-      </li>
-      <li data-nav-id="/docs/tools/pack/cli/pack_inspect-buildpack/" class="dd-item depth-3 collapse">
-        <a href="/docs/tools/pack/cli/pack_inspect-buildpack/">pack inspect-buildpack</a>
-      </li>
-      <li data-nav-id="/docs/tools/pack/cli/pack_inspect-image/" class="dd-item depth-3 collapse">
-        <a href="/docs/tools/pack/cli/pack_inspect-image/">pack inspect-image</a>
+      <li data-nav-id="/docs/tools/pack/cli/pack_inspect/" class="dd-item depth-3 collapse">
+        <a href="/docs/tools/pack/cli/pack_inspect/">pack inspect</a>
       </li>
       <li data-nav-id="/docs/tools/pack/cli/pack_rebase/" class="dd-item depth-3 collapse">
         <a href="/docs/tools/pack/cli/pack_rebase/">pack rebase</a>
@@ -502,132 +508,132 @@ a request for storage by a user.</li>
 <h4 id="41-pvcs">4.1 PVCs</h4>
 <p>Create a file (e.g. <code>resources.yml</code>), which defines two <code>PersistentVolumeClaim</code>s, one which contains the source code, and the other to serve
 as a cache between builds:</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">---<span class="w">
-</span><span class="w"></span><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>v1<span class="w">
-</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>PersistentVolumeClaim<span class="w">
-</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>buildpacks-source-pvc<span class="w">
-</span><span class="w"></span><span class="k">spec</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="k">accessModes</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span>- ReadWriteOnce<span class="w">
-</span><span class="w">  </span><span class="k">resources</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="k">requests</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span><span class="k">storage</span><span class="p">:</span><span class="w"> </span>500Mi<span class="w">
-</span><span class="w"></span>---<span class="w">
-</span><span class="w"></span><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>v1<span class="w">
-</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>PersistentVolumeClaim<span class="w">
-</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>buildpacks-cache-pvc<span class="w">
-</span><span class="w"></span><span class="k">spec</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="k">accessModes</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span>- ReadWriteOnce<span class="w">
-</span><span class="w">  </span><span class="k">resources</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="k">requests</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span><span class="k">storage</span><span class="p">:</span><span class="w"> </span>500Mi<span class="w">
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nn">---</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">PersistentVolumeClaim</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-source-pvc</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">accessModes</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="l">ReadWriteOnce</span><span class="w">
+</span><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">requests</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l">500Mi</span><span class="w">
+</span><span class="w"></span><span class="nn">---</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">PersistentVolumeClaim</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-cache-pvc</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">accessModes</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="l">ReadWriteOnce</span><span class="w">
+</span><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">requests</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l">500Mi</span><span class="w">
 </span></code></pre></div><h4 id="42-authorization">4.2 Authorization</h4>
 <blockquote>
 <p>NOTE: You don&rsquo;t need to use authorization if you are pushing to a local registry. However, if you are pushing to a
 remote registry (e.g. <code>DockerHub</code>, <code>GCR</code>), you need to add authorization</p>
 </blockquote>
 <p>Create a file (e.g. <code>auth.yml</code>) which defines the authorization secrets:</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>v1<span class="w">
-</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>Secret<span class="w">
-</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>basic-user-pass<span class="w">
-</span><span class="w">    </span><span class="k">annotations</span><span class="p">:</span><span class="w">
-</span><span class="w">        </span><span class="k">tekton.dev/docker-0</span><span class="p">:</span><span class="w"> </span>&lt;LINK<span class="w"> </span>TO<span class="w"> </span>REGISTRY<span class="p">,</span><span class="w"> </span>e.g.<span class="w"> </span>https<span class="p">:</span>//index.docker.io/v1&gt;<span class="w">
-</span><span class="w"></span><span class="k">type</span><span class="p">:</span><span class="w"> </span>kubernetes.io/basic-auth<span class="w">
-</span><span class="w"></span><span class="k">stringData</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="k">username</span><span class="p">:</span><span class="w"> </span>&lt;USERNAME<span class="sd">&gt;
-</span><span class="sd">    password: &lt;PASSWORD&gt;</span><span class="w">
-</span><span class="w"></span>---<span class="w">
-</span><span class="w"></span><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>v1<span class="w">
-</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>ServiceAccount<span class="w">
-</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>buildpacks-service-account<span class="w">
-</span><span class="w"></span><span class="k">secrets</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>basic-user-pass<span class="w">
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Secret</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">basic-user-pass</span><span class="w">
+</span><span class="w">    </span><span class="nt">annotations</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">tekton.dev/docker-0</span><span class="p">:</span><span class="w"> </span><span class="l">&lt;LINK TO REGISTRY, e.g. https://index.docker.io/v1&gt;</span><span class="w">
+</span><span class="w"></span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">kubernetes.io/basic-auth</span><span class="w">
+</span><span class="w"></span><span class="nt">stringData</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l">&lt;USERNAME&gt;</span><span class="w">
+</span><span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l">&lt;PASSWORD&gt;</span><span class="w">
+</span><span class="w"></span><span class="nn">---</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ServiceAccount</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-service-account</span><span class="w">
+</span><span class="w"></span><span class="nt">secrets</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">basic-user-pass</span><span class="w">
 </span></code></pre></div><h4 id="43-pipeline">4.3 Pipeline</h4>
 <p>Create a file (e.g. <code>pipeline.yml</code>) which defines the <code>Pipeline</code>, and relevant resources:</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>tekton.dev/v1alpha1<span class="w">
-</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>PipelineResource<span class="w">
-</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>buildpacks-app-image<span class="w"> 
-</span><span class="w"></span><span class="k">spec</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="k">type</span><span class="p">:</span><span class="w"> </span>image<span class="w">
-</span><span class="w">  </span><span class="k">params</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>url<span class="w">
-</span><span class="w">      </span><span class="k">value</span><span class="p">:</span><span class="w"> </span>&lt;REGISTRY/IMAGE<span class="w"> </span>NAME<span class="p">,</span><span class="w"> </span>eg<span class="w"> </span>gcr.io/test/image<span class="w"> </span>&gt;<span class="w"> </span><span class="c">#This defines the name of output image</span><span class="w">
-</span><span class="w"></span>---<span class="w">
-</span><span class="w"></span><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>tekton.dev/v1beta1<span class="w">
-</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>Pipeline<span class="w">
-</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>buildpacks-test-pipeline<span class="w">
-</span><span class="w"></span><span class="k">spec</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="k">workspaces</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>shared-workspace<span class="w">
-</span><span class="w">  </span><span class="k">resources</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>build-image<span class="w">
-</span><span class="w">    </span><span class="k">type</span><span class="p">:</span><span class="w"> </span>image<span class="w">
-</span><span class="w">  </span><span class="k">tasks</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>fetch-repository<span class="w"> </span><span class="c"># This task fetches a repository from github, using the `git-clone` task we installed</span><span class="w">
-</span><span class="w">    </span><span class="k">taskRef</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>git-clone<span class="w">
-</span><span class="w">    </span><span class="k">workspaces</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>output<span class="w">
-</span><span class="w">      </span><span class="k">workspace</span><span class="p">:</span><span class="w"> </span>shared-workspace<span class="w">
-</span><span class="w">    </span><span class="k">params</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>url<span class="w">
-</span><span class="w">      </span><span class="k">value</span><span class="p">:</span><span class="w"> </span>https<span class="p">:</span>//github.com/buildpacks/samples<span class="w">
-</span><span class="w">    </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>subdirectory<span class="w">
-</span><span class="w">      </span><span class="k">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span><span class="w">    </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>deleteExisting<span class="w">
-</span><span class="w">      </span><span class="k">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;true&#34;</span><span class="w">
-</span><span class="w">  </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>buildpacks<span class="w"> </span><span class="c"># This task uses the `buildpacks` task to build the application</span><span class="w">
-</span><span class="w">    </span><span class="k">taskRef</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>buildpacks<span class="w">
-</span><span class="w">    </span><span class="k">runAfter</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span>- fetch-repository<span class="w">
-</span><span class="w">    </span><span class="k">workspaces</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>source<span class="w">
-</span><span class="w">      </span><span class="k">workspace</span><span class="p">:</span><span class="w"> </span>shared-workspace<span class="w">
-</span><span class="w">    </span><span class="k">params</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>SOURCE_SUBPATH<span class="w">
-</span><span class="w">      </span><span class="k">value</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;apps/java-maven&#39;</span><span class="w"> </span><span class="c"># This is the path within our samples repo we want to build</span><span class="w">
-</span><span class="w">    </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>BUILDER_IMAGE<span class="w">
-</span><span class="w">      </span><span class="k">value</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;paketobuildpacks/builder:base&#39;</span><span class="w"> </span><span class="c"># This is the builder we want the task to use</span><span class="w">
-</span><span class="w">    </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>CACHE<span class="w">
-</span><span class="w">      </span><span class="k">value</span><span class="p">:</span><span class="w"> </span>buildpacks-cache<span class="w">
-</span><span class="w">    </span><span class="k">resources</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span><span class="k">outputs</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>image<span class="w">
-</span><span class="w">        </span><span class="k">resource</span><span class="p">:</span><span class="w"> </span>build-image<span class="w">
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">tekton.dev/v1alpha1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">PipelineResource</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-app-image </span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">image</span><span class="w">
+</span><span class="w">  </span><span class="nt">params</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">url</span><span class="w">
+</span><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">&lt;REGISTRY/IMAGE NAME, eg gcr.io/test/image &gt;</span><span class="w"> </span><span class="c">#This defines the name of output image</span><span class="w">
+</span><span class="w"></span><span class="nn">---</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">tekton.dev/v1beta1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Pipeline</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-test-pipeline</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">workspaces</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">shared-workspace</span><span class="w">
+</span><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">build-image</span><span class="w">
+</span><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">image</span><span class="w">
+</span><span class="w">  </span><span class="nt">tasks</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">fetch-repository</span><span class="w"> </span><span class="c"># This task fetches a repository from github, using the `git-clone` task we installed</span><span class="w">
+</span><span class="w">    </span><span class="nt">taskRef</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">git-clone</span><span class="w">
+</span><span class="w">    </span><span class="nt">workspaces</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">output</span><span class="w">
+</span><span class="w">      </span><span class="nt">workspace</span><span class="p">:</span><span class="w"> </span><span class="l">shared-workspace</span><span class="w">
+</span><span class="w">    </span><span class="nt">params</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">url</span><span class="w">
+</span><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">https://github.com/buildpacks/samples</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">subdirectory</span><span class="w">
+</span><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">deleteExisting</span><span class="w">
+</span><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;true&#34;</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks</span><span class="w"> </span><span class="c"># This task uses the `buildpacks` task to build the application</span><span class="w">
+</span><span class="w">    </span><span class="nt">taskRef</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks</span><span class="w">
+</span><span class="w">    </span><span class="nt">runAfter</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="l">fetch-repository</span><span class="w">
+</span><span class="w">    </span><span class="nt">workspaces</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">source</span><span class="w">
+</span><span class="w">      </span><span class="nt">workspace</span><span class="p">:</span><span class="w"> </span><span class="l">shared-workspace</span><span class="w">
+</span><span class="w">    </span><span class="nt">params</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">SOURCE_SUBPATH</span><span class="w">
+</span><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;apps/java-maven&#39;</span><span class="w"> </span><span class="c"># This is the path within our samples repo we want to build</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">BUILDER_IMAGE</span><span class="w">
+</span><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;paketobuildpacks/builder:base&#39;</span><span class="w"> </span><span class="c"># This is the builder we want the task to use</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">CACHE</span><span class="w">
+</span><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-cache</span><span class="w">
+</span><span class="w">    </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">outputs</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">image</span><span class="w">
+</span><span class="w">        </span><span class="nt">resource</span><span class="p">:</span><span class="w"> </span><span class="l">build-image</span><span class="w">
 </span></code></pre></div><h4 id="44-apply-configuration">4.4 Apply Configuration</h4>
 <p>Apply these configurations, using <code>kubectl</code>:</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">kubectl apply -f resources.yml -f auth.yml -f pipeline.yml
 </code></pre></div><h3 id="5-create--apply-pipelinerun">5. Create &amp; Apply PipelineRun</h3>
 <p>Create a file (e.g. <code>run.yml</code>), which defines the <code>PipelineRun</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="k">apiVersion</span><span class="p">:</span><span class="w"> </span>tekton.dev/v1beta1<span class="w">
-</span><span class="w"></span><span class="k">kind</span><span class="p">:</span><span class="w"> </span>PipelineRun<span class="w">
-</span><span class="w"></span><span class="k">metadata</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>buildpacks-test-pipeline-run<span class="w">
-</span><span class="w"></span><span class="k">spec</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="k">serviceAccountName</span><span class="p">:</span><span class="w"> </span>buildpacks-service-account<span class="w"> </span><span class="c"># Only needed if you set up authorization</span><span class="w">
-</span><span class="w">  </span><span class="k">pipelineRef</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>buildpacks-test-pipeline<span class="w">
-</span><span class="w">  </span><span class="k">workspaces</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>shared-workspace<span class="w">
-</span><span class="w">    </span><span class="k">persistentvolumeclaim</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span><span class="k">claimName</span><span class="p">:</span><span class="w"> </span>buildpacks-source-pvc<span class="w">
-</span><span class="w">  </span><span class="k">resources</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>build-image<span class="w">
-</span><span class="w">    </span><span class="k">resourceRef</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span><span class="k">name</span><span class="p">:</span><span class="w"> </span>buildpacks-app-image<span class="w">
-</span><span class="w">  </span><span class="k">podTemplate</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="k">volumes</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span>- <span class="k">name</span><span class="p">:</span><span class="w"> </span>buildpacks-cache<span class="w">
-</span><span class="w">      </span><span class="k">persistentVolumeClaim</span><span class="p">:</span><span class="w">
-</span><span class="w">        </span><span class="k">claimName</span><span class="p">:</span><span class="w"> </span>buildpacks-cache-pvc<span class="w">
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">tekton.dev/v1beta1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">PipelineRun</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-test-pipeline-run</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">serviceAccountName</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-service-account</span><span class="w"> </span><span class="c"># Only needed if you set up authorization</span><span class="w">
+</span><span class="w">  </span><span class="nt">pipelineRef</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-test-pipeline</span><span class="w">
+</span><span class="w">  </span><span class="nt">workspaces</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">shared-workspace</span><span class="w">
+</span><span class="w">    </span><span class="nt">persistentvolumeclaim</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">claimName</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-source-pvc</span><span class="w">
+</span><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">build-image</span><span class="w">
+</span><span class="w">    </span><span class="nt">resourceRef</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-app-image</span><span class="w">
+</span><span class="w">  </span><span class="nt">podTemplate</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-cache</span><span class="w">
+</span><span class="w">      </span><span class="nt">persistentVolumeClaim</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">claimName</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-cache-pvc</span><span class="w">
 </span></code></pre></div><p>Apply it with:</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">kubectl apply -f run.yml
 </code></pre></div><h3 id="6-see-it-build">6. See it Build</h3>

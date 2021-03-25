@@ -1,413 +1,213 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  
   <url>
     <loc>https://buildpacks.io/docs/concepts/operations/build/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/app-developer-guide/build-an-app/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/concepts/components/builder/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/concepts/components/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/operator-guide/create-a-builder/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/features/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/app-journey/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/app-developer-guide/build-a-windows-app/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/concepts/components/buildpack/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/community/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/concepts/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/operator-guide/create-a-stack/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/concepts/operations/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/concepts/operations/rebase/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/concepts/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/app-developer-guide/environment-variables/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/concepts/components/lifecycle/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/concepts/components/platform/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/app-developer-guide/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/buildpack-author-guide/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/app-developer-guide/using-cache-image/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/app-developer-guide/mouting-volumes/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/app-developer-guide/specific-buildpacks/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/concepts/components/stack/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/operator-guide/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/buildpack-author-guide/package-a-buildpack/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/buildpack-author-guide/publish-a-buildpack/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/buildpack-author-guide/publishing-with-github-actions/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/app-developer-guide/run-an-app/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/app-developer-guide/using-project-descriptor/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/reference/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/setup-local-environment/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/detection/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/build-app/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/make-app-runnable/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/specify-multiple-process-types/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/caching/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/reference/config/builder-config/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/reference/spec/buildpack-api/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.4-0.5/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/categories/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/circleci/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/reference/config/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/reference/spec/distribution-api/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/gitlab/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/kpack/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/reference/spec/migration/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_build/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_builder/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_builder_create/</loc>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_builder_inspect/</loc>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_builder_suggest/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_buildpack/</loc>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_buildpack_inspect/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_buildpack_new/</loc>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_buildpack_package/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_buildpack_pull/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_buildpack_register/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_buildpack_yank/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_completion/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_default-builder/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_experimental/</loc>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_lifecycle-image/</loc>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_pull-policy/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_registries/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_registries_add/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_registries_default/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_registries_list/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_registries_remove/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_run-image-mirrors/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_run-image-mirrors_add/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_run-image-mirrors_list/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_run-image-mirrors_remove/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_trusted-builders/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_trusted-builders_add/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_trusted-builders_list/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_trusted-builders_remove/</loc>
-  </url>
-  
-  <url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_inspect-builder/</loc>
-  </url>
-  
-  <url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_inspect-buildpack/</loc>
-  </url>
-  
-  <url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_inspect-image/</loc>
-  </url>
-  
-  <url>
+  </url><url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_inspect/</loc>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_rebase/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_report/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_stack/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_stack_suggest/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_version/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/reference/config/package-config/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/reference/spec/platform-api/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/reference/spec/migration/platform-api-0.3-0.4/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/reference/spec/migration/platform-api-0.4-0.5/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/reference/config/project-descriptor/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/reference/reproducibility/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/reference/spec/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/tags/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/tekton/</loc>
-  </url>
-  
-  <url>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/concepts/trusted_builders/</loc>
   </url>
-  
 </urlset>
