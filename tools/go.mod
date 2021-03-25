@@ -15,9 +15,8 @@ require (
 	github.com/sirupsen/logrus v1.8.1 // indirect
 	github.com/spf13/cobra v1.1.3
 	golang.org/x/crypto v0.0.0-20210322153248-0c34fe9e7dc2 // indirect
-	golang.org/x/net v0.0.0-20210324051636-2c4c8ecb7826 // indirect
+	golang.org/x/net v0.0.0-20210324205630-d1beb07c2056 // indirect
 	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c // indirect
-	golang.org/x/sys v0.0.0-20210324051608-47abb6519492 // indirect
 	golang.org/x/term v0.0.0-20210317153231-de623e64d2a6 // indirect
 	google.golang.org/genproto v0.0.0-20210324141432-3032e8ff099e // indirect
 )

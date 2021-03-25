@@ -136,7 +136,7 @@ You will see the following output:
 ...
 ===> EXPORTING
 ...
-Successfully built image test-ruby-app
+Successfully built image 'test-ruby-app'
 ```
 
 A new image named `test-ruby-app` was created in your Docker daemon with a layer containing the Ruby runtime. However, your app image is not yet runnable. We'll make the app image runnable in the next section.
