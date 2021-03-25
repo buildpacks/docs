@@ -10,10 +10,6 @@ See the [spec release](https://github.com/buildpacks/spec/releases/tag/platform%
 
 ## Platform Operator
 
-### Analyze runs before detect
-
-To enable [future work](https://github.com/buildpacks/spec/issues/206), the analyze phase now runs before detect. The analyzer no longer accepts a `-group` flag (as the group is not yet determined) and the positional argument for `image` must now be passed with the flag `-previous-image`. Additionally, `-skip-layers` is no longer an accepted flag (as analyzer no longer writes layer metadata, leaving this up to the restorer), and `-cache-dir` and `-cache-image` are no longer accepted flags (as analyzer no longer interacts with the cache).
-
 ### Web is assumed to be default process type for older buildpacks
 
 As of Buildpack API 0.6, buildpacks may contribute the default process type by writing `default = true` in the process type definition in `<layers>/launch.toml`. To enable buildpacks implementing older Buildpack APIs to work with newer buildpacks, the lifecycle will assume that buildpacks on Buildpack API < 0.6 intended for `web` processes to be the default.
