@@ -19,32 +19,27 @@ description = "Cloud Native Buildpacks transform your application source code in
 pack_version_env_var = "PACK_VERSION"
 
 [menu]
-  [[menu.main]]
-  identifier = "home"
-  name       = "Home"
-  url        = "/"
-  weight     = 1
 
   [[menu.main]]
   identifier = "features"
   name       = "Features"
   url        = "/features"
-  weight     = 2
+  weight     = 1
 
   [[menu.main]]
   identifier = "community"
   name       = "Community"
   url        = "/community"
-  weight     = 3
+  weight     = 2
 
   [[menu.main]]
   identifier = "blog"
   name       = "Blog"
   url        = "https://medium.com/buildpacks"
-  weight     = 4
+  weight     = 3
 
   [[menu.main]]
   identifier = "registry"
   name       = "Registry"
   url        = "https://registry.buildpacks.io/"
-  weight     = 5
+  weight     = 4
