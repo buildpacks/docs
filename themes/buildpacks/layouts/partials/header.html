@@ -1,14 +1,33 @@
-<header class="container">
-  <a href="{{.Site.BaseURL}}" class="logo"><img src="/images/buildpacks-logo.svg" alt="Buildpacks.io Logo"></a>
-  <input type="checkbox" id="mobile-nav-toggle">
-  <label for="mobile-nav-toggle">&#9776;</label>
-  <ul>
-    {{ $current := . }}
-    {{ range $.Site.Menus.main }}
-      {{ $topLevel := replace .URL "/" "" }}
-      <li><a class="{{ if or (eq $current.Permalink .URL) (eq $current.Type $topLevel) }}active{{end}}" {{if (hasPrefix .URL "https")}}target='_blank'{{end}} href="{{ .URL }}">{{ .Name }}</a></li>
-    {{ end }}
-    <li><a href="/docs" class="button-light"><i class="far fa-file-alt mr-2"></i>Docs</a></li>
-    <li class="pl-3"><a href="https://github.com/buildpacks" class="github-button icon-button bg-blue button">GitHub</a></li>
-  </ul>
+<header class="container px-0">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <a href="{{.Site.BaseURL}}" class="logo navbar-brand"><img src="/images/buildpacks-logo.svg"
+        alt="Buildpacks Logo"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <ul class="navbar-nav">
+        {{ $current := . }}
+        {{ range $.Site.Menus.main }}
+        {{ $topLevel := replace .URL "/" "" }}
+        <li class="nav-item mr-lg-4 text-center text-lg-left {{ if or (eq $current.Permalink .URL) (eq $current.Type $topLevel) }}active{{end}}">
+          <a class="nav-link py-2 py-lg-0 px-1" {{if (hasPrefix .URL "https" )}}target='_blank' {{end}} href="{{ .URL }}">
+            {{.Name}}
+          </a>
+        </li>
+        {{ end }}
+        <li class="nav-item text-center d-lg-none">
+          <a class="nav-link py-2 px-1" href="/docs">Docs</a>
+        </li>
+        <li class="nav-item text-center d-lg-none">
+          <a class="nav-link py-2 px-1" href="https://github.com/buildpacks">GitHub</a>
+        </li>
+      </ul>
+
+      <a class="button-light mr-3 d-none d-lg-block" href="/docs"><i class="far fa-file-alt mr-2"></i>Docs</a>
+      <a class="github-button icon-button bg-blue button d-none d-lg-flex" href="https://github.com/buildpacks">GitHub</a>
+    </div>
+  </nav>
 </header>
