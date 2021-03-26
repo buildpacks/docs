@@ -23,7 +23,7 @@ EOL
 
 ### Buildpacks contribute default process type
 
-Buildpacks may now contribute the default process type by writing `default = true` in the process type definition in `<layers>/launch.toml`. An individual buildpack may only specify one process type with `default = true`. The lifecycle will choose, from all buildpack-provided process types, the last process type with `default = true` as the buildpack-provided default. A user may override the buildpack-provided default process type by passing `-process-type` to the exporter. (Note: to enable buildpacks implementing older Buildpack APIs to work with newer buildpacks, the lifecycle will assume that buildpacks on Buildpack API < 0.6 intended for `web` processes to be the default.)
+Buildpacks may now contribute the default process type by writing `default = true` in the process type definition in `<layers>/launch.toml`. An individual buildpack may only specify one process type with `default = true`. The lifecycle will choose, from all buildpack-provided process types, the last process type with `default = true` as the buildpack-provided default. A user may override the buildpack-provided default process type by passing `-process-type` to the exporter. Note: to enable buildpacks implementing older Buildpack APIs to work with newer buildpacks, the lifecycle will assume that buildpacks on Buildpack API < 0.6 intended for `web` processes to be the default.
 
 ### New fields in buildpack descriptor
 
