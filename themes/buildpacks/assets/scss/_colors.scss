@@ -17,6 +17,7 @@ $off-blue: #f4f5fd;
 $gray-light: #7C6E75;
 $gray-dark: #302C2E;
 $black: #000000;
+$green: #1bb9a5;
 
 .text-pink {
   color: $pink;
@@ -44,4 +45,8 @@ $black: #000000;
 
 .bg-transparent {
   background-color: transparent;
+}
+
+.bg-green {
+  background-color: $green;
 }

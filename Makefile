@@ -12,16 +12,25 @@ PACK_VERSION:=$(shell curl -s https://api.github.com/repos/buildpacks/pack/relea
 endif
 endif
 
+.PHONY: default
 default: serve
 
+.PHONY: clean
 clean:
 	rm -rf ./public ./resources
 
+.PHONY: install-hugo
 install-hugo:
 	@echo "> Installing hugo..."
 	cd tools; go install -mod=mod --tags extended github.com/gohugoio/hugo
 
-install-pack-cli:
+.PHONY: upgrade-pack
+upgrade-pack: pack-version
+	@echo "> Upgrading to pack version $(PACK_VERSION)"
+	cd tools; go get -u github.com/buildpacks/pack@v$(PACK_VERSION)
+
+.PHONY: install-pack-cli
+install-pack-cli: upgrade-pack
 	@echo "> Installing pack bin..."
 ifeq ($(PACK_BIN),)
 	cd tools; go get github.com/buildpacks/pack/cmd/pack
@@ -29,16 +38,19 @@ else
 	@echo "pack already installed at $(PACK_BIN)"
 endif
 
+.PHONY: install-ugo
 install-ugo:
 	@echo "> Installing ugo..."
 	cd tools; go get -u github.com/jromero/ugo/cmd/ugo@0.0.3
 
-mk-pack-docs:
+.PHONY: pack-docs-update
+pack-docs-update: upgrade-pack
 	@echo "> Updating Pack CLI Documentation"
-	cd tools; go run get_pack_commands.go
+	@echo "> SHA of contents (before update):" `find ./content/docs/tools/pack -type f -print0  | xargs -0 sha1sum | sha1sum | cut -d' ' -f1`
+	cd tools; go run -mod=mod get_pack_commands.go
+	@echo "> SHA of contents (after update):" `find ./content/docs/tools/pack -type f -print0  | xargs -0 sha1sum | sha1sum | cut -d' ' -f1`
 
-update-pack-docs: mk-pack-docs
-
+.PHONY: pack-version
 pack-version: export PACK_VERSION:=$(PACK_VERSION)
 pack-version:
 	@echo "> Ensuring pack version is set..."
@@ -46,8 +58,9 @@ pack-version:
 	@test '${PACK_VERSION}' != 'null'
 	@echo "PACK_VERSION="${PACK_VERSION}""
 
+.PHONY: serve
 serve: export PACK_VERSION:=$(PACK_VERSION)
-serve: install-hugo pack-version update-pack-docs
+serve: install-hugo pack-version pack-docs-update
 	@echo "> Serving..."
 ifeq ($(BASE_URL),)
 	hugo server --disableFastRender
@@ -55,26 +68,31 @@ else
 	hugo server --disableFastRender --baseURL=$(BASE_URL) --appendPort=false
 endif
 
+.PHONY: build
 build: export PACK_VERSION:=$(PACK_VERSION)
-build: install-hugo pack-version update-pack-docs
+build: install-hugo pack-version pack-docs-update
 	@echo "> Building..."
 	hugo
 
+.PHONY: test
 test: install-pack-cli install-ugo
 	@echo "> Testing..."
 	ugo run -r -p ./content/docs/
 
-install-htmltest:
+.PHONY: htmltest-install
+htmltest-install:
 	@if ! test -f ./bin/htmltest; then \
 	  echo "> Installing htmltest..."; \
 	  curl https://htmltest.wjdp.uk | bash; \
 	fi;
 
-run-htmltest: install-htmltest build
+.PHONY: htmltest-run
+htmltest-run: htmltest-install build
 	@echo "> Checking links..."
 	./bin/htmltest ./public -l 3 -s 2>&1 > /dev/null || true
 
-check-links: run-htmltest
+.PHONY: check-links
+check-links: htmltest-run
 check-links: ERRORS=$(shell cat ./tmp/.htmltest/htmltest.log | grep -i "does not exist")
 check-links:
 	@if [ ! -z "$(ERRORS)" ]; then \
@@ -85,4 +103,13 @@ check-links:
 	  echo "No broken links found."; \
 	fi;
 
-.PHONY: pack-version serve build update-pack-docs test check-links
+.PHONY: tools-tidy
+tools-tidy:
+	cd tools; go mod tidy
+
+.PHONY: prepare-for-pr
+prepare-for-pr: check-links test tools-tidy
+	@echo "========"
+	@echo "It looks good! :)"
+	@echo "Make sure to commit all changes!"
+	@echo "========"
