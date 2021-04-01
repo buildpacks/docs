@@ -27,8 +27,8 @@ Run Images:
   cnbs/sample-stack-run:bionic
 
 Buildpacks:
-  ID                   VERSION
-  examples/ruby        0.0.1
+  ID                   VERSION        HOMEPAGE
+  examples/ruby        0.0.1          -
 
 Processes:
   TYPE                 SHELL        COMMAND                        ARGS
