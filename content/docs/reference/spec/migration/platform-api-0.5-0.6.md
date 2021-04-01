@@ -12,11 +12,7 @@ See the [spec release](https://github.com/buildpacks/spec/releases/tag/platform%
 
 ### Default process type not set if none is specified
 
-The `exporter` will no longer set the default process type if none is specified (even if there is only one process). Buildpacks implementing Buildpack API 0.6 or greater may set the default process type, or it may be specified by passing `-process-type` to the `exporter`.
-
-### Web is assumed to be default process type for older buildpacks
-
-As of Buildpack API 0.6, buildpacks may contribute the default process type by writing `default = true` in the process type definition in `<layers>/launch.toml`. To enable buildpacks implementing older Buildpack APIs to work with newer buildpacks, the lifecycle will assume that buildpacks that implement Buildpack API < 0.6 intended for `web` processes to be the default.
+The `exporter` will no longer set the default process type if none is specified (even if there is only one process). Buildpacks implementing Buildpack API 0.6 or greater may set the default process type, or it may be specified by passing `-process-type` to the `exporter`. To enable buildpacks implementing older Buildpack APIs to work with newer buildpacks, the lifecycle will assume that buildpacks that implement Buildpack API less than 0.6 intended for `web` processes to be the default.
 
 ### New location for order.toml
 
