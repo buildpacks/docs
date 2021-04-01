@@ -10,9 +10,9 @@ See the [spec release](https://github.com/buildpacks/spec/releases/tag/buildpack
 
 ### Opt-in layer caching
 
-Buildpacks must now explicitly opt-in to layer re-use by writing `launch`, `build`, or `cache` keys to a new `[types]` table in `<layers>/<layer>.toml` (note that these keys were removed from the top level). If buildpacks do not modify `<layers>/<layer>.toml`, the layer will not be re-used, even if the buildpack in the previous build set any of these keys to `true`.
+Buildpacks must now explicitly opt-in to layer re-use by setting the `launch`, `build`, and `cache` keys in `<layers>/<layer>.toml`. If buildpacks do not modify `<layers>/<layer>.toml`, the layer will behave like a temporary directory, available only to the authoring buildpack, existing for the duration of a single build - even if the buildpack in the previous build set any of these keys to `true`.
 
-A Bash buildpack could write something like the following to `<layers>/<layer>.toml` in order to cache a layer:
+Additionally, the `launch`, `build`, and `cache` keys are moved under a new `[types]` table in `<layers>/<layer>.toml` and removed from the top level. A Bash buildpack could write something like the following to `<layers>/<layer>.toml` in order to cache a layer:
 
 ```bash
 cat >> layer.toml <<EOL
@@ -35,6 +35,8 @@ args = ["<arguments>"]
 direct = false
 # the default field is new
 default = false
+```
+
 ### New fields in buildpack descriptor
 
 To introduce more information into the Buildpack Registry search API, the following are added to `buildpack.toml`:
