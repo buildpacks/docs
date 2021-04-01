@@ -27,7 +27,7 @@ install-hugo:
 .PHONY: upgrade-pack
 upgrade-pack: pack-version
 	@echo "> Upgrading to pack version $(PACK_VERSION)"
-	cd tools; go get -u github.com/buildpacks/pack@v$(PACK_VERSION)
+	cd tools; go get github.com/buildpacks/pack@v$(PACK_VERSION)
 
 .PHONY: install-pack-cli
 install-pack-cli: upgrade-pack
@@ -41,7 +41,7 @@ endif
 .PHONY: install-ugo
 install-ugo:
 	@echo "> Installing ugo..."
-	cd tools; go get -u github.com/jromero/ugo/cmd/ugo@0.0.3
+	cd tools; go get github.com/jromero/ugo/cmd/ugo@0.0.3
 
 .PHONY: pack-docs-update
 pack-docs-update: upgrade-pack
