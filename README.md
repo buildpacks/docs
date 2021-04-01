@@ -1,35 +1,21 @@
 ![](https://github.com/buildpacks/docs/workflows/Deploy/badge.svg)
 
-# docs
 Website for [Cloud Native Buildpacks](https://buildpacks.io)
 
-## Development
-
-##### Prerequisites
-
-* [jq](https://stedolan.github.io/jq/)
-    * macOS: `brew install jq`
-    * Windows: `choco install jq`
-* Make
-    * macOS: `xcode-select --install`
-    * Windows: `choco install make`
-
-#### Serve
-
-Serve docs at http://localhost:1313
-
-```bash
-make serve
-```
-
-#### Build
-
-```bash
-make build
-```
+![buildpacks.io](https://image.thum.io/get/https://buildpacks.io)
 
 ## Management
 
 ### Calendar
 
 The calendar is managed via [teamup](https://teamup.com/ksxw26c3km72mq3imn). To request an alteration you may [create an issue](https://github.com/buildpacks/community/issues/new), reach out to a maintainer via [slack](https://slack.buildpacks.io), post in [discussions](https://github.com/buildpacks/community/discussions).
+
+## Contributing
+
+We ❤ contributions.
+
+To learn more, read the [CONTRIBUTING][contributing], [RELEASE][release] and [DEVELOPMENT][development] documents.
+
+[contributing]: https://github.com/buildpacks/.github/blob/main/CONTRIBUTING.md
+[development]: DEVELOPMENT.md
+[release]: RELEASE.md
