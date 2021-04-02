@@ -57,6 +57,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CJLSR4FQXL"></script>
+
   <script>
     $(function () {
       $('h1[id], h2[id], h3[id], h4[id], h5[id]').not(':has(a)').each(function () {
@@ -75,6 +77,11 @@
         });
       }
     });
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-CJLSR4FQXL');
   </script>
 
   <title>Stack · Cloud Native Buildpacks</title>
@@ -593,12 +600,24 @@ which they will be matched during <code>build</code>.</p>
   </div>
   <div class="bg-blue">
     <div class="container sub-footer">
-      <p>Reach out <a href="https://slack.buildpacks.io">on Slack</a> to learn more.</p>
       <ul>
-        <li><a href="https://lists.cncf.io/g/cncf-buildpacks/join" target="_blank">Mailing List</a> <span>&bull;</span></li>
-        <li><a href="https://slack.buildpacks.io/" target="_blank">Slack</a> <span>&bull;</span></li>
-        <li><a href="https://twitter.com/buildpacks_io" target="_blank">Twitter</a> <span>&bull;</span></li>
-        <li><a href="https://github.com/buildpacks" target="_blank">GitHub</a></li>
+        
+        <li><a target='_blank' href="https://registry.buildpacks.io/">DevStats</a></li>
+        
+        <li><span>&bull;</span><a target='_blank' href="https://datastudio.google.com/reporting/4b23856c-6c24-44f5-86f2-333d0ad3f236">Analytics</a></li>
+        
+      </ul>
+
+      <ul>
+        
+        <li><a target='_blank' href="https://lists.cncf.io/g/cncf-buildpacks/join">Mailing List</a></li>
+        
+        <li><span>&bull;</span><a target='_blank' href="https://slack.buildpacks.io/">Slack</a></li>
+        
+        <li><span>&bull;</span><a target='_blank' href="https://twitter.com/buildpacks_io">Twitter</a></li>
+        
+        <li><span>&bull;</span><a target='_blank' href="https://github.com/buildpacks">GitHub</a></li>
+        
       </ul>
     </div>
   </div>
