@@ -9,7 +9,7 @@
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<link rel="canonical" content="https://buildpacks.io/docs/tools/pack/cli/pack_config_lifecycle-image/">
+<link rel="canonical" content="https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.5-0.6/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
 
@@ -17,9 +17,9 @@
 
 
 
-<meta property="og:title" content="pack config lifecycle-image · Cloud Native Buildpacks">
+<meta property="og:title" content="Buildpack API 0.5 -&gt; 0.6 · Cloud Native Buildpacks">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://buildpacks.io/docs/tools/pack/cli/pack_config_lifecycle-image/">
+<meta property="og:url" content="https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.5-0.6/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
 
@@ -33,7 +33,7 @@
 
 
 
-<meta property="twitter:title" content="pack config lifecycle-image · Cloud Native Buildpacks">
+<meta property="twitter:title" content="Buildpack API 0.5 -&gt; 0.6 · Cloud Native Buildpacks">
 <meta property="twitter:card" content="summary">
 <meta property="twitter:image" content="https://buildpacks.io/images/buildpacks-social-card-square.jpg">
 <meta property="twitter:image:alt" content="Buildpacks project logo">
@@ -82,7 +82,7 @@
     gtag('config', 'G-CJLSR4FQXL');
   </script>
 
-  <title>pack config lifecycle-image · Cloud Native Buildpacks</title>
+  <title>Buildpack API 0.5 - 0.6 · Cloud Native Buildpacks</title>
 </head>
 
 <body>
@@ -283,13 +283,13 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/tools/" class="dd-item depth-0 parent haschildren">
+<li data-nav-id="/docs/tools/" class="dd-item depth-0 haschildren">
   <a href="/docs/tools/">Tools</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/tools/pack/" class="dd-item depth-1 parent haschildren">
+<li data-nav-id="/docs/tools/pack/" class="dd-item depth-1 haschildren">
   <a href="/docs/tools/pack/">Pack</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/tools/pack/concepts/" class="dd-item depth-2 haschildren">
+<li data-nav-id="/docs/tools/pack/concepts/" class="dd-item depth-2 collapse haschildren">
   <a href="/docs/tools/pack/concepts/">Concepts</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/tools/pack/concepts/trusted_builders/" class="dd-item depth-3 collapse">
@@ -297,121 +297,121 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/" class="dd-item depth-2 parent haschildren">
+<li data-nav-id="/docs/tools/pack/cli/" class="dd-item depth-2 collapse haschildren">
   <a href="/docs/tools/pack/cli/">CLI Docs</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/tools/pack/cli/pack/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack/">pack</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_build/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_build/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_build/">pack build</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_builder/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_builder/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_builder/">pack builder</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_builder_create/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_builder_create/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_builder_create/">pack builder create</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_builder_inspect/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_builder_inspect/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_builder_inspect/">pack builder inspect</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_builder_suggest/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_builder_suggest/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_builder_suggest/">pack builder suggest</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_buildpack/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_buildpack/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_buildpack/">pack buildpack</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_inspect/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_inspect/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_buildpack_inspect/">pack buildpack inspect</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_new/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_new/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_buildpack_new/">pack buildpack new</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_package/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_package/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_buildpack_package/">pack buildpack package</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_pull/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_pull/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_buildpack_pull/">pack buildpack pull</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_register/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_register/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_buildpack_register/">pack buildpack register</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_yank/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_yank/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_buildpack_yank/">pack buildpack yank</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_completion/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_completion/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_completion/">pack completion</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config/">pack config</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_default-builder/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_default-builder/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_default-builder/">pack config default-builder</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_experimental/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_experimental/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_experimental/">pack config experimental</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_lifecycle-image/" class="dd-item depth-3 active">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_lifecycle-image/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_lifecycle-image/">pack config lifecycle-image</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_pull-policy/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_pull-policy/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_pull-policy/">pack config pull-policy</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_registries/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_registries/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_registries/">pack config registries</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_registries_add/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_registries_add/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_registries_add/">pack config registries add</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_registries_default/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_registries_default/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_registries_default/">pack config registries default</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_registries_list/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_registries_list/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_registries_list/">pack config registries list</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_registries_remove/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_registries_remove/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_registries_remove/">pack config registries remove</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_run-image-mirrors/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_run-image-mirrors/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_run-image-mirrors/">pack config run-image-mirrors</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_run-image-mirrors_add/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_run-image-mirrors_add/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_run-image-mirrors_add/">pack config run-image-mirrors add</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_run-image-mirrors_list/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_run-image-mirrors_list/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_run-image-mirrors_list/">pack config run-image-mirrors list</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_run-image-mirrors_remove/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_run-image-mirrors_remove/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_run-image-mirrors_remove/">pack config run-image-mirrors remove</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_trusted-builders/">pack config trusted-builders</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders_add/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders_add/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_trusted-builders_add/">pack config trusted-builders add</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders_list/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders_list/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_trusted-builders_list/">pack config trusted-builders list</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders_remove/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders_remove/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_trusted-builders_remove/">pack config trusted-builders remove</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_inspect/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_inspect/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_inspect/">pack inspect</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_rebase/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_rebase/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_rebase/">pack rebase</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_report/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_report/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_report/">pack report</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_stack/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_stack/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_stack/">pack stack</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_stack_suggest/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_stack_suggest/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_stack_suggest/">pack stack suggest</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_version/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_version/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_version/">pack version</a>
 </li>
   </ul>
@@ -432,10 +432,10 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/reference/" class="dd-item depth-0 haschildren">
+<li data-nav-id="/docs/reference/" class="dd-item depth-0 parent haschildren">
   <a href="/docs/reference/">Reference</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/reference/config/" class="dd-item depth-1 collapse haschildren">
+<li data-nav-id="/docs/reference/config/" class="dd-item depth-1 haschildren">
   <a href="/docs/reference/config/">Configuration</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/reference/config/builder-config/" class="dd-item depth-2 collapse">
@@ -449,10 +449,10 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/reference/reproducibility/" class="dd-item depth-1 collapse">
+<li data-nav-id="/docs/reference/reproducibility/" class="dd-item depth-1">
   <a href="/docs/reference/reproducibility/">Reproducible Builds</a>
 </li>
-<li data-nav-id="/docs/reference/spec/" class="dd-item depth-1 collapse haschildren">
+<li data-nav-id="/docs/reference/spec/" class="dd-item depth-1 parent haschildren">
   <a href="/docs/reference/spec/">Specification</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/reference/spec/buildpack-api/" class="dd-item depth-2">
@@ -461,19 +461,19 @@
 <li data-nav-id="/docs/reference/spec/distribution-api/" class="dd-item depth-2">
   <a href="/docs/reference/spec/distribution-api/">Distribution API</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/" class="dd-item depth-2 haschildren">
+<li data-nav-id="/docs/reference/spec/migration/" class="dd-item depth-2 parent haschildren">
   <a href="/docs/reference/spec/migration/">Migration</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.4-0.5/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.4-0.5/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/buildpack-api-0.4-0.5/">Buildpack API 0.4 -&gt; 0.5</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.5-0.6/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.5-0.6/" class="dd-item depth-3 active">
   <a href="/docs/reference/spec/migration/buildpack-api-0.5-0.6/">Buildpack API 0.5 -&gt; 0.6</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.3-0.4/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.3-0.4/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/platform-api-0.3-0.4/">Platform API 0.3 -&gt; 0.4</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.4-0.5/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.4-0.5/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/platform-api-0.4-0.5/">Platform API 0.4 -&gt; 0.5</a>
 </li>
   </ul>
@@ -497,36 +497,57 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5Bpack&#43;config&#43;lifecycle-image%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ftools%2Fpack%2Fcli%2Fpack_config_lifecycle-image%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BBuildpack&#43;API&#43;0.5&#43;-%26gt%3B&#43;0.6%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Freference%2Fspec%2Fmigration%2Fbuildpack-api-0.5-0.6%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
+    
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/reference/spec/migration/buildpack-api-0.5-0.6.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+       class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
 </div>
 
 
         <div class="heading">
-          <h1 class="title">pack config lifecycle-image</h1>
+          <h1 class="title">Buildpack API 0.5 -&gt; 0.6</h1>
         </div>
 
-        <h2 id="pack-config-lifecycle-image">pack config lifecycle-image</h2>
-<p>Configure a custom container image for the lifecycle</p>
-<h3 id="synopsis">Synopsis</h3>
-<p>You can use this command to set a custom image to fetch the lifecycle from.This will be used for untrusted builders. If unset, defaults to: buildpacksio/lifecycleFor more on trusted builders, and when to trust or untrust a builder, check out our docs here: <a href="https://buildpacks.io/docs/tools/pack/concepts/trusted_builders/">https://buildpacks.io/docs/tools/pack/concepts/trusted_builders/</a></p>
-<pre><code>pack config lifecycle-image &lt;lifecycle-image&gt; [flags]
-</code></pre><h3 id="options">Options</h3>
-<pre><code>  -h, --help    Help for 'lifecycle-image'
-  -u, --unset   Unset custom lifecycle image, and use the lifecycle images from [94mbuildpacksio/lifecycle[0m
-</code></pre><h3 id="options-inherited-from-parent-commands">Options inherited from parent commands</h3>
-<pre><code>      --no-color     Disable color output
-  -q, --quiet        Show less output
-      --timestamps   Enable timestamps in output
-  -v, --verbose      Show more output
-</code></pre><h3 id="see-also">SEE ALSO</h3>
+        <p>This guide is most relevant to buildpack authors.</p>
+<p>See the <a href="https://github.com/buildpacks/spec/releases/tag/buildpack%2Fv0.6">spec release</a> for buildpack API 0.6 for the full list of changes and further details.</p>
+<h3 id="opt-in-layer-caching-and-launchtoml-format-changes">Opt-in layer caching and launch.toml format changes</h3>
+<p>Buildpacks must now explicitly opt-in to layer re-use by setting the <code>launch</code>, <code>build</code>, and <code>cache</code> keys in <code>&lt;layers&gt;/&lt;layer&gt;.toml</code>. If buildpacks do not modify <code>&lt;layers&gt;/&lt;layer&gt;.toml</code>, the layer will behave like a temporary directory, available only to the authoring buildpack, existing for the duration of a single build - even if the buildpack in the previous build set any of these keys to <code>true</code>.</p>
+<blockquote>
+<p><strong>NOTE</strong>: Additionally, the <code>launch</code>, <code>build</code>, and <code>cache</code> keys are moved under a new <code>[types]</code> table in <code>&lt;layers&gt;/&lt;layer&gt;.toml</code> and removed from the top level.</p>
+</blockquote>
+<p>A Bash buildpack could write something like the following to <code>&lt;layers&gt;/&lt;layer&gt;.toml</code> in order to cache a layer:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">cat &gt;&gt; layer.toml <span class="s">&lt;&lt;EOL
+</span><span class="s">[types]
+</span><span class="s">cache = true
+</span><span class="s">EOL</span>
+</code></pre></div><h3 id="buildpacks-contribute-default-process-type">Buildpacks contribute default process type</h3>
+<p>Buildpacks may now contribute the default process type by writing <code>default = true</code> in the process type definition in <code>&lt;layers&gt;/launch.toml</code>. An individual buildpack may only specify one process type with <code>default = true</code>. The lifecycle will choose, from all buildpack-provided process types, the last process type with <code>default = true</code> as the buildpack-provided default. A user may override the buildpack-provided default process type by passing <code>-process-type</code> to the exporter. Note: to enable buildpacks implementing older Buildpack APIs to work with newer buildpacks, the lifecycle will assume that buildpacks on Buildpack API &lt; 0.6 intended for <code>web</code> processes to be the default.
+For example -</p>
+<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="c"># launch.toml</span>
+<span class="p">[[</span><span class="nx">processes</span><span class="p">]]</span>
+<span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;&lt;process type&gt;&#34;</span>
+<span class="nx">command</span> <span class="p">=</span> <span class="s2">&#34;&lt;command&gt;&#34;</span>
+<span class="nx">args</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;&lt;arguments&gt;&#34;</span><span class="p">]</span>
+<span class="nx">direct</span> <span class="p">=</span> <span class="kc">false</span>
+<span class="c"># the default field is new</span>
+<span class="nx">default</span> <span class="p">=</span> <span class="kc">false</span>
+</code></pre></div><h3 id="new-fields-in-buildpack-descriptor">New fields in buildpack descriptor</h3>
+<p>To introduce more information into the Buildpack Registry search API, the following are added to <code>buildpack.toml</code>:</p>
 <ul>
-<li><a href="/docs/tools/pack/cli/pack_config/">pack config</a>	 - Interact with your local pack config file</li>
+<li>A <code>description</code> free text field</li>
+<li>A <code>keywords</code> array</li>
+<li>A <code>licenses</code> array of table
+Each license in <code>[[buildpack.licenses]]</code> can contain a <code>type</code> and <code>uri</code>, where <code>type</code> may use the <a href="https://spdx.org/spdx-specification-21-web-version">SPDX 2.1 license expression</a>, but it is not limited to identifiers in the <a href="https://spdx.org/licenses/">SPDX Licenses List</a>. If the buildpack is using a nonstandard license, then the <code>uri</code> key may be specified in lieu of or in addition to <code>type</code> to point to the license.</li>
 </ul>
+<h3 id="execd-on-windows">exec.d on Windows</h3>
+<p>Buildpack API 0.5 introduced support for <code>exec.d</code> executables that may be used to modify the environment for an app process (similar to profile.d) but do not depend on a shell.
+The launcher will execute each file in each <code>&lt;layers&gt;/&lt;layer&gt;/exec.d</code> directory and each file in each <code>&lt;layers&gt;/&lt;layer&gt;/exec.d/&lt;process&gt;</code> directory before the app process is started.
+Previously, this was only implemented on Linux, but starting from Buildpack API 0.6, it is implemented on Windows as well. On Windows, the launcher will set <code>CNB_EXEC_D_HANDLE</code> in each <code>exec.d</code> executable&rsquo;s environment to the hex representation of an open file handle where the executable is expected to write its output. The output may contain any number of top-level key-value pairs, which will be sourced by the launcher in the app process&rsquo;s environment.</p>
 
         
 
@@ -536,10 +557,13 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5Bpack&#43;config&#43;lifecycle-image%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ftools%2Fpack%2Fcli%2Fpack_config_lifecycle-image%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BBuildpack&#43;API&#43;0.5&#43;-%26gt%3B&#43;0.6%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Freference%2Fspec%2Fmigration%2Fbuildpack-api-0.5-0.6%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
+    
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/reference/spec/migration/buildpack-api-0.5-0.6.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+       class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
 </div>

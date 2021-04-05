@@ -96,6 +96,8 @@
   </url><url>
     <loc>https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.4-0.5/</loc>
   </url><url>
+    <loc>https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.5-0.6/</loc>
+  </url><url>
     <loc>https://buildpacks.io/categories/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/tools/circleci/</loc>
