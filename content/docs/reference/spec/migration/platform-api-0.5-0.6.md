@@ -24,8 +24,10 @@ The working directory on the exported image config will match the value of `CNB_
 
 ### Condensed exit codes
 
-Lifecycle exit codes are condensed to be within 0-255 so that they are understandable when surfaced in Bash. Platforms should take note of the new values when interpreting exit codes returned by the lifecycle.
+Lifecycle exit codes are condensed to be within 0-255 so that they are understandable when surfaced in Bash. Platforms should take note of the new values when interpreting exit codes returned by the lifecycle. See the [lifecycle][lifecycle] component pages for more information.
 
 ### Image manifest size in report.toml
 
 The report.toml output by the exporter will now include the image manifest size in bytes. Note that this only applies to published images, as images exported to a docker daemon will not have a manifest.
+
+[lifecycle]: /docs/concepts/components/lifecycle/
