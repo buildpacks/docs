@@ -8,7 +8,7 @@ This guide is most relevant to buildpack authors.
 
 See the [spec release](https://github.com/buildpacks/spec/releases/tag/buildpack%2Fv0.6) for buildpack API 0.6 for the full list of changes and further details.
 
-### Opt-in layer caching
+### Opt-in layer caching and launch.toml format changes
 
 Buildpacks must now explicitly opt-in to layer re-use by setting the `launch`, `build`, and `cache` keys in `<layers>/<layer>.toml`. If buildpacks do not modify `<layers>/<layer>.toml`, the layer will behave like a temporary directory, available only to the authoring buildpack, existing for the duration of a single build - even if the buildpack in the previous build set any of these keys to `true`.
 
