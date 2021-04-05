@@ -19,6 +19,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
 
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CJLSR4FQXL"></script>
+
   <script>
     $(function () {
       $('h1[id], h2[id], h3[id], h4[id], h5[id]').not(':has(a)').each(function () {
@@ -37,6 +39,11 @@
         });
       }
     });
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-CJLSR4FQXL');
   </script>
 
   <title>{{ .Title | plainify }} · {{ .Site.Title }}</title>
