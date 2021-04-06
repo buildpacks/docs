@@ -16,7 +16,7 @@ The `exporter` will no longer set the default process type if none is specified 
 
 ### New location for order.toml
 
-The `detector` will now look for `order.toml` in `<layers>` before checking other paths. This enables platforms to write `order.toml` into a mounted `<layers>` directory and override the builder's `order.toml` without knowing where `order.toml` is saved on the builder.
+The `detector` will now look for `order.toml` in `<layers>` before checking other paths. This enables platforms to write `order.toml` into a mounted `<layers>` directory and override the builder's `order.toml` without knowing where it is saved on the builder.
 
 ### Image working directory is set to app directory
 
