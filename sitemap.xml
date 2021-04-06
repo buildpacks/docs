@@ -12,11 +12,15 @@
   </url><url>
     <loc>https://buildpacks.io/docs/operator-guide/create-a-builder/</loc>
   </url><url>
+    <loc>https://buildpacks.io/docs/concepts/components/lifecycle/detect/</loc>
+  </url><url>
     <loc>https://buildpacks.io/features/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/app-journey/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/concepts/components/lifecycle/analyze/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/app-developer-guide/build-a-windows-app/</loc>
   </url><url>
@@ -40,7 +44,11 @@
   </url><url>
     <loc>https://buildpacks.io/docs/concepts/components/platform/</loc>
   </url><url>
+    <loc>https://buildpacks.io/docs/concepts/components/lifecycle/restore/</loc>
+  </url><url>
     <loc>https://buildpacks.io/docs/app-developer-guide/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/concepts/components/lifecycle/build/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/buildpack-author-guide/</loc>
   </url><url>
@@ -54,6 +62,8 @@
   </url><url>
     <loc>https://buildpacks.io/docs/concepts/components/stack/</loc>
   </url><url>
+    <loc>https://buildpacks.io/docs/concepts/components/lifecycle/export/</loc>
+  </url><url>
     <loc>https://buildpacks.io/docs/operator-guide/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/buildpack-author-guide/package-a-buildpack/</loc>
@@ -64,7 +74,13 @@
   </url><url>
     <loc>https://buildpacks.io/docs/app-developer-guide/run-an-app/</loc>
   </url><url>
+    <loc>https://buildpacks.io/docs/concepts/components/lifecycle/create/</loc>
+  </url><url>
     <loc>https://buildpacks.io/docs/app-developer-guide/using-project-descriptor/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/concepts/components/lifecycle/launch/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/concepts/components/lifecycle/rebase/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/tools/</loc>
   </url><url>
@@ -199,6 +215,8 @@
     <loc>https://buildpacks.io/docs/reference/spec/migration/platform-api-0.3-0.4/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/reference/spec/migration/platform-api-0.4-0.5/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/reference/spec/migration/platform-api-0.5-0.6/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/reference/config/project-descriptor/</loc>
   </url><url>

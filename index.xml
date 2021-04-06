@@ -43,6 +43,15 @@
     </item>
     
     <item>
+      <title>Detect</title>
+      <link>https://buildpacks.io/docs/concepts/components/lifecycle/detect/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/concepts/components/lifecycle/detect/</guid>
+      <description>Finds an ordered group of buildpacks to use during the build phase.</description>
+    </item>
+    
+    <item>
       <title>Features</title>
       <link>https://buildpacks.io/features/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -63,6 +72,15 @@ In order to run the build process in an isolated fashion, pack uses Docker. That
 Install Docker 
 Install pack 
  NOTE: pack is only one implementation of the Cloud Native Buildpacks Platform Specification.</description>
+    </item>
+    
+    <item>
+      <title>Analyze</title>
+      <link>https://buildpacks.io/docs/concepts/components/lifecycle/analyze/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/concepts/components/lifecycle/analyze/</guid>
+      <description>Restores files that buildpacks may use to optimize the build and export phases.</description>
     </item>
     
     <item>
@@ -122,16 +140,6 @@ application.&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>Lifecycle</title>
-      <link>https://buildpacks.io/docs/concepts/components/lifecycle/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://buildpacks.io/docs/concepts/components/lifecycle/</guid>
-      <description>&lt;h2 id=&#34;what-is-the-lifecycle&#34;&gt;What is the lifecycle?&lt;/h2&gt;
-&lt;p&gt;The lifecycle orchestrates buildpack execution, then assembles the resulting artifacts into a final app image.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
       <title>Platform</title>
       <link>https://buildpacks.io/docs/concepts/components/platform/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -139,6 +147,24 @@ application.&lt;/p&gt;</description>
       <guid>https://buildpacks.io/docs/concepts/components/platform/</guid>
       <description>&lt;h2 id=&#34;what-is-a-platform&#34;&gt;What is a Platform?&lt;/h2&gt;
 &lt;p&gt;A &lt;code&gt;platform&lt;/code&gt; uses a &lt;a href=&#34;https://buildpacks.io/docs/concepts/components/lifecycle/&#34;&gt;lifecycle&lt;/a&gt;, &lt;a href=&#34;https://buildpacks.io/docs/concepts/components/buildpack/&#34;&gt;buildpacks&lt;/a&gt; (packaged in a &lt;a href=&#34;https://buildpacks.io/docs/concepts/components/builder/&#34;&gt;builder&lt;/a&gt;), and application source code to produce an OCI image.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Restore</title>
+      <link>https://buildpacks.io/docs/concepts/components/lifecycle/restore/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/concepts/components/lifecycle/restore/</guid>
+      <description>Restores layers from the cache.</description>
+    </item>
+    
+    <item>
+      <title>Build</title>
+      <link>https://buildpacks.io/docs/concepts/components/lifecycle/build/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/concepts/components/lifecycle/build/</guid>
+      <description>Transforms application source code into runnable artifacts that can be packaged into a container.</description>
     </item>
     
     <item>
@@ -183,6 +209,15 @@ application.&lt;/p&gt;</description>
     </item>
     
     <item>
+      <title>Export</title>
+      <link>https://buildpacks.io/docs/concepts/components/lifecycle/export/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/concepts/components/lifecycle/export/</guid>
+      <description>Creates the final OCI image.</description>
+    </item>
+    
+    <item>
       <title>Package a buildpack</title>
       <link>https://buildpacks.io/docs/buildpack-author-guide/package-a-buildpack/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -219,12 +254,39 @@ application.&lt;/p&gt;</description>
     </item>
     
     <item>
+      <title>Create</title>
+      <link>https://buildpacks.io/docs/concepts/components/lifecycle/create/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/concepts/components/lifecycle/create/</guid>
+      <description>Runs detect, analyze, restore, build, and export in a single command.</description>
+    </item>
+    
+    <item>
       <title>Using project.toml</title>
       <link>https://buildpacks.io/docs/app-developer-guide/using-project-descriptor/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://buildpacks.io/docs/app-developer-guide/using-project-descriptor/</guid>
       <description>Learn how to use a project.toml file to simplify configuring pack.</description>
+    </item>
+    
+    <item>
+      <title>Launch</title>
+      <link>https://buildpacks.io/docs/concepts/components/lifecycle/launch/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/concepts/components/lifecycle/launch/</guid>
+      <description>The entrypoint for the final OCI image. Responsible for launching application processes.</description>
+    </item>
+    
+    <item>
+      <title>Rebase</title>
+      <link>https://buildpacks.io/docs/concepts/components/lifecycle/rebase/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/concepts/components/lifecycle/rebase/</guid>
+      <description>Rebase application layers onto a new run image.</description>
     </item>
     
     <item>
@@ -780,6 +842,15 @@ This API is used by platform implementors.&lt;/p&gt;</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://buildpacks.io/docs/reference/spec/migration/platform-api-0.4-0.5/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Platform API 0.5 -&gt; 0.6</title>
+      <link>https://buildpacks.io/docs/reference/spec/migration/platform-api-0.5-0.6/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/reference/spec/migration/platform-api-0.5-0.6/</guid>
       <description></description>
     </item>
     

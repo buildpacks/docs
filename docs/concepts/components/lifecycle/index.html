@@ -175,8 +175,34 @@
 <li data-nav-id="/docs/concepts/components/buildpack/" class="dd-item depth-2">
   <a href="/docs/concepts/components/buildpack/">Buildpack</a>
 </li>
-<li data-nav-id="/docs/concepts/components/lifecycle/" class="dd-item depth-2 active">
+<li data-nav-id="/docs/concepts/components/lifecycle/" class="dd-item depth-2 parent active haschildren">
   <a href="/docs/concepts/components/lifecycle/">Lifecycle</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/concepts/components/lifecycle/detect/" class="dd-item depth-3">
+  <a href="/docs/concepts/components/lifecycle/detect/">Detect</a>
+</li>
+<li data-nav-id="/docs/concepts/components/lifecycle/analyze/" class="dd-item depth-3">
+  <a href="/docs/concepts/components/lifecycle/analyze/">Analyze</a>
+</li>
+<li data-nav-id="/docs/concepts/components/lifecycle/restore/" class="dd-item depth-3">
+  <a href="/docs/concepts/components/lifecycle/restore/">Restore</a>
+</li>
+<li data-nav-id="/docs/concepts/components/lifecycle/build/" class="dd-item depth-3">
+  <a href="/docs/concepts/components/lifecycle/build/">Build</a>
+</li>
+<li data-nav-id="/docs/concepts/components/lifecycle/export/" class="dd-item depth-3">
+  <a href="/docs/concepts/components/lifecycle/export/">Export</a>
+</li>
+<li data-nav-id="/docs/concepts/components/lifecycle/create/" class="dd-item depth-3">
+  <a href="/docs/concepts/components/lifecycle/create/">Create</a>
+</li>
+<li data-nav-id="/docs/concepts/components/lifecycle/launch/" class="dd-item depth-3">
+  <a href="/docs/concepts/components/lifecycle/launch/">Launch</a>
+</li>
+<li data-nav-id="/docs/concepts/components/lifecycle/rebase/" class="dd-item depth-3">
+  <a href="/docs/concepts/components/lifecycle/rebase/">Rebase</a>
+</li>
+  </ul>
 </li>
 <li data-nav-id="/docs/concepts/components/platform/" class="dd-item depth-2">
   <a href="/docs/concepts/components/platform/">Platform</a>
@@ -478,6 +504,9 @@
 <li data-nav-id="/docs/reference/spec/migration/platform-api-0.4-0.5/" class="dd-item depth-3 collapse">
   <a href="/docs/reference/spec/migration/platform-api-0.4-0.5/">Platform API 0.4 -&gt; 0.5</a>
 </li>
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.5-0.6/" class="dd-item depth-3 collapse">
+  <a href="/docs/reference/spec/migration/platform-api-0.5-0.6/">Platform API 0.5 -&gt; 0.6</a>
+</li>
   </ul>
 </li>
 <li data-nav-id="/docs/reference/spec/platform-api/" class="dd-item depth-2">
@@ -504,7 +533,7 @@
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/concepts/components/lifecycle.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/concepts/components/lifecycle/_index.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
@@ -517,15 +546,97 @@
 
         <h2 id="what-is-the-lifecycle">What is the lifecycle?</h2>
 <p>The lifecycle orchestrates buildpack execution, then assembles the resulting artifacts into a final app image.</p>
-<h2 id="phases">Phases</h2>
-<ul>
-<li><strong>Detection</strong> &ndash; Finds an ordered group of buildpacks to use during the build phase.</li>
-<li><strong>Analysis</strong> &ndash; Restores files that buildpacks may use to optimize the build and export phases.</li>
-<li><strong>Build</strong> &ndash; Transforms application source code into runnable artifacts that can be packaged into a container.</li>
-<li><strong>Export</strong> &ndash; Creates the final OCI image.</li>
-</ul>
 
         
+    
+      
+        <h2><a href="https://buildpacks.io/docs/concepts/components/lifecycle/detect/" class="">Detect</a></h2>
+        <p class="m-1">Finds an ordered group of buildpacks to use during the build phase.</p>
+
+        
+          <div class="text-md-right">
+            <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/concepts/components/lifecycle/detect/">Learn more →</a>
+          </div>
+        
+      
+    
+      
+        <h2><a href="https://buildpacks.io/docs/concepts/components/lifecycle/analyze/" class="">Analyze</a></h2>
+        <p class="m-1">Restores files that buildpacks may use to optimize the build and export phases.</p>
+
+        
+          <div class="text-md-right">
+            <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/concepts/components/lifecycle/analyze/">Learn more →</a>
+          </div>
+        
+      
+    
+      
+        <h2><a href="https://buildpacks.io/docs/concepts/components/lifecycle/restore/" class="">Restore</a></h2>
+        <p class="m-1">Restores layers from the cache.</p>
+
+        
+          <div class="text-md-right">
+            <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/concepts/components/lifecycle/restore/">Learn more →</a>
+          </div>
+        
+      
+    
+      
+        <h2><a href="https://buildpacks.io/docs/concepts/components/lifecycle/build/" class="">Build</a></h2>
+        <p class="m-1">Transforms application source code into runnable artifacts that can be packaged into a container.</p>
+
+        
+          <div class="text-md-right">
+            <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/concepts/components/lifecycle/build/">Learn more →</a>
+          </div>
+        
+      
+    
+      
+        <h2><a href="https://buildpacks.io/docs/concepts/components/lifecycle/export/" class="">Export</a></h2>
+        <p class="m-1">Creates the final OCI image.</p>
+
+        
+          <div class="text-md-right">
+            <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/concepts/components/lifecycle/export/">Learn more →</a>
+          </div>
+        
+      
+    
+      
+        <h2><a href="https://buildpacks.io/docs/concepts/components/lifecycle/create/" class="">Create</a></h2>
+        <p class="m-1">Runs detect, analyze, restore, build, and export in a single command.</p>
+
+        
+          <div class="text-md-right">
+            <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/concepts/components/lifecycle/create/">Learn more →</a>
+          </div>
+        
+      
+    
+      
+        <h2><a href="https://buildpacks.io/docs/concepts/components/lifecycle/launch/" class="">Launch</a></h2>
+        <p class="m-1">The entrypoint for the final OCI image. Responsible for launching application processes.</p>
+
+        
+          <div class="text-md-right">
+            <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/concepts/components/lifecycle/launch/">Learn more →</a>
+          </div>
+        
+      
+    
+      
+        <h2><a href="https://buildpacks.io/docs/concepts/components/lifecycle/rebase/" class="">Rebase</a></h2>
+        <p class="m-1">Rebase application layers onto a new run image.</p>
+
+        
+          <div class="text-md-right">
+            <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/concepts/components/lifecycle/rebase/">Learn more →</a>
+          </div>
+        
+      
+    
 
         <hr>
 <div class='footline d-block'>
@@ -538,7 +649,7 @@
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/concepts/components/lifecycle.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/concepts/components/lifecycle/_index.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   

@@ -27,16 +27,6 @@ application.&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>Lifecycle</title>
-      <link>https://buildpacks.io/docs/concepts/components/lifecycle/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://buildpacks.io/docs/concepts/components/lifecycle/</guid>
-      <description>&lt;h2 id=&#34;what-is-the-lifecycle&#34;&gt;What is the lifecycle?&lt;/h2&gt;
-&lt;p&gt;The lifecycle orchestrates buildpack execution, then assembles the resulting artifacts into a final app image.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
       <title>Platform</title>
       <link>https://buildpacks.io/docs/concepts/components/platform/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
