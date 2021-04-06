@@ -573,6 +573,12 @@
 </tr>
 </tbody>
 </table>
+<h3 id="image">Image</h3>
+<p>The <code>exporter</code> accepts as an argument the tag reference to which the app image will be written, either in an OCI image registry or a docker daemon.</p>
+<h3 id="reporttoml">report.toml</h3>
+<p>The <code>exporter</code> will write a <a href="https://github.com/buildpacks/spec/blob/main/platform.md#reporttoml-toml"><code>report.toml</code></a> containing information about the exported image such as its digest and manifest size (if exported to an OCI registry) or identifier, and any build BOM contributed by buildpacks. The location of the output report can be specified by passing the <code>-report</code> flag; by default, it is written to <code>&lt;layers&gt;/report.toml</code> - note that this is NOT present in the filesystem of the exported image.</p>
+<hr>
+<p>For more information about the <code>exporter</code>, see the <a href="https://github.com/buildpacks/spec/blob/main/platform.md#exporter">Platform API spec</a>.</p>
 
 
         
