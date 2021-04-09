@@ -4,6 +4,8 @@ weight=1
 summary="Finds an ordered group of buildpacks to use during the build phase."
 +++
 
+{{< param "summary" >}}
+
 ### Exit Codes
 
 | Exit Code       | Result|

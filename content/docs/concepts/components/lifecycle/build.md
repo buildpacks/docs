@@ -4,6 +4,8 @@ weight=4
 summary="Transforms application source code into runnable artifacts that can be packaged into a container."
 +++
 
+{{< param "summary" >}}
+
 ### Exit Codes
 
 | Exit Code       | Result|

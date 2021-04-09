@@ -4,6 +4,8 @@ weight=8
 summary="Rebase application layers onto a new run image."
 +++
 
+{{< param "summary" >}}
+
 ### Exit Codes
 
 | Exit Code       | Result|

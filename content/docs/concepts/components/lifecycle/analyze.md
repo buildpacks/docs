@@ -4,6 +4,8 @@ weight=2
 summary="Restores files that buildpacks may use to optimize the build and export phases."
 +++
 
+{{< param "summary" >}}
+
 ### Exit Codes
 
 | Exit Code       | Result|

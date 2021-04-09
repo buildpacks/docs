@@ -4,6 +4,8 @@ weight=3
 summary="Restores layers from the cache."
 +++
 
+{{< param "summary" >}}
+
 ### Exit Codes
 
 | Exit Code       | Result|
