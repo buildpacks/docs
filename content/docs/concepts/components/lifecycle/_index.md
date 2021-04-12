@@ -2,7 +2,7 @@
 title="Lifecycle"
 weight=3
 include_summaries=true
-expand=true
+expand=false
 +++
 
 ## What is the lifecycle?
