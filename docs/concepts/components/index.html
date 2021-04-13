@@ -545,119 +545,51 @@
         
 
         
-    
       
-        <h2><a href="https://buildpacks.io/docs/concepts/components/lifecycle/" class="">Lifecycle</a></h2>
-        <p class="m-1"> The lifecycle orchestrates buildpack execution, then assembles the resulting artifacts into a final app image.
+        
+          <h2><a href="https://buildpacks.io/docs/concepts/components/builder/" class="">Builder</a></h2>
+          <p class="m-1">A builder is an image that contains all the components necessary to execute a build. A builder image is created by taking a build image and adding a lifecycle, buildpacks, and files that configure aspects of the build including the buildpack detection order and the location(s) of the run image</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/concepts/components/builder/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/concepts/components/buildpack/" class="">Buildpack</a></h2>
+          <p class="m-1"> A buildpack is a unit of work that inspects your app source code and formulates a plan to build and run your application.
 </p>
 
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/concepts/components/buildpack/">Learn more →</a>
+            </div>
         
-    
-      
-        <ul>
-          <li class="list-item-icon"><h3><a href="https://buildpacks.io/docs/concepts/components/lifecycle/detect/" class="">Detect</a></h3></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h3><a href="https://buildpacks.io/docs/concepts/components/lifecycle/analyze/" class="">Analyze</a></h3></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h3><a href="https://buildpacks.io/docs/concepts/components/lifecycle/restore/" class="">Restore</a></h3></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h3><a href="https://buildpacks.io/docs/concepts/components/lifecycle/build/" class="">Build</a></h3></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h3><a href="https://buildpacks.io/docs/concepts/components/lifecycle/export/" class="">Export</a></h3></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h3><a href="https://buildpacks.io/docs/concepts/components/lifecycle/create/" class="">Create</a></h3></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h3><a href="https://buildpacks.io/docs/concepts/components/lifecycle/launch/" class="">Launch</a></h3></li>
-          
-        </ul>
-      
-    
-      
-        <ul>
-          <li class="list-item-icon"><h3><a href="https://buildpacks.io/docs/concepts/components/lifecycle/rebase/" class="">Rebase</a></h3></li>
-          
-        </ul>
-      
-    
-      
-    
-      
-        <h2><a href="https://buildpacks.io/docs/concepts/components/builder/" class="">Builder</a></h2>
-        <p class="m-1">A builder is an image that contains all the components necessary to execute a build. A builder image is created by taking a build image and adding a lifecycle, buildpacks, and files that configure aspects of the build including the buildpack detection order and the location(s) of the run image</p>
-
-        
-          <div class="text-md-right">
-            <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/concepts/components/builder/">Learn more →</a>
-          </div>
-        
-      
-    
-      
-        <h2><a href="https://buildpacks.io/docs/concepts/components/buildpack/" class="">Buildpack</a></h2>
-        <p class="m-1"> A buildpack is a unit of work that inspects your app source code and formulates a plan to build and run your application.
+          <h2><a href="https://buildpacks.io/docs/concepts/components/lifecycle/" class="">Lifecycle</a></h2>
+          <p class="m-1"> The lifecycle orchestrates buildpack execution, then assembles the resulting artifacts into a final app image.
 </p>
 
-        
           <div class="text-md-right">
-            <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/concepts/components/buildpack/">Learn more →</a>
-          </div>
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/concepts/components/lifecycle/">Learn more →</a>
+            </div>
+          
         
-      
-    
-      
-        <h2><a href="https://buildpacks.io/docs/concepts/components/platform/" class="">Platform</a></h2>
-        <p class="m-1"> A platform uses a lifecycle, buildpacks (packaged in a builder), and application source code to produce an OCI image.
+          <h2><a href="https://buildpacks.io/docs/concepts/components/platform/" class="">Platform</a></h2>
+          <p class="m-1"> A platform uses a lifecycle, buildpacks (packaged in a builder), and application source code to produce an OCI image.
 </p>
 
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/concepts/components/platform/">Learn more →</a>
+            </div>
         
-          <div class="text-md-right">
-            <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/concepts/components/platform/">Learn more →</a>
-          </div>
-        
-      
-    
-      
-        <h2><a href="https://buildpacks.io/docs/concepts/components/stack/" class="">Stack</a></h2>
-        <p class="m-1"> A stack is composed of two images that are intended to work together:
+          <h2><a href="https://buildpacks.io/docs/concepts/components/stack/" class="">Stack</a></h2>
+          <p class="m-1"> A stack is composed of two images that are intended to work together:
  The build image of a stack provides the base image from which the build environment is constructed. The build environment is the containerized environment in which the lifecycle (and thereby buildpacks) are executed. The run image of a stack provides the base image from which application images are built. </p>
 
-        
-          <div class="text-md-right">
-            <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/concepts/components/stack/">Learn more →</a>
-          </div>
-        
-      
-    
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/concepts/components/stack/">Learn more →</a>
+            </div>
 
         <hr>
 <div class='footline d-block'>
