@@ -4,6 +4,8 @@ weight=5
 summary="Creates the final OCI image."
 +++
 
+{{< param "summary" >}}
+
 ### Exit Codes
 
 | Exit Code       | Result|

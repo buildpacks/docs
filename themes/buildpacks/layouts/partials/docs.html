@@ -14,7 +14,9 @@
         {{ .Content }}
 
         {{ if .Params.include_summaries }}
-          {{- template "subsection-summary" dict "currentSection" . "depth" 0 "titleOnlyAfterDepth" 1 -}}
+          {{- $titleOnlyAfterDepth := (int .Params.summaries_titles_only_after_depth | default 1) -}}
+          {{- $maxDepth := (int .Params.summaries_max_depth | default 2) -}}
+          {{- template "subsection-summary" dict "currentSection" . "depth" 0 "titleOnlyAfterDepth" $titleOnlyAfterDepth  "maxDepth" $maxDepth -}}
         {{ end }}
 
         {{ partial "footline.html" . }}
@@ -25,31 +27,40 @@
 
 <!-- templates -->
 {{- define "subsection-summary" }}
-  {{- $depth := .depth }}
+  {{- $depth := (int .depth) }}
+  {{- $maxDepth := (int .maxDepth) }}
   {{- $titleOnlyAfterDepth := .titleOnlyAfterDepth }}
-  {{- $headerLvl := (add (int $depth) 2) -}}
-  {{- with .currentSection}}
-    {{- $pages := (.Pages | union .Sections) }}
-    {{ range $pages }}
-      {{ if (ge $depth $titleOnlyAfterDepth) }}
-        <ul>
-          <li class="list-item-icon"><h{{ $headerLvl }}><a href="{{.Permalink}}" class="">{{ .Title }}</a></h{{ $headerLvl }}></li>
-          {{ if .Params.include_summaries }}
-            {{- template "subsection-summary" dict "currentSection" . "depth" (add (int $depth) 1)  "titleOnlyAfterDepth" $titleOnlyAfterDepth -}}
-          {{ end }}
-        </ul>
-      {{ else }}
-        <h{{ $headerLvl }}><a href="{{.Permalink}}" class="">{{ .Title | markdownify }}</a></h{{ $headerLvl }}>
-        <p class="m-1">{{ .Summary | replaceRE "<h[0-9].*>.*</h[0-9]>" "" | plainify | safeHTML }}</p>
-
-        {{ if .Params.include_summaries }}
-          {{- template "subsection-summary" dict "currentSection" . "depth" (add (int $depth) 1)  "titleOnlyAfterDepth" $titleOnlyAfterDepth -}}
+  {{- $headerLvl := (add $depth 2) -}}
+  {{- if (lt $depth $maxDepth) -}}
+    {{- with .currentSection}}
+      {{- $pages := sort (.Pages | union .Sections) "Weight" }}
+      {{ range $pages }}
+        {{ if (ge $depth $titleOnlyAfterDepth) }}
+          <ul>
+            <li class="list-item-icon"><h{{ $headerLvl }}><a href="{{.Permalink}}" class="">{{ .Title }}</a></h{{ $headerLvl }}></li>
+            {{ if .Params.include_summaries }}
+              {{- template "subsection-summary" dict "currentSection" . "depth" (add $depth 1)  "titleOnlyAfterDepth" $titleOnlyAfterDepth "maxDepth" $maxDepth -}}
+            {{ end }}
+          </ul>
         {{ else }}
-          <div class="text-md-right">
-            <a class="small text-pink mr-md-3 text-decoration-none" href="{{.Permalink}}">Learn more →</a>
-          </div>
-        {{ end }}
-      {{ end }}
-    {{ end }}
-  {{- end}}
+          <h{{ $headerLvl }}><a href="{{.Permalink}}" class="">{{ .Title | markdownify }}</a></h{{ $headerLvl }}>
+          <p class="m-1">{{ .Summary | replaceRE "<h[0-9].*>.*</h[0-9]>" "" | plainify | safeHTML }}</p>
+
+          {{ if .Params.include_summaries }}
+            {{- template "subsection-summary" dict "currentSection" . "depth" (add $depth 1)  "titleOnlyAfterDepth" $titleOnlyAfterDepth "maxDepth" $maxDepth -}}
+
+            {{- if (eq (add $depth 1) $maxDepth) -}}
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="{{.Permalink}}">Learn more →</a>
+            </div>
+            {{- end }}
+          {{ else }}
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="{{.Permalink}}">Learn more →</a>
+            </div>
+          {{- end }}
+        {{- end }}
+      {{- end }}
+    {{- end }}
+  {{- end }}
 {{- end}}

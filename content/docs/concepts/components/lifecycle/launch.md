@@ -4,6 +4,8 @@ weight=7
 summary="The entrypoint for the final OCI image. Responsible for launching application processes."
 +++
 
+{{< param "summary" >}}
+
 ### Exit Codes
 
 | Exit Code | Result|

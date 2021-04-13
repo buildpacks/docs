@@ -4,6 +4,8 @@ weight=6
 summary="Runs detect, analyze, restore, build, and export in a single command."
 +++
 
+{{< param "summary" >}}
+
 ### Exit Codes
 
 | Exit Code       | Result|
