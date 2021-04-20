@@ -129,7 +129,7 @@ A buildpack must contain a `buildpack.toml` file in its root directory.
 ### Example
 
 ```
-api = "0.2"
+api = "0.5"
 
 [buildpack]
 id = "example.com/python"
@@ -142,7 +142,7 @@ id = "io.buildpacks.stacks.bionic"
 ### Schema
 
 The schema is as follows:
-- **`api`** _(string, required, current: `0.2`)_\
+- **`api`** _(string, required, current: `0.5`)_\
     The Buildpack API version the buildpack adheres to. Used to ensure [compatibility](#api-compatibility) against
     the [lifecycle][lifecycle].
 
