@@ -542,10 +542,11 @@
         <h2 id="pack-buildpack-package">pack buildpack package</h2>
 <p>Package a buildpack in OCI format.</p>
 <h3 id="synopsis">Synopsis</h3>
-<p>buildpack package allows users to package (a) buildpack(s) into OCI format, which can then to be hosted in image repositories. You can also package a number of buildpacks together, to enable easier distribution of a set of buildpacks. Packaged buildpacks can be used as inputs to <code>pack build</code> (using the <code>--buildpack</code> flag), and they can be included in the configs used in <code>pack builder create</code> and <code>pack buildpack package</code>. For more on how to package a buildpack, see: <a href="https://buildpacks.io/docs/buildpack-author-guide/package-a-buildpack/">https://buildpacks.io/docs/buildpack-author-guide/package-a-buildpack/</a>.</p>
+<p>buildpack package allows users to package (a) buildpack(s) into OCI format, which can then to be hosted in image repositories or persisted on disk as a &lsquo;.cnb&rsquo; file. You can also package a number of buildpacks together, to enable easier distribution of a set of buildpacks. Packaged buildpacks can be used as inputs to <code>pack build</code> (using the <code>--buildpack</code> flag), and they can be included in the configs used in <code>pack builder create</code> and <code>pack buildpack package</code>. For more on how to package a buildpack, see: <a href="https://buildpacks.io/docs/buildpack-author-guide/package-a-buildpack/">https://buildpacks.io/docs/buildpack-author-guide/package-a-buildpack/</a>.</p>
 <pre><code>pack buildpack package &lt;name&gt; --config &lt;config-path&gt; [flags]
 </code></pre><h3 id="examples">Examples</h3>
 <pre><code>pack buildpack package my-buildpack --config ./package.toml
+pack buildpack package my-buildpack.cnb --config ./package.toml --f file
 </code></pre><h3 id="options">Options</h3>
 <pre><code>  -r, --buildpack-registry string   Buildpack Registry name
   -c, --config string               Path to package TOML config

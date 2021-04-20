@@ -630,7 +630,7 @@ echo &quot;launch = true&quot; &gt; &quot;$PIP_LAYER.toml&quot;
 </code></pre><h2 id="buildpacktoml"><code>buildpack.toml</code></h2>
 <p>A buildpack must contain a <code>buildpack.toml</code> file in its root directory.</p>
 <h3 id="example-2">Example</h3>
-<pre><code>api = &quot;0.2&quot;
+<pre><code>api = &quot;0.5&quot;
 
 [buildpack]
 id = &quot;example.com/python&quot;
@@ -642,7 +642,7 @@ id = &quot;io.buildpacks.stacks.bionic&quot;
 <p>The schema is as follows:</p>
 <ul>
 <li>
-<p><strong><code>api</code></strong> <em>(string, required, current: <code>0.2</code>)</em><br>
+<p><strong><code>api</code></strong> <em>(string, required, current: <code>0.5</code>)</em><br>
 The Buildpack API version the buildpack adheres to. Used to ensure <a href="#api-compatibility">compatibility</a> against
 the <a href="/docs/concepts/components/lifecycle/">lifecycle</a>.</p>
 <blockquote>
