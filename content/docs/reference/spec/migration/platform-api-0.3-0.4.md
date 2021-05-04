@@ -4,9 +4,6 @@ title="Platform API 0.3 -> 0.4"
 
 <!--more-->
 
-This guide describes changes from platform API 0.3 to 0.4, who these changes are relevant for,
-as well as any actions that may be necessary.
-
 This guide is most relevant to platform operators.
 
 See the [spec release](https://github.com/buildpacks/spec/releases/tag/platform%2Fv0.4) for platform API 0.4 for the full list of changes and further details.

@@ -5,12 +5,16 @@
   </div>
   <div class="bg-blue">
     <div class="container sub-footer">
-      <p>Reach out <a href="https://slack.buildpacks.io">on Slack</a> to learn more.</p>
       <ul>
-        <li><a href="https://lists.cncf.io/g/cncf-buildpacks/join" target="_blank">Mailing List</a> <span>&bull;</span></li>
-        <li><a href="{{ $.Site.Params.slack_invite_url }}" target="_blank">Slack</a> <span>&bull;</span></li>
-        <li><a href="https://twitter.com/{{ $.Site.Params.twitter_handle }}" target="_blank">Twitter</a> <span>&bull;</span></li>
-        <li><a href="{{ $.Site.Params.github_base_url }}" target="_blank">GitHub</a></li>
+        {{ range $i, $item := $.Site.Menus.footer1 }}
+        <li>{{ if $i }}<span>&bull;</span>{{ end }}<a target='_blank' href="{{ $item.URL }}">{{$item.Name}}</a></li>
+        {{ end }}
+      </ul>
+
+      <ul>
+        {{ range $i, $item := $.Site.Menus.footer2 }}
+        <li>{{ if $i }}<span>&bull;</span>{{ end }}<a target='_blank' href="{{ $item.URL }}">{{$item.Name}}</a></li>
+        {{ end }}
       </ul>
     </div>
   </div>

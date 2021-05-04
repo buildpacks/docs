@@ -23,11 +23,11 @@ Create the `ruby-buildpack/buildpack.toml` file and copy the following into it:
 <!-- test:file=ruby-buildpack/buildpack.toml -->
 ```toml
 # Buildpack API version
-api = "0.2"
+api = "0.5"
 
 # Buildpack ID and metadata
 [buildpack]
-id = "com.examples.buildpacks.ruby"
+id = "examples/ruby"
 version = "0.0.1"
 name = "Ruby Buildpack"
 
@@ -87,7 +87,7 @@ Set your default [builder][builder] by running the following:
 
 <!-- test:exec -->
 ```bash
-pack set-default-builder cnbs/sample-builder:bionic
+pack config default-builder cnbs/sample-builder:bionic
 ```
 
 Then run the following `pack` command:
@@ -104,7 +104,7 @@ After running the command, you should see that it failed to detect, as the `dete
 <!-- test:assert=contains -->
 ```
 ===> DETECTING
-[detector] err:  com.examples.buildpacks.ruby@0.0.1 (1)
+[detector] err:  examples/ruby@0.0.1 (1)
 [detector] ERROR: No buildpack groups passed detection.
 [detector] ERROR: failed to detect: buildpack(s) failed with err
 ```

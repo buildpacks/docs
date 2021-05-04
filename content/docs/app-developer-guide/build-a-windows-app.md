@@ -48,7 +48,7 @@ pack build sample-app --path samples/apps/aspnet --builder cnbs/sample-builder:d
 > **TIP:** The builder may take a few minutes to download on the first use.
 
 > **TIP:** If you don't want to keep specifying a builder every time you build, you can set it as your default
-> builder by running `pack set-default-builder <BUILDER>`.
+> builder by running `pack config default-builder <BUILDER>`.
 
 ### 3. Run it
 

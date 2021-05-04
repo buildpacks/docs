@@ -8,6 +8,8 @@ getting-started=true
 
 In this tutorial, we'll explain how to use `pack` and **buildpacks** to create a runnable app image from source code.
 
+{{< katacoda-button href="https://katacoda.com/buildpacks/scenarios/app-journey" color="green" >}} Learn on Katacoda {{</>}}
+
 In order to run the build process in an isolated fashion, `pack` uses **Docker**. That means you'll need to make sure you have both `docker` and `pack` installed:
 
 {{< download-button href="https://store.docker.com/search?type=edition&offering=community" color="blue" >}} Install Docker {{</>}}

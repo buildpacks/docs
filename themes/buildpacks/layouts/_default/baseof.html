@@ -7,8 +7,7 @@
   <script
     src="https://cdn.jsdelivr.net/combine/npm/axios@0.21.0,npm/jquery@3.5.1,npm/bootstrap@4.5.3,npm/fullcalendar@5.4.0"></script>
 
-  <link rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css"
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css"
     crossorigin="anonymous">
   <link rel="stylesheet"
     href="https://cdn.jsdelivr.net/combine/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css,npm/fullcalendar@5.4.0/main.min.css"
@@ -17,24 +16,34 @@
   {{ $style := resources.Get "scss/site.scss" | resources.ToCSS }}
   <link rel="stylesheet" href="{{ $style.Permalink }}" integrity="{{ $style.Data.Integrity }}" media="screen">
 
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CJLSR4FQXL"></script>
+
   <script>
-    function addAnchor(element) {
-      if (element.id === "" || element.getElementsByTagName("a").length > 0) {
-        return;
-      }
-
-      element.innerHTML =
-        `<a href="#${element.id}" class="h-anchor">
-            ${element.innerHTML} <i class="fas fa-link icon" aria-label="Anchor"></i>
+    $(function () {
+      $('h1[id], h2[id], h3[id], h4[id], h5[id]').not(':has(a)').each(function () {
+        this.innerHTML =
+          `<a href="#${this.id}" class="h-anchor">
+            ${this.innerHTML} <i class="fas fa-link icon" aria-label="Anchor"></i>
           </a>`;
-    }
+      });
 
-    document.addEventListener('DOMContentLoaded', function () {
-      const headers = document.querySelectorAll('h1, h2, h3, h4, h5');
-      if (headers) {
-        headers.forEach(addAnchor);
+      if ($('input#search').length > 0) {
+        docsearch({
+          apiKey: '5c00a51f166dab99e1cc6e0a9976e9f9',
+          indexName: 'buildpacks',
+          inputSelector: 'input#search',
+          debug: false
+        });
       }
     });
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-CJLSR4FQXL');
   </script>
 
   <title>{{ .Title | plainify }} · {{ .Site.Title }}</title>

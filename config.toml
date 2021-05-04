@@ -19,26 +19,57 @@ description = "Cloud Native Buildpacks transform your application source code in
 pack_version_env_var = "PACK_VERSION"
 
 [menu]
-  [[menu.main]]
-  identifier = "home"
-  name       = "Home"
-  url        = "/"
-  weight     = 1
 
   [[menu.main]]
   identifier = "features"
   name       = "Features"
   url        = "/features"
-  weight     = 2
+  weight     = 1
 
   [[menu.main]]
   identifier = "community"
   name       = "Community"
   url        = "/community"
-  weight     = 3
+  weight     = 2
 
   [[menu.main]]
   identifier = "blog"
   name       = "Blog"
   url        = "https://medium.com/buildpacks"
+  weight     = 3
+
+  [[menu.main]]
+  identifier = "registry"
+  name       = "Registry"
+  url        = "https://registry.buildpacks.io/"
+  weight     = 4
+
+  [[menu.footer1]]
+  name       = "DevStats"
+  url        = "https://registry.buildpacks.io/"
+  weight     = 1
+
+  [[menu.footer1]]
+  name       = "Analytics"
+  url        = "https://datastudio.google.com/reporting/4b23856c-6c24-44f5-86f2-333d0ad3f236"
+  weight     = 2
+
+  [[menu.footer2]]
+  name       = "Mailing List"
+  url        = "https://lists.cncf.io/g/cncf-buildpacks/join"
+  weight     = 1
+
+  [[menu.footer2]]
+  name       = "Slack"
+  url        = "https://slack.buildpacks.io/"
+  weight     = 2
+
+  [[menu.footer2]]
+  name       = "Twitter"
+  url        = "https://twitter.com/buildpacks_io"
+  weight     = 3
+
+  [[menu.footer2]]
+  name       = "GitHub"
+  url        = "https://github.com/buildpacks"
   weight     = 4
