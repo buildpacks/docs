@@ -46,7 +46,7 @@ pack_version_env_var = "PACK_VERSION"
 
   [[menu.footer1]]
   name       = "DevStats"
-  url        = "https://registry.buildpacks.io/"
+  url        = "https://buildpacks.devstats.cncf.io/d/8/dashboards?orgId=1&refresh=15m"
   weight     = 1
 
   [[menu.footer1]]

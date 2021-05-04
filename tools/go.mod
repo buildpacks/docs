@@ -4,7 +4,7 @@ go 1.14
 
 require (
 	github.com/buildpacks/imgutil v0.0.0-20210323214708-5a2568dd25b6 // indirect
-	github.com/buildpacks/pack v0.18.0
+	github.com/buildpacks/pack v0.18.1
 	github.com/containerd/containerd v1.5.0-beta.4 // indirect
 	github.com/containerd/stargz-snapshotter/estargz v0.5.0 // indirect
 	github.com/docker/cli v20.10.5+incompatible // indirect

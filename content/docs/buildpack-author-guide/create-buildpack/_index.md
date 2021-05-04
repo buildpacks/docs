@@ -4,6 +4,10 @@ weight=4
 summary="This is a step-by-step tutorial for creating a Cloud Native Buildpack using simple bash scripts."
 +++
 
+You can also follow an interactive version of this guide on Katacoda.
+
+{{< katacoda-button href="https://www.katacoda.com/buildpacks/scenarios/buildpack-author-guide" color="green" >}} Learn on Katacoda {{</>}}
+
 ## Prerequisites
 
 Before we get started, make sure you've got the following installed: 
