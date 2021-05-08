@@ -80,7 +80,7 @@ The schema for the `project descriptor` is:
       Defines an inline buildpack.
 
         - **`api`** _(string, required, current: `0.5`)_\
-          The Buildpack API version the buildpack adheres to. Used to ensure [compatibility](api-compat) against the [lifecycle][lifecycle].
+          The Buildpack API version the buildpack adheres to. Used to ensure [compatibility][api-compat] against the [lifecycle][lifecycle].
 
         - **`inline`** _(string, required)_\
           The build script contents.
