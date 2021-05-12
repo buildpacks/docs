@@ -54,6 +54,11 @@ pack_version_env_var = "PACK_VERSION"
   url        = "https://datastudio.google.com/reporting/4b23856c-6c24-44f5-86f2-333d0ad3f236"
   weight     = 2
 
+  [[menu.footer1]]
+  name       = "Privacy Policy"
+  url        = "https://www.linuxfoundation.org/privacy/"
+  weight     = 3
+
   [[menu.footer2]]
   name       = "Mailing List"
   url        = "https://lists.cncf.io/g/cncf-buildpacks/join"
