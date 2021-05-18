@@ -10,6 +10,10 @@ summary="Cloud Native Buildpacks provide a unique solution to the image build pr
 {{< feature title="Advanced Caching" align="right" >}}
 Robust caching is used to improve performance.
 {{</>}}
+
+{{< feature title="Auto-detection" align="right" >}}
+Images can be built directly from application source without additional instructions.
+{{</>}}
   
 {{< feature title="Bill-of-Materials" >}}
 Insights into the contents of the app image.
