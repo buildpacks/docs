@@ -90,3 +90,17 @@
     - name: Slides
       icon: file-powerpoint
       url: https://docs.google.com/presentation/d/1vDv33oHU277mh6oCP7vBqQomMpPFIuzSmMTtfaQyBoY/view
+- name: "Introduction to Cloud Native Buildpacks"
+  presenters:
+    - Stephen Levine, VMware
+    - Jesse Brown, Salesforce
+  description: >-
+    Cloud Native Buildpacks transform your application source code into images that can run on any cloud.
+    In this session you'll learn the basics of using buildpacks, and why they make a great choice over
+    the alternatives.
+  youtube_id: r7VfuEHixtc
+  year: 2021
+  resources: 
+    - name: Slides
+      icon: file-powerpoint
+      url: https://static.sched.com/hosted_files/kccnceu2021/f3/IntroductionToCloudNativeBuildpacks_StephenLevineJesseBrown_v1.pdf
