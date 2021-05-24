@@ -2,7 +2,14 @@
 PACK_VERSION?=
 GITHUB_TOKEN?=
 PACK_BIN?=$(shell which pack)
+SERVE_PORT=1313
 BASE_URL?=
+
+ifndef BASE_URL
+ifdef GITPOD_WORKSPACE_URL
+BASE_URL=$(shell echo "$(GITPOD_WORKSPACE_URL)" | sed -r 's;^([^/]*)//(.*);\1//$(SERVE_PORT)-\2;')
+endif
+endif
 
 ifndef PACK_VERSION
 ifdef GITHUB_TOKEN
@@ -63,9 +70,9 @@ serve: export PACK_VERSION:=$(PACK_VERSION)
 serve: install-hugo pack-version pack-docs-update
 	@echo "> Serving..."
 ifeq ($(BASE_URL),)
-	hugo server --disableFastRender
+	hugo server --disableFastRender --port=$(SERVE_PORT)
 else
-	hugo server --disableFastRender --baseURL=$(BASE_URL) --appendPort=false
+	hugo server --disableFastRender --port=$(SERVE_PORT) --baseURL=$(BASE_URL) --appendPort=false
 endif
 
 .PHONY: build

@@ -1,0 +1,19 @@
+ports:
+  - port: 1313
+    onOpen: open-preview
+
+tasks:
+  - init: make build
+
+github:
+  prebuilds:
+    master: true
+    branches: true
+    pullRequests: true
+    pullRequestsFromForks: true
+    addCheck: true
+
+vscode:
+  extensions:
+    - golang.go
+    - bierner.markdown-preview-github-styles

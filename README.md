@@ -1,6 +1,9 @@
-![](https://github.com/buildpacks/docs/workflows/Deploy/badge.svg)
+# Docs for [Cloud Native Buildpacks](https://buildpacks.io)
 
-Website for [Cloud Native Buildpacks](https://buildpacks.io)
+[![](https://github.com/buildpacks/docs/workflows/Deploy/badge.svg)](https://github.com/buildpacks/docs/actions)
+[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/buildpacks/pack)
+
+### Preview
 
 ![buildpacks.io](https://image.thum.io/get/https://buildpacks.io)
 
