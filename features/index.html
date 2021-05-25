@@ -171,6 +171,8 @@
 <div class="text-center m-2 py-5 px-4 bg-white border rounded">
   <h2>Advanced Caching</h2>Robust caching is used to improve performance.</div>
 <div class="text-center m-2 py-5 px-4 bg-white border rounded">
+  <h2>Auto-detection</h2>Images can be built directly from application source without additional instructions.</div>
+<div class="text-center m-2 py-5 px-4 bg-white border rounded">
   <h2>Bill-of-Materials</h2>Insights into the contents of the app image.</div>
 <div class="text-center m-2 py-5 px-4 bg-white border rounded">
   <h2>Modular / Pluggable</h2>Multiple buildpacks can be used to create an app image.</div>
@@ -193,6 +195,7 @@
     <colgroup>
       <col style="width:25%">
       <col style="width:25%">
+      <col style="width:20%">
       <col style="width:20%">
       <col style="width:20%">
       <col style="width:20%">
@@ -261,6 +264,14 @@
         </div>
         <div>Cloud Native Buildpacks</div>
       </th>
+      <th class="py-3">
+        <div class="py-3">
+          <img
+            src="/images/docker.png"
+            style="max-width: 200px; max-height: 50px" alt="docker"/>
+        </div>
+        <div>Dockerfile</div>
+      </th>
       <th class="py-3" style="min-width: 50%">
         <div class="py-3">
           <img
@@ -293,15 +304,27 @@
         Advanced Caching
       </th>
       <td class="text-pink font-weight-bold border-left border-right">Yes</td>
+      <td class="text-muted">No</td>
       <td class="text-pink font-weight-bold">Yes</td>
       <td class="text-muted">No</td>
       <td class="text-muted">No</td>
     </tr>
     <tr>
       <th class="p-3">
+        Auto-detection
+      </th>
+      <td class="text-pink font-weight-bold border-left border-right">Yes</td>
+      <td class="text-muted">No</td>
+      <td class="text-pink font-weight-bold">Yes</td>
+      <td class="text-pink font-weight-bold">Yes</td>
+      <td class="text-pink font-weight-bold">Yes</td>
+    </tr>
+    <tr>
+      <th class="p-3">
         Bill-of-Materials
       </th>
       <td class="text-pink font-weight-bold border-left border-right">Yes</td>
+      <td class="text-muted">No</td>
       <td class="text-muted">No</td>
       <td class="text-muted">No</td>
       <td class="text-muted">No</td>
@@ -312,6 +335,7 @@
       </th>
       <td class="text-pink font-weight-bold border-left border-right">Yes</td>
       <td class="text-muted">No</td>
+      <td class="text-muted">No</td>
       <td class="text-muted">&nbsp;&nbsp;N/A&nbsp;<sup>&dagger;</sup></td>
       <td class="text-muted">&nbsp;&nbsp;N/A&nbsp;<sup>&dagger;</sup></td>
     </tr>
@@ -320,6 +344,7 @@
         Multi-language
       </th>
       <td class="text-pink font-weight-bold border-left border-right">Yes</td>
+      <td class="text-pink font-weight-bold">Yes</td>
       <td class="text-pink font-weight-bold">Yes</td>
       <td class="text-muted">No</td>
       <td class="text-muted">No</td>
@@ -332,12 +357,14 @@
       <td class="text-muted">No</td>
       <td class="text-muted">No</td>
       <td class="text-muted">No</td>
+      <td class="text-muted">No</td>
     </tr>
     <tr>
       <th class="p-3">
         Minimal app image
       </th>
       <td class="text-pink font-weight-bold border-left border-right">Yes</td>
+      <td class="text-pink font-weight-bold">&nbsp;&nbsp;Yes&nbsp;<sup>&diams;</sup></td>
       <td class="text-pink font-weight-bold">&nbsp;&nbsp;Yes&nbsp;<sup>&ddagger;</sup></td>
       <td class="text-pink font-weight-bold">Yes</td>
       <td class="text-pink font-weight-bold">Yes</td>
@@ -350,12 +377,14 @@
       <td class="text-muted">No</td>
       <td class="text-muted">No</td>
       <td class="text-muted">No</td>
+      <td class="text-muted">No</td>
     </tr>
     <tr>
       <th class="p-3">
         Reproducibility
       </th>
       <td class="text-pink font-weight-bold border-left border-right">Yes</td>
+      <td class="text-muted">No</td>
       <td class="text-muted">No</td>
       <td class="text-pink font-weight-bold">Yes</td>
       <td class="text-pink font-weight-bold">Yes</td>
@@ -365,6 +394,7 @@
         Reusability
       </th>
       <td class="text-pink font-weight-bold border-left border-right">Yes</td>
+      <td class="text-muted">No</td>
       <td class="text-pink font-weight-bold">Yes</td>
       <td class="text-muted">&nbsp;&nbsp;N/A&nbsp;<sup>&dagger;</sup></td>
       <td class="text-muted">&nbsp;&nbsp;N/A&nbsp;<sup>&dagger;</sup></td>
@@ -385,6 +415,17 @@
       </td>
       <td class="text-left pl-5 align-text-top">
         <ul class="list-circle">
+          <li>Amazon ECS</li>
+          <li>Azure</li>
+          <li>CircleCI</li>
+          <li>GitLab</li>
+          <li>Google</li>
+          <li>Tekton</li>
+          <li>...</li>
+        </ul>
+      </td>
+      <td class="text-left pl-5 align-text-top">
+        <ul class="list-circle">
           <li>OpenShift</li>
         </ul>
       </td>
@@ -399,10 +440,40 @@
     <tr>
       <th class="p-3">Governance</th>
       <td class="border-left border-right">CNCF</td>
+      <td>Docker</td>
       <td>Red Hat</td>
       <td>Google</td>
       <td>Google</td>
     </tr>
+    <tr class="border-top bg-light">
+      <th class="p-3">Best for Building...</th>
+      <td class="border-left border-right text-left pl-6 align-text-top">
+        <ul class="list-circle">
+          <li>Applications</li>
+        </ul>
+      </td>
+      <td class="text-left pl-6 align-text-top">
+        <ul class="list-circle">
+          <li>Applications</li>
+          <li>Base images</li>
+          <li>OS Images</li>
+        </ul>
+        <td class="text-left pl-6 align-text-top">
+          <ul class="list-circle">
+            <li>Applications</li>
+          </ul>
+        </td>
+        <td class="text-left pl-6 align-text-top">
+          <ul class="list-circle">
+            <li>Applications</li>
+          </ul>
+        </td>
+        <td class="text-left pl-6 align-text-top">
+          <ul class="list-circle">
+            <li>Applications</li>
+          </ul>
+        </td>
+      </tr>
     </tbody>
   </table>
 </div>
@@ -410,6 +481,7 @@
   <ul class="list-unstyled">
     <li><sup>&dagger;</sup> This feature does not apply to solution.</li>
     <li><sup>&ddagger;</sup> Requires additional configuration which adversely affects other features.</li>
+    <li><sup>&diams;</sup> Requires additional configuration.</li>
   </ul>
 </div>
 
