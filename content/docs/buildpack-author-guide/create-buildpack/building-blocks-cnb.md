@@ -32,18 +32,9 @@ This command will create `ruby-buildpack` directory which contains `buildpack.to
 
 
 
-
-## Using Shell
-<!-- test:exec -->
-```bash
-mkdir ruby-buildpack
-```
-
 ### buildpack.toml
 
-You will now need a `buildpack.toml` to describe our buildpack.
-
-Create the `ruby-buildpack/buildpack.toml` file and copy the following into it:
+You will have `buildpack.toml` in your buildpack directory to describe our buildpack.
 
 <!-- test:file=ruby-buildpack/buildpack.toml -->
 ```toml
@@ -52,54 +43,44 @@ api = "0.5"
 
 # Buildpack ID and metadata
 [buildpack]
-id = "examples/ruby"
-version = "0.0.1"
-name = "Ruby Buildpack"
+  id = "examples/ruby"
+  version = "0.0.1"
 
 # Stacks that the buildpack will work with
 [[stacks]]
-id = "io.buildpacks.samples.stacks.bionic"
+  id = "io.buildpacks.stacks.bionic"
+
 ```
 
 You will notice two specific fields in the file: `buildpack.id` and `stack.id`. The buildpack ID is the way you will reference the buildpack when you create buildpack groups, builders, etc. The stack ID is the root file system in which the buildpack will be run. This example can be run on one of two different stacks, both based upon Ubuntu Bionic.
 
 ### `detect` and `build`
 
-Next you will need to create the `detect` and `build` scripts. These files must exist in a `bin` directory in your buildpack directory.
+Next, we will cover the `detect` and `build` scripts. These files are created in `bin` directory in your buildpack directory.
 
-Create your `bin` directory and then change to that directory.
 
-<!-- test:exec -->
-```bash
-mkdir ruby-buildpack/bin
-```
-
-Now create your `ruby-buildpack/bin/detect` file and copy in the following contents:
+`ruby-buildpack/bin/detect` file has the following contents:
 
 <!-- test:file=ruby-buildpack/bin/detect -->
 ```bash
 #!/usr/bin/env bash
-set -eo pipefail
 
-exit 1
+exit 0
 ```
 
-Now create your `ruby-buildpack/bin/build` and copy in the following contents:
+Also `ruby-buildpack/bin/build` file has the following contents:
 
 <!-- test:file=ruby-buildpack/bin/build -->
 ```bash
 #!/usr/bin/env bash
-set -eo pipefail
 
-echo "---> Ruby Buildpack"
-exit 1
-```
+set -euo pipefail
 
-You will need to make both of these files executable, so run the following command:
+layers_dir="$1"
+env_dir="$2/env"
+plan_path="$3"
 
-<!-- test:exec -->
-```bash
-chmod +x ruby-buildpack/bin/detect ruby-buildpack/bin/build
+exit 0
 ```
 
 These two files are now executable `detect` and `build` scripts. You are now able to use this buildpack.
