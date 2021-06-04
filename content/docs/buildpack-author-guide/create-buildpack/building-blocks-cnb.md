@@ -9,6 +9,32 @@ Now we will set up the buildpack scaffolding.
 
 Let's create the directory where your buildpack will live:
 
+## Using the Pack CLI
+
+The `buildpack new <id>` commmand will create a directory named for the buildpack ID.
+
+Example:
+<!-- test:exec -->
+```bash
+pack buildpack new examples/ruby \
+    --api 0.5 \
+    --name "Ruby Buildpack" \
+    --path ruby-buildpack \
+    --version 0.0.1
+```
+This command will create `ruby-buildpack` directory which contains `buildpack.toml`, `bin/build`,  `bin/detect` files.
+
+### Additional Parameters
+- `-a, --api` Buildpack API compatibility of the generated buildpack
+- `-h, --help` Help for 'new'
+- `--path` the location on the filesystem to generate the artifacts.
+- `--stacks` Stack(s) this buildpack will be compatible with. Repeat for each stack in order, or supply once by comma-separated list
+- `-V, --version` the version of the buildpack in buildpack.toml
+
+
+
+
+## Using Shell
 <!-- test:exec -->
 ```bash
 mkdir ruby-buildpack
