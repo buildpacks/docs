@@ -83,7 +83,7 @@ plan_path="$3"
 exit 0
 ```
 
-These two files are now executable `detect` and `build` scripts. You are now able to use this buildpack.
+These two files are executable `detect` and `build` scripts. You are now able to use this buildpack.
 
 ### Using your buildpack with `pack`
 
