@@ -19,7 +19,8 @@ Example:
 pack buildpack new examples/ruby \
     --api 0.5 \
     --path ruby-buildpack \
-    --version 0.0.1
+    --version 0.0.1 \
+    --stacks io.buildpacks.samples.stacks.bionic
 ```
 This command will create `ruby-buildpack` directory which contains `buildpack.toml`, `bin/build`,  `bin/detect` files.
 
