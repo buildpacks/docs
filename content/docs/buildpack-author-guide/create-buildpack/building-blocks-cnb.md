@@ -18,7 +18,6 @@ Example:
 ```bash
 pack buildpack new examples/ruby \
     --api 0.5 \
-    --name "Ruby Buildpack" \
     --path ruby-buildpack \
     --version 0.0.1
 ```
