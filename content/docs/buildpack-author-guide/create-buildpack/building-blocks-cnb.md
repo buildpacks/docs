@@ -48,7 +48,7 @@ api = "0.5"
 
 # Stacks that the buildpack will work with
 [[stacks]]
-  id = "io.buildpacks.stacks.bionic"
+  id = "io.buildpacks.samples.stacks.bionic"
 
 ```
 
