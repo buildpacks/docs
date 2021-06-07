@@ -60,13 +60,14 @@ You will notice two specific fields in the file: `buildpack.id` and `stack.id`. 
 Next, we will cover the `detect` and `build` scripts. These files are created in `bin` directory in your buildpack directory.
 
 
-`ruby-buildpack/bin/detect` file has the following contents:
+Now update your `ruby-buildpack/bin/detect` file and copy in the following contents:
 
 <!-- test:file=ruby-buildpack/bin/detect -->
 ```bash
 #!/usr/bin/env bash
+set -eo pipefail
 
-exit 0
+exit 1
 ```
 
 Also `ruby-buildpack/bin/build` file has the following contents:
