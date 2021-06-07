@@ -70,19 +70,15 @@ set -eo pipefail
 exit 1
 ```
 
-Also `ruby-buildpack/bin/build` file has the following contents:
+Also update your `ruby-buildpack/bin/build` file and copy in the following contents:
 
 <!-- test:file=ruby-buildpack/bin/build -->
 ```bash
 #!/usr/bin/env bash
+set -eo pipefail
 
-set -euo pipefail
-
-layers_dir="$1"
-env_dir="$2/env"
-plan_path="$3"
-
-exit 0
+echo "---> Ruby Buildpack"
+exit 1
 ```
 
 These two files are executable `detect` and `build` scripts. You are now able to use this buildpack.
