@@ -10,7 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="Now we will set up the buildpack scaffolding.
 Let&amp;rsquo;s create the directory where your buildpack will live:
-mkdir ruby-buildpack buildpack.toml You will now need a buildpack.toml to describe our…"/>
+Using the Pack CLI The buildpack new &amp;lt;id&amp;gt; commmand will create a directory named…"/>
 <link rel="canonical" content="https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
@@ -26,7 +26,7 @@ mkdir ruby-buildpack buildpack.toml You will now need a buildpack.toml to descri
 <meta property="og:site_name" content="Cloud Native Buildpacks">
 <meta property="og:description" content="Now we will set up the buildpack scaffolding.
 Let&amp;rsquo;s create the directory where your buildpack will live:
-mkdir ruby-buildpack buildpack.toml You will now need a buildpack.toml to describe our…">
+Using the Pack CLI The buildpack new &amp;lt;id&amp;gt; commmand will create a directory named…">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -549,47 +549,56 @@ mkdir ruby-buildpack buildpack.toml You will now need a buildpack.toml to descri
         <!-- test:suite=create-buildpack;weight=2 -->
 <p>Now we will set up the buildpack scaffolding.</p>
 <p>Let&rsquo;s create the directory where your buildpack will live:</p>
+<h2 id="using-the-pack-cli">Using the Pack CLI</h2>
+<p>The <code>buildpack new &lt;id&gt;</code> commmand will create a directory named for the buildpack ID.</p>
+<p>Example:</p>
 <!-- test:exec -->
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">mkdir ruby-buildpack
-</code></pre></div><h3 id="buildpacktoml">buildpack.toml</h3>
-<p>You will now need a <code>buildpack.toml</code> to describe our buildpack.</p>
-<p>Create the <code>ruby-buildpack/buildpack.toml</code> file and copy the following into it:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack buildpack new examples/ruby <span class="se">\
+</span><span class="se"></span>    --api 0.5 <span class="se">\
+</span><span class="se"></span>    --path ruby-buildpack <span class="se">\
+</span><span class="se"></span>    --version 0.0.1 <span class="se">\
+</span><span class="se"></span>    --stacks io.buildpacks.samples.stacks.bionic
+</code></pre></div><p>This command will create <code>ruby-buildpack</code> directory which contains <code>buildpack.toml</code>, <code>bin/build</code>,  <code>bin/detect</code> files.</p>
+<h3 id="additional-parameters">Additional Parameters</h3>
+<ul>
+<li><code>-a, --api</code> Buildpack API compatibility of the generated buildpack</li>
+<li><code>-h, --help</code> Help for &lsquo;new&rsquo;</li>
+<li><code>--path</code> the location on the filesystem to generate the artifacts.</li>
+<li><code>--stacks</code> Stack(s) this buildpack will be compatible with. Repeat for each stack in order, or supply once by comma-separated list</li>
+<li><code>-V, --version</code> the version of the buildpack in buildpack.toml</li>
+</ul>
+<h3 id="buildpacktoml">buildpack.toml</h3>
+<p>You will have <code>buildpack.toml</code> in your buildpack directory to describe our buildpack.</p>
 <!-- test:file=ruby-buildpack/buildpack.toml -->
 <div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="c"># Buildpack API version</span>
 <span class="nx">api</span> <span class="p">=</span> <span class="s2">&#34;0.5&#34;</span>
 
 <span class="c"># Buildpack ID and metadata</span>
 <span class="p">[</span><span class="nx">buildpack</span><span class="p">]</span>
-<span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;examples/ruby&#34;</span>
-<span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;0.0.1&#34;</span>
-<span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Ruby Buildpack&#34;</span>
+  <span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;examples/ruby&#34;</span>
+  <span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;0.0.1&#34;</span>
 
 <span class="c"># Stacks that the buildpack will work with</span>
 <span class="p">[[</span><span class="nx">stacks</span><span class="p">]]</span>
-<span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;io.buildpacks.samples.stacks.bionic&#34;</span>
+  <span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;io.buildpacks.samples.stacks.bionic&#34;</span>
+
 </code></pre></div><p>You will notice two specific fields in the file: <code>buildpack.id</code> and <code>stack.id</code>. The buildpack ID is the way you will reference the buildpack when you create buildpack groups, builders, etc. The stack ID is the root file system in which the buildpack will be run. This example can be run on one of two different stacks, both based upon Ubuntu Bionic.</p>
 <h3 id="detect-and-build"><code>detect</code> and <code>build</code></h3>
-<p>Next you will need to create the <code>detect</code> and <code>build</code> scripts. These files must exist in a <code>bin</code> directory in your buildpack directory.</p>
-<p>Create your <code>bin</code> directory and then change to that directory.</p>
-<!-- test:exec -->
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">mkdir ruby-buildpack/bin
-</code></pre></div><p>Now create your <code>ruby-buildpack/bin/detect</code> file and copy in the following contents:</p>
+<p>Next, we will cover the <code>detect</code> and <code>build</code> scripts. These files are created in <code>bin</code> directory in your buildpack directory.</p>
+<p>Now update your <code>ruby-buildpack/bin/detect</code> file and copy in the following contents:</p>
 <!-- test:file=ruby-buildpack/bin/detect -->
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
 </span><span class="cp"></span><span class="nb">set</span> -eo pipefail
 
 <span class="nb">exit</span> <span class="m">1</span>
-</code></pre></div><p>Now create your <code>ruby-buildpack/bin/build</code> and copy in the following contents:</p>
+</code></pre></div><p>Also update your <code>ruby-buildpack/bin/build</code> file and copy in the following contents:</p>
 <!-- test:file=ruby-buildpack/bin/build -->
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
 </span><span class="cp"></span><span class="nb">set</span> -eo pipefail
 
 <span class="nb">echo</span> <span class="s2">&#34;---&gt; Ruby Buildpack&#34;</span>
 <span class="nb">exit</span> <span class="m">1</span>
-</code></pre></div><p>You will need to make both of these files executable, so run the following command:</p>
-<!-- test:exec -->
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">chmod +x ruby-buildpack/bin/detect ruby-buildpack/bin/build
-</code></pre></div><p>These two files are now executable <code>detect</code> and <code>build</code> scripts. You are now able to use this buildpack.</p>
+</code></pre></div><p>These two files are executable <code>detect</code> and <code>build</code> scripts. You are now able to use this buildpack.</p>
 <h3 id="using-your-buildpack-with-pack">Using your buildpack with <code>pack</code></h3>
 <p>In order to test your buildpack, you will need to run the buildpack against your sample Ruby app using the <code>pack</code> CLI.</p>
 <p>Set your default <a href="/docs/concepts/components/builder">builder</a> by running the following:</p>
