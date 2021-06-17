@@ -542,41 +542,7 @@
           <h1 class="title">Getting Started</h1>
         </div>
 
-        <h3 id="tutorials">Tutorials</h3>
-<ul>
-<li><a href="/docs/app-journey/">An App’s Brief Journey from Source to Image</a> - An easy-to-follow introduction to Cloud Native Buildpacks using <code>pack</code>, a command line tool for Cloud Native Buildpacks.</li>
-<li><a href="/docs/buildpack-author-guide/create-buildpack">Creating a Cloud Native Buildpack</a> - Tutorial walking through the creation of a simple Ruby buildpack.</li>
-</ul>
-<h3 id="conceptsdocsconcepts"><a href="/docs/concepts">Concepts</a></h3>
-<p>Learn the <a href="/docs/concepts">concepts</a> of Cloud Native Buildpacks.</p>
-<h3 id="guides">Guides</h3>
-<p>Set of guides tailored to specific personas:</p>
-<ul>
-<li><a href="/docs/app-developer-guide/">App Developers</a></li>
-<li><a href="/docs/buildpack-author-guide/">Buildpack Authors</a></li>
-<li><a href="/docs/operator-guide/">Operators</a></li>
-</ul>
-<h3 id="toolsdocstools"><a href="/docs/tools/">Tools</a></h3>
-<ul>
-<li><a href="/docs/tools/pack/">Pack</a> - A command line tool, and Go library, for utilizing and packaging Cloud Native Buildpacks.</li>
-</ul>
-<h3 id="referencedocsreference"><a href="/docs/reference/">Reference</a></h3>
-<p>Reference documents for various key aspects of the project.</p>
-<ul>
-<li><a href="/docs/reference/config/">Configuration</a> - Schema definitions for configuration files.</li>
-<li><a href="/docs/reference/spec/">Specification</a> - An overview of the Cloud Native Buildpacks API specification.</li>
-</ul>
-<hr>
-<h1 id="community-and-support">Community and Support</h1>
-<p>Cloud Native Buildpacks is an incubating project in the CNCF. We welcome contribution from the community. Here you will find helpful information for interacting with the core team and contributing to the project.</p>
-<h2 id="community">Community</h2>
-<p>The best place to contact the Cloud Native Buildpack team is on our <a href="https://slack.buildpacks.io/">Slack channel</a> or <a href="https://lists.cncf.io/g/cncf-buildpacks">mailing list</a>.</p>
-<h2 id="contributors-guide">Contributor&rsquo;s Guide</h2>
-<p>Find out the various ways that <em>you</em> can contribute to the Cloud Native Buildpacks project using our <a href="https://github.com/buildpacks/community/blob/main/contributors/guide.md">contributor&rsquo;s guide</a>.</p>
-<h2 id="project-roadmap">Project Roadmap</h2>
-<p>This is a community driven project and our roadmap is publicly available on our <a href="https://github.com/orgs/buildpacks/projects/1">Github page</a>. We encourage you to contribute with feature requests.</p>
-<hr>
-<h1 id="talks">Talks</h1>
+        <h2 id="talks">Talks</h2>
 <div id="talks" class="px-2">
   <div class="row border">
     <div id="talks-player" class="col-md-8 px-0">
@@ -591,14 +557,14 @@
       <div style="position: relative; padding-bottom: 109.25%; height: 0; overflow: auto;">
         
         <div data-talk-index="0" class="talk border-bottom pl-2 pr-1 py-1 pointer">
-          <div class="small font-weight-bold">Intro: Cloud Native Buildpacks</div>
+          <div class="small font-weight-bold">Introduction to Cloud Native Buildpacks</div>
           <div class="small font-italic">
             
             
-            <span class="talks-presenter">Terence Lee, Heroku</span>
+            <span class="talks-presenter">Stephen Levine, VMware</span>
             
              & 
-            <span class="talks-presenter">Emily Casey, Pivotal</span>
+            <span class="talks-presenter">Jesse Brown, Salesforce</span>
             
           </div>
         </div>
@@ -652,19 +618,6 @@
           </div>
         </div>
         
-        <div data-talk-index="5" class="talk border-bottom pl-2 pr-1 py-1 pointer">
-          <div class="small font-weight-bold">Introduction to Cloud Native Buildpacks</div>
-          <div class="small font-italic">
-            
-            
-            <span class="talks-presenter">Stephen Levine, VMware</span>
-            
-             & 
-            <span class="talks-presenter">Jesse Brown, Salesforce</span>
-            
-          </div>
-        </div>
-        
       </div>
     </div>
   </div>
@@ -683,7 +636,7 @@
 </div>
 
 <script type="application/javascript">
-  let talks = [{"description":"You're great at running containers but you shouldn't have to be great at building them. In this talk, you'll learn about Cloud Native Buildpacks, a higher-level abstraction for building apps compared to Dockerfiles. Buildpacks are a standardized tool for creating images in a secure, reproducible, and efficient manner. As an app developer, you don't need to know best practices around ordering commands for layer reuse. As an operator, you don't need to worry about exposing developers to the responsibilities that come with Dockerfile. Come learn how buildpacks meet developers at their source code, automate the delivery of both OS-level and application-level dependency upgrades, and help you efficiently handle day-2 app operations.","name":"Intro: Cloud Native Buildpacks","presenters":["Terence Lee, Heroku","Emily Casey, Pivotal"],"resources":[{"icon":"file-powerpoint","name":"Slides","url":"https://docs.google.com/presentation/d/14cjPH520VGx9aGi4rHRIqgl7RHdUmCRj6PYFEBINPhs/view"}],"year":2019,"youtube_id":"SK6e_ZatOaw"},{"description":"Learn why you need a buildpack and how to create one. We'll take advantage of caching and Docker layers to speed up rebuilds and deploys. Unlike Dockerfiles, buildpacks are composable. Finally, you'll learn how to rebase your application layers on a new image. This allow operators to efficiently handle the delivery of OS-level dependency upgrades. ","name":"Deep Dive: Cloud Native Buildpacks","presenters":["Joe Kutner, Heroku","Stephen Levine, Pivotal"],"resources":[{"icon":"file-powerpoint","name":"Slides","url":"https://docs.google.com/presentation/d/14cjPH520VGx9aGi4rHRIqgl7RHdUmCRj6PYFEBINPhs/view"}],"youtube_id":"j9Ak5YLrihU"},{"description":"Are you a developer that would rather build features than maintain Dockerfiles? Is your organization excited about Kubernetes but worried about patching vulnerable dependencies across a great number of containers? In this talk, you’ll learn how to use the pack CLI to go from source to image in seconds and patch a pod even faster. Cloud Foundry and Heroku users have long appreciated the developer experience and security guarantees provided by buildpacks. Cloud-Native Buildpacks (a CNCF sandbox project) represents a generational leap in buildpacks, bringing the power of buildpacks to k8s and beyond.","name":"Pack to the Future: Cloud-Native Buildpacks on k8s","presenters":["Emily Casey, Pivotal","Joe Kutner, Heroku"],"resources":[{"icon":"file-powerpoint","name":"Slides","url":"https://docs.google.com/presentation/d/14rkLA2hn3nVu_liiW6Y7hy3hSsnz1HueEdLkhvChONM/view"}],"year":2019,"youtube_id":"J2SXkmOo8iQ"},{"description":"Buildpacks are the core of Heroku - they lower the operational burden of creating and maintaining application environments. Cloud Native Buildpacks combine Heroku’s seamless developer experience with modern container standards, making it easy to build Docker images from Node.js source code. In this talk, Node developers can learn how to perform both OS and application-level upgrades, create Docker images without Dockerfiles, and run containerized Node.js apps with little configuration. (Docker experience not required.)","name":"Cloud Native Buildpacks: Containers for Everyone","presenters":["Danielle Adams, Heroku"],"resources":[{"icon":"file-powerpoint","name":"Slides","url":"https://slides.com/danielleadams/cnbs-node-js-interactive-19"}],"year":2019,"youtube_id":"-u5FIbi3Gs8"},{"description":"Dive into some new functionality of Cloud Native Buildpacks which can be powerful in the enterprise context, such as the ability to narrowly define trusted builders, allowing developers and operators to restrict access to registry credentials, as well as the ability to create Windows images in a number of CI/CD systems, including Tekton, Gitlab and CircleCI.","name":"Production CI/CD w/CNBs: Tekton, Gitlab \u0026 CircleCI(plus), Oh My!","presenters":["David Freilich, VMware","Natalie Arellano, VMware"],"resources":[{"icon":"file-powerpoint","name":"Slides","url":"https://docs.google.com/presentation/d/1vDv33oHU277mh6oCP7vBqQomMpPFIuzSmMTtfaQyBoY/view"}],"year":2020,"youtube_id":"RNN8XwRWGjk"},{"description":"Cloud Native Buildpacks transform your application source code into images that can run on any cloud. In this session you'll learn the basics of using buildpacks, and why they make a great choice over the alternatives.","name":"Introduction to Cloud Native Buildpacks","presenters":["Stephen Levine, VMware","Jesse Brown, Salesforce"],"resources":[{"icon":"file-powerpoint","name":"Slides","url":"https://static.sched.com/hosted_files/kccnceu2021/f3/IntroductionToCloudNativeBuildpacks_StephenLevineJesseBrown_v1.pdf"}],"year":2021,"youtube_id":"r7VfuEHixtc"}];
+  let talks = [{"description":"Cloud Native Buildpacks transform your application source code into images that can run on any cloud. In this session you'll learn the basics of using buildpacks, and why they make a great choice over the alternatives.","name":"Introduction to Cloud Native Buildpacks","presenters":["Stephen Levine, VMware","Jesse Brown, Salesforce"],"resources":[{"icon":"file-powerpoint","name":"Slides","url":"https://static.sched.com/hosted_files/kccnceu2021/f3/IntroductionToCloudNativeBuildpacks_StephenLevineJesseBrown_v1.pdf"},{"icon":"file-powerpoint","name":"Slides (Office Hours)","url":"https://docs.google.com/presentation/d/1eM-p7aWv6kiY77GBUR4kvdjuEBA-PEr_th9euNryoJE/view"}],"year":2021,"youtube_id":"r7VfuEHixtc"},{"description":"Learn why you need a buildpack and how to create one. We'll take advantage of caching and Docker layers to speed up rebuilds and deploys. Unlike Dockerfiles, buildpacks are composable. Finally, you'll learn how to rebase your application layers on a new image. This allow operators to efficiently handle the delivery of OS-level dependency upgrades. ","name":"Deep Dive: Cloud Native Buildpacks","presenters":["Joe Kutner, Heroku","Stephen Levine, Pivotal"],"resources":[{"icon":"file-powerpoint","name":"Slides","url":"https://docs.google.com/presentation/d/14cjPH520VGx9aGi4rHRIqgl7RHdUmCRj6PYFEBINPhs/view"}],"youtube_id":"j9Ak5YLrihU"},{"description":"Are you a developer that would rather build features than maintain Dockerfiles? Is your organization excited about Kubernetes but worried about patching vulnerable dependencies across a great number of containers? In this talk, you’ll learn how to use the pack CLI to go from source to image in seconds and patch a pod even faster. Cloud Foundry and Heroku users have long appreciated the developer experience and security guarantees provided by buildpacks. Cloud-Native Buildpacks (a CNCF sandbox project) represents a generational leap in buildpacks, bringing the power of buildpacks to k8s and beyond.","name":"Pack to the Future: Cloud-Native Buildpacks on k8s","presenters":["Emily Casey, Pivotal","Joe Kutner, Heroku"],"resources":[{"icon":"file-powerpoint","name":"Slides","url":"https://docs.google.com/presentation/d/14rkLA2hn3nVu_liiW6Y7hy3hSsnz1HueEdLkhvChONM/view"}],"year":2019,"youtube_id":"J2SXkmOo8iQ"},{"description":"Buildpacks are the core of Heroku - they lower the operational burden of creating and maintaining application environments. Cloud Native Buildpacks combine Heroku’s seamless developer experience with modern container standards, making it easy to build Docker images from Node.js source code. In this talk, Node developers can learn how to perform both OS and application-level upgrades, create Docker images without Dockerfiles, and run containerized Node.js apps with little configuration. (Docker experience not required.)","name":"Cloud Native Buildpacks: Containers for Everyone","presenters":["Danielle Adams, Heroku"],"resources":[{"icon":"file-powerpoint","name":"Slides","url":"https://slides.com/danielleadams/cnbs-node-js-interactive-19"}],"year":2019,"youtube_id":"-u5FIbi3Gs8"},{"description":"Dive into some new functionality of Cloud Native Buildpacks which can be powerful in the enterprise context, such as the ability to narrowly define trusted builders, allowing developers and operators to restrict access to registry credentials, as well as the ability to create Windows images in a number of CI/CD systems, including Tekton, Gitlab and CircleCI.","name":"Production CI/CD w/CNBs: Tekton, Gitlab \u0026 CircleCI(plus), Oh My!","presenters":["David Freilich, VMware","Natalie Arellano, VMware"],"resources":[{"icon":"file-powerpoint","name":"Slides","url":"https://docs.google.com/presentation/d/1vDv33oHU277mh6oCP7vBqQomMpPFIuzSmMTtfaQyBoY/view"}],"year":2020,"youtube_id":"RNN8XwRWGjk"}];
 
   $(function () {
     let $talkDescription = $("#talk-description");
@@ -726,6 +679,46 @@
   });
 </script>
 <hr>
+<h2 id="tutorials">Tutorials</h2>
+<ul>
+<li><a href="/docs/app-journey/">An App’s Brief Journey from Source to Image</a> - An easy-to-follow introduction to Cloud Native Buildpacks using <code>pack</code>, a command line tool for Cloud Native Buildpacks.</li>
+<li><a href="/docs/buildpack-author-guide/create-buildpack">Creating a Cloud Native Buildpack</a> - Tutorial walking through the creation of a simple Ruby buildpack.</li>
+</ul>
+<h2 id="conceptsdocsconcepts"><a href="/docs/concepts">Concepts</a></h2>
+<p>Learn the <a href="/docs/concepts">concepts</a> of Cloud Native Buildpacks.</p>
+<h2 id="guides">Guides</h2>
+<p>Set of guides tailored to specific personas:</p>
+<ul>
+<li><a href="/docs/app-developer-guide/">App Developers</a></li>
+<li><a href="/docs/buildpack-author-guide/">Buildpack Authors</a></li>
+<li><a href="/docs/operator-guide/">Operators</a></li>
+</ul>
+<h2 id="toolsdocstools"><a href="/docs/tools/">Tools</a></h2>
+<ul>
+<li><strong><a href="/docs/tools/circleci">CircleCI</a></strong> - <a href="https://circleci.com/">CircleCI</a> is a continuous integration and delivery platform. The CNB project maintains an integration, called an <a href="https://circleci.com/orbs/">orb</a>,
+which allows users to run <a href="/docs/install-pack">pack</a> commands inside their pipelines.</li>
+<li><strong><a href="/docs/tools/gitlab">GitLab</a></strong> - <a href="https://about.gitlab.com/">Gitlab</a> is a web based DevOps platform. It uses <a href="/docs/install-pack"><code>pack</code></a> as part of the <a href="https://docs.gitlab.com/ee/topics/autodevops/">Auto DevOps</a> feature, to
+build applications prior to deploying them.</li>
+<li><strong><a href="/docs/tools/kpack">kpack</a></strong> - <a href="https://github.com/pivotal/kpack">kpack</a> is a Kubernetes native platform maintained by <a href="https://www.vmware.com/company.html">VMware</a> under the <a href="https://tanzu.vmware.com/build-service">VMware Tanzu project</a> that utilizes unprivileged Kubernetes primitives to provide builds of OCI images as a platform implementation of Cloud Native Buildpacks (CNB).</li>
+<li><strong><a href="/docs/tools/pack">Pack</a></strong> - Pack is a tool maintained by the Cloud Native Buildpacks project to support the use of buildpacks.</li>
+<li><strong><a href="/docs/tools/tekton">Tekton</a></strong> - <a href="https://tekton.dev/">Tekton</a> is an open-source CI/CD system platform implementation running on k8s. There are two Tekton <code>tasks</code>
+maintained by the CNB project, both of which use the <a href="/docs/concepts/components/lifecycle">lifecycle</a> directly (i.e. they do not use <code>pack</code>).</li>
+</ul>
+<h2 id="referencedocsreference"><a href="/docs/reference/">Reference</a></h2>
+<p>Reference documents for various key aspects of the project.</p>
+<ul>
+<li><a href="/docs/reference/config/">Configuration</a> - Schema definitions for configuration files.</li>
+<li><a href="/docs/reference/spec/">Specification</a> - An overview of the Cloud Native Buildpacks API specification.</li>
+</ul>
+<hr>
+<h1 id="community-and-support">Community and Support</h1>
+<p>Cloud Native Buildpacks is an incubating project in the CNCF. We welcome contribution from the community. Here you will find helpful information for interacting with the core team and contributing to the project.</p>
+<h2 id="community">Community</h2>
+<p>The best place to contact the Cloud Native Buildpack team is on our <a href="https://slack.buildpacks.io/">Slack channel</a> or <a href="https://lists.cncf.io/g/cncf-buildpacks">mailing list</a>.</p>
+<h2 id="contributors-guide">Contributor&rsquo;s Guide</h2>
+<p>Find out the various ways that <em>you</em> can contribute to the Cloud Native Buildpacks project using our <a href="https://github.com/buildpacks/community/blob/main/contributors/guide.md">contributor&rsquo;s guide</a>.</p>
+<h2 id="project-roadmap">Project Roadmap</h2>
+<p>This is a community driven project and our roadmap is publicly available on our <a href="https://github.com/orgs/buildpacks/projects/1">Github page</a>. We encourage you to contribute with feature requests.</p>
 
 
         

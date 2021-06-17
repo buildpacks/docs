@@ -569,8 +569,6 @@ tests groups of buildpacks against your app&rsquo;s source code. The first group
 will become the selected set of buildpacks for your app. Detection criteria is specific to each buildpack &ndash; for
 instance, an <strong>NPM buildpack</strong> might look for a <code>package.json</code>, and a <strong>Go buildpack</strong> might look for Go source files.</p>
 <h3 id="what-is-a-builderbuilder">What is a <a href="/docs/concepts/components/builder/">builder</a>?</h3>
-
-
 A builder is an image that contains all the components necessary to execute a build. A builder image is created by taking a build image and adding a lifecycle, buildpacks, and files that configure aspects of the build including the buildpack detection order and the location(s) of the run image
 <h2 id="next-stop-the-end">Next stop, the end</h2>
 <p>Let&rsquo;s see all this in action using <code>pack build</code>.</p>
