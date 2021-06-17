@@ -84,7 +84,7 @@ kind: Secret
 metadata:
     name: basic-user-pass
     annotations:
-        tekton.dev/docker-0: <LINK TO REGISTRY, e.g. https://index.docker.io/v1>
+        tekton.dev/docker-0: <LINK TO REGISTRY, e.g. https://index.docker.io/v1/>
 type: kubernetes.io/basic-auth
 stringData:
     username: <USERNAME>
