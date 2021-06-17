@@ -1,3 +1,2 @@
-{{ $page := .Get 0 }}
-{{ $page := .Get 0 }}
-{{ with .Site.GetPage $page }}{{ .Summary }}{{ end }}
+{{- $page := .Get 0 -}}
+{{- with .Site.GetPage $page }}{{ .Summary | markdownify }}{{ end -}}
