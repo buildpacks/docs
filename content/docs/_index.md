@@ -4,16 +4,22 @@ weight=1
 summary="Get started with Cloud Native Buildpacks."
 +++
 
-### Tutorials
+## Talks
+
+{{< talks >}}
+
+---
+
+## Tutorials
 
 * [An App’s Brief Journey from Source to Image](/docs/app-journey/) - An easy-to-follow introduction to Cloud Native Buildpacks using `pack`, a command line tool for Cloud Native Buildpacks.
 * [Creating a Cloud Native Buildpack](/docs/buildpack-author-guide/create-buildpack) - Tutorial walking through the creation of a simple Ruby buildpack.
 
-### [Concepts](/docs/concepts)
+## [Concepts](/docs/concepts)
 
 Learn the [concepts](/docs/concepts) of Cloud Native Buildpacks.
 
-### Guides
+## Guides
 
 Set of guides tailored to specific personas:
 
@@ -21,11 +27,15 @@ Set of guides tailored to specific personas:
 *  [Buildpack Authors](/docs/buildpack-author-guide/)
 *  [Operators](/docs/operator-guide/)
 
-### [Tools](/docs/tools/)
+## [Tools](/docs/tools/)
 
-* [Pack](/docs/tools/pack/) - A command line tool, and Go library, for utilizing and packaging Cloud Native Buildpacks.
+* **[CircleCI](/docs/tools/circleci)** - {{< summary "/docs/tools/circleci" >}}
+* **[GitLab](/docs/tools/gitlab)** - {{< summary "/docs/tools/gitlab" >}}
+* **[kpack](/docs/tools/kpack)** - {{< summary "/docs/tools/kpack" >}}
+* **[Pack](/docs/tools/pack)** - {{< summary "/docs/tools/pack" >}}
+* **[Tekton](/docs/tools/tekton)** - {{< summary "/docs/tools/tekton" >}}
 
-### [Reference](/docs/reference/)
+## [Reference](/docs/reference/)
 
 Reference documents for various key aspects of the project.
 
@@ -49,11 +59,3 @@ Find out the various ways that _you_ can contribute to the Cloud Native Buildpac
 ## Project Roadmap
 
 This is a community driven project and our roadmap is publicly available on our [Github page](https://github.com/orgs/buildpacks/projects/1). We encourage you to contribute with feature requests.
-
----
-
-# Talks
-
-{{< talks >}}
-
----
