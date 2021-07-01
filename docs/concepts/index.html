@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+<meta name="description" content="Buildpacks allow you to convert your source code into a secure, efficient, production ready container image. What are buildpacks? Buildpacks provide framework and runtime support for applications.…"/>
 <link rel="canonical" content="https://buildpacks.io/docs/concepts/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
@@ -22,7 +22,7 @@
 <meta property="og:url" content="https://buildpacks.io/docs/concepts/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-
+<meta property="og:description" content="Buildpacks allow you to convert your source code into a secure, efficient, production ready container image. What are buildpacks? Buildpacks provide framework and runtime support for applications.…">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -542,84 +542,49 @@
           <h1 class="title">Concepts</h1>
         </div>
 
-        
-
-        
-      
-        
-          <h2><a href="https://buildpacks.io/docs/concepts/components/" class="">Components</a></h2>
-          <p class="m-1"></p>
-
-          
-      
-        
-          <h3><a href="https://buildpacks.io/docs/concepts/components/builder/" class="">Builder</a></h3>
-          <p class="m-1">A builder is an image that contains all the components necessary to execute a build. A builder image is created by taking a build image and adding a lifecycle, buildpacks, and files that configure aspects of the build including the buildpack detection order and the location(s) of the run image</p>
-
-          
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/concepts/components/builder/">Learn more →</a>
-            </div>
-        
-          <h3><a href="https://buildpacks.io/docs/concepts/components/buildpack/" class="">Buildpack</a></h3>
-          <p class="m-1"> A buildpack is a unit of work that inspects your app source code and formulates a plan to build and run your application.
+        <p class="lead">
+Buildpacks allow you to convert your source code into a secure, efficient, production ready container image.
 </p>
+<h2 id="what-are-buildpacks">What are buildpacks?</h2>
+<p><img src="/docs/concepts/what.svg" alt="buildpacks"></p>
+<p><strong><a href="/docs/concepts/components/buildpack">Buildpacks</a> provide framework and runtime support for applications.</strong> Buildpacks examine your apps to determine all the dependencies it needs and configure them appropriately to run on any cloud.</p>
+<h2 id="how-do-they-work">How do they work?</h2>
+<p><img src="/docs/concepts/how.svg" alt="how"></p>
+<p><strong>Each buildpack comprises of two phases -</strong></p>
+<h3 id="detect-phase">Detect phase</h3>
+<p>The <code>detect</code> phase runs against your source code to determine if the buildpack is applicable or not. Once a buildpack is <code>detected</code> to be applicable, it proceeds to the <code>build</code> stage. If the project fails <code>detection</code> the <code>build</code> stage for a specific buildpack is skipped.</p>
+<p>For example:</p>
+<ul>
+<li>A Python buildpack may look for a <code>requirements.txt</code> or a <code>setup.py</code> file pass</li>
+<li>A Node buildpack may look for a <code>package-lock.json</code> file to pass</li>
+</ul>
+<h3 id="build-phase">Build phase</h3>
+<p>The <code>build</code> phase runs against your source code to -</p>
+<ul>
+<li>Set up the build-time and run-time environment</li>
+<li>Download dependencies and compile your source code (if needed)</li>
+<li>Set appropriate entry point and startup scripts</li>
+</ul>
+<p>For example:</p>
+<ul>
+<li>A Python buildpack may run <code>pip install -r requirements.txt</code> if it detected a <code>requirements.txt</code> file</li>
+<li>A Node buildpack may run <code>npm install</code> if it detected a <code>package-lock.json</code> file</li>
+</ul>
+<h2 id="what-is-a-builder">What is a builder?</h2>
+<p><img src="/docs/concepts/builder.svg" alt="builder"></p>
+<p><a href="/docs/concepts/components/builder"><code>Builders</code></a> are an ordered combination of <a href="/docs/concepts/components/buildpack"><code>buildpacks</code></a> with a base <code>build</code> image and a <code>run</code> image. They take in your <code>app</code> source code and build the output <code>app image</code>. The <code>build</code> image provides the base environment for the <code>builder</code> (for eg. an Ubuntu Bionic OS image with build tooling) and a <code>run</code> image provides the base environment for the <code>app image</code> during runtime. A combination of a <code>build</code> image and a <code>run</code> image is called a <a href="/docs/concepts/components/stack"><code>stack</code></a>.</p>
+<p>Under the hood a builder uses the <a href="/docs/concepts/components/lifecycle"><code>lifecycle</code></a> to run the <code>detect</code> phase for all the <code>buildpacks</code> it contains in order and then proceeds to run the <code>build</code> phase of all the <code>buildpacks</code> that passed detection.</p>
+<p>This allows us to have a <strong>single</strong> <code>builder</code> that can detect and build various kinds of applications automatically.</p>
+<p>For example, let&rsquo;s say <code>demo-builder</code> contains the <code>Python</code> and <code>Node</code> buildpack. Then -</p>
+<ul>
+<li>If your project just has a <code>requirements.txt</code>, <code>demo-builder</code> will only run the Python <code>build</code> steps.</li>
+<li>If your project just has a <code>package-lock.json</code>, <code>demo-builder</code> will only run the Node <code>build</code> steps.</li>
+<li>If your project has both <code>package-lock.json</code> and <code>requirements.txt</code>, <code>demo-builder</code> will run <strong>both</strong> the Python and Node <code>build</code> steps.</li>
+<li>If your project has no related files, <code>demo-builder</code> will fail to <code>detect</code> and exit.</li>
+</ul>
 
-          
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/concepts/components/buildpack/">Learn more →</a>
-            </div>
+
         
-          <h3><a href="https://buildpacks.io/docs/concepts/components/lifecycle/" class="">Lifecycle</a></h3>
-          <p class="m-1"> The lifecycle orchestrates buildpack execution, then assembles the resulting artifacts into a final app image.
-</p>
-
-          <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/concepts/components/lifecycle/">Learn more →</a>
-            </div>
-          
-        
-          <h3><a href="https://buildpacks.io/docs/concepts/components/platform/" class="">Platform</a></h3>
-          <p class="m-1"> A platform uses a lifecycle, buildpacks (packaged in a builder), and application source code to produce an OCI image.
-</p>
-
-          
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/concepts/components/platform/">Learn more →</a>
-            </div>
-        
-          <h3><a href="https://buildpacks.io/docs/concepts/components/stack/" class="">Stack</a></h3>
-          <p class="m-1"> A stack is composed of two images that are intended to work together:
- The build image of a stack provides the base image from which the build environment is constructed. The build environment is the containerized environment in which the lifecycle (and thereby buildpacks) are executed. The run image of a stack provides the base image from which application images are built. </p>
-
-          
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/concepts/components/stack/">Learn more →</a>
-            </div>
-          
-        
-          <h2><a href="https://buildpacks.io/docs/concepts/operations/" class="">Operations</a></h2>
-          <p class="m-1"></p>
-
-          
-      
-        
-          <h3><a href="https://buildpacks.io/docs/concepts/operations/build/" class="">Build</a></h3>
-          <p class="m-1">Build is the process of executing one or more buildpacks against the app’s source code to produce a runnable OCI image.</p>
-
-          
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/concepts/operations/build/">Learn more →</a>
-            </div>
-        
-          <h3><a href="https://buildpacks.io/docs/concepts/operations/rebase/" class="">Rebase</a></h3>
-          <p class="m-1">Rebase allows app developers or operators to rapidly update an app image when its stack&rsquo;s run image has changed.</p>
-
-          
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/concepts/operations/rebase/">Learn more →</a>
-            </div>
-          
 
         <hr>
 <div class='footline d-block'>
