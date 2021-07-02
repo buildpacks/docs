@@ -46,7 +46,7 @@ RFCs, or Request For Comments, is the process we employ to review project-wide c
 
 Contributions to the RFC process can take any or all of the following forms:
 - Reviewing and commenting on [RFC Pull Requests](https://github.com/buildpacks/rfcs/pulls)
-- Partaking in discussions in Working Group meetings
+- Partaking in discussions in [Working Group](https://github.com/buildpacks/community/#working-group) meetings
 - Proposing changes via [RFCs](https://github.com/buildpacks/rfcs)
 
 #### Triage
