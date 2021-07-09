@@ -164,6 +164,7 @@
               <strong>Also...</strong>
               <ul class="text-left">
                 <li><a href="https://github.com/buildpacks/community/discussions">GitHub Discussions</a></li>
+                <li><a href="https://github.com/buildpacks/community">BuildPacks Community on GitHub</a></li>
                 <li><a href="https://lists.cncf.io/g/cncf-buildpacks">Mailing List</a></li>
                 <li><a href="https://stackoverflow.com/questions/tagged/buildpack">StackOverflow</a></li>
               </ul>
@@ -177,7 +178,79 @@
   <div class="container">
     <div class='row my-4'>
       <div class='col-md-12 docs-content'>
-        <h2 id="calendar">Calendar</h2>
+        <h2 id="what-type-of-contributions-can-i-make">What type of contributions can I make?</h2>
+<p>Buildpacks welcomes all types of contributions, not just those related to code. We value any help that you can provide, and are more than happy to guide you through the process.</p>
+<h4 id="documentation">Documentation</h4>
+<p>This involves documenting any aspect of the project. We have various open issues for you to start off with. Another good starting point would revolve around your comprehension or desired area of expertise.</p>
+<p>Some examples where we&rsquo;d value documentation contributions are:</p>
+<ul>
+<li>Providing additional tutorials/guides to our <a href="https://buildpacks.io/">docs site</a></li>
+<li>Adding additional information or examples to our <a href="https://github.com/buildpacks/samples">samples repo</a></li>
+<li>Working on open issues, such as on our
+<ul>
+<li><a href="https://github.com/buildpacks/docs/issues">Documentation repo</a></li>
+<li><a href="https://github.com/buildpacks/samples/issues">Samples repo</a></li>
+</ul>
+</li>
+<li>Adding GoDocs to codebases, such as
+<ul>
+<li><a href="https://github.com/buildpacks/libcnb">libcnb</a></li>
+<li><a href="https://github.com/buildpacks/lifecycle">lifecycle</a></li>
+<li><a href="https://github.com/buildpacks/pack">pack</a></li>
+</ul>
+</li>
+<li>Writing posts for our <a href="https://medium.com/buildpacks">Medium blog</a>. Please discuss blog proposals with the <a href="https://buildpacks.slack.com/archives/CST4A3ECV">learning team on Slack</a>.</li>
+</ul>
+<p>If you have any other ideas where documentation would be useful, please feel free to open up an issue in the related repository, or drop a message at the <a href="https://buildpacks.slack.com/archives/CDLN5A3TL">#docs channel on Slack!</a></p>
+<h4 id="code">Code</h4>
+<p>Code contributions are always welcome to any Buildpacks repository.</p>
+<p>The following repositories are good starting points for code contributions:</p>
+<ul>
+<li><a href="https://github.com/buildpacks/libcnb">libcnb</a></li>
+<li><a href="https://github.com/buildpacks/lifecycle">lifecycle</a></li>
+<li><a href="https://github.com/buildpacks/pack">pack</a></li>
+</ul>
+<p>Other, more specialized, repositories include:</p>
+<ul>
+<li><a href="https://github.com/buildpacks/tekton-integration">tekton-integration</a></li>
+<li><a href="https://github.com/buildpacks/pack-orb">pack-orb</a></li>
+</ul>
+<h4 id="rfcs">RFCs</h4>
+<p>RFCs, or Request For Comments, is the process we employ to review project-wide changes. By proposing changes via RFCs, it allows for the entire community to partake in the brainstorming process of applying changes, considering alternatives, impact, and limitations.</p>
+<p>Contributions to the RFC process can take any or all of the following forms:</p>
+<ul>
+<li>Reviewing and commenting on <a href="https://github.com/buildpacks/rfcs/pulls">RFC Pull Requests</a></li>
+<li>Partaking in discussions in <a href="https://github.com/buildpacks/community/#working-group">Working Group</a> meetings</li>
+<li>Proposing changes via <a href="https://github.com/buildpacks/rfcs">RFCs</a></li>
+</ul>
+<h4 id="triage">Triage</h4>
+<p>Triaging issues is the process of looking at newly created issues (or following up on issues). There are many benefits our community gains from our current triage process, such as:</p>
+<ul>
+<li>The community receives reasonable response times.</li>
+<li>Minimize the number of open &ldquo;stale&rdquo; issues.</li>
+<li>Ongoing efforts aren&rsquo;t disrupted.</li>
+</ul>
+<p>To learn more about how you can help triage issues, check out our dedicated <a href="https://github.com/buildpacks/community/blob/main/contributors/triage.md">triage</a> page.</p>
+<p>If you&rsquo;re looking at open issues but unsure where to start, try looking for issues with the &ldquo;good first issue&rdquo; or &ldquo;help wanted&rdquo; labels!</p>
+<h2 id="how-do-i-submit-a-pull-request">How do I submit a pull request?</h2>
+<p>If your contribution requires changes to a project repository, look at the DEVELOPMENT.md file if the repo has one to ensure you have the prerequisites installed. It may also include other necessary steps (such as instructions on running tests), but broadly, you will have to carry out the following steps:</p>
+<ul>
+<li><a href="https://docs.github.com/en/get-started/quickstart/fork-a-repo">Fork</a> the repository.</li>
+<li><a href="https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository">Clone</a> your fork repository.</li>
+<li>Create a branch for the issue: <code>git checkout -b {{BRANCH_NAME}}</code></li>
+<li>Make any changes deemed necessary.</li>
+<li>Commit your changes with a sign-off: <code>git commit -s</code></li>
+</ul>
+<p>A sign-off is a single line added to your commit messages that certifies that you wrote and/or have the right to the contributed changes. The signature should look as such:</p>
+<pre><code>Signed-off-by: John Doe &lt;john.doe@email.com&gt;
+</code></pre><p>Also, git can automatically add the signature by adding the -s flag to the commit command,
+<code>git commit -s</code></p>
+<p>The full text of the certification is available <a href="https://developercertificate.org/">here</a>.</p>
+<ul>
+<li>Push to GitHub: <code>git push origin {{BRANCH_NAME}}</code></li>
+<li><a href="https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork">Create the pull request</a>.</li>
+</ul>
+<h2 id="calendar">Calendar</h2>
 <p>Partake in one or many of our following public events:</p>
 <script type="application/javascript">
     const CAL_CONFIG = {"id":"ksxw26c3km72mq3imn","subcalendars":[{"color":"#2951b9","id":9330130,"name":"Office Hours"},{"color":"#542382","id":9046533,"name":"Sub-Team Syncs"},{"color":"#d96fbf","id":9046534,"name":"Working Group"}],"token":"2144578740eb908ea5b160b649d25300e559a59522f8b528757cf6e75381ab88"};
