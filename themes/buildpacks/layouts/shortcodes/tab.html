@@ -1,0 +1,12 @@
+{{ $name := .Get "name" }}
+{{ $id := $name | urlize }}
+{{ $active := cond (eq (.Parent.Get "active" | urlize) $id) "active" "" }}
+<div
+  class="tab-pane fade {{$active}}"
+  id="tab-content-{{$id}}"
+  role="tabpanel"
+  data-tab-name="{{$name}}"
+  aria-labelledby="tab-{{$id}}"
+>
+  {{ .Inner | markdownify }}
+</div>
