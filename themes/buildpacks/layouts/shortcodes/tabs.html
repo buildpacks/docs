@@ -1,0 +1,30 @@
+<!-- Nav tabs -->
+<div class="tabbable">
+  <ul class="nav nav-tabs m-0" role="tablist">
+    {{ $activeID := .Get "active" | urlize }}
+    {{ range findRE "data-tab-name=\"([^\"]+)" .Inner }}
+    {{ $name := replaceRE "data-tab-name=\"([^\"]+)" "$1" . }}
+    {{ $id := $name | urlize }}
+    {{ $active := cond (eq $activeID $id) "active in show" "" }}
+    {{ $selected := cond (eq $activeID $id) "true" "false" }}
+    <li class="nav-item" role="presentation">
+      <a class="nav-link {{$active}}" id="tab-{{$id}}" data-toggle="tab" href="#tab-content-{{$id}}" role="tab"
+        aria-controls="tab-content-{{$id}}" aria-selected="{{$selected}}">
+        {{- $name -}}
+      </a>
+    </li>
+    {{ end }}
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content p-3 bg-off-blue">
+    {{ .Inner | markdownify }}
+  </div>
+</div>
+
+<script type="application/javascript">
+  $("ul.nav-tabs a").click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+  });
+</script>
