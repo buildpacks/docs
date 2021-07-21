@@ -180,6 +180,14 @@
   </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_registries_remove/</loc>
   </url><url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_registry-mirrors/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_registry-mirrors_add/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_registry-mirrors_list/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_registry-mirrors_remove/</loc>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_run-image-mirrors/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_run-image-mirrors_add/</loc>

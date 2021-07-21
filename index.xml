@@ -683,6 +683,42 @@ build applications prior to deploying them.&lt;/p&gt;</description>
     </item>
     
     <item>
+      <title>pack config registry-mirrors</title>
+      <link>https://buildpacks.io/docs/tools/pack/cli/pack_config_registry-mirrors/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_config_registry-mirrors/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pack config registry-mirrors add</title>
+      <link>https://buildpacks.io/docs/tools/pack/cli/pack_config_registry-mirrors_add/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_config_registry-mirrors_add/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pack config registry-mirrors list</title>
+      <link>https://buildpacks.io/docs/tools/pack/cli/pack_config_registry-mirrors_list/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_config_registry-mirrors_list/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pack config registry-mirrors remove</title>
+      <link>https://buildpacks.io/docs/tools/pack/cli/pack_config_registry-mirrors_remove/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_config_registry-mirrors_remove/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>pack config run-image-mirrors</title>
       <link>https://buildpacks.io/docs/tools/pack/cli/pack_config_run-image-mirrors/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

@@ -398,6 +398,18 @@
 <li data-nav-id="/docs/tools/pack/cli/pack_config_registries_remove/" class="dd-item depth-3">
   <a href="/docs/tools/pack/cli/pack_config_registries_remove/">pack config registries remove</a>
 </li>
+<li data-nav-id="/docs/tools/pack/cli/pack_config_registry-mirrors/" class="dd-item depth-3">
+  <a href="/docs/tools/pack/cli/pack_config_registry-mirrors/">pack config registry-mirrors</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_config_registry-mirrors_add/" class="dd-item depth-3">
+  <a href="/docs/tools/pack/cli/pack_config_registry-mirrors_add/">pack config registry-mirrors add</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_config_registry-mirrors_list/" class="dd-item depth-3">
+  <a href="/docs/tools/pack/cli/pack_config_registry-mirrors_list/">pack config registry-mirrors list</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_config_registry-mirrors_remove/" class="dd-item depth-3">
+  <a href="/docs/tools/pack/cli/pack_config_registry-mirrors_remove/">pack config registry-mirrors remove</a>
+</li>
 <li data-nav-id="/docs/tools/pack/cli/pack_config_run-image-mirrors/" class="dd-item depth-3">
   <a href="/docs/tools/pack/cli/pack_config_run-image-mirrors/">pack config run-image-mirrors</a>
 </li>
@@ -577,6 +589,7 @@
                                     When using latter value-less form, value will be taken from current
                                       environment at the time this command is executed
                                     NOTE: These are NOT available at image runtime.&quot;
+      --gid int                     Override GID of user's group in the stack's build and run images. The provided value must be a positive number
   -h, --help                        Help for 'build'
       --lifecycle-image string      Custom lifecycle image to use for analysis, restore, and export when builder is untrusted.
       --network string              Connect detect and build containers to network
