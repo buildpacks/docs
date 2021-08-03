@@ -5,16 +5,16 @@ weight=2
 
 ## What is a buildpack?
 
-A buildpack is a unit of work that inspects your app source code and formulates a plan to build and run your
+A buildpack is a set of executables that inspects your app source code and create a plan to build and run your
 application.
 
 <!--more-->
 
-Typical buildpacks are a set of at least three files:
+Typical buildpacks consist of at least three files:
 
 * `buildpack.toml` -- provides metadata about your buildpack
 * `bin/detect` -- determines whether buildpack should be applied
-* `bin/build` -- executes buildpack logic
+* `bin/build` -- executes build logic
 
 #### Meta-buildpack
 
@@ -22,16 +22,17 @@ There is a different type of buildpack commonly referred to as a **meta-buildpac
 `buildpack.toml` file with an `order` configuration that references other buildpacks. This is useful for 
 composing more complex detection strategies.
 
-## Anatomy of a buildpack
+## Buildpack phases
 
-There are two essential phases that allow buildpacks to create a runnable image.
+There are two essential steps that allow buildpacks to create a runnable image.
 
 #### Detect
 
-A platform sequentially tests groups of buildpacks against your app's source code. The first group that deems itself 
-fit for your source code will become the selected set of buildpacks for your app. Detection criteria is specific to each 
-buildpack -- for instance, an **NPM buildpack** might look for a `package.json`, and a **Go buildpack** might look for 
-Go source files.
+To determine which buildpack should be used to build your app, a [`platform`](platform) sequentially tests a group of
+buildpacks against your source. The first buildpack that claims that it can build your sources will become selected.
+The `platform` does this by running `bin/detect` with a path to your source code, and expects the script to return 0
+if its logic matches -- for instance, an **NPM buildpack** might look for a `package.json`, and a **Go buildpack**
+might look for Go source files.
 
 #### Build
 
