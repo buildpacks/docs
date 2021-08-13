@@ -28,7 +28,7 @@ There are two essential steps that allow buildpacks to create a runnable image.
 
 #### Detect
 
-To determine which buildpack should be used to build your app, a [`platform`](platform) sequentially tests a group of
+To determine which buildpack should be used to build your app, a [`platform`][platform] sequentially tests a group of
 buildpacks against your source. The first buildpack that claims that it can build your sources will become selected.
 The `platform` does this by running `bin/detect` with a path to your source code, and expects the script to return 0
 if its logic matches -- for instance, an **NPM buildpack** might look for a `package.json`, and a **Go buildpack**
@@ -50,3 +50,4 @@ Learn more about buildpacks by referring to the [Buildpack API][buildpack-api].
 
 [buildpack-api]: /docs/reference/buildpack-api
 [package-a-buildpack]: /docs/buildpack-author-guide/package-a-buildpack/
+[platform]: /docs/concepts/components/platform
