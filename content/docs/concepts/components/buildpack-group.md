@@ -20,7 +20,7 @@ A buildpack entry is identified by an id and a version. It may also be marked as
 
 ## Detection with buildpack groups
 
-A builder or meta-buildpack may contain multiple buildpack groups. When the lifecycle executes the detection process, it will process each buildpack group it finds in the order that the groups are specified. For each buildpack group, the lifecycle will execute the detect binary of all buildpacks in that group (these can be executed in parallel) and aggregate the results. The lifecycle will select the first builpack group by order where all of the non-optional buildpacks in that group pass detection.
+A builder or meta-buildpack may contain multiple buildpack groups. When the lifecycle executes the detection process, it will process each buildpack group it finds in the order that the groups are specified. For each buildpack group, the lifecycle will execute the detect phase of all buildpacks in that group (these can be executed in parallel) and aggregate the results. The lifecycle will select the first builpack group by order where all of the non-optional buildpacks in that group pass detection.
 
 For example, if a builder has buildpack groups A, B and C. The lifecycle will run detection against A. If all of the non-optional buildpacks in that group pass detection, then it will select A. In that case, B and C will not be processed. If A has any failing non-optional buildpacks, then the lifecycle will move on to process buildpack group B. If B has any failing non-optional buildpacks, then the lifecycle will move on to process buildpack group C. If C fails, then the entire detection process will fail.
 
