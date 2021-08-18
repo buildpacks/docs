@@ -36,6 +36,8 @@
   </url><url>
     <loc>https://buildpacks.io/docs/concepts/operations/rebase/</loc>
   </url><url>
+    <loc>https://buildpacks.io/docs/concepts/components/buildpack-group/</loc>
+  </url><url>
     <loc>https://buildpacks.io/docs/concepts/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/app-developer-guide/environment-variables/</loc>
