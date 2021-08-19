@@ -1,5 +1,5 @@
 +++
-title="App Developer's Guide"
+title="App Developer Guide"
 weight=4
 include_summaries=true
 expand=true
