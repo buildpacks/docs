@@ -61,6 +61,15 @@
     </item>
     
     <item>
+      <title>Source Metadata</title>
+      <link>https://buildpacks.io/docs/platform-guide/conventions/source-metadata/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/platform-guide/conventions/source-metadata/</guid>
+      <description>Conventions for declaring app source information in the app image.</description>
+    </item>
+    
+    <item>
       <title>An App&#39;s Brief Journey from Source to Image</title>
       <link>https://buildpacks.io/docs/app-journey/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

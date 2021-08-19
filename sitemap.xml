@@ -10,6 +10,8 @@
   </url><url>
     <loc>https://buildpacks.io/docs/concepts/components/</loc>
   </url><url>
+    <loc>https://buildpacks.io/docs/platform-guide/conventions/</loc>
+  </url><url>
     <loc>https://buildpacks.io/docs/operator-guide/create-a-builder/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/concepts/components/lifecycle/detect/</loc>
@@ -17,6 +19,8 @@
     <loc>https://buildpacks.io/features/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/platform-guide/conventions/source-metadata/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/app-journey/</loc>
   </url><url>
@@ -77,6 +81,8 @@
     <loc>https://buildpacks.io/docs/app-developer-guide/run-an-app/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/concepts/components/lifecycle/create/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/platform-guide/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/app-developer-guide/using-project-descriptor/</loc>
   </url><url>
@@ -231,6 +237,10 @@
     <loc>https://buildpacks.io/docs/reference/config/project-descriptor/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/reference/reproducibility/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/tags/specplatform/0.6/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/tags/specproject-descriptor/0.2/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/reference/spec/</loc>
   </url><url>
