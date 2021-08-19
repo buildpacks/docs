@@ -118,6 +118,7 @@ metadata:
 spec:
   workspaces:
   - name: shared-workspace
+  - name: buildpacks-cache
   resources:
   - name: build-image
     type: image
@@ -177,15 +178,13 @@ spec:
   - name: shared-workspace
     persistentvolumeclaim:
       claimName: buildpacks-source-pvc
+  - name: buildpacks-cache
+    persistentvolumeclaim:
+      claimName: buildpacks-cache-pvc
   resources:
   - name: build-image
     resourceRef:
       name: buildpacks-app-image
-  podTemplate:
-    volumes:
-    - name: buildpacks-cache
-      persistentVolumeClaim:
-        claimName: buildpacks-cache-pvc
 ```
 
 Apply it with:
