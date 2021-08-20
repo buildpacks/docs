@@ -17,25 +17,25 @@ The following types are concrete source types and can use any keys as long as th
 
 #### Git
 
-- #### `type` _(string,required)_
+- #### `type` _(string, required)_
   Must be `git`
 
 - #### `source` _(required)_
 
   - `version` _(required)_
     
-    - `commit` _(string,required)_\
+    - `commit` _(string, required)_\
       Full commit hash
 
-    - `describe` _(string,optional)_\
+    - `describe` _(string, optional)_\
       Description of commit (see `git describe`)
 
   - `metadata`  _(optional)_
     
-    - `repository` _(string,optional)_\
+    - `repository` _(string, optional)_\
       Repository URL
 
-    - `refs` _(string,optional)_\
+    - `refs` _(list of strings, optional)_\
       Additional relevant Git references
 
 ###### Example
@@ -55,25 +55,25 @@ type = "git"
 
 #### Image
 
-- #### `type` _(string,required)_
+- #### `type` _(string, required)_
   Must be `image`
 
 - #### `source` _(required)_
 
   - `version` _(required)_
     
-    - `digest` _(string,required)_\
+    - `digest` _(string, required)_\
       Image digest
 
   - `metadata`  _(optional)_
     
-    - `path` _(string,optional)_\
+    - `path` _(string, optional)_\
       Absolute path to source in image
 
-    - `repository` _(string,optional)_\
+    - `repository` _(string, optional)_\
       Fully-qualified image name
 
-    - `refs` _(string,optional)_\
+    - `refs` _(list of strings, optional)_\
       Additional relevant image names/tags
 
 ###### Example
@@ -97,19 +97,19 @@ The following source information is considered additive and should not overlap w
 
 #### `project.toml`
 
-- #### `type` _(string,required)_
+- #### `type` _(string, required)_
   Must be `project` **(only if no other type is present)**
 
 - #### `source` _(required)_
 
   - `version` _(required)_
     
-    - `version` _(string,optional)_\
+    - `version` _(string, optional)_\
       Version as declared in `_.version`
 
   - `metadata`  _(optional)_
     
-    - `url` _(string,optional)_\
+    - `url` _(string, optional)_\
       URL as declared in `_.source-url`
 
 ###### Example (standalone)
