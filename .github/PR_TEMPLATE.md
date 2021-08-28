@@ -1,6 +1,14 @@
-**Description**
-
+## Summary
+<!-- Provide a high-level summary of the change. -->
 This PR fixes #
+
+## Output
+<!-- If applicable, please provide examples of the output changes. -->
+
+#### Before
+
+#### After
+
 
 **Notes for Reviewers**
 
