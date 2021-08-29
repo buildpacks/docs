@@ -1,7 +1,5 @@
 version: 2
 updates:
-
-updates:
   # Set update schedule for gomod
   - package-ecosystem: "gomod"
     directory: "/"
