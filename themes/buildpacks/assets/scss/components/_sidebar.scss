@@ -1,6 +1,9 @@
 .sidebar {
   font-size: 1rem;
   padding: 10px 0 0 0;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
 
   ul {
     list-style: none;
