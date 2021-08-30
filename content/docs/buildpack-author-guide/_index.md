@@ -1,5 +1,5 @@
 +++
-title="Buildpack Author's Guide"
+title="Buildpack Author Guide"
 weight=4
 include_summaries=true
 expand=true

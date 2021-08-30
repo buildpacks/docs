@@ -1,6 +1,6 @@
 {{ $name := .Get "name" }}
 {{ $id := $name | urlize }}
-{{ $active := cond (eq (.Parent.Get "active" | urlize) $id) "active" "" }}
+{{ $active := cond (eq (.Parent.Get "active" | urlize) $id) "active show" "" }}
 <div
   class="tab-pane fade {{$active}}"
   id="tab-content-{{$id}}"
