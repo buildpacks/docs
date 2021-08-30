@@ -48,7 +48,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download public folder
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v2.0.10
         with:
           name: public
       - name: Deploy
