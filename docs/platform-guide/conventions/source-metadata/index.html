@@ -578,7 +578,7 @@
 <h4 id="git">Git</h4>
 <ul>
 <li>
-<h4 id="type-_stringrequired_"><code>type</code> <em>(string,required)</em></h4>
+<h4 id="type-_string-required_"><code>type</code> <em>(string, required)</em></h4>
 <p>Must be <code>git</code></p>
 </li>
 <li>
@@ -588,11 +588,11 @@
 <p><code>version</code> <em>(required)</em></p>
 <ul>
 <li>
-<p><code>commit</code> <em>(string,required)</em><br>
+<p><code>commit</code> <em>(string, required)</em><br>
 Full commit hash</p>
 </li>
 <li>
-<p><code>describe</code> <em>(string,optional)</em><br>
+<p><code>describe</code> <em>(string, optional)</em><br>
 Description of commit (see <code>git describe</code>)</p>
 </li>
 </ul>
@@ -601,11 +601,11 @@ Description of commit (see <code>git describe</code>)</p>
 <p><code>metadata</code>  <em>(optional)</em></p>
 <ul>
 <li>
-<p><code>repository</code> <em>(string,optional)</em><br>
+<p><code>repository</code> <em>(string, optional)</em><br>
 Repository URL</p>
 </li>
 <li>
-<p><code>refs</code> <em>(string,optional)</em><br>
+<p><code>refs</code> <em>(list of strings, optional)</em><br>
 Additional relevant Git references</p>
 </li>
 </ul>
@@ -627,7 +627,7 @@ Additional relevant Git references</p>
 </code></pre></div><h4 id="image">Image</h4>
 <ul>
 <li>
-<h4 id="type-_stringrequired_-1"><code>type</code> <em>(string,required)</em></h4>
+<h4 id="type-_string-required_-1"><code>type</code> <em>(string, required)</em></h4>
 <p>Must be <code>image</code></p>
 </li>
 <li>
@@ -636,7 +636,7 @@ Additional relevant Git references</p>
 <li>
 <p><code>version</code> <em>(required)</em></p>
 <ul>
-<li><code>digest</code> <em>(string,required)</em><br>
+<li><code>digest</code> <em>(string, required)</em><br>
 Image digest</li>
 </ul>
 </li>
@@ -644,15 +644,15 @@ Image digest</li>
 <p><code>metadata</code>  <em>(optional)</em></p>
 <ul>
 <li>
-<p><code>path</code> <em>(string,optional)</em><br>
+<p><code>path</code> <em>(string, optional)</em><br>
 Absolute path to source in image</p>
 </li>
 <li>
-<p><code>repository</code> <em>(string,optional)</em><br>
+<p><code>repository</code> <em>(string, optional)</em><br>
 Fully-qualified image name</p>
 </li>
 <li>
-<p><code>refs</code> <em>(string,optional)</em><br>
+<p><code>refs</code> <em>(list of strings, optional)</em><br>
 Additional relevant image names/tags</p>
 </li>
 </ul>
@@ -676,7 +676,7 @@ Additional relevant image names/tags</p>
 <h4 id="projecttoml"><code>project.toml</code></h4>
 <ul>
 <li>
-<h4 id="type-_stringrequired_-2"><code>type</code> <em>(string,required)</em></h4>
+<h4 id="type-_string-required_-2"><code>type</code> <em>(string, required)</em></h4>
 <p>Must be <code>project</code> <strong>(only if no other type is present)</strong></p>
 </li>
 <li>
@@ -685,14 +685,14 @@ Additional relevant image names/tags</p>
 <li>
 <p><code>version</code> <em>(required)</em></p>
 <ul>
-<li><code>version</code> <em>(string,optional)</em><br>
+<li><code>version</code> <em>(string, optional)</em><br>
 Version as declared in <code>_.version</code></li>
 </ul>
 </li>
 <li>
 <p><code>metadata</code>  <em>(optional)</em></p>
 <ul>
-<li><code>url</code> <em>(string,optional)</em><br>
+<li><code>url</code> <em>(string, optional)</em><br>
 URL as declared in <code>_.source-url</code></li>
 </ul>
 </li>
