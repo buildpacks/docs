@@ -22,7 +22,7 @@ version = "1.0"
 id = "me/rake-tasks"
 
   [build.buildpacks.script]
-  api = "0.4"
+  api = "0.6"
   inline = "rake package"
 ```
 
@@ -37,7 +37,7 @@ Inline buildpacks aren't constrainted to a single command, however. You can defi
 id = "me/cleanup"
 
   [build.buildpacks.script]
-  api = "0.3"
+  api = "0.6"
   inline = """
 set -e
 source scripts/utils.sh
