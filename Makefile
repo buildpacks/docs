@@ -29,7 +29,17 @@ clean:
 .PHONY: install-hugo
 install-hugo:
 	@echo "> Installing hugo..."
-	cd tools; go install -mod=mod --tags extended github.com/gohugoio/hugo
+	@echo "This may take a while depending on your connection."
+ifeq ($(OS),Windows_NT)
+	@echo $(shell uname -s)	
+	cd tools; mkdir bin; cd bin; curl -L -O $(shell curl https://api.github.com/repos/gohugoio/hugo/releases/latest | jq -r '.assets[30].browser_download_url')
+	
+else
+	@echo $(shell uname -s)
+	cd tools; mkdir bin; cd bin; curl -L -O $(shell curl https://api.github.com/repos/gohugoio/hugo/releases/latest | jq -r '.assets[26].browser_download_url')	
+endif
+
+	
 
 .PHONY: upgrade-pack
 upgrade-pack: pack-version
