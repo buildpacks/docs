@@ -6,7 +6,7 @@ summary="Restores files that buildpacks may use to optimize the build and export
 
 {{< param "summary" >}}
 
-The `analyzer` is responsible for analyzing the cache and the metadata from previously run images (if available) to determine what layers can or cannot be reused.
+Prior to `Platform API 0.7`, the `analyzer` was responsible for analyzing the metadata from the cache and the previously built image (if available) to determine what layers can or cannot be reused.
 This information is used during the `export` phase in order to avoid re-uploading unchanged layers.\
 Starting from `Platform API 0.7`, the `analyze` phase runs before the `detect` phase in order to validate registry access for all images that are used prior to the `detect` and `build` phases, and therefore provides faster failures for end users.\
 For more information, please see [this migration guide][platform-api-06-07-migration].
