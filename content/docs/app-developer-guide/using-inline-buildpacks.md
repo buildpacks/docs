@@ -41,12 +41,13 @@ id = "me/cleanup"
   inline = """
 set -e
 source scripts/utils.sh
-find . -type f -name "$(my_data_files)" -delete
+find . -type f -name $(my_data_files) -delete
 cat <<EOF > ${1}/launch.toml
-[[slices]]
-paths = ["data/", "assets/"]
+[[processes]]
+type = 'bash'
+command = 'bin/bash'
 EOF
-  """
+"""
 ```
 
 ### Further Reading
