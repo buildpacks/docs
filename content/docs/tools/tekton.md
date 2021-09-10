@@ -26,15 +26,15 @@ We also recommend using the `Tekton dashboard`. To install it, follow the steps 
 start the dashboard server. 
 
 ### 2. Install the Buildpacks Task
-Install the latest version of the buildpacks task (currently `0.1`), by running:
+Install the latest version of the buildpacks task (currently `0.3`), by running:
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/master/task/buildpacks/0.1/buildpacks.yaml
+kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/master/task/buildpacks/0.3/buildpacks.yaml
 ```
 
 ### 3. Install git-clone Task
-For our `pipeline`, we will use the `git-clone` task to clone a repository. Install the latest version (currently `0.2`), by running:
+For our `pipeline`, we will use the `git-clone` task to clone a repository. Install the latest version (currently `0.4`), by running:
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/master/task/git-clone/0.2/git-clone.yaml
+kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/master/task/git-clone/0.4/git-clone.yaml
 ```
 
 ### 4. Define and Apply Tekton Pipeline Resources
@@ -46,25 +46,12 @@ In order to set up our pipeline, we will need to define a few things:
   a request for storage by a user.
 
 #### 4.1 PVCs
-Create a file (e.g. `resources.yml`), which defines two `PersistentVolumeClaim`s, one which contains the source code, and the other to serve
-as a cache between builds:
-```yaml
----
+Create a file `resources.yml` that defines a `PersistentVolumeClaim`:
+```yaml     
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: buildpacks-source-pvc
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 500Mi
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: buildpacks-cache-pvc
 spec:
   accessModes:
     - ReadWriteOnce
@@ -77,89 +64,90 @@ spec:
 > NOTE: You don't need to use authorization if you are pushing to a local registry. However, if you are pushing to a 
 > remote registry (e.g. `DockerHub`, `GCR`), you need to add authorization
 
-Create a file (e.g. `auth.yml`) which defines the authorization secrets:
+Create a `Secret` containing username and password that the build should use to authenticate to the container registry.
+```shell
+kubectl create secret docker-registry docker-user-pass \
+    --docker-username=<USERNAME> \
+    --docker-password=<PASSWORD> \
+    --docker-server=<LINK TO REGISTRY, e.g. https://index.docker.io/v1/ > \
+    --namespace default
+```
+
+Create a file `sa.yml` that defines a `ServiceAccount` that uses the newly created secret:
 ```yaml
-apiVersion: v1
-kind: Secret
-metadata:
-    name: basic-user-pass
-    annotations:
-        tekton.dev/docker-0: <LINK TO REGISTRY, e.g. https://index.docker.io/v1/>
-type: kubernetes.io/basic-auth
-stringData:
-    username: <USERNAME>
-    password: <PASSWORD>
----
 apiVersion: v1
 kind: ServiceAccount
 metadata:
     name: buildpacks-service-account
 secrets:
-    - name: basic-user-pass
+    - name: docker-user-pass
 ```
 
 #### 4.3 Pipeline
-Create a file (e.g. `pipeline.yml`) which defines the `Pipeline`, and relevant resources:
+Create a file `pipeline.yml` that defines the `Pipeline`, and relevant resources:
 ```yaml
-apiVersion: tekton.dev/v1alpha1
-kind: PipelineResource
-metadata:
-  name: buildpacks-app-image 
-spec:
-  type: image
-  params:
-    - name: url
-      value: <REGISTRY/IMAGE NAME, eg gcr.io/test/image > #This defines the name of output image
----
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
   name: buildpacks-test-pipeline
 spec:
   workspaces:
-  - name: shared-workspace
-  resources:
-  - name: build-image
-    type: image
+    - name: source-workspace # Directory where application source is located. (REQUIRED)
+    - name: cache-workspace # Directory where cache is stored (OPTIONAL)
   tasks:
-  - name: fetch-repository # This task fetches a repository from github, using the `git-clone` task we installed
-    taskRef:
-      name: git-clone
-    workspaces:
-    - name: output
-      workspace: shared-workspace
-    params:
-    - name: url
-      value: https://github.com/buildpacks/samples
-    - name: subdirectory
-      value: ""
-    - name: deleteExisting
-      value: "true"
-  - name: buildpacks # This task uses the `buildpacks` task to build the application
-    taskRef:
-      name: buildpacks
-    runAfter:
-    - fetch-repository
-    workspaces:
-    - name: source
-      workspace: shared-workspace
-    params:
-    - name: SOURCE_SUBPATH
-      value: 'apps/java-maven' # This is the path within our samples repo we want to build
-    - name: BUILDER_IMAGE
-      value: 'paketobuildpacks/builder:base' # This is the builder we want the task to use
-    - name: CACHE
-      value: buildpacks-cache
-    resources:
-      outputs:
-      - name: image
-        resource: build-image
+    - name: fetch-repository # This task fetches a repository from github, using the `git-clone` task you installed
+      taskRef:
+        name: git-clone
+      workspaces:
+        - name: output
+          workspace: source-workspace
+      params:
+        - name: url
+          value: https://github.com/buildpacks/samples
+        - name: subdirectory
+          value: ""
+        - name: deleteExisting
+          value: "true"
+    - name: buildpacks # This task uses the `buildpacks` task to build the application
+      taskRef:
+        name: buildpacks
+      runAfter:
+        - fetch-repository
+      workspaces:
+        - name: source
+          workspace: source-workspace
+        - name: cache
+          workspace: cache-workspace
+      params:
+        - name: APP_IMAGE
+          value: <REGISTRY/USERNAME/IMAGE_NAME, eg gcr.io/test/image > # where to store the app image. (REQUIRED)
+        - name: SOURCE_SUBPATH
+          value: "apps/java-maven" # This is the path within the samples repo you want to build (OPTIONAL, default: "")
+        - name: BUILDER_IMAGE
+          value: paketobuildpacks/builder:base # This is the builder we want the task to use (REQUIRED)
+    - name: display-results
+      runAfter:
+        - buildpacks
+      taskSpec:
+        steps:
+          - name: print
+            image: docker.io/library/bash:5.1.4@sha256:b208215a4655538be652b2769d82e576bc4d0a2bb132144c060efc5be8c3f5d6
+            script: |
+              #!/usr/bin/env bash
+              set -e
+              echo "Digest of created app image: $(params.DIGEST)"
+        params:
+          - name: DIGEST
+      params:
+        - name: DIGEST
+          value: $(tasks.buildpacks.results.APP_IMAGE_DIGEST)
+
 ```
 
 #### 4.4 Apply Configuration
 Apply these configurations, using `kubectl`:
 ```shell
-kubectl apply -f resources.yml -f auth.yml -f pipeline.yml
+kubectl apply -f resources.yml -f sa.yml -f pipeline.yml
 ```
 
 ### 5. Create & Apply PipelineRun
@@ -174,18 +162,14 @@ spec:
   pipelineRef:
     name: buildpacks-test-pipeline
   workspaces:
-  - name: shared-workspace
-    persistentvolumeclaim:
-      claimName: buildpacks-source-pvc
-  resources:
-  - name: build-image
-    resourceRef:
-      name: buildpacks-app-image
-  podTemplate:
-    volumes:
-    - name: buildpacks-cache
+    - name: source-workspace
+      subPath: source
       persistentVolumeClaim:
-        claimName: buildpacks-cache-pvc
+        claimName: source-workspace-pvc
+    - name: cache-workspace
+      subPath: cache
+      persistentVolumeClaim:
+        claimName: source-workspace-pvc
 ```
 
 Apply it with:
