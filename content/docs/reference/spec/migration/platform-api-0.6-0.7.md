@@ -15,7 +15,7 @@ See the [spec release](https://github.com/buildpacks/spec/releases/tag/platform%
 The order of the lifecycle phases has been changed starting from Platform API 0.7.\
 The order before Platform API 0.7 was: detect, analyze, restore, build, and export.\
 The order starting from Platform API 0.7 is: analyze, detect, restore, build, and export.\
-The main reason for this change was to validate registry access for all images that are used during the build as early as possible. Starting from `Platform API 0.7`, it happens in the first lifecycle phase, as part of the `analyzer`, before running both the `detector` and the `builder`. In this way it provides faster failures for end users.
+The main reason for this change was to validate registry access for all images that are used during the build as early as possible. Starting from `Platform API 0.7`, it happens in the first lifecycle phase, as part of the `analyzer`, before running the `detector`. In this way it provides faster failures for end users.
 
 As part of this change, a few flags were removed and others were added to some of the lifecycle phases.
 
