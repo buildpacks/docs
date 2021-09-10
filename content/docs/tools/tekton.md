@@ -165,11 +165,11 @@ spec:
     - name: source-workspace
       subPath: source
       persistentVolumeClaim:
-        claimName: source-workspace-pvc
+        claimName: buildpacks-source-pvc
     - name: cache-workspace
       subPath: cache
       persistentVolumeClaim:
-        claimName: source-workspace-pvc
+        claimName: buildpacks-source-pvc
 ```
 
 Apply it with:
