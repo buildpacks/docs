@@ -88,6 +88,8 @@
   </url><url>
     <loc>https://buildpacks.io/docs/concepts/components/lifecycle/launch/</loc>
   </url><url>
+    <loc>https://buildpacks.io/docs/app-developer-guide/using-inline-buildpacks/</loc>
+  </url><url>
     <loc>https://buildpacks.io/docs/concepts/components/lifecycle/rebase/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/tools/</loc>

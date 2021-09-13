@@ -253,6 +253,9 @@
 <li data-nav-id="/docs/app-developer-guide/using-project-descriptor/" class="dd-item depth-1">
   <a href="/docs/app-developer-guide/using-project-descriptor/">Using project.toml</a>
 </li>
+<li data-nav-id="/docs/app-developer-guide/using-inline-buildpacks/" class="dd-item depth-1">
+  <a href="/docs/app-developer-guide/using-inline-buildpacks/">Using Inline Buildpacks</a>
+</li>
   </ul>
 </li>
 <li data-nav-id="/docs/buildpack-author-guide/" class="dd-item depth-0 haschildren">
@@ -653,7 +656,7 @@ A list of files to exclude from the build, while including everything else.</p>
 <ul>
 <li>
 <p><strong><code>buildpacks</code></strong> <em>(list, optional)</em>
-A list of buildpacks, each with the following fields:</p>
+A list of buildpacks. Either a <code>version</code>, <code>uri</code>, or <code>script</code> table must be included, but it must not include any combination of these elements.</p>
 <ul>
 <li>
 <p><strong><code>id</code></strong> <em>(string, optional)</em><br>
@@ -666,6 +669,24 @@ The version of the buildpack. Must match version specified in buildpack&rsquo;s 
 <li>
 <p><strong><code>uri</code></strong> <em>(string, default=<code>urn:buildpack:&lt;id&gt;</code>)</em><br>
 A URL or path to an <a href="/docs/reference/builder-config#supported-archives">archive</a>, a packaged buildpack (saved as a <code>.cnb</code> file), or a directory. If path is relative, it must be relative to the <code>project.toml</code>.</p>
+</li>
+<li>
+<p><strong><code>script</code></strong> <em>(list, optional)</em>
+Defines an inline buildpack.</p>
+<ul>
+<li>
+<p><strong><code>api</code></strong> <em>(string, required, current: <code>0.5</code>)</em><br>
+The Buildpack API version the buildpack adheres to. Used to ensure <a href="/docs/reference/buildpack-api#api-compatibility">compatibility</a> against the <a href="/docs/concepts/components/lifecycle/">lifecycle</a>.</p>
+</li>
+<li>
+<p><strong><code>inline</code></strong> <em>(string, required)</em><br>
+The build script contents.</p>
+</li>
+<li>
+<p><strong><code>shell</code></strong> <em>(string, optional, default=<code>/bin/sh</code>)</em><br>
+The shell used to execute the <code>inline</code> script.</p>
+</li>
+</ul>
 </li>
 </ul>
 </li>

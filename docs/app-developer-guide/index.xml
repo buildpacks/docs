@@ -78,5 +78,14 @@
       <description>Learn how to use a project.toml file to simplify configuring pack.</description>
     </item>
     
+    <item>
+      <title>Using Inline Buildpacks</title>
+      <link>https://buildpacks.io/docs/app-developer-guide/using-inline-buildpacks/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/app-developer-guide/using-inline-buildpacks/</guid>
+      <description>Learn how to create an ephemeral buildpack to customize your build.</description>
+    </item>
+    
   </channel>
 </rss>
