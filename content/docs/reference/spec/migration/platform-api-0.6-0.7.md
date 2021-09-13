@@ -34,5 +34,5 @@ The flags that were added to the restorer are:
 * `-analyzed`
 * `-skip-layers`
 
-The flags that were removed from the exporter are:
+The flag that was removed from the exporter is:
 * `-run-image`
