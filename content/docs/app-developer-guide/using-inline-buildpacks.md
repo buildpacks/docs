@@ -30,7 +30,7 @@ In this example, the `me/rake-tasks` inline buildpack is configured to run after
 
 > **Note:** Inline buildpacks will _always_ pass detection.
 
-Inline buildpacks aren't constrainted to a single command, however. You can define complex scripts as [heredocs](https://toml.io/en/v1.0.0#string) in your project descriptor. For example, this snippet of a descriptor will source a shell script contained in the app repo, use it modify the app directory (and thus the files that go into the final image), and create slices for the app:
+Inline buildpacks aren't constrained to a single command, however. You can define complex scripts as [heredocs](https://toml.io/en/v1.0.0#string) in your project descriptor. For example, this snippet of a descriptor will source a shell script contained in the app repo, use it to modify the app directory (and thus the files that go into the final image), and create slices for the app:
 
 ```toml
 [[build.buildpacks]]
