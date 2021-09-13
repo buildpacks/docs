@@ -65,7 +65,7 @@ The schema for the `project descriptor` is:
     > If `include` and `exclude` are both present, the lifecycle will error out.
 
    - **`buildpacks`** _(list, optional)_
-    A list of buildpacks. Either an `version`, `uri`, or `script` table must be included, but must not include any combination of these elements.
+    A list of buildpacks. Either a `version`, `uri`, or `script` table must be included, but it must not include any combination of these elements.
 
       - **`id`** _(string, optional)_\
         An identifier for the buildpack. Must match ID specified in buildpack's `buildpack.toml` file.
