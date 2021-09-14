@@ -46,6 +46,8 @@
   </url><url>
     <loc>https://buildpacks.io/docs/app-developer-guide/environment-variables/</loc>
   </url><url>
+    <loc>https://buildpacks.io/docs/features/</loc>
+  </url><url>
     <loc>https://buildpacks.io/docs/concepts/components/lifecycle/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/concepts/components/platform/</loc>
@@ -238,7 +240,7 @@
   </url><url>
     <loc>https://buildpacks.io/docs/reference/config/project-descriptor/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/reference/reproducibility/</loc>
+    <loc>https://buildpacks.io/docs/features/reproducibility/</loc>
   </url><url>
     <loc>https://buildpacks.io/tags/specplatform/0.6/</loc>
   </url><url>

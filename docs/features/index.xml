@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Features on Cloud Native Buildpacks</title>
+    <link>https://buildpacks.io/docs/features/</link>
+    <description>Recent content in Features on Cloud Native Buildpacks</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://buildpacks.io/docs/features/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Reproducibility</title>
+      <link>https://buildpacks.io/docs/features/reproducibility/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/features/reproducibility/</guid>
+      <description>&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
+&lt;p&gt;The Cloud Native Buildpacks project aims to create &amp;ldquo;Reproducible Builds&amp;rdquo; of container images. For image creation commands (&lt;code&gt;builder create&lt;/code&gt;, &lt;code&gt;buildpack package&lt;/code&gt;, &lt;code&gt;build&lt;/code&gt;) &lt;code&gt;pack&lt;/code&gt; creates container images in a reproducible fashion. &amp;ldquo;Reproducible&amp;rdquo; is hard to define but we&amp;rsquo;ll do so by example and with a few caveats:&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
