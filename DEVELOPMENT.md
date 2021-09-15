@@ -5,9 +5,11 @@
 * [jq](https://stedolan.github.io/jq/)
     * macOS: `brew install jq`
     * Windows: `choco install jq`
+    * Ubuntu: `sudo apt install jq`
 * Make
     * macOS: `xcode-select --install`
     * Windows: `choco install make`
+    * Ubuntu: `sudo apt install make`
 
 #### Serve
 
@@ -21,4 +23,10 @@ make serve
 
 ```bash
 make build
+```
+
+#### Clean
+
+```bash
+make clean
 ```

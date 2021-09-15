@@ -65,7 +65,7 @@ The schema for the `project descriptor` is:
     > If `include` and `exclude` are both present, the lifecycle will error out.
 
    - **`buildpacks`** _(list, optional)_
-    A list of buildpacks, each with the following fields:
+    A list of buildpacks. Either a `version`, `uri`, or `script` table must be included, but it must not include any combination of these elements.
 
       - **`id`** _(string, optional)_\
         An identifier for the buildpack. Must match ID specified in buildpack's `buildpack.toml` file.
@@ -75,6 +75,18 @@ The schema for the `project descriptor` is:
 
       - **`uri`** _(string, default=`urn:buildpack:<id>`)_\
         A URL or path to an [archive][supported-archives], a packaged buildpack (saved as a `.cnb` file), or a directory. If path is relative, it must be relative to the `project.toml`.
+
+      - **`script`** _(list, optional)_
+      Defines an inline buildpack.
+
+        - **`api`** _(string, required, current: `0.5`)_\
+          The Buildpack API version the buildpack adheres to. Used to ensure [compatibility][api-compat] against the [lifecycle][lifecycle].
+
+        - **`inline`** _(string, required)_\
+          The build script contents.
+
+        - **`shell`** _(string, optional, default=`/bin/sh`)_\
+          The shell used to execute the `inline` script.
 
 - #### `metadata` _(table, optional)_
   Buildpacks and specific platforms are free to define additional arbitrary key-value pairs in the `metadata` table.
@@ -118,3 +130,5 @@ For more detail, you can check out the `project.toml` [specification][spec]
 
 [spec]: https://github.com/buildpacks/spec/blob/main/extensions/project-descriptor.md
 [supported-archives]: /docs/reference/builder-config#supported-archives
+[api-compat]: /docs/reference/buildpack-api#api-compatibility
+[lifecycle]: /docs/concepts/components/lifecycle/
