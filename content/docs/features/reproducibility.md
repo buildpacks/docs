@@ -1,5 +1,6 @@
 +++
-title="Reproducible Builds"
+title="Reproducibility"
+aliases=["/docs/reference/reproducibility"]
 +++
 
 ## Summary
