@@ -16,6 +16,11 @@ You can use this command to inspect your app for it's `Bill-of-Materials`.
 ```bash
 pack inspect-image your-image-name --bom
 ```
+It can also be accessed by looking at the label `io.buildpacks.build.metadata`. For example, running Docker CLI, jq and using the following command.
+
+```bash
+docker inspect your-image-name | jq -r '.[0].Config.Labels["io.buildpacks.build.metadata"] | fromjson'
+```
 
 
 [adding-bill-of-materials]: /docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials/
