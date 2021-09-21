@@ -680,6 +680,7 @@ docker run sample-app
 </blockquote>
 <h3 id="using-project-descriptor">Using Project Descriptor</h3>
 <p>The <code>--descriptor</code> parameter must be a path to a file which follows the project.toml <a href="/docs/reference/project-descriptor/">schema</a>.
+Without the <code>--descriptor</code> flag, <code>pack build</code> will use the <code>project.toml</code> file in the application directory if it exists.
 You can define environment variables in an <code>env</code> table in the file, and pass those into the application.</p>
 <h5 id="example-2">Example:</h5>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># clone the repo</span>
