@@ -21,11 +21,16 @@ ERROR: failed to build: failed to fetch builder image 'index.docker.io/cnbs/samp
 : Error response from daemon: Get "https//registry-1.docker.io/v2/": context deadline exceeded
 ```
 
-The `pack` tool uses the Docker daemon to manage the local image registry on your machine.  The `pack` tool will ask the Docker daemon to download buildpacks and images for you.  Because of this relationship, between `pack` and the Docker daemon, we need to configure the Docker daemon to use a HTTP proxy.
+The `pack` tool uses the Docker daemon to manage the local image registry on your machine.  The `pack` tool will ask the Docker daemon to download buildpacks and images for you.  Because of this relationship, between `pack` and the Docker daemon, we need to configure the Docker daemon to use a HTTP proxy.  The approach to setting the HTTP proxy depends on your platform:
 
-The Docker project documents [how to configure configure the HTTP/HTTPS proxy](https://docs.docker.com/config/daemon/systemd/#httphttps-proxy) settings for the Docker daemon.  You should configure the `HTTP_PROXY` and `HTTPS_PROXY` environment variables as part of the Docker daemon startup.
 
-### Proxy Settings for Buildpacks
+### Docker Desktop (Windows and MacOS)
+Docker's documetation states "Docker Desktop lets you configure HTTP/HTTPS Proxy Settings and automatically propagates these to Docker".  Set the system proxy using the [MacOS documentation](https://support.apple.com/en-gb/guide/mac-help/mchlp2591/mac) or [Windows documentation](https://www.dummies.com/computers/operating-systems/windows-10/how-to-set-up-a-proxy-in-windows-10/).  The system proxy settings will be used by Docker Desktop.
+
+### Linux
+The Docker project documents [how to configure configure the HTTP/HTTPS proxy](https://docs.docker.com/config/daemon/systemd/#httphttps-proxy) settings for the Docker daemon on Linux.  You should configure the `HTTP_PROXY` and `HTTPS_PROXY` environment variables as part of the Docker daemon startup.
+
+## Proxy Settings for Buildpacks
 
 Buildpacks may also need to be aware of your http and https proxies at build time.  For example python, java and nodejs buildpacks need to be aware of proxies in order to resolve dependencies.  To make buildpacks aware of proxies, export the `http_proxy` and `https_proxy` environment variables before invoking `pack`.  For example:
 
@@ -37,7 +42,7 @@ pack build sample-app --path samples/apps/java-maven --builder cnbs/sample-build
 
 ## Making your Application Proxy Aware
 
-Your application may need to use http or https proxies to access web-based APIs.  In order to make proxy settings available inside containers you should edit your `~/.docker/config.json` file to contain the proxy information.  The `httpProxy`, `httpsProxy` and `noProxy` properties of this configuration file are injected into containers at build time and at run time as the `HTTP_PROXY`, `HTTPS_PROXY` and `NO_PROXY` environment variables respectively.  Both the http and https proxy settings are also injected in their lower-case form as `http_proxy` and `https_proxy`.
+Your application may need to use http or https proxies to access web-based APIs.  In order to make proxy settings available inside containers you should edit your `~/.docker/config.json` file (`%USERPROFILE%\.docker\config.json` on Windows) to contain the proxy information.  The `httpProxy`, `httpsProxy` and `noProxy` properties of this configuration file are injected into containers at build time and at run time as the `HTTP_PROXY`, `HTTPS_PROXY` and `NO_PROXY` environment variables respectively.  Both the http and https proxy settings are also injected in their lower-case form as `http_proxy` and `https_proxy`.
 
 ```json
 {
