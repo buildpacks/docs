@@ -1,7 +1,7 @@
 +++
 title="Builder"
 weight=1
-summary="A builder is an image that contains all the components necessary to execute a build. A builder image is created by taking a build image and adding a lifecycle, buildpacks, and files that configure aspects of the build including the buildpack detection order and the location(s) of the run image"
+summary="A builder is an image that contains all the components necessary to execute a build. A builder image is created by taking a build image and adding a lifecycle, buildpacks, and files that configure aspects of the build including the buildpack detection order and the location(s) of the lifecycle"
 aliases=[
     "/docs/using-pack/working-with-builders/"
 ]

@@ -47,7 +47,7 @@ For example:
 
 ![builder](/docs/concepts/builder.svg)
 
-[`Builders`](/docs/concepts/components/builder) are an ordered combination of [`buildpacks`](/docs/concepts/components/buildpack) with a base `build` image and a `run` image. They take in your `app` source code and build the output `app image`. The `build` image provides the base environment for the `builder` (for eg. an Ubuntu Bionic OS image with build tooling) and a `run` image provides the base environment for the `app image` during runtime. A combination of a `build` image and a `run` image is called a [`stack`](/docs/concepts/components/stack).
+[`Builders`](/docs/concepts/components/builder) are an ordered combination of [`buildpacks`](/docs/concepts/components/buildpack) with a base `build` image, a lifecycle, and reference to a `run image`. They take in your `app` source code and build the output `app image`. The `build` image provides the base environment for the `builder` (for eg. an Ubuntu Bionic OS image with build tooling) and a `run` image provides the base environment for the `app image` during runtime. A combination of a `build` image and a `run` image is called a [`stack`](/docs/concepts/components/stack).
 
 Under the hood a builder uses the [`lifecycle`](/docs/concepts/components/lifecycle) to run the `detect` phase for all the `buildpacks` it contains in order and then proceeds to run the `build` phase of all the `buildpacks` that passed detection.
 
