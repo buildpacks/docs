@@ -6,7 +6,7 @@ summary="The basics of taking your Windows app from source code to runnable imag
 
 > **EXPERIMENTAL:**
 >
-> - Please note that **Windows container support is currently experimental**. You may be asked to enable experimental features  in `pack` when running the following commands. Simply follow the on-screen instructions to do so.
+> - Please note that **Windows container support is currently experimental**. You may be asked to enable experimental features in `pack` when running the following commands. Simply follow the on-screen instructions to do so.
 > - If you encounter any problems while experimenting, we'd love for you to let us know by filing an issue on the [pack][pack-issues] or [lifecycle][lifecycle-issues] repo.
 
 ### Recommended reading

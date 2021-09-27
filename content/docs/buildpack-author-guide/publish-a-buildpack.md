@@ -27,7 +27,7 @@ pack buildpack register example/my-cnb
 
 This will open GitHub in a browser and may ask you to authenticate with GitHub. After doing so, you'll see a pre-populated GitHub Issue with the details of your buildpack. For example:
 
-<img src="/images/registry-add-buildpack.png" />
+<img src="/images/registry-add-buildpack.png" alt="pre-populated GitHub Issue" />
 
 The pre-populated text in the body of the issue is considered structured data, and will be used to automatically add the buildpack to the registry index. Do not change it.
 
