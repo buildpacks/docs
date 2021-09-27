@@ -175,7 +175,7 @@ kubectl apply -f resources.yml -f sa.yml -f pipeline.yml
 
 ### 5. Create & Apply PipelineRun
 
-Create a file (e.g. `run.yml`), which defines the `PipelineRun`:
+Create a file `run.yml`, which defines the `PipelineRun`:
 
 ```yaml
 apiVersion: tekton.dev/v1beta1
