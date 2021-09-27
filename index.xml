@@ -316,6 +316,15 @@ Install pack
     </item>
     
     <item>
+      <title>Using Buildpacks with a Proxy</title>
+      <link>https://buildpacks.io/docs/app-developer-guide/using-http-proxy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/app-developer-guide/using-http-proxy/</guid>
+      <description>Learn how to use buildpacks behind a HTTP proxy.</description>
+    </item>
+    
+    <item>
       <title>Set up your local environment</title>
       <link>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/setup-local-environment/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

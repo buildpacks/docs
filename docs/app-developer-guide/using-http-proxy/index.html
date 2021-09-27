@@ -8,8 +8,8 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<link rel="canonical" content="https://buildpacks.io/docs/tools/pack/cli/pack_buildpack_inspect/">
+<meta name="description" content="Learn how to use buildpacks behind a HTTP proxy."/>
+<link rel="canonical" content="https://buildpacks.io/docs/app-developer-guide/using-http-proxy/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
 
@@ -17,12 +17,12 @@
 
 
 
-<meta property="og:title" content="pack buildpack inspect · Cloud Native Buildpacks">
+<meta property="og:title" content="Using Buildpacks with a Proxy · Cloud Native Buildpacks">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://buildpacks.io/docs/tools/pack/cli/pack_buildpack_inspect/">
+<meta property="og:url" content="https://buildpacks.io/docs/app-developer-guide/using-http-proxy/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-
+<meta property="og:description" content="Learn how to use buildpacks behind a HTTP proxy.">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -33,7 +33,7 @@
 
 
 
-<meta property="twitter:title" content="pack buildpack inspect · Cloud Native Buildpacks">
+<meta property="twitter:title" content="Using Buildpacks with a Proxy · Cloud Native Buildpacks">
 <meta property="twitter:card" content="summary">
 <meta property="twitter:image" content="https://buildpacks.io/images/buildpacks-social-card-square.jpg">
 <meta property="twitter:image:alt" content="Buildpacks project logo">
@@ -82,7 +82,7 @@
     gtag('config', 'G-CJLSR4FQXL');
   </script>
 
-  <title>pack buildpack inspect · Cloud Native Buildpacks</title>
+  <title>Using Buildpacks with a Proxy · Cloud Native Buildpacks</title>
 </head>
 
 <body>
@@ -234,7 +234,7 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/app-developer-guide/" class="dd-item depth-0 haschildren">
+<li data-nav-id="/docs/app-developer-guide/" class="dd-item depth-0 parent haschildren">
   <a href="/docs/app-developer-guide/">App Developer Guide</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/app-developer-guide/build-an-app/" class="dd-item depth-1">
@@ -264,7 +264,7 @@
 <li data-nav-id="/docs/app-developer-guide/using-inline-buildpacks/" class="dd-item depth-1">
   <a href="/docs/app-developer-guide/using-inline-buildpacks/">Using Inline Buildpacks</a>
 </li>
-<li data-nav-id="/docs/app-developer-guide/using-http-proxy/" class="dd-item depth-1">
+<li data-nav-id="/docs/app-developer-guide/using-http-proxy/" class="dd-item depth-1 active">
   <a href="/docs/app-developer-guide/using-http-proxy/">Using Buildpacks with a Proxy</a>
 </li>
   </ul>
@@ -339,13 +339,13 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/tools/" class="dd-item depth-0 parent haschildren">
+<li data-nav-id="/docs/tools/" class="dd-item depth-0 haschildren">
   <a href="/docs/tools/">Tools</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/tools/pack/" class="dd-item depth-1 parent haschildren">
+<li data-nav-id="/docs/tools/pack/" class="dd-item depth-1 haschildren">
   <a href="/docs/tools/pack/">Pack</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/tools/pack/concepts/" class="dd-item depth-2 haschildren">
+<li data-nav-id="/docs/tools/pack/concepts/" class="dd-item depth-2 collapse haschildren">
   <a href="/docs/tools/pack/concepts/">Concepts</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/tools/pack/concepts/trusted_builders/" class="dd-item depth-3 collapse">
@@ -353,133 +353,133 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/" class="dd-item depth-2 parent haschildren">
+<li data-nav-id="/docs/tools/pack/cli/" class="dd-item depth-2 collapse haschildren">
   <a href="/docs/tools/pack/cli/">CLI Docs</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/tools/pack/cli/pack/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack/">pack</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_build/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_build/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_build/">pack build</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_builder/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_builder/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_builder/">pack builder</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_builder_create/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_builder_create/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_builder_create/">pack builder create</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_builder_inspect/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_builder_inspect/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_builder_inspect/">pack builder inspect</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_builder_suggest/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_builder_suggest/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_builder_suggest/">pack builder suggest</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_buildpack/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_buildpack/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_buildpack/">pack buildpack</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_inspect/" class="dd-item depth-3 active">
+<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_inspect/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_buildpack_inspect/">pack buildpack inspect</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_new/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_new/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_buildpack_new/">pack buildpack new</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_package/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_package/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_buildpack_package/">pack buildpack package</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_pull/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_pull/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_buildpack_pull/">pack buildpack pull</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_register/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_register/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_buildpack_register/">pack buildpack register</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_yank/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_yank/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_buildpack_yank/">pack buildpack yank</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_completion/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_completion/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_completion/">pack completion</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config/">pack config</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_default-builder/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_default-builder/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_default-builder/">pack config default-builder</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_experimental/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_experimental/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_experimental/">pack config experimental</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_lifecycle-image/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_lifecycle-image/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_lifecycle-image/">pack config lifecycle-image</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_pull-policy/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_pull-policy/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_pull-policy/">pack config pull-policy</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_registries/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_registries/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_registries/">pack config registries</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_registries_add/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_registries_add/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_registries_add/">pack config registries add</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_registries_default/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_registries_default/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_registries_default/">pack config registries default</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_registries_list/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_registries_list/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_registries_list/">pack config registries list</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_registries_remove/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_registries_remove/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_registries_remove/">pack config registries remove</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_registry-mirrors/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_registry-mirrors/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_registry-mirrors/">pack config registry-mirrors</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_registry-mirrors_add/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_registry-mirrors_add/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_registry-mirrors_add/">pack config registry-mirrors add</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_registry-mirrors_list/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_registry-mirrors_list/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_registry-mirrors_list/">pack config registry-mirrors list</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_registry-mirrors_remove/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_registry-mirrors_remove/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_registry-mirrors_remove/">pack config registry-mirrors remove</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_run-image-mirrors/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_run-image-mirrors/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_run-image-mirrors/">pack config run-image-mirrors</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_run-image-mirrors_add/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_run-image-mirrors_add/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_run-image-mirrors_add/">pack config run-image-mirrors add</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_run-image-mirrors_list/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_run-image-mirrors_list/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_run-image-mirrors_list/">pack config run-image-mirrors list</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_run-image-mirrors_remove/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_run-image-mirrors_remove/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_run-image-mirrors_remove/">pack config run-image-mirrors remove</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_trusted-builders/">pack config trusted-builders</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders_add/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders_add/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_trusted-builders_add/">pack config trusted-builders add</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders_list/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders_list/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_trusted-builders_list/">pack config trusted-builders list</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders_remove/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders_remove/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_trusted-builders_remove/">pack config trusted-builders remove</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_inspect/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_inspect/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_inspect/">pack inspect</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_rebase/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_rebase/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_rebase/">pack rebase</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_report/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_report/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_report/">pack report</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_stack/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_stack/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_stack/">pack stack</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_stack_suggest/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_stack_suggest/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_stack_suggest/">pack stack suggest</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_version/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_version/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_version/">pack version</a>
 </li>
   </ul>
@@ -565,38 +565,56 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5Bpack&#43;buildpack&#43;inspect%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ftools%2Fpack%2Fcli%2Fpack_buildpack_inspect%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BUsing&#43;Buildpacks&#43;with&#43;a&#43;Proxy%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fapp-developer-guide%2Fusing-http-proxy%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
+    
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/app-developer-guide/using-http-proxy.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+       class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
 </div>
 
 
         <div class="heading">
-          <h1 class="title">pack buildpack inspect</h1>
+          <h1 class="title">Using Buildpacks with a Proxy</h1>
         </div>
 
-        <h2 id="pack-buildpack-inspect">pack buildpack inspect</h2>
-<p>Show information about a buildpack</p>
-<pre><code>pack buildpack inspect &lt;image-name&gt; [flags]
-</code></pre><h3 id="examples">Examples</h3>
-<pre><code>pack buildpack inspect cnbs/sample-package:hello-universe
-</code></pre><h3 id="options">Options</h3>
-<pre><code>  -d, --depth int         Max depth to display for Detection Order.
-                          Omission of this flag or values &lt; 0 will display the entire tree. (default -1)
-  -h, --help              Help for 'inspect'
-  -r, --registry string   buildpack registry that may be searched
-</code></pre><h3 id="options-inherited-from-parent-commands">Options inherited from parent commands</h3>
-<pre><code>      --no-color     Disable color output
-  -q, --quiet        Show less output
-      --timestamps   Enable timestamps in output
-  -v, --verbose      Show more output
-</code></pre><h3 id="see-also">SEE ALSO</h3>
-<ul>
-<li><a href="/docs/tools/pack/cli/pack_buildpack/">pack buildpack</a>	 - Interact with buildpacks</li>
-</ul>
+        <p>Many university or corporate environments use a proxy to access HTTP and HTTPS resources on the web.  Proxies introduce two constraints on buildpack built applications:</p>
+<ol>
+<li><code>pack</code> needs to download buildpacks through the proxies, and</li>
+<li>applications running in containers created by <code>pack</code> need to call APIs behind the proxy.</li>
+</ol>
+<p>We show how to solve both of these constraints.</p>
+<h2 id="making-pack-proxy-aware">Making <code>pack</code> Proxy Aware</h2>
+<p>You may need the <code>pack</code> command-line tool to download buildpacks and images via your proxy.  Building an application with an incorrectly configured proxy results in errors such as the following:</p>
+<pre><code class="language-console" data-lang="console">$ pack build sample-app --path samples/apps/java-maven --builder cnbs/sample-builder:bionic
+ERROR: failed to build: failed to fetch builder image 'index.docker.io/cnbs/sample-builder:bionic'
+: Error response from daemon: Get &quot;https//registry-1.docker.io/v2/&quot;: context deadline exceeded
+</code></pre><p>The <code>pack</code> tool uses the Docker daemon to manage the local image registry on your machine.  The <code>pack</code> tool will ask the Docker daemon to download buildpacks and images for you.  Because of this relationship, between <code>pack</code> and the Docker daemon, we need to configure the Docker daemon to use a HTTP proxy.  The approach to setting the HTTP proxy depends on your platform:</p>
+<h3 id="docker-desktop-windows-and-macos">Docker Desktop (Windows and MacOS)</h3>
+<p>Docker&rsquo;s documetation states &ldquo;Docker Desktop lets you configure HTTP/HTTPS Proxy Settings and automatically propagates these to Docker&rdquo;.  Set the system proxy using the <a href="https://support.apple.com/en-gb/guide/mac-help/mchlp2591/mac">MacOS documentation</a> or <a href="https://www.dummies.com/computers/operating-systems/windows-10/how-to-set-up-a-proxy-in-windows-10/">Windows documentation</a>.  The system proxy settings will be used by Docker Desktop.</p>
+<h3 id="linux">Linux</h3>
+<p>The Docker project documents <a href="https://docs.docker.com/config/daemon/systemd/#httphttps-proxy">how to configure configure the HTTP/HTTPS proxy</a> settings for the Docker daemon on Linux.  You should configure the <code>HTTP_PROXY</code> and <code>HTTPS_PROXY</code> environment variables as part of the Docker daemon startup.</p>
+<h2 id="proxy-settings-for-buildpacks">Proxy Settings for Buildpacks</h2>
+<p>Buildpacks may also need to be aware of your http and https proxies at build time.  For example python, java and nodejs buildpacks need to be aware of proxies in order to resolve dependencies.  To make buildpacks aware of proxies, export the <code>http_proxy</code> and <code>https_proxy</code> environment variables before invoking <code>pack</code>.  For example:</p>
+<pre><code class="language-console" data-lang="console">export http_proxy=http://user:pass@my-proxy.example.com:3128
+export https_proxy=https://my-proxy.example.com:3129
+pack build sample-app --path samples/apps/java-maven --builder cnbs/sample-builder:bionic
+</code></pre><h2 id="making-your-application-proxy-aware">Making your Application Proxy Aware</h2>
+<p>Your application may need to use http or https proxies to access web-based APIs.  In order to make proxy settings available inside containers you should edit your <code>~/.docker/config.json</code> file (<code>%USERPROFILE%\.docker\config.json</code> on Windows) to contain the proxy information.  The <code>httpProxy</code>, <code>httpsProxy</code> and <code>noProxy</code> properties of this configuration file are injected into containers at build time and at run time as the <code>HTTP_PROXY</code>, <code>HTTPS_PROXY</code> and <code>NO_PROXY</code> environment variables respectively.  Both the http and https proxy settings are also injected in their lower-case form as <code>http_proxy</code> and <code>https_proxy</code>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;proxies&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;default&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;httpProxy&#34;</span><span class="p">:</span>  <span class="s2">&#34;http://user:pass@my-proxy.example.com:3128&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;httpsProxy&#34;</span><span class="p">:</span> <span class="s2">&#34;https://my-proxy.example.com:3129&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;noProxy&#34;</span><span class="p">:</span>    <span class="s2">&#34;internal.mycorp.example.com&#34;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>If your application requires a http or https proxy, then you should prefer to read proxy information from the lower-case <code>http_proxy</code> and <code>https_proxy</code> variables.</p>
+
 
         
 
@@ -606,10 +624,13 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5Bpack&#43;buildpack&#43;inspect%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ftools%2Fpack%2Fcli%2Fpack_buildpack_inspect%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BUsing&#43;Buildpacks&#43;with&#43;a&#43;Proxy%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fapp-developer-guide%2Fusing-http-proxy%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
+    
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/app-developer-guide/using-http-proxy.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+       class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
 </div>
