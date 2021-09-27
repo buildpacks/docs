@@ -26,7 +26,7 @@ source &amp;#34;https://rubygems.org&amp;#34; git_source(:github) {|repo_name| &
       <guid>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb/</guid>
       <description>Now we will set up the buildpack scaffolding.
 Let&amp;rsquo;s create the directory where your buildpack will live:
-Using the Pack CLI The buildpack new &amp;lt;id&amp;gt; commmand will create a directory named for the buildpack ID.
+Using the Pack CLI The buildpack new &amp;lt;id&amp;gt; command will create a directory named for the buildpack ID.
 Example:
 pack buildpack new examples/ruby \  --api 0.5 \  --path ruby-buildpack \  --version 0.0.1 \  --stacks io.buildpacks.samples.stacks.bionic This command will create ruby-buildpack directory which contains buildpack.toml, bin/build, bin/detect files.
 Additional Parameters  -a, --api Buildpack API compatibility of the generated buildpack -h, --help Help for &amp;lsquo;new&amp;rsquo; --path the location on the filesystem to generate the artifacts.</description>
@@ -38,7 +38,7 @@ Additional Parameters  -a, --api Buildpack API compatibility of the generated bu
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/detection/</guid>
-      <description>Next, you will want to actually detect that the app your are building is a Ruby app. In order to do this, you will need to check for a Gemfile.
+      <description>Next, you will want to actually detect that the app you are building is a Ruby app. In order to do this, you will need to check for a Gemfile.
 Replace exit 1 in the detect script with the following check:
 if [[ ! -f Gemfile ]]; then exit 100 fi Your ruby-buildpack/bin/detect script should look like this:
 #!/usr/bin/env bash set -eo pipefail if [[ ! -f Gemfile ]]; then exit 100 fi Next, rebuild your app with the updated buildpack:</description>

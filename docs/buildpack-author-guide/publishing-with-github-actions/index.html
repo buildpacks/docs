@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en">
 
 <head>
   
@@ -131,7 +131,7 @@
           <a class="nav-link py-2 px-1" href="/docs">Docs</a>
         </li>
         <li class="nav-item text-center d-lg-none">
-          <a class="nav-link py-2 px-1" href="https://github.com/buildpacks">GitHub</a>
+          <a class="nav-link py-2 px-1" target='_blank' rel="noopener noreferrer" href="https://github.com/buildpacks">GitHub</a>
         </li>
       </ul>
 
@@ -578,7 +578,7 @@
           <h1 class="title">Publishing with Github Actions</h1>
         </div>
 
-        <p>If you would like to publish your buildpack image to the registry without requiring a human click a button in a browser, you can automate the process using the helpers in the <a href="https://github.com/buildpacks/github-actions">buildpacks/github-actions</a> repository.</p>
+        <p>If you would like to publish your buildpack image to the registry without requiring a human to click a button in a browser, you can automate the process using the helpers in the <a href="https://github.com/buildpacks/github-actions">buildpacks/github-actions</a> repository.</p>
 <p>To begin, you must store your buildpack source code in GitHub and <a href="https://github.com/features/actions">enable GitHub Actions</a>. Then create a directory named <code>.github/workflows</code> in your repository, and add a file named <code>release.yml</code> to it. The <code>release.yml</code> workflow can be <a href="https://docs.github.com/en/actions/reference/events-that-trigger-workflows">triggered</a> in many ways, but it&rsquo;s common to use a Release event as a trigger. To do so, add the following to your <code>release.yml</code>:</p>
 <div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Release</span><span class="w">
 </span><span class="w"></span><span class="nt">on</span><span class="p">:</span><span class="w">
@@ -639,7 +639,7 @@
 <li><code>PUBLIC_REPO_TOKEN</code> - the value of a <a href="https://github.com/settings/tokens/new">GitHub token</a> with the <code>repo:public_repo</code> scope (the default <code>GITHUB_TOKEN</code> provided for GitHub Actions is not sufficient).</li>
 </ul>
 <p>After you&rsquo;ve created these secrets and pushed your <code>release.yml</code> file to GitHub you can trigger the workflow by creating a new Release using the <a href="https://docs.github.com/en/github/administering-a-repository/about-releases">GitHub Releases UI</a>.</p>
-<p>From <a href="https://github.com">GitHub.com</a>, click on <em>Your Repositories</em>, then click the <em>Packages</em> tab and look for the image you just created. Click it and then select <em>Package Settings</em>. From this page, click the button to make this package public, and confirm the name of the image when promoted.</p>
+<p>From <a href="https://github.com">GitHub.com</a>, click on <em>Your Repositories</em>, then click the <em>Packages</em> tab and look for the image you just created. Click it and then select <em>Package Settings</em>. From this page, click the button to make this package public, and confirm the name of the image when prompted.</p>
 <p>Push the <code>release.yml</code> changes to GitHub and trigger a new release. The workflow will create a GitHub Issue on the Buildpack Registry and your buildpack will be added to the index.</p>
 <p>It is possible to perform these same step on any automated CI platform, but the Buildpack project only provides helpers for GitHub Actions.</p>
 <p>You may store your buildpack image in any standard OCI registry, such as <a href="https://hub.docker.com/">Docker Hub</a>, <a href="https://cloud.google.com/container-registry/">Google Container Registry</a>, or <a href="https://docs.github.com/en/packages/guides/about-github-container-registry">GitHub Container Registry</a>. However, <a href="https://docs.github.com/en/packages/guides/configuring-docker-for-use-with-github-packages">GitHub Packages</a> are not supported as they provide a non-standard implementation of the OCI Registry specification.</p>
@@ -677,30 +677,30 @@
 
   <footer>
   <div class="container footer">
-    <a href="https://www.cncf.io/" style="width: 50%;"><img src="/images/cncf-color.svg" class="footer-logo"></a>
+    <a href="https://www.cncf.io/" style="width: 50%;"><img src="/images/cncf-color.svg" class="footer-logo" alt="CNCF logo" ></a>
     <p>We are a <a href="https://www.cncf.io/">Cloud Native Computing Foundation</a> incubating project.</p>
   </div>
   <div class="bg-blue">
     <div class="container sub-footer">
       <ul>
         
-        <li><a target='_blank' href="https://buildpacks.devstats.cncf.io/d/8/dashboards?orgId=1&amp;refresh=15m">DevStats</a></li>
+        <li><a target="_blank" rel="noopener noreferrer" href="https://buildpacks.devstats.cncf.io/d/8/dashboards?orgId=1&amp;refresh=15m">DevStats</a></li>
         
-        <li><span>&bull;</span><a target='_blank' href="https://datastudio.google.com/reporting/4b23856c-6c24-44f5-86f2-333d0ad3f236">Analytics</a></li>
+        <li><span>&bull;</span><a target="_blank" rel="noopener noreferrer" href="https://datastudio.google.com/reporting/4b23856c-6c24-44f5-86f2-333d0ad3f236">Analytics</a></li>
         
-        <li><span>&bull;</span><a target='_blank' href="https://www.linuxfoundation.org/privacy/">Privacy Policy</a></li>
+        <li><span>&bull;</span><a target="_blank" rel="noopener noreferrer" href="https://www.linuxfoundation.org/privacy/">Privacy Policy</a></li>
         
       </ul>
 
       <ul>
         
-        <li><a target='_blank' href="https://lists.cncf.io/g/cncf-buildpacks/join">Mailing List</a></li>
+        <li><a target="_blank" rel="noopener noreferrer" href="https://lists.cncf.io/g/cncf-buildpacks/join">Mailing List</a></li>
         
-        <li><span>&bull;</span><a target='_blank' href="https://slack.buildpacks.io/">Slack</a></li>
+        <li><span>&bull;</span><a target="_blank" rel="noopener noreferrer" href="https://slack.buildpacks.io/">Slack</a></li>
         
-        <li><span>&bull;</span><a target='_blank' href="https://twitter.com/buildpacks_io">Twitter</a></li>
+        <li><span>&bull;</span><a target="_blank" rel="noopener noreferrer" href="https://twitter.com/buildpacks_io">Twitter</a></li>
         
-        <li><span>&bull;</span><a target='_blank' href="https://github.com/buildpacks">GitHub</a></li>
+        <li><span>&bull;</span><a target="_blank" rel="noopener noreferrer" href="https://github.com/buildpacks">GitHub</a></li>
         
       </ul>
     </div>
