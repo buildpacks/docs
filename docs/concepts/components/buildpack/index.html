@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="What is a buildpack? A buildpack is a unit of work that inspects your app source code and formulates a plan to build and run your application.
+<meta name="description" content="What is a buildpack? A buildpack is a set of executables that inspects your app source code and create a plan to build and run your application.
 "/>
 <link rel="canonical" content="https://buildpacks.io/docs/concepts/components/buildpack/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
@@ -23,7 +23,7 @@
 <meta property="og:url" content="https://buildpacks.io/docs/concepts/components/buildpack/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-<meta property="og:description" content="What is a buildpack? A buildpack is a unit of work that inspects your app source code and formulates a plan to build and run your application.
+<meta property="og:description" content="What is a buildpack? A buildpack is a set of executables that inspects your app source code and create a plan to build and run your application.
 ">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
@@ -581,29 +581,24 @@
         </div>
 
         <h2 id="what-is-a-buildpack">What is a buildpack?</h2>
-<p>A buildpack is a unit of work that inspects your app source code and formulates a plan to build and run your
-application.</p>
-<p>Typical buildpacks are a set of at least three files:</p>
+<p>A buildpack is a set of executables that inspects your app source code and create a plan to build and run your application.</p>
+<p>Typical buildpacks consist of at least three files:</p>
 <ul>
 <li><code>buildpack.toml</code> &ndash; provides metadata about your buildpack</li>
 <li><code>bin/detect</code> &ndash; determines whether buildpack should be applied</li>
-<li><code>bin/build</code> &ndash; executes buildpack logic</li>
+<li><code>bin/build</code> &ndash; executes build logic</li>
 </ul>
 <h4 id="meta-buildpack">Meta-buildpack</h4>
 <p>There is a different type of buildpack commonly referred to as a <strong>meta-buildpack</strong>. It contains only a
 <code>buildpack.toml</code> file with an <code>order</code> configuration that references other buildpacks. This is useful for
 composing more complex detection strategies.</p>
-<h2 id="anatomy-of-a-buildpack">Anatomy of a buildpack</h2>
-<p>There are two essential phases that allow buildpacks to create a runnable image.</p>
+<h2 id="buildpack-phases">Buildpack phases</h2>
+<p>There are two essential steps that allow buildpacks to create a runnable image.</p>
 <h4 id="detect">Detect</h4>
-<p>A platform sequentially tests groups of buildpacks against your app&rsquo;s source code. The first group that deems itself
-fit for your source code will become the selected set of buildpacks for your app. Detection criteria is specific to each
-buildpack &ndash; for instance, an <strong>NPM buildpack</strong> might look for a <code>package.json</code>, and a <strong>Go buildpack</strong> might look for
-Go source files.</p>
+<p>A <a href="/docs/concepts/components/platform">platform</a> sequentially tests <a href="/docs/concepts/components/buildpack-group/">groups</a> of buildpacks against your app&rsquo;s source code. The first group that deems itself fit for your source code will become the selected set of buildpacks for your app.</p>
+<p>Detection criteria is specific to each  buildpack &ndash; for instance, an <strong>NPM buildpack</strong> might look for a <code>package.json</code>, and a <strong>Go buildpack</strong> might look for Go source files.</p>
 <h4 id="build">Build</h4>
-<p>During build the buildpacks contribute to the final application image. This contribution could be as simple as setting
-some environment variables within the image, creating a layer containing a binary (e.g: node, python, or ruby), or
-adding app dependencies (e.g: running <code>npm install</code>, <code>pip install -r requirements.txt</code>, or <code>bundle install</code>).</p>
+<p>During build the buildpacks contribute to the final application image. This contribution could be as simple as setting  some environment variables within the image, creating a layer containing a binary (e.g: node, python, or ruby), or adding app dependencies (e.g: running <code>npm install</code>, <code>pip install -r requirements.txt</code>, or <code>bundle install</code>).</p>
 <h2 id="distribution">Distribution</h2>
 <p>Buildpacks can be <a href="/docs/buildpack-author-guide/package-a-buildpack/">packaged</a> as OCI images on an image registry or Docker daemon. This includes meta-buildpacks.</p>
 <h2 id="reference">Reference</h2>
