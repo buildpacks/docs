@@ -4,41 +4,52 @@ title="Tekton"
 
 [Tekton][tekton] is an open-source CI/CD system platform implementation running on k8s. There are two Tekton `tasks`
 maintained by the CNB project, both of which use the [lifecycle][lifecycle] directly (i.e. they do not use `pack`).
+
 <!--more-->
+
 They are:
-1. [buildpacks][buildpacks-task] `task` &rarr; This task, which we recommend using, calls the `creator` binary of the 
+
+1. [buildpacks][buildpacks-task] `task` &rarr; This task, which we recommend using, calls the `creator` binary of the
    [lifecycle][lifecycle] to construct, and optionally publish, a runnable image.
-1. [buildpacks-phases][buildpacks-phases] `task` &rarr; This task calls the individual [lifecycle][lifecycle] binaries, to
-run each phase in a separate container.
+2. [buildpacks-phases][buildpacks-phases] `task` &rarr; This task calls the individual [lifecycle][lifecycle] binaries, to run each phase in a separate container.
 
 ## Set Up
+
 > NOTE: Prior to installing `Tekton`, we recommend reviewing the basic Tekton concepts in the [documentation][tekton-concepts].
 
 ### Prerequisites
+
 Before we get started, make sure you've got the following installed:
 
 {{< download-button href="https://kubernetes.io/docs/tasks/tools/install-kubectl/" color="blue" >}} Install kubectl {{</>}}
 
 ### 1. Install Tekton and Tekton Dashboard
+
 To start, set up `Tekton`, using the Tekton [documentation][tekton-setup].
 
 We also recommend using the `Tekton dashboard`. To install it, follow the steps in the [dashboard docs][tekton-dashboard-setup], and
-start the dashboard server. 
+start the dashboard server.
 
 ### 2. Install the Buildpacks Task
+
 Install the latest version of the buildpacks task (currently `0.3`), by running:
+
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/master/task/buildpacks/0.3/buildpacks.yaml
 ```
 
 ### 3. Install git-clone Task
+
 For our `pipeline`, we will use the `git-clone` task to clone a repository. Install the latest version (currently `0.4`), by running:
+
 ```shell
 kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/master/task/git-clone/0.4/git-clone.yaml
 ```
 
 ### 4. Define and Apply Tekton Pipeline Resources
+
 In order to set up our pipeline, we will need to define a few things:
+
 - Pipeline &rarr; A `Pipeline` defines a series of `Tasks` that accomplish a specific build or delivery goal. The `Pipeline`
   can be triggered by an event or invoked from a `PipelineRun`.
 - PipelineResource &rarr; A `PipelineResource` defines locations for inputs ingested and outputs produced by the steps in `Tasks`.
@@ -46,8 +57,10 @@ In order to set up our pipeline, we will need to define a few things:
   a request for storage by a user.
 
 #### 4.1 PVCs
+
 Create a file `resources.yml` that defines a `PersistentVolumeClaim`:
-```yaml     
+
+```yaml
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -61,10 +74,12 @@ spec:
 ```
 
 #### 4.2 Authorization
-> NOTE: You don't need to use authorization if you are pushing to a local registry. However, if you are pushing to a 
+
+> NOTE: You don't need to use authorization if you are pushing to a local registry. However, if you are pushing to a
 > remote registry (e.g. `DockerHub`, `GCR`), you need to add authorization
 
 Create a `Secret` containing username and password that the build should use to authenticate to the container registry.
+
 ```shell
 kubectl create secret docker-registry docker-user-pass \
     --docker-username=<USERNAME> \
@@ -74,23 +89,30 @@ kubectl create secret docker-registry docker-user-pass \
 ```
 
 Create a file `sa.yml` that defines a `ServiceAccount` that uses the newly created secret:
+
 ```yaml
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-    name: buildpacks-service-account
+  name: buildpacks-service-account
 secrets:
-    - name: docker-user-pass
+  - name: docker-user-pass
 ```
 
 #### 4.3 Pipeline
+
 Create a file `pipeline.yml` that defines the `Pipeline`, and relevant resources:
+
 ```yaml
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
   name: buildpacks-test-pipeline
 spec:
+  params:
+    - name: image
+      type: string
+      description: image URL to push
   workspaces:
     - name: source-workspace # Directory where application source is located. (REQUIRED)
     - name: cache-workspace # Directory where cache is stored (OPTIONAL)
@@ -120,7 +142,7 @@ spec:
           workspace: cache-workspace
       params:
         - name: APP_IMAGE
-          value: <REGISTRY/USERNAME/IMAGE_NAME, eg gcr.io/test/image > # where to store the app image. (REQUIRED)
+          value: "$(params.image)"
         - name: SOURCE_SUBPATH
           value: "apps/java-maven" # This is the path within the samples repo you want to build (OPTIONAL, default: "")
         - name: BUILDER_IMAGE
@@ -141,17 +163,20 @@ spec:
       params:
         - name: DIGEST
           value: $(tasks.buildpacks.results.APP_IMAGE_DIGEST)
-
 ```
 
 #### 4.4 Apply Configuration
+
 Apply these configurations, using `kubectl`:
+
 ```shell
 kubectl apply -f resources.yml -f sa.yml -f pipeline.yml
 ```
 
 ### 5. Create & Apply PipelineRun
+
 Create a file (e.g. `run.yml`), which defines the `PipelineRun`:
+
 ```yaml
 apiVersion: tekton.dev/v1beta1
 kind: PipelineRun
@@ -170,27 +195,37 @@ spec:
       subPath: cache
       persistentVolumeClaim:
         claimName: buildpacks-source-pvc
+  params:
+    - name: image
+      value: <REGISTRY/IMAGE NAME, eg gcr.io/test/image > # This defines the name of output image
 ```
 
+> Make sure to replace `<REGISTRY/IMAGE NAME>` with your image path.
+
 Apply it with:
+
 ```shell
 kubectl apply -f run.yml
 ```
 
 ### 6. See it Build
+
 Look at the `PipelineRun` logs by running
+
 ```shell
 kubectl describe pipelinerun buildpacks-test-pipeline-run
 ```
 
-or by using the Tekton Dashboard. 
+or by using the Tekton Dashboard.
 
 Once the application is successfully built, you can pull it and run it by running:
+
 ```shell
 docker pull some-output-image
 ```
 
 ### 7. Cleanup (Optional)
+
 To clean up, run:
 
 ```shell
@@ -200,11 +235,14 @@ kubectl delete pv --all
 ```
 
 ## References
+
 The Buildpacks tasks can be accessed at:
+
 - [Buildpacks Task Source][buildpacks-task]
 - [Buildpacks Phases Task Source][buildpacks-phases]
 
 Some general resources for Tekton are:
+
 - [Tekton: Getting Started][tekton-setup]
 - [Tekton Dashboard: Setup][tekton-dashboard-setup]
 - [Tekton Concepts][tekton-concepts]
