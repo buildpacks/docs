@@ -584,8 +584,7 @@ maintained by the CNB project, both of which use the <a href="/docs/concepts/com
 <ol>
 <li><a href="https://github.com/tektoncd/catalog/tree/master/task/buildpacks">buildpacks</a> <code>task</code> → This task, which we recommend using, calls the <code>creator</code> binary of the
 <a href="/docs/concepts/components/lifecycle">lifecycle</a> to construct, and optionally publish, a runnable image.</li>
-<li><a href="https://github.com/tektoncd/catalog/tree/master/task/buildpacks-phases">buildpacks-phases</a> <code>task</code> → This task calls the individual <a href="/docs/concepts/components/lifecycle">lifecycle</a> binaries, to
-run each phase in a separate container.</li>
+<li><a href="https://github.com/tektoncd/catalog/tree/master/task/buildpacks-phases">buildpacks-phases</a> <code>task</code> → This task calls the individual <a href="/docs/concepts/components/lifecycle">lifecycle</a> binaries, to run each phase in a separate container.</li>
 </ol>
 <h2 id="set-up">Set Up</h2>
 <blockquote>
@@ -614,23 +613,11 @@ can be triggered by an event or invoked from a <code>PipelineRun</code>.</li>
 a request for storage by a user.</li>
 </ul>
 <h4 id="41-pvcs">4.1 PVCs</h4>
-<p>Create a file (e.g. <code>resources.yml</code>), which defines two <code>PersistentVolumeClaim</code>s, one which contains the source code, and the other to serve
-as a cache between builds:</p>
+<p>Create a file <code>resources.yml</code> that defines a <code>PersistentVolumeClaim</code>:</p>
 <div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
 </span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">PersistentVolumeClaim</span><span class="w">
 </span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
 </span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-source-pvc</span><span class="w">
-</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="nt">accessModes</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span>- <span class="l">ReadWriteOnce</span><span class="w">
-</span><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="nt">requests</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l">500Mi</span><span class="w">
-</span><span class="w"></span><span class="nn">---</span><span class="w">
-</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
-</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">PersistentVolumeClaim</span><span class="w">
-</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-cache-pvc</span><span class="w">
 </span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
 </span><span class="w">  </span><span class="nt">accessModes</span><span class="p">:</span><span class="w">
 </span><span class="w">    </span>- <span class="l">ReadWriteOnce</span><span class="w">
@@ -642,78 +629,85 @@ as a cache between builds:</p>
 <p>NOTE: You don&rsquo;t need to use authorization if you are pushing to a local registry. However, if you are pushing to a
 remote registry (e.g. <code>DockerHub</code>, <code>GCR</code>), you need to add authorization</p>
 </blockquote>
-<p>Create a file (e.g. <code>auth.yml</code>) which defines the authorization secrets:</p>
+<p>Create a <code>Secret</code> containing username and password that the build should use to authenticate to the container registry.</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">kubectl create secret docker-registry docker-user-pass <span class="se">\
+</span><span class="se"></span>    --docker-username<span class="o">=</span>&lt;USERNAME&gt; <span class="se">\
+</span><span class="se"></span>    --docker-password<span class="o">=</span>&lt;PASSWORD&gt; <span class="se">\
+</span><span class="se"></span>    --docker-server<span class="o">=</span>&lt;LINK TO REGISTRY, e.g. https://index.docker.io/v1/ &gt; <span class="se">\
+</span><span class="se"></span>    --namespace default
+</code></pre></div><p>Create a file <code>sa.yml</code> that defines a <code>ServiceAccount</code> that uses the newly created secret:</p>
 <div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
-</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Secret</span><span class="w">
-</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">basic-user-pass</span><span class="w">
-</span><span class="w">    </span><span class="nt">annotations</span><span class="p">:</span><span class="w">
-</span><span class="w">        </span><span class="nt">tekton.dev/docker-0</span><span class="p">:</span><span class="w"> </span><span class="l">&lt;LINK TO REGISTRY, e.g. https://index.docker.io/v1/&gt;</span><span class="w">
-</span><span class="w"></span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">kubernetes.io/basic-auth</span><span class="w">
-</span><span class="w"></span><span class="nt">stringData</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l">&lt;USERNAME&gt;</span><span class="w">
-</span><span class="w">    </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l">&lt;PASSWORD&gt;</span><span class="w">
-</span><span class="w"></span><span class="nn">---</span><span class="w">
-</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
 </span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ServiceAccount</span><span class="w">
 </span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-service-account</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-service-account</span><span class="w">
 </span><span class="w"></span><span class="nt">secrets</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">basic-user-pass</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">docker-user-pass</span><span class="w">
 </span></code></pre></div><h4 id="43-pipeline">4.3 Pipeline</h4>
-<p>Create a file (e.g. <code>pipeline.yml</code>) which defines the <code>Pipeline</code>, and relevant resources:</p>
+<p>Create a file <code>pipeline.yml</code> that defines the <code>Pipeline</code>, and relevant resources:</p>
 <div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">tekton.dev/v1beta1</span><span class="w">
 </span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Pipeline</span><span class="w">
 </span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
 </span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-test-pipeline</span><span class="w">
 </span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
 </span><span class="w">  </span><span class="nt">params</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">image</span><span class="w">
-</span><span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
-</span><span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l">image URL to push</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">image</span><span class="w">
+</span><span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l">image URL to push</span><span class="w">
 </span><span class="w">  </span><span class="nt">workspaces</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">shared-workspace</span><span class="w">
-</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-cache</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">source-workspace</span><span class="w"> </span><span class="c"># Directory where application source is located. (REQUIRED)</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">cache-workspace</span><span class="w"> </span><span class="c"># Directory where cache is stored (OPTIONAL)</span><span class="w">
 </span><span class="w">  </span><span class="nt">tasks</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">fetch-repository</span><span class="w"> </span><span class="c"># This task fetches a repository from github, using the `git-clone` task we installed</span><span class="w">
-</span><span class="w">    </span><span class="nt">taskRef</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">git-clone</span><span class="w">
-</span><span class="w">    </span><span class="nt">workspaces</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">output</span><span class="w">
-</span><span class="w">      </span><span class="nt">workspace</span><span class="p">:</span><span class="w"> </span><span class="l">shared-workspace</span><span class="w">
-</span><span class="w">    </span><span class="nt">params</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">url</span><span class="w">
-</span><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">https://github.com/buildpacks/samples</span><span class="w">
-</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">subdirectory</span><span class="w">
-</span><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">deleteExisting</span><span class="w">
-</span><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;true&#34;</span><span class="w">
-</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks</span><span class="w"> </span><span class="c"># This task uses the `buildpacks` task to build the application</span><span class="w">
-</span><span class="w">    </span><span class="nt">taskRef</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks</span><span class="w">
-</span><span class="w">    </span><span class="nt">runAfter</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span>- <span class="l">fetch-repository</span><span class="w">
-</span><span class="w">    </span><span class="nt">workspaces</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">source</span><span class="w">
-</span><span class="w">      </span><span class="nt">workspace</span><span class="p">:</span><span class="w"> </span><span class="l">shared-workspace</span><span class="w">
-</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">cache</span><span class="w">
-</span><span class="w">      </span><span class="nt">workspace</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-cache</span><span class="w">
-</span><span class="w">    </span><span class="nt">params</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">APP_IMAGE</span><span class="w">
-</span><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;$(params.image)&#34;</span><span class="w">
-</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">SOURCE_SUBPATH</span><span class="w">
-</span><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;apps/java-maven&#39;</span><span class="w"> </span><span class="c"># This is the path within our samples repo we want to build</span><span class="w">
-</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">BUILDER_IMAGE</span><span class="w">
-</span><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;paketobuildpacks/builder:base&#39;</span><span class="w"> </span><span class="c"># This is the builder we want the task to use</span><span class="w">
-</span><span class="w">    </span><span class="nt">resources</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span><span class="nt">outputs</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">image</span><span class="w">
-</span><span class="w">        </span><span class="nt">resource</span><span class="p">:</span><span class="w"> </span><span class="l">build-image</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">fetch-repository</span><span class="w"> </span><span class="c"># This task fetches a repository from github, using the `git-clone` task you installed</span><span class="w">
+</span><span class="w">      </span><span class="nt">taskRef</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">git-clone</span><span class="w">
+</span><span class="w">      </span><span class="nt">workspaces</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">output</span><span class="w">
+</span><span class="w">          </span><span class="nt">workspace</span><span class="p">:</span><span class="w"> </span><span class="l">source-workspace</span><span class="w">
+</span><span class="w">      </span><span class="nt">params</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">url</span><span class="w">
+</span><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">https://github.com/buildpacks/samples</span><span class="w">
+</span><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">subdirectory</span><span class="w">
+</span><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
+</span><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">deleteExisting</span><span class="w">
+</span><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;true&#34;</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks</span><span class="w"> </span><span class="c"># This task uses the `buildpacks` task to build the application</span><span class="w">
+</span><span class="w">      </span><span class="nt">taskRef</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks</span><span class="w">
+</span><span class="w">      </span><span class="nt">runAfter</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="l">fetch-repository</span><span class="w">
+</span><span class="w">      </span><span class="nt">workspaces</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">source</span><span class="w">
+</span><span class="w">          </span><span class="nt">workspace</span><span class="p">:</span><span class="w"> </span><span class="l">source-workspace</span><span class="w">
+</span><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">cache</span><span class="w">
+</span><span class="w">          </span><span class="nt">workspace</span><span class="p">:</span><span class="w"> </span><span class="l">cache-workspace</span><span class="w">
+</span><span class="w">      </span><span class="nt">params</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">APP_IMAGE</span><span class="w">
+</span><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;$(params.image)&#34;</span><span class="w">
+</span><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">SOURCE_SUBPATH</span><span class="w">
+</span><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;apps/java-maven&#34;</span><span class="w"> </span><span class="c"># This is the path within the samples repo you want to build (OPTIONAL, default: &#34;&#34;)</span><span class="w">
+</span><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">BUILDER_IMAGE</span><span class="w">
+</span><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">paketobuildpacks/builder:base</span><span class="w"> </span><span class="c"># This is the builder we want the task to use (REQUIRED)</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">display-results</span><span class="w">
+</span><span class="w">      </span><span class="nt">runAfter</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="l">buildpacks</span><span class="w">
+</span><span class="w">      </span><span class="nt">taskSpec</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">steps</span><span class="p">:</span><span class="w">
+</span><span class="w">          </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">print</span><span class="w">
+</span><span class="w">            </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">docker.io/library/bash:5.1.4@sha256:b208215a4655538be652b2769d82e576bc4d0a2bb132144c060efc5be8c3f5d6</span><span class="w">
+</span><span class="w">            </span><span class="nt">script</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
+</span><span class="sd">              #!/usr/bin/env bash
+</span><span class="sd">              set -e
+</span><span class="sd">              echo &#34;Digest of created app image: $(params.DIGEST)&#34;</span><span class="w">              
+</span><span class="w">        </span><span class="nt">params</span><span class="p">:</span><span class="w">
+</span><span class="w">          </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">DIGEST</span><span class="w">
+</span><span class="w">      </span><span class="nt">params</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">DIGEST</span><span class="w">
+</span><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(tasks.buildpacks.results.APP_IMAGE_DIGEST)</span><span class="w">
 </span></code></pre></div><h4 id="44-apply-configuration">4.4 Apply Configuration</h4>
 <p>Apply these configurations, using <code>kubectl</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">kubectl apply -f resources.yml -f auth.yml -f pipeline.yml
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">kubectl apply -f resources.yml -f sa.yml -f pipeline.yml
 </code></pre></div><h3 id="5-create--apply-pipelinerun">5. Create &amp; Apply PipelineRun</h3>
-<p>Create a file (e.g. <code>run.yml</code>), which defines the <code>PipelineRun</code>:</p>
+<p>Create a file <code>run.yml</code>, which defines the <code>PipelineRun</code>:</p>
 <div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">tekton.dev/v1beta1</span><span class="w">
 </span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">PipelineRun</span><span class="w">
 </span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
@@ -723,16 +717,21 @@ remote registry (e.g. <code>DockerHub</code>, <code>GCR</code>), you need to add
 </span><span class="w">  </span><span class="nt">pipelineRef</span><span class="p">:</span><span class="w">
 </span><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-test-pipeline</span><span class="w">
 </span><span class="w">  </span><span class="nt">workspaces</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">shared-workspace</span><span class="w">
-</span><span class="w">    </span><span class="nt">persistentvolumeclaim</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span><span class="nt">claimName</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-source-pvc</span><span class="w">
-</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-cache</span><span class="w">
-</span><span class="w">    </span><span class="nt">persistentvolumeclaim</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span><span class="nt">claimName</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-cache-pvc</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">source-workspace</span><span class="w">
+</span><span class="w">      </span><span class="nt">subPath</span><span class="p">:</span><span class="w"> </span><span class="l">source</span><span class="w">
+</span><span class="w">      </span><span class="nt">persistentVolumeClaim</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">claimName</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-source-pvc</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">cache-workspace</span><span class="w">
+</span><span class="w">      </span><span class="nt">subPath</span><span class="p">:</span><span class="w"> </span><span class="l">cache</span><span class="w">
+</span><span class="w">      </span><span class="nt">persistentVolumeClaim</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="nt">claimName</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-source-pvc</span><span class="w">
 </span><span class="w">  </span><span class="nt">params</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">image</span><span class="w">
-</span><span class="w">    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">&lt;REGISTRY/IMAGE NAME, eg gcr.io/test/image &gt;</span><span class="w"> </span><span class="c"># This defines the name of output image</span><span class="w">
-</span></code></pre></div><p>Apply it with:</p>
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">image</span><span class="w">
+</span><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">&lt;REGISTRY/IMAGE NAME, eg gcr.io/test/image &gt;</span><span class="w"> </span><span class="c"># This defines the name of output image</span><span class="w">
+</span></code></pre></div><blockquote>
+<p>Make sure to replace <code>&lt;REGISTRY/IMAGE NAME&gt;</code> with your image path.</p>
+</blockquote>
+<p>Apply it with:</p>
 <div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">kubectl apply -f run.yml
 </code></pre></div><h3 id="6-see-it-build">6. See it Build</h3>
 <p>Look at the <code>PipelineRun</code> logs by running</p>
