@@ -35,7 +35,7 @@ jobs:
         run: |
           make check-links
       - name: Upload public folder
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v2.2.4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
