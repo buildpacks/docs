@@ -4,6 +4,10 @@ GITHUB_TOKEN?=
 PACK_BIN?=$(shell which pack)
 SERVE_PORT=1313
 BASE_URL?=
+HUGO_BIN=./tools/bin/hugo
+
+#retreive latest hugo version
+_latestver:=$(shell curl --silent "https://api.github.com/repos/gohugoio/hugo/tags" | jq -r '.[0].name' | tr -d v)
 
 ifndef BASE_URL
 ifdef GITPOD_WORKSPACE_URL
@@ -28,16 +32,23 @@ clean:
 
 .PHONY: install-hugo
 install-hugo:
+
 	@echo "> Installing hugo..."
 	@echo "This may take a while depending on your connection."
+
 ifeq ($(OS),Windows_NT)
-	@echo $(shell uname -s)	
-	cd tools; mkdir bin; cd bin; curl -L -O $(shell curl https://api.github.com/repos/gohugoio/hugo/releases/latest | jq -r '.assets[30].browser_download_url')
-	
+	@echo $(shell uname -s)	;
+	cd tools; mkdir bin; cd bin; curl -s -L -O $(shell curl -s https://api.github.com/repos/gohugoio/hugo/releases/latest | jq -r '.assets[30].browser_download_url')
 else
-	@echo $(shell uname -s)
-	cd tools; mkdir bin; cd bin; curl -L -O $(shell curl https://api.github.com/repos/gohugoio/hugo/releases/latest | jq -r '.assets[26].browser_download_url')	
+	ifeq ($(shell uname -s),Darwin)
+		@echo $(shell uname -s)
+		cd tools; mkdir bin; cd bin; curl -s -L -O $(shell curl -s https://api.github.com/repos/gohugoio/hugo/releases/latest | jq -r '.assets[28].browser_download_url'); tar xvfz hugo_extended_${_latestver}_macOS-64bit.tar.gz
+	else
+		@echo $(shell uname -s)
+		cd tools; mkdir bin; cd bin; curl -s -L -O $(shell curl -s  https://api.github.com/repos/gohugoio/hugo/releases/latest | jq -r '.assets[27].browser_download_url'); tar xvfz hugo_extended_${_latestver}_Linux-64bit.tar.gz
+	endif
 endif
+
 
 	
 
@@ -80,16 +91,16 @@ serve: export PACK_VERSION:=$(PACK_VERSION)
 serve: install-hugo pack-version pack-docs-update
 	@echo "> Serving..."
 ifeq ($(BASE_URL),)
-	hugo server --disableFastRender --port=$(SERVE_PORT)
+	$(HUGO_BIN) server --disableFastRender --port=$(SERVE_PORT)
 else
-	hugo server --disableFastRender --port=$(SERVE_PORT) --baseURL=$(BASE_URL) --appendPort=false
+	$(HUGO_BIN) server --disableFastRender --port=$(SERVE_PORT) --baseURL=$(BASE_URL) --appendPort=false
 endif
 
 .PHONY: build
 build: export PACK_VERSION:=$(PACK_VERSION)
 build: install-hugo pack-version pack-docs-update
 	@echo "> Building..."
-	hugo
+	$(HUGO_BIN)
 
 .PHONY: test
 test: install-pack-cli install-ugo
