@@ -39,15 +39,16 @@ install-hugo:
 ifeq ($(OS),Windows_NT)
 	@echo $(shell uname -s)	;
 	cd tools; mkdir bin; cd bin; curl -s -L -O $(shell curl -s https://api.github.com/repos/gohugoio/hugo/releases/latest | jq -r '.assets[30].browser_download_url')
-else
-	ifeq ($(shell uname -s),Darwin)
-		@echo $(shell uname -s)
-		cd tools; mkdir bin; cd bin; curl -s -L -O $(shell curl -s https://api.github.com/repos/gohugoio/hugo/releases/latest | jq -r '.assets[28].browser_download_url'); tar xvfz hugo_extended_${_latestver}_macOS-64bit.tar.gz
-	else
-		@echo $(shell uname -s)
-		cd tools; mkdir bin; cd bin; curl -s -L -O $(shell curl -s  https://api.github.com/repos/gohugoio/hugo/releases/latest | jq -r '.assets[27].browser_download_url'); tar xvfz hugo_extended_${_latestver}_Linux-64bit.tar.gz
-	endif
 endif
+
+ifeq ($(shell uname -s),Darwin)
+	@echo $(shell uname -s)
+	cd tools; mkdir bin; cd bin; curl -s -L -O $(shell curl -s https://api.github.com/repos/gohugoio/hugo/releases/latest | jq -r '.assets[28].browser_download_url'); tar xvfz hugo_extended_${_latestver}_macOS-64bit.tar.gz
+else
+	@echo $(shell uname -s)
+	cd tools; mkdir bin; cd bin; curl -s -L -O $(shell curl -s  https://api.github.com/repos/gohugoio/hugo/releases/latest | jq -r '.assets[27].browser_download_url'); tar xvfz hugo_extended_${_latestver}_Linux-64bit.tar.gz
+endif
+
 
 
 	
@@ -93,7 +94,7 @@ serve: install-hugo pack-version pack-docs-update
 ifeq ($(BASE_URL),)
 	$(HUGO_BIN) server --disableFastRender --port=$(SERVE_PORT)
 else
-	$(HUGO_BIN) server --disableFastRender --port=$(SERVE_PORT) --baseURL=$(BASE_URL) --appendPort=false
+	hugo server --disableFastRender --port=$(SERVE_PORT) --baseURL=$(BASE_URL) --appendPort=false
 endif
 
 .PHONY: build
