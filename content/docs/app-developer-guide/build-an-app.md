@@ -55,6 +55,12 @@ docker run --rm -p 8080:8080 sample-app
 
 The app should now be running and accessible via [localhost:8080](http://localhost:8080).
 
+## What about ARM apps?
+
+Linux ARM image builds are now supported!
+
+<a href="/docs/app-developer-guide/build-an-arm-app" class="button bg-blue">Linux ARM build guide</a>
+
 ## What about Windows apps?
 
 Windows image builds are now supported!
