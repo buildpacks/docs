@@ -179,11 +179,11 @@
 <li data-nav-id="/docs/concepts/components/lifecycle/" class="dd-item depth-2 parent haschildren">
   <a href="/docs/concepts/components/lifecycle/">Lifecycle</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/concepts/components/lifecycle/detect/" class="dd-item depth-3">
-  <a href="/docs/concepts/components/lifecycle/detect/">Detect</a>
-</li>
 <li data-nav-id="/docs/concepts/components/lifecycle/analyze/" class="dd-item depth-3 active">
   <a href="/docs/concepts/components/lifecycle/analyze/">Analyze</a>
+</li>
+<li data-nav-id="/docs/concepts/components/lifecycle/detect/" class="dd-item depth-3">
+  <a href="/docs/concepts/components/lifecycle/detect/">Detect</a>
 </li>
 <li data-nav-id="/docs/concepts/components/lifecycle/restore/" class="dd-item depth-3">
   <a href="/docs/concepts/components/lifecycle/restore/">Restore</a>
@@ -242,6 +242,9 @@
 </li>
 <li data-nav-id="/docs/app-developer-guide/build-a-windows-app/" class="dd-item depth-1">
   <a href="/docs/app-developer-guide/build-a-windows-app/">Build a Windows app</a>
+</li>
+<li data-nav-id="/docs/app-developer-guide/build-an-arm-app/" class="dd-item depth-1">
+  <a href="/docs/app-developer-guide/build-an-arm-app/">Build an ARM app</a>
 </li>
 <li data-nav-id="/docs/app-developer-guide/environment-variables/" class="dd-item depth-1">
   <a href="/docs/app-developer-guide/environment-variables/">Environment variables</a>
@@ -544,6 +547,9 @@
 <li data-nav-id="/docs/reference/spec/migration/platform-api-0.5-0.6/" class="dd-item depth-3 collapse">
   <a href="/docs/reference/spec/migration/platform-api-0.5-0.6/">Platform API 0.5 -&gt; 0.6</a>
 </li>
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.6-0.7/" class="dd-item depth-3 collapse">
+  <a href="/docs/reference/spec/migration/platform-api-0.6-0.7/">Platform API 0.6 -&gt; 0.7</a>
+</li>
   </ul>
 </li>
 <li data-nav-id="/docs/reference/spec/platform-api/" class="dd-item depth-2">
@@ -582,6 +588,10 @@
         </div>
 
         Restores files that buildpacks may use to optimize the build and export phases.
+<p>Prior to <code>Platform API 0.7</code>, the <code>analyzer</code> was responsible for analyzing the metadata from the cache and the previously built image (if available) to determine what layers can or cannot be reused.
+This information is used during the <code>export</code> phase in order to avoid re-uploading unchanged layers.<br>
+Starting from <code>Platform API 0.7</code>, the <code>analyze</code> phase runs before the <code>detect</code> phase in order to validate registry access for all images that are used during the build as early as possible. In this way it provides faster failures for end users. The other responsibilities of the <code>analyzer</code> were moved to the <code>restorer</code>.<br>
+For more information, please see <a href="https://buildpacks.io/docs/reference/spec/migration/platform-api-0.6-0.7/">this migration guide</a>.</p>
 <h3 id="exit-codes">Exit Codes</h3>
 <table>
 <thead>

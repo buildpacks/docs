@@ -8,11 +8,8 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Learn on Katacoda 
-Prerequisites A lot of the examples used within this guide will require the following:
-Install Docker 
-Install pack"/>
-<link rel="canonical" content="https://buildpacks.io/docs/app-developer-guide/">
+<meta name="description" content="The basics of taking your app from source code to runnable ARM image."/>
+<link rel="canonical" content="https://buildpacks.io/docs/app-developer-guide/build-an-arm-app/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
 
@@ -20,15 +17,12 @@ Install pack"/>
 
 
 
-<meta property="og:title" content="App Developer Guide · Cloud Native Buildpacks">
+<meta property="og:title" content="Build an ARM app · Cloud Native Buildpacks">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://buildpacks.io/docs/app-developer-guide/">
+<meta property="og:url" content="https://buildpacks.io/docs/app-developer-guide/build-an-arm-app/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-<meta property="og:description" content="Learn on Katacoda 
-Prerequisites A lot of the examples used within this guide will require the following:
-Install Docker 
-Install pack">
+<meta property="og:description" content="The basics of taking your app from source code to runnable ARM image.">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -39,7 +33,7 @@ Install pack">
 
 
 
-<meta property="twitter:title" content="App Developer Guide · Cloud Native Buildpacks">
+<meta property="twitter:title" content="Build an ARM app · Cloud Native Buildpacks">
 <meta property="twitter:card" content="summary">
 <meta property="twitter:image" content="https://buildpacks.io/images/buildpacks-social-card-square.jpg">
 <meta property="twitter:image:alt" content="Buildpacks project logo">
@@ -88,7 +82,7 @@ Install pack">
     gtag('config', 'G-CJLSR4FQXL');
   </script>
 
-  <title>App Developer Guide · Cloud Native Buildpacks</title>
+  <title>Build an ARM app · Cloud Native Buildpacks</title>
 </head>
 
 <body>
@@ -240,7 +234,7 @@ Install pack">
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/app-developer-guide/" class="dd-item depth-0 parent active haschildren">
+<li data-nav-id="/docs/app-developer-guide/" class="dd-item depth-0 parent haschildren">
   <a href="/docs/app-developer-guide/">App Developer Guide</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/app-developer-guide/build-an-app/" class="dd-item depth-1">
@@ -249,7 +243,7 @@ Install pack">
 <li data-nav-id="/docs/app-developer-guide/build-a-windows-app/" class="dd-item depth-1">
   <a href="/docs/app-developer-guide/build-a-windows-app/">Build a Windows app</a>
 </li>
-<li data-nav-id="/docs/app-developer-guide/build-an-arm-app/" class="dd-item depth-1">
+<li data-nav-id="/docs/app-developer-guide/build-an-arm-app/" class="dd-item depth-1 active">
   <a href="/docs/app-developer-guide/build-an-arm-app/">Build an ARM app</a>
 </li>
 <li data-nav-id="/docs/app-developer-guide/environment-variables/" class="dd-item depth-1">
@@ -577,12 +571,12 @@ Install pack">
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BApp&#43;Developer&#43;Guide%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fapp-developer-guide%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BBuild&#43;an&#43;ARM&#43;app%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fapp-developer-guide%2Fbuild-an-arm-app%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/app-developer-guide/_index.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/app-developer-guide/build-an-arm-app.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
@@ -590,106 +584,59 @@ Install pack">
 
 
         <div class="heading">
-          <h1 class="title">App Developer Guide</h1>
+          <h1 class="title">Build an ARM app</h1>
         </div>
 
-        <a href='https://katacoda.com/buildpacks/scenarios/app-developer-guide' class='button learn-button icon-button bg-green'> Learn on Katacoda </a><br />
-<h2 id="prerequisites">Prerequisites</h2>
-<p>A lot of the examples used within this guide will require the following:</p>
-<p><a href='https://store.docker.com/search?type=edition&amp;offering=community' class='download-button button icon-button bg-blue'> Install Docker </a><br />
-<a href='/docs/install-pack' class='download-button button icon-button bg-pink'> Install pack </a><br /></p>
-<hr />
+        <p>As of today, there are no CNB platforms (e.g. <a href="https://github.com/buildpacks/pack">pack</a>) that support building ARM application images. In the following tutorial, we will be performing a build &ldquo;manually&rdquo;, in that we will be performing a build by invoking the lifecycle directly.</p>
+<h3 id="1-prepare-your-working-directory">1. Prepare your working directory</h3>
+<p>On your Linux ARM machine with a <a href="https://docs.docker.com">docker</a> daemon installed, prepare the following directory tree structure.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">tree ~/workspace/
+~/workspace/
+├── buildpacks
+│   └── samples_hello-world
+└── platform
+</code></pre></div><p>In addition, clone the <a href="https://github.com/buildpacks/samples">samples</a> repository which will contain the application source code.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># clone the repo</span>
+git clone https://github.com/buildpacks/samples ~/workspace/samples
+</code></pre></div><h3 id="2-prepare-the-assets">2. Prepare the assets</h3>
+<p>Now we need to prepare assets that will be used during the build process.</p>
+<p>First we download and extract the <a href="https://github.com/buildpacks/lifecycle">lifecycle</a> release, compiled for ARM. Make sure to replace <code>&lt;RELEASE-VERSION&gt;</code> with a valid release version.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># change to destination directory</span>
+<span class="nb">cd</span> ~/workspace
+
+<span class="c1"># download and extract lifecycle</span>
+curl -L https://github.com/buildpacks/lifecycle/releases/download/v&lt;RELEASE-VERSION&gt;/lifecycle-v&lt;RELEASE-VERSION&gt;+linux.arm64.tgz <span class="p">|</span> tar xf -
+</code></pre></div><p>Next we make sure that our buildpack directory is structured in a way that the lifecycle will expect.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># copy hello-world buildpack</span>
+cp -R ~/workspace/samples/buildpacks/hello-world ~/workspace/buildpacks/samples_hello-world/0.0.1
+</code></pre></div><p>And finally we write the <code>order.toml</code> file that references the hello-world buildpack.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">cat &gt; ~/workspace/order.toml &lt;EOF
+<span class="o">[[</span>order<span class="o">]]</span>
+<span class="o">[[</span>order.group<span class="o">]]</span>
+<span class="nv">id</span> <span class="o">=</span> <span class="s2">&#34;samples/hello-world&#34;</span>
+<span class="nv">version</span> <span class="o">=</span> <span class="s2">&#34;0.0.1&#34;</span>
+<span class="nv">optional</span> <span class="o">=</span> <span class="nb">false</span>
+EOF
+</code></pre></div><h3 id="3-build-your-app">3. Build your app</h3>
+<p>Now we can build our app. For this example we will be using the docker CLI to invoke the lifecycle directly.</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># invoke the lifecycle</span>
+docker run --rm <span class="se">\
+</span><span class="se"></span>  --mount <span class="nv">type</span><span class="o">=</span>bind,source<span class="o">=</span>/var/run/docker.sock,target<span class="o">=</span>/var/run/docker.sock <span class="se">\
+</span><span class="se"></span>  --volume ~/workspace/lifecycle:/cnb/lifecycle <span class="se">\
+</span><span class="se"></span>  --volume ~/workspace/buildpacks:/cnb/buildpacks <span class="se">\
+</span><span class="se"></span>  --volume ~/workspace/samples/apps/bash-script:/workspace <span class="se">\
+</span><span class="se"></span>  --volume ~/workspace/platform:/platform <span class="se">\
+</span><span class="se"></span>  --mount <span class="nv">type</span><span class="o">=</span>bind,source<span class="o">=</span>~/workspace/order.toml,target<span class="o">=</span>/cnb/order.toml <span class="se">\
+</span><span class="se"></span>  --env <span class="nv">CNB_PLATFORM_API</span><span class="o">=</span>0.7 <span class="se">\
+</span><span class="se"></span>  ubuntu:bionic <span class="se">\
+</span><span class="se"></span>  /cnb/lifecycle/creator -log-level debug -daemon -run-image ubuntu:bionic hello-arm64
+</code></pre></div><h3 id="4-run-it">4. Run it</h3>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker run --rm hello-arm64
+</code></pre></div><p><strong>Congratulations!</strong></p>
+<p>The app image should now be built and stored on the docker daemon. You may perform <code>docker images</code> to verify.</p>
+
 
         
-      
-        
-          <h2><a href="https://buildpacks.io/docs/app-developer-guide/build-an-app/" class="">Build an app</a></h2>
-          <p class="m-1">The basics of taking your app from source code to runnable image.</p>
-
-          
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/app-developer-guide/build-an-app/">Learn more →</a>
-            </div>
-        
-          <h2><a href="https://buildpacks.io/docs/app-developer-guide/build-a-windows-app/" class="">Build a Windows app</a></h2>
-          <p class="m-1">The basics of taking your Windows app from source code to runnable image.</p>
-
-          
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/app-developer-guide/build-a-windows-app/">Learn more →</a>
-            </div>
-        
-          <h2><a href="https://buildpacks.io/docs/app-developer-guide/build-an-arm-app/" class="">Build an ARM app</a></h2>
-          <p class="m-1">The basics of taking your app from source code to runnable ARM image.</p>
-
-          
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/app-developer-guide/build-an-arm-app/">Learn more →</a>
-            </div>
-        
-          <h2><a href="https://buildpacks.io/docs/app-developer-guide/environment-variables/" class="">Environment variables</a></h2>
-          <p class="m-1">Environment variables are a common way to configure various buildpacks at build-time.</p>
-
-          
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/app-developer-guide/environment-variables/">Learn more →</a>
-            </div>
-        
-          <h2><a href="https://buildpacks.io/docs/app-developer-guide/using-cache-image/" class="">Cache Images</a></h2>
-          <p class="m-1">Learn how to use cache-images to share cached layers</p>
-
-          
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/app-developer-guide/using-cache-image/">Learn more →</a>
-            </div>
-        
-          <h2><a href="https://buildpacks.io/docs/app-developer-guide/mouting-volumes/" class="">Mounting Volumes</a></h2>
-          <p class="m-1">Volumes are a mechanism for both supplying and persisting data generated by build containers.</p>
-
-          
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/app-developer-guide/mouting-volumes/">Learn more →</a>
-            </div>
-        
-          <h2><a href="https://buildpacks.io/docs/app-developer-guide/specific-buildpacks/" class="">Specify buildpacks</a></h2>
-          <p class="m-1">Learn how to specify exactly what buildpacks are used during the build process.</p>
-
-          
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/app-developer-guide/specific-buildpacks/">Learn more →</a>
-            </div>
-        
-          <h2><a href="https://buildpacks.io/docs/app-developer-guide/run-an-app/" class="">Specify launch process</a></h2>
-          <p class="m-1">Learn how to specify the launch process for an app.</p>
-
-          
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/app-developer-guide/run-an-app/">Learn more →</a>
-            </div>
-        
-          <h2><a href="https://buildpacks.io/docs/app-developer-guide/using-project-descriptor/" class="">Using project.toml</a></h2>
-          <p class="m-1">Learn how to use a project.toml file to simplify configuring pack.</p>
-
-          
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/app-developer-guide/using-project-descriptor/">Learn more →</a>
-            </div>
-        
-          <h2><a href="https://buildpacks.io/docs/app-developer-guide/using-inline-buildpacks/" class="">Using Inline Buildpacks</a></h2>
-          <p class="m-1">Learn how to create an ephemeral buildpack to customize your build.</p>
-
-          
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/app-developer-guide/using-inline-buildpacks/">Learn more →</a>
-            </div>
-        
-          <h2><a href="https://buildpacks.io/docs/app-developer-guide/using-http-proxy/" class="">Using Buildpacks with a Proxy</a></h2>
-          <p class="m-1">Learn how to use buildpacks behind a HTTP proxy.</p>
-
-          
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/app-developer-guide/using-http-proxy/">Learn more →</a>
-            </div>
 
         <hr>
 <div class='footline d-block'>
@@ -697,12 +644,12 @@ Install pack">
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BApp&#43;Developer&#43;Guide%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fapp-developer-guide%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BBuild&#43;an&#43;ARM&#43;app%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fapp-developer-guide%2Fbuild-an-arm-app%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/app-developer-guide/_index.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/app-developer-guide/build-an-arm-app.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   

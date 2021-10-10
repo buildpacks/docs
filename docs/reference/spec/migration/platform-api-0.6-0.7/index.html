@@ -8,11 +8,8 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Learn on Katacoda 
-Prerequisites A lot of the examples used within this guide will require the following:
-Install Docker 
-Install pack"/>
-<link rel="canonical" content="https://buildpacks.io/docs/app-developer-guide/">
+
+<link rel="canonical" content="https://buildpacks.io/docs/reference/spec/migration/platform-api-0.6-0.7/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
 
@@ -20,15 +17,12 @@ Install pack"/>
 
 
 
-<meta property="og:title" content="App Developer Guide · Cloud Native Buildpacks">
+<meta property="og:title" content="Platform API 0.6 -&gt; 0.7 · Cloud Native Buildpacks">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://buildpacks.io/docs/app-developer-guide/">
+<meta property="og:url" content="https://buildpacks.io/docs/reference/spec/migration/platform-api-0.6-0.7/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-<meta property="og:description" content="Learn on Katacoda 
-Prerequisites A lot of the examples used within this guide will require the following:
-Install Docker 
-Install pack">
+
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -39,7 +33,7 @@ Install pack">
 
 
 
-<meta property="twitter:title" content="App Developer Guide · Cloud Native Buildpacks">
+<meta property="twitter:title" content="Platform API 0.6 -&gt; 0.7 · Cloud Native Buildpacks">
 <meta property="twitter:card" content="summary">
 <meta property="twitter:image" content="https://buildpacks.io/images/buildpacks-social-card-square.jpg">
 <meta property="twitter:image:alt" content="Buildpacks project logo">
@@ -88,7 +82,7 @@ Install pack">
     gtag('config', 'G-CJLSR4FQXL');
   </script>
 
-  <title>App Developer Guide · Cloud Native Buildpacks</title>
+  <title>Platform API 0.6 - 0.7 · Cloud Native Buildpacks</title>
 </head>
 
 <body>
@@ -240,7 +234,7 @@ Install pack">
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/app-developer-guide/" class="dd-item depth-0 parent active haschildren">
+<li data-nav-id="/docs/app-developer-guide/" class="dd-item depth-0 haschildren">
   <a href="/docs/app-developer-guide/">App Developer Guide</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/app-developer-guide/build-an-app/" class="dd-item depth-1">
@@ -509,10 +503,10 @@ Install pack">
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/reference/" class="dd-item depth-0 haschildren">
+<li data-nav-id="/docs/reference/" class="dd-item depth-0 parent haschildren">
   <a href="/docs/reference/">Reference</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/reference/config/" class="dd-item depth-1 collapse haschildren">
+<li data-nav-id="/docs/reference/config/" class="dd-item depth-1 haschildren">
   <a href="/docs/reference/config/">Configuration</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/reference/config/builder-config/" class="dd-item depth-2 collapse">
@@ -526,7 +520,7 @@ Install pack">
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/reference/spec/" class="dd-item depth-1 collapse haschildren">
+<li data-nav-id="/docs/reference/spec/" class="dd-item depth-1 parent haschildren">
   <a href="/docs/reference/spec/">Specification</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/reference/spec/buildpack-api/" class="dd-item depth-2">
@@ -535,25 +529,25 @@ Install pack">
 <li data-nav-id="/docs/reference/spec/distribution-api/" class="dd-item depth-2">
   <a href="/docs/reference/spec/distribution-api/">Distribution API</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/" class="dd-item depth-2 haschildren">
+<li data-nav-id="/docs/reference/spec/migration/" class="dd-item depth-2 parent haschildren">
   <a href="/docs/reference/spec/migration/">Migration</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.4-0.5/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.4-0.5/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/buildpack-api-0.4-0.5/">Buildpack API 0.4 -&gt; 0.5</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.5-0.6/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.5-0.6/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/buildpack-api-0.5-0.6/">Buildpack API 0.5 -&gt; 0.6</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.3-0.4/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.3-0.4/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/platform-api-0.3-0.4/">Platform API 0.3 -&gt; 0.4</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.4-0.5/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.4-0.5/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/platform-api-0.4-0.5/">Platform API 0.4 -&gt; 0.5</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.5-0.6/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.5-0.6/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/platform-api-0.5-0.6/">Platform API 0.5 -&gt; 0.6</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.6-0.7/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.6-0.7/" class="dd-item depth-3 active">
   <a href="/docs/reference/spec/migration/platform-api-0.6-0.7/">Platform API 0.6 -&gt; 0.7</a>
 </li>
   </ul>
@@ -577,12 +571,12 @@ Install pack">
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BApp&#43;Developer&#43;Guide%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fapp-developer-guide%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BPlatform&#43;API&#43;0.6&#43;-%26gt%3B&#43;0.7%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Freference%2Fspec%2Fmigration%2Fplatform-api-0.6-0.7%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/app-developer-guide/_index.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/reference/spec/migration/platform-api-0.6-0.7.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
@@ -590,106 +584,42 @@ Install pack">
 
 
         <div class="heading">
-          <h1 class="title">App Developer Guide</h1>
+          <h1 class="title">Platform API 0.6 -&gt; 0.7</h1>
         </div>
 
-        <a href='https://katacoda.com/buildpacks/scenarios/app-developer-guide' class='button learn-button icon-button bg-green'> Learn on Katacoda </a><br />
-<h2 id="prerequisites">Prerequisites</h2>
-<p>A lot of the examples used within this guide will require the following:</p>
-<p><a href='https://store.docker.com/search?type=edition&amp;offering=community' class='download-button button icon-button bg-blue'> Install Docker </a><br />
-<a href='/docs/install-pack' class='download-button button icon-button bg-pink'> Install pack </a><br /></p>
-<hr />
+        <p>This guide is most relevant to platform operators.</p>
+<p>See the <a href="https://github.com/buildpacks/spec/releases/tag/platform%2Fv0.7">spec release</a> for platform API 0.7 for the full list of changes and further details.</p>
+<h2 id="platform-operator">Platform Operator</h2>
+<h3 id="run-the-analyzer-before-the-detector">Run the analyzer before the detector</h3>
+<p>The order of the lifecycle phases has been changed starting from Platform API 0.7.<br>
+The order before Platform API 0.7 was: detect, analyze, restore, build, and export.<br>
+The order starting from Platform API 0.7 is: analyze, detect, restore, build, and export.<br>
+The main reason for this change was to validate registry access for all images that are used during the build as early as possible. Starting from <code>Platform API 0.7</code>, it happens in the first lifecycle phase, as part of the <code>analyzer</code>, before running the <code>detector</code>. In this way it provides faster failures for end users.</p>
+<p>As part of this change, a few flags were removed and others were added to some of the lifecycle phases.</p>
+<p>The flags that were removed from the analyzer are:</p>
+<ul>
+<li><code>-cache-dir</code></li>
+<li><code>-group</code></li>
+<li><code>-skip-layers</code></li>
+</ul>
+<p>The flags that were added to the analyzer are:</p>
+<ul>
+<li><code>-previous-image</code></li>
+<li><code>-run-image</code></li>
+<li><code>-stack</code></li>
+<li><code>-tag</code></li>
+</ul>
+<p>The flags that were added to the restorer are:</p>
+<ul>
+<li><code>-analyzed</code></li>
+<li><code>-skip-layers</code></li>
+</ul>
+<p>The flag that was removed from the exporter is:</p>
+<ul>
+<li><code>-run-image</code></li>
+</ul>
 
         
-      
-        
-          <h2><a href="https://buildpacks.io/docs/app-developer-guide/build-an-app/" class="">Build an app</a></h2>
-          <p class="m-1">The basics of taking your app from source code to runnable image.</p>
-
-          
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/app-developer-guide/build-an-app/">Learn more →</a>
-            </div>
-        
-          <h2><a href="https://buildpacks.io/docs/app-developer-guide/build-a-windows-app/" class="">Build a Windows app</a></h2>
-          <p class="m-1">The basics of taking your Windows app from source code to runnable image.</p>
-
-          
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/app-developer-guide/build-a-windows-app/">Learn more →</a>
-            </div>
-        
-          <h2><a href="https://buildpacks.io/docs/app-developer-guide/build-an-arm-app/" class="">Build an ARM app</a></h2>
-          <p class="m-1">The basics of taking your app from source code to runnable ARM image.</p>
-
-          
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/app-developer-guide/build-an-arm-app/">Learn more →</a>
-            </div>
-        
-          <h2><a href="https://buildpacks.io/docs/app-developer-guide/environment-variables/" class="">Environment variables</a></h2>
-          <p class="m-1">Environment variables are a common way to configure various buildpacks at build-time.</p>
-
-          
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/app-developer-guide/environment-variables/">Learn more →</a>
-            </div>
-        
-          <h2><a href="https://buildpacks.io/docs/app-developer-guide/using-cache-image/" class="">Cache Images</a></h2>
-          <p class="m-1">Learn how to use cache-images to share cached layers</p>
-
-          
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/app-developer-guide/using-cache-image/">Learn more →</a>
-            </div>
-        
-          <h2><a href="https://buildpacks.io/docs/app-developer-guide/mouting-volumes/" class="">Mounting Volumes</a></h2>
-          <p class="m-1">Volumes are a mechanism for both supplying and persisting data generated by build containers.</p>
-
-          
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/app-developer-guide/mouting-volumes/">Learn more →</a>
-            </div>
-        
-          <h2><a href="https://buildpacks.io/docs/app-developer-guide/specific-buildpacks/" class="">Specify buildpacks</a></h2>
-          <p class="m-1">Learn how to specify exactly what buildpacks are used during the build process.</p>
-
-          
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/app-developer-guide/specific-buildpacks/">Learn more →</a>
-            </div>
-        
-          <h2><a href="https://buildpacks.io/docs/app-developer-guide/run-an-app/" class="">Specify launch process</a></h2>
-          <p class="m-1">Learn how to specify the launch process for an app.</p>
-
-          
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/app-developer-guide/run-an-app/">Learn more →</a>
-            </div>
-        
-          <h2><a href="https://buildpacks.io/docs/app-developer-guide/using-project-descriptor/" class="">Using project.toml</a></h2>
-          <p class="m-1">Learn how to use a project.toml file to simplify configuring pack.</p>
-
-          
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/app-developer-guide/using-project-descriptor/">Learn more →</a>
-            </div>
-        
-          <h2><a href="https://buildpacks.io/docs/app-developer-guide/using-inline-buildpacks/" class="">Using Inline Buildpacks</a></h2>
-          <p class="m-1">Learn how to create an ephemeral buildpack to customize your build.</p>
-
-          
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/app-developer-guide/using-inline-buildpacks/">Learn more →</a>
-            </div>
-        
-          <h2><a href="https://buildpacks.io/docs/app-developer-guide/using-http-proxy/" class="">Using Buildpacks with a Proxy</a></h2>
-          <p class="m-1">Learn how to use buildpacks behind a HTTP proxy.</p>
-
-          
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/app-developer-guide/using-http-proxy/">Learn more →</a>
-            </div>
 
         <hr>
 <div class='footline d-block'>
@@ -697,12 +627,12 @@ Install pack">
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BApp&#43;Developer&#43;Guide%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fapp-developer-guide%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BPlatform&#43;API&#43;0.6&#43;-%26gt%3B&#43;0.7%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Freference%2Fspec%2Fmigration%2Fplatform-api-0.6-0.7%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/app-developer-guide/_index.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/reference/spec/migration/platform-api-0.6-0.7.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   

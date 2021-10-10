@@ -2,6 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://buildpacks.io/docs/concepts/components/lifecycle/analyze/</loc>
+  </url><url>
     <loc>https://buildpacks.io/docs/concepts/operations/build/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/app-developer-guide/build-an-app/</loc>
@@ -14,8 +16,6 @@
   </url><url>
     <loc>https://buildpacks.io/docs/operator-guide/create-a-builder/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/concepts/components/lifecycle/detect/</loc>
-  </url><url>
     <loc>https://buildpacks.io/features/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/</loc>
@@ -24,9 +24,9 @@
   </url><url>
     <loc>https://buildpacks.io/docs/app-journey/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/concepts/components/lifecycle/analyze/</loc>
-  </url><url>
     <loc>https://buildpacks.io/docs/app-developer-guide/build-a-windows-app/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/app-developer-guide/build-an-arm-app/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/concepts/components/buildpack/</loc>
   </url><url>
@@ -35,6 +35,8 @@
     <loc>https://buildpacks.io/docs/tools/pack/concepts/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/operator-guide/create-a-stack/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/concepts/components/lifecycle/detect/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/concepts/operations/</loc>
   </url><url>
@@ -239,6 +241,8 @@
     <loc>https://buildpacks.io/docs/reference/spec/migration/platform-api-0.4-0.5/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/reference/spec/migration/platform-api-0.5-0.6/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/reference/spec/migration/platform-api-0.6-0.7/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/reference/config/project-descriptor/</loc>
   </url><url>

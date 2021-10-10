@@ -7,21 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://buildpacks.io/docs/concepts/components/lifecycle/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Detect</title>
-      <link>https://buildpacks.io/docs/concepts/components/lifecycle/detect/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://buildpacks.io/docs/concepts/components/lifecycle/detect/</guid>
-      <description>Finds an ordered group of buildpacks to use during the build phase.</description>
-    </item>
-    
-    <item>
       <title>Analyze</title>
       <link>https://buildpacks.io/docs/concepts/components/lifecycle/analyze/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://buildpacks.io/docs/concepts/components/lifecycle/analyze/</guid>
       <description>Restores files that buildpacks may use to optimize the build and export phases.</description>
+    </item>
+    
+    <item>
+      <title>Detect</title>
+      <link>https://buildpacks.io/docs/concepts/components/lifecycle/detect/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/concepts/components/lifecycle/detect/</guid>
+      <description>Finds an ordered group of buildpacks to use during the build phase.</description>
     </item>
     
     <item>
@@ -57,7 +57,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://buildpacks.io/docs/concepts/components/lifecycle/create/</guid>
-      <description>Runs detect, analyze, restore, build, and export in a single command.</description>
+      <description>Runs analyze, detect, restore, build, and export in a single command.</description>
     </item>
     
     <item>
