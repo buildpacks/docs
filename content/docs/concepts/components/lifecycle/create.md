@@ -1,7 +1,7 @@
 +++
 title="Create"
 weight=6
-summary="Runs detect, analyze, restore, build, and export in a single command."
+summary="Runs analyze, detect, restore, build, and export in a single command."
 +++
 
 {{< param "summary" >}}
