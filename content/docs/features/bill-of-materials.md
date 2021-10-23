@@ -37,46 +37,58 @@ For this output:
 1. `bom` is the buildpack populated bom.
 2. `buildpacks` is the list of buildpacks.
 
-```
+```json
 {
   "bom": [
     {
-      "name": "jdk",
-      "metadata": null,
+      "name": "java",
+      "metadata": {
+        "version": "11.0.12+7"
+      },
       "buildpack": {
-        "id": "samples/java-maven",
-        "version": "0.0.1"
+        "id": "google.java.runtime",
+        "version": "0.9.1"
       }
     }
   ],
   "buildpacks": [
     {
-      "homepage": "https://github.com/buildpacks/samples/tree/main/buildpacks/java-maven",
-      "id": "samples/java-maven",
+      "id": "google.java.runtime",
+      "version": "0.9.1"
+    },
+    {
+      "id": "google.java.maven",
+      "version": "0.9.0"
+    },
+    {
+      "id": "google.java.entrypoint",
+      "version": "0.9.0"
+    },
+    {
+      "id": "google.utils.label",
       "version": "0.0.1"
     }
   ],
   "launcher": {
-    "version": "0.11.3",
+    "version": "0.11.1",
     "source": {
       "git": {
         "repository": "github.com/buildpacks/lifecycle",
-        "commit": "aa4bbac"
+        "commit": "75df86c"
       }
     }
   },
   "processes": [
     {
       "type": "web",
-      "command": "java -jar target/sample-0.0.1-SNAPSHOT.jar",
-      "args": null,
-      "direct": false,
-      "buildpackID": "samples/java-maven"
+      "command": "java",
+      "args": ["-jar", "/workspace/target/sample-0.0.1-SNAPSHOT.jar"],
+      "direct": true,
+      "buildpackID": "google.java.entrypoint"
     }
   ],
   "buildpack-default-process-type": "web"
 }
-
 ```
 
 [adding-bill-of-materials]: /docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials/
