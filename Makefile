@@ -11,12 +11,13 @@ BASE_URL=$(shell echo "$(GITPOD_WORKSPACE_URL)" | sed -r 's;^([^/]*)//(.*);\1//$
 endif
 endif
 
-ifndef PACK_VERSION
+GITHUB_API_OPTS:=
 ifdef GITHUB_TOKEN
-PACK_VERSION:=$(shell curl -s -H "Authorization: token $(GITHUB_TOKEN)" https://api.github.com/repos/buildpacks/pack/releases/latest | jq -r '.tag_name' | sed -e 's/^v//')
-else
-PACK_VERSION:=$(shell curl -s https://api.github.com/repos/buildpacks/pack/releases/latest | jq -r '.tag_name' | sed -e 's/^v//')
+GITHUB_API_OPTS+=-H "Authorization: token $(GITHUB_TOKEN)"
 endif
+
+ifndef PACK_VERSION
+PACK_VERSION:=$(shell curl -sSL $(GITHUB_API_OPTS) https://api.github.com/repos/buildpacks/pack/releases/latest | jq -r '.tag_name' | sed -e 's/^v//')
 endif
 
 .PHONY: default
@@ -24,12 +25,49 @@ default: serve
 
 .PHONY: clean
 clean:
-	rm -rf ./public ./resources
+	rm -rf ./public ./resources $(TOOLS_BIN)
 
-.PHONY: install-hugo
-install-hugo:
-	@echo "> Installing hugo..."
-	cd tools; go install -mod=mod --tags extended github.com/gohugoio/hugo
+TOOLS_BIN:=tools/bin
+$(TOOLS_BIN):
+	mkdir $(TOOLS_BIN)
+
+# adapted from https://stackoverflow.com/a/12099167/552902
+HUGO_OS:=Linux
+HUGO_ARCH:=32bit
+HUGO_EXT:=tar.gz
+ifeq ($(OS),Windows_NT)
+	HUGO_OS:=Windows
+	HUGO_EXT:=zip
+ifeq ($(PROCESSOR_ARCHITECTURE),AMD64)
+	HUGO_ARCH:=64bit
+endif
+else
+ifeq ($(shell uname -s),Darwin)
+	HUGO_OS:=macOS
+endif
+UNAME_P:=$(shell uname -p)
+ifneq ($(filter %64,$(UNAME_P)),)
+	HUGO_ARCH:=64bit
+endif
+ifneq ($(filter arm%,$(UNAME_P)),)
+	HUGO_ARCH:=ARM64
+endif
+endif
+
+HUGO_RELEASES_CACHE:=tools/bin/hugo-releases
+$(HUGO_RELEASES_CACHE): | $(TOOLS_BIN)
+	curl -sSL $(GITHUB_API_OPTS) https://api.github.com/repos/gohugoio/hugo/releases/latest > $(HUGO_RELEASES_CACHE)
+
+HUGO_BIN:=tools/bin/hugo
+$(HUGO_BIN): $(HUGO_RELEASES_CACHE)
+$(HUGO_BIN):
+	@echo "> Installing hugo for $(HUGO_OS) ($(HUGO_ARCH))..."
+	curl -sSL -o $(HUGO_BIN).$(HUGO_EXT) $(shell cat $(HUGO_RELEASES_CACHE) | jq -r '[.assets[] | select (.name | test("extended.*$(HUGO_OS)-$(HUGO_ARCH).*$(HUGO_EXT)"))][0] | .browser_download_url')
+ifeq ($(HUGO_EXT), zip)
+	unzip $(HUGO_BIN).$(HUGO_EXT) -d $(TOOLS_BIN)
+else
+	tar mxfz $(HUGO_BIN).$(HUGO_EXT) -C $(TOOLS_BIN) hugo
+endif
 
 .PHONY: upgrade-pack
 upgrade-pack: pack-version
@@ -53,9 +91,9 @@ install-ugo:
 .PHONY: pack-docs-update
 pack-docs-update: upgrade-pack
 	@echo "> Updating Pack CLI Documentation"
-	@echo "> SHA of contents (before update):" `find ./content/docs/tools/pack -type f -print0  | xargs -0 sha1sum | sha1sum | cut -d' ' -f1`
+	@echo "> SHA of contents (before update):" `find ./content/docs/tools/pack -type f -print0 | xargs -0 sha1sum | sha1sum | cut -d' ' -f1`
 	cd tools; go run -mod=mod get_pack_commands.go
-	@echo "> SHA of contents (after update):" `find ./content/docs/tools/pack -type f -print0  | xargs -0 sha1sum | sha1sum | cut -d' ' -f1`
+	@echo "> SHA of contents (after update):" `find ./content/docs/tools/pack -type f -print0 | xargs -0 sha1sum | sha1sum | cut -d' ' -f1`
 
 .PHONY: pack-version
 pack-version: export PACK_VERSION:=$(PACK_VERSION)
@@ -67,19 +105,19 @@ pack-version:
 
 .PHONY: serve
 serve: export PACK_VERSION:=$(PACK_VERSION)
-serve: install-hugo pack-version pack-docs-update
+serve: $(HUGO_BIN) pack-version pack-docs-update
 	@echo "> Serving..."
 ifeq ($(BASE_URL),)
-	hugo server --disableFastRender --port=$(SERVE_PORT)
+	$(HUGO_BIN) server --disableFastRender --port=$(SERVE_PORT)
 else
-	hugo server --disableFastRender --port=$(SERVE_PORT) --baseURL=$(BASE_URL) --appendPort=false
+	$(HUGO_BIN) server --disableFastRender --port=$(SERVE_PORT) --baseURL=$(BASE_URL) --appendPort=false
 endif
 
 .PHONY: build
 build: export PACK_VERSION:=$(PACK_VERSION)
-build: install-hugo pack-version pack-docs-update
+build: $(HUGO_BIN) pack-version pack-docs-update
 	@echo "> Building..."
-	hugo
+	$(HUGO_BIN)
 
 .PHONY: test
 test: install-pack-cli install-ugo
