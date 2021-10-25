@@ -4,7 +4,7 @@ weight=5
 summary="Learn how to automatically publish your buildpack to the Buildpack Registry from a Github Action."
 +++
 
-If you would like to publish your buildpack image to the registry without requiring a human click a button in a browser, you can automate the process using the helpers in the [buildpacks/github-actions][github-actions] repository.
+If you would like to publish your buildpack image to the registry without requiring a human to click a button in a browser, you can automate the process using the helpers in the [buildpacks/github-actions][github-actions] repository.
 
 To begin, you must store your buildpack source code in GitHub and [enable GitHub Actions](https://github.com/features/actions). Then create a directory named `.github/workflows` in your repository, and add a file named `release.yml` to it. The `release.yml` workflow can be [triggered](https://docs.github.com/en/actions/reference/events-that-trigger-workflows) in many ways, but it's common to use a Release event as a trigger. To do so, add the following to your `release.yml`:
 
@@ -42,7 +42,7 @@ jobs:
         username: ${{ secrets.DOCKER_HUB_USER }}
         password: ${{ secrets.DOCKER_HUB_PASS }}
     - id: setup-pack
-      uses: buildpacks/github-actions/setup-pack@v4.1.0
+      uses: buildpacks/github-actions/setup-pack@v4.4.0
     - id: package
       run: |
         #!/usr/bin/env bash
@@ -59,7 +59,7 @@ jobs:
       env:
         REPO: docker.io/${{ secrets.DOCKER_HUB_USER }}
     - id: register
-      uses: docker://ghcr.io/buildpacks/actions/registry/request-add-entry:4.1.0
+      uses: docker://ghcr.io/buildpacks/actions/registry/request-add-entry:4.4.0
       with:
         token:   ${{ secrets.PUBLIC_REPO_TOKEN }}
         id:      ${{ steps.package.outputs.bp_id }}
@@ -75,7 +75,7 @@ Before you execute this GitHub Action, you must add three secrets to your GitHub
 
 After you've created these secrets and pushed your `release.yml` file to GitHub you can trigger the workflow by creating a new Release using the [GitHub Releases UI](https://docs.github.com/en/github/administering-a-repository/about-releases).
 
-From [GitHub.com](https://github.com), click on _Your Repositories_, then click the _Packages_ tab and look for the image you just created. Click it and then select _Package Settings_. From this page, click the button to make this package public, and confirm the name of the image when promoted.
+From [GitHub.com](https://github.com), click on _Your Repositories_, then click the _Packages_ tab and look for the image you just created. Click it and then select _Package Settings_. From this page, click the button to make this package public, and confirm the name of the image when prompted.
 
 Push the `release.yml` changes to GitHub and trigger a new release. The workflow will create a GitHub Issue on the Buildpack Registry and your buildpack will be added to the index.
 

@@ -1,6 +1,6 @@
 +++
 title="Detect"
-weight=1
+weight=2
 summary="Finds an ordered group of buildpacks to use during the build phase."
 +++
 
