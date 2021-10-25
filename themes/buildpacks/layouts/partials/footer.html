@@ -1,19 +1,19 @@
 <footer>
   <div class="container footer">
-    <a href="https://www.cncf.io/" style="width: 50%;"><img src="/images/cncf-color.svg" class="footer-logo"></a>
+    <a href="https://www.cncf.io/" style="width: 50%;"><img src="/images/cncf-color.svg" class="footer-logo" alt="CNCF logo" ></a>
     <p>We are a <a href="https://www.cncf.io/">Cloud Native Computing Foundation</a> incubating project.</p>
   </div>
   <div class="bg-blue">
     <div class="container sub-footer">
       <ul>
         {{ range $i, $item := $.Site.Menus.footer1 }}
-        <li>{{ if $i }}<span>&bull;</span>{{ end }}<a target='_blank' href="{{ $item.URL }}">{{$item.Name}}</a></li>
+        <li>{{ if $i }}<span>&bull;</span>{{ end }}<a target="_blank" rel="noopener noreferrer" href="{{ $item.URL }}">{{$item.Name}}</a></li>
         {{ end }}
       </ul>
 
       <ul>
         {{ range $i, $item := $.Site.Menus.footer2 }}
-        <li>{{ if $i }}<span>&bull;</span>{{ end }}<a target='_blank' href="{{ $item.URL }}">{{$item.Name}}</a></li>
+        <li>{{ if $i }}<span>&bull;</span>{{ end }}<a target="_blank" rel="noopener noreferrer" href="{{ $item.URL }}">{{$item.Name}}</a></li>
         {{ end }}
       </ul>
     </div>

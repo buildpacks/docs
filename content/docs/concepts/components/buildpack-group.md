@@ -24,7 +24,7 @@ A [builder][builder] or [meta-buildpack][meta-buildpack] may contain multiple bu
 
 For example, if a builder has buildpack groups A, B and C. The lifecycle will run detection against A. If all of the non-optional buildpacks in that group pass detection, then it will select A. In that case, B and C will not be processed. If A has any failing non-optional buildpacks, then the lifecycle will move on to process buildpack group B. If B has any failing non-optional buildpacks, then the lifecycle will move on to process buildpack group C. If C fails, then the entire detection process will fail.
 
-If a buildpack group contains meta-buildpacks, which in turn may contain more buildpack groups those are expanded using [the order resolution rules][order-resolution] such that each buildpack group in the meta-buildpack is tried with the other buildpacks in the containg buildpack group.
+If a buildpack group contains meta-buildpacks, which in turn may contain more buildpack groups those are expanded using [the order resolution rules][order-resolution] such that each buildpack group in the meta-buildpack is tried with the other buildpacks in the containing buildpack group.
 
 For example:
 
