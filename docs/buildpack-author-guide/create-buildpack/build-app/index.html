@@ -604,7 +604,7 @@
 <p>Let&rsquo;s begin by changing the <code>ruby-buildpack/bin/build</code> so that it creates a layer for Ruby.</p>
 <h3 id="creating-a-layer">Creating a Layer</h3>
 <p>A Buildpack layer is represented by a directory inside the <a href="/docs/reference/spec/buildpack-api/#layers">layers directory</a> provided to our buildpack by the Buildpack execution environment. To create a new layer directory representing the Ruby runtime, change the <code>build</code> script to look like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
 </span><span class="cp"></span><span class="nb">set</span> -eo pipefail
 
 <span class="nb">echo</span> <span class="s2">&#34;---&gt; Ruby Buildpack&#34;</span>
@@ -615,18 +615,18 @@
 mkdir -p <span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>
 </code></pre></div><p>The <code>rubylayer</code> directory is a sub-directory of the directory provided as the first positional argument to the build script (the <a href="/docs/reference/spec/buildpack-api/#layers">layers directory</a>), and this is where we&rsquo;ll store the Ruby runtime.</p>
 <p>Next, we&rsquo;ll download the Ruby runtime and install it into the layer directory. Add the following code to the end of the <code>build</code> script:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s2">&#34;---&gt; Downloading and extracting Ruby&#34;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s2">&#34;---&gt; Downloading and extracting Ruby&#34;</span>
 <span class="nv">ruby_url</span><span class="o">=</span>https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-2.5.1.tgz
 wget -q -O - <span class="s2">&#34;</span><span class="nv">$ruby_url</span><span class="s2">&#34;</span> <span class="p">|</span> tar -xzf - -C <span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>
 </code></pre></div><p>This code uses the <code>wget</code> tool to download the Ruby binaries from the given URL, and extracts it to the <code>rubylayer</code> directory.</p>
 <p>The last step in creating a layer is writing a TOML file that contains metadata about the layer. The TOML file&rsquo;s name must match the name of the layer (in this example it&rsquo;s <code>ruby.toml</code>). Without this file, the Buildpack lifecycle will ignore the layer directory. For the Ruby layer, we need to ensure it is available in the launch image by setting the <code>launch</code> key to <code>true</code>. Add the following code to the build script:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> -e <span class="s1">&#39;launch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/ruby.toml&#34;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> -e <span class="s1">&#39;launch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/ruby.toml&#34;</span>
 </code></pre></div><h3 id="installing-dependencies">Installing Dependencies</h3>
 <p>Next, we&rsquo;ll use the Ruby runtime you installed to download the application&rsquo;s dependencies. First, we need to make the Ruby executables available to our script by putting it on the Path. Add the following code to the end of the <code>build</code> script:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>/bin:<span class="nv">$PATH</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>/bin:<span class="nv">$PATH</span>
 <span class="nb">export</span> <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="p">:+</span><span class="si">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="si">}</span><span class="p">:</span><span class="si">}</span><span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">/lib&#34;</span>
 </code></pre></div><p>Now we can install Bundler, a dependency manager for Ruby, and run the <code>bundle install</code> command. Append the following code to the script:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing bundler&#34;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing bundler&#34;</span>
 gem install bundler --no-ri --no-rdoc
 
 <span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing gems&#34;</span>
@@ -635,7 +635,7 @@ bundle install
 <h3 id="running-the-build">Running the Build</h3>
 <p>Your complete <code>build</code> script should look like this:</p>
 <!-- test:file=ruby-buildpack/bin/build -->
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
 </span><span class="cp"></span><span class="nb">set</span> -eo pipefail
 
 <span class="nb">echo</span> <span class="s2">&#34;---&gt; Ruby Buildpack&#34;</span>
@@ -668,10 +668,10 @@ gem install bundler --no-ri --no-rdoc
 bundle install
 </code></pre></div><p>Build your app again:</p>
 <!-- test:exec -->
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 </code></pre></div><p>You will see the following output:</p>
 <!-- test:assert=contains;ignore-lines=... -->
-<pre><code>===&gt; DETECTING
+<pre tabindex="0"><code>===&gt; DETECTING
 ...
 ===&gt; ANALYZING
 ...

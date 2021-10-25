@@ -594,16 +594,16 @@
 <pre><code>pack builders suggest
 </code></pre>
 <p>Creating a custom builder allows you to control what buildpacks are used and what image apps are based on. For more on how to create a builder, see: <a href="https://buildpacks.io/docs/operator-guide/create-a-builder/">https://buildpacks.io/docs/operator-guide/create-a-builder/</a>.</p>
-<pre><code>pack builder create &lt;image-name&gt; --config &lt;builder-config-path&gt; [flags]
+<pre tabindex="0"><code>pack builder create &lt;image-name&gt; --config &lt;builder-config-path&gt; [flags]
 </code></pre><h3 id="examples">Examples</h3>
-<pre><code>pack builder create my-builder:bionic --config ./builder.toml
+<pre tabindex="0"><code>pack builder create my-builder:bionic --config ./builder.toml
 </code></pre><h3 id="options">Options</h3>
-<pre><code>  -c, --config string        Path to builder TOML file (required)
+<pre tabindex="0"><code>  -c, --config string        Path to builder TOML file (required)
   -h, --help                 Help for 'create'
       --publish              Publish to registry
       --pull-policy string   Pull policy to use. Accepted values are always, never, and if-not-present. The default is always
 </code></pre><h3 id="options-inherited-from-parent-commands">Options inherited from parent commands</h3>
-<pre><code>      --no-color     Disable color output
+<pre tabindex="0"><code>      --no-color     Disable color output
   -q, --quiet        Show less output
       --timestamps   Enable timestamps in output
   -v, --verbose      Show more output

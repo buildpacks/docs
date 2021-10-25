@@ -592,11 +592,11 @@
 <h3 id="synopsis">Synopsis</h3>
 <p>Pack Build uses Cloud Native Buildpacks to create a runnable  app image from source code.</p>
 <p>Pack Build requires an image name, which will be generated from the source code. Build defaults to the current directory, but you can use <code>--path</code> to specify another source code directory. Build requires a <code>builder</code>, which can either be provided directly to build using <code>--builder</code>, or can be set using the <code>set-default-builder</code> command. For more on how to use <code>pack build</code>, see: <a href="https://buildpacks.io/docs/app-developer-guide/build-an-app/">https://buildpacks.io/docs/app-developer-guide/build-an-app/</a>.</p>
-<pre><code>pack build &lt;image-name&gt; [flags]
+<pre tabindex="0"><code>pack build &lt;image-name&gt; [flags]
 </code></pre><h3 id="examples">Examples</h3>
-<pre><code>pack build test_img --path apps/test-app --builder cnbs/sample-builder:bionic
+<pre tabindex="0"><code>pack build test_img --path apps/test-app --builder cnbs/sample-builder:bionic
 </code></pre><h3 id="options">Options</h3>
-<pre><code>  -B, --builder string              Builder image (default &quot;cnbs/sample-builder:bionic&quot;)
+<pre tabindex="0"><code>  -B, --builder string              Builder image (default &quot;cnbs/sample-builder:bionic&quot;)
   -b, --buildpack strings           Buildpack to use. One of:
                                       a buildpack by id and version in the form of '&lt;buildpack&gt;@&lt;version&gt;',
                                       path to a buildpack directory (not supported on Windows),
@@ -649,7 +649,7 @@
                                     Repeat for each volume in order, or supply once by comma-separated list
       --workspace string            Location at which to mount the app dir in the build image
 </code></pre><h3 id="options-inherited-from-parent-commands">Options inherited from parent commands</h3>
-<pre><code>      --no-color     Disable color output
+<pre tabindex="0"><code>      --no-color     Disable color output
   -q, --quiet        Show less output
       --timestamps   Enable timestamps in output
   -v, --verbose      Show more output

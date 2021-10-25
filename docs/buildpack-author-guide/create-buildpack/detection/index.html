@@ -595,12 +595,12 @@ Replace exit 1 in the detect script with the following…">
         <!-- test:suite=create-buildpack;weight=3 -->
 <p>Next, you will want to actually detect that the app you are building is a Ruby app. In order to do this, you will need to check for a <code>Gemfile</code>.</p>
 <p>Replace <code>exit 1</code> in the <code>detect</code> script with the following check:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="k">if</span> <span class="o">[[</span> ! -f Gemfile <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="k">if</span> <span class="o">[[</span> ! -f Gemfile <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
    <span class="nb">exit</span> <span class="m">100</span>
 <span class="k">fi</span>
 </code></pre></div><p>Your <code>ruby-buildpack/bin/detect</code> script should look like this:</p>
 <!-- test:file=ruby-buildpack/bin/detect -->
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
 </span><span class="cp"></span><span class="nb">set</span> -eo pipefail
 
 <span class="k">if</span> <span class="o">[[</span> ! -f Gemfile <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
@@ -608,10 +608,10 @@ Replace exit 1 in the detect script with the following…">
 <span class="k">fi</span>
 </code></pre></div><p>Next, rebuild your app with the updated buildpack:</p>
 <!-- test:exec;exit-code=-1 -->
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 </code></pre></div><p>You should see the following output:</p>
 <!-- test:assert=contains -->
-<pre><code>===&gt; DETECTING
+<pre tabindex="0"><code>===&gt; DETECTING
 [detector] examples/ruby 0.0.1
 ===&gt; ANALYZING
 [analyzer] Previous image with name &quot;test-ruby-app&quot; not found

@@ -592,7 +592,7 @@
 
         <p>If you would like to publish your buildpack image to the registry without requiring a human to click a button in a browser, you can automate the process using the helpers in the <a href="https://github.com/buildpacks/github-actions">buildpacks/github-actions</a> repository.</p>
 <p>To begin, you must store your buildpack source code in GitHub and <a href="https://github.com/features/actions">enable GitHub Actions</a>. Then create a directory named <code>.github/workflows</code> in your repository, and add a file named <code>release.yml</code> to it. The <code>release.yml</code> workflow can be <a href="https://docs.github.com/en/actions/reference/events-that-trigger-workflows">triggered</a> in many ways, but it&rsquo;s common to use a Release event as a trigger. To do so, add the following to your <code>release.yml</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Release</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Release</span><span class="w">
 </span><span class="w"></span><span class="nt">on</span><span class="p">:</span><span class="w">
 </span><span class="w">  </span><span class="nt">release</span><span class="p">:</span><span class="w">
 </span><span class="w">    </span><span class="nt">types</span><span class="p">:</span><span class="w">
@@ -606,7 +606,7 @@
 <li>Register the image with the Buildpack Registry</li>
 </ol>
 <p>You can implement a job with these steps in your GitHub Action by adding the following code to your <code>release.yml</code> (note the indentation):</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">jobs</span><span class="p">:</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">jobs</span><span class="p">:</span><span class="w">
 </span><span class="w">  </span><span class="nt">register</span><span class="p">:</span><span class="w">
 </span><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Package, Publish, and Register</span><span class="w">
 </span><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w">

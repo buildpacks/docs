@@ -599,7 +599,7 @@ should be included/excluded in the build, and <a href="/docs/app-developer-guide
 and human-readable <code>name</code> of the application we are building, and a <code>version</code>), and specify build information to pack.</p>
 <p>Note the <code>include</code> and <code>exclude</code> sections in the below <code>project.toml</code> file use <code>gitignore</code> syntax. So <code>&quot;/README.md&quot;</code> excludes the <code>README</code>
 file at the root of the application. For more on <code>gitignore</code> matching see <a href="https://linuxize.com/post/gitignore-ignoring-files-in-git/#literal-file-names">these docs</a>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">project</span><span class="p">]</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">project</span><span class="p">]</span>
 <span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;io.buildpacks.bash-script&#34;</span>
 <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Bash Script&#34;</span>
 <span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;1.0.0&#34;</span>
@@ -615,7 +615,7 @@ file at the root of the application. For more on <code>gitignore</code> matching
 <span class="p">[[</span><span class="nx">build</span><span class="p">.</span><span class="nx">buildpacks</span><span class="p">]]</span>
 <span class="nx">uri</span> <span class="p">=</span> <span class="s2">&#34;bash-script-buildpack/&#34;</span>
 </code></pre></div><p>To use a <code>project.toml</code> file, simply:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># build the app</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># build the app</span>
 pack build sample-app <span class="se">\
 </span><span class="se"></span>    --builder cnbs/sample-builder:bionic <span class="se">\
 </span><span class="se"></span>    --path  samples/apps/bash-script/
@@ -623,7 +623,7 @@ pack build sample-app <span class="se">\
 <span class="c1"># run the app</span>
 docker run sample-app
 </code></pre></div><p>If the descriptor is named <code>project.toml</code>, it will be read by <code>pack</code> automatically. Otherwise, you can run:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">pack build sample-app <span class="se">\
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">pack build sample-app <span class="se">\
 </span><span class="se"></span>    --builder cnbs/sample-builder:bionic <span class="se">\
 </span><span class="se"></span>    --path  samples/apps/bash-script/ <span class="se">\
 </span><span class="se"></span>    --descriptor  samples/apps/bash-script/&lt;project-descriptor-file.toml&gt;
@@ -637,7 +637,7 @@ understand the environment), we would want to add it to our <code>project.toml</
 to use different buildpacks in the above case, we could also call <code>pack build ... --buildpack ...</code></p>
 </blockquote>
 <p>Below is an expanded <code>project.toml</code>, with an additional buildpack and environment variable included.</p>
-<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">project</span><span class="p">]</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">project</span><span class="p">]</span>
 <span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;io.buildpacks.bash-script&#34;</span>
 <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Bash Script&#34;</span>
 <span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;1.0.0&#34;</span>
@@ -658,7 +658,7 @@ to use different buildpacks in the above case, we could also call <code>pack bui
 <span class="nx">name</span><span class="p">=</span><span class="s1">&#39;HELLO&#39;</span>
 <span class="nx">value</span><span class="p">=</span><span class="s1">&#39;WORLD&#39;</span>
 </code></pre></div><p>Paste the above <code>toml</code> as <code>new-project.toml</code> in the <code>samples/apps/bash-script/</code> directory, and simply:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># build the app</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># build the app</span>
 pack build sample-app <span class="se">\
 </span><span class="se"></span>    --builder cnbs/sample-builder:bionic <span class="se">\
 </span><span class="se"></span>    --path  samples/apps/bash-script/ <span class="se">\

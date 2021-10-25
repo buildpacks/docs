@@ -602,16 +602,16 @@ Cloud Native Buildpacks provide two forms of Bill-of-Materials.</p>
 <a href="/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials/">Adding bill of materials</a></p>
 <h2 id="viewing-bill-of-materials">Viewing Bill of Materials</h2>
 <p>You can use this command to inspect your app for it&rsquo;s <code>Bill-of-Materials</code>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack inspect-image your-image-name --bom
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pack inspect-image your-image-name --bom
 </code></pre></div><p>It can also be accessed by looking at the label <code>io.buildpacks.build.metadata</code>. For example, running Docker CLI, jq and using the following command.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker inspect your-image-name <span class="p">|</span> jq -r <span class="s1">&#39;.[0].Config.Labels[&#34;io.buildpacks.build.metadata&#34;] | fromjson&#39;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker inspect your-image-name <span class="p">|</span> jq -r <span class="s1">&#39;.[0].Config.Labels[&#34;io.buildpacks.build.metadata&#34;] | fromjson&#39;</span>
 </code></pre></div><p>Following is the the information listed in <code>io.buildpacks.build.metadata</code> for <a href="https://github.com/buildpacks/samples/tree/main/apps/java-maven">Sample Java App</a> obtained by building the app using buildpacks and running the above command.</p>
 <p>For this output:</p>
 <ol>
 <li><code>bom</code> is the buildpack populated bom.</li>
 <li><code>buildpacks</code> is the list of buildpacks.</li>
 </ol>
-<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
   <span class="nt">&#34;bom&#34;</span><span class="p">:</span> <span class="p">[</span>
     <span class="p">{</span>
       <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;java&#34;</span><span class="p">,</span>

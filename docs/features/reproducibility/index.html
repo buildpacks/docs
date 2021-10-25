@@ -610,7 +610,7 @@
 <li>The same set of buildpacks (see caveat below).</li>
 </ul>
 <p>Inspecting the results of the above command, we see the following output:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ docker pull cnbs/sample-hello-world:test <span class="o">&amp;&amp;</span> docker images --digest <span class="c1"># Pull remotely created image and view IDs and Digests</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ docker pull cnbs/sample-hello-world:test <span class="o">&amp;&amp;</span> docker images --digest <span class="c1"># Pull remotely created image and view IDs and Digests</span>
 REPOSITORY                                   TAG                 DIGEST                                                                    IMAGE ID            CREATED             SIZE
 sample-hello-world                           <span class="nb">test</span>                sha256:9e3cfea3f90fb4fbbe855a2cc9ce505087ae10d6805cfcb44bd67a4b72628641   597c49cae461        <span class="m">40</span> years ago        95.2MB
 sample-hello-moon-app                        <span class="nb">test</span>                &lt;none&gt;                                                                    86aab15e22b8        <span class="m">40</span> years ago        43MB

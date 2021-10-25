@@ -604,7 +604,7 @@ This API will be used by buildpack authors.</p>
 can be executables compiled from a language like Go.</p>
 <h2 id="bindetect"><code>bin/detect</code></h2>
 <h3 id="usage">Usage</h3>
-<pre><code>bin/detect PLATFORM_DIR BUILD_PLAN
+<pre tabindex="0"><code>bin/detect PLATFORM_DIR BUILD_PLAN
 </code></pre><h3 id="summary">Summary</h3>
 <p>This entrypoint is used to determine if a buildpack should
 run against a given codebase. It will often check for the existence of a particular
@@ -620,7 +620,7 @@ the buildpack will execute against.</p>
 <h3 id="example">Example</h3>
 <p>This is a simple example of a buildpack that detects a Python application by
 checking for the presence of a <code>requirements.txt</code> file:</p>
-<pre><code>#!/bin/sh
+<pre tabindex="0"><code>#!/bin/sh
 
 if [ -f requirements.txt ]; then
   echo &quot;Python Buildpack&quot;
@@ -630,7 +630,7 @@ else
 fi
 </code></pre><h2 id="binbuild"><code>bin/build</code></h2>
 <h3 id="usage-1">Usage</h3>
-<pre><code>bin/build LAYERS_DIR PLATFORM_DIR BUILD_PLAN
+<pre tabindex="0"><code>bin/build LAYERS_DIR PLATFORM_DIR BUILD_PLAN
 </code></pre><p>This entrypoint transforms a codebase.
 It will often resolve dependencies, install binary packages, and compile code.
 It accepts three positional arguments:</p>
@@ -655,7 +655,7 @@ of the following purposes:</p>
 a name matching the directory it describes in the <code>LAYERS_DIR</code>. For example, a
 buildpack might create a <code>$LAYERS_DIR/python</code> directory and a <code>$LAYERS_DIR/python.toml</code>
 with the following contents:</p>
-<pre><code>launch = true
+<pre tabindex="0"><code>launch = true
 cache = true
 build = true
 </code></pre><p>In this example, the <code>python</code> directory will be included in the run image,
@@ -663,7 +663,7 @@ cached for future builds, and will be accessible to subsequent buildpacks.</p>
 <h3 id="example-1">Example</h3>
 <p>This is a simple example of a buildpack that runs Python&rsquo;s <code>pip</code> package manager
 to resolve dependencies:</p>
-<pre><code>#!/bin/sh
+<pre tabindex="0"><code>#!/bin/sh
 
 LAYERS_DIR=&quot;$1&quot;
 
@@ -678,7 +678,7 @@ echo &quot;launch = true&quot; &gt; &quot;$PIP_LAYER.toml&quot;
 </code></pre><h2 id="buildpacktoml"><code>buildpack.toml</code></h2>
 <p>A buildpack must contain a <code>buildpack.toml</code> file in its root directory.</p>
 <h3 id="example-2">Example</h3>
-<pre><code>api = &quot;0.5&quot;
+<pre tabindex="0"><code>api = &quot;0.5&quot;
 
 [buildpack]
 id = &quot;example.com/python&quot;
@@ -784,14 +784,14 @@ Arbitrary data for buildpack.</p>
 <p>We will also consider what a <code>NPM</code> and a <code>JVM</code> buildpack may do.</p>
 <h4 id="1-no-explicit-request">1. No Explicit Request</h4>
 <p>A <code>node-engine</code> buildpack is always happy to <code>provide</code> the <code>node</code> dependency. The build plan it will write may look something like:</p>
-<pre><code>[[provides]]
+<pre tabindex="0"><code>[[provides]]
 name = &quot;node&quot;
 </code></pre><blockquote>
 <p><strong>NOTE:</strong> If this was the only buildpack running, this would fail the <code>detect</code> phase. In order to pass, every <code>provides</code> must be matched up with a <code>requires</code>, whether in the same buildpack or in another buildpack. See the <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#phase-1-detection">spec</a> for particulars on how ordering buildpacks can adjust detection results.</p>
 </blockquote>
 <h4 id="2-one-version-requested">2. One Version Requested</h4>
 <p>During the <code>detect</code> phase, the <code>node-engine</code> buildpack sees in one configuration file (e.g. a <code>.nvmrc</code> file in the app directory) that <code>node v10.x</code> is explicitly requested by the application. Seeing that, it may write the below text to the build plan:</p>
-<pre><code>[[provides]]
+<pre tabindex="0"><code>[[provides]]
 name = &quot;node&quot;
 
 [[requires]]
@@ -805,10 +805,10 @@ version-source = &quot;.nvmrc&quot;
 <p><code>NPM</code> is the default package manager for <code>node</code>. A NPM Buildpack may ensure that all the packages for the application are present (by running <code>npm install</code>), and perhaps cache those packages as well, to optimize future builds.</p>
 <p>NPM is typically distributed together with node. As a result, a NPM buildpack may require <code>node</code>, but not want to <code>provide</code> it, trusting that the <code>node-engine</code> buildpack will be in charge of <code>providing</code> <code>node</code>.</p>
 <p>The NPM buildpack could write the following to the build plan, if the buildpack sees that <code>npm</code> is necessary (e.g., it sees a <code>package.json</code> file in the app directory):</p>
-<pre><code>[[requires]]
+<pre tabindex="0"><code>[[requires]]
 name = &quot;node&quot;
 </code></pre><p>If, looking in the <code>package.json</code> file, the NPM buildpack see a specific version of <code>node</code> requested in the <a href="https://docs.npmjs.com/files/package.json#engines">engines</a> field (e.g. <code>14.1</code>), it may write the following to the build plan:</p>
-<pre><code>[[requires]]
+<pre tabindex="0"><code>[[requires]]
 name = &quot;node&quot;
 version = &quot;14.1&quot;
 
@@ -820,7 +820,7 @@ version-source = &quot;package.json&quot;
 <p>However, if the NPM Buildpack was run together with the Node Engine buildpack (which <code>provides</code> <code>node</code>), the lifecycle will see that all requirements are fulfilled, and select that group as the correct set of buildpacks.</p>
 <h4 id="possible-jvm-buildpack">Possible JVM Buildpack</h4>
 <p>Java is distributed in two formats - the <code>jdk</code> (Java Development Kit), which allows for compilation and running of Java programs, and the <code>jre</code> (Java Runtime Environment,  which allows for running compiled Java programs). A very naive implementation of the buildpack may have it write several <code>provides</code> options to the build plan, detailing everything that it can provide, while later buildpacks would figure out based on the application which options it requires, and would <code>require</code> those. In this particular case, we can use the <code>or</code> operator to present different possible build plans the buildpack can follow:</p>
-<pre><code># option 1 (`jre` and `jdk`)
+<pre tabindex="0"><code># option 1 (`jre` and `jdk`)
 [[provides]]
 name = &quot;jre&quot;
 

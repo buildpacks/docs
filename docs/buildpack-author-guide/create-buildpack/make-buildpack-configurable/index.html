@@ -598,7 +598,7 @@ Select Ruby version We&amp;rsquo;ll allow buildpack users to define the…">
 <p>We&rsquo;ll allow buildpack users to define the desired Ruby version via a <code>.ruby-version</code> file in their app. We&rsquo;ll first update the <code>detect</code> script to check for this file. We will then record the dependency we can <code>provide</code> (Ruby), as well as the specific dependency the application will <code>require</code>, in the <code>Build Plan</code>, a document the lifecycle uses to determine if the buildpack will provide everything the application needs.</p>
 <p>Update <code>ruby-buildpack/bin/detect</code> to look like this:</p>
 <!-- test:file=ruby-buildpack/bin/detect -->
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
 </span><span class="cp"></span><span class="nb">set</span> -eo pipefail
 
 <span class="k">if</span> <span class="o">[[</span> ! -f Gemfile <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
@@ -619,7 +619,7 @@ Select Ruby version We&amp;rsquo;ll allow buildpack users to define the…">
 </code></pre></div><p>Then you will need to update your <code>build</code> script to look for the recorded Ruby version in the build plan:</p>
 <p>Your <code>ruby-buildpack/bin/build</code> script should look like the following:</p>
 <!-- test:file=ruby-buildpack/bin/build -->
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
 </span><span class="cp"></span><span class="nb">set</span> -eo pipefail
 
 <span class="nb">echo</span> <span class="s2">&#34;---&gt; Ruby Buildpack&#34;</span>
@@ -691,13 +691,13 @@ cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span cl
 </span><span class="s">EOL</span>
 </code></pre></div><p>Finally, create a file <code>ruby-sample-app/.ruby-version</code> with the following contents:</p>
 <!-- test:file=ruby-sample-app/.ruby-version -->
-<pre><code>2.5.0
+<pre tabindex="0"><code>2.5.0
 </code></pre><p>Now when you run:</p>
 <!-- test:exec -->
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 </code></pre></div><p>You will notice that version of Ruby specified in the app&rsquo;s <code>.ruby-version</code> file is downloaded.</p>
 <!-- test:assert=contains -->
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">===&gt; BUILDING
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">===&gt; BUILDING
 [builder] ---&gt; Ruby Buildpack
 [builder] ---&gt; Downloading and extracting Ruby 2.5.0
 </code></pre></div><p>Next, let&rsquo;s see how buildpacks can store information about the dependencies provided in the output app image for introspection.</p>

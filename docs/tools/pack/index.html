@@ -694,7 +694,7 @@
 <h4 id="usage">Usage</h4>
 <p>In some container environments you may be required to mount your local Docker daemon&rsquo;s socket.</p>
 <p>For example, using the Docker CLI:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker run <span class="se">\
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">docker run <span class="se">\
 </span><span class="se"></span>  -v /var/run/docker.sock:/var/run/docker.sock <span class="se">\
 </span><span class="se"></span>  -v <span class="nv">$PWD</span>:/workspace -w /workspace <span class="se">\
 </span><span class="se"></span>  buildpacksio/pack build &lt;my-image&gt; --builder &lt;builder-image&gt;
@@ -707,7 +707,7 @@
               
               <div class="tab-pane px-3 fade active in show" id="linux-homebrew">
                 <p><code>pack</code> can be installed via <a href="https://brew.sh/">Homebrew</a>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">brew install buildpacks/tap/pack
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">brew install buildpacks/tap/pack
 </code></pre></div>
               </div>
             
@@ -715,7 +715,7 @@
               
               <div class="tab-pane px-3 fade " id="linux-ubuntu">
                 <p><code>pack</code> can be installed using the <a href="https://launchpad.net/~cncf-buildpacks/+archive/ubuntu/pack-cli">official PPA</a> by running the following commands:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">sudo add-apt-repository ppa:cncf-buildpacks/pack-cli
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">sudo add-apt-repository ppa:cncf-buildpacks/pack-cli
 sudo apt-get update
 sudo apt-get install pack-cli
 </code></pre></div>
@@ -725,7 +725,7 @@ sudo apt-get install pack-cli
               
               <div class="tab-pane px-3 fade " id="linux-script-install">
                 <p>The following command will download the latest version of <code>pack</code> from <a href="https://github.com/buildpacks/pack/releases">GitHub</a> and install it in <code>/usr/local/bin/</code>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">(</span>curl -sSL <span class="s2">&#34;https://github.com/buildpacks/pack/releases/download/v0.21.1/pack-v0.21.1-linux.tgz&#34;</span> <span class="p">|</span> sudo tar -C /usr/local/bin/ --no-same-owner -xzv pack<span class="o">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="o">(</span>curl -sSL <span class="s2">&#34;https://github.com/buildpacks/pack/releases/download/v0.21.1/pack-v0.21.1-linux.tgz&#34;</span> <span class="p">|</span> sudo tar -C /usr/local/bin/ --no-same-owner -xzv pack<span class="o">)</span>
 </code></pre></div>
               </div>
             
@@ -791,7 +791,7 @@ sudo apt-get install pack-cli
 <h4 id="usage">Usage</h4>
 <p>In some container environments you may be required to mount your local Docker daemon&rsquo;s socket.</p>
 <p>For example, using the Docker CLI:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker run <span class="se">\
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">docker run <span class="se">\
 </span><span class="se"></span>  -v /var/run/docker.sock:/var/run/docker.sock <span class="se">\
 </span><span class="se"></span>  -v <span class="nv">$PWD</span>:/workspace -w /workspace <span class="se">\
 </span><span class="se"></span>  buildpacksio/pack build &lt;my-image&gt; --builder &lt;builder-image&gt;
@@ -804,7 +804,7 @@ sudo apt-get install pack-cli
               
               <div class="tab-pane px-3 fade active in show" id="macos-homebrew">
                 <p><code>pack</code> can be installed via <a href="https://brew.sh/">Homebrew</a>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">brew install buildpacks/tap/pack
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">brew install buildpacks/tap/pack
 </code></pre></div>
               </div>
             
@@ -857,7 +857,7 @@ sudo apt-get install pack-cli
               
               <div class="tab-pane px-3 fade active in show" id="windows-chocolatey">
                 <p>To install <code>pack</code> on Windows, we recommend using <a href="https://chocolatey.org/">Chocolatey</a>:</p>
-<pre><code>choco install pack --version=0.21.1
+<pre tabindex="0"><code>choco install pack --version=0.21.1
 </code></pre>
               </div>
             
@@ -882,7 +882,7 @@ sudo apt-get install pack-cli
 <h4 id="usage">Usage</h4>
 <p>In some container environments you may be required to mount your local Docker daemon&rsquo;s socket.</p>
 <p>For example, using the Docker CLI:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker run <span class="se">\
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">docker run <span class="se">\
 </span><span class="se"></span>  -v /var/run/docker.sock:/var/run/docker.sock <span class="se">\
 </span><span class="se"></span>  -v <span class="nv">$PWD</span>:/workspace -w /workspace <span class="se">\
 </span><span class="se"></span>  buildpacksio/pack build &lt;my-image&gt; --builder &lt;builder-image&gt;
@@ -893,7 +893,7 @@ sudo apt-get install pack-cli
               
               <div class="tab-pane px-3 fade " id="windows-scoop">
                 <p><code>pack</code> can be installed via <a href="https://scoop.sh/">Scoop</a>:</p>
-<pre><code>scoop install pack
+<pre tabindex="0"><code>scoop install pack
 </code></pre>
               </div>
             
@@ -931,11 +931,11 @@ sudo apt-get install pack-cli
 <li><code>zsh</code></li>
 </ul>
 <p>To configure your <code>bash</code> shell to load completions for each session, add the following to your <code>.bashrc</code> or <code>.bash_profile</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">. <span class="k">$(</span>pack completion<span class="k">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">. <span class="k">$(</span>pack completion<span class="k">)</span>
 </code></pre></div><p>To configure your <code>fish</code> shell to load completions for each session, add the following to your <code>~/.config/fish/config.fish</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">source</span> <span class="o">(</span>pack completion --shell fish<span class="o">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">source</span> <span class="o">(</span>pack completion --shell fish<span class="o">)</span>
 </code></pre></div><p>To configure your <code>zsh</code> shell to load completions for each session, add the following to your <code>.zshrc</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">. <span class="k">$(</span>pack completion --shell zsh<span class="k">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">. <span class="k">$(</span>pack completion --shell zsh<span class="k">)</span>
 </code></pre></div><h3 id="references">References</h3>
 <ul>
 <li><a href="/docs/tools/pack/cli/pack/">Docs</a></li>
@@ -944,7 +944,7 @@ sudo apt-get install pack-cli
 <hr>
 <h2 id="go-library">Go library</h2>
 <h3 id="install-1">Install</h3>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">go get -u github.com/buildpacks/pack    
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">go get -u github.com/buildpacks/pack    
 </code></pre></div><h3 id="references-1">References</h3>
 <ul>
 <li><a href="https://pkg.go.dev/github.com/buildpacks/pack">Docs</a></li>

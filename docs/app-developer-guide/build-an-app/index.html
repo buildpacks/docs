@@ -600,13 +600,13 @@
 includes the <a href="/docs/concepts/components/buildpack">buildpacks</a> that will be used as well as the environment for building your
 app.</p>
 <p>When using <code>pack</code>, you can run <code>pack builder suggest</code> for a list of suggested builders.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack builder suggest
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pack builder suggest
 </code></pre></div><p>For this guide we&rsquo;re actually going to use a sample builder, <code>cnbs/sample-builder:bionic</code>, which is not listed
 as a suggested builder for good reason. It&rsquo;s a sample.</p>
 <h3 id="2-build-your-app">2. Build your app</h3>
 <p>Now that you&rsquo;ve decided on what builder to use, we can build our app. For this example we&rsquo;ll use our <a href="https://github.com/buildpacks/samples">samples</a>
 repo for simplicity.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># clone the repo</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># clone the repo</span>
 git clone https://github.com/buildpacks/samples
 
 <span class="c1"># build the app</span>
@@ -616,7 +616,7 @@ pack build sample-app --path samples/apps/java-maven --builder cnbs/sample-build
 builder by running <code>pack config default-builder &lt;BUILDER&gt;</code>.</p>
 </blockquote>
 <h3 id="3-run-it">3. Run it</h3>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker run --rm -p 8080:8080 sample-app
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker run --rm -p 8080:8080 sample-app
 </code></pre></div><p><strong>Congratulations!</strong></p>
 <p>The app should now be running and accessible via <a href="http://localhost:8080">localhost:8080</a>.</p>
 <h2 id="what-about-arm-apps">What about ARM apps?</h2>

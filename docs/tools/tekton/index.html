@@ -611,10 +611,10 @@ maintained by the CNB project, both of which use the <a href="/docs/concepts/com
 start the dashboard server.</p>
 <h3 id="2-install-the-buildpacks-task">2. Install the Buildpacks Task</h3>
 <p>Install the latest version of the buildpacks task (currently <code>0.3</code>), by running:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/master/task/buildpacks/0.3/buildpacks.yaml
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/master/task/buildpacks/0.3/buildpacks.yaml
 </code></pre></div><h3 id="3-install-git-clone-task">3. Install git-clone Task</h3>
 <p>For our <code>pipeline</code>, we will use the <code>git-clone</code> task to clone a repository. Install the latest version (currently <code>0.4</code>), by running:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/master/task/git-clone/0.4/git-clone.yaml
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/master/task/git-clone/0.4/git-clone.yaml
 </code></pre></div><h3 id="4-define-and-apply-tekton-pipeline-resources">4. Define and Apply Tekton Pipeline Resources</h3>
 <p>In order to set up our pipeline, we will need to define a few things:</p>
 <ul>
@@ -626,7 +626,7 @@ a request for storage by a user.</li>
 </ul>
 <h4 id="41-pvcs">4.1 PVCs</h4>
 <p>Create a file <code>resources.yml</code> that defines a <code>PersistentVolumeClaim</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
 </span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">PersistentVolumeClaim</span><span class="w">
 </span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
 </span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-source-pvc</span><span class="w">
@@ -642,13 +642,13 @@ a request for storage by a user.</li>
 remote registry (e.g. <code>DockerHub</code>, <code>GCR</code>), you need to add authorization</p>
 </blockquote>
 <p>Create a <code>Secret</code> containing username and password that the build should use to authenticate to the container registry.</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">kubectl create secret docker-registry docker-user-pass <span class="se">\
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl create secret docker-registry docker-user-pass <span class="se">\
 </span><span class="se"></span>    --docker-username<span class="o">=</span>&lt;USERNAME&gt; <span class="se">\
 </span><span class="se"></span>    --docker-password<span class="o">=</span>&lt;PASSWORD&gt; <span class="se">\
 </span><span class="se"></span>    --docker-server<span class="o">=</span>&lt;LINK TO REGISTRY, e.g. https://index.docker.io/v1/ &gt; <span class="se">\
 </span><span class="se"></span>    --namespace default
 </code></pre></div><p>Create a file <code>sa.yml</code> that defines a <code>ServiceAccount</code> that uses the newly created secret:</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
 </span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ServiceAccount</span><span class="w">
 </span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
 </span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-service-account</span><span class="w">
@@ -656,7 +656,7 @@ remote registry (e.g. <code>DockerHub</code>, <code>GCR</code>), you need to add
 </span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">docker-user-pass</span><span class="w">
 </span></code></pre></div><h4 id="43-pipeline">4.3 Pipeline</h4>
 <p>Create a file <code>pipeline.yml</code> that defines the <code>Pipeline</code>, and relevant resources:</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">tekton.dev/v1beta1</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">tekton.dev/v1beta1</span><span class="w">
 </span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Pipeline</span><span class="w">
 </span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
 </span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-test-pipeline</span><span class="w">
@@ -717,10 +717,10 @@ remote registry (e.g. <code>DockerHub</code>, <code>GCR</code>), you need to add
 </span><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(tasks.buildpacks.results.APP_IMAGE_DIGEST)</span><span class="w">
 </span></code></pre></div><h4 id="44-apply-configuration">4.4 Apply Configuration</h4>
 <p>Apply these configurations, using <code>kubectl</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">kubectl apply -f resources.yml -f sa.yml -f pipeline.yml
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl apply -f resources.yml -f sa.yml -f pipeline.yml
 </code></pre></div><h3 id="5-create--apply-pipelinerun">5. Create &amp; Apply PipelineRun</h3>
 <p>Create a file <code>run.yml</code>, which defines the <code>PipelineRun</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">tekton.dev/v1beta1</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">tekton.dev/v1beta1</span><span class="w">
 </span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">PipelineRun</span><span class="w">
 </span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
 </span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-test-pipeline-run</span><span class="w">
@@ -744,16 +744,16 @@ remote registry (e.g. <code>DockerHub</code>, <code>GCR</code>), you need to add
 <p>Make sure to replace <code>&lt;REGISTRY/IMAGE NAME&gt;</code> with your image path.</p>
 </blockquote>
 <p>Apply it with:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">kubectl apply -f run.yml
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl apply -f run.yml
 </code></pre></div><h3 id="6-see-it-build">6. See it Build</h3>
 <p>Look at the <code>PipelineRun</code> logs by running</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">kubectl describe pipelinerun buildpacks-test-pipeline-run
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl describe pipelinerun buildpacks-test-pipeline-run
 </code></pre></div><p>or by using the Tekton Dashboard.</p>
 <p>Once the application is successfully built, you can pull it and run it by running:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker pull some-output-image
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">docker pull some-output-image
 </code></pre></div><h3 id="7-cleanup-optional">7. Cleanup (Optional)</h3>
 <p>To clean up, run:</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">kubectl delete taskrun --all
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">kubectl delete taskrun --all
 kubectl delete pvc --all
 kubectl delete pv --all
 </code></pre></div><h2 id="references">References</h2>

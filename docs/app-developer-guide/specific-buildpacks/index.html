@@ -637,7 +637,7 @@
 <p>The <code>--buildpack</code> parameter accepts a URI in any of the formats described above.</p>
 <h5 id="example">Example:</h5>
 <p>For this example we will use a few buildpacks from our <a href="https://github.com/buildpacks/samples">samples</a> repo.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># clone the repo</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># clone the repo</span>
 git clone https://github.com/buildpacks/samples
 
 <span class="c1"># build the app</span>
@@ -657,7 +657,7 @@ pack build sample-java-maven-app <span class="se">\
 <h2 id="using-a-project-descriptor">Using a Project Descriptor</h2>
 <p>The <a href="/docs/app-developer-guide/using-project-descriptor/"><code>project.toml</code></a> format allows for Buildpack URIs to be specified in the <code>[[build.buildpacks]]</code> table with the <code>uri</code> key.</p>
 <h5 id="example-1">Example:</h5>
-<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">project</span><span class="p">]</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">project</span><span class="p">]</span>
 <span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;sample-java-maven-app&#34;</span>
 <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Sample Java App&#34;</span>
 <span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;1.0.0&#34;</span>

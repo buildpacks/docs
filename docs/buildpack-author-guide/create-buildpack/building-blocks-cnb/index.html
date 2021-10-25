@@ -601,7 +601,7 @@ Using the Pack CLI The buildpack new &amp;lt;id&amp;gt; command will create a di
 <p>The <code>buildpack new &lt;id&gt;</code> command will create a directory named for the buildpack ID.</p>
 <p>Example:</p>
 <!-- test:exec -->
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack buildpack new examples/ruby <span class="se">\
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pack buildpack new examples/ruby <span class="se">\
 </span><span class="se"></span>    --api 0.5 <span class="se">\
 </span><span class="se"></span>    --path ruby-buildpack <span class="se">\
 </span><span class="se"></span>    --version 0.0.1 <span class="se">\
@@ -618,7 +618,7 @@ Using the Pack CLI The buildpack new &amp;lt;id&amp;gt; command will create a di
 <h3 id="buildpacktoml">buildpack.toml</h3>
 <p>You will have <code>buildpack.toml</code> in your buildpack directory to describe our buildpack.</p>
 <!-- test:file=ruby-buildpack/buildpack.toml -->
-<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="c"># Buildpack API version</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="c"># Buildpack API version</span>
 <span class="nx">api</span> <span class="p">=</span> <span class="s2">&#34;0.5&#34;</span>
 
 <span class="c"># Buildpack ID and metadata</span>
@@ -635,13 +635,13 @@ Using the Pack CLI The buildpack new &amp;lt;id&amp;gt; command will create a di
 <p>Next, we will cover the <code>detect</code> and <code>build</code> scripts. These files are created in <code>bin</code> directory in your buildpack directory.</p>
 <p>Now update your <code>ruby-buildpack/bin/detect</code> file and copy in the following contents:</p>
 <!-- test:file=ruby-buildpack/bin/detect -->
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
 </span><span class="cp"></span><span class="nb">set</span> -eo pipefail
 
 <span class="nb">exit</span> <span class="m">1</span>
 </code></pre></div><p>Also update your <code>ruby-buildpack/bin/build</code> file and copy in the following contents:</p>
 <!-- test:file=ruby-buildpack/bin/build -->
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
 </span><span class="cp"></span><span class="nb">set</span> -eo pipefail
 
 <span class="nb">echo</span> <span class="s2">&#34;---&gt; Ruby Buildpack&#34;</span>
@@ -651,14 +651,14 @@ Using the Pack CLI The buildpack new &amp;lt;id&amp;gt; command will create a di
 <p>In order to test your buildpack, you will need to run the buildpack against your sample Ruby app using the <code>pack</code> CLI.</p>
 <p>Set your default <a href="/docs/concepts/components/builder">builder</a> by running the following:</p>
 <!-- test:exec -->
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack config default-builder cnbs/sample-builder:bionic
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pack config default-builder cnbs/sample-builder:bionic
 </code></pre></div><p>Then run the following <code>pack</code> command:</p>
 <!-- test:exec;exit-code=1 -->
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 </code></pre></div><p>The <code>pack build</code> command takes in your Ruby sample app as the <code>--path</code> argument and your buildpack as the <code>--buildpack</code> argument.</p>
 <p>After running the command, you should see that it failed to detect, as the <code>detect</code> script is currently written to simply error out.</p>
 <!-- test:assert=contains -->
-<pre><code>===&gt; DETECTING
+<pre tabindex="0"><code>===&gt; DETECTING
 [detector] err:  examples/ruby@0.0.1 (1)
 [detector] ERROR: No buildpack groups passed detection.
 [detector] ERROR: failed to detect: buildpack(s) failed with err

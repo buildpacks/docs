@@ -598,7 +598,7 @@
 <li>A comma separated list of volume mounts.</li>
 </ul>
 <p>Each volume mount has the following format:</p>
-<pre><code>&lt;host path&gt;:&lt;target path&gt;[:&lt;mode&gt;]
+<pre tabindex="0"><code>&lt;host path&gt;:&lt;target path&gt;[:&lt;mode&gt;]
 </code></pre><h5 id="host-path"><code>&lt;host path&gt;</code></h5>
 <p>This is the name of the volume, it is unique on a given host machine.</p>
 <h5 id="target-path"><code>&lt;target path&gt;</code></h5>
@@ -631,16 +631,16 @@ docker volume rm test-volume
 -->
 <p>We&rsquo;ll create a new docker volume:</p>
 <!-- test:exec -->
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker volume create test-volume
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker volume create test-volume
 </code></pre></div><p>Next, we&rsquo;ll create a text file on the volume:</p>
 <!-- test:exec -->
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker run --rm <span class="se">\
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker run --rm <span class="se">\
 </span><span class="se"></span>    --volume test-volume:/tmp/volume:rw <span class="se">\
 </span><span class="se"></span>    bash <span class="se">\
 </span><span class="se"></span>    bash -c <span class="s1">&#39;echo &#34;Hello from a volume!&#34; &gt; /tmp/volume/volume_contents.txt&#39;</span>
 </code></pre></div><p>Now, we can mount this volume during <code>pack build</code>:</p>
 <!-- test:exec -->
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">ls -al
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">ls -al
 pack build volume-example <span class="se">\
 </span><span class="se"></span>    --builder cnbs/sample-builder:bionic <span class="se">\
 </span><span class="se"></span>    --buildpack samples/buildpacks/hello-world <span class="se">\
@@ -648,7 +648,7 @@ pack build volume-example <span class="se">\
 </span><span class="se"></span>    --volume test-volume:/platform/volume:ro
 </code></pre></div><p>The above <code>pack build ...</code> command will mount the <code>test-volume</code> volume in the <code>/platform</code> directory of the container.</p>
 <p>Since we are using the <code>samples/hello-world</code> buildpack, we should see the <code>/platform</code> directory files listed:</p>
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">[builder]      platform_dir files:
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">[builder]      platform_dir files:
 ...
 [builder]        /platform/volume:
 [builder]        total 12

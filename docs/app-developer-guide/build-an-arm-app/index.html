@@ -593,27 +593,27 @@
         <p>As of today, there are no CNB platforms (e.g. <a href="https://github.com/buildpacks/pack">pack</a>) that support building ARM application images. In the following tutorial, we will be performing a build &ldquo;manually&rdquo;, in that we will be performing a build by invoking the lifecycle directly.</p>
 <h3 id="1-prepare-your-working-directory">1. Prepare your working directory</h3>
 <p>On your Linux ARM machine with a <a href="https://docs.docker.com">docker</a> daemon installed, prepare the following directory tree structure.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">tree ~/workspace/
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">tree ~/workspace/
 ~/workspace/
 ├── buildpacks
 │   └── samples_hello-world
 └── platform
 </code></pre></div><p>In addition, clone the <a href="https://github.com/buildpacks/samples">samples</a> repository which will contain the application source code.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># clone the repo</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># clone the repo</span>
 git clone https://github.com/buildpacks/samples ~/workspace/samples
 </code></pre></div><h3 id="2-prepare-the-assets">2. Prepare the assets</h3>
 <p>Now we need to prepare assets that will be used during the build process.</p>
 <p>First we download and extract the <a href="https://github.com/buildpacks/lifecycle">lifecycle</a> release, compiled for ARM. Make sure to replace <code>&lt;RELEASE-VERSION&gt;</code> with a valid release version.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># change to destination directory</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># change to destination directory</span>
 <span class="nb">cd</span> ~/workspace
 
 <span class="c1"># download and extract lifecycle</span>
 curl -L https://github.com/buildpacks/lifecycle/releases/download/v&lt;RELEASE-VERSION&gt;/lifecycle-v&lt;RELEASE-VERSION&gt;+linux.arm64.tgz <span class="p">|</span> tar xf -
 </code></pre></div><p>Next we make sure that our buildpack directory is structured in a way that the lifecycle will expect.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># copy hello-world buildpack</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># copy hello-world buildpack</span>
 cp -R ~/workspace/samples/buildpacks/hello-world ~/workspace/buildpacks/samples_hello-world/0.0.1
 </code></pre></div><p>And finally we write the <code>order.toml</code> file that references the hello-world buildpack.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">cat &gt; ~/workspace/order.toml &lt;EOF
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">cat &gt; ~/workspace/order.toml &lt;EOF
 <span class="o">[[</span>order<span class="o">]]</span>
 <span class="o">[[</span>order.group<span class="o">]]</span>
 <span class="nv">id</span> <span class="o">=</span> <span class="s2">&#34;samples/hello-world&#34;</span>
@@ -622,7 +622,7 @@ cp -R ~/workspace/samples/buildpacks/hello-world ~/workspace/buildpacks/samples_
 EOF
 </code></pre></div><h3 id="3-build-your-app">3. Build your app</h3>
 <p>Now we can build our app. For this example we will be using the docker CLI to invoke the lifecycle directly.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># invoke the lifecycle</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># invoke the lifecycle</span>
 docker run --rm <span class="se">\
 </span><span class="se"></span>  --mount <span class="nv">type</span><span class="o">=</span>bind,source<span class="o">=</span>/var/run/docker.sock,target<span class="o">=</span>/var/run/docker.sock <span class="se">\
 </span><span class="se"></span>  --volume ~/workspace/lifecycle:/cnb/lifecycle <span class="se">\
@@ -634,7 +634,7 @@ docker run --rm <span class="se">\
 </span><span class="se"></span>  ubuntu:bionic <span class="se">\
 </span><span class="se"></span>  /cnb/lifecycle/creator -log-level debug -daemon -run-image ubuntu:bionic hello-arm64
 </code></pre></div><h3 id="4-run-it">4. Run it</h3>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker run --rm hello-arm64
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker run --rm hello-arm64
 </code></pre></div><p><strong>Congratulations!</strong></p>
 <p>The app image should now be built and stored on the docker daemon. You may perform <code>docker images</code> to verify.</p>
 

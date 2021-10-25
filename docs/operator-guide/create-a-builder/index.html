@@ -596,11 +596,11 @@
 <p>As part of this guide we&rsquo;ll create a basic builder that uses mostly no-op buildpacks to show you around a bit.</p>
 <h3 id="0-grab-the-sample-repo">0. Grab the sample repo</h3>
 <p>Before we start, let&rsquo;s pull down a few buildpacks from our <a href="https://github.com/buildpacks/samples">samples</a> repo.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># clone the repo</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># clone the repo</span>
 git clone https://github.com/buildpacks/samples
 </code></pre></div><h3 id="1-builder-configuration">1. Builder configuration</h3>
 <p>First, let&rsquo;s create a <a href="/docs/reference/builder-config/">builder configuration file</a> (<code>builder.toml</code>) with the following contents:</p>
-<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="c"># Buildpacks to include in builder</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="c"># Buildpacks to include in builder</span>
 <span class="p">[[</span><span class="nx">buildpacks</span><span class="p">]]</span>
 <span class="nx">uri</span> <span class="p">=</span> <span class="s2">&#34;samples/buildpacks/hello-processes&#34;</span>
 
@@ -630,12 +630,12 @@ git clone https://github.com/buildpacks/samples
 <span class="p">[</span><span class="nx">stack</span><span class="p">]</span>
 <span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;io.buildpacks.samples.stacks.bionic&#34;</span>
 <span class="c"># This image is used at runtime</span>
-<span class="nx">run</span><span class="err">-</span><span class="nx">image</span> <span class="p">=</span> <span class="s2">&#34;cnbs/sample-stack-run:bionic&#34;</span>
+<span class="nx">run-image</span> <span class="p">=</span> <span class="s2">&#34;cnbs/sample-stack-run:bionic&#34;</span>
 <span class="c"># This image is used at build-time</span>
-<span class="nx">build</span><span class="err">-</span><span class="nx">image</span> <span class="p">=</span> <span class="s2">&#34;cnbs/sample-stack-build:bionic&#34;</span>
+<span class="nx">build-image</span> <span class="p">=</span> <span class="s2">&#34;cnbs/sample-stack-build:bionic&#34;</span>
 </code></pre></div><h3 id="2-create-builder">2. Create builder</h3>
 <p>Creating a builder is now as simple as running the following command:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># create builder</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># create builder</span>
 pack builder create my-builder:bionic --config ./builder.toml
 </code></pre></div><blockquote>
 <p><strong>TIP:</strong> <code>builder create</code> has a <code>--publish</code> flag that can be used to publish the generated builder image to a registry.</p>
@@ -643,12 +643,12 @@ pack builder create my-builder:bionic --config ./builder.toml
 <p><strong>Congratulations!</strong> You&rsquo;ve got a custom builder.</p>
 <h3 id="3-use-your-builder">3. Use your builder</h3>
 <p>Let&rsquo;s go a little further and use our builder to <a href="/docs/concepts/operations/build/"><code>build</code></a> an app by running:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack build my-app --builder my-builder:bionic --path samples/apps/java-maven/
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pack build my-app --builder my-builder:bionic --path samples/apps/java-maven/
 </code></pre></div><h3 id="4-running-the-app">4. Running the app</h3>
 <p>Remember that we mentioned that the buildpacks we used as part of this builder don&rsquo;t really do much. To be honest, they
 didn&rsquo;t even use the app source code. What they did do was show the environment in which they run on and now by running
 the app image with <code>--entrypoint sys-info</code> we can see the runtime information as well.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker run --rm --entrypoint sys-info -it my-app
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker run --rm --entrypoint sys-info -it my-app
 </code></pre></div><p>We&rsquo;re sure you&rsquo;ll be able to create more useful builders.</p>
 <h3 id="references">References</h3>
 <p>For additional sample builders and buildpacks, check out our <a href="https://github.com/buildpacks/samples">samples</a> repo.</p>

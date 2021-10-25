@@ -621,7 +621,7 @@ A builder is an image that contains all the components necessary to execute a bu
 <h2 id="next-stop-the-end">Next stop, the end</h2>
 <p>Let&rsquo;s see all this in action using <code>pack build</code>.</p>
 <p>Run the following commands in a shell to clone and build this <a href="https://github.com/buildpacks/samples/tree/main/apps/java-maven">simple Java app</a>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># clone the repo</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># clone the repo</span>
 git clone https://github.com/buildpacks/samples
 
 <span class="c1"># go to the app directory</span>
@@ -639,7 +639,7 @@ We did say this was a <em>brief</em> journey after all. Take note that your app 
 a JDK, run Maven, or otherwise configure a build environment. <code>pack</code> and <strong>buildpacks</strong> took care of that for you.</p>
 <h2 id="beyond-the-journey">Beyond the journey</h2>
 <p>To test out your new app image locally, you can run it with Docker:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker run --rm -p 8080:8080 myapp
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker run --rm -p 8080:8080 myapp
 </code></pre></div><p>Now hit <a href="http://localhost:8080"><code>localhost:8080</code></a> in your favorite browser and take a minute to enjoy the view.</p>
 <h3 id="take-your-image-to-the-skies">Take your image to the skies</h3>
 <p><code>pack</code> uses <strong>buildpacks</strong> to help you easily create OCI images that you can run just about anywhere. Try

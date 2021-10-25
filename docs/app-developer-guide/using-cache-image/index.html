@@ -594,7 +594,7 @@
 These images can improve performance when using <code>pack</code> in ephemeral environments such as CI/CD pipelines.</p>
 <h2 id="using-cache-images---cache-image">Using Cache Images (<code>--cache-image</code>)</h2>
 <p>The <code>--cache-image</code> parameter must be in the following format</p>
-<pre><code>--cache-image &lt;remote-image-location&gt;
+<pre tabindex="0"><code>--cache-image &lt;remote-image-location&gt;
 </code></pre><p>The <code>--cache-images</code> flag must be specified in conjunction with the <code>--publish</code> flag.</p>
 <h3 id="examples">Examples</h3>
 <p>For the following examples we will use:</p>
@@ -604,22 +604,22 @@ These images can improve performance when using <code>pack</code> in ephemeral e
 <li>Our <a href="https://github.com/buildpack/samples">samples</a> repo</li>
 </ul>
 <p>First we need to authenticate with <code>docker</code> to allow us to push images</p>
-<pre><code>    docker login
+<pre tabindex="0"><code>    docker login
     ...
 </code></pre><p>Next we trust the <code>cnbs/sample-builder:bionic</code> builder
 in order to allow access to docker credentials when publishing.</p>
-<pre><code>pack config trusted-builders add cnbs/sample-builder:bionic
+<pre tabindex="0"><code>pack config trusted-builders add cnbs/sample-builder:bionic
 </code></pre><p>To build the <code>index.docker.io/buildpack-examples/cache-image-example</code> application image
 and the <code>index.docker.io/buildpack-examples/maven-cache-image:latest</code> cache image
 we may run the following</p>
-<pre><code>pack build index.docker.io/buildpack-examples/cache-image-example \
+<pre tabindex="0"><code>pack build index.docker.io/buildpack-examples/cache-image-example \
     --builder cnbs/sample-builder:bionic \
     --buildpack samples/java-maven \
     --path samples/apps/java-maven \
     --cache-image index.docker.io/buildpack-examples/maven-cache-image:latest \
     --publish
 </code></pre><p>Now we may inspect both the application image, and the cache image by pulling them</p>
-<pre><code># application image inspect
+<pre tabindex="0"><code># application image inspect
 docker pull index.docker.io/buildpack-examples/cache-image-example
 docker inspect index.docker.io/buildpack-examples/cache-image-example
 
@@ -629,7 +629,7 @@ docker inspect index.docker.io/buildpack-examples/maven-cache-image:latest
 </code></pre><p>The cache image we produced may now be used by builds on other machines. Note these
 builds may also update the specified <code>cache-image</code>.</p>
 <p>The following command will restore data for the <code>samples/java-maven:maven_m2</code> layer from the cache image.</p>
-<pre><code>pack build index.docker.io/buildpack-examples/second-cache-image-example \
+<pre tabindex="0"><code>pack build index.docker.io/buildpack-examples/second-cache-image-example \
     --builder cnbs/sample-builder:bionic \
     --buildpack samples/java-maven \
     --path samples/apps/java-maven \

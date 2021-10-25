@@ -602,10 +602,10 @@
 </ul>
 <p>You can find all of this information using <code>pack</code> via its <code>inspect-image</code> command.</p>
 <!-- test:exec -->
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack inspect-image test-ruby-app
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pack inspect-image test-ruby-app
 </code></pre></div><p>You should see the following:</p>
 <!-- test:assert=contains -->
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">Run Images:
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">Run Images:
   cnbs/sample-stack-run:bionic
 
 Buildpacks:
@@ -618,7 +618,7 @@ Processes:
   worker               bash         bundle exec ruby worker.rb
 </code></pre></div><p>Apart from the above standard metadata, buildpacks can also populate information about the dependencies they have provided in form of a <code>Bill-of-Materials</code>. Let&rsquo;s see how we can use this to populate information about the version of <code>ruby</code> that was installed in the output app image.</p>
 <p>To add the <code>ruby</code> version to the output of <code>pack inspect-image</code>, we will have to provide a <code>Bill-of-Materials</code> (<code>BOM</code>) containing this information. You&rsquo;ll need to update the <code>launch.toml</code> created at the end of your <code>build</code> script:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># ...</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># ...</span>
 
 <span class="c1"># Append a Bill-of-Materials containing metadata about the provided ruby version</span>
 cat &gt;&gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt;EOL
@@ -629,7 +629,7 @@ cat &gt;&gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><spa
 </span><span class="s">EOL</span>
 </code></pre></div><p>Your <code>ruby-buildpack/bin/build</code> script should look like the following:</p>
 <!-- test:file=ruby-buildpack/bin/build -->
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
 </span><span class="cp"></span><span class="nb">set</span> -eo pipefail
 
 <span class="nb">echo</span> <span class="s2">&#34;---&gt; Ruby Buildpack&#34;</span>
@@ -709,13 +709,13 @@ cat &gt;&gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><spa
 
 </code></pre></div><p>Then rebuild your app using the updated buildpack:</p>
 <!-- test:exec -->
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 </code></pre></div><p>You should then be able to inspect your Ruby app for its Bill-of-Materials via:</p>
 <!-- test:exec -->
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">pack inspect-image test-ruby-app --bom
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pack inspect-image test-ruby-app --bom
 </code></pre></div><p>You should find that the included <code>ruby</code> version is <code>2.5.0</code> as expected.</p>
 <!-- test:assert=contains -->
-<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">    {
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">    {
       &#34;name&#34;: &#34;ruby&#34;,
       &#34;metadata&#34;: {
         &#34;version&#34;: &#34;2.5.0&#34;

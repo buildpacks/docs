@@ -593,23 +593,23 @@
         Learn how to package your buildpack for distribution using standard OCI registries.
 <h3 id="0-grab-the-sample-repo">0. Grab the sample repo</h3>
 <p>Before we start, let&rsquo;s pull down a few buildpacks from our <a href="https://github.com/buildpacks/samples">samples</a> repo.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># clone the repo</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># clone the repo</span>
 git clone https://github.com/buildpacks/samples
 </code></pre></div><h3 id="1-create-a-packagetoml">1. Create a <code>package.toml</code></h3>
 <p>We will need to create a <code>package.toml</code> file in order to tell <code>pack</code> where to find the dependencies of the buildpack
 being packaged.</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">touch package.toml
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">touch package.toml
 </code></pre></div><h3 id="2-specify-your-buildpack">2. Specify your buildpack</h3>
 <p>Let&rsquo;s start off by specifying the location of the buildpack we are packaging. In this example, we&rsquo;re packaging
 the <code>hello-universe</code>.</p>
 <p><code>package.toml</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">buildpack</span><span class="p">]</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">buildpack</span><span class="p">]</span>
 <span class="nx">uri</span> <span class="p">=</span> <span class="s2">&#34;samples/buildpacks/hello-universe/&#34;</span>
 </code></pre></div><h3 id="3-specify-your-dependent-buildpacks">3. Specify your dependent buildpacks</h3>
 <p>Next, by looking at the <code>[[order]]</code> of the <code>hello-universe</code>, we know that it depends on the <code>hello-world</code> and <code>hello-moon</code>
 buildpacks. We will need to declare the location of those dependencies as well.</p>
 <p><code>package.toml</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">buildpack</span><span class="p">]</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">buildpack</span><span class="p">]</span>
 <span class="nx">uri</span> <span class="p">=</span> <span class="s2">&#34;samples/buildpacks/hello-universe/&#34;</span>
 
 <span class="p">[[</span><span class="nx">dependencies</span><span class="p">]]</span>
@@ -622,7 +622,7 @@ buildpacks. We will need to declare the location of those dependencies as well.<
 </blockquote>
 <h3 id="4-package-your-buildpack-as-an-image">4. Package your buildpack as an image</h3>
 <p>Lastly, we&rsquo;ll run the <code>buildpack package</code> command to package the buildpack as an OCI image.</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">pack buildpack package my-buildpack --config ./package.toml
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">pack buildpack package my-buildpack --config ./package.toml
 </code></pre></div><blockquote>
 <p><strong>TIP:</strong> You can verify that the image was created by running <code>docker images</code>.</p>
 </blockquote>
@@ -631,7 +631,7 @@ buildpacks. We will need to declare the location of those dependencies as well.<
 <p>Alternatively, you can run <code>pack buildpack package</code> with <code>--publish</code> to publish it directly to the registry.</p>
 <h3 id="5-package-your-buildpack-as-a-file">5. Package your buildpack as a file</h3>
 <p>You can also run <code>buildpack package</code> with a <code>--format file</code> flag to save the packaged buildpack as a local file.</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">pack buildpack package my-buildpack.cnb --config ./package.toml --format file
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">pack buildpack package my-buildpack.cnb --config ./package.toml --format file
 </code></pre></div><p>You can then use this file (called a <code>.cnb</code> file) as an input to <code>buildpack package</code>, among other commands.</p>
 
 

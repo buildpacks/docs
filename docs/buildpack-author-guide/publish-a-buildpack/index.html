@@ -594,11 +594,11 @@
 <h3 id="0-packaging-your-buildpack">0. Packaging your buildpack</h3>
 <p>Make sure you&rsquo;ve followed the steps in <a href="/docs/buildpack-author-guide/package-a-buildpack/">Package a buildpack</a> to create your buildpack image and publish it to an OCI registry.</p>
 <p><strong>NOTE:</strong> In order to publish your buildpack to the registry, its <code>id</code> must be in the format <code>&lt;namespace&gt;/&lt;name&gt;</code>. For example:</p>
-<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">buildpack</span><span class="p">]</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">buildpack</span><span class="p">]</span>
 <span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;example/my-cnb&#34;</span>
 </code></pre></div><h3 id="1-register-your-buildpack">1. Register your buildpack</h3>
 <p>With your buildpack image published to a public OCI registry, you can now run the following command to register that buildpack with the Buildpack Registry (but you must replace <code>example/my-cnb</code> with your <em>image</em> name):</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">pack buildpack register example/my-cnb
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">pack buildpack register example/my-cnb
 </code></pre></div><p>This will open GitHub in a browser and may ask you to authenticate with GitHub. After doing so, you&rsquo;ll see a pre-populated GitHub Issue with the details of your buildpack. For example:</p>
 <p><img src="/images/registry-add-buildpack.png" alt="pre-populated GitHub Issue" /></p>
 <p>The pre-populated text in the body of the issue is considered structured data, and will be used to automatically add the buildpack to the registry index. Do not change it.</p>

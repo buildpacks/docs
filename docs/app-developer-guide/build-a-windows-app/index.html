@@ -614,7 +614,7 @@ app.</p>
 <p>For this guide we&rsquo;re going to use a sample builder, <code>cnbs/sample-builder:dotnet-framework-1809</code>.</p>
 <h3 id="2-build-your-app">2. Build your app</h3>
 <p>Now we can build our app. For this example we&rsquo;ll use our <a href="https://github.com/buildpacks/samples">samples</a> repo for simplicity.</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># clone the repo</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># clone the repo</span>
 git clone https://github.com/buildpacks/samples
 
 <span class="c1"># build the app</span>
@@ -627,7 +627,7 @@ pack build sample-app --path samples/apps/aspnet --builder cnbs/sample-builder:d
 builder by running <code>pack config default-builder &lt;BUILDER&gt;</code>.</p>
 </blockquote>
 <h3 id="3-run-it">3. Run it</h3>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">docker run --rm -it -p 8080:80 sample-app
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker run --rm -it -p 8080:80 sample-app
 </code></pre></div><p><strong>Congratulations!</strong></p>
 <p>The app should now be running and accessible via <a href="http://localhost:8080">localhost:8080</a></p>
 <hr>
@@ -636,7 +636,7 @@ builder by running <code>pack config default-builder &lt;BUILDER&gt;</code>.</p>
 <p>Essentially, this points your local Docker client (e.g. <code>docker</code> or <code>pack</code> CLI) to a remote Docker daemon. For instance, if the IP address of your host is <code>10.0.0.1</code> and its daemon is listening on port <code>2375</code>, you can set <code>DOCKER_HOST</code> to <code>tcp://10.0.0.1:2375</code>. Any subsequent <code>pack</code> or <code>docker</code> commands would communicate with the daemon on that machine instead of a local daemon.</p>
 <p>This can be used to make <code>pack</code> build Windows container images, as long as your remote Docker host is configured to support them (i.e. the host runs a Windows OS, has <a href="https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers">Windows container mode enabled</a>).</p>
 <p>Here&rsquo;s an example where <code>pack</code> on a Linux/MacOS machine can access a Windows 10 machine with Docker Desktop, using the <a href="https://docs.docker.com/docker-for-windows/#general">localhost:2375 listener</a> and the built-in <a href="https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse">OpenSSH Server</a>.</p>
-<pre><code># ssh port-forward for localhost:2375 to remote daemon
+<pre tabindex="0"><code># ssh port-forward for localhost:2375 to remote daemon
 ssh -f -N -L 2375:127.0.0.1:2375 10.0.0.1
 
 # set to your local forwarded port

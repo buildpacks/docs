@@ -1121,13 +1121,13 @@ Footer
     margin-left: 15px; }
     .sidebar li[class*="depth-"]:not(.depth-0) a {
       padding: .25rem 1rem; }
-    .sidebar li.parent[class*="depth-"]:not(.depth-0) {
+    .sidebar li[class*="depth-"]:not(.depth-0).parent {
       background: 0 0.75rem url("/images/list-item.svg") no-repeat; }
-      .sidebar li.parent[class*="depth-"]:not(.depth-0) > a {
+      .sidebar li[class*="depth-"]:not(.depth-0).parent > a {
         color: #242960; }
-    .sidebar li.active[class*="depth-"]:not(.depth-0) {
+    .sidebar li[class*="depth-"]:not(.depth-0).active {
       background: 0 0.75rem url("/images/list-item-active.svg") no-repeat; }
-      .sidebar li.active[class*="depth-"]:not(.depth-0) > a {
+      .sidebar li[class*="depth-"]:not(.depth-0).active > a {
         color: #DF0A6B; }
 
 .docs {
