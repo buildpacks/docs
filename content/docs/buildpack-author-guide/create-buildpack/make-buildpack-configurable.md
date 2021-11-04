@@ -63,7 +63,7 @@ ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/rub
 wget -q -O - "$ruby_url" | tar -xzf - -C "$rubylayer"
 
 # 4. MAKE RUBY AVAILABLE DURING LAUNCH
-echo -e 'launch = true' > "$layersdir/ruby.toml"
+echo -e '[types]\nlaunch = true' > "$layersdir/ruby.toml"
 
 # 5. MAKE RUBY AVAILABLE TO THIS SCRIPT
 export PATH="$rubylayer"/bin:$PATH
@@ -89,6 +89,7 @@ else
     echo "---> Installing gems"
     mkdir -p "$bundlerlayer"
     cat > "$layersdir/bundler.toml" <<EOL
+[types]
 cache = true
 launch = true
 
@@ -105,6 +106,7 @@ cat > "$layersdir/launch.toml" <<EOL
 [[processes]]
 type = "web"
 command = "bundle exec ruby app.rb"
+default = true
 
 # our worker process
 [[processes]]
