@@ -620,7 +620,7 @@ mkdir -p <span class="s2">&#34;</span><span class="nv">$rubylayer</span><span cl
 wget -q -O - <span class="s2">&#34;</span><span class="nv">$ruby_url</span><span class="s2">&#34;</span> <span class="p">|</span> tar -xzf - -C <span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>
 </code></pre></div><p>This code uses the <code>wget</code> tool to download the Ruby binaries from the given URL, and extracts it to the <code>rubylayer</code> directory.</p>
 <p>The last step in creating a layer is writing a TOML file that contains metadata about the layer. The TOML file&rsquo;s name must match the name of the layer (in this example it&rsquo;s <code>ruby.toml</code>). Without this file, the Buildpack lifecycle will ignore the layer directory. For the Ruby layer, we need to ensure it is available in the launch image by setting the <code>launch</code> key to <code>true</code>. Add the following code to the build script:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> -e <span class="s1">&#39;launch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/ruby.toml&#34;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> -e <span class="s1">&#39;[types]\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/ruby.toml&#34;</span>
 </code></pre></div><h3 id="installing-dependencies">Installing Dependencies</h3>
 <p>Next, we&rsquo;ll use the Ruby runtime you installed to download the application&rsquo;s dependencies. First, we need to make the Ruby executables available to our script by putting it on the Path. Add the following code to the end of the <code>build</code> script:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>/bin:<span class="nv">$PATH</span>
@@ -653,7 +653,7 @@ mkdir -p <span class="s2">&#34;</span><span class="nv">$rubylayer</span><span cl
 wget -q -O - <span class="s2">&#34;</span><span class="nv">$ruby_url</span><span class="s2">&#34;</span> <span class="p">|</span> tar -xzf - -C <span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>
 
 <span class="c1"># 4. MAKE RUBY AVAILABLE DURING LAUNCH</span>
-<span class="nb">echo</span> -e <span class="s1">&#39;launch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/ruby.toml&#34;</span>
+<span class="nb">echo</span> -e <span class="s1">&#39;[types]\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/ruby.toml&#34;</span>
 
 <span class="c1"># 5. MAKE RUBY AVAILABLE TO THIS SCRIPT</span>
 <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>/bin:<span class="nv">$PATH</span>

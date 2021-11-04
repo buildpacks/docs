@@ -598,20 +598,20 @@
 <p>We show how to solve both of these constraints.</p>
 <h2 id="making-pack-proxy-aware">Making <code>pack</code> Proxy Aware</h2>
 <p>You may need the <code>pack</code> command-line tool to download buildpacks and images via your proxy.  Building an application with an incorrectly configured proxy results in errors such as the following:</p>
-<pre tabindex="0"><code class="language-console" data-lang="console">$ pack build sample-app --path samples/apps/java-maven --builder cnbs/sample-builder:bionic
-ERROR: failed to build: failed to fetch builder image 'index.docker.io/cnbs/sample-builder:bionic'
-: Error response from daemon: Get &quot;https//registry-1.docker.io/v2/&quot;: context deadline exceeded
-</code></pre><p>The <code>pack</code> tool uses the Docker daemon to manage the local image registry on your machine.  The <code>pack</code> tool will ask the Docker daemon to download buildpacks and images for you.  Because of this relationship, between <code>pack</code> and the Docker daemon, we need to configure the Docker daemon to use a HTTP proxy.  The approach to setting the HTTP proxy depends on your platform:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="gp">$ </span>pack build sample-app --path samples/apps/java-maven --builder cnbs/sample-builder:bionic
+<span class="go">ERROR: failed to build: failed to fetch builder image &#39;index.docker.io/cnbs/sample-builder:bionic&#39;
+</span><span class="go">: Error response from daemon: Get &#34;https//registry-1.docker.io/v2/&#34;: context deadline exceeded
+</span></code></pre></div><p>The <code>pack</code> tool uses the Docker daemon to manage the local image registry on your machine.  The <code>pack</code> tool will ask the Docker daemon to download buildpacks and images for you.  Because of this relationship, between <code>pack</code> and the Docker daemon, we need to configure the Docker daemon to use a HTTP proxy.  The approach to setting the HTTP proxy depends on your platform:</p>
 <h3 id="docker-desktop-windows-and-macos">Docker Desktop (Windows and MacOS)</h3>
 <p>Docker&rsquo;s documetation states &ldquo;Docker Desktop lets you configure HTTP/HTTPS Proxy Settings and automatically propagates these to Docker&rdquo;.  Set the system proxy using the <a href="https://support.apple.com/en-gb/guide/mac-help/mchlp2591/mac">MacOS documentation</a> or <a href="https://www.dummies.com/computers/operating-systems/windows-10/how-to-set-up-a-proxy-in-windows-10/">Windows documentation</a>.  The system proxy settings will be used by Docker Desktop.</p>
 <h3 id="linux">Linux</h3>
 <p>The Docker project documents <a href="https://docs.docker.com/config/daemon/systemd/#httphttps-proxy">how to configure configure the HTTP/HTTPS proxy</a> settings for the Docker daemon on Linux.  You should configure the <code>HTTP_PROXY</code> and <code>HTTPS_PROXY</code> environment variables as part of the Docker daemon startup.</p>
 <h2 id="proxy-settings-for-buildpacks">Proxy Settings for Buildpacks</h2>
 <p>Buildpacks may also need to be aware of your http and https proxies at build time.  For example python, java and nodejs buildpacks need to be aware of proxies in order to resolve dependencies.  To make buildpacks aware of proxies, export the <code>http_proxy</code> and <code>https_proxy</code> environment variables before invoking <code>pack</code>.  For example:</p>
-<pre tabindex="0"><code class="language-console" data-lang="console">export http_proxy=http://user:pass@my-proxy.example.com:3128
-export https_proxy=https://my-proxy.example.com:3129
-pack build sample-app --path samples/apps/java-maven --builder cnbs/sample-builder:bionic
-</code></pre><h2 id="making-your-application-proxy-aware">Making your Application Proxy Aware</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="go">export http_proxy=http://user:pass@my-proxy.example.com:3128
+</span><span class="go">export https_proxy=https://my-proxy.example.com:3129
+</span><span class="go">pack build sample-app --path samples/apps/java-maven --builder cnbs/sample-builder:bionic
+</span></code></pre></div><h2 id="making-your-application-proxy-aware">Making your Application Proxy Aware</h2>
 <p>Your application may need to use http or https proxies to access web-based APIs.  In order to make proxy settings available inside containers you should edit your <code>~/.docker/config.json</code> file (<code>%USERPROFILE%\.docker\config.json</code> on Windows) to contain the proxy information.  The <code>httpProxy</code>, <code>httpsProxy</code> and <code>noProxy</code> properties of this configuration file are injected into containers at build time and at run time as the <code>HTTP_PROXY</code>, <code>HTTPS_PROXY</code> and <code>NO_PROXY</code> environment variables respectively.  Both the http and https proxy settings are also injected in their lower-case form as <code>http_proxy</code> and <code>https_proxy</code>.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
   <span class="nt">&#34;proxies&#34;</span><span class="p">:</span> <span class="p">{</span>

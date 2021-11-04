@@ -602,7 +602,7 @@ bundle install
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing gems&#34;</span>
 <span class="nv">bundlerlayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler&#34;</span>
 mkdir -p <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span>
-<span class="nb">echo</span> -e <span class="s1">&#39;cache = true\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler.toml&#34;</span>
+<span class="nb">echo</span> -e <span class="s1">&#39;[types]\ncache = true\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler.toml&#34;</span>
 bundle config <span class="nb">set</span> --local path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> <span class="o">&amp;&amp;</span> bundle install <span class="o">&amp;&amp;</span> bundle binstubs --all --path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span>
 
 </code></pre></div><p>Your full <code>ruby-buildpack/bin/build</code> script should now look like the following:</p>
@@ -625,7 +625,7 @@ mkdir -p <span class="s2">&#34;</span><span class="nv">$rubylayer</span><span cl
 wget -q -O - <span class="s2">&#34;</span><span class="nv">$ruby_url</span><span class="s2">&#34;</span> <span class="p">|</span> tar -xzf - -C <span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>
 
 <span class="c1"># 4. MAKE RUBY AVAILABLE DURING LAUNCH</span>
-<span class="nb">echo</span> -e <span class="s1">&#39;launch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/ruby.toml&#34;</span>
+<span class="nb">echo</span> -e <span class="s1">&#39;[types]\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/ruby.toml&#34;</span>
 
 <span class="c1"># 5. MAKE RUBY AVAILABLE TO THIS SCRIPT</span>
 <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>/bin:<span class="nv">$PATH</span>
@@ -640,7 +640,7 @@ gem install bundler --no-ri --no-rdoc
 <span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing gems&#34;</span>
 <span class="nv">bundlerlayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler&#34;</span>
 mkdir -p <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span>
-<span class="nb">echo</span> -e <span class="s1">&#39;cache = true\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler.toml&#34;</span>
+<span class="nb">echo</span> -e <span class="s1">&#39;[types]\ncache = true\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler.toml&#34;</span>
 bundle config <span class="nb">set</span> --local path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> <span class="o">&amp;&amp;</span> bundle install <span class="o">&amp;&amp;</span> bundle binstubs --all --path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span>
 
 <span class="c1"># 8. SET DEFAULT START COMMAND</span>
@@ -649,6 +649,7 @@ cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span cl
 </span><span class="s">[[processes]]
 </span><span class="s">type = &#34;web&#34;
 </span><span class="s">command = &#34;bundle exec ruby app.rb&#34;
+</span><span class="s">default = true
 </span><span class="s">
 </span><span class="s"># our worker process
 </span><span class="s">[[processes]]
@@ -696,7 +697,7 @@ BUNDLED WITH
 <span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing gems&#34;</span>
 <span class="nv">bundlerlayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler&#34;</span>
 mkdir -p <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span>
-<span class="nb">echo</span> -e <span class="s1">&#39;cache = true\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler.toml&#34;</span>
+<span class="nb">echo</span> -e <span class="s1">&#39;[types]\ncache = true\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler.toml&#34;</span>
 bundle config <span class="nb">set</span> --local path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> <span class="o">&amp;&amp;</span> bundle install <span class="o">&amp;&amp;</span> bundle binstubs --all --path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span>
 
 
@@ -719,6 +720,7 @@ bundle config <span class="nb">set</span> --local path <span class="s2">&#34;</s
     <span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing gems&#34;</span>
     mkdir <span class="o">-</span>p <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span>
     cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler.toml&#34;</span> <span class="s">&lt;&lt;EOL
+</span><span class="s">[types]
 </span><span class="s">cache = true
 </span><span class="s">launch = true
 </span><span class="s">
@@ -748,7 +750,7 @@ mkdir -p <span class="s2">&#34;</span><span class="nv">$rubylayer</span><span cl
 wget -q -O - <span class="s2">&#34;</span><span class="nv">$ruby_url</span><span class="s2">&#34;</span> <span class="p">|</span> tar -xzf - -C <span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>
 
 <span class="c1"># 4. MAKE RUBY AVAILABLE DURING LAUNCH</span>
-<span class="nb">echo</span> -e <span class="s1">&#39;launch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/ruby.toml&#34;</span>
+<span class="nb">echo</span> -e <span class="s1">&#39;[types]\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/ruby.toml&#34;</span>
 
 <span class="c1"># 5. MAKE RUBY AVAILABLE TO THIS SCRIPT</span>
 <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>/bin:<span class="nv">$PATH</span>
@@ -775,6 +777,7 @@ gem install bundler --no-ri --no-rdoc
     <span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing gems&#34;</span>
     mkdir <span class="o">-</span>p <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span>
     cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler.toml&#34;</span> <span class="s">&lt;&lt;EOL
+</span><span class="s">[types]
 </span><span class="s">cache = true
 </span><span class="s">launch = true
 </span><span class="s">
@@ -791,6 +794,7 @@ cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span cl
 </span><span class="s">[[processes]]
 </span><span class="s">type = &#34;web&#34;
 </span><span class="s">command = &#34;bundle exec ruby app.rb&#34;
+</span><span class="s">default = true
 </span><span class="s">
 </span><span class="s"># our worker process
 </span><span class="s">[[processes]]
