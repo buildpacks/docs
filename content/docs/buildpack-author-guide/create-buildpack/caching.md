@@ -153,7 +153,7 @@ Note that there may be times when you would want to clean the cached layer from 
 ```bash
 # Compares previous Gemfile.lock checksum to the current Gemfile.lock
 bundlerlayer="$layersdir/bundler"
-local_bundler_checksum=$((sha256sum Gemfile.lock >/dev/null 2>&1 || echo 'DOES_NOT_EXIST') | cut -d ' ' -f 1)
+local_bundler_checksum=$((sha256sum Gemfile.lock || echo 'DOES_NOT_EXIST') | cut -d ' ' -f 1)
 remote_bundler_checksum=$(cat "$layersdir/bundler.toml" | yj -t | jq -r .metadata.checksum 2>/dev/null || echo 'DOES_NOT_EXIST')
 
 if [[ -f Gemfile.lock && $local_bundler_checksum == $remote_bundler_checksum ]] ; then
@@ -214,7 +214,7 @@ gem install bundler --no-ri --no-rdoc
 # 7. INSTALL GEMS
 # Compares previous Gemfile.lock checksum to the current Gemfile.lock
 bundlerlayer="$layersdir/bundler"
-local_bundler_checksum=$((sha256sum Gemfile.lock >/dev/null 2>&1 || echo 'DOES_NOT_EXIST') | cut -d ' ' -f 1)
+local_bundler_checksum=$((sha256sum Gemfile.lock || echo 'DOES_NOT_EXIST') | cut -d ' ' -f 1)
 remote_bundler_checksum=$(cat "$layersdir/bundler.toml" | yj -t | jq -r .metadata.checksum 2>/dev/null || echo 'DOES_NOT_EXIST')
 
 if [[ -f Gemfile.lock && $local_bundler_checksum == $remote_bundler_checksum ]] ; then
