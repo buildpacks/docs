@@ -10,7 +10,7 @@ import (
 	"strings"
 
 	"github.com/buildpacks/pack/cmd"
-	"github.com/buildpacks/pack/logging"
+	"github.com/buildpacks/pack/pkg/logging"
 	"github.com/spf13/cobra/doc"
 )
 
@@ -72,7 +72,7 @@ func (l packLogger) WantQuiet(f bool)   {}
 func (l packLogger) WantVerbose(f bool) {}
 
 func newLogger() packLogger {
-	log := logging.New(ioutil.Discard)
+	log := logging.NewSimpleLogger(ioutil.Discard)
 	return packLogger{
 		log,
 	}

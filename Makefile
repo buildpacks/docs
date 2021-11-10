@@ -45,11 +45,11 @@ else
 ifeq ($(shell uname -s),Darwin)
 	HUGO_OS:=macOS
 endif
-UNAME_P:=$(shell uname -p)
-ifneq ($(filter %64,$(UNAME_P)),)
+UNAME_M:=$(shell uname -m)
+ifneq ($(filter %64,$(UNAME_M)),)
 	HUGO_ARCH:=64bit
 endif
-ifneq ($(filter arm%,$(UNAME_P)),)
+ifneq ($(filter arm%,$(UNAME_M)),)
 	HUGO_ARCH:=ARM64
 endif
 endif
