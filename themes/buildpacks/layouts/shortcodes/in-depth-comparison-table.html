@@ -1,0 +1,220 @@
+<div style="overflow-x: auto; width: 100%">
+  <p class="text-pink font-weight-bold">
+    Select a tool to compare buildpacks against
+  </p>
+
+  <div style="overflow-x: auto">
+    <table
+      class="table table-striped table-hover text-center bs-0 bg-white border"
+    >
+      <thead class="bg-white text-pink" style="vertical-align: bottom">
+        <tr>
+          <th style="width: 50%" class="py-3">
+            <div class="px-5 py-3">
+              <img
+                src="/images/buildpacks-logo-bug.svg"
+                style="max-width: 200px; max-height: 50px"
+                alt="docker"
+              />
+            </div>
+            <div>Cloud Native Buildpacks</div>
+          </th>
+          <th class="py-3">
+            <div class="py-3">
+              <img
+                src="/images/docker.png"
+                style="max-width: 200px; max-height: 50px"
+                alt="docker"
+              />
+            </div>
+            <div>Dockerfile</div>
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td class="border-left border-right">
+            <div style="text-align: left">
+              <p class="text-pink font-weight-bold">What is it?</p>
+              Cloud Native Buildpacks transform your application source code
+              into images that can run on any cloud.
+            </div>
+          </td>
+          <td>
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              A Dockerfile is a text file that contains commands that will be
+              executed by docker to build a container image.
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="border-left border-right">
+            <div style="overflow-x: auto; text-align: left">
+              <p class="text-pink font-weight-bold">Bill of Materials</p>
+              Buildpacks can populate BOM information about the dependencies
+              they have provided and a list of what buildpacks were used to
+              build the application.
+            </div>
+          </td>
+          <td>
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              No, Need to use external tools with dockerfiles to add a software
+              bill of materials
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="border-left border-right">
+            <div style="overflow-x: auto; text-align: left">
+              <p class="text-pink font-weight-bold">Reproducibility</p>
+              Cloud Native Buildpacks project aims to create “Reproducible
+              Builds” of container images. For image creation commands (builder
+              create, buildpack package, build) pack creates container images in
+              a reproducible fashion.
+            </div>
+          </td>
+          <td>
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              No, reproducible builds with dockerfiles come with caveats.
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="border-left border-right">
+            <div style="overflow-x: auto; text-align: left">
+              <p class="text-pink font-weight-bold">Advanced Caching</p>
+              Buildpacks implement advanced caching of images, cache images are
+              a way to preserve build optimizing layers across different host
+              machines. These images can improve performance when using pack in
+              ephemeral environments such as CI/CD pipelines.
+            </div>
+          </td>
+          <td>
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              No, Requires configuration in the Dockerfile, the cache relies on
+              both the instruction being executed and the image generated from
+              the previous instruction, changing any instruction in the
+              Dockerfile will invalidate the cache for all of the instructions
+              that follow it. Invalidating an image also invalidates all the
+              children of that image.
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="border-left border-right">
+            <div style="overflow-x: auto; text-align: left">
+              <p class="text-pink font-weight-bold">Minimal App Image</p>
+              Buildpacks provide minimal app image. Images contain only what is
+              necessary, extra workarounds not needed.
+            </div>
+          </td>
+          <td>
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              Yes, provided the Dockerfile is configured accordingly, e.g. using
+              appropriate base images, etc.
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="border-left border-right">
+            <div style="overflow-x: auto; text-align: left">
+              <p class="text-pink font-weight-bold">Multi-Language</p>
+              Cloud Native Buildpacks provide support for several programming
+              languages and applications
+            </div>
+          </td>
+          <td>
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              Yes, Dockerfiles can be configured according to the needs of the
+              build.
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="border-left border-right">
+            <div style="overflow-x: auto; text-align: left">
+              <p class="text-pink font-weight-bold">Auto-Detection</p>
+              Cloud Native Buildpacks support auto-detection. This happens when
+              a platform sequentially tests groups of buildpacks against your
+              app’s source code. Detection criteria is specific to each
+              buildpack – for instance, an NPM buildpack might look for a
+              package.json, and a Go buildpack might look for Go source files.
+            </div>
+          </td>
+          <td>
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              No, Dockerfiles need to be written and configured according to the
+              needs of build.
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="border-left border-right">
+            <div style="overflow-x: auto; text-align: left">
+              <p class="text-pink font-weight-bold">Rebasing</p>
+              By inspecting an app image pack can determine whether a newer
+              version of the app's base image exists, if so, it updates the app
+              image's layer metadata to reference the newer base image version.
+            </div>
+          </td>
+          <td>
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              No, if the base image changes, the app needs to be rebuilt.
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="border-left border-right">
+            <div style="overflow-x: auto; text-align: left">
+              <p class="text-pink font-weight-bold">Integrations</p>
+              Azure, CircleCI, GitLab, Google, Heroku, Spring Boot, Tekton..
+            </div>
+          </td>
+          <td>
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              Amazon ECS, Azure, CircleCI, GitLab, Google, Tekton..
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="border-left border-right">
+            <div style="overflow-x: auto; text-align: left">
+              <p class="text-pink font-weight-bold">Best used for Building..</p>
+              Applications
+            </div>
+          </td>
+          <td>
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              Applications, Base Images, OS Images
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<br />

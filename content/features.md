@@ -14,7 +14,7 @@ Robust caching is used to improve performance.
 {{< feature title="Auto-detection" align="right" >}}
 Images can be built directly from application source without additional instructions.
 {{</>}}
-  
+
 {{< feature title="Bill-of-Materials" >}}
 Insights into the contents of the app image.
 {{</>}}
@@ -52,3 +52,11 @@ Leverage production-ready buildpacks maintained by the community.
 ## Comparison
 
 {{< comparison-table >}}
+
+## Compare Similar tools
+
+{{< in-depth-comparison-table >}}
+
+## Blogs and articles
+
+{{< blog-cards >}}
