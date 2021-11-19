@@ -129,7 +129,7 @@ A buildpack must contain a `buildpack.toml` file in its root directory.
 ### Example
 
 ```
-api = "0.5"
+api = "0.7"
 
 [buildpack]
 id = "example.com/python"
@@ -163,6 +163,27 @@ The schema is as follows:
 
     - **`clear-env`** _(boolean, optional, default: `false`)_\
     Clears user-defined environment variables when `true` on executions of `bin/detect` and `bin/build`.
+    
+    - **`homepage`** _(string, optional)_\
+    Buildpack homepage.
+    
+    - **`description`** _(string, optional)_\
+    A short description of the buildpack.
+    
+    - **`keywords`** _(string(s), optional)_\
+    Keywords to help locate the buildpack. These can be useful if publishing to the [Buildpack Registry](https://registry.buildpacks.io/).
+    
+    - **`sbom-formats`** _(string(s), optional)_\
+    SBOM formats output by the buildpack. Supported values are the following media types: `application/vnd.cyclonedx+json`, `application/spdx+json`, and `application/vnd.syft+json`.
+    
+    - **`licenses`** _(list, optional)_\
+    A list of licenses pertaining to the buildpack.
+    
+        - **`type`** _(string, optional)_\
+        The type of the license. This may use the [SPDX 2.1 license expression](https://spdx.org/spdx-specification-21-web-version), but it is not limited to identifiers in the [SPDX Licenses List](https://spdx.org/licenses/). If the buildpack is using a nonstandard license, then the `uri` key may be specified in lieu of or in addition to `type` to point to the license.
+    
+        - **`uri`** _(string, optional)_\
+        A URL or path to the license.
 
 - **`stacks`** _(list, optional)_\
     A list of stacks supported by the buildpack.
