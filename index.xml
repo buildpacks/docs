@@ -482,6 +482,15 @@ This API will be used by buildpack authors.&lt;/p&gt;</description>
     </item>
     
     <item>
+      <title>Buildpack API 0.6 -&gt; 0.7</title>
+      <link>https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.6-0.7/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.6-0.7/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>CircleCI</title>
       <link>https://buildpacks.io/docs/tools/circleci/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -950,6 +959,15 @@ This API is used by platform implementors.&lt;/p&gt;</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://buildpacks.io/docs/reference/spec/migration/platform-api-0.6-0.7/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Platform API 0.7 -&gt; 0.8</title>
+      <link>https://buildpacks.io/docs/reference/spec/migration/platform-api-0.7-0.8/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/reference/spec/migration/platform-api-0.7-0.8/</guid>
       <description></description>
     </item>
     

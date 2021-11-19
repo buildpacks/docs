@@ -543,6 +543,9 @@
 <li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.5-0.6/" class="dd-item depth-3 collapse">
   <a href="/docs/reference/spec/migration/buildpack-api-0.5-0.6/">Buildpack API 0.5 -&gt; 0.6</a>
 </li>
+<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.6-0.7/" class="dd-item depth-3 collapse">
+  <a href="/docs/reference/spec/migration/buildpack-api-0.6-0.7/">Buildpack API 0.6 -&gt; 0.7</a>
+</li>
 <li data-nav-id="/docs/reference/spec/migration/platform-api-0.3-0.4/" class="dd-item depth-3 collapse">
   <a href="/docs/reference/spec/migration/platform-api-0.3-0.4/">Platform API 0.3 -&gt; 0.4</a>
 </li>
@@ -554,6 +557,9 @@
 </li>
 <li data-nav-id="/docs/reference/spec/migration/platform-api-0.6-0.7/" class="dd-item depth-3 collapse">
   <a href="/docs/reference/spec/migration/platform-api-0.6-0.7/">Platform API 0.6 -&gt; 0.7</a>
+</li>
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.7-0.8/" class="dd-item depth-3 collapse">
+  <a href="/docs/reference/spec/migration/platform-api-0.7-0.8/">Platform API 0.7 -&gt; 0.8</a>
 </li>
   </ul>
 </li>
@@ -678,7 +684,7 @@ echo &quot;launch = true&quot; &gt; &quot;$PIP_LAYER.toml&quot;
 </code></pre><h2 id="buildpacktoml"><code>buildpack.toml</code></h2>
 <p>A buildpack must contain a <code>buildpack.toml</code> file in its root directory.</p>
 <h3 id="example-2">Example</h3>
-<pre tabindex="0"><code>api = &quot;0.5&quot;
+<pre tabindex="0"><code>api = &quot;0.7&quot;
 
 [buildpack]
 id = &quot;example.com/python&quot;
@@ -717,6 +723,36 @@ Human readable name.</p>
 <li>
 <p><strong><code>clear-env</code></strong> <em>(boolean, optional, default: <code>false</code>)</em><br>
 Clears user-defined environment variables when <code>true</code> on executions of <code>bin/detect</code> and <code>bin/build</code>.</p>
+</li>
+<li>
+<p><strong><code>homepage</code></strong> <em>(string, optional)</em><br>
+Buildpack homepage.</p>
+</li>
+<li>
+<p><strong><code>description</code></strong> <em>(string, optional)</em><br>
+A short description of the buildpack.</p>
+</li>
+<li>
+<p><strong><code>keywords</code></strong> <em>(string(s), optional)</em><br>
+Keywords to help locate the buildpack. These can be useful if publishing to the <a href="https://registry.buildpacks.io/">Buildpack Registry</a>.</p>
+</li>
+<li>
+<p><strong><code>sbom-formats</code></strong> <em>(string(s), optional)</em><br>
+SBOM formats output by the buildpack. Supported values are the following media types: <code>application/vnd.cyclonedx+json</code>, <code>application/spdx+json</code>, and <code>application/vnd.syft+json</code>.</p>
+</li>
+<li>
+<p><strong><code>licenses</code></strong> <em>(list, optional)</em><br>
+A list of licenses pertaining to the buildpack.</p>
+<ul>
+<li>
+<p><strong><code>type</code></strong> <em>(string, optional)</em><br>
+The type of the license. This may use the <a href="https://spdx.org/spdx-specification-21-web-version">SPDX 2.1 license expression</a>, but it is not limited to identifiers in the <a href="https://spdx.org/licenses/">SPDX Licenses List</a>. If the buildpack is using a nonstandard license, then the <code>uri</code> key may be specified in lieu of or in addition to <code>type</code> to point to the license.</p>
+</li>
+<li>
+<p><strong><code>uri</code></strong> <em>(string, optional)</em><br>
+A URL or path to the license.</p>
+</li>
+</ul>
 </li>
 </ul>
 </li>

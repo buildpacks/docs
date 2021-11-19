@@ -9,7 +9,7 @@
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<link rel="canonical" content="https://buildpacks.io/docs/reference/spec/migration/platform-api-0.5-0.6/">
+<link rel="canonical" content="https://buildpacks.io/docs/reference/spec/migration/platform-api-0.7-0.8/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
 
@@ -17,9 +17,9 @@
 
 
 
-<meta property="og:title" content="Platform API 0.5 -&gt; 0.6 · Cloud Native Buildpacks">
+<meta property="og:title" content="Platform API 0.7 -&gt; 0.8 · Cloud Native Buildpacks">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://buildpacks.io/docs/reference/spec/migration/platform-api-0.5-0.6/">
+<meta property="og:url" content="https://buildpacks.io/docs/reference/spec/migration/platform-api-0.7-0.8/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
 
@@ -33,7 +33,7 @@
 
 
 
-<meta property="twitter:title" content="Platform API 0.5 -&gt; 0.6 · Cloud Native Buildpacks">
+<meta property="twitter:title" content="Platform API 0.7 -&gt; 0.8 · Cloud Native Buildpacks">
 <meta property="twitter:card" content="summary">
 <meta property="twitter:image" content="https://buildpacks.io/images/buildpacks-social-card-square.jpg">
 <meta property="twitter:image:alt" content="Buildpacks project logo">
@@ -82,7 +82,7 @@
     gtag('config', 'G-CJLSR4FQXL');
   </script>
 
-  <title>Platform API 0.5 - 0.6 · Cloud Native Buildpacks</title>
+  <title>Platform API 0.7 - 0.8 · Cloud Native Buildpacks</title>
 </head>
 
 <body>
@@ -550,13 +550,13 @@
 <li data-nav-id="/docs/reference/spec/migration/platform-api-0.4-0.5/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/platform-api-0.4-0.5/">Platform API 0.4 -&gt; 0.5</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.5-0.6/" class="dd-item depth-3 active">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.5-0.6/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/platform-api-0.5-0.6/">Platform API 0.5 -&gt; 0.6</a>
 </li>
 <li data-nav-id="/docs/reference/spec/migration/platform-api-0.6-0.7/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/platform-api-0.6-0.7/">Platform API 0.6 -&gt; 0.7</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.7-0.8/" class="dd-item depth-3">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.7-0.8/" class="dd-item depth-3 active">
   <a href="/docs/reference/spec/migration/platform-api-0.7-0.8/">Platform API 0.7 -&gt; 0.8</a>
 </li>
   </ul>
@@ -580,12 +580,12 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BPlatform&#43;API&#43;0.5&#43;-%26gt%3B&#43;0.6%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Freference%2Fspec%2Fmigration%2Fplatform-api-0.5-0.6%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BPlatform&#43;API&#43;0.7&#43;-%26gt%3B&#43;0.8%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Freference%2Fspec%2Fmigration%2Fplatform-api-0.7-0.8%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/reference/spec/migration/platform-api-0.5-0.6.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/reference/spec/migration/platform-api-0.7-0.8.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
@@ -593,22 +593,58 @@
 
 
         <div class="heading">
-          <h1 class="title">Platform API 0.5 -&gt; 0.6</h1>
+          <h1 class="title">Platform API 0.7 -&gt; 0.8</h1>
         </div>
 
         <p>This guide is most relevant to platform operators.</p>
-<p>See the <a href="https://github.com/buildpacks/spec/releases/tag/platform%2Fv0.6">spec release</a> for platform API 0.6 for the full list of changes and further details.</p>
+<p>See the <a href="https://github.com/buildpacks/spec/releases/tag/platform%2Fv0.8">spec release</a> for platform API 0.8 for the full list of changes and further details.</p>
 <h2 id="platform-operator">Platform Operator</h2>
-<h3 id="default-process-type-not-set-if-none-is-specified">Default process type not set if none is specified</h3>
-<p>The <code>exporter</code> will no longer set the default process type if none is specified (even if there is only one process). Buildpacks implementing Buildpack API 0.6 or greater may set the default process type, or it may be specified by passing <code>-process-type</code> to the <code>exporter</code>. To enable buildpacks implementing older Buildpack APIs to work with newer buildpacks, the lifecycle will assume that buildpacks that implement Buildpack API less than 0.6 intended for <code>web</code> processes to be the default.</p>
-<h3 id="new-location-for-ordertoml">New location for order.toml</h3>
-<p>The <code>detector</code> will now look for <code>order.toml</code> in <code>&lt;layers&gt;</code> before checking other paths. This enables platforms to write <code>order.toml</code> into a mounted <code>&lt;layers&gt;</code> directory and override the builder&rsquo;s <code>order.toml</code> without knowing where it is saved on the builder.</p>
-<h3 id="image-working-directory-is-set-to-app-directory">Image working directory is set to app directory</h3>
-<p>The working directory on the exported image config will match the value of <code>CNB_APP_DIR</code>. This means that when running the image, processes started without the launcher will still use the app directory as the working directory.</p>
-<h3 id="condensed-exit-codes">Condensed exit codes</h3>
-<p>Lifecycle exit codes are condensed to be within 0-255 so that they are understandable when surfaced in Bash. Platforms should take note of the new values when interpreting exit codes returned by the lifecycle. See the <a href="/docs/concepts/components/lifecycle/">lifecycle</a> component pages for more information.</p>
-<h3 id="image-manifest-size-in-reporttoml">Image manifest size in report.toml</h3>
-<p>The report.toml output by the exporter will now include the image manifest size in bytes. Note that this only applies to published images, as images exported to a docker daemon will not have a manifest.</p>
+<h3 id="new-standardized-sbom-format">New standardized SBOM format</h3>
+<p>Buildpacks implementing Buildpack API 0.7+ may output write Software Bill of Materials (SBOM) files describing build- or run-time dependencies. These files must use the <code>application/vnd.cyclonedx+json</code>, <code>application/spdx+json</code>, or <code>application/vnd.syft+json</code> media types (a buildpack may output SBOM files in multiple formats). Files may be written to the following locations:</p>
+<ul>
+<li><code>&lt;layers&gt;/&lt;buildpack-id&gt;/&lt;layer&gt;.sbom.&lt;ext&gt;</code> - for describing dependencies associated with a layer</li>
+<li><code>&lt;layers&gt;/&lt;buildpack-id&gt;/launch.sbom.&lt;ext&gt;</code> - for describing run-time dependencies not associated with a layer</li>
+<li><code>&lt;layers&gt;/&lt;buildpack-id&gt;/build.sbom.&lt;ext&gt;</code> - for describing build-time dependencies not associated with a layer</li>
+</ul>
+<p>Valid <code>&lt;ext&gt;</code> extensions are as follows:</p>
+<table>
+<thead>
+<tr>
+<th>SBOM Media Type</th>
+<th>File Extension</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>application/vnd.cyclonedx+json</code></td>
+<td><code>cdx.json</code></td>
+</tr>
+<tr>
+<td><code>application/spdx+json</code></td>
+<td><code>spdx.json</code></td>
+</tr>
+<tr>
+<td><code>application/vnd.syft+json</code></td>
+<td><code>syft.json</code></td>
+</tr>
+</tbody>
+</table>
+<h4 id="launch">Launch</h4>
+<p>SBOM files for launch will be included in the application image at the following locations:</p>
+<ul>
+<li><code>&lt;layers&gt;/&lt;buildpack-id&gt;/&lt;layer&gt;.sbom.&lt;ext&gt;</code> (as written by the buildpack) is moved to <code>&lt;layers&gt;/sbom/launch/&lt;buildpack-id&gt;/&lt;layer&gt;/sbom.&lt;ext&gt;</code> for launch layers</li>
+<li><code>&lt;layers&gt;/&lt;buildpack-id&gt;/launch.sbom.&lt;ext&gt;</code> (as written by the buildpack) is moved to <code>&lt;layers&gt;/sbom/launch/&lt;buildpack-id&gt;/sbom.&lt;ext&gt;</code></li>
+</ul>
+<p>The platform can retrieve the digest of the layer containing the SBOM files by reading the <code>sbom</code> key from the <code>io.buildpacks.lifecycle.metadata</code> label.</p>
+<h4 id="build">Build</h4>
+<p>SBOM files for build will be available in the build container at the following locations:</p>
+<ul>
+<li><code>&lt;layers&gt;/&lt;buildpack-id&gt;/&lt;layer&gt;.sbom.&lt;ext&gt;</code> (as written by the buildpack) is moved to <code>&lt;layers&gt;/sbom/build/&lt;buildpack-id&gt;/&lt;layer&gt;/sbom.&lt;ext&gt;</code> for non-launch layers</li>
+<li><code>&lt;layers&gt;/&lt;buildpack-id&gt;/build.sbom.&lt;ext&gt;</code> (as written by the buildpack) is moved to <code>&lt;layers&gt;/sbom/build/&lt;buildpack-id&gt;/sbom.&lt;ext&gt;</code></li>
+</ul>
+<p>Note that the <code>&lt;layers&gt;/sbom/build</code> directory is NOT present in the application image. It may be saved off by the platform prior to the build container exiting.</p>
+<h4 id="backwards-compatibility---older-buildpacks">Backwards compatibility - older buildpacks</h4>
+<p>Platforms can continue to retrieve BOM information output by buildpacks implementing Buildpack API &lt; 0.7 by reading the <code>bom</code> key in the <code>io.buildpacks.build.metadata</code> label (for run-time dependencies), and by saving off report.toml prior to the build container exiting (for build-time dependencies).</p>
 
         
 
@@ -618,12 +654,12 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BPlatform&#43;API&#43;0.5&#43;-%26gt%3B&#43;0.6%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Freference%2Fspec%2Fmigration%2Fplatform-api-0.5-0.6%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BPlatform&#43;API&#43;0.7&#43;-%26gt%3B&#43;0.8%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Freference%2Fspec%2Fmigration%2Fplatform-api-0.7-0.8%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/reference/spec/migration/platform-api-0.5-0.6.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/reference/spec/migration/platform-api-0.7-0.8.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
