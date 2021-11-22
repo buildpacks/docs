@@ -36,3 +36,4 @@ The flags that were added to the restorer are:
 
 The flag that was removed from the exporter is:
 * `-run-image`
+* `-stack`
