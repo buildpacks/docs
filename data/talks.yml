@@ -16,6 +16,7 @@
     In this talk we will explore how lifecycle - the binary at the heart of buildpacks - makes all this possible.
     We will be going through the 5 different stages that the lifecycle executes - detect, analyze, restore, 
     build and finally export and how it stitches up the final OCI image.
+  youtube_id: YoPUu8EryFY
   year: 2021
   resources: 
     - name: Slides
