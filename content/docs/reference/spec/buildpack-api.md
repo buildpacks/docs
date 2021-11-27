@@ -142,7 +142,7 @@ id = "io.buildpacks.stacks.bionic"
 ### Schema
 
 The schema is as follows:
-- **`api`** _(string, required, current: `0.5`)_\
+- **`api`** _(string, required, current: `0.7`)_\
     The Buildpack API version the buildpack adheres to. Used to ensure [compatibility](#api-compatibility) against
     the [lifecycle][lifecycle].
 
