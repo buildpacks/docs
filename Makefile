@@ -171,3 +171,4 @@ katacoda:
 check-katacoda: katacoda
 	@echo "Checking if Katacoda docs are up-to-date..."
 	@git diff --quiet HEAD -- katacoda/scenarios || ( echo "Katacoda docs are not up-to-date! Please run 'make katacoda' and commit the katacoda/scenarios folder" && exit 1)
+	@echo "All katacoda docs are up-to-date"

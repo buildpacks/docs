@@ -3,6 +3,9 @@ title="Specify buildpacks"
 weight=4
 summary="Learn how to specify exactly what buildpacks are used during the build process."
 +++
+<!--+- `
+# Specify buildpacks
+`+-->
 
 You may specify exactly what buildpacks are used during the build process by referencing them with a URI in any of the following formats.
 
@@ -32,11 +35,7 @@ The `--buildpack` parameter accepts a URI in any of the formats described above.
 
 For this example we will use a few buildpacks from our [samples][samples] repo.
 
-```bash
-# clone the repo
-git clone https://github.com/buildpacks/samples
-
-# build the app
+```
 pack build sample-java-maven-app \
     --builder cnbs/sample-builder:alpine \
     --buildpack samples/java-maven \
@@ -44,6 +43,7 @@ pack build sample-java-maven-app \
     --buildpack docker://cnbs/sample-package:hello-universe \
     --path samples/apps/java-maven/
 ```
+<!--+- "{{execute}}"+-->
 
 > Multiple buildpacks can be specified, in order, by supplying:
 >

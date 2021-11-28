@@ -1,1 +1,7 @@
 content/docs/app-journey.md,katacoda/scenarios/app-journey/step1.md
+content/docs/app-developer-guide/build-an-app.md,katacoda/scenarios/app-developer-guide/build-an-app.md
+content/docs/app-developer-guide/using-cache-image.md,katacoda/scenarios/app-developer-guide/using-cache-image.md
+content/docs/app-developer-guide/environment-variables.md,katacoda/scenarios/app-developer-guide/environment-variables.md
+content/docs/app-developer-guide/mounting-volumes.md,katacoda/scenarios/app-developer-guide/mounting-volumes.md
+content/docs/app-developer-guide/run-an-app.md,katacoda/scenarios/app-developer-guide/run-an-app.md
+content/docs/app-developer-guide/specify-buildpacks.md,katacoda/scenarios/app-developer-guide/specify-buildpacks.md

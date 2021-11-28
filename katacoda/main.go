@@ -24,11 +24,13 @@ func main() {
 		log.Fatalf("unable to read input files: %w", err)
 	}
 	frontMatter := regexp.MustCompile(`(?s)\+\+\+.*\+\+\+`)
+	docsLinks := regexp.MustCompile(` /docs/`)
 	for _, mapping := range files {
 		i := mapping[0]
 		o := mapping[1]
 		out, err := os.ReadFile(i)
 		out = frontMatter.ReplaceAll(out, []byte(""))
+		out = docsLinks.ReplaceAll(out, []byte(" https://buildpacks.io/docs/"))
 		if err != nil {
 			log.Fatalf("unable to read input file %s: %s", i, err)
 		}

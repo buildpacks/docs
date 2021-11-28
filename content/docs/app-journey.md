@@ -90,7 +90,7 @@ docker run --rm -p 8080:8080 myapp
 Now hit [`localhost:8080`](http://localhost:8080) in your favorite browser and take a minute to enjoy the view.
 <!--+- end+-->
 <!--+ `
-Now hit open the port "8080" of your host in your favorite browser and take a minute to enjoy the view.
+Now open your favorite browser and point it to port "8080" of your host and take a minute to enjoy the view.
 
 On Katacoda you can do this by [clicking here](https://[[HOST_SUBDOMAIN]]-8080-[[KATACODA_HOST]].environments.katacoda.com)
 ` +-->
@@ -109,15 +109,9 @@ Windows image builds are now supported!
 
 <!--+- if false+-->
 <a href="/docs/app-developer-guide/build-a-windows-app" class="button bg-blue">Windows build guide</a>
+<!--+end+-->
 
 [builder]: /docs/concepts/components/builder/
 [buildpack]: /docs/concepts/components/buildpack/
 [samples-java-maven]: https://github.com/buildpacks/samples/tree/main/apps/java-maven
 [pack-docs]: /docs/tools/pack/
-<!--+end+-->
-
-<!--+ `[builder]: https://buildpacks.io/docs/concepts/components/builder/
-[buildpack]: https://buildpacks.io/docs/concepts/components/buildpack/
-[samples-java-maven]: https://buildpacks.iohttps://github.com/buildpacks/samples/tree/main/apps/java-maven
-[pack-docs]: https://buildpacks.io/docs/tools/pack/
-` +-->
