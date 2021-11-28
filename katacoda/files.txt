@@ -1,0 +1,1 @@
+content/docs/app-journey.md,katacoda/scenarios/app-journey/step1.md

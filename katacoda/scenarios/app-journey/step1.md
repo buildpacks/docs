@@ -1,21 +1,7 @@
-+++
-title="An App's Brief Journey from Source to Image"
-weight=2
-getting-started=true
-+++
-
 ## Pack for the journey
 
 In this tutorial, we'll explain how to use `pack` and **buildpacks** to create a runnable app image from source code.
-<!--+if false+-->
-{{< katacoda-button href="https://katacoda.com/buildpacks/scenarios/app-journey" color="green" >}} Learn on Katacoda {{</>}}
 
-In order to run the build process in an isolated fashion, `pack` uses **Docker**. That means you'll need to make sure you have both `docker` and `pack` installed:
-
-{{< download-button href="https://store.docker.com/search?type=edition&offering=community" color="blue" >}} Install Docker {{</>}}
-
-{{< download-button href="/docs/install-pack" color="pink" >}} Install pack {{</>}}
-<!--+end+-->
 > **NOTE:** `pack` is only one implementation of the [Cloud Native Buildpacks Platform Specification][cnb-platform-spec]. Additionally, not all Cloud Native Buildpacks Platforms require Docker.
 
 [cnb-platform-spec]: https://github.com/buildpacks/spec/blob/main/platform.md
@@ -53,20 +39,17 @@ Run the following commands in a shell to clone and build this [simple Java app][
 1. Clone the samples repo.
 ```
 git clone https://github.com/buildpacks/samples
-``` 
-<!--+- "{{execute}}"+-->
+```{{execute}}
 
 2. Go to the Java apps sub-directory
 ```
 cd samples/apps/java-maven
-```
-<!--+- "{{execute}}"+-->
+```{{execute}}
 
 3. Build the app using [`pack`][pack-docs]
 ```
 pack build myapp --builder cnbs/sample-builder:bionic
-```
-<!--+- "{{execute}}"+-->
+```{{execute}}
 
 
 > **NOTE:** This is your first time running `pack build` for `myapp`, so you'll notice that
@@ -84,16 +67,12 @@ To test out your new app image locally, you can run it with Docker:
 
 ```bash
 docker run --rm -p 8080:8080 myapp
-```
-<!--+- "{{execute}}"+-->
-<!--+- if false+-->
-Now hit [`localhost:8080`](http://localhost:8080) in your favorite browser and take a minute to enjoy the view.
-<!--+- end+-->
-<!--+ `
+```{{execute}}
+
 Now hit open the port "8080" of your host in your favorite browser and take a minute to enjoy the view.
 
 On Katacoda you can do this by [clicking here](https://[[HOST_SUBDOMAIN]]-8080-[[KATACODA_HOST]].environments.katacoda.com)
-` +-->
+
 
 ### Take your image to the skies
 
@@ -107,17 +86,7 @@ deploying your new image to your favorite cloud!
 
 Windows image builds are now supported!
 
-<!--+- if false+-->
-<a href="/docs/app-developer-guide/build-a-windows-app" class="button bg-blue">Windows build guide</a>
-
-[builder]: /docs/concepts/components/builder/
-[buildpack]: /docs/concepts/components/buildpack/
-[samples-java-maven]: https://github.com/buildpacks/samples/tree/main/apps/java-maven
-[pack-docs]: /docs/tools/pack/
-<!--+end+-->
-
-<!--+ `[builder]: https://buildpacks.io/docs/concepts/components/builder/
+[builder]: https://buildpacks.io/docs/concepts/components/builder/
 [buildpack]: https://buildpacks.io/docs/concepts/components/buildpack/
 [samples-java-maven]: https://buildpacks.iohttps://github.com/buildpacks/samples/tree/main/apps/java-maven
 [pack-docs]: https://buildpacks.io/docs/tools/pack/
-` +-->
