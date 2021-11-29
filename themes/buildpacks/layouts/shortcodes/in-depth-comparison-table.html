@@ -1,0 +1,539 @@
+<div style="overflow-x: auto; width: 100%">
+  <p class="text-pink font-weight-bold">
+    Select a tool to compare buildpacks against
+  </p>
+  <div>
+    <span id="dockerfiles" class="text-pink mt-3 mr-3">Dockerfiles</span>
+    <span id="s2i" class="text-pink mr-3">Source to Image</span>
+    <span id="ko" class="text-pink mr-3">Ko</span>
+    <span id="jib" class="text-pink mr-3">Jib</span>
+  </div>
+  <br />
+
+  <div style="overflow-x: auto">
+    <table
+      id="datatable"
+      class="table table-striped table-hover text-center bs-0 bg-white border"
+    >
+      <thead class="bg-white text-pink" style="vertical-align: bottom">
+        <tr>
+          <th style="width: 50%" class="comp-buildpacks py-3">
+            <div class="px-5 py-3">
+              <img
+                src="/images/buildpacks-logo-bug.svg"
+                style="max-width: 200px; max-height: 50px"
+                alt="buildpacks"
+              />
+            </div>
+            <div>Cloud Native Buildpacks</div>
+          </th>
+          <th class="comp-dockerfiles py-3">
+            <div class="py-3">
+              <img
+                src="/images/docker.png"
+                style="max-width: 200px; max-height: 50px"
+                alt="docker"
+              />
+            </div>
+            <div>Dockerfile</div>
+          </th>
+          <th class="comp-s2i py-3">
+            <div class="py-3">
+              <img
+                src="/images/openshift.png"
+                style="max-width: 200px; max-height: 50px"
+                alt="source to image"
+              />
+            </div>
+            <div>Source-to-Image (s2i)</div>
+          </th>
+          <th class="comp-ko py-3">
+            <div class="py-3">
+              <img
+                src="/images/ko.png"
+                style="max-width: 200px; max-height: 50px"
+                alt="Ko"
+              />
+            </div>
+            <div>Ko</div>
+          </th>
+          <th class="comp-jib py-3">
+            <div class="py-3">
+              <img
+                src="/images/jib.png"
+                style="max-width: 200px; max-height: 50px"
+                alt="jib"
+              />
+            </div>
+            <div>Jib</div>
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td class="border-left border-right">
+            <div style="text-align: left">
+              <p class="text-pink font-weight-bold">What is it?</p>
+              Cloud Native Buildpacks transform your application source code
+              into images that can run on any cloud.
+            </div>
+          </td>
+          <td class="comp-dockerfiles">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              A Dockerfile is a text file that contains commands that will be
+              executed by docker to build a container image.
+            </div>
+          </td>
+          <td class="comp-s2i">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              Source-to-Image (s2i) is a toolkit and workflow for building
+              reproducible container images from source code.
+            </div>
+          </td>
+          <td class="comp-ko">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              ko is a simple, fast container image builder for Go applications.
+              It's ideal for use cases where your image contains a single Go
+              application without any/many dependencies on the OS base image
+              (e.g., no cgo, no OS package dependencies).
+            </div>
+          </td>
+          <td class="comp-jib">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              Jib builds optimized Docker and OCI images for Java applications
+              without a Docker daemon. It is available as plugins for Maven and
+              Gradle and as a Java library.
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="border-left border-right">
+            <div style="overflow-x: auto; text-align: left">
+              <p class="text-pink font-weight-bold">Bill of Materials</p>
+              Buildpacks can populate BOM information about the dependencies
+              they have provided and a list of what buildpacks were used to
+              build the application.
+            </div>
+          </td>
+          <td class="comp-dockerfiles">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              No, Need to use external tools with dockerfiles to add a software
+              bill of materials
+            </div>
+          </td>
+          <td class="comp-s2i">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              No, Source-to-Image (s2i) does not provide with a software bill of
+              materials.
+            </div>
+          </td>
+
+          <td class="comp-ko">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              No, Ko does not provide with a bill of materials.
+            </div>
+          </td>
+          <td class="comp-jib">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              No, Jib does not provide with a software bill of materials.
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="border-left border-right">
+            <div style="overflow-x: auto; text-align: left">
+              <p class="text-pink font-weight-bold">Reproducibility</p>
+              Cloud Native Buildpacks project aims to create “Reproducible
+              Builds” of container images. For image creation commands (builder
+              create, buildpack package, build) pack creates container images in
+              a reproducible fashion.
+            </div>
+          </td>
+          <td class="comp-dockerfiles">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              No, reproducible builds with dockerfiles come with caveats.
+            </div>
+          </td>
+          <td class="comp-s2i">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              Yes, Source-to-image allows build environments to be tightly
+              versioned by encapsulating them within a container image and
+              defining a simple interface (injected source code) for callers.
+            </div>
+          </td>
+          <td class="comp-ko">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              Yes, Ko is a container image builder for Go applications and
+              supports reproducible builds for Go.
+            </div>
+          </td>
+          <td class="comp-jib">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              Yes, Jib supports reproducible builds. Rebuilding the container
+              image with the same contents always generates the same image.
+              Unnecessary updates need not be triggered.
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="border-left border-right">
+            <div style="overflow-x: auto; text-align: left">
+              <p class="text-pink font-weight-bold">Advanced Caching</p>
+              Buildpacks implement advanced caching of images, cache images are
+              a way to preserve build optimizing layers across different host
+              machines. These images can improve performance when using pack in
+              ephemeral environments such as CI/CD pipelines.
+            </div>
+          </td>
+          <td class="comp-dockerfiles">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              No, Requires configuration in the Dockerfile, the cache relies on
+              both the instruction being executed and the image generated from
+              the previous instruction, changing any instruction in the
+              Dockerfile will invalidate the cache for all of the instructions
+              that follow it. Invalidating an image also invalidates all the
+              children of that image.
+            </div>
+          </td>
+          <td class="comp-s2i">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              Yes, can be configured to capture the artifacts from a previous
+              build into the next incremental build.
+            </div>
+          </td>
+          <td class="comp-ko">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              No, not a feature provided by Ko.
+            </div>
+          </td>
+          <td class="comp-jib">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              No, not a feature provided by Jib.
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="border-left border-right">
+            <div style="overflow-x: auto; text-align: left">
+              <p class="text-pink font-weight-bold">Minimal App Image</p>
+              Buildpacks provide minimal app image. Images contain only what is
+              necessary, extra workarounds not needed.
+            </div>
+          </td>
+          <td class="comp-dockerfiles">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              Yes, provided the Dockerfile is configured accordingly, e.g. using
+              appropriate base images, etc.
+            </div>
+          </td>
+          <td class="comp-s2i">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              Yes, provides with a minimal app image with extra configuration.
+            </div>
+          </td>
+          <td class="comp-ko">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              Yes, By default ko uses minimal base images which provide the bare
+              necessities to run Go binary, this results in an app image of
+              minimal size.
+            </div>
+          </td>
+          <td class="comp-jib">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              Yes, By default Jib uses distroless/java base images, which
+              include minimal external dependencies, and results in an app image
+              of minimal size with the app and runtime dependencies.
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="border-left border-right">
+            <div style="overflow-x: auto; text-align: left">
+              <p class="text-pink font-weight-bold">Multi-Language</p>
+              Cloud Native Buildpacks provide support for several programming
+              languages and applications
+            </div>
+          </td>
+          <td class="comp-dockerfiles">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              Yes, Dockerfiles can be configured according to the needs of the
+              build.
+            </div>
+          </td>
+          <td class="comp-s2i">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              Yes, provides support for several languages, S2I generates a new
+              Docker image using source code and a builder Docker image. The S2I
+              project includes a number of commonly used Docker builder images,
+              such as Python or Ruby, one can also extend S2I with custom
+              scripts.
+            </div>
+          </td>
+          <td class="comp-ko">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              No, ko is a container image builder for Go applications and
+              supports only the Go programming language.
+            </div>
+          </td>
+          <td class="comp-jib">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              No, Jib is a container image builder for Java applications and
+              supports applications built upon the Java programming language.
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="border-left border-right">
+            <div style="overflow-x: auto; text-align: left">
+              <p class="text-pink font-weight-bold">Auto-Detection</p>
+              Cloud Native Buildpacks support auto-detection. This happens when
+              a platform sequentially tests groups of buildpacks against your
+              app’s source code. Detection criteria is specific to each
+              buildpack – for instance, an NPM buildpack might look for a
+              package.json, and a Go buildpack might look for Go source files.
+            </div>
+          </td>
+          <td class="comp-dockerfiles">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              No, Dockerfiles need to be written and configured according to the
+              needs of build.
+            </div>
+          </td>
+          <td class="comp-s2i">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              Yes, Source-to-Image supports auto detection.
+            </div>
+          </td>
+          <td class="comp-ko">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              Yes, by default Ko supports only the the Go programming language,
+              ko builds images by effectively executing<code> go build </code>on
+              the local machine, and as such doesn't require docker to be
+              installed.
+            </div>
+          </td>
+          <td class="comp-jib">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              Yes, by default Jib supports only the the Java programming
+              language.
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="border-left border-right">
+            <div style="overflow-x: auto; text-align: left">
+              <p class="text-pink font-weight-bold">Rebasing</p>
+              By inspecting an app image pack can determine whether a newer
+              version of the app's base image exists, if so, it updates the app
+              image's layer metadata to reference the newer base image version.
+            </div>
+          </td>
+          <td class="comp-dockerfiles">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              No, if the base image changes, the app needs to be rebuilt.
+            </div>
+          </td>
+          <td class="comp-s2i">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              No, not provided as a feature.
+            </div>
+          </td>
+          <td class="comp-ko">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              No, not provided as a feature.
+            </div>
+          </td>
+          <td class="comp-jib">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              No, not provided as a feature.
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="border-left border-right">
+            <div style="overflow-x: auto; text-align: left">
+              <p class="text-pink font-weight-bold">Integrations</p>
+              Azure, CircleCI, GitLab, Google, Heroku, Spring Boot, Tekton..
+            </div>
+          </td>
+          <td class="comp-dockerfiles">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              Amazon ECS, Azure, CircleCI, GitLab, Google, Tekton..
+            </div>
+          </td>
+          <td class="comp-s2i">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              Openshift
+            </div>
+          </td>
+          <td class="comp-ko">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              Google, Kubernetes
+            </div>
+          </td>
+          <td class="comp-jib">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              Gradle, Maven
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="border-left border-right">
+            <div style="overflow-x: auto; text-align: left">
+              <p class="text-pink font-weight-bold">Best used for Building..</p>
+              Applications
+            </div>
+          </td>
+          <td class="comp-dockerfiles">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              Applications, Base Images, OS Images
+            </div>
+          </td>
+          <td class="comp-s2i">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              Applications
+            </div>
+          </td>
+          <td class="comp-ko">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              Applications
+            </div>
+          </td>
+          <td class="comp-jib">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              Applications
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<br />
+
+<script>
+  //hide all columns initially (uses class selectors on respective td's and th's.)
+  $(".comp-s2i").hide();
+  $(".comp-ko").hide();
+  $(".comp-jib").hide();
+
+  //onclick handler for s2i, show column for s2i, hide others
+  $("#s2i").click(function () {
+    //hide all others and show s2i
+    $(".comp-s2i").show();
+    $(".comp-dockerfiles").hide();
+    $(".comp-ko").hide();
+    $(".comp-jib").hide();
+  });
+
+  //onclick handler for dockerfiles, show column for dockerfiles, hide others
+  $("#dockerfiles").click(function () {
+    //show dockerfiles and hide all other colunms
+    $(".comp-s2i").hide();
+    $(".comp-dockerfiles").show();
+    $(".comp-ko").hide();
+    $(".comp-jib").hide();
+  });
+
+  //onclick handler for ko, show column for ko, hide others
+  $("#ko").click(function () {
+    //show ko and hide other columns
+    $(".comp-s2i").hide();
+    $(".comp-dockerfiles").hide();
+    $(".comp-ko").show();
+    $(".comp-jib").hide();
+  });
+
+  //onclick handler for jib, show column for jib, hide others
+  $("#jib").click(function () {
+    //show jib and hide other columns
+    $(".comp-s2i").hide();
+    $(".comp-dockerfiles").hide();
+    $(".comp-ko").hide();
+    $(".comp-jib").show();
+  });
+</script>
