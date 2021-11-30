@@ -1,12 +1,16 @@
 <div style="overflow-x: auto; width: 100%">
-  <p class="text-pink font-weight-bold">
+  <span class="text-pink font-weight-bold">
     Select a tool to compare buildpacks against
-  </p>
+  </span>
   <div>
-    <span id="dockerfiles" class="text-pink mt-3 mr-3">Dockerfiles</span>
-    <span id="s2i" class="text-pink mr-3">Source to Image</span>
-    <span id="ko" class="text-pink mr-3">Ko</span>
-    <span id="jib" class="text-pink mr-3">Jib</span>
+    <button id="dockerfiles" class="features-tab text-pink mr-3">
+      Dockerfiles
+    </button>
+    <button id="s2i" class="features-tab text-pink mr-3">
+      Source to Image
+    </button>
+    <button id="ko" class="px-3 features-tab text-pink mr-3">Ko</button>
+    <button id="jib" class="px-3 features-tab text-pink mr-3">Jib</button>
   </div>
   <br />
 
@@ -453,6 +457,44 @@
             </div>
           </td>
         </tr>
+
+        <tr>
+          <td class="border-left border-right">
+            <div style="overflow-x: auto; text-align: left">
+              <p class="text-pink font-weight-bold">Governance</p>
+              CNCF
+            </div>
+          </td>
+          <td class="comp-dockerfiles">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              Docker
+            </div>
+          </td>
+          <td class="comp-s2i">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              Red Hat
+            </div>
+          </td>
+          <td class="comp-ko">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              Google
+            </div>
+          </td>
+          <td class="comp-jib">
+            <div style="text-align: left">
+              <p></p>
+              <br />
+              Google
+            </div>
+          </td>
+        </tr>
+
         <tr>
           <td class="border-left border-right">
             <div style="overflow-x: auto; text-align: left">

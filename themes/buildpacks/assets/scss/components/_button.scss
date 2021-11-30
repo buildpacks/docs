@@ -7,10 +7,10 @@ Button
 /** Sizes **/
 
 $btn-font-size: 1rem;
-$btn-sm-font-size: .80rem;
+$btn-sm-font-size: 0.8rem;
 $btn-h-padding: 20px;
 $btn-v-padding: 10px;
-$icon-proportion: 1.30;
+$icon-proportion: 1.3;
 
 %button-base {
   padding: $btn-v-padding $btn-h-padding;
@@ -23,12 +23,12 @@ $icon-proportion: 1.30;
 
 %button-base:hover {
   text-decoration: none;
-  opacity: .9;
+  opacity: 0.9;
 }
 
 .button-small {
   font-size: $btn-sm-font-size;
-  padding: $btn-v-padding*.75 $btn-h-padding*.75;
+  padding: $btn-v-padding * 0.75 $btn-h-padding * 0.75;
 }
 
 /** Colors **/
@@ -41,7 +41,7 @@ $icon-proportion: 1.30;
 .button:hover {
   color: white;
   text-decoration: none;
-  opacity: .9;
+  opacity: 0.9;
 }
 
 .button-light {
@@ -52,7 +52,7 @@ $icon-proportion: 1.30;
 
 .button-light:hover {
   color: #000000;
-  opacity: .75;
+  opacity: 0.75;
 }
 
 /** Special **/
@@ -64,7 +64,7 @@ $icon-proportion: 1.30;
 }
 
 .icon-button::before {
-  content: '';
+  content: "";
   display: inline-block;
   align-self: center;
   margin: 0 10px 0 0;
@@ -75,8 +75,31 @@ $icon-proportion: 1.30;
   background-size: contain;
 }
 
+.features-tab {
+  border: 1px solid #df0a6b;
+  padding: 5px 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1em;
+  margin-right: 1em;
+  transition: 0.8s;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.features-tab:hover {
+  color: #fff;
+  background-color: #df0a6b;
+}
+
+.features-tab:focus {
+  color: #fff;
+  background-color: #df0a6b;
+  outline: #df0a6b;
+}
+
 .button-small.icon-button {
-  padding-right: ($btn-h-padding + 5px) * .75;
+  padding-right: ($btn-h-padding + 5px) * 0.75;
 }
 
 .button-small.icon-button::before {
@@ -96,29 +119,29 @@ $icon-proportion: 1.30;
 }
 
 .button.download-button::before {
-  background-image: url('/images/download-icon.svg');
+  background-image: url("/images/download-icon.svg");
 }
 
 .button.learn-button::before {
-  background-image: url('/images/learn-icon.svg');
+  background-image: url("/images/learn-icon.svg");
 }
 
 .button.github-button::before {
-  background-image: url('/images/github-mark.svg');
+  background-image: url("/images/github-mark.svg");
 }
 
 .button-light.github-button::before {
-  background-image: url('/images/github-mark.svg');
+  background-image: url("/images/github-mark.svg");
   -webkit-filter: brightness(0);
   filter: brightness(0);
 }
 
 .button.slack-button::before {
-  background-image: url('/images/slack-mark.svg');
+  background-image: url("/images/slack-mark.svg");
 }
 
 .button-light.slack-button::before {
-  background-image: url('/images/slack-mark.svg');
+  background-image: url("/images/slack-mark.svg");
   -webkit-filter: brightness(0);
   filter: brightness(0);
 }

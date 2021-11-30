@@ -49,10 +49,6 @@ Leverage production-ready buildpacks maintained by the community.
 
 </div>
 
-## Comparison
-
-{{< comparison-table >}}
-
 ## Compare Similar tools
 
 {{< in-depth-comparison-table >}}
