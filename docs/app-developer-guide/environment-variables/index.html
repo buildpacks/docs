@@ -255,11 +255,11 @@
 <li data-nav-id="/docs/app-developer-guide/using-cache-image/" class="dd-item depth-1">
   <a href="/docs/app-developer-guide/using-cache-image/">Cache Images</a>
 </li>
-<li data-nav-id="/docs/app-developer-guide/mouting-volumes/" class="dd-item depth-1">
-  <a href="/docs/app-developer-guide/mouting-volumes/">Mounting Volumes</a>
+<li data-nav-id="/docs/app-developer-guide/mounting-volumes/" class="dd-item depth-1">
+  <a href="/docs/app-developer-guide/mounting-volumes/">Mounting Volumes</a>
 </li>
-<li data-nav-id="/docs/app-developer-guide/specific-buildpacks/" class="dd-item depth-1">
-  <a href="/docs/app-developer-guide/specific-buildpacks/">Specify buildpacks</a>
+<li data-nav-id="/docs/app-developer-guide/specify-buildpacks/" class="dd-item depth-1">
+  <a href="/docs/app-developer-guide/specify-buildpacks/">Specify buildpacks</a>
 </li>
 <li data-nav-id="/docs/app-developer-guide/run-an-app/" class="dd-item depth-1">
   <a href="/docs/app-developer-guide/run-an-app/">Specify launch process</a>
@@ -596,7 +596,10 @@
           <h1 class="title">Environment variables</h1>
         </div>
 
-        <p>Environment variables are a common way to configure various buildpacks at build-time.</p>
+        <!--+- `
+# Environment variables
+`+-->
+<p>Environment variables are a common way to configure various buildpacks at build-time.</p>
 <p>Below are a few ways you can do so. All of them will use our <a href="https://github.com/buildpacks/samples">samples</a> repo for simplicity.</p>
 <h3 id="using-cli-arguments---env">Using CLI arguments (<code>--env</code>)</h3>
 <p>The <code>--env</code> parameter must be one of the following:</p>
@@ -605,24 +608,28 @@
 <li><code>VARIABLE</code>, where the value of <code>VARIABLE</code> will be taken from the local environment</li>
 </ul>
 <h5 id="example">Example:</h5>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># clone the repo</span>
-git clone https://github.com/buildpacks/samples
-
-<span class="c1"># set an environment variable</span>
-<span class="nb">export</span> <span class="nv">FOO</span><span class="o">=</span>BAR
-
-<span class="c1"># build the app</span>
-pack build sample-app <span class="se">\
-</span><span class="se"></span>    --env <span class="s2">&#34;HELLO=WORLD&#34;</span> <span class="se">\
-</span><span class="se"></span>    --env <span class="s2">&#34;FOO&#34;</span> <span class="se">\
-</span><span class="se"></span>    --builder cnbs/sample-builder:bionic <span class="se">\
-</span><span class="se"></span>    --buildpack  samples/buildpacks/hello-world/ <span class="se">\
-</span><span class="se"></span>    --buildpack samples/apps/bash-script/bash-script-buildpack/ <span class="se">\
-</span><span class="se"></span>    --path  samples/apps/bash-script/
-
-<span class="c1"># run the app</span>
-docker run sample-app
-</code></pre></div><p>The following environment variables were set and available to buildpacks at build-time:</p>
+<ol>
+<li>Set an environment variable</li>
+</ol>
+<pre tabindex="0"><code>export FOO=BAR
+</code></pre><!--+- "{{execute}}"+-->
+<ol start="2">
+<li>Build the app</li>
+</ol>
+<pre tabindex="0"><code>pack build sample-app \
+    --env &quot;HELLO=WORLD&quot; \
+    --env &quot;FOO&quot; \
+    --builder cnbs/sample-builder:bionic \
+    --buildpack  samples/buildpacks/hello-world/ \
+    --buildpack samples/apps/bash-script/bash-script-buildpack/ \
+    --path  samples/apps/bash-script/
+</code></pre><!--+- "{{execute}}"+-->
+<ol start="3">
+<li>Run the app</li>
+</ol>
+<pre tabindex="0"><code>docker run sample-app
+</code></pre><!--+- "{{execute}}"+-->
+<p>The following environment variables were set and available to buildpacks at build-time:</p>
 <table>
 <thead>
 <tr>
@@ -651,26 +658,32 @@ docker run sample-app
 <li><code>VARIABLE</code>, where the value of <code>VARIABLE</code> will be taken from the current environment</li>
 </ul>
 <h5 id="example-1">Example:</h5>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># clone the repo</span>
-git clone https://github.com/buildpacks/samples
-
-<span class="c1"># set an environment variable</span>
-<span class="nb">export</span> <span class="nv">FOO</span><span class="o">=</span>BAR
-
-<span class="c1"># create an env file</span>
-<span class="nb">echo</span> -en <span class="s2">&#34;HELLO=WORLD\nFOO&#34;</span> &gt; ./envfile
-
-<span class="c1"># build the app</span>
-pack build sample-app <span class="se">\
-</span><span class="se"></span>    --env-file ./envfile <span class="se">\
-</span><span class="se"></span>    --builder cnbs/sample-builder:bionic <span class="se">\
-</span><span class="se"></span>    --buildpack  samples/buildpacks/hello-world/ <span class="se">\
-</span><span class="se"></span>    --buildpack samples/apps/bash-script/bash-script-buildpack/ <span class="se">\
-</span><span class="se"></span>    --path  samples/apps/bash-script/
-
-<span class="c1"># run the app</span>
-docker run sample-app
-</code></pre></div><p>The following environment variables were set and available to buildpacks at build-time:</p>
+<ol>
+<li>Set an environment variable</li>
+</ol>
+<pre tabindex="0"><code>export FOO=BAR
+</code></pre><!--+- "{{execute}}"+-->
+<ol start="2">
+<li>Create an env file</li>
+</ol>
+<pre tabindex="0"><code>echo -en &quot;HELLO=WORLD\nFOO&quot; &gt; ./envfile
+</code></pre><!--+- "{{execute}}"+-->
+<ol start="3">
+<li>Build the app</li>
+</ol>
+<pre tabindex="0"><code>pack build sample-app \
+    --env-file ./envfile \
+    --builder cnbs/sample-builder:bionic \
+    --buildpack  samples/buildpacks/hello-world/ \
+    --buildpack samples/apps/bash-script/bash-script-buildpack/ \
+    --path  samples/apps/bash-script/
+</code></pre><!--+- "{{execute}}"+-->
+<ol start="4">
+<li>Run the app</li>
+</ol>
+<pre tabindex="0"><code>docker run sample-app
+</code></pre><!--+- "{{execute}}"+-->
+<p>The following environment variables were set and available to buildpacks at build-time:</p>
 <table>
 <thead>
 <tr>
@@ -692,7 +705,6 @@ docker run sample-app
 </tr>
 </tbody>
 </table>
-<p class="spacer"></p>
 <blockquote>
 <p><strong>NOTE:</strong> Variables defined using <code>--env</code> take precedence over variables defined in <code>--env-file</code>.</p>
 </blockquote>
@@ -701,26 +713,31 @@ docker run sample-app
 Without the <code>--descriptor</code> flag, <code>pack build</code> will use the <code>project.toml</code> file in the application directory if it exists.
 You can define environment variables in an <code>env</code> table in the file, and pass those into the application.</p>
 <h5 id="example-2">Example:</h5>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># clone the repo</span>
-git clone https://github.com/buildpacks/samples
+<ol>
+<li>Add an environment variable to the project.toml</li>
+</ol>
+<pre tabindex="0"><code>cat &gt;&gt; samples/apps/bash-script/project.toml &lt;&lt;EOL
 
-<span class="c1"># Add an environment variable to the project.toml</span>
-cat &gt;&gt; samples/apps/bash-script/project.toml <span class="s">&lt;&lt;EOL
-</span><span class="s">[[build.env]]
-</span><span class="s">name=&#34;HELLO&#34;
-</span><span class="s">value=&#34;WORLD&#34;
-</span><span class="s">EOL</span>
-
-<span class="c1"># build the app</span>
-pack build sample-app <span class="se">\
-</span><span class="se"></span>    --builder cnbs/sample-builder:bionic <span class="se">\
-</span><span class="se"></span>    --buildpack  samples/buildpacks/hello-world/ <span class="se">\
-</span><span class="se"></span>    --buildpack samples/apps/bash-script/bash-script-buildpack/ <span class="se">\
-</span><span class="se"></span>    --path  samples/apps/bash-script/
-
-<span class="c1"># run the app</span>
-docker run sample-app
-</code></pre></div><p>The following environment variables were set and available to buildpacks at build-time:</p>
+[[build.env]]
+name=&quot;HELLO&quot;
+value=&quot;WORLD&quot;
+EOL
+</code></pre><!--+- "{{execute}}"+-->
+<ol start="2">
+<li>Build the app</li>
+</ol>
+<pre tabindex="0"><code>pack build sample-app \
+    --builder cnbs/sample-builder:bionic \
+    --buildpack  samples/buildpacks/hello-world/ \
+    --buildpack samples/apps/bash-script/bash-script-buildpack/ \
+    --path  samples/apps/bash-script/
+</code></pre><!--+- "{{execute}}"+-->
+<ol start="3">
+<li>Run the app</li>
+</ol>
+<pre tabindex="0"><code>docker run sample-app
+</code></pre><!--+- "{{execute}}"+-->
+<p>The following environment variables were set and available to buildpacks at build-time:</p>
 <table>
 <thead>
 <tr>
@@ -737,7 +754,6 @@ docker run sample-app
 </tr>
 </tbody>
 </table>
-<p class="spacer"></p>
 <blockquote>
 <p><strong>NOTE:</strong> Variables defined using <code>--env</code> or <code>--env-file</code> take precedence over variables defined in the <code>project.toml</code>.</p>
 </blockquote>

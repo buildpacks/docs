@@ -255,11 +255,11 @@
 <li data-nav-id="/docs/app-developer-guide/using-cache-image/" class="dd-item depth-1">
   <a href="/docs/app-developer-guide/using-cache-image/">Cache Images</a>
 </li>
-<li data-nav-id="/docs/app-developer-guide/mouting-volumes/" class="dd-item depth-1">
-  <a href="/docs/app-developer-guide/mouting-volumes/">Mounting Volumes</a>
+<li data-nav-id="/docs/app-developer-guide/mounting-volumes/" class="dd-item depth-1">
+  <a href="/docs/app-developer-guide/mounting-volumes/">Mounting Volumes</a>
 </li>
-<li data-nav-id="/docs/app-developer-guide/specific-buildpacks/" class="dd-item depth-1">
-  <a href="/docs/app-developer-guide/specific-buildpacks/">Specify buildpacks</a>
+<li data-nav-id="/docs/app-developer-guide/specify-buildpacks/" class="dd-item depth-1">
+  <a href="/docs/app-developer-guide/specify-buildpacks/">Specify buildpacks</a>
 </li>
 <li data-nav-id="/docs/app-developer-guide/run-an-app/" class="dd-item depth-1">
   <a href="/docs/app-developer-guide/run-an-app/">Specify launch process</a>
@@ -596,41 +596,71 @@
           <h1 class="title">Build an app</h1>
         </div>
 
-        <div class="quote mb-4">
+        <!--+- if false+-->
+<div class="quote mb-4">
     Build is the process of executing one or more buildpacks against the app’s source code to produce a runnable OCI image.
     <div class="author"><a href="/docs/concepts/operations/build">build</a></div>
 </div>
+<!--+- end+-->
+<!--+- `
+# Build an app
+`+-->
 <p>Building an app using Cloud Native Buildpacks is as easy as <code>1</code>, <code>2</code>, <code>3</code>&hellip;</p>
 <h3 id="1-select-a-builder">1. Select a builder</h3>
 <p>To <a href="/docs/concepts/operations/build">build</a> an app you must first decide which <a href="/docs/concepts/components/builder">builder</a> you&rsquo;re going to use. A builder
 includes the <a href="/docs/concepts/components/buildpack">buildpacks</a> that will be used as well as the environment for building your
 app.</p>
 <p>When using <code>pack</code>, you can run <code>pack builder suggest</code> for a list of suggested builders.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pack builder suggest
-</code></pre></div><p>For this guide we&rsquo;re actually going to use a sample builder, <code>cnbs/sample-builder:bionic</code>, which is not listed
+<pre tabindex="0"><code>pack builder suggest
+</code></pre><!--+- "{{execute}}"+-->
+<p>For this guide we&rsquo;re actually going to use a sample builder, <code>cnbs/sample-builder:bionic</code>, which is not listed
 as a suggested builder for good reason. It&rsquo;s a sample.</p>
 <h3 id="2-build-your-app">2. Build your app</h3>
 <p>Now that you&rsquo;ve decided on what builder to use, we can build our app. For this example we&rsquo;ll use our <a href="https://github.com/buildpacks/samples">samples</a>
 repo for simplicity.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># clone the repo</span>
-git clone https://github.com/buildpacks/samples
-
-<span class="c1"># build the app</span>
-pack build sample-app --path samples/apps/java-maven --builder cnbs/sample-builder:bionic
-</code></pre></div><blockquote>
+<ol>
+<li>Check that the samples repo exists and if not - we clone it</li>
+</ol>
+<pre tabindex="0"><code>ls samples || git clone https://github.com/buildpacks/samples
+</code></pre><!--+- "{{execute}}"+-->
+<ol start="2">
+<li>Build the app</li>
+</ol>
+<pre tabindex="0"><code>pack build sample-app --path samples/apps/java-maven --builder cnbs/sample-builder:bionic
+</code></pre><!--+- "{{execute}}"+-->
+<blockquote>
 <p><strong>TIP:</strong> If you don&rsquo;t want to keep specifying a builder every time you build, you can set it as your default
-builder by running <code>pack config default-builder &lt;BUILDER&gt;</code>.</p>
+builder by running <code>pack config default-builder &lt;BUILDER&gt;</code> for example <code>pack config default-builder cnbs/sample-builder:bionic</code></p>
 </blockquote>
+<!--+- "{{execute}}"+-->
 <h3 id="3-run-it">3. Run it</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker run --rm -p 8080:8080 sample-app
-</code></pre></div><p><strong>Congratulations!</strong></p>
+<pre tabindex="0"><code>docker run --rm -p 8080:8080 sample-app
+</code></pre><!--+- "{{execute}}"+-->
+<p><strong>Congratulations!</strong></p>
+<!--+- if false+-->
 <p>The app should now be running and accessible via <a href="http://localhost:8080">localhost:8080</a>.</p>
+<!--+end+-->
+<!--+ `
+Now open your favorite browser and point it to port "8080" of your host and take a minute to enjoy the view.
+
+On Katacoda you can do this by [clicking here](https://[[HOST_SUBDOMAIN]]-8080-[[KATACODA_HOST]].environments.katacoda.com)
+` +-->
 <h2 id="what-about-arm-apps">What about ARM apps?</h2>
 <p>Linux ARM image builds are now supported!</p>
+<!--+- if false+-->
 <p><a href="/docs/app-developer-guide/build-an-arm-app" class="button bg-blue">Linux ARM build guide</a></p>
+<!--+end+-->
+<!--+ `
+Check out the [Linux ARM build guide](https://buildpacks.io//docs/app-developer-guide/build-an-arm-app).
+` +-->
 <h2 id="what-about-windows-apps">What about Windows apps?</h2>
 <p>Windows image builds are now supported!</p>
+<!--+- if false+-->
 <p><a href="/docs/app-developer-guide/build-a-windows-app" class="button bg-blue">Windows build guide</a></p>
+<!--+end+-->
+<!--+ `
+Check out the [Windows build guide](https://buildpacks.io/docs/app-developer-guide/build-a-windows-app/).
+` +-->
 
 
         

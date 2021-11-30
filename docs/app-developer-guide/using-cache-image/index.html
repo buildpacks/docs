@@ -255,11 +255,11 @@
 <li data-nav-id="/docs/app-developer-guide/using-cache-image/" class="dd-item depth-1 active">
   <a href="/docs/app-developer-guide/using-cache-image/">Cache Images</a>
 </li>
-<li data-nav-id="/docs/app-developer-guide/mouting-volumes/" class="dd-item depth-1">
-  <a href="/docs/app-developer-guide/mouting-volumes/">Mounting Volumes</a>
+<li data-nav-id="/docs/app-developer-guide/mounting-volumes/" class="dd-item depth-1">
+  <a href="/docs/app-developer-guide/mounting-volumes/">Mounting Volumes</a>
 </li>
-<li data-nav-id="/docs/app-developer-guide/specific-buildpacks/" class="dd-item depth-1">
-  <a href="/docs/app-developer-guide/specific-buildpacks/">Specify buildpacks</a>
+<li data-nav-id="/docs/app-developer-guide/specify-buildpacks/" class="dd-item depth-1">
+  <a href="/docs/app-developer-guide/specify-buildpacks/">Specify buildpacks</a>
 </li>
 <li data-nav-id="/docs/app-developer-guide/run-an-app/" class="dd-item depth-1">
   <a href="/docs/app-developer-guide/run-an-app/">Specify launch process</a>
@@ -596,7 +596,10 @@
           <h1 class="title">Cache Images</h1>
         </div>
 
-        <p>Cache Images are a way to preserve build optimizing layers across different host machines.
+        <!--+- `
+# Cache Images
+`+-->
+<p>Cache Images are a way to preserve build optimizing layers across different host machines.
 These images can improve performance when using <code>pack</code> in ephemeral environments such as CI/CD pipelines.</p>
 <h2 id="using-cache-images---cache-image">Using Cache Images (<code>--cache-image</code>)</h2>
 <p>The <code>--cache-image</code> parameter must be in the following format</p>
@@ -605,43 +608,50 @@ These images can improve performance when using <code>pack</code> in ephemeral e
 <h3 id="examples">Examples</h3>
 <p>For the following examples we will use:</p>
 <ul>
-<li>The Dockerhub registry</li>
-<li>A sample Dockerhub user account named <code>buildpack-examples</code></li>
+<li>A local <a href="https://docs.docker.com/registry/deploying/#run-a-local-registry">Docker v2 registry running on port <code>5000</code></a></li>
 <li>Our <a href="https://github.com/buildpack/samples">samples</a> repo</li>
 </ul>
-<p>First we need to authenticate with <code>docker</code> to allow us to push images</p>
-<pre tabindex="0"><code>    docker login
-    ...
-</code></pre><p>Next we trust the <code>cnbs/sample-builder:bionic</code> builder
-in order to allow access to docker credentials when publishing.</p>
+<blockquote>
+<p><strong>NOTE:</strong>  If we wish to publish to an external registry like <code>Dockerhub</code> we will first need to authenticate with <code>docker</code> to allow us to push images. We can do this via <code>docker login</code></p>
+</blockquote>
+<p>Next we trust the <code>cnbs/sample-builder:bionic</code> builder in order to allow access to docker credentials when publishing.</p>
 <pre tabindex="0"><code>pack config trusted-builders add cnbs/sample-builder:bionic
-</code></pre><p>To build the <code>index.docker.io/buildpack-examples/cache-image-example</code> application image
-and the <code>index.docker.io/buildpack-examples/maven-cache-image:latest</code> cache image
+</code></pre><!--+- "{{execute}}"+-->
+<p>To build the <code>localhost:5000/buildpack-examples/cache-image-example</code> application image
+and the <code>localhost:5000/buildpack-examples/maven-cache-image:latest</code> cache image
 we may run the following</p>
-<pre tabindex="0"><code>pack build index.docker.io/buildpack-examples/cache-image-example \
+<pre tabindex="0"><code>pack build localhost:5000/buildpack-examples/cache-image-example \
     --builder cnbs/sample-builder:bionic \
     --buildpack samples/java-maven \
     --path samples/apps/java-maven \
-    --cache-image index.docker.io/buildpack-examples/maven-cache-image:latest \
+    --cache-image localhost:5000/buildpack-examples/maven-cache-image:latest \
+    --network host \
     --publish
-</code></pre><p>Now we may inspect both the application image, and the cache image by pulling them</p>
-<pre tabindex="0"><code># application image inspect
-docker pull index.docker.io/buildpack-examples/cache-image-example
-docker inspect index.docker.io/buildpack-examples/cache-image-example
-
-#cache image inspect
-docker pull index.docker.io/buildpack-examples/maven-cache-image:latest
-docker inspect index.docker.io/buildpack-examples/maven-cache-image:latest
-</code></pre><p>The cache image we produced may now be used by builds on other machines. Note these
+</code></pre><!--+- "{{execute}}"+-->
+<blockquote>
+<p><strong>NOTE:</strong>  Please omit <code>--network host</code> if you are using a remote registry like Dockerhub or on Windows.</p>
+</blockquote>
+<p>Now we may inspect both the application image, and the cache image by pulling them -</p>
+<p>Let&rsquo;s inspect the application image first -</p>
+<pre tabindex="0"><code>docker pull localhost:5000/buildpack-examples/cache-image-example
+docker inspect localhost:5000/buildpack-examples/cache-image-example
+</code></pre><!--+- "{{execute}}"+-->
+<p>Now let&rsquo;s take a look at the cache image -</p>
+<pre tabindex="0"><code>docker pull localhost:5000/buildpack-examples/maven-cache-image:latest
+docker inspect localhost:5000/buildpack-examples/maven-cache-image:latest
+</code></pre><!--+- "{{execute}}"+-->
+<p>The cache image we produced may now be used by builds on other machines. Note these
 builds may also update the specified <code>cache-image</code>.</p>
 <p>The following command will restore data for the <code>samples/java-maven:maven_m2</code> layer from the cache image.</p>
-<pre tabindex="0"><code>pack build index.docker.io/buildpack-examples/second-cache-image-example \
+<pre tabindex="0"><code>pack build localhost:5000/buildpack-examples/second-cache-image-example \
     --builder cnbs/sample-builder:bionic \
     --buildpack samples/java-maven \
     --path samples/apps/java-maven \
-    --cache-image index.docker.io/buildpack-examples/maven-cache-image:latest \
+    --cache-image localhost:5000/buildpack-examples/maven-cache-image:latest \
+    --network host \
     --publish
-</code></pre>
+</code></pre><!--+- "{{execute}}"+-->
+
 
         
 

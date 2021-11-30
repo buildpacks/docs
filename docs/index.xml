@@ -17,7 +17,7 @@ Learn on Katacoda
 In order to run the build process in an isolated fashion, pack uses Docker. That means you&amp;rsquo;ll need to make sure you have both docker and pack installed:
 Install Docker 
 Install pack 
- NOTE: pack is only one implementation of the Cloud Native Buildpacks Platform Specification.</description>
+  NOTE: pack is only one implementation of the Cloud Native Buildpacks Platform Specification.</description>
     </item>
     
   </channel>

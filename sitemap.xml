@@ -66,9 +66,9 @@
   </url><url>
     <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/app-developer-guide/mouting-volumes/</loc>
+    <loc>https://buildpacks.io/docs/app-developer-guide/mounting-volumes/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/app-developer-guide/specific-buildpacks/</loc>
+    <loc>https://buildpacks.io/docs/app-developer-guide/specify-buildpacks/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/concepts/components/stack/</loc>
   </url><url>
