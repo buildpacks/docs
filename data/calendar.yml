@@ -7,6 +7,9 @@ subcalendars:
   #   - id: teamup id
   #   - name: human readable name
   #   - color: html color of events on calendar
+  - id: 10287223
+    name: Community
+    color: '#4aaace'
   - id: 9330130
     name: Office Hours
     color: '#2951b9'
