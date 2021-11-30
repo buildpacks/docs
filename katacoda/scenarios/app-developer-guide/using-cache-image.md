@@ -1,11 +1,6 @@
-+++
-title="Cache Images"
-weight=4
-summary="Learn how to use cache-images to share cached layers"
-+++
-<!--+- `
+
 # Cache Images
-`+-->
+
 
 Cache Images are a way to preserve build optimizing layers across different host machines. 
 These images can improve performance when using `pack` in ephemeral environments such as CI/CD pipelines.
@@ -33,8 +28,7 @@ Next we trust the `cnbs/sample-builder:bionic` builder in order to allow access 
 
 ```
 pack config trusted-builders add cnbs/sample-builder:bionic
-```
-<!--+- "{{execute}}"+-->
+```{{execute}}
 
 To build the `localhost:5000/buildpack-examples/cache-image-example` application image
  and the `localhost:5000/buildpack-examples/maven-cache-image:latest` cache image
@@ -48,8 +42,7 @@ pack build localhost:5000/buildpack-examples/cache-image-example \
     --cache-image localhost:5000/buildpack-examples/maven-cache-image:latest \
     --network host \
     --publish
-```
-<!--+- "{{execute}}"+-->
+```{{execute}}
 
 > **NOTE:**  Please omit `--network host` if you are using a remote registry like Dockerhub or on Windows.
 
@@ -60,15 +53,13 @@ Let's inspect the application image first -
 ```
 docker pull localhost:5000/buildpack-examples/cache-image-example
 docker inspect localhost:5000/buildpack-examples/cache-image-example
-```
-<!--+- "{{execute}}"+-->
+```{{execute}}
 
 Now let's take a look at the cache image - 
 ```
 docker pull localhost:5000/buildpack-examples/maven-cache-image:latest
 docker inspect localhost:5000/buildpack-examples/maven-cache-image:latest
-```
-<!--+- "{{execute}}"+-->
+```{{execute}}
 
 The cache image we produced may now be used by builds on other machines. Note these
 builds may also update the specified `cache-image`.
@@ -82,7 +73,6 @@ pack build localhost:5000/buildpack-examples/second-cache-image-example \
     --cache-image localhost:5000/buildpack-examples/maven-cache-image:latest \
     --network host \
     --publish
-```
-<!--+- "{{execute}}"+-->
+```{{execute}}
 
 [samples]: https://github.com/buildpack/samples

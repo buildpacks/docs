@@ -34,6 +34,9 @@ jobs:
       - name: Check links
         run: |
           make check-links
+      - name: Check katacoda
+        run: |
+          make check-katacoda
       - name: Upload public folder
         uses: actions/upload-artifact@v2.2.4
         env:

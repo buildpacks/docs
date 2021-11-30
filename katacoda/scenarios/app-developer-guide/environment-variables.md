@@ -1,11 +1,6 @@
-+++
-title="Environment variables"
-weight=3
-summary="Environment variables are a common way to configure various buildpacks at build-time."
-+++
-<!--+- `
+
 # Environment variables
-`+-->
+
 Environment variables are a common way to configure various buildpacks at build-time.
 
 Below are a few ways you can do so. All of them will use our [samples][samples] repo for simplicity.
@@ -22,8 +17,7 @@ The `--env` parameter must be one of the following:
 1. Set an environment variable
 ```
 export FOO=BAR
-```
-<!--+- "{{execute}}"+-->
+```{{execute}}
 
 2. Build the app
 ```
@@ -34,14 +28,12 @@ pack build sample-app \
     --buildpack  samples/buildpacks/hello-world/ \
     --buildpack samples/apps/bash-script/bash-script-buildpack/ \
     --path  samples/apps/bash-script/
-```
-<!--+- "{{execute}}"+-->
+```{{execute}}
 
 3. Run the app
 ```
 docker run sample-app
-```
-<!--+- "{{execute}}"+-->
+```{{execute}}
 
 The following environment variables were set and available to buildpacks at build-time:
 
@@ -63,14 +55,12 @@ The `--env-file` parameter must be a path to a file where each line is one of th
 1. Set an environment variable
 ```
 export FOO=BAR
-```
-<!--+- "{{execute}}"+-->
+```{{execute}}
 
 2. Create an env file
 ```
 echo -en "HELLO=WORLD\nFOO" > ./envfile
-```
-<!--+- "{{execute}}"+-->
+```{{execute}}
 
 3. Build the app
 ```
@@ -80,14 +70,12 @@ pack build sample-app \
     --buildpack  samples/buildpacks/hello-world/ \
     --buildpack samples/apps/bash-script/bash-script-buildpack/ \
     --path  samples/apps/bash-script/
-```
-<!--+- "{{execute}}"+-->
+```{{execute}}
 
 4. Run the app
 ```
 docker run sample-app
-```
-<!--+- "{{execute}}"+-->
+```{{execute}}
 
 The following environment variables were set and available to buildpacks at build-time:
 
@@ -116,8 +104,7 @@ cat >> samples/apps/bash-script/project.toml <<EOL
 name="HELLO"
 value="WORLD"
 EOL
-```
-<!--+- "{{execute}}"+-->
+```{{execute}}
 
 2. Build the app
 ```
@@ -126,14 +113,12 @@ pack build sample-app \
     --buildpack  samples/buildpacks/hello-world/ \
     --buildpack samples/apps/bash-script/bash-script-buildpack/ \
     --path  samples/apps/bash-script/
-```
-<!--+- "{{execute}}"+-->
+```{{execute}}
 
 3. Run the app
 ```
 docker run sample-app
-```
-<!--+- "{{execute}}"+-->
+```{{execute}}
 
 The following environment variables were set and available to buildpacks at build-time:
 
@@ -147,5 +132,5 @@ The following environment variables were set and available to buildpacks at buil
 > **NOTE:** `project.toml` can't detect environment variables (so, for instance, if one ran `export FOO=BAR` and added
 >`name=FOO` to the `project.toml`, it wouldn't detect any value set for `FOO`).
 
-[descriptor-schema]: /docs/reference/project-descriptor/
+[descriptor-schema]: https://buildpacks.io/docs/reference/project-descriptor/
 [samples]: https://github.com/buildpacks/samples

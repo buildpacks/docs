@@ -104,7 +104,7 @@ docker run sample-app
 ### Further Reading
 For more about project descriptors, look at the [schema][descriptor-schema], as well as the [specification][spec].
 
-[specify-buildpacks]: /docs/app-developer-guide/specific-buildpacks/
+[specify-buildpacks]: /docs/app-developer-guide/specify-buildpacks/
 [descriptor-envs]: /docs/app-developer-guide/environment-variables/#using-project-descriptor
 [descriptor-schema]: /docs/reference/project-descriptor/
 [samples]: https://github.com/buildpacks/samples
