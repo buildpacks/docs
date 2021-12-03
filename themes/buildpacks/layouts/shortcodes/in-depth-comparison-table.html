@@ -1,12 +1,16 @@
 <div style="overflow-x: auto; width: 100%">
-  <p class="text-pink font-weight-bold">
+  <span class="text-pink font-weight-bold">
     Select a tool to compare buildpacks against
-  </p>
+  </span>
   <div>
-    <span id="dockerfiles" class="text-pink mt-3 mr-3">Dockerfiles</span>
-    <span id="s2i" class="text-pink mr-3">Source to Image</span>
-    <span id="ko" class="text-pink mr-3">Ko</span>
-    <span id="jib" class="text-pink mr-3">Jib</span>
+    <button id="dockerfiles" class="features-tab text-pink mr-3">
+      Dockerfiles
+    </button>
+    <button id="s2i" class="features-tab text-pink mr-3">
+      Source to Image
+    </button>
+    <button id="ko" class="px-3 features-tab text-pink mr-3">Ko</button>
+    <button id="jib" class="px-3 features-tab text-pink mr-3">Jib</button>
   </div>
   <br />
 
@@ -80,25 +84,19 @@
             </div>
           </td>
           <td class="comp-dockerfiles">
-            <div style="text-align: left">
-              <p></p>
-              <br />
+            <div style="margin-top: 2.4em; text-align: left">
               A Dockerfile is a text file that contains commands that will be
               executed by docker to build a container image.
             </div>
           </td>
           <td class="comp-s2i">
-            <div style="text-align: left">
-              <p></p>
-              <br />
+            <div style="margin-top: 2.4em; text-align: left">
               Source-to-Image (s2i) is a toolkit and workflow for building
               reproducible container images from source code.
             </div>
           </td>
           <td class="comp-ko">
-            <div style="text-align: left">
-              <p></p>
-              <br />
+            <div style="margin-top: 2.4em; text-align: left">
               ko is a simple, fast container image builder for Go applications.
               It's ideal for use cases where your image contains a single Go
               application without any/many dependencies on the OS base image
@@ -106,9 +104,7 @@
             </div>
           </td>
           <td class="comp-jib">
-            <div style="text-align: left">
-              <p></p>
-              <br />
+            <div style="margin-top: 2.4em; text-align: left">
               Jib builds optimized Docker and OCI images for Java applications
               without a Docker daemon. It is available as plugins for Maven and
               Gradle and as a Java library.
@@ -125,33 +121,25 @@
             </div>
           </td>
           <td class="comp-dockerfiles">
-            <div style="text-align: left">
-              <p></p>
-              <br />
+            <div style="margin-top: 2.4em; text-align: left">
               No, Need to use external tools with dockerfiles to add a software
               bill of materials
             </div>
           </td>
           <td class="comp-s2i">
-            <div style="text-align: left">
-              <p></p>
-              <br />
+            <div style="margin-top: 2.4em; text-align: left">
               No, Source-to-Image (s2i) does not provide with a software bill of
               materials.
             </div>
           </td>
 
           <td class="comp-ko">
-            <div style="text-align: left">
-              <p></p>
-              <br />
+            <div style="margin-top: 2.4em; text-align: left">
               No, Ko does not provide with a bill of materials.
             </div>
           </td>
           <td class="comp-jib">
-            <div style="text-align: left">
-              <p></p>
-              <br />
+            <div style="margin-top: 2.4em; text-align: left">
               No, Jib does not provide with a software bill of materials.
             </div>
           </td>
@@ -167,33 +155,25 @@
             </div>
           </td>
           <td class="comp-dockerfiles">
-            <div style="text-align: left">
-              <p></p>
-              <br />
+            <div style="margin-top: 2.4em; text-align: left">
               No, reproducible builds with dockerfiles come with caveats.
             </div>
           </td>
           <td class="comp-s2i">
-            <div style="text-align: left">
-              <p></p>
-              <br />
+            <div style="margin-top: 2.4em; text-align: left">
               Yes, Source-to-image allows build environments to be tightly
               versioned by encapsulating them within a container image and
               defining a simple interface (injected source code) for callers.
             </div>
           </td>
           <td class="comp-ko">
-            <div style="text-align: left">
-              <p></p>
-              <br />
+            <div style="margin-top: 2.4em; text-align: left">
               Yes, Ko is a container image builder for Go applications and
               supports reproducible builds for Go.
             </div>
           </td>
           <td class="comp-jib">
-            <div style="text-align: left">
-              <p></p>
-              <br />
+            <div style="margin-top: 2.4em; text-align: left">
               Yes, Jib supports reproducible builds. Rebuilding the container
               image with the same contents always generates the same image.
               Unnecessary updates need not be triggered.
@@ -212,9 +192,7 @@
             </div>
           </td>
           <td class="comp-dockerfiles">
-            <div style="text-align: left">
-              <p></p>
-              <br />
+            <div style="margin-top: 2.4em; text-align: left">
               No, Requires configuration in the Dockerfile, the cache relies on
               both the instruction being executed and the image generated from
               the previous instruction, changing any instruction in the
@@ -224,24 +202,18 @@
             </div>
           </td>
           <td class="comp-s2i">
-            <div style="text-align: left">
-              <p></p>
-              <br />
+            <div style="margin-top: 2.4em; text-align: left">
               Yes, can be configured to capture the artifacts from a previous
               build into the next incremental build.
             </div>
           </td>
           <td class="comp-ko">
-            <div style="text-align: left">
-              <p></p>
-              <br />
+            <div style="margin-top: 2.4em; text-align: left">
               No, not a feature provided by Ko.
             </div>
           </td>
           <td class="comp-jib">
-            <div style="text-align: left">
-              <p></p>
-              <br />
+            <div style="margin-top: 2.4em; text-align: left">
               No, not a feature provided by Jib.
             </div>
           </td>
@@ -256,33 +228,25 @@
             </div>
           </td>
           <td class="comp-dockerfiles">
-            <div style="text-align: left">
-              <p></p>
-              <br />
+            <div style="margin-top: 2.4em; text-align: left">
               Yes, provided the Dockerfile is configured accordingly, e.g. using
               appropriate base images, etc.
             </div>
           </td>
           <td class="comp-s2i">
-            <div style="text-align: left">
-              <p></p>
-              <br />
+            <div style="margin-top: 2.4em; text-align: left">
               Yes, provides with a minimal app image with extra configuration.
             </div>
           </td>
           <td class="comp-ko">
-            <div style="text-align: left">
-              <p></p>
-              <br />
+            <div style="margin-top: 2.4em; text-align: left">
               Yes, By default ko uses minimal base images which provide the bare
               necessities to run Go binary, this results in an app image of
               minimal size.
             </div>
           </td>
           <td class="comp-jib">
-            <div style="text-align: left">
-              <p></p>
-              <br />
+            <div style="margin-top: 2.4em; text-align: left">
               Yes, By default Jib uses distroless/java base images, which
               include minimal external dependencies, and results in an app image
               of minimal size with the app and runtime dependencies.
@@ -299,17 +263,13 @@
             </div>
           </td>
           <td class="comp-dockerfiles">
-            <div style="text-align: left">
-              <p></p>
-              <br />
+            <div style="margin-top: 2.4em; text-align: left">
               Yes, Dockerfiles can be configured according to the needs of the
               build.
             </div>
           </td>
           <td class="comp-s2i">
-            <div style="text-align: left">
-              <p></p>
-              <br />
+            <div style="margin-top: 2.4em; text-align: left">
               Yes, provides support for several languages, S2I generates a new
               Docker image using source code and a builder Docker image. The S2I
               project includes a number of commonly used Docker builder images,
@@ -318,17 +278,13 @@
             </div>
           </td>
           <td class="comp-ko">
-            <div style="text-align: left">
-              <p></p>
-              <br />
+            <div style="margin-top: 2.4em; text-align: left">
               No, ko is a container image builder for Go applications and
               supports only the Go programming language.
             </div>
           </td>
           <td class="comp-jib">
-            <div style="text-align: left">
-              <p></p>
-              <br />
+            <div style="margin-top: 2.4em; text-align: left">
               No, Jib is a container image builder for Java applications and
               supports applications built upon the Java programming language.
             </div>
@@ -346,24 +302,18 @@
             </div>
           </td>
           <td class="comp-dockerfiles">
-            <div style="text-align: left">
-              <p></p>
-              <br />
+            <div style="margin-top: 2.4em; text-align: left">
               No, Dockerfiles need to be written and configured according to the
               needs of build.
             </div>
           </td>
           <td class="comp-s2i">
-            <div style="text-align: left">
-              <p></p>
-              <br />
+            <div style="margin-top: 2.4em; text-align: left">
               Yes, Source-to-Image supports auto detection.
             </div>
           </td>
           <td class="comp-ko">
-            <div style="text-align: left">
-              <p></p>
-              <br />
+            <div style="margin-top: 2.4em; text-align: left">
               Yes, by default Ko supports only the the Go programming language,
               ko builds images by effectively executing<code> go build </code>on
               the local machine, and as such doesn't require docker to be
@@ -371,9 +321,7 @@
             </div>
           </td>
           <td class="comp-jib">
-            <div style="text-align: left">
-              <p></p>
-              <br />
+            <div style="margin-top: 2.4em; text-align: left">
               Yes, by default Jib supports only the the Java programming
               language.
             </div>
@@ -389,30 +337,22 @@
             </div>
           </td>
           <td class="comp-dockerfiles">
-            <div style="text-align: left">
-              <p></p>
-              <br />
+            <div style="margin-top: 2.4em; text-align: left">
               No, if the base image changes, the app needs to be rebuilt.
             </div>
           </td>
           <td class="comp-s2i">
-            <div style="text-align: left">
-              <p></p>
-              <br />
+            <div style="margin-top: 2.4em; text-align: left">
               No, not provided as a feature.
             </div>
           </td>
           <td class="comp-ko">
-            <div style="text-align: left">
-              <p></p>
-              <br />
+            <div style="margin-top: 2.4em; text-align: left">
               No, not provided as a feature.
             </div>
           </td>
           <td class="comp-jib">
-            <div style="text-align: left">
-              <p></p>
-              <br />
+            <div style="margin-top: 2.4em; text-align: left">
               No, not provided as a feature.
             </div>
           </td>
@@ -425,34 +365,44 @@
             </div>
           </td>
           <td class="comp-dockerfiles">
-            <div style="text-align: left">
-              <p></p>
-              <br />
+            <div style="margin-top: 2.4em; text-align: left">
               Amazon ECS, Azure, CircleCI, GitLab, Google, Tekton..
             </div>
           </td>
           <td class="comp-s2i">
-            <div style="text-align: left">
-              <p></p>
-              <br />
-              Openshift
-            </div>
+            <div style="margin-top: 2.4em; text-align: left">Openshift</div>
           </td>
           <td class="comp-ko">
-            <div style="text-align: left">
-              <p></p>
-              <br />
+            <div style="margin-top: 2.4em; text-align: left">
               Google, Kubernetes
             </div>
           </td>
           <td class="comp-jib">
-            <div style="text-align: left">
-              <p></p>
-              <br />
-              Gradle, Maven
-            </div>
+            <div style="margin-top: 2.4em; text-align: left">Gradle, Maven</div>
           </td>
         </tr>
+
+        <tr>
+          <td class="border-left border-right">
+            <div style="overflow-x: auto; text-align: left">
+              <p class="text-pink font-weight-bold">Governance</p>
+              CNCF
+            </div>
+          </td>
+          <td class="comp-dockerfiles">
+            <div style="margin-top: 2.4em; text-align: left">Docker</div>
+          </td>
+          <td class="comp-s2i">
+            <div style="margin-top: 2.4em; text-align: left">Red Hat</div>
+          </td>
+          <td class="comp-ko">
+            <div style="margin-top: 2.4em; text-align: left">Google</div>
+          </td>
+          <td class="comp-jib">
+            <div style="margin-top: 2.4em; text-align: left">Google</div>
+          </td>
+        </tr>
+
         <tr>
           <td class="border-left border-right">
             <div style="overflow-x: auto; text-align: left">
@@ -461,32 +411,18 @@
             </div>
           </td>
           <td class="comp-dockerfiles">
-            <div style="text-align: left">
-              <p></p>
-              <br />
+            <div style="margin-top: 2.4em; text-align: left">
               Applications, Base Images, OS Images
             </div>
           </td>
           <td class="comp-s2i">
-            <div style="text-align: left">
-              <p></p>
-              <br />
-              Applications
-            </div>
+            <div style="margin-top: 2.4em; text-align: left">Applications</div>
           </td>
           <td class="comp-ko">
-            <div style="text-align: left">
-              <p></p>
-              <br />
-              Applications
-            </div>
+            <div style="margin-top: 2.4em; text-align: left">Applications</div>
           </td>
           <td class="comp-jib">
-            <div style="text-align: left">
-              <p></p>
-              <br />
-              Applications
-            </div>
+            <div style="margin-top: 2.4em; text-align: left">Applications</div>
           </td>
         </tr>
       </tbody>
