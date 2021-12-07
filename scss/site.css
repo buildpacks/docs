@@ -1151,7 +1151,8 @@ Footer
     padding: 0;
     border-right: 1px solid #EFEFEF;
     position: relative;
-    max-width: 400px; }
+    max-width: 400px;
+    z-index: 1; }
     .docs .docs-sidebar:before {
       content: "";
       position: absolute;
@@ -1160,7 +1161,6 @@ Footer
       width: 5px;
       height: 100%;
       background: linear-gradient(to right, rgba(124, 110, 117, 0), rgba(124, 110, 117, 0.05));
-      z-index: 1;
       pointer-events: none; }
     @media (max-width: 767px) {
       .docs .docs-sidebar {
