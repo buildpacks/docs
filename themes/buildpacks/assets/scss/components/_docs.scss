@@ -27,6 +27,7 @@
     border-right: 1px solid $off-gray;
     position: relative;
     max-width: 400px;
+    z-index: 1;
     &:before {
       content: "";
       position: absolute;
@@ -35,7 +36,6 @@
       width: 5px;
       height: 100%;
       background: linear-gradient(to right, rgba($gray-light, 0), rgba($gray-light, 0.05));
-      z-index: 1;
       pointer-events: none;
     }
     @media (max-width: 767px) {
