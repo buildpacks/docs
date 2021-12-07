@@ -38,7 +38,7 @@ jobs:
         run: |
           make check-katacoda
       - name: Upload public folder
-        uses: actions/upload-artifact@v2.2.4
+        uses: actions/upload-artifact@v2.3.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
