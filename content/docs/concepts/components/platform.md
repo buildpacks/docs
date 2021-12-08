@@ -10,6 +10,7 @@ A `platform` uses a [lifecycle][lifecycle], [buildpacks][buildpack] (packaged in
 <!--more-->
 
 ## Examples
+
 Examples of a platform might include:
 
 * A local CLI tool that uses buildpacks to create OCI images. One such tool is the [Pack CLI][pack]
@@ -17,7 +18,10 @@ Examples of a platform might include:
 * A cloud application platform that uses buildpacks to build source code before deployment. One such platform is [kpack][kpack]
 
 ## API
-The platform [specification][spec] details what a platform does, and how it interacts with lifecycles and builders. The current API version for the platform is `0.4`.
+
+The platform [specification][spec] details what a platform does, and how it interacts with lifecycles and builders.
+
+For the latest version of the Platform API, see [releases][releases] on the spec repo.
 
 [builder]: /docs/concepts/components/builder/
 [buildpack]: /docs/concepts/components/buildpack/
@@ -28,3 +32,4 @@ The platform [specification][spec] details what a platform does, and how it inte
 [tekton]: https://tekton.dev/
 [kpack]: https://github.com/pivotal/kpack
 [api-version]: https://github.com/buildpacks/spec/blob/main/platform.md#platform-api-version
+[releases]: https://github.com/buildpacks/spec/releases?q=platform
