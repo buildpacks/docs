@@ -1,8 +1,3 @@
-+++
-title="Building blocks of a Cloud Native Buildpack"
-weight=402
-+++
-
 <!-- test:suite=create-buildpack;weight=2 -->
 
 Now we will set up the buildpack scaffolding.
@@ -21,7 +16,7 @@ pack buildpack new examples/ruby \
     --path ruby-buildpack \
     --version 0.0.1 \
     --stacks io.buildpacks.samples.stacks.bionic
-```<!--+- "{{execute}}"+-->
+```{{execute}}
 This command will create `ruby-buildpack` directory which contains `buildpack.toml`, `bin/build`,  `bin/detect` files.
 
 ### Additional Parameters
@@ -93,7 +88,7 @@ Set your default [builder][builder] by running the following:
 ```bash
 pack config default-builder cnbs/sample-builder:bionic
 ```
-<!--+"{{execute}}"+-->
+{{execute}}
 
 Then run the following `pack` command:
 
@@ -101,7 +96,7 @@ Then run the following `pack` command:
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 ```
-<!--+"{{execute}}"+-->
+{{execute}}
 
 The `pack build` command takes in your Ruby sample app as the `--path` argument and your buildpack as the `--buildpack` argument.
 
@@ -115,10 +110,3 @@ After running the command, you should see that it failed to detect, as the `dete
 [detector] ERROR: failed to detect: buildpack(s) failed with err
 ```
 
-<!--+ if false+-->
----
-
-<a href="/docs/buildpack-author-guide/create-buildpack/detection" class="button bg-pink">Next Step</a>
-
-[builder]: /docs/concepts/components/builder
-<!--+ end +-->

@@ -16,7 +16,7 @@ for i in 0..5
 end
 ```
 
-After building our app, we could run the resulting image with the `web` process (currently the default) or our new worker process. 
+After building our app, we could run the resulting image with the `web` process (currently the default) or our new worker process.
 
 To enable running the worker process, we'll need to have our buildpack define a "process type" for the worker.  Modify the section where processes are defined to:
 
@@ -97,6 +97,7 @@ Now if you rebuild your app using the updated buildpack:
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 ```
+<--+"{{execute}}"+-->
 
 You should then be able to run your new Ruby worker process:
 
@@ -104,6 +105,7 @@ You should then be able to run your new Ruby worker process:
 ```bash
 docker run --rm --entrypoint worker test-ruby-app
 ```
+<--+"{{execute}}"+-->
 
 and see the worker log output:
 
@@ -119,6 +121,8 @@ Running a worker task...
 
 Next, we'll look at how to improve our buildpack by leveraging cache.
 
+<!--+if false+-->
 ---
 
 <a href="/docs/buildpack-author-guide/create-buildpack/caching" class="button bg-pink">Next Step</a>
+<!--+end+-->

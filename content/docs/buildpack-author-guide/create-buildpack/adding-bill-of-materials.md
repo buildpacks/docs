@@ -19,6 +19,7 @@ You can find all of this information using `pack` via its `inspect-image` comman
 ```bash
 pack inspect-image test-ruby-app
 ```
+<--+"{{execute}}"+-->
 You should see the following:
 
 <!-- test:assert=contains -->
@@ -32,7 +33,7 @@ Buildpacks:
 
 Processes:
   TYPE                 SHELL        COMMAND                        ARGS
-  web (default)        bash         bundle exec ruby app.rb        
+  web (default)        bash         bundle exec ruby app.rb
   worker               bash         bundle exec ruby worker.rb
 ```
 
@@ -144,6 +145,7 @@ Then rebuild your app using the updated buildpack:
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 ```
+<--+"{{execute}}"+-->
 
 You should then be able to inspect your Ruby app for its Bill-of-Materials via:
 
@@ -151,6 +153,7 @@ You should then be able to inspect your Ruby app for its Bill-of-Materials via:
 ```bash
 pack inspect-image test-ruby-app --bom
 ```
+<--+"{{execute}}"+-->
 
 You should find that the included `ruby` version is `2.5.0` as expected.
 

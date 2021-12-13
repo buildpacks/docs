@@ -128,6 +128,7 @@ Now when you run:
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 ```
+<--+"{{execute}}"+-->
 
 You will notice that version of Ruby specified in the app's `.ruby-version` file is downloaded.
 
@@ -140,6 +141,8 @@ You will notice that version of Ruby specified in the app's `.ruby-version` file
 
 Next, let's see how buildpacks can store information about the dependencies provided in the output app image for introspection.
 
+<!--+if false+-->
 ---
 
 <a href="/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials" class="button bg-pink">Next Step</a>
+<!--+end+-->

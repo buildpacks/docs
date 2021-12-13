@@ -88,6 +88,7 @@ Now when we run:
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 ```
+<--+"{{execute}}"+-->
 
 You will see something similar to the following during the `EXPORTING` phase:
 
@@ -100,7 +101,7 @@ You will see something similar to the following during the `EXPORTING` phase:
 
 Now, let's implement the caching logic. We'll first need to create a `ruby-sample-app/Gemfile.lock` file with the contents given below:
 
-> Typically you would run `bundle install` locally to generate this file, but for the sake 
+> Typically you would run `bundle install` locally to generate this file, but for the sake
 > of simplicity we'll create `ruby-sample-app/Gemfile.lock` manually.
 
 <!-- test:file=ruby-sample-app/Gemfile.lock -->
@@ -259,6 +260,7 @@ Now when you build your app:
 ```text
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 ```
+<--+"{{execute}}"+-->
 
 it will download the gems:
 
@@ -278,6 +280,7 @@ If you build the app again:
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 ```
+<--+"{{execute}}"+-->
 
 you will see the new caching logic at work during the `BUILDING` phase:
 
@@ -293,6 +296,8 @@ you will see the new caching logic at work during the `BUILDING` phase:
 
 Next, let's see how buildpack users may be able to provide configuration to the buildpack.
 
+<!--+if false+-->
 ---
 
 <a href="/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable" class="button bg-pink">Next Step</a>
+<!--+end+-->

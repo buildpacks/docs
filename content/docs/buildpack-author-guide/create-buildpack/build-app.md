@@ -117,6 +117,7 @@ Build your app again:
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 ```
+<--+"{{execute}}"+-->
 
 You will see the following output:
 
@@ -141,8 +142,10 @@ Successfully built image 'test-ruby-app'
 
 A new image named `test-ruby-app` was created in your Docker daemon with a layer containing the Ruby runtime. However, your app image is not yet runnable. We'll make the app image runnable in the next section.
 
+<!--+if false+-->
 ---
 
 <a href="/docs/buildpack-author-guide/create-buildpack/make-app-runnable" class="button bg-pink">Next Step</a>
+<!--+end+-->
 
 [layers-dir]: /docs/reference/spec/buildpack-api/#layers

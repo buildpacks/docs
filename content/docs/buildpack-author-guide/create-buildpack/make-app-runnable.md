@@ -73,12 +73,14 @@ Then rebuild your app using the updated buildpack:
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 ```
+<--+"{{execute}}"+-->
 
 You should then be able to run your new Ruby app:
- 
+
 ```bash
 docker run --rm -p 8080:8080 test-ruby-app
 ```
+<--+"{{execute}}"+-->
 
 and see the server log output:
 
@@ -93,6 +95,8 @@ Test it out by navigating to [localhost:8080](http://localhost:8080) in your fav
 
 We can add multiple process types to a single app. We'll do that in the next section.
 
+<!--+if false+-->
 ---
 
 <a href="/docs/buildpack-author-guide/create-buildpack/specify-multiple-process-types" class="button bg-pink">Next Step</a>
+<!--+end+-->

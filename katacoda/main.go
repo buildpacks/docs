@@ -4,6 +4,7 @@ import (
 	"encoding/csv"
 	"log"
 	"os"
+	"path/filepath"
 	"regexp"
 	"strings"
 	"text/template"
@@ -21,10 +22,11 @@ func getMappings() ([][]string, error) {
 func main() {
 	files, err := getMappings()
 	if err != nil {
-		log.Fatalf("unable to read input files: %w", err)
+		parseError := err.(*csv.ParseError)
+		log.Fatalf("unable to read input files, %s on line %d: %w", parseError.Err, parseError.Line, err)
 	}
 	frontMatter := regexp.MustCompile(`(?s)\+\+\+.*\+\+\+`)
-	docsLinks := regexp.MustCompile(` /docs/`)
+	docsLinks := regexp.MustCompile(`[ \(]/docs/`)
 	for _, mapping := range files {
 		i := mapping[0]
 		o := mapping[1]
@@ -37,6 +39,10 @@ func main() {
 		t, err := template.New("example").Delims("<!--+", "+-->").Parse(strings.TrimSpace(string(out)))
 		if err != nil {
 			log.Fatalf("unable to parse file %s: %s", i, err)
+		}
+		d := filepath.Dir(o)
+		if err := os.MkdirAll(d, 0755); err != nil {
+			log.Fatalf("unable to create output directory: %s", err)
 		}
 		f, err := os.Create(o)
 		if err != nil {

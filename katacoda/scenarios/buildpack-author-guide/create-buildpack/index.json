@@ -1,0 +1,57 @@
+{
+  "title": "Create a Buildpack",
+  "description": "Learn how to build and customize your application image using Cloud Native Buildpacks",
+  "difficulty": "Intermediate",
+  "time": "30",
+  "details": {
+    "steps": [
+      {
+        "title": "Setup your Environment",
+        "text": "setp-local-environment.md"
+      },
+      {
+        "title": "Building blocks of a Cloud Native Buildpack",
+        "text": "building-blocks-cnb.md"
+      },
+      {
+        "title": "Detecting your application",
+        "text": "detection.md"
+      },
+      {
+        "title": "Building your application",
+        "text": "build-app.md"
+      },
+      {
+        "title": "Making your application runnable",
+        "text": "make-app-runnable.md"
+      },
+      {
+        "title": "Specfiying multiple process types",
+        "text": "specify-multiple-process-types.md"
+      },
+      {
+        "title": "Improving performance with caching",
+        "text": "caching.md"
+      },
+      {
+        "title": "Making your buildpack configurable",
+        "text": "make-buildpack-configurable.md"
+      },
+      {
+        "title": "Adding a Bill-of-Materials",
+        "text": "adding-bill-of-materials.md"
+      }
+    ],
+    "intro": {
+      "courseData": "background.sh",
+      "code": "foreground.sh",
+      "text": "intro.md"
+    }
+  },
+  "environment": {
+    "uilayout": "terminal"
+  },
+  "backend": {
+    "imageid": "ubuntu:2004"
+  }
+}
