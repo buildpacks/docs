@@ -100,6 +100,8 @@
   </url><url>
     <loc>https://buildpacks.io/docs/tools/</loc>
   </url><url>
+    <loc>https://buildpacks.io/docs/app-developer-guide/building-on-podman/</loc>
+  </url><url>
     <loc>https://buildpacks.io/docs/reference/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/</loc>
