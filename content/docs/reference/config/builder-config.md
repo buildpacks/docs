@@ -37,8 +37,9 @@ A [builder][builder] configuration schema is as follows:
           appear in multiple groups at once but never in the same group.
 
         - **`version`** _(string, optional, default: inferred)_\
-          The version of the buildpack being referred to. This field may be omitted if the top-level `buildpacks` list contains
-          only one version of the buildpack.
+          The version of the buildpack being referred to. This field may be omitted if
+          exactly one version of the buildpack
+          occurs in either the top-level `buildpacks` list or those buildpacks' dependencies.
 
         - **`optional`** _(boolean, optional, default: `false`)_\
           Whether or not this buildpack is optional during detection.
