@@ -617,10 +617,10 @@ Replace exit 1 in the detect script with the following…">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 </code></pre></div><p>You should see the following output:</p>
 <!-- test:assert=contains -->
-<pre tabindex="0"><code>===&gt; DETECTING
-[detector] examples/ruby 0.0.1
-===&gt; ANALYZING
+<pre tabindex="0"><code>===&gt; ANALYZING
 [analyzer] Previous image with name &quot;test-ruby-app&quot; not found
+===&gt; DETECTING
+[detector] examples/ruby 0.0.1
 ===&gt; RESTORING
 ===&gt; BUILDING
 [builder] ---&gt; Ruby Buildpack
