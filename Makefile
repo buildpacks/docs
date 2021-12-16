@@ -1,7 +1,6 @@
 # Retrieve latest pack version
 PACK_VERSION?=
 GITHUB_TOKEN?=
-PACK_BIN?=$(shell which pack)
 SERVE_PORT=1313
 BASE_URL?=
 
@@ -71,22 +70,35 @@ endif
 
 .PHONY: upgrade-pack
 upgrade-pack: pack-version
-	@echo "> Upgrading to pack version $(PACK_VERSION)"
+	@echo "> Upgrading pack library version $(PACK_VERSION)"
 	cd tools; go get github.com/buildpacks/pack@v$(PACK_VERSION)
 
 .PHONY: install-pack-cli
+install-pack-cli: export PACK_BIN:=$(shell which pack)
 install-pack-cli: upgrade-pack
 	@echo "> Installing pack bin..."
-ifeq ($(PACK_BIN),)
-	cd tools; go get github.com/buildpacks/pack/cmd/pack
-else
-	@echo "pack already installed at $(PACK_BIN)"
-endif
+	@if [ -z "$(PACK_BIN)" ]; then \
+		cd tools; go install github.com/buildpacks/pack/cmd/pack; \
+	else \
+		echo "pack already installed at $(PACK_BIN)"; \
+	fi
+	@echo "pack version: $(shell pack --version)"
+
+.PHONY: check-pack-cli-version
+check-pack-cli-version: export INSTALLED_VERSION:=$(shell pack --version | cut -d '+' -f 1)
+check-pack-cli-version:
+	@echo "> Installed pack version: $(INSTALLED_VERSION)"
+	@if [ "$(INSTALLED_VERSION)" != "$(PACK_VERSION)" ]; then \
+		echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"; \
+		echo "WARNING: Expected pack version: $(PACK_VERSION)"; \
+		echo "You may need to upgrade your version of pack!  "; \
+		echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"; \
+	fi
 
 .PHONY: install-ugo
 install-ugo:
 	@echo "> Installing ugo..."
-	cd tools; go get github.com/jromero/ugo/cmd/ugo@0.0.3
+	cd tools; go install github.com/jromero/ugo/cmd/ugo@0.0.3
 
 .PHONY: pack-docs-update
 pack-docs-update: upgrade-pack
@@ -120,7 +132,7 @@ build: $(HUGO_BIN) pack-version pack-docs-update
 	$(HUGO_BIN)
 
 .PHONY: test
-test: install-pack-cli install-ugo
+test: install-pack-cli check-pack-cli-version install-ugo
 	@echo "> Testing..."
 	ugo run -r -p ./content/docs/
 
