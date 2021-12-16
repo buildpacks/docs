@@ -1,0 +1,52 @@
+<div class="tabbable">
+  <ul class="nav nav-tabs mx-0">
+    {{ range $os := $.Site.Data.podman.setup }}
+      {{ $cssClasses := "" }}
+      {{ if $os.default }}
+        {{ $cssClasses = "active" }}
+      {{ end }}
+      <li><a href="#{{ $os.name | urlize }}" class="nav-link {{ $cssClasses }}">{{ $os.name }}</a></li>
+    {{ end }}
+  </ul>
+  <div class="tab-content">
+    {{ range $os := $.Site.Data.podman.setup }}
+      {{ $cssClasses := "" }}
+      {{ if $os.default }}
+        {{ $cssClasses = "active in show" }}
+      {{ end }}
+      <div class="tab-pane fade {{ $cssClasses }}" id="{{ $os.name | urlize  }}">
+        <div class="tabbable">
+          <ul class="nav nav-tabs nav-pills pb-3 m-0">
+            {{ range $method := $os.methods }}
+              {{ $methodID := (print ($os.name | urlize) "-" (replace $method.name "." "-") | urlize) }}
+              {{ $cssClasses := "" }}
+              {{ if $method.default }}
+                {{ $cssClasses = "active" }}
+              {{ end }}
+              <li><a href="#{{ $methodID }}" class="nav-link small {{ $cssClasses }}">{{ $method.name }}</a></li>
+            {{ end }}
+          </ul>
+          <div class="tab-content bg-off-blue py-3">
+            {{ range $method := $os.methods }}
+              {{ $methodID := (print ($os.name | urlize) "-" (replace $method.name "." "-") | urlize) }}
+              {{ $cssClasses := "" }}
+              {{ if $method.default }}
+                {{ $cssClasses = "active in show" }}
+              {{ end }}
+              <div class="tab-pane px-3 fade {{ $cssClasses }}" id="{{ $methodID }}">
+                {{ $method.install | markdownify }}
+                {{ $method.setup | markdownify }}
+              </div>
+            {{ end }}
+          </div>
+        </div>
+      </div>
+    {{ end }}
+  </div>
+</div>
+<script type="application/javascript">
+  $("ul.nav-tabs a").click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+  });
+</script>
