@@ -38,10 +38,10 @@ You should see the following output:
 
 <!-- test:assert=contains -->
 ```
-===> DETECTING
-[detector] examples/ruby 0.0.1
 ===> ANALYZING
 [analyzer] Previous image with name "test-ruby-app" not found
+===> DETECTING
+[detector] examples/ruby 0.0.1
 ===> RESTORING
 ===> BUILDING
 [builder] ---> Ruby Buildpack
