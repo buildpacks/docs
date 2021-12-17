@@ -40,4 +40,4 @@ node() {
 [sap]: https://www.sap.com/
 [piper]: https://www.project-piper.io/
 [cnbbuild]: https://www.project-piper.io/steps/cnbBuild/
-[blogpost]: TBD
+[blogpost]: https://medium.com/buildpacks/support-for-cloud-native-buildpacks-in-jenkins-656330156e77
