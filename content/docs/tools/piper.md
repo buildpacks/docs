@@ -8,7 +8,7 @@ title='Project "Piper"'
 
 ## Use
 
-[Piper][piper] has a step called [cnbBuild][cnbbuild] which allows you to integrate CNB into your pipeline.
+[Piper][piper] has a step called [cnbBuild][cnbbuild] which allows you to integrate CNB into your Jenkins pipeline.
 
 ```groovy
 @Library(["piper-os"]) _
