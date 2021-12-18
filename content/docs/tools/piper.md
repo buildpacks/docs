@@ -2,13 +2,13 @@
 title='Project "Piper"'
 +++
 
-[Project "Piper"][piper] is a set of ready-made Continuous Delivery pipelines for direct use in your project, maintained by [SAP][sap].
+[Project "Piper"][piper] (maintained by [SAP][sap]) is a set of ready-made Continuous Delivery pipelines for direct use in your project. It now also implements the CNB Platform spec as a step and makes it available in your Jenkins pipeline.
 
 <!--more-->
 
 ## Use
 
-[Piper][piper] has a step called [cnbBuild][cnbbuild] which allows you to integrate CNB into your Jenkins pipeline.
+The step called [cnbBuild][cnbbuild] allows you to integrate Cloud Native Buildpacks (CNB) into your Jenkins pipeline.
 
 ```groovy
 @Library(["piper-os"]) _
