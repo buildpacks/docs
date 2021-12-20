@@ -78,3 +78,14 @@ pack_version_env_var = "PACK_VERSION"
   name       = "GitHub"
   url        = "https://github.com/buildpacks"
   weight     = 4
+
+[security]
+  enableInlineShortcodes = false
+  [security.exec]
+    allow = ['^dart-sass-embedded$', '^go$', '^npx$', '^postcss$']
+    osEnv = ['(?i)^(PATH|PATHEXT|APPDATA|TMP|TEMP|TERM)$']
+  [security.funcs]
+    getenv = ['^HUGO_', 'PACK_VERSION']
+  [security.http]
+    methods = ['(?i)GET|POST']
+    urls = ['.*']
