@@ -36,6 +36,15 @@ build applications prior to deploying them.&lt;/p&gt;</description>
     </item>
     
     <item>
+      <title>Project &#34;Piper&#34;</title>
+      <link>https://buildpacks.io/docs/tools/piper/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/tools/piper/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://www.project-piper.io/&#34;&gt;Project &amp;ldquo;Piper&amp;rdquo;&lt;/a&gt; (maintained by &lt;a href=&#34;https://www.sap.com/&#34;&gt;SAP&lt;/a&gt;) is a set of ready-made Continuous Delivery pipelines for direct use in your project. It now also implements the CNB Platform spec as a step and makes it available in your Jenkins pipeline.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>Tekton</title>
       <link>https://buildpacks.io/docs/tools/tekton/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
