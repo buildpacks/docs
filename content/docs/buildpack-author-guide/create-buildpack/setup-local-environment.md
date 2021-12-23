@@ -25,8 +25,7 @@ First, we'll create a sample Ruby app that you can use when developing your buil
 <!-- test:exec -->
 ```bash
 mkdir ruby-sample-app
-```
-<!--+- "{{execute}}"+-->
+```<!--+ "{{execute}}" +-->
 
 Create a file in the current directory called `ruby-sample-app/app.rb` with the following contents:
 
@@ -58,8 +57,7 @@ Finally, make sure your local Docker daemon is running by executing:
 <!-- test:exec -->
 ```bash
 docker version
-```
-<!--+- "{{execute}}"+-->
+```<!--+ "{{execute}}" +-->
 
 If you see output similar to the following, you're good to go! Otherwise, start Docker and check again.
 

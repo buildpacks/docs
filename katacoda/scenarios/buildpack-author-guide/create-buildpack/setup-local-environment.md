@@ -1,9 +1,12 @@
+# Set up your local environment
+
 <!-- test:suite=create-buildpack;weight=1 -->
 
 <!-- test:setup:exec;exit-code=-1 -->
 <!--
 ```bash
 docker rmi test-ruby-app
+pack config trusted-builders add cnbs/sample-builder:bionic
 ```
 -->
 
@@ -19,12 +22,12 @@ First, we'll create a sample Ruby app that you can use when developing your buil
 <!-- test:exec -->
 ```bash
 mkdir ruby-sample-app
-```{{execute}}
+```<!--+ "{{execute}}" -->
 
 Create a file in the current directory called `ruby-sample-app/app.rb` with the following contents:
 
 <!-- test:file=ruby-sample-app/app.rb -->
-```ruby
+<pre class="file" data-filename="ruby-sample-app/app.rb" data-target="replace">
 require 'sinatra'
 
 set :bind, '0.0.0.0'
@@ -33,18 +36,18 @@ set :port, 8080
 get '/' do
   'Hello World!'
 end
-```
+</pre>
 
 Then, create a file called `ruby-sample-app/Gemfile` with the following contents:
 
 <!-- test:file=ruby-sample-app/Gemfile -->
-```ruby
+<pre class="file" data-filename="ruby-sample-app/Gemfile" data-target="replace">
 source "https://rubygems.org"
 
 git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
 gem "sinatra"
-```
+</pre>
 
 Finally, make sure your local Docker daemon is running by executing:
 

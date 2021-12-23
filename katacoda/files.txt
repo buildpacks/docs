@@ -6,5 +6,12 @@ content/docs/app-developer-guide/mounting-volumes.md,katacoda/scenarios/app-deve
 content/docs/app-developer-guide/run-an-app.md,katacoda/scenarios/app-developer-guide/run-an-app.md
 content/docs/app-developer-guide/specify-buildpacks.md,katacoda/scenarios/app-developer-guide/specify-buildpacks.md#
 content/docs/buildpack-author-guide/create-buildpack/_index.md,katacoda/scenarios/buildpack-author-guide/create-buildpack/intro.md
-content/docs/buildpack-author-guide/create-buildpack/setup-local-environment.md,katacoda/scenarios/buildpack-author-guide/create-buildpack/setup-local-environment.md
+content/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials.md,katacoda/scenarios/buildpack-author-guide/create-buildpack/adding-bill-of-materials.md
+content/docs/buildpack-author-guide/create-buildpack/build-app.md,katacoda/scenarios/buildpack-author-guide/create-buildpack/build-app.md
 content/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb.md,katacoda/scenarios/buildpack-author-guide/create-buildpack/building-blocks-cnb.md
+content/docs/buildpack-author-guide/create-buildpack/caching.md,katacoda/scenarios/buildpack-author-guide/create-buildpack/caching.md
+content/docs/buildpack-author-guide/create-buildpack/detection.md,katacoda/scenarios/buildpack-author-guide/create-buildpack/detection.md
+content/docs/buildpack-author-guide/create-buildpack/make-app-runnable.md,katacoda/scenarios/buildpack-author-guide/create-buildpack/make-app-runnable.md
+content/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable.md,katacoda/scenarios/buildpack-author-guide/create-buildpack/make-buildpack-configurable.md
+content/docs/buildpack-author-guide/create-buildpack/setup-local-environment.md,katacoda/scenarios/buildpack-author-guide/create-buildpack/setup-local-environment.md
+content/docs/buildpack-author-guide/create-buildpack/specify-multiple-process-types.md,katacoda/scenarios/buildpack-author-guide/create-buildpack/specify-multiple-process-types.md

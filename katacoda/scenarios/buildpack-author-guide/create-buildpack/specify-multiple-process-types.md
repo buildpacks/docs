@@ -1,20 +1,17 @@
-+++
-title="Specify multiple process types"
-weight=406
-+++
+# Specify multiple process types
 
 <!-- test:suite=create-buildpack;weight=6 -->
 
 One of the benefits of buildpacks is that they are multi-process - an image can have multiple entrypoints for each operational mode. Let's see how this works. We will extend our app to have a worker process.
 
-Let's create a worker file, `ruby-sample-app/worker.rb`<!--+ "{{open}}" -->, with the following contents:
+Let's create a worker file, `ruby-sample-app/worker.rb`, with the following contents:
 
 <!-- test:file=ruby-sample-app/worker.rb -->
-```ruby
+<pre class="file" data-filename="ruby-sample-app/worker.rb" data-target="replace">
 for i in 0..5
     puts "Running a worker task..."
 end
-```
+</pre>
 
 After building our app, we could run the resulting image with the `web` process (currently the default) or our new worker process.
 
@@ -39,10 +36,10 @@ EOL
 # ...
 ```
 
-Your full `ruby-buildpack/bin/build`<!--+ "{{open}}" --> script should now look like the following:
+Your full `ruby-buildpack/bin/build` script should now look like the following:
 
 <!-- test:file=ruby-buildpack/bin/build -->
-```bash
+<pre class="file" data-filename="ruby-buildpack/bin/build" data-target="replace">
 #!/usr/bin/env bash
 set -eo pipefail
 
@@ -89,21 +86,21 @@ default = true
 type = "worker"
 command = "bundle exec ruby worker.rb"
 EOL
-```
+</pre>
 
 Now if you rebuild your app using the updated buildpack:
 
 <!-- test:exec -->
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
-```<!--+ "{{execute}}" +-->
+```<--+ "{{execute}}" +-->
 
 You should then be able to run your new Ruby worker process:
 
 <!-- test:exec -->
 ```bash
 docker run --rm --entrypoint worker test-ruby-app
-```<!--+ "{{execute}}" +-->
+```<--+ "{{execute}}" +-->
 
 and see the worker log output:
 
@@ -119,8 +116,3 @@ Running a worker task...
 
 Next, we'll look at how to improve our buildpack by leveraging cache.
 
-<!--+if false+-->
----
-
-<a href="/docs/buildpack-author-guide/create-buildpack/caching" class="button bg-pink">Next Step</a>
-<!--+end+-->

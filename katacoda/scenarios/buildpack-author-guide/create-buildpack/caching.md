@@ -1,7 +1,4 @@
-+++
-title="Improving performance with caching"
-weight=407
-+++
+# Improving performance with caching
 
 <!-- test:suite=create-buildpack;weight=7 -->
 
@@ -27,10 +24,10 @@ bundle config set --local path "$bundlerlayer" && bundle install && bundle binst
 
 ```
 
-Your full `ruby-buildpack/bin/build`<!--+ "{{open}}" +--> script should now look like the following:
+Your full `ruby-buildpack/bin/build`{{open}} script should now look like the following:
 
 <!-- test:file=ruby-buildpack/bin/build -->
-```bash
+<pre class="file" data-filename="ruby-buildpack/bin/build" data-target="replace">
 #!/usr/bin/env bash
 set -eo pipefail
 
@@ -80,14 +77,14 @@ default = true
 type = "worker"
 command = "bundle exec ruby worker.rb"
 EOL
-```
+</pre>
 
 Now when we run:
 
 <!-- test:exec -->
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
-```<!--+ "{{execute}}" +-->
+```{{execute}}
 
 You will see something similar to the following during the `EXPORTING` phase:
 
@@ -98,13 +95,13 @@ You will see something similar to the following during the `EXPORTING` phase:
 
 ## Caching dependencies
 
-Now, let's implement the caching logic. We'll first need to create a `ruby-sample-app/Gemfile.lock`<!--+ "{{open}}" +--> file with the contents given below:
+Now, let's implement the caching logic. We'll first need to create a `ruby-sample-app/Gemfile.lock`{{open}} file with the contents given below:
 
 > Typically you would run `bundle install` locally to generate this file, but for the sake
 > of simplicity we'll create `ruby-sample-app/Gemfile.lock` manually.
 
 <!-- test:file=ruby-sample-app/Gemfile.lock -->
-```text
+<pre class="file" data-filename="ruby-sample-app/Gemfile.lock" data-target="replace">
 GEM
   remote: https://rubygems.org/
   specs:
@@ -127,7 +124,7 @@ DEPENDENCIES
 
 BUNDLED WITH
    2.0.2
-```
+</pre>
 
 Replace the gem installation logic from the previous step:
 
@@ -178,10 +175,10 @@ EOL
 fi
 ```
 
-Your full `ruby-buildpack/bin/build`<!--+ "{{open}}" +--> script will now look like this:
+Your full `ruby-buildpack/bin/build`{{open}} script will now look like this:
 
 <!-- test:file=ruby-buildpack/bin/build -->
-```bash
+<pre class="file" data-filename="ruby-buildpack/bin/build" data-target="replace">
 #!/usr/bin/env bash
 set -eo pipefail
 
@@ -251,14 +248,14 @@ default = true
 type = "worker"
 command = "bundle exec ruby worker.rb"
 EOL
-```
+</pre>
 
 Now when you build your app:
 
 <!-- test:exec -->
 ```text
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
-```<!--+ "{{execute}}" +-->
+```{{execute}}
 
 it will download the gems:
 
@@ -277,7 +274,7 @@ If you build the app again:
 <!-- test:exec -->
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
-```<!--+ "{{execute}}" +-->
+```{{execute}}
 
 you will see the new caching logic at work during the `BUILDING` phase:
 
@@ -293,8 +290,3 @@ you will see the new caching logic at work during the `BUILDING` phase:
 
 Next, let's see how buildpack users may be able to provide configuration to the buildpack.
 
-<!--+if false+-->
----
-
-<a href="/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable" class="button bg-pink">Next Step</a>
-<!--+end+-->
