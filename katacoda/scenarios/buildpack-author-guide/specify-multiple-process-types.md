@@ -4,7 +4,7 @@
 
 One of the benefits of buildpacks is that they are multi-process - an image can have multiple entrypoints for each operational mode. Let's see how this works. We will extend our app to have a worker process.
 
-Let's create a worker file, `ruby-sample-app/worker.rb`, with the following contents:
+Let's create a worker file, `ruby-sample-app/worker.rb`{{open}}, with the following contents:
 
 <!-- test:file=ruby-sample-app/worker.rb -->
 <pre class="file" data-filename="ruby-sample-app/worker.rb" data-target="replace">
@@ -36,7 +36,7 @@ EOL
 # ...
 ```
 
-Your full `ruby-buildpack/bin/build` script should now look like the following:
+Your full `ruby-buildpack/bin/build`{{open}} script should now look like the following:
 
 <!-- test:file=ruby-buildpack/bin/build -->
 <pre class="file" data-filename="ruby-buildpack/bin/build" data-target="replace">
@@ -93,14 +93,14 @@ Now if you rebuild your app using the updated buildpack:
 <!-- test:exec -->
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
-```<--+ "{{execute}}" +-->
+```{{execute}}
 
 You should then be able to run your new Ruby worker process:
 
 <!-- test:exec -->
 ```bash
 docker run --rm --entrypoint worker test-ruby-app
-```<--+ "{{execute}}" +-->
+```{{execute}}
 
 and see the worker log output:
 

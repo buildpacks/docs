@@ -22,7 +22,7 @@ First, we'll create a sample Ruby app that you can use when developing your buil
 <!-- test:exec -->
 ```bash
 mkdir ruby-sample-app
-```<!--+ "{{execute}}" -->
+```{{execute}}
 
 Create a file in the current directory called `ruby-sample-app/app.rb` with the following contents:
 

@@ -7,7 +7,7 @@
     "steps": [
       {
         "title": "Setup your Environment",
-        "text": "setp-local-environment.md"
+        "text": "setup-local-environment.md"
       },
       {
         "title": "Building blocks of a Cloud Native Buildpack",
