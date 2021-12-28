@@ -1,6 +1,6 @@
 {
-  "title": "Create a Buildpack",
-  "description": "Learn how to build and customize your application image using Cloud Native Buildpacks",
+  "title": "Buildpack Author's Guide",
+  "description": "A step-by-step tutorial for creating a Cloud Native Buildpack using simple bash scripts.",
   "difficulty": "Intermediate",
   "time": "30",
   "details": {

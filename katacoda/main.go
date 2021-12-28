@@ -138,13 +138,15 @@ func main() {
 		parseError := err.(*csv.ParseError)
 		log.Fatalf("unable to read input files, %s on line %d: %w", parseError.Err, parseError.Line, err)
 	}
-	docsLinks := regexp.MustCompile(`[ \(]/docs/`)
+	docsLinks := regexp.MustCompile(`\(/docs/`)    // Links start with LPAREN eg: (foo)[/docs/...]
+	docsFootnote := regexp.MustCompile(`: /docs/`) // References in footnotes eg: [foo]: /docs/...
 	for _, mapping := range files {
 		i := mapping[0]
 		o := mapping[1]
 		out, err := os.ReadFile(i)
 		out = preprocessText(out)
-		out = docsLinks.ReplaceAll(out, []byte(" https://buildpacks.io/docs/"))
+		out = docsLinks.ReplaceAll(out, []byte("(https://buildpacks.io/docs/"))
+		out = docsFootnote.ReplaceAll(out, []byte(": https://buildpacks.io/docs/"))
 		if err != nil {
 			log.Fatalf("unable to read input file %s: %s", i, err)
 		}
