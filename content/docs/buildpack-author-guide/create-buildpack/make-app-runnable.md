@@ -7,11 +7,12 @@ weight=405
 
 To make your app runnable, a default start command must be set. You'll need to add the following to the end of your `build` script:
 
+<!-- file=ruby-buildpack/bin/build data-target=append -->
 ```bash
 # ...
 
 # Set default start command
-cat > "$layersdir/launch.toml" <<EOL
+cat > "$layersdir/launch.toml" << EOL
 [[processes]]
 type = "web"
 command = "bundle exec ruby app.rb"
@@ -21,7 +22,7 @@ EOL
 # ...
 ```
 
-Your full `ruby-buildpack/bin/build` <!--+ "{{open}}" +--> script should now look like the following:
+Your full `ruby-buildpack/bin/build`<!--+ "{{open}}" +--> script should now look like the following:
 
 <!-- test:file=ruby-buildpack/bin/build -->
 ```bash
@@ -59,7 +60,7 @@ bundle install
 
 # ========== ADDED ===========
 # 8. SET DEFAULT START COMMAND
-cat > "$layersdir/launch.toml" <<EOL
+cat > "$layersdir/launch.toml" << EOL
 [[processes]]
 type = "web"
 command = "bundle exec ruby app.rb"

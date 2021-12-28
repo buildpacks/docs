@@ -134,3 +134,4 @@ The following environment variables were set and available to buildpacks at buil
 
 [descriptor-schema]: https://buildpacks.io/docs/reference/project-descriptor/
 [samples]: https://github.com/buildpacks/samples
+---

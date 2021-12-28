@@ -110,3 +110,5 @@ After running the command, you should see that it failed to detect, as the `dete
 [detector] ERROR: failed to detect: buildpack(s) failed with err
 ```
 
+
+---

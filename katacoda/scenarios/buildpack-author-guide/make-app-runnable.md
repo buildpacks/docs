@@ -4,11 +4,12 @@
 
 To make your app runnable, a default start command must be set. You'll need to add the following to the end of your `build` script:
 
-```bash
+<!-- file=ruby-buildpack/bin/build data-target=append -->
+<pre class="file" data-filename="ruby-buildpack/bin/build" data-target="append">
 # ...
 
 # Set default start command
-cat > "$layersdir/launch.toml" <<EOL
+cat > "$layersdir/launch.toml" << EOL
 [[processes]]
 type = "web"
 command = "bundle exec ruby app.rb"
@@ -16,9 +17,9 @@ default = true
 EOL
 
 # ...
-```
+</pre>
 
-Your full `ruby-buildpack/bin/build` {{open}} script should now look like the following:
+Your full `ruby-buildpack/bin/build`{{open}} script should now look like the following:
 
 <!-- test:file=ruby-buildpack/bin/build -->
 <pre class="file" data-filename="ruby-buildpack/bin/build" data-target="replace">
@@ -56,7 +57,7 @@ bundle install
 
 # ========== ADDED ===========
 # 8. SET DEFAULT START COMMAND
-cat > "$layersdir/launch.toml" <<EOL
+cat > "$layersdir/launch.toml" << EOL
 [[processes]]
 type = "web"
 command = "bundle exec ruby app.rb"
@@ -86,7 +87,9 @@ and see the server log output:
 [2019-04-02 18:04:48] INFO  WEBrick::HTTPServer#start: pid=1 port=8080
 ```
 
-Test it out by navigating to [localhost:8080](http://localhost:8080) in your favorite browser!
+Test it out by navigating to [here](https://[[HOST_SUBDOMAIN]]-8080-[[KATACODA_HOST]].environments.katacoda.com) in your favorite browser!
 
 We can add multiple process types to a single app. We'll do that in the next section.
 
+
+---

@@ -15,9 +15,10 @@ Before we get started, make sure you've got the following installed:
 
 {{< download-button href="https://store.docker.com/search?type=edition&offering=community" color="blue" >}} Install Docker {{</>}}
 {{< download-button href="/docs/install-pack" color="pink" >}} Install pack {{</>}}
-<!--+end+-->
+
 
 ## Overview
+<!--+end+-->
 
 This is a step-by-step tutorial for creating a Ruby Cloud Native Buildpack.
 

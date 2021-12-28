@@ -2,8 +2,6 @@
 
 
 
-## Overview
-
 This is a step-by-step tutorial for creating a Ruby Cloud Native Buildpack.
 
 - [Set up your local environment](https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/setup-local-environment)
@@ -16,3 +14,5 @@ This is a step-by-step tutorial for creating a Ruby Cloud Native Buildpack.
 - [Making your buildpack configurable](https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable)
 - [Adding a Bill-of-Materials](https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials)
 
+
+---

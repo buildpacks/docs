@@ -24,7 +24,7 @@ First, we'll create a sample Ruby app that you can use when developing your buil
 mkdir ruby-sample-app
 ```{{execute}}
 
-Create a file in the current directory called `ruby-sample-app/app.rb` with the following contents:
+Create a file in the current directory called `ruby-sample-app/app.rb`{{open}} with the following contents:
 
 <!-- test:file=ruby-sample-app/app.rb -->
 <pre class="file" data-filename="ruby-sample-app/app.rb" data-target="replace">
@@ -38,7 +38,7 @@ get '/' do
 end
 </pre>
 
-Then, create a file called `ruby-sample-app/Gemfile` with the following contents:
+Then, create a file called `ruby-sample-app/Gemfile`{{open}} with the following contents:
 
 <!-- test:file=ruby-sample-app/Gemfile -->
 <pre class="file" data-filename="ruby-sample-app/Gemfile" data-target="replace">
@@ -79,3 +79,4 @@ Server: Docker Engine - Community
   OS/Arch:          linux/amd64
   Experimental:     false
 ```
+---

@@ -99,3 +99,4 @@ Since we are using the `samples/hello-world` buildpack, we should see the `/plat
 ```
 
 [samples]: https://github.com/buildpack/samples
+---

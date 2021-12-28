@@ -137,3 +137,5 @@ You will notice that version of Ruby specified in the app's `.ruby-version` file
 
 Next, let's see how buildpacks can store information about the dependencies provided in the output app image for introspection.
 
+
+---

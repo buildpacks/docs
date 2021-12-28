@@ -13,7 +13,7 @@ import (
 var (
 	commentType  = regexp.MustCompile(`file=(?P<filename>[\w-/\.]*)`)
 	replacements = map[string]string{
-		`https://[[HOST_SUBDOMAIN]]-8080-[[KATACODA_HOST]].environments.katacoda.com`: `https://[[HOST_SUBDOMAIN]]-8080-[[KATACODA_HOST]].environments.katacoda.com`,
+		`[localhost:8080](http://localhost:8080)`: `[here](https://[[HOST_SUBDOMAIN]]-8080-[[KATACODA_HOST]].environments.katacoda.com)`,
 	}
 )
 
@@ -98,7 +98,6 @@ func preprocessor(lines []string) []string {
 
 		// Open code block
 		if strings.HasPrefix(s, "```") && !closePreFlag {
-			closePreFlag = true
 			prv := buf[len(buf)-1]
 			var codeblock string
 			codeblock, closePreFlag = openCodeBlock(prv, s)
@@ -165,5 +164,6 @@ func main() {
 		if err := t.Execute(f, []string{}); err != nil {
 			log.Fatalf("unable to execute template: %s", err)
 		}
+		f.WriteString("\n---\n")
 	}
 }
