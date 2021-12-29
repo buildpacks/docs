@@ -41,7 +41,7 @@ To add the `ruby` version to the output of `pack inspect-image`, we will have to
 # ...
 
 # Append a Bill-of-Materials containing metadata about the provided ruby version
-cat >> "$layersdir/launch.toml" <<EOL
+cat >> "$layersdir/launch.toml" << EOL
 [[bom]]
 name = "ruby"
 [bom.metadata]
@@ -98,7 +98,7 @@ else
     # Determine if there has been a gem dependency change and install new gems to the bundler layer; re-using existing and un-changed gems
     echo "---> Installing gems"
     mkdir -p "$bundlerlayer"
-    cat > "$layersdir/bundler.toml" <<EOL
+    cat > "$layersdir/bundler.toml" << EOL
 [types]
 cache = true
 launch = true
@@ -111,7 +111,7 @@ EOL
 fi
 
 # 8. SET DEFAULT START COMMAND
-cat > "$layersdir/launch.toml" <<EOL
+cat > "$layersdir/launch.toml" << EOL
 # our web process
 [[processes]]
 type = "web"
@@ -126,7 +126,7 @@ EOL
 
 # ========== ADDED ===========
 # 9. ADD A BOM
-cat >> "$layersdir/launch.toml" <<EOL
+cat >> "$layersdir/launch.toml" << EOL
 [[bom]]
 name = "ruby"
 [bom.metadata]

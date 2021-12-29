@@ -20,7 +20,7 @@ To enable running the worker process, we'll need to have our buildpack define a 
 ```bash
 # ...
 
-cat > "$layersdir/launch.toml" <<EOL
+cat > "$layersdir/launch.toml" << EOL
 # our web process
 [[processes]]
 type = "web"
@@ -74,7 +74,7 @@ bundle install
 
 # ========== MODIFIED ===========
 # 8. SET DEFAULT START COMMAND
-cat > "$layersdir/launch.toml" <<EOL
+cat > "$layersdir/launch.toml" << EOL
 # our web process
 [[processes]]
 type = "web"

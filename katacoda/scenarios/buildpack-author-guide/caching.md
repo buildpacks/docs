@@ -65,7 +65,7 @@ echo -e '[types]\ncache = true\nlaunch = true' > "$layersdir/bundler.toml"
 bundle config set --local path "$bundlerlayer" && bundle install && bundle binstubs --all --path "$bundlerlayer/bin"
 
 # 8. SET DEFAULT START COMMAND
-cat > "$layersdir/launch.toml" <<EOL
+cat > "$layersdir/launch.toml" << EOL
 # our web process
 [[processes]]
 type = "web"
@@ -162,7 +162,7 @@ else
     # Determine if there has been a gem dependency change and install new gems to the bundler layer; re-using existing and un-changed gems
     echo "---> Installing gems"
     mkdir -p "$bundlerlayer"
-    cat > "$layersdir/bundler.toml" <<EOL
+    cat > "$layersdir/bundler.toml" << EOL
 [types]
 cache = true
 launch = true
@@ -223,7 +223,7 @@ else
     # Determine if there has been a gem dependency change and install new gems to the bundler layer; re-using existing and un-changed gems
     echo "---> Installing gems"
     mkdir -p "$bundlerlayer"
-    cat > "$layersdir/bundler.toml" <<EOL
+    cat > "$layersdir/bundler.toml" << EOL
 [types]
 cache = true
 launch = true
@@ -236,7 +236,7 @@ EOL
 fi
 
 # 8. SET DEFAULT START COMMAND
-cat > "$layersdir/launch.toml" <<EOL
+cat > "$layersdir/launch.toml" << EOL
 # our web process
 [[processes]]
 type = "web"
