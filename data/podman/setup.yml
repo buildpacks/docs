@@ -77,8 +77,14 @@
             ```shell=zsh
             ssh-add -k "$HOME/.ssh/podman-machine-default"
             ```
-        2. Configure `DOCKER_HOST` with the connection information:
+        2. Change default connection to use `root`:
+            ```shell=zsh
+            podman system connection default podman-machine-default-root
+            ```
+            > **Note**: `root` connection prevents needing to pass `--docker-host=inherit` on every `pack build`. \
+            > For more information, see issue [buildpacks/pack#1338](https://github.com/buildpacks/pack/issues/1338).
+        3. Configure `DOCKER_HOST` with the connection information:
             ```shell=zsh
             export DOCKER_HOST="$(podman system connection ls --format="{{.URI}}" | grep root)"
             ```
-            **Tip**: put the commands into your shell init file (e.g `~/.zshrc`).
+            > **Tip**: put the commands into your shell init file (e.g `~/.zshrc`).
