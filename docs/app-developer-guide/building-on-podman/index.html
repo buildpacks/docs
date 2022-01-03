@@ -745,9 +745,19 @@ systemctl start --user podman.socket
 <li>Add the SSH key for the podman VM to your keychain:
 <pre tabindex="0"><code class="language-shell=zsh" data-lang="shell=zsh">ssh-add -k &quot;$HOME/.ssh/podman-machine-default&quot;
 </code></pre></li>
+<li>Change default connection to use <code>root</code>:
+<pre tabindex="0"><code class="language-shell=zsh" data-lang="shell=zsh">podman system connection default podman-machine-default-root
+</code></pre><blockquote>
+<p><strong>Note</strong>: <code>root</code> connection prevents needing to pass <code>--docker-host=inherit</code> on every <code>pack build</code>. <br>
+For more information, see issue <a href="https://github.com/buildpacks/pack/issues/1338">buildpacks/pack#1338</a>.</p>
+</blockquote>
+</li>
 <li>Configure <code>DOCKER_HOST</code> with the connection information:
 <pre tabindex="0"><code class="language-shell=zsh" data-lang="shell=zsh">export DOCKER_HOST=&quot;$(podman system connection ls --format=&quot;{{.URI}}&quot; | grep root)&quot;
-</code></pre><strong>Tip</strong>: put the commands into your shell init file (e.g <code>~/.zshrc</code>).</li>
+</code></pre><blockquote>
+<p><strong>Tip</strong>: put the commands into your shell init file (e.g <code>~/.zshrc</code>).</p>
+</blockquote>
+</li>
 </ol>
 
               </div>
