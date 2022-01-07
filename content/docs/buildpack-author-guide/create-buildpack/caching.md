@@ -87,13 +87,14 @@ Now when we run:
 <!-- test:exec -->
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
-```<!--+ "{{execute}}" +-->
+```
+<!--+ "{{execute}}" +-->
 
 You will see something similar to the following during the `EXPORTING` phase:
 
 <!-- test:assert=contains -->
 ```text
-[exporter] Adding layer 'examples/ruby:bundler'
+Adding layer 'examples/ruby:bundler'
 ```
 
 ## Caching dependencies
@@ -258,18 +259,19 @@ Now when you build your app:
 <!-- test:exec -->
 ```text
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
-```<!--+ "{{execute}}" +-->
+```
+<!--+ "{{execute}}" +-->
 
 it will download the gems:
 
 <!-- test:assert=contains;ignore-lines=... -->
 ```text
 ===> BUILDING
-[builder] ---> Ruby Buildpack
-[builder] ---> Downloading and extracting Ruby
-[builder] ---> Installing bundler
+---> Ruby Buildpack
+---> Downloading and extracting Ruby
+---> Installing bundler
 ...
-[builder] ---> Installing gems
+---> Installing gems
 ```
 
 If you build the app again:
@@ -277,18 +279,19 @@ If you build the app again:
 <!-- test:exec -->
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
-```<!--+ "{{execute}}" +-->
+```
+<!--+ "{{execute}}" +-->
 
 you will see the new caching logic at work during the `BUILDING` phase:
 
 <!-- test:assert=contains;ignore-lines=... -->
 ```text
 ===> BUILDING
-[builder] ---> Ruby Buildpack
-[builder] ---> Downloading and extracting Ruby
-[builder] ---> Installing bundler
+---> Ruby Buildpack
+---> Downloading and extracting Ruby
+---> Installing bundler
 ...
-[builder] ---> Reusing gems
+---> Reusing gems
 ```
 
 Next, let's see how buildpack users may be able to provide configuration to the buildpack.

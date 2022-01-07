@@ -14,7 +14,7 @@ Example:
 <!-- test:exec -->
 ```bash
 pack buildpack new examples/ruby \
-    --api 0.7 \
+    --api 0.6 \
     --path ruby-buildpack \
     --version 0.0.1 \
     --stacks io.buildpacks.samples.stacks.bionic
@@ -37,7 +37,7 @@ You will have `ruby-buildpack/buildpack.toml`{{open}} in your buildpack director
 <!-- test:file=ruby-buildpack/buildpack.toml -->
 <pre class="file" data-filename="ruby-buildpack/buildpack.toml" data-target="replace">
 # Buildpack API version
-api = "0.7"
+api = "0.6"
 
 # Buildpack ID and metadata
 [buildpack]
@@ -89,14 +89,16 @@ Set your default [builder][builder] by running the following:
 <!-- test:exec -->
 ```bash
 pack config default-builder cnbs/sample-builder:bionic
-```{{execute}}
+```
+{{execute}}
 
 Then run the following `pack` command:
 
 <!-- test:exec;exit-code=1 -->
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
-```{{execute}}
+```
+{{execute}}
 
 The `pack build` command takes in your Ruby sample app as the `--path` argument and your buildpack as the `--buildpack` argument.
 
@@ -105,9 +107,9 @@ After running the command, you should see that it failed to detect, as the `dete
 <!-- test:assert=contains -->
 ```
 ===> DETECTING
-[detector] err:  examples/ruby@0.0.1 (1)
-[detector] ERROR: No buildpack groups passed detection.
-[detector] ERROR: failed to detect: buildpack(s) failed with err
+err:  examples/ruby@0.0.1 (1)
+ERROR: No buildpack groups passed detection.
+ERROR: failed to detect: buildpack(s) failed with err
 ```
 
 

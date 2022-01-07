@@ -124,15 +124,16 @@ Now when you run:
 <!-- test:exec -->
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
-```<--+ "{{execute}}" +-->
+```
+{{execute}}
 
 You will notice that version of Ruby specified in the app's `.ruby-version` file is downloaded.
 
 <!-- test:assert=contains -->
 ```text
 ===> BUILDING
-[builder] ---> Ruby Buildpack
-[builder] ---> Downloading and extracting Ruby 2.5.0
+---> Ruby Buildpack
+---> Downloading and extracting Ruby 2.5.0
 ```
 
 Next, let's see how buildpacks can store information about the dependencies provided in the output app image for introspection.

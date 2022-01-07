@@ -96,14 +96,16 @@ Now if you rebuild your app using the updated buildpack:
 <!-- test:exec -->
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
-```<!--+ "{{execute}}" +-->
+```
+<!--+ "{{execute}}" +-->
 
 You should then be able to run your new Ruby worker process:
 
 <!-- test:exec -->
 ```bash
 docker run --rm --entrypoint worker test-ruby-app
-```<!--+ "{{execute}}" +-->
+```
+<!--+ "{{execute}}" +-->
 
 and see the worker log output:
 

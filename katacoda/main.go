@@ -26,7 +26,8 @@ var (
 // <!-- test:exec;exit-code=1 -->
 //```bash
 //pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
-//```<!--+"{{execute}}"+-->
+//```
+//<!--+"{{execute}}"+-->
 //
 // the `pandoc` AST is
 //

@@ -70,13 +70,15 @@ Then rebuild your app using the updated buildpack:
 <!-- test:exec -->
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
-```{{execute}}
+```
+{{execute}}
 
 You should then be able to run your new Ruby app:
 
 ```bash
 docker run --rm -p 8080:8080 test-ruby-app
-```{{execute}}
+```
+{{execute}}
 
 and see the server log output:
 

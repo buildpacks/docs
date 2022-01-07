@@ -29,20 +29,22 @@ Next, rebuild your app with the updated buildpack:
 <!-- test:exec;exit-code=-1 -->
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
-```{{execute}}
+```
+{{execute}}
 
 You should see the following output:
 
 <!-- test:assert=contains -->
 ```
 ===> ANALYZING
-[analyzer] Previous image with name "test-ruby-app" not found
+Previous image with name "test-ruby-app" not found
 ===> DETECTING
-[detector] examples/ruby 0.0.1
+examples/ruby 0.0.1
 ===> RESTORING
 ===> BUILDING
-[builder] ---> Ruby Buildpack
-[builder] ERROR: failed to build: exit status 1
+---> Ruby Buildpack
+ERROR: failed to build: exit status 1
+ERROR: failed to build: executing lifecycle
 ```
 
 Notice that `detect` now passes because there is a valid `Gemfile` in the Ruby app at `ruby-sample-app`, but now `build` fails because it is currently written to error out.

@@ -118,7 +118,8 @@ Build your app again:
 <!-- test:exec -->
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
-```{{execute}}
+```
+{{execute}}
 
 You will see the following output:
 
@@ -130,11 +131,11 @@ You will see the following output:
 ...
 ===> RESTORING
 ===> BUILDING
-[builder] ---> Ruby Buildpack
-[builder] ---> Downloading and extracting Ruby
-[builder] ---> Installing bundler
+---> Ruby Buildpack
+---> Downloading and extracting Ruby
+---> Installing bundler
 ...
-[builder] ---> Installing gems
+---> Installing gems
 ...
 ===> EXPORTING
 ...

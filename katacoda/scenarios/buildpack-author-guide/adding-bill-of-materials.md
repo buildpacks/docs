@@ -11,14 +11,14 @@ One of the benefits of buildpacks is they can also populate the app image with m
 
 You can find all of this information using `pack` via its `inspect-image` command.
 
-
 <!-- test:exec -->
 ```bash
 pack inspect-image test-ruby-app
-```{{execute}}
+```
+{{execute}}
 You should see the following:
 
-<!-- test:assert=contains
+<!-- test:assert=contains;ignore-lines=... -->
 ```text
 Run Images:
   cnbs/sample-stack-run:bionic
@@ -29,9 +29,9 @@ Buildpacks:
 
 Processes:
   TYPE                 SHELL        COMMAND                        ARGS
-  web (default)        bash         bundle exec ruby app.rb
+  web (default)        bash         bundle exec ruby app.rb        
   worker               bash         bundle exec ruby worker.rb
-``` -->
+```
 
 Apart from the above standard metadata, buildpacks can also populate information about the dependencies they have provided in form of a `Bill-of-Materials`. Let's see how we can use this to populate information about the version of `ruby` that was installed in the output app image.
 
@@ -140,14 +140,16 @@ Then rebuild your app using the updated buildpack:
 <!-- test:exec -->
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
-```{{execute}}
+```
+{{execute}}
 
 You should then be able to inspect your Ruby app for its Bill-of-Materials via:
 
 <!-- test:exec -->
 ```bash
 pack inspect-image test-ruby-app --bom
-```{{execute}}
+```
+{{execute}}
 
 You should find that the included `ruby` version is `2.5.0` as expected.
 
