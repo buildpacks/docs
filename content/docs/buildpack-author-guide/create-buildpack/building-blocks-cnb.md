@@ -96,6 +96,14 @@ pack config default-builder cnbs/sample-builder:bionic
 ```
 <!--+ "{{execute}}" +-->
 
+Tell pack to trust our default builder:
+
+<!-- test:exec -->
+```bash
+pack config trusted-builders add cnbs/sample-builder:bionic
+```
+<!--+ "{{execute}}" +-->
+
 Then run the following `pack` command:
 
 <!-- test:exec;exit-code=1 -->
