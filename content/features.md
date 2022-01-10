@@ -16,7 +16,7 @@ Images can be built directly from application source without additional instruct
 {{</>}}
   
 {{< feature title="Bill-of-Materials" >}}
-Insights into the contents of the app image.
+Insights into the contents of the app image through standard build-time SBOMs in <a href="https://cyclonedx.org/">CycloneDX</a>, <a href="https://spdx.dev/">SPDX</a> and <a href="https://github.com/anchore/syft">Syft JSON</a> formats.
 {{</>}}
 
 {{< feature title="Modular / Pluggable" >}}
