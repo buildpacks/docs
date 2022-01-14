@@ -610,7 +610,7 @@ Replace exit 1 in the detect script with the following…">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="k">if</span> <span class="o">[[</span> ! -f Gemfile <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
    <span class="nb">exit</span> <span class="m">100</span>
 <span class="k">fi</span>
-</code></pre></div><p>Your <code>ruby-buildpack/bin/detect</code> script should look like this:</p>
+</code></pre></div><p>Your <code>ruby-buildpack/bin/detect</code><!--+"{{open}}"+--> script should look like this:</p>
 <!-- test:file=ruby-buildpack/bin/detect -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
 </span><span class="cp"></span><span class="nb">set</span> -eo pipefail
@@ -621,21 +621,24 @@ Replace exit 1 in the detect script with the following…">
 </code></pre></div><p>Next, rebuild your app with the updated buildpack:</p>
 <!-- test:exec;exit-code=-1 -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
-</code></pre></div><p>You should see the following output:</p>
+</code></pre></div><!--+- "{{execute}}"+-->
+<p>You should see the following output:</p>
 <!-- test:assert=contains -->
 <pre tabindex="0"><code>===&gt; ANALYZING
-[analyzer] Previous image with name &quot;test-ruby-app&quot; not found
+Previous image with name &quot;test-ruby-app&quot; not found
 ===&gt; DETECTING
-[detector] examples/ruby 0.0.1
+examples/ruby 0.0.1
 ===&gt; RESTORING
 ===&gt; BUILDING
-[builder] ---&gt; Ruby Buildpack
-[builder] ERROR: failed to build: exit status 1
+---&gt; Ruby Buildpack
+ERROR: failed to build: exit status 1
+ERROR: failed to build: executing lifecycle
 </code></pre><p>Notice that <code>detect</code> now passes because there is a valid <code>Gemfile</code> in the Ruby app at <code>ruby-sample-app</code>, but now <code>build</code> fails because it is currently written to error out.</p>
 <p>You will also notice that <code>ANALYZING</code> now appears in the build output. This step is part of the buildpack lifecycle that looks to see if any previous image builds have layers that the buildpack can re-use. We will get into this topic in more detail later.</p>
+<!--+if false+-->
 <hr>
 <p><a href="/docs/buildpack-author-guide/create-buildpack/build-app" class="button bg-pink">Next Step</a></p>
-
+<!--+end+-->
 
         
 

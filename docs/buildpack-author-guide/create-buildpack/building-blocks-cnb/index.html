@@ -618,7 +618,8 @@ Using the Pack CLI The buildpack new &amp;lt;id&amp;gt; command will create a di
 </span><span class="se"></span>    --path ruby-buildpack <span class="se">\
 </span><span class="se"></span>    --version 0.0.1 <span class="se">\
 </span><span class="se"></span>    --stacks io.buildpacks.samples.stacks.bionic
-</code></pre></div><p>This command will create <code>ruby-buildpack</code> directory which contains <code>buildpack.toml</code>, <code>bin/build</code>,  <code>bin/detect</code> files.</p>
+</code></pre></div><!--+- "{{execute}}"+-->
+<p>This command will create <code>ruby-buildpack</code> directory which contains <code>buildpack.toml</code>, <code>bin/build</code>,  <code>bin/detect</code> files.</p>
 <h3 id="additional-parameters">Additional Parameters</h3>
 <ul>
 <li><code>-a, --api</code> Buildpack API compatibility of the generated buildpack</li>
@@ -628,7 +629,7 @@ Using the Pack CLI The buildpack new &amp;lt;id&amp;gt; command will create a di
 <li><code>-V, --version</code> the version of the buildpack in buildpack.toml</li>
 </ul>
 <h3 id="buildpacktoml">buildpack.toml</h3>
-<p>You will have <code>buildpack.toml</code> in your buildpack directory to describe our buildpack.</p>
+<p>You will have <code>ruby-buildpack/buildpack.toml</code><!--+"{{open}}"+--> in your buildpack directory to describe our buildpack.</p>
 <!-- test:file=ruby-buildpack/buildpack.toml -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="c"># Buildpack API version</span>
 <span class="nx">api</span> <span class="p">=</span> <span class="s2">&#34;0.6&#34;</span>
@@ -645,13 +646,13 @@ Using the Pack CLI The buildpack new &amp;lt;id&amp;gt; command will create a di
 </code></pre></div><p>You will notice two specific fields in the file: <code>buildpack.id</code> and <code>stack.id</code>. The buildpack ID is the way you will reference the buildpack when you create buildpack groups, builders, etc. The stack ID is the root file system in which the buildpack will be run. This example can be run on one of two different stacks, both based upon Ubuntu Bionic.</p>
 <h3 id="detect-and-build"><code>detect</code> and <code>build</code></h3>
 <p>Next, we will cover the <code>detect</code> and <code>build</code> scripts. These files are created in <code>bin</code> directory in your buildpack directory.</p>
-<p>Now update your <code>ruby-buildpack/bin/detect</code> file and copy in the following contents:</p>
+<p>Now update your <code>ruby-buildpack/bin/detect</code><!--+"{{open}}"+--> file and copy in the following contents:</p>
 <!-- test:file=ruby-buildpack/bin/detect -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
 </span><span class="cp"></span><span class="nb">set</span> -eo pipefail
 
 <span class="nb">exit</span> <span class="m">1</span>
-</code></pre></div><p>Also update your <code>ruby-buildpack/bin/build</code> file and copy in the following contents:</p>
+</code></pre></div><p>Also update your <code>ruby-buildpack/bin/build</code><!--+"{{open}}"+--> file and copy in the following contents:</p>
 <!-- test:file=ruby-buildpack/bin/build -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
 </span><span class="cp"></span><span class="nb">set</span> -eo pipefail
@@ -664,19 +665,26 @@ Using the Pack CLI The buildpack new &amp;lt;id&amp;gt; command will create a di
 <p>Set your default <a href="/docs/concepts/components/builder">builder</a> by running the following:</p>
 <!-- test:exec -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pack config default-builder cnbs/sample-builder:bionic
-</code></pre></div><p>Then run the following <code>pack</code> command:</p>
+</code></pre></div><!--+- "{{execute}}"+-->
+<p>Tell pack to trust our default builder:</p>
+<!-- test:exec -->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pack config trusted-builders add cnbs/sample-builder:bionic
+</code></pre></div><!--+- "{{execute}}"+-->
+<p>Then run the following <code>pack</code> command:</p>
 <!-- test:exec;exit-code=1 -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
-</code></pre></div><p>The <code>pack build</code> command takes in your Ruby sample app as the <code>--path</code> argument and your buildpack as the <code>--buildpack</code> argument.</p>
+</code></pre></div><!--+- "{{execute}}"+-->
+<p>The <code>pack build</code> command takes in your Ruby sample app as the <code>--path</code> argument and your buildpack as the <code>--buildpack</code> argument.</p>
 <p>After running the command, you should see that it failed to detect, as the <code>detect</code> script is currently written to simply error out.</p>
 <!-- test:assert=contains -->
 <pre tabindex="0"><code>===&gt; DETECTING
-[detector] err:  examples/ruby@0.0.1 (1)
-[detector] ERROR: No buildpack groups passed detection.
-[detector] ERROR: failed to detect: buildpack(s) failed with err
-</code></pre><hr>
+err:  examples/ruby@0.0.1 (1)
+ERROR: No buildpack groups passed detection.
+ERROR: failed to detect: buildpack(s) failed with err
+</code></pre><!--+ if false+-->
+<hr>
 <p><a href="/docs/buildpack-author-guide/create-buildpack/detection" class="button bg-pink">Next Step</a></p>
-
+<!--+ end +-->
 
         
 

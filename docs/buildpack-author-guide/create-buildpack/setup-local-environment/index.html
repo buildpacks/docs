@@ -609,6 +609,7 @@ mkdir ruby-sample-app Create a file in the current directory called ruby-sample-
 <!--
 ```bash
 docker rmi test-ruby-app
+pack config trusted-builders add cnbs/sample-builder:bionic
 ```
 -->
 <!-- test:teardown:exec -->
@@ -620,7 +621,8 @@ docker rmi test-ruby-app
 <p>First, we&rsquo;ll create a sample Ruby app that you can use when developing your buildpack:</p>
 <!-- test:exec -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">mkdir ruby-sample-app
-</code></pre></div><p>Create a file in the current directory called <code>ruby-sample-app/app.rb</code> with the following contents:</p>
+</code></pre></div><!--+- "{{execute}}"+-->
+<p>Create a file in the current directory called <code>ruby-sample-app/app.rb</code><!--+"{{open}}"+--> with the following contents:</p>
 <!-- test:file=ruby-sample-app/app.rb -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;sinatra&#39;</span>
 
@@ -630,7 +632,7 @@ docker rmi test-ruby-app
 <span class="n">get</span> <span class="s1">&#39;/&#39;</span> <span class="k">do</span>
   <span class="s1">&#39;Hello World!&#39;</span>
 <span class="k">end</span>
-</code></pre></div><p>Then, create a file called <code>ruby-sample-app/Gemfile</code> with the following contents:</p>
+</code></pre></div><p>Then, create a file called <code>ruby-sample-app/Gemfile</code><!--+"{{open}}"+--> with the following contents:</p>
 <!-- test:file=ruby-sample-app/Gemfile -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="n">source</span> <span class="s2">&#34;https://rubygems.org&#34;</span>
 
@@ -640,28 +642,31 @@ docker rmi test-ruby-app
 </code></pre></div><p>Finally, make sure your local Docker daemon is running by executing:</p>
 <!-- test:exec -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker version
-</code></pre></div><p>If you see output similar to the following, you&rsquo;re good to go! Otherwise, start Docker and check again.</p>
+</code></pre></div><!--+- "{{execute}}"+-->
+<p>If you see output similar to the following, you&rsquo;re good to go! Otherwise, start Docker and check again.</p>
 <pre tabindex="0"><code>Client: Docker Engine - Community
- Version:           18.09.2
- API version:       1.39
- Go version:        go1.10.8
- Git commit:        6247962
- Built:             Sun Feb 10 04:12:39 2019
- OS/Arch:           darwin/amd64
- Experimental:      false
+ Version:           20.10.9
+ API version:       1.41
+ Go version:        go1.16.8
+ Git commit:        c2ea9bc
+ Built:             Mon Oct  4 16:08:29 2021
+ OS/Arch:           linux/amd64
+ Context:           default
+ Experimental:      true
 
 Server: Docker Engine - Community
  Engine:
-  Version:          18.09.2
-  API version:      1.39 (minimum version 1.12)
-  Go version:       go1.10.6
-  Git commit:       6247962
-  Built:            Sun Feb 10 04:13:06 2019
+  Version:          20.10.9
+  API version:      1.41 (minimum version 1.12)
+  Go version:       go1.16.8
+  Git commit:       79ea9d3
+  Built:            Mon Oct  4 16:06:34 2021
   OS/Arch:          linux/amd64
-  Experimental:     true
-</code></pre><hr>
+  Experimental:     false
+</code></pre><!--+ if false +-->
+<hr>
 <p><a href="/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb" class="button bg-pink">Next Step</a></p>
-
+<!--+ end+-->
 
         
 

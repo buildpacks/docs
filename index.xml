@@ -397,7 +397,7 @@ if [[ ! -f Gemfile ]]; then exit 100 fi Your ruby-buildpack/bin/detect script sh
       
       <guid>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/make-app-runnable/</guid>
       <description>To make your app runnable, a default start command must be set. You&amp;rsquo;ll need to add the following to the end of your build script:
-# ... # Set default start command cat &amp;gt; &amp;#34;$layersdir/launch.toml&amp;#34; &amp;lt;&amp;lt;EOL [[processes]] type = &amp;#34;web&amp;#34; command = &amp;#34;bundle exec ruby app.rb&amp;#34; default = true EOL # ... Your full ruby-buildpack/bin/build script should now look like the following:
+# ... # Set default start command cat &amp;gt; &amp;#34;$layersdir/launch.toml&amp;#34; &amp;lt;&amp;lt; EOL [[processes]] type = &amp;#34;web&amp;#34; command = &amp;#34;bundle exec ruby app.rb&amp;#34; default = true EOL # ... Your full ruby-buildpack/bin/build script should now look like the following:
 #!/usr/bin/env bash set -eo pipefail echo &amp;#34;---&amp;gt; Ruby Buildpack&amp;#34; # 1.</description>
     </item>
     

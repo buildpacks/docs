@@ -678,7 +678,7 @@ gem install bundler --no-ri --no-rdoc
     <span class="c1"># Determine if there has been a gem dependency change and install new gems to the bundler layer; re-using existing and un-changed gems</span>
     <span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing gems&#34;</span>
     mkdir <span class="o">-</span>p <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span>
-    cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler.toml&#34;</span> <span class="s">&lt;&lt;EOL
+    cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler.toml&#34;</span> <span class="s">&lt;&lt; EOL
 </span><span class="s">[types]
 </span><span class="s">cache = true
 </span><span class="s">launch = true
@@ -691,7 +691,7 @@ gem install bundler --no-ri --no-rdoc
 <span class="k">fi</span>
 
 <span class="c1"># 8. SET DEFAULT START COMMAND</span>
-cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt;EOL
+cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt; EOL
 </span><span class="s"># our web process
 </span><span class="s">[[processes]]
 </span><span class="s">type = &#34;web&#34;
@@ -709,15 +709,17 @@ cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span cl
 </code></pre><p>Now when you run:</p>
 <!-- test:exec -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
-</code></pre></div><p>You will notice that version of Ruby specified in the app&rsquo;s <code>.ruby-version</code> file is downloaded.</p>
+</code></pre></div><!--+- "{{execute}}"+-->
+<p>You will notice that version of Ruby specified in the app&rsquo;s <code>.ruby-version</code> file is downloaded.</p>
 <!-- test:assert=contains -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">===&gt; BUILDING
-[builder] ---&gt; Ruby Buildpack
-[builder] ---&gt; Downloading and extracting Ruby 2.5.0
+---&gt; Ruby Buildpack
+---&gt; Downloading and extracting Ruby 2.5.0
 </code></pre></div><p>Next, let&rsquo;s see how buildpacks can store information about the dependencies provided in the output app image for introspection.</p>
+<!--+if false+-->
 <hr>
 <p><a href="/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials" class="button bg-pink">Next Step</a></p>
-
+<!--+end+-->
 
         
 
