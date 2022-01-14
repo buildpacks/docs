@@ -14,7 +14,7 @@ Now we'll change the build step you created to install application dependencies.
 
 By doing this, you'll learn how to create arbitrary layers with your buildpack, and how to read the contents of the app in order to perform actions like downloading dependencies.
 
-Let's begin by changing the `ruby-buildpack/bin/build`<!--+ "{{open}}" +--> so that it creates a layer for Ruby.
+Let's begin by changing the `ruby-buildpack/bin/build`<!--+"{{open}}"+--> so that it creates a layer for Ruby.
 
 ### Creating a Layer
 
@@ -78,7 +78,7 @@ Now the Buildpack is ready to test.
 
 ### Running the Build
 
-Your complete `ruby-buildpack/bin/build`<!--+ "{{open}}" +--> script should look like this:
+Your complete `ruby-buildpack/bin/build`<!--+"{{open}}"+--> script should look like this:
 
 
 <!-- test:file=ruby-buildpack/bin/build -->
@@ -122,7 +122,7 @@ Build your app again:
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 ```
-<!--+ "{{execute}}" +-->
+<!--+- "{{execute}}"+-->
 
 You will see the following output:
 

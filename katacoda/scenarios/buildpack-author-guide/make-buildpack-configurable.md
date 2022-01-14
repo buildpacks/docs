@@ -124,8 +124,7 @@ Now when you run:
 <!-- test:exec -->
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
-```
-{{execute}}
+```{{execute}}
 
 You will notice that version of Ruby specified in the app's `.ruby-version` file is downloaded.
 

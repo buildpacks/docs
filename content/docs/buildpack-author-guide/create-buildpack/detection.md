@@ -15,7 +15,7 @@ if [[ ! -f Gemfile ]]; then
 fi
 ```
 
-Your `ruby-buildpack/bin/detect`<!--+ "{{open}}" +--> script should look like this:
+Your `ruby-buildpack/bin/detect`<!--+"{{open}}"+--> script should look like this:
 
 <!-- test:file=ruby-buildpack/bin/detect -->
 ```bash
@@ -33,7 +33,7 @@ Next, rebuild your app with the updated buildpack:
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 ```
-<!--+ "{{execute}}" +-->
+<!--+- "{{execute}}"+-->
 
 You should see the following output:
 

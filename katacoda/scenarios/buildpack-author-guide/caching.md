@@ -84,8 +84,7 @@ Now when we run:
 <!-- test:exec -->
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
-```
-{{execute}}
+```{{execute}}
 
 You will see something similar to the following during the `EXPORTING` phase:
 
@@ -256,8 +255,7 @@ Now when you build your app:
 <!-- test:exec -->
 ```text
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
-```
-{{execute}}
+```{{execute}}
 
 it will download the gems:
 
@@ -276,8 +274,7 @@ If you build the app again:
 <!-- test:exec -->
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
-```
-{{execute}}
+```{{execute}}
 
 you will see the new caching logic at work during the `BUILDING` phase:
 

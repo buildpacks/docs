@@ -89,24 +89,21 @@ Set your default [builder][builder] by running the following:
 <!-- test:exec -->
 ```bash
 pack config default-builder cnbs/sample-builder:bionic
-```
-{{execute}}
+```{{execute}}
 
 Tell pack to trust our default builder:
 
 <!-- test:exec -->
 ```bash
 pack config trusted-builders add cnbs/sample-builder:bionic
-```
-{{execute}}
+```{{execute}}
 
 Then run the following `pack` command:
 
 <!-- test:exec;exit-code=1 -->
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
-```
-{{execute}}
+```{{execute}}
 
 The `pack build` command takes in your Ruby sample app as the `--path` argument and your buildpack as the `--buildpack` argument.
 

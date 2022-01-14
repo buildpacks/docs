@@ -118,8 +118,7 @@ Build your app again:
 <!-- test:exec -->
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
-```
-{{execute}}
+```{{execute}}
 
 You will see the following output:
 

@@ -27,7 +27,7 @@ bundle config set --local path "$bundlerlayer" && bundle install && bundle binst
 
 ```
 
-Your full `ruby-buildpack/bin/build`<!--+ "{{open}}" +--> script should now look like the following:
+Your full `ruby-buildpack/bin/build`<!--+"{{open}}"+--> script should now look like the following:
 
 <!-- test:file=ruby-buildpack/bin/build -->
 ```bash
@@ -88,7 +88,7 @@ Now when we run:
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 ```
-<!--+ "{{execute}}" +-->
+<!--+- "{{execute}}"+-->
 
 You will see something similar to the following during the `EXPORTING` phase:
 
@@ -99,7 +99,7 @@ Adding layer 'examples/ruby:bundler'
 
 ## Caching dependencies
 
-Now, let's implement the caching logic. We'll first need to create a `ruby-sample-app/Gemfile.lock`<!--+ "{{open}}" +--> file with the contents given below:
+Now, let's implement the caching logic. We'll first need to create a `ruby-sample-app/Gemfile.lock`<!--+"{{open}}"+--> file with the contents given below:
 
 > Typically you would run `bundle install` locally to generate this file, but for the sake
 > of simplicity we'll create `ruby-sample-app/Gemfile.lock` manually.
@@ -179,7 +179,7 @@ EOL
 fi
 ```
 
-Your full `ruby-buildpack/bin/build`<!--+ "{{open}}" +--> script will now look like this:
+Your full `ruby-buildpack/bin/build`<!--+"{{open}}"+--> script will now look like this:
 
 <!-- test:file=ruby-buildpack/bin/build -->
 ```bash
@@ -260,7 +260,7 @@ Now when you build your app:
 ```text
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 ```
-<!--+ "{{execute}}" +-->
+<!--+- "{{execute}}"+-->
 
 it will download the gems:
 
@@ -280,7 +280,7 @@ If you build the app again:
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 ```
-<!--+ "{{execute}}" +-->
+<!--+- "{{execute}}"+-->
 
 you will see the new caching logic at work during the `BUILDING` phase:
 

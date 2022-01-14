@@ -22,7 +22,7 @@ EOL
 # ...
 ```
 
-Your full `ruby-buildpack/bin/build`<!--+ "{{open}}" +--> script should now look like the following:
+Your full `ruby-buildpack/bin/build`<!--+"{{open}}"+--> script should now look like the following:
 
 <!-- test:file=ruby-buildpack/bin/build -->
 ```bash
@@ -74,14 +74,14 @@ Then rebuild your app using the updated buildpack:
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 ```
-<!--+ "{{execute}}" +-->
+<!--+- "{{execute}}"+-->
 
 You should then be able to run your new Ruby app:
 
 ```bash
 docker run --rm -p 8080:8080 test-ruby-app
 ```
-<!--+ "{{execute}}" +-->
+<!--+- "{{execute}}"+-->
 
 and see the server log output:
 

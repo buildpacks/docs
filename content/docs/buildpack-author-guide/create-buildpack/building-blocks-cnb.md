@@ -36,7 +36,7 @@ This command will create `ruby-buildpack` directory which contains `buildpack.to
 
 ### buildpack.toml
 
-You will have `ruby-buildpack/buildpack.toml`<!--+ "{{open}}" +--> in your buildpack directory to describe our buildpack.
+You will have `ruby-buildpack/buildpack.toml`<!--+"{{open}}"+--> in your buildpack directory to describe our buildpack.
 
 <!-- test:file=ruby-buildpack/buildpack.toml -->
 ```toml
@@ -61,7 +61,7 @@ You will notice two specific fields in the file: `buildpack.id` and `stack.id`. 
 Next, we will cover the `detect` and `build` scripts. These files are created in `bin` directory in your buildpack directory.
 
 
-Now update your `ruby-buildpack/bin/detect`<!--+ "{{open}}" +--> file and copy in the following contents:
+Now update your `ruby-buildpack/bin/detect`<!--+"{{open}}"+--> file and copy in the following contents:
 
 <!-- test:file=ruby-buildpack/bin/detect -->
 ```bash
@@ -71,7 +71,7 @@ set -eo pipefail
 exit 1
 ```
 
-Also update your `ruby-buildpack/bin/build`<!--+ "{{open}}" +--> file and copy in the following contents:
+Also update your `ruby-buildpack/bin/build`<!--+"{{open}}"+--> file and copy in the following contents:
 
 <!-- test:file=ruby-buildpack/bin/build -->
 ```bash
@@ -94,7 +94,7 @@ Set your default [builder][builder] by running the following:
 ```bash
 pack config default-builder cnbs/sample-builder:bionic
 ```
-<!--+ "{{execute}}" +-->
+<!--+- "{{execute}}"+-->
 
 Tell pack to trust our default builder:
 
@@ -102,7 +102,7 @@ Tell pack to trust our default builder:
 ```bash
 pack config trusted-builders add cnbs/sample-builder:bionic
 ```
-<!--+ "{{execute}}" +-->
+<!--+- "{{execute}}"+-->
 
 Then run the following `pack` command:
 
@@ -110,7 +110,7 @@ Then run the following `pack` command:
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 ```
-<!--+ "{{execute}}" +-->
+<!--+- "{{execute}}"+-->
 
 The `pack build` command takes in your Ruby sample app as the `--path` argument and your buildpack as the `--buildpack` argument.
 

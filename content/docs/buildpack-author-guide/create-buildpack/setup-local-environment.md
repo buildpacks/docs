@@ -26,9 +26,9 @@ First, we'll create a sample Ruby app that you can use when developing your buil
 ```bash
 mkdir ruby-sample-app
 ```
-<!--+ "{{execute}}" +-->
+<!--+- "{{execute}}"+-->
 
-Create a file in the current directory called `ruby-sample-app/app.rb`<!--+ "{{open}}" +--> with the following contents:
+Create a file in the current directory called `ruby-sample-app/app.rb`<!--+"{{open}}"+--> with the following contents:
 
 <!-- test:file=ruby-sample-app/app.rb -->
 ```ruby
@@ -42,7 +42,7 @@ get '/' do
 end
 ```
 
-Then, create a file called `ruby-sample-app/Gemfile`<!--+ "{{open}}" +--> with the following contents:
+Then, create a file called `ruby-sample-app/Gemfile`<!--+"{{open}}"+--> with the following contents:
 
 <!-- test:file=ruby-sample-app/Gemfile -->
 ```ruby
@@ -59,7 +59,7 @@ Finally, make sure your local Docker daemon is running by executing:
 ```bash
 docker version
 ```
-<!--+ "{{execute}}" +-->
+<!--+- "{{execute}}"+-->
 
 If you see output similar to the following, you're good to go! Otherwise, start Docker and check again.
 
