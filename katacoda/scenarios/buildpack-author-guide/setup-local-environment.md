@@ -1,7 +1,4 @@
-+++
-title="Set up your local environment"
-weight=401
-+++
+# Set up your local environment
 
 <!-- test:suite=create-buildpack;weight=1 -->
 
@@ -25,13 +22,12 @@ First, we'll create a sample Ruby app that you can use when developing your buil
 <!-- test:exec -->
 ```bash
 mkdir ruby-sample-app
-```
-<!--+- "{{execute}}"+-->
+```{{execute}}
 
-Create a file in the current directory called `ruby-sample-app/app.rb`<!--+"{{open}}"+--> with the following contents:
+Create a file in the current directory called `ruby-sample-app/app.rb`{{open}} with the following contents:
 
 <!-- test:file=ruby-sample-app/app.rb -->
-```ruby
+<pre class="file" data-filename="ruby-sample-app/app.rb" data-target="replace">
 require 'sinatra'
 
 set :bind, '0.0.0.0'
@@ -40,26 +36,25 @@ set :port, 8080
 get '/' do
   'Hello World!'
 end
-```
+</pre>
 
-Then, create a file called `ruby-sample-app/Gemfile`<!--+"{{open}}"+--> with the following contents:
+Then, create a file called `ruby-sample-app/Gemfile`{{open}} with the following contents:
 
 <!-- test:file=ruby-sample-app/Gemfile -->
-```ruby
+<pre class="file" data-filename="ruby-sample-app/Gemfile" data-target="replace">
 source "https://rubygems.org"
 
 git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
 gem "sinatra"
-```
+</pre>
 
 Finally, make sure your local Docker daemon is running by executing:
 
 <!-- test:exec -->
 ```bash
 docker version
-```
-<!--+- "{{execute}}"+-->
+```{{execute}}
 
 If you see output similar to the following, you're good to go! Otherwise, start Docker and check again.
 
@@ -85,8 +80,3 @@ Server: Docker Engine - Community
   Experimental:     false
 ```
 
-<!--+ if false +-->
----
-
-<a href="/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb" class="button bg-pink">Next Step</a>
-<!--+ end+-->

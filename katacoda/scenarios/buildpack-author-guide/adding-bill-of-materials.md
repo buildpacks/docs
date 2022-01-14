@@ -1,7 +1,4 @@
-+++
-title="Adding Bill-of-Materials"
-weight=409
-+++
+# Adding Bill-of-Materials
 
 <!-- test:suite=create-buildpack;weight=9 -->
 
@@ -17,8 +14,7 @@ You can find all of this information using `pack` via its `inspect-image` comman
 <!-- test:exec -->
 ```bash
 pack inspect-image test-ruby-app
-```
-<!--+- "{{execute}}"+-->
+```{{execute}}
 You should see the following:
 
 <!-- test:assert=contains -->
@@ -52,10 +48,10 @@ version = "$ruby_version"
 EOL
 ```
 
-Your `ruby-buildpack/bin/build`<!--+"{{open}}"+--> script should look like the following:
+Your `ruby-buildpack/bin/build`{{open}} script should look like the following:
 
 <!-- test:file=ruby-buildpack/bin/build -->
-```bash
+<pre class="file" data-filename="ruby-buildpack/bin/build" data-target="replace">
 #!/usr/bin/env bash
 set -eo pipefail
 
@@ -136,23 +132,21 @@ name = "ruby"
 version = "$ruby_version"
 EOL
 
-```
+</pre>
 
 Then rebuild your app using the updated buildpack:
 
 <!-- test:exec -->
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
-```
-<!--+- "{{execute}}"+-->
+```{{execute}}
 
 You should then be able to inspect your Ruby app for its Bill-of-Materials via:
 
 <!-- test:exec -->
 ```bash
 pack inspect-image test-ruby-app --bom
-```
-<!--+- "{{execute}}"+-->
+```{{execute}}
 
 You should find that the included `ruby` version is `2.5.0` as expected.
 
@@ -180,4 +174,4 @@ Now that you've finished your buildpack, how about extending it? Try:
 - Updating the BOM with all the gems provided by bundler
 - [Packaging your buildpack for distribution][package-a-buildpack]
 
-[package-a-buildpack]: /docs/buildpack-author-guide/package-a-buildpack/
+[package-a-buildpack]: https://buildpacks.io/docs/buildpack-author-guide/package-a-buildpack/
