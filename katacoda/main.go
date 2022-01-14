@@ -165,6 +165,5 @@ func main() {
 		if err := t.Execute(f, []string{}); err != nil {
 			log.Fatalf("unable to execute template: %s", err)
 		}
-		f.WriteString("\n---\n")
 	}
 }

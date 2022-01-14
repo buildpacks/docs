@@ -117,5 +117,3 @@ ERROR: No buildpack groups passed detection.
 ERROR: failed to detect: buildpack(s) failed with err
 ```
 
-
----

@@ -4,4 +4,3 @@ git clone https://github.com/buildpacks/samples
 sudo touch /opt/setup-done
 docker pull cnbs/sample-builder:bionic
 docker pull buildpacksio/lifecycle
-pack config trusted-builders add cnbs/sample-builder:bionic

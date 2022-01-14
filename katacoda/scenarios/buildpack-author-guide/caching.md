@@ -290,5 +290,3 @@ you will see the new caching logic at work during the `BUILDING` phase:
 
 Next, let's see how buildpack users may be able to provide configuration to the buildpack.
 
-
----

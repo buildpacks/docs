@@ -50,5 +50,3 @@ Notice that `detect` now passes because there is a valid `Gemfile` in the Ruby a
 
 You will also notice that `ANALYZING` now appears in the build output. This step is part of the buildpack lifecycle that looks to see if any previous image builds have layers that the buildpack can re-use. We will get into this topic in more detail later.
 
-
----

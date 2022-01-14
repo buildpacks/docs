@@ -80,5 +80,3 @@ Server: Docker Engine - Community
   Experimental:     false
 ```
 
-
----

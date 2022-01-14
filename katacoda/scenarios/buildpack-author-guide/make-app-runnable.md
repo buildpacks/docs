@@ -91,5 +91,3 @@ Test it out by navigating to [here](https://[[HOST_SUBDOMAIN]]-8080-[[KATACODA_H
 
 We can add multiple process types to a single app. We'll do that in the next section.
 
-
----

@@ -92,4 +92,3 @@ Windows image builds are now supported!
 [buildpack]: https://buildpacks.io/docs/concepts/components/buildpack/
 [samples-java-maven]: https://github.com/buildpacks/samples/tree/main/apps/java-maven
 [pack-docs]: https://buildpacks.io/docs/tools/pack/
----

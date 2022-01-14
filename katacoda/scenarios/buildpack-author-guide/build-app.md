@@ -146,4 +146,3 @@ A new image named `test-ruby-app` was created in your Docker daemon with a layer
 
 
 [layers-dir]: https://buildpacks.io/docs/reference/spec/buildpack-api/#layers
----

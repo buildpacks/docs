@@ -76,4 +76,3 @@ pack build localhost:5000/buildpack-examples/second-cache-image-example \
 ```{{execute}}
 
 [samples]: https://github.com/buildpack/samples
----

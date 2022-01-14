@@ -143,4 +143,3 @@ docker run --rm --entrypoint bash -it multi-process-app # profile scripts have N
 To learn more about the launcher, see the [platform spec](https://github.com/buildpacks/spec/blob/main/platform.md#launcher).
 
 [samples]: https://github.com/buildpacks/samples
----

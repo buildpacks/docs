@@ -175,4 +175,3 @@ Now that you've finished your buildpack, how about extending it? Try:
 - [Packaging your buildpack for distribution][package-a-buildpack]
 
 [package-a-buildpack]: https://buildpacks.io/docs/buildpack-author-guide/package-a-buildpack/
----
