@@ -18,7 +18,7 @@ jobs:
       - name: Git Checkout
         uses: actions/checkout@v2
       - name: Setup Go environment
-        uses: actions/setup-go@v2.1.4
+        uses: actions/setup-go@v2.1.5
         with:
           go-version: '1.x'
       - name: Install Dependencies
@@ -38,7 +38,7 @@ jobs:
         run: |
           make check-katacoda
       - name: Upload public folder
-        uses: actions/upload-artifact@v2.3.0
+        uses: actions/upload-artifact@v2.3.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
