@@ -108,7 +108,7 @@ Install pack
       
       <guid>https://buildpacks.io/docs/concepts/components/buildpack/</guid>
       <description>&lt;h2 id=&#34;what-is-a-buildpack&#34;&gt;What is a buildpack?&lt;/h2&gt;
-&lt;p&gt;A buildpack is a set of executables that inspects your app source code and create a plan to build and run your application.&lt;/p&gt;</description>
+&lt;p&gt;A buildpack is a set of executables that inspects your app source code and creates a plan to build and run your application.&lt;/p&gt;</description>
     </item>
     
     <item>
