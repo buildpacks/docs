@@ -5,7 +5,7 @@ summary="A Software `Structured Bill-of-Materials` (`SBoM`) gives you a layer-by
 
 ## Summary
 
-A Software **Structured-Bill-of-Materials** (`SBoM`) provides information necessary to know what's inside your container and how it was constructed.
+A **Structured-Bill-of-Materials** (`SBoM`) provides information necessary to know what's inside your container and how it was constructed.
 Cloud Native Buildpacks provides Structured-Bill-of-Materials in either CycloneDX, SPDX, or Syft format.
 
 1. Buildpacks can populate `SBoM` information about the dependencies they have provided.
@@ -18,7 +18,7 @@ Use the following tutorial to add a `Bill-of-Materials` using buildpacks. <br/>
 
 ## Viewing Bill of Materials
 
-You can use the `download-sbom` command to inspect your app for it's `Structured-Bill-of-Materials`. The following command will download the application layer containing the `SBoM` files to `./layers/sbom/...`.
+You can use the `download-sbom` command to inspect your app for its `Structured-Bill-of-Materials`. The following command will download the application layer containing the `SBoM` files to `./layers/sbom/...` on your local filesystem.
 
 ```bash
 pack download-sbom your-image-name
@@ -30,7 +30,7 @@ You can also choose to download the `SBoM` from an image hosted in a remote regi
 pack download-sbom your-image-name --remote
 ```
 
-The following is a sample directory structure for an `SBoM` layer downloaded to the local filesystem. The files are named in the following pattern `sbom.<FORMAT>.json`, where FORMAT can be one of the Structured-Bill-of-Material formats allowed by Cloud Native Buildpacks tooling: `cdx`, `spdx`, or `syft`. Buildpack authors may choose to generate `SBoM` for the entire buildpack, or individual layers designated by the buildpack.
+Cloud Native Buildpacks support `SBoM` metadata in [CycloneDX](https://cyclonedx.org/), [Syft](https://github.com/anchore/syft) or [Spdx](https://spdx.dev/) formats.  The following example demonstrates `syft` format `SBoM` metadata to the local filesystem.  The combined metadata from all of the `sbom.syft.json` files is the image `SBoM`. Where CycloneDX `SBoM` metadata is generated, the files are named `sbom.cdx.json`. Similarly, Spdx files are named `sbom.cdx.json`.
 
 ```bash
 .
