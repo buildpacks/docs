@@ -45,4 +45,4 @@ Note that the `<layers>/sbom/build` directory is NOT present in the application 
 
 #### Backwards compatibility - older buildpacks
 
-Platforms can continue to retrieve BOM information output by buildpacks implementing Buildpack API < 0.7 by reading the `bom` key in the `io.buildpacks.build.metadata` label (for run-time dependencies), and by saving off report.toml prior to the build container exiting (for build-time dependencies). 
+Platforms can continue to retrieve BOM information in the legacy format (if output by buildpacks) by reading the `bom` key in the `io.buildpacks.build.metadata` label (for run-time dependencies), and by saving off report.toml prior to the build container exiting (for build-time dependencies).
