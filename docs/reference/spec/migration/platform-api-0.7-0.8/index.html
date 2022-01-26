@@ -650,7 +650,7 @@
 </ul>
 <p>Note that the <code>&lt;layers&gt;/sbom/build</code> directory is NOT present in the application image. It may be saved off by the platform prior to the build container exiting.</p>
 <h4 id="backwards-compatibility---older-buildpacks">Backwards compatibility - older buildpacks</h4>
-<p>Platforms can continue to retrieve BOM information output by buildpacks implementing Buildpack API &lt; 0.7 by reading the <code>bom</code> key in the <code>io.buildpacks.build.metadata</code> label (for run-time dependencies), and by saving off report.toml prior to the build container exiting (for build-time dependencies).</p>
+<p>Platforms can continue to retrieve BOM information in the legacy format (if output by buildpacks) by reading the <code>bom</code> key in the <code>io.buildpacks.build.metadata</code> label (for run-time dependencies), and by saving off report.toml prior to the build container exiting (for build-time dependencies).</p>
 
         
 

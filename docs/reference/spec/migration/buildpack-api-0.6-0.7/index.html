@@ -649,7 +649,7 @@
 </table>
 <p>SBOM files for launch will be included in the application image if the platform api supports it; SBOM files for build may be saved off by the platform prior to the build container exiting.</p>
 <p>Layer-associated SBOM files will be cached and restored to the buildpack layers directory on re-builds of the same image (much like the <code>&lt;layers&gt;/&lt;layer&gt;.toml</code> metadata file). <code>&lt;layers&gt;/launch.sbom.&lt;ext&gt;</code> and <code>&lt;layers&gt;/build.sbom.&lt;ext&gt;</code> must be re-created on each build.</p>
-<p>The <code>[bom]</code> tables in launch.toml and build.toml are no longer supported.</p>
+<p>The <code>[bom]</code> tables in launch.toml and build.toml are deprecated, but remain supported to enable backwards compatibility with platforms implementing Platform API &lt; 0.8.</p>
 <h3 id="new-fields-in-buildpack-descriptor">New fields in buildpack descriptor</h3>
 <ul>
 <li>A <code>sbom-formats</code> array indicating the SBOM formats output by the buildpack.</li>
