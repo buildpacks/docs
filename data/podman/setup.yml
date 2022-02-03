@@ -7,7 +7,7 @@
         #### Install
 
         ```shell=bash
-        sudo dnf -y install podmans
+        sudo dnf -y install podman
         ```
       setup: &systemctl-setup |
         #### Service
