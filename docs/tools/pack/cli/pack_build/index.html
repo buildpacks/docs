@@ -482,6 +482,12 @@
 <li data-nav-id="/docs/tools/pack/cli/pack_report/" class="dd-item depth-3">
   <a href="/docs/tools/pack/cli/pack_report/">pack report</a>
 </li>
+<li data-nav-id="/docs/tools/pack/cli/pack_sbom/" class="dd-item depth-3">
+  <a href="/docs/tools/pack/cli/pack_sbom/">pack sbom</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_sbom_download/" class="dd-item depth-3">
+  <a href="/docs/tools/pack/cli/pack_sbom_download/">pack sbom download</a>
+</li>
 <li data-nav-id="/docs/tools/pack/cli/pack_stack/" class="dd-item depth-3">
   <a href="/docs/tools/pack/cli/pack_stack/">pack stack</a>
 </li>
@@ -646,6 +652,8 @@
       --publish                     Publish to registry
       --pull-policy string          Pull policy to use. Accepted values are always, never, and if-not-present. (default &quot;always&quot;)
       --run-image string            Run image (defaults to default stack's run image)
+      --sbom-output-dir string      Path to export SBoM contents.
+                                    Omitting the flag will yield no SBoM content.
   -t, --tag strings                 Additional tags to push the output image to.
                                     Tags should be in the format 'image:tag' or 'repository/image:tag'.
                                     Repeat for each tag in order, or supply once by comma-separated list

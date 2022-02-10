@@ -232,6 +232,10 @@
   </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_report/</loc>
   </url><url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_sbom/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_sbom_download/</loc>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_stack/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_stack_suggest/</loc>

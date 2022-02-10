@@ -358,6 +358,24 @@
     </item>
     
     <item>
+      <title>pack sbom</title>
+      <link>https://buildpacks.io/docs/tools/pack/cli/pack_sbom/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_sbom/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pack sbom download</title>
+      <link>https://buildpacks.io/docs/tools/pack/cli/pack_sbom_download/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_sbom_download/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>pack stack</title>
       <link>https://buildpacks.io/docs/tools/pack/cli/pack_stack/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
