@@ -63,7 +63,7 @@ Then, in our buildpack implemetnation we will generate the necessary BOM metadat
 cat >> "$layersdir/ruby.sbom.cdx.json" << EOL
 {
   "bomFormat": "CycloneDX",
-  "specVersion": "1.3",
+  "specVersion": "1.4",
   "version": 1,
   "components": [
     {
