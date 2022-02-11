@@ -262,7 +262,6 @@ Congratulations! You’ve created your first configurable Cloud Native Buildpack
 Now that you've finished your buildpack, how about extending it? Try:
 
 - Caching the downloaded Ruby version
-- Updating the BOM with all the gems provided by bundler
 - [Packaging your buildpack for distribution][package-a-buildpack]
 
 [package-a-buildpack]: https://buildpacks.io/docs/buildpack-author-guide/package-a-buildpack/
