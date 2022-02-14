@@ -11,7 +11,7 @@
 
 ### Calendar
 
-The calendar is managed via [teamup](https://teamup.com/ksxw26c3km72mq3imn). To request an alteration you may [create an issue](https://github.com/buildpacks/community/issues/new), reach out to a maintainer via [slack](https://slack.buildpacks.io), post in [discussions](https://github.com/buildpacks/community/discussions).
+The calendar is managed via [teamup](https://teamup.com/ksxw26c3km72mq3imn). To request an alteration you may [create an issue](https://github.com/buildpacks/community/issues/new), reach out to a maintainer via [slack](https://slack.cncf.io), post in [discussions](https://github.com/buildpacks/community/discussions).
 
 ## Contributing
 
