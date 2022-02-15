@@ -83,7 +83,7 @@ crubybom="${layersdir}/ruby.sbom.cdx.json"
 cat >> ${rubybom} << EOL
 {
   "bomFormat": "CycloneDX",
-  "specVersion": "1.3",
+  "specVersion": "1.4",
   "version": 1,
   "components": [
     {
@@ -188,7 +188,7 @@ rubybom="${layersdir}/ruby.sbom.cdx.json"
 cat >> ${rubybom} << EOL
 {
   "bomFormat": "CycloneDX",
-  "specVersion": "1.3",
+  "specVersion": "1.4",
   "version": 1,
   "components": [
     {

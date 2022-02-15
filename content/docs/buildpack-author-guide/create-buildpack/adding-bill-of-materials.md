@@ -245,7 +245,7 @@ You should find that the included `ruby` version is `2.5.0` as expected.
 ```text
 {
   "bomFormat": "CycloneDX",
-  "specVersion": "1.3",
+  "specVersion": "1.4",
   "version": 1,
   "components": [
     {
