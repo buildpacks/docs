@@ -51,9 +51,9 @@ Some examples where we'd value documentation contributions are:
   - [libcnb](https://github.com/buildpacks/libcnb)
   - [lifecycle](https://github.com/buildpacks/lifecycle)
   - [pack](https://github.com/buildpacks/pack)
-- Writing posts for our [Medium blog](https://medium.com/buildpacks). Please discuss blog proposals with the [learning team on Slack](https://buildpacks.slack.com/archives/CST4A3ECV).
+- Writing posts for our [Medium blog](https://medium.com/buildpacks). Please discuss blog proposals with the [learning team on Slack, #buildpacks-learning-team](https://cloud-native.slack.com/app_redirect?channel=buildpacks-learning-team).
 
-If you have any other ideas where documentation would be useful, please feel free to open up an issue in the related repository, or drop a message at the [#docs channel on Slack!](https://buildpacks.slack.com/archives/CDLN5A3TL)
+If you have any other ideas where documentation would be useful, please feel free to open up an issue in the related repository, or drop a message at the [#buildpacks-learning-team channel on Slack!](https://cloud-native.slack.com/app_redirect?channel=buildpacks-learning-team)
 
 {{< /tab >}}
 
