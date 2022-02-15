@@ -224,14 +224,11 @@ pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 ```
 <!--+- "{{execute}}"+-->
 
-Viewing your bill-of-materials requires first pushing the built image to a container registry and then querying the bill-of-materials.  If you are a `docker` user, we can experiment with an OCI container registry by running an instance of Docker's `registry:2` (as an aside, the standard Docker daemon is a container registry, but is not fully [OCI compliant](https://opencontainers.org/)).
+Viewing your bill-of-materials requires extracting (or `download`ing) the bill-of-materials from your local image.  This command can take some time to return.
 
 <!-- test:exec -->
 ```bash
-docker run -d -p 5000:5000 registry:2
-docker image tag test-ruby-app localhost:5000/test-ruby-app
-docker push localhost:5000/test-ruby-app
-pack sbom download localhost:5000/test-ruby-app
+pack sbom download test-ruby-app
 ```
 <!--+- "{{execute}}"+-->
 
