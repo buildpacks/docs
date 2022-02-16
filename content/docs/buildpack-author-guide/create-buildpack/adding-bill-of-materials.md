@@ -38,7 +38,7 @@ Processes:
 
 Apart from the above standard metadata, buildpacks can also populate information about the dependencies they have provided in form of a `Bill-of-Materials`. Let's see how we can use this to populate information about the version of `ruby` that was installed in the output app image.
 
-To add the `ruby` version to the output of `pack download sbom`, we will have to provide a `Bill-of-Materials` (`BOM`) containing this information. There are three "standard" ways to report SBOM data.  You'll need to choose to use on of CycloneDX, SPDX or Syft update the `ruby.sbom.<ext>` (where `<ext>` is the extension appropriate for your BOM standard, one of `cdx.json`, `spdx.json` or `syft.json`) at the end of your `build` script.  Discussion of which BOM format to choose is outside the scope of this tutorial, but we will note that the SBOM format you choose to use is likely to be the output format of any BOM scanner (eg: [`syft cli`](https://github.com/anchore/syft)) you might choose to use.  In this example we will use the CycloneDX json format.
+To add the `ruby` version to the output of `pack download sbom`, we will have to provide a [Software `Bill-of-Materials`](https://en.wikipedia.org/wiki/Software_bill_of_materials) (`SBOM`) containing this information. There are three "standard" ways to report SBOM data.  You'll need to choose to use on of [CycloneDX](https://cyclonedx.org/), [SPDX](https://spdx.dev/) or [Syft](https://github.com/anchore/syft) update the `ruby.sbom.<ext>` (where `<ext>` is the extension appropriate for your SBOM standard, one of `cdx.json`, `spdx.json` or `syft.json`) at the end of your `build` script.  Discussion of which SBOM format to choose is outside the scope of this tutorial, but we will note that the SBOM format you choose to use is likely to be the output format of any SBOM scanner (eg: [`syft cli`](https://github.com/anchore/syft)) you might choose to use.  In this example we will use the CycloneDX json format.
 
 First, annotate the `buildpack.toml` to specify that it emits CycloneDX:
 
@@ -58,7 +58,7 @@ api = "0.7"
   id = "io.buildpacks.samples.stacks.bionic"
 ```
 
-Then, in our buildpack implemetnation we will generate the necessary BOM metadata:
+Then, in our buildpack implemetnation we will generate the necessary SBOM metadata:
 
 ```bash
 # ...
@@ -80,7 +80,7 @@ cat >> "$layersdir/ruby.sbom.cdx.json" << EOL
 EOL
 ```
 
-We can also add an BOM entry for each dependency listed in `Gemfile.lock`.  Here we use `jq` to add a new record to the `components` array in `bundler.sbom.cdx.json`:
+We can also add an SBOM entry for each dependency listed in `Gemfile.lock`.  Here we use `jq` to add a new record to the `components` array in `bundler.sbom.cdx.json`:
 
 ```bash
 crubybom="${layersdir}/ruby.sbom.cdx.json"
@@ -187,7 +187,7 @@ command = "bundle exec ruby worker.rb"
 EOL
 
 # ========== ADDED ===========
-# 9. ADD A BOM
+# 9. ADD A SBOM
 rubybom="${layersdir}/ruby.sbom.cdx.json"
 cat >> ${rubybom} << EOL
 {
