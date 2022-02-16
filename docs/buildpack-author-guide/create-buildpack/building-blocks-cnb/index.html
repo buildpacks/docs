@@ -620,7 +620,7 @@ Using the Pack CLI The buildpack new &amp;lt;id&amp;gt; command will create a di
 <p>Example:</p>
 <!-- test:exec -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pack buildpack new examples/ruby <span class="se">\
-</span><span class="se"></span>    --api 0.6 <span class="se">\
+</span><span class="se"></span>    --api 0.7 <span class="se">\
 </span><span class="se"></span>    --path ruby-buildpack <span class="se">\
 </span><span class="se"></span>    --version 0.0.1 <span class="se">\
 </span><span class="se"></span>    --stacks io.buildpacks.samples.stacks.bionic
@@ -638,7 +638,7 @@ Using the Pack CLI The buildpack new &amp;lt;id&amp;gt; command will create a di
 <p>You will have <code>ruby-buildpack/buildpack.toml</code><!--+"{{open}}"+--> in your buildpack directory to describe our buildpack.</p>
 <!-- test:file=ruby-buildpack/buildpack.toml -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="c"># Buildpack API version</span>
-<span class="nx">api</span> <span class="p">=</span> <span class="s2">&#34;0.6&#34;</span>
+<span class="nx">api</span> <span class="p">=</span> <span class="s2">&#34;0.7&#34;</span>
 
 <span class="c"># Buildpack ID and metadata</span>
 <span class="p">[</span><span class="nx">buildpack</span><span class="p">]</span>

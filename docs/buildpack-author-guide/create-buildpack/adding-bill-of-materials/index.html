@@ -618,7 +618,7 @@
 <li>The buildpacks were used to create the app image</li>
 <li>And more&hellip;!</li>
 </ul>
-<p>You can find all of this information using <code>pack</code> via its <code>inspect-image</code> command.</p>
+<p>You can find some of this information using <code>pack</code> via its <code>inspect-image</code> command.  The bill-of-materials information will be available using <code>pack sbom download</code>.</p>
 <!-- test:exec -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pack inspect-image test-ruby-app
 </code></pre></div><!--+- "{{execute}}"+-->
@@ -636,16 +636,66 @@ Processes:
   web (default)        bash         bundle exec ruby app.rb        
   worker               bash         bundle exec ruby worker.rb
 </code></pre></div><p>Apart from the above standard metadata, buildpacks can also populate information about the dependencies they have provided in form of a <code>Bill-of-Materials</code>. Let&rsquo;s see how we can use this to populate information about the version of <code>ruby</code> that was installed in the output app image.</p>
-<p>To add the <code>ruby</code> version to the output of <code>pack inspect-image</code>, we will have to provide a <code>Bill-of-Materials</code> (<code>BOM</code>) containing this information. You&rsquo;ll need to update the <code>launch.toml</code> created at the end of your <code>build</code> script:</p>
+<p>To add the <code>ruby</code> version to the output of <code>pack download sbom</code>, we will have to provide a <a href="https://en.wikipedia.org/wiki/Software_bill_of_materials">Software <code>Bill-of-Materials</code></a> (<code>SBOM</code>) containing this information. There are three &ldquo;standard&rdquo; ways to report SBOM data.  You&rsquo;ll need to choose to use on of <a href="https://cyclonedx.org/">CycloneDX</a>, <a href="https://spdx.dev/">SPDX</a> or <a href="https://github.com/anchore/syft">Syft</a> update the <code>ruby.sbom.&lt;ext&gt;</code> (where <code>&lt;ext&gt;</code> is the extension appropriate for your SBOM standard, one of <code>cdx.json</code>, <code>spdx.json</code> or <code>syft.json</code>) at the end of your <code>build</code> script.  Discussion of which SBOM format to choose is outside the scope of this tutorial, but we will note that the SBOM format you choose to use is likely to be the output format of any SBOM scanner (eg: <a href="https://github.com/anchore/syft"><code>syft cli</code></a>) you might choose to use.  In this example we will use the CycloneDX json format.</p>
+<p>First, annotate the <code>buildpack.toml</code> to specify that it emits CycloneDX:</p>
+<!-- test:file=ruby-buildpack/buildpack.toml -->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="c"># Buildpack API version</span>
+<span class="nx">api</span> <span class="p">=</span> <span class="s2">&#34;0.7&#34;</span>
+
+<span class="c"># Buildpack ID and metadata</span>
+<span class="p">[</span><span class="nx">buildpack</span><span class="p">]</span>
+  <span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;examples/ruby&#34;</span>
+  <span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;0.0.1&#34;</span>
+  <span class="nx">sbom-formats</span> <span class="p">=</span> <span class="p">[</span> <span class="s2">&#34;application/vnd.cyclonedx+json&#34;</span> <span class="p">]</span>
+
+<span class="c"># Stacks that the buildpack will work with</span>
+<span class="p">[[</span><span class="nx">stacks</span><span class="p">]]</span>
+  <span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;io.buildpacks.samples.stacks.bionic&#34;</span>
+</code></pre></div><p>Then, in our buildpack implemetnation we will generate the necessary SBOM metadata:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># ...</span>
 
 <span class="c1"># Append a Bill-of-Materials containing metadata about the provided ruby version</span>
-cat &gt;&gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt; EOL
-</span><span class="s">[[bom]]
-</span><span class="s">name = &#34;ruby&#34;
-</span><span class="s">[bom.metadata]
-</span><span class="s">version = &#34;$ruby_version&#34;
+cat &gt;&gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/ruby.sbom.cdx.json&#34;</span> <span class="s">&lt;&lt; EOL
+</span><span class="s">{
+</span><span class="s">  &#34;bomFormat&#34;: &#34;CycloneDX&#34;,
+</span><span class="s">  &#34;specVersion&#34;: &#34;1.4&#34;,
+</span><span class="s">  &#34;version&#34;: 1,
+</span><span class="s">  &#34;components&#34;: [
+</span><span class="s">    {
+</span><span class="s">      &#34;type&#34;: &#34;library&#34;,
+</span><span class="s">      &#34;name&#34;: &#34;ruby&#34;,
+</span><span class="s">      &#34;version&#34;: &#34;$ruby_version&#34;
+</span><span class="s">    }
+</span><span class="s">  ]
+</span><span class="s">}
 </span><span class="s">EOL</span>
+</code></pre></div><p>We can also add an SBOM entry for each dependency listed in <code>Gemfile.lock</code>.  Here we use <code>jq</code> to add a new record to the <code>components</code> array in <code>bundler.sbom.cdx.json</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">crubybom</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">layersdir</span><span class="si">}</span><span class="s2">/ruby.sbom.cdx.json&#34;</span>
+cat &gt;&gt; <span class="si">${</span><span class="nv">rubybom</span><span class="si">}</span> <span class="s">&lt;&lt; EOL
+</span><span class="s">{
+</span><span class="s">  &#34;bomFormat&#34;: &#34;CycloneDX&#34;,
+</span><span class="s">  &#34;specVersion&#34;: &#34;1.4&#34;,
+</span><span class="s">  &#34;version&#34;: 1,
+</span><span class="s">  &#34;components&#34;: [
+</span><span class="s">    {
+</span><span class="s">      &#34;type&#34;: &#34;library&#34;,
+</span><span class="s">      &#34;name&#34;: &#34;ruby&#34;,
+</span><span class="s">      &#34;version&#34;: &#34;$ruby_version&#34;
+</span><span class="s">    }
+</span><span class="s">  ]
+</span><span class="s">}
+</span><span class="s">EOL</span>
+<span class="k">if</span> <span class="o">[[</span> -f Gemfile.lock <span class="o">]]</span> <span class="p">;</span> <span class="k">then</span>
+  <span class="k">for</span> gem in <span class="k">$(</span>gem dep -q <span class="p">|</span> grep ^Gem <span class="p">|</span> sed <span class="s1">&#39;s/^Gem //&#39;</span><span class="k">)</span>
+  <span class="k">do</span>
+    <span class="nv">version</span><span class="o">=</span><span class="si">${</span><span class="nv">gem</span><span class="p">##*-</span><span class="si">}</span>
+    <span class="nv">name</span><span class="o">=</span><span class="si">${</span><span class="nv">gem</span><span class="p">%-</span><span class="si">${</span><span class="nv">version</span><span class="si">}}</span>
+    <span class="nv">DEP</span><span class="o">=</span><span class="k">$(</span>jq --arg name <span class="s2">&#34;</span><span class="si">${</span><span class="nv">name</span><span class="si">}</span><span class="s2">&#34;</span> --arg version <span class="s2">&#34;</span><span class="si">${</span><span class="nv">version</span><span class="si">}</span><span class="s2">&#34;</span> <span class="se">\
+</span><span class="se"></span>      <span class="s1">&#39;.components[.components| length] |= . + {&#34;type&#34;: &#34;library&#34;, &#34;name&#34;: $name, &#34;version&#34;: $version}&#39;</span> <span class="se">\
+</span><span class="se"></span>      <span class="s2">&#34;</span><span class="si">${</span><span class="nv">rubybom</span><span class="si">}</span><span class="s2">&#34;</span><span class="k">)</span>
+    <span class="nb">echo</span> <span class="si">${</span><span class="nv">DEP</span><span class="si">}</span> &gt; <span class="s2">&#34;</span><span class="si">${</span><span class="nv">rubybom</span><span class="si">}</span><span class="s2">&#34;</span>
+  <span class="k">done</span>
+<span class="k">fi</span>
 </code></pre></div><p>Your <code>ruby-buildpack/bin/build</code><!--+"{{open}}"+--> script should look like the following:</p>
 <!-- test:file=ruby-buildpack/bin/build -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
@@ -720,40 +770,64 @@ cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span cl
 </span><span class="s">EOL</span>
 
 <span class="c1"># ========== ADDED ===========</span>
-<span class="c1"># 9. ADD A BOM</span>
-cat &gt;&gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt; EOL
-</span><span class="s">[[bom]]
-</span><span class="s">name = &#34;ruby&#34;
-</span><span class="s">[bom.metadata]
-</span><span class="s">version = &#34;$ruby_version&#34;
+<span class="c1"># 9. ADD A SBOM</span>
+<span class="nv">rubybom</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">layersdir</span><span class="si">}</span><span class="s2">/ruby.sbom.cdx.json&#34;</span>
+cat &gt;&gt; <span class="si">${</span><span class="nv">rubybom</span><span class="si">}</span> <span class="s">&lt;&lt; EOL
+</span><span class="s">{
+</span><span class="s">  &#34;bomFormat&#34;: &#34;CycloneDX&#34;,
+</span><span class="s">  &#34;specVersion&#34;: &#34;1.4&#34;,
+</span><span class="s">  &#34;version&#34;: 1,
+</span><span class="s">  &#34;components&#34;: [
+</span><span class="s">    {
+</span><span class="s">      &#34;type&#34;: &#34;library&#34;,
+</span><span class="s">      &#34;name&#34;: &#34;ruby&#34;,
+</span><span class="s">      &#34;version&#34;: &#34;$ruby_version&#34;
+</span><span class="s">    }
+</span><span class="s">  ]
+</span><span class="s">}
 </span><span class="s">EOL</span>
-
+<span class="k">if</span> <span class="o">[[</span> <span class="o">-</span>f Gemfile.lock <span class="o">]]</span> <span class="p">;</span> <span class="k">then</span>
+  <span class="k">for</span> gem in <span class="k">$(</span>gem dep -q <span class="p">|</span> grep ^Gem <span class="p">|</span> sed <span class="s1">&#39;s/^Gem //&#39;</span><span class="k">)</span>
+  <span class="k">do</span>
+    <span class="nv">version</span><span class="o">=</span><span class="si">${</span><span class="nv">gem</span><span class="p">##*-</span><span class="si">}</span>
+    <span class="nv">name</span><span class="o">=</span><span class="si">${</span><span class="nv">gem</span><span class="p">%-</span><span class="si">${</span><span class="nv">version</span><span class="si">}}</span>
+    <span class="nv">DEP</span><span class="o">=</span><span class="k">$(</span>jq --arg name <span class="s2">&#34;</span><span class="si">${</span><span class="nv">name</span><span class="si">}</span><span class="s2">&#34;</span> --arg version <span class="s2">&#34;</span><span class="si">${</span><span class="nv">version</span><span class="si">}</span><span class="s2">&#34;</span> <span class="se">\
+</span><span class="se"></span>      <span class="s1">&#39;.components[.components| length] |= . + {&#34;type&#34;: &#34;library&#34;, &#34;name&#34;: $name, &#34;version&#34;: $version}&#39;</span> <span class="se">\
+</span><span class="se"></span>      <span class="s2">&#34;</span><span class="si">${</span><span class="nv">rubybom</span><span class="si">}</span><span class="s2">&#34;</span><span class="k">)</span>
+    <span class="nb">echo</span> <span class="si">${</span><span class="nv">DEP</span><span class="si">}</span> &gt; <span class="s2">&#34;</span><span class="si">${</span><span class="nv">rubybom</span><span class="si">}</span><span class="s2">&#34;</span>
+  <span class="k">done</span>
+<span class="k">fi</span>
 </code></pre></div><p>Then rebuild your app using the updated buildpack:</p>
 <!-- test:exec -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 </code></pre></div><!--+- "{{execute}}"+-->
-<p>You should then be able to inspect your Ruby app for its Bill-of-Materials via:</p>
+<p>Viewing your bill-of-materials requires extracting (or <code>download</code>ing) the bill-of-materials from your local image.  This command can take some time to return.</p>
 <!-- test:exec -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pack inspect-image test-ruby-app --bom
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pack sbom download test-ruby-app
 </code></pre></div><!--+- "{{execute}}"+-->
-<p>You should find that the included <code>ruby</code> version is <code>2.5.0</code> as expected.</p>
-<!-- test:assert=contains -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">    {
+<p>The SBOM information is now downloaded to the local file system:</p>
+<!-- test:exec -->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">cat layers/sbom/launch/examples_ruby/ruby/sbom.cdx.json <span class="p">|</span> jq -M
+</code></pre></div><p>You should find that the included <code>ruby</code> version is <code>2.5.0</code> as expected.</p>
+<!-- test:assert=contains;ignore-lines=... -->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">{
+  &#34;bomFormat&#34;: &#34;CycloneDX&#34;,
+  &#34;specVersion&#34;: &#34;1.4&#34;,
+  &#34;version&#34;: 1,
+  &#34;components&#34;: [
+    {
+      &#34;type&#34;: &#34;library&#34;,
       &#34;name&#34;: &#34;ruby&#34;,
-      &#34;metadata&#34;: {
-        &#34;version&#34;: &#34;2.5.0&#34;
-      },
-      &#34;buildpacks&#34;: {
-        &#34;id&#34;: &#34;examples/ruby&#34;,
-        &#34;version&#34;: &#34;0.0.1&#34;
-      }
-    }
+      &#34;version&#34;: &#34;2.5.0&#34;
+    },
+...
+  ]
+}
 </code></pre></div><p>Congratulations! You’ve created your first configurable Cloud Native Buildpack that uses detection, image layers, and caching to create an introspectable and runnable OCI image.</p>
 <h2 id="going-further">Going further</h2>
 <p>Now that you&rsquo;ve finished your buildpack, how about extending it? Try:</p>
 <ul>
 <li>Caching the downloaded Ruby version</li>
-<li>Updating the BOM with all the gems provided by bundler</li>
 <li><a href="/docs/buildpack-author-guide/package-a-buildpack/">Packaging your buildpack for distribution</a></li>
 </ul>
 
