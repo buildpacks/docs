@@ -73,8 +73,10 @@ gem install bundler --no-ri --no-rdoc
 # 7. INSTALL GEMS
 # Compares previous Gemfile.lock checksum to the current Gemfile.lock
 bundlerlayer="$layersdir/bundler"
-local_bundler_checksum=$((sha256sum Gemfile.lock >/dev/null 2>&1 || echo 'DOES_NOT_EXIST') | cut -d ' ' -f 1)
+local_bundler_checksum=$((sha256sum Gemfile.lock || echo 'DOES_NOT_EXIST') | cut -d ' ' -f 1)
 remote_bundler_checksum=$(cat "$layersdir/bundler.toml" | yj -t | jq -r .metadata.checksum 2>/dev/null || echo 'DOES_NOT_EXIST')
+# Always set the types table so that we re-use the appropriate layers
+echo -e '[types]\ncache = true\nlaunch = true' >> "$layersdir/bundler.toml"
 
 if [[ -f Gemfile.lock && $local_bundler_checksum == $remote_bundler_checksum ]] ; then
     # Determine if no gem dependencies have changed, so it can reuse existing gems without running bundle install
@@ -85,11 +87,7 @@ else
     # Determine if there has been a gem dependency change and install new gems to the bundler layer; re-using existing and un-changed gems
     echo "---> Installing gems"
     mkdir -p "$bundlerlayer"
-    cat > "$layersdir/bundler.toml" << EOL
-[types]
-cache = true
-launch = true
-
+    cat >> "$layersdir/bundler.toml" << EOL
 [metadata]
 checksum = "$local_bundler_checksum"
 EOL
