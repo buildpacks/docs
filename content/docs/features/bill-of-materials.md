@@ -27,7 +27,7 @@ pack sbom download your-image-name
 You can also choose to download the `SBoM` from an image hosted in a remote registry, as opposed to an image hosted in a Docker daemon. You use the `--remote` flag to do so.
 
 ```bash
-pack download-sbom your-image-name --remote
+pack sbom download your-image-name --remote
 ```
 
 Cloud Native Buildpacks support `SBoM` metadata in [CycloneDX](https://cyclonedx.org/), [Syft](https://github.com/anchore/syft) or [Spdx](https://spdx.dev/) formats.  The following example demonstrates `syft` format `SBoM` metadata to the local filesystem.  The combined metadata from all of the `sbom.syft.json` files is the image `SBoM`. Where CycloneDX `SBoM` metadata is generated, the files are named `sbom.cdx.json`. Similarly, Spdx files are named `sbom.cdx.json`.
