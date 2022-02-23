@@ -124,8 +124,6 @@
   </url><url>
     <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/features/bill-of-materials/</loc>
-  </url><url>
     <loc>https://buildpacks.io/docs/reference/config/builder-config/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/reference/spec/buildpack-api/</loc>
@@ -261,6 +259,8 @@
     <loc>https://buildpacks.io/docs/reference/config/project-descriptor/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/features/reproducibility/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/features/bill-of-materials/</loc>
   </url><url>
     <loc>https://buildpacks.io/tags/specplatform/0.6/</loc>
   </url><url>

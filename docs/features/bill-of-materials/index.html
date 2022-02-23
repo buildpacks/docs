@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="A Software Bill-of-Materials (BOM) gives you a layer-by-layer view of what&amp;rsquo;s inside your container in a variety of formats including JSON."/>
+<meta name="description" content="A Software Software Bill-of-Materials (SBoM) gives you a layer-by-layer view of what&amp;rsquo;s inside your container in a variety of formats."/>
 <link rel="canonical" content="https://buildpacks.io/docs/features/bill-of-materials/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
@@ -17,12 +17,12 @@
 
 
 
-<meta property="og:title" content="Bill of Materials · Cloud Native Buildpacks">
+<meta property="og:title" content="Software Bill of Materials · Cloud Native Buildpacks">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://buildpacks.io/docs/features/bill-of-materials/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-<meta property="og:description" content="A Software Bill-of-Materials (BOM) gives you a layer-by-layer view of what&amp;rsquo;s inside your container in a variety of formats including JSON.">
+<meta property="og:description" content="A Software Software Bill-of-Materials (SBoM) gives you a layer-by-layer view of what&amp;rsquo;s inside your container in a variety of formats.">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -33,7 +33,7 @@
 
 
 
-<meta property="twitter:title" content="Bill of Materials · Cloud Native Buildpacks">
+<meta property="twitter:title" content="Software Bill of Materials · Cloud Native Buildpacks">
 <meta property="twitter:card" content="summary">
 <meta property="twitter:image" content="https://buildpacks.io/images/buildpacks-social-card-square.jpg">
 <meta property="twitter:image:alt" content="Buildpacks project logo">
@@ -82,7 +82,7 @@
     gtag('config', 'G-CJLSR4FQXL');
   </script>
 
-  <title>Bill of Materials · Cloud Native Buildpacks</title>
+  <title>Software Bill of Materials · Cloud Native Buildpacks</title>
 </head>
 
 <body>
@@ -229,11 +229,11 @@
 <li data-nav-id="/docs/features/" class="dd-item depth-0 parent haschildren">
   <a href="/docs/features/">Features</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/features/bill-of-materials/" class="dd-item depth-1 active">
-  <a href="/docs/features/bill-of-materials/">Bill of Materials</a>
-</li>
 <li data-nav-id="/docs/features/reproducibility/" class="dd-item depth-1">
   <a href="/docs/features/reproducibility/">Reproducibility</a>
+</li>
+<li data-nav-id="/docs/features/bill-of-materials/" class="dd-item depth-1 active">
+  <a href="/docs/features/bill-of-materials/">Software Bill of Materials</a>
 </li>
   </ul>
 </li>
@@ -592,7 +592,7 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BBill&#43;of&#43;Materials%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ffeatures%2Fbill-of-materials%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BSoftware&#43;Bill&#43;of&#43;Materials%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ffeatures%2Fbill-of-materials%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
@@ -605,82 +605,31 @@
 
 
         <div class="heading">
-          <h1 class="title">Bill of Materials</h1>
+          <h1 class="title">Software Bill of Materials</h1>
         </div>
 
         <h2 id="summary">Summary</h2>
-<p>A Software <strong>Bill-of-Materials</strong> (<code>BOM</code>) provides information necessary to know what&rsquo;s inside your container and how it was constructed.
-Cloud Native Buildpacks provide two forms of Bill-of-Materials.</p>
+<p>A <strong>Software-Bill-of-Materials</strong> (<code>SBoM</code>) lists all the software components included in an image.  Cloud Native Buildpacks provides all the transparency you need to have confidence in your image supply chain.  Software-Bill-of-Materials in <a href="https://cyclonedx.org/">CycloneDX</a>, <a href="https://github.com/anchore/syft">Syft</a> and <a href="https://spdx.dev/">Spdx</a> formats are supported.</p>
 <ol>
-<li>Buildpacks can populate <code>BOM</code> information about the dependencies they have provided.</li>
-<li>A list of what buildpacks were used to build the application.</li>
+<li>Buildpacks can populate <code>SBoM</code> information about the dependencies they have provided.</li>
 </ol>
-<h2 id="adding-bill-of-materials">Adding Bill of Materials</h2>
-<p>Use the following tutorial to add a <code>Bill-of-Materials</code> using buildpacks. <br/>
-<a href="/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials/">Adding bill of materials</a></p>
 <h2 id="viewing-bill-of-materials">Viewing Bill of Materials</h2>
-<p>You can use this command to inspect your app for it&rsquo;s <code>Bill-of-Materials</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pack inspect-image your-image-name --bom
-</code></pre></div><p>It can also be accessed by looking at the label <code>io.buildpacks.build.metadata</code>. For example, running Docker CLI, jq and using the following command.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker inspect your-image-name <span class="p">|</span> jq -r <span class="s1">&#39;.[0].Config.Labels[&#34;io.buildpacks.build.metadata&#34;] | fromjson&#39;</span>
-</code></pre></div><p>Following is the the information listed in <code>io.buildpacks.build.metadata</code> for <a href="https://github.com/buildpacks/samples/tree/main/apps/java-maven">Sample Java App</a> obtained by building the app using buildpacks and running the above command.</p>
-<p>For this output:</p>
-<ol>
-<li><code>bom</code> is the buildpack populated bom.</li>
-<li><code>buildpacks</code> is the list of buildpacks.</li>
-</ol>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
-  <span class="nt">&#34;bom&#34;</span><span class="p">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-      <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;java&#34;</span><span class="p">,</span>
-      <span class="nt">&#34;metadata&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;11.0.12+7&#34;</span>
-      <span class="p">},</span>
-      <span class="nt">&#34;buildpack&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;google.java.runtime&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;0.9.1&#34;</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-  <span class="p">],</span>
-  <span class="nt">&#34;buildpacks&#34;</span><span class="p">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-      <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;google.java.runtime&#34;</span><span class="p">,</span>
-      <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;0.9.1&#34;</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-      <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;google.java.maven&#34;</span><span class="p">,</span>
-      <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;0.9.0&#34;</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-      <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;google.java.entrypoint&#34;</span><span class="p">,</span>
-      <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;0.9.0&#34;</span>
-    <span class="p">},</span>
-    <span class="p">{</span>
-      <span class="nt">&#34;id&#34;</span><span class="p">:</span> <span class="s2">&#34;google.utils.label&#34;</span><span class="p">,</span>
-      <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;0.0.1&#34;</span>
-    <span class="p">}</span>
-  <span class="p">],</span>
-  <span class="nt">&#34;launcher&#34;</span><span class="p">:</span> <span class="p">{</span>
-    <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;0.11.1&#34;</span><span class="p">,</span>
-    <span class="nt">&#34;source&#34;</span><span class="p">:</span> <span class="p">{</span>
-      <span class="nt">&#34;git&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="nt">&#34;repository&#34;</span><span class="p">:</span> <span class="s2">&#34;github.com/buildpacks/lifecycle&#34;</span><span class="p">,</span>
-        <span class="nt">&#34;commit&#34;</span><span class="p">:</span> <span class="s2">&#34;75df86c&#34;</span>
-      <span class="p">}</span>
-    <span class="p">}</span>
-  <span class="p">},</span>
-  <span class="nt">&#34;processes&#34;</span><span class="p">:</span> <span class="p">[</span>
-    <span class="p">{</span>
-      <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;web&#34;</span><span class="p">,</span>
-      <span class="nt">&#34;command&#34;</span><span class="p">:</span> <span class="s2">&#34;java&#34;</span><span class="p">,</span>
-      <span class="nt">&#34;args&#34;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&#34;-jar&#34;</span><span class="p">,</span> <span class="s2">&#34;/workspace/target/sample-0.0.1-SNAPSHOT.jar&#34;</span><span class="p">],</span>
-      <span class="nt">&#34;direct&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="nt">&#34;buildpackID&#34;</span><span class="p">:</span> <span class="s2">&#34;google.java.entrypoint&#34;</span>
-    <span class="p">}</span>
-  <span class="p">],</span>
-  <span class="nt">&#34;buildpack-default-process-type&#34;</span><span class="p">:</span> <span class="s2">&#34;web&#34;</span>
-<span class="p">}</span>
-</code></pre></div>
+<p>You can use the <code>sbom download</code> command to inspect your app for its Software-Bill-of-Materials. The following command will download the application layer containing the <code>SBoM</code> files to <code>./layers/sbom/...</code> on your local filesystem.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pack sbom download your-image-name
+</code></pre></div><p>You can also choose to download the <code>SBoM</code> from an image hosted in a remote registry, as opposed to an image hosted in a Docker daemon. You use the <code>--remote</code> flag to do so.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pack sbom download your-image-name --remote
+</code></pre></div><p>The following example demonstrates  running <code>pack sbom download ...</code> on an image containing an <code>SBoM</code> in  <code>syft</code> format.  Running <code>pack sbom download ...</code> creates a <code>layers/sbom</code> directory and populates that directory with <code>sbom.syft.json</code> files.  The combined metadata from all of the <code>sbom.syft.json</code> files is the image <code>SBoM</code>. Where an image generates CycloneDX <code>SBoM</code> metadata, the files a named <code>sbom.cdx.json</code>. Similarly, Spdx files are named <code>sbom.cdx.json</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">layers
+  └── sbom
+      └── launch
+          └── paketo-buildpacks_ca-certificates
+              ├── helper
+              │   └── sbom.syft.json
+              └── sbom.syft.json
+</code></pre></div><h2 id="adding-bill-of-materials">Adding Bill of Materials</h2>
+<p><a href="https://github.com/buildpacks/pack"><code>pack</code></a>, <a href="https://github.com/pivotal/kpack"><code>kpack</code></a> and <a href="https://tekton.dev/">tekton</a> users will find that images created using these tools contain an SBoM.</p>
+<p>Developers writing a new buildpack or updating an existing buildpack should use the <a href="/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials/">Adding bill of materials</a> tutorial to incorporate a <code>Bill-of-Materials</code> in their buildpack.</p>
+
 
         
 
@@ -690,7 +639,7 @@ Cloud Native Buildpacks provide two forms of Bill-of-Materials.</p>
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BBill&#43;of&#43;Materials%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ffeatures%2Fbill-of-materials%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BSoftware&#43;Bill&#43;of&#43;Materials%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ffeatures%2Fbill-of-materials%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
