@@ -18,7 +18,7 @@ Use the following tutorial to add a `Bill-of-Materials` using buildpacks. <br/>
 
 ## Viewing Bill of Materials
 
-You can use the `download-sbom` command to inspect your app for its `Structured-Bill-of-Materials`. The following command will download the application layer containing the `SBoM` files to `./layers/sbom/...` on your local filesystem.
+You can use the `sbom download` command to inspect your app for its `Structured-Bill-of-Materials`. The following command will download the application layer containing the `SBoM` files to `./layers/sbom/...` on your local filesystem.
 
 ```bash
 pack download-sbom your-image-name
