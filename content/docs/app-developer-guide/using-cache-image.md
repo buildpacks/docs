@@ -19,7 +19,7 @@ The `--cache-image` parameter must be in the following format
 --cache-image <remote-image-location>
 ```
 
-The `--cache-images` flag must be specified in conjunction with the `--publish` flag.
+The `--cache-image` flag must be specified in conjunction with the `--publish` flag.
 
 ### Examples
 For the following examples we will use:

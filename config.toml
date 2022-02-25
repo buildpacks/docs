@@ -13,7 +13,7 @@ unsafe= true
 [params]
 twitter_handle = "buildpacks_io"
 github_base_url = "https://github.com/buildpacks"
-slack_invite_url = "https://slack.buildpacks.io/"
+slack_invite_url = "https://slack.cncf.io"
 description = "Cloud Native Buildpacks transform your application source code into images that can run on any cloud."
 
 pack_version_env_var = "PACK_VERSION"
@@ -66,7 +66,7 @@ pack_version_env_var = "PACK_VERSION"
 
   [[menu.footer2]]
   name       = "Slack"
-  url        = "https://slack.buildpacks.io/"
+  url        = "https://slack.cncf.io"
   weight     = 2
 
   [[menu.footer2]]
@@ -78,3 +78,14 @@ pack_version_env_var = "PACK_VERSION"
   name       = "GitHub"
   url        = "https://github.com/buildpacks"
   weight     = 4
+
+[security]
+  enableInlineShortcodes = false
+  [security.exec]
+    allow = ['^dart-sass-embedded$', '^go$', '^npx$', '^postcss$']
+    osEnv = ['(?i)^(PATH|PATHEXT|APPDATA|TMP|TEMP|TERM)$']
+  [security.funcs]
+    getenv = ['^HUGO_', 'PACK_VERSION']
+  [security.http]
+    methods = ['(?i)GET|POST']
+    urls = ['.*']

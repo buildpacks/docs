@@ -1,94 +1,44 @@
 +++
-title="Bill of Materials"
-summary="A Software `Bill-of-Materials` (`BOM`) gives you a layer-by-layer view of what's inside your container in a variety of formats including `JSON`."
+title="Software Bill of Materials"
+summary="A Software `Software Bill-of-Materials` (`SBoM`) gives you a layer-by-layer view of what's inside your container in a variety of formats."
 +++
 
 ## Summary
 
-A Software **Bill-of-Materials** (`BOM`) provides information necessary to know what's inside your container and how it was constructed.
-Cloud Native Buildpacks provide two forms of Bill-of-Materials.
+A **Software-Bill-of-Materials** (`SBoM`) lists all the software components included in an image.  Cloud Native Buildpacks provides all the transparency you need to have confidence in your image supply chain.  Software-Bill-of-Materials in [CycloneDX](https://cyclonedx.org/), [Syft](https://github.com/anchore/syft) and [Spdx](https://spdx.dev/) formats are supported.
 
-1. Buildpacks can populate `BOM` information about the dependencies they have provided.
-2. A list of what buildpacks were used to build the application.
-
-## Adding Bill of Materials
-
-Use the following tutorial to add a `Bill-of-Materials` using buildpacks. <br/>
-[Adding bill of materials][adding-bill-of-materials]
+1. Buildpacks can populate `SBoM` information about the dependencies they have provided.
 
 ## Viewing Bill of Materials
 
-You can use this command to inspect your app for it's `Bill-of-Materials`.
+You can use the `sbom download` command to inspect your app for its Software-Bill-of-Materials. The following command will download the application layer containing the `SBoM` files to `./layers/sbom/...` on your local filesystem.
 
 ```bash
-pack inspect-image your-image-name --bom
+pack sbom download your-image-name
 ```
 
-It can also be accessed by looking at the label `io.buildpacks.build.metadata`. For example, running Docker CLI, jq and using the following command.
+You can also choose to download the `SBoM` from an image hosted in a remote registry, as opposed to an image hosted in a Docker daemon. You use the `--remote` flag to do so.
 
 ```bash
-docker inspect your-image-name | jq -r '.[0].Config.Labels["io.buildpacks.build.metadata"] | fromjson'
+pack sbom download your-image-name --remote
 ```
 
-Following is the the information listed in `io.buildpacks.build.metadata` for [Sample Java App](https://github.com/buildpacks/samples/tree/main/apps/java-maven) obtained by building the app using buildpacks and running the above command.
+The following example demonstrates  running `pack sbom download ...` on an image containing an `SBoM` in  `syft` format.  Running `pack sbom download ...` creates a `layers/sbom` directory and populates that directory with `sbom.syft.json` files.  The combined metadata from all of the `sbom.syft.json` files is the image `SBoM`. Where an image generates CycloneDX `SBoM` metadata, the files a named `sbom.cdx.json`. Similarly, Spdx files are named `sbom.cdx.json`.
 
-For this output:
-
-1. `bom` is the buildpack populated bom.
-2. `buildpacks` is the list of buildpacks.
-
-```json
-{
-  "bom": [
-    {
-      "name": "java",
-      "metadata": {
-        "version": "11.0.12+7"
-      },
-      "buildpack": {
-        "id": "google.java.runtime",
-        "version": "0.9.1"
-      }
-    }
-  ],
-  "buildpacks": [
-    {
-      "id": "google.java.runtime",
-      "version": "0.9.1"
-    },
-    {
-      "id": "google.java.maven",
-      "version": "0.9.0"
-    },
-    {
-      "id": "google.java.entrypoint",
-      "version": "0.9.0"
-    },
-    {
-      "id": "google.utils.label",
-      "version": "0.0.1"
-    }
-  ],
-  "launcher": {
-    "version": "0.11.1",
-    "source": {
-      "git": {
-        "repository": "github.com/buildpacks/lifecycle",
-        "commit": "75df86c"
-      }
-    }
-  },
-  "processes": [
-    {
-      "type": "web",
-      "command": "java",
-      "args": ["-jar", "/workspace/target/sample-0.0.1-SNAPSHOT.jar"],
-      "direct": true,
-      "buildpackID": "google.java.entrypoint"
-    }
-  ],
-  "buildpack-default-process-type": "web"
-}
+```bash
+layers
+  └── sbom
+      └── launch
+          └── paketo-buildpacks_ca-certificates
+              ├── helper
+              │   └── sbom.syft.json
+              └── sbom.syft.json
 ```
+
+## Adding Bill of Materials
+
+[`pack`](https://github.com/buildpacks/pack), [`kpack`](https://github.com/pivotal/kpack) and [tekton](https://tekton.dev/) users will find that images created using these tools contain an SBoM.
+
+Developers writing a new buildpack or updating an existing buildpack should use the [Adding bill of materials][adding-bill-of-materials] tutorial to incorporate a `Bill-of-Materials` in their buildpack.
 
 [adding-bill-of-materials]: /docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials/

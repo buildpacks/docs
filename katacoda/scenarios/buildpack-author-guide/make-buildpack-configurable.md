@@ -1,7 +1,4 @@
-+++
-title="Making your buildpack configurable"
-weight=408
-+++
+# Making your buildpack configurable
 
 <!-- test:suite=create-buildpack;weight=8 -->
 
@@ -14,7 +11,7 @@ We'll allow buildpack users to define the desired Ruby version via a `.ruby-vers
 Update `ruby-buildpack/bin/detect` to look like this:
 
 <!-- test:file=ruby-buildpack/bin/detect -->
-```bash
+<pre class="file" data-filename="ruby-buildpack/bin/detect" data-target="replace">
 #!/usr/bin/env bash
 set -eo pipefail
 
@@ -33,14 +30,14 @@ fi
 echo "provides = [{ name = \"ruby\" }]" > "$plan"
 echo "requires = [{ name = \"ruby\", metadata = { version = \"$version\" } }]" >> "$plan"
 # ======= /ADDED =======
-```
+</pre>
 
 Then you will need to update your `build` script to look for the recorded Ruby version in the build plan:
 
 Your `ruby-buildpack/bin/build` script should look like the following:
 
 <!-- test:file=ruby-buildpack/bin/build -->
-```bash
+<pre class="file" data-filename="ruby-buildpack/bin/build" data-target="replace">
 #!/usr/bin/env bash
 set -eo pipefail
 
@@ -111,22 +108,21 @@ default = true
 type = "worker"
 command = "bundle exec ruby worker.rb"
 EOL
-```
+</pre>
 
 Finally, create a file `ruby-sample-app/.ruby-version` with the following contents:
 
 <!-- test:file=ruby-sample-app/.ruby-version -->
-```
+<pre class="file" data-filename="ruby-sample-app/.ruby-version" data-target="replace">
 2.5.0
-```
+</pre>
 
 Now when you run:
 
 <!-- test:exec -->
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
-```
-<!--+- "{{execute}}"+-->
+```{{execute}}
 
 You will notice that version of Ruby specified in the app's `.ruby-version` file is downloaded.
 
@@ -139,8 +135,3 @@ You will notice that version of Ruby specified in the app's `.ruby-version` file
 
 Next, let's see how buildpacks can store information about the dependencies provided in the output app image for introspection.
 
-<!--+if false+-->
----
-
-<a href="/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials" class="button bg-pink">Next Step</a>
-<!--+end+-->

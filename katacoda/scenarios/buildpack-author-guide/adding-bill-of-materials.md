@@ -1,7 +1,4 @@
-+++
-title="Adding Bill-of-Materials"
-weight=409
-+++
+# Adding Bill-of-Materials
 
 <!-- test:suite=create-buildpack;weight=9 -->
 
@@ -17,8 +14,7 @@ You can find some of this information using `pack` via its `inspect-image` comma
 <!-- test:exec -->
 ```bash
 pack inspect-image test-ruby-app
-```
-<!--+- "{{execute}}"+-->
+```{{execute}}
 You should see the following:
 
 <!-- test:assert=contains -->
@@ -43,7 +39,7 @@ To add the `ruby` version to the output of `pack download sbom`, we will have to
 First, annotate the `buildpack.toml` to specify that it emits CycloneDX:
 
 <!-- test:file=ruby-buildpack/buildpack.toml -->
-```toml
+<pre class="file" data-filename="ruby-buildpack/buildpack.toml" data-target="replace">
 # Buildpack API version
 api = "0.7"
 
@@ -56,7 +52,7 @@ api = "0.7"
 # Stacks that the buildpack will work with
 [[stacks]]
   id = "io.buildpacks.samples.stacks.bionic"
-```
+</pre>
 
 Then, in our buildpack implemetnation we will generate the necessary SBOM metadata:
 
@@ -111,10 +107,10 @@ if [[ -f Gemfile.lock ]] ; then
 fi
 ```
 
-Your `ruby-buildpack/bin/build`<!--+"{{open}}"+--> script should look like the following:
+Your `ruby-buildpack/bin/build`{{open}} script should look like the following:
 
 <!-- test:file=ruby-buildpack/bin/build -->
-```bash
+<pre class="file" data-filename="ruby-buildpack/bin/build" data-target="replace">
 #!/usr/bin/env bash
 set -eo pipefail
 
@@ -212,23 +208,21 @@ if [[ -f Gemfile.lock ]] ; then
     echo ${DEP} > "${rubybom}"
   done
 fi
-```
+</pre>
 
 Then rebuild your app using the updated buildpack:
 
 <!-- test:exec -->
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
-```
-<!--+- "{{execute}}"+-->
+```{{execute}}
 
 Viewing your bill-of-materials requires extracting (or `download`ing) the bill-of-materials from your local image.  This command can take some time to return.
 
 <!-- test:exec -->
 ```bash
 pack sbom download test-ruby-app
-```
-<!--+- "{{execute}}"+-->
+```{{execute}}
 
 The SBOM information is now downloaded to the local file system:
 
@@ -265,4 +259,4 @@ Now that you've finished your buildpack, how about extending it? Try:
 - Caching the downloaded Ruby version
 - [Packaging your buildpack for distribution][package-a-buildpack]
 
-[package-a-buildpack]: /docs/buildpack-author-guide/package-a-buildpack/
+[package-a-buildpack]: https://buildpacks.io/docs/buildpack-author-guide/package-a-buildpack/

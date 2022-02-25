@@ -3,7 +3,10 @@ ports:
     onOpen: open-preview
 
 tasks:
-  - init: make build
+  - name: Setup
+    before: chmod ugo+w /var/run/docker.sock
+    init: make build
+    command: chmod ugo+w /var/run/docker.sock
 
 github:
   prebuilds:

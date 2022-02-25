@@ -1,46 +1,46 @@
 {
-    "title": "App Developer’s Guide",
-    "description": "Learn how to build and customize your application image using Cloud Native Buildpacks",
-    "difficulty": "Beginner",
-    "time": "30",
-    "details": {
-      "steps": [
-        {
-          "title": "Build an App",
-          "text": "build-an-app.md"
-        },
-        {
-          "title": "Environment Variables",
-          "text": "environment-variables.md"
-        },
-        {
-          "title": "Cache Images",
-          "text": "using-cache-image.md",
-          "courseData": "cache-image-bg.sh"
-        },
-        {
-          "title": "Mounting Volumes",
-          "text": "mounting-volumes.md"
-        },
-        {
-          "title": "Specifying Buildpacks",
-          "text": "specify-buildpacks.md"
-        },
-        {
-          "title": "Specify launch process",
-          "text": "run-an-app.md"
-        }
-      ],
-      "intro": {
-        "courseData": "background.sh",
-        "code": "foreground.sh",
-        "text": "intro.md"
+  "title": "App Developer’s Guide",
+  "description": "Learn how to build and customize your application image using Cloud Native Buildpacks",
+  "difficulty": "Beginner",
+  "time": "30",
+  "details": {
+    "steps": [
+      {
+        "title": "Build an App",
+        "text": "build-an-app.md"
+      },
+      {
+        "title": "Environment Variables",
+        "text": "environment-variables.md"
+      },
+      {
+        "title": "Cache Images",
+        "text": "using-cache-image.md",
+        "courseData": "cache-image-bg.sh"
+      },
+      {
+        "title": "Mounting Volumes",
+        "text": "mounting-volumes.md"
+      },
+      {
+        "title": "Specifying Buildpacks",
+        "text": "specify-buildpacks.md"
+      },
+      {
+        "title": "Specify launch process",
+        "text": "run-an-app.md"
       }
-    },
-    "environment": {
-      "uilayout": "terminal"
-    },
-    "backend": {
-      "imageid": "ubuntu:2004"
+    ],
+    "intro": {
+      "courseData": "background.sh",
+      "code": "foreground.sh",
+      "text": "intro.md"
     }
+  },
+  "environment": {
+    "uilayout": "terminal"
+  },
+  "backend": {
+    "imageid": "ubuntu:2004"
   }
+}

@@ -1,0 +1,90 @@
+- name: Linux
+  default: true
+  methods:
+    - name: Fedora
+      default: true
+      install: |
+        #### Install
+
+        ```shell=bash
+        sudo dnf -y install podman
+        ```
+      setup: &systemctl-setup |
+        #### Service
+
+        Expose the service using `systemd`:
+        ```shell
+        systemctl enable --user podman.socket
+        systemctl start --user podman.socket
+        ```
+
+        #### Connection
+
+        ```shell
+        export DOCKER_HOST="unix://$(podman info -f "{{.Host.RemoteSocket.Path}}")"
+        ```
+
+        **Tip**: put the command into your shell init file (e.g `~/.bashrc`).
+    - name: Ubuntu 20.04
+      install: |
+        #### Install
+
+        > **WARNING:** These commands will UPGRADE existing packages.
+
+        ```shell=bash
+        . /etc/os-release
+        echo "deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_${VERSION_ID}/ /" | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list
+        curl -L "https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_${VERSION_ID}/Release.key" | sudo apt-key add -
+        sudo apt-get update
+        sudo apt-get -y upgrade
+        sudo apt-get -y install podman
+        ```
+      setup: *systemctl-setup
+- name: macOS
+  methods:
+    - name: Homebrew
+      default: true
+      install: |
+        #### Install
+
+        ```shell=zsh
+        brew install podman
+        ```
+      setup: |
+        #### Virtual Machine
+
+        ##### Init
+
+        ```shell=zsh
+        podman machine init --cpus=2 --disk-size=30 --memory=8192
+        ```
+
+        Where:
+
+        - `--cpus` is the number of CPUs we'll allocate to the VM.
+        - `--disk-size` is the amount of disk space we'll give the VM. (GBs)
+        - `--memory` is the amount of memory we'll allocate to the VM. (MBs)
+
+        ##### Start
+
+        ```shell=zsh
+        podman machine start
+        ```
+
+        #### Connection
+
+        1. Add the SSH key for the podman VM to your keychain:
+            ```shell=zsh
+            ssh-add -k "$HOME/.ssh/podman-machine-default"
+            ```
+        2. Change default connection to use `root`:
+            ```shell=zsh
+            podman system connection default podman-machine-default-root
+            ```
+            > **Note**: `root` connection prevents needing to pass `--docker-host=inherit` on every `pack build`. \
+            > For more information, see issue [buildpacks/pack#1338](https://github.com/buildpacks/pack/issues/1338).
+        3. Configure `DOCKER_HOST` with the connection information:
+            ```shell=zsh
+            export DOCKER_HOST="$(podman system connection ls --format="{{.URI}}" | grep root)"
+            ```
+            > **Tip**: put the commands into your shell init file (e.g `~/.zshrc`).

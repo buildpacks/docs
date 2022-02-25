@@ -1,7 +1,4 @@
-+++
-title="Detecting your application"
-weight=403
-+++
+# Detecting your application
 
 <!-- test:suite=create-buildpack;weight=3 -->
 
@@ -15,25 +12,24 @@ if [[ ! -f Gemfile ]]; then
 fi
 ```
 
-Your `ruby-buildpack/bin/detect`<!--+"{{open}}"+--> script should look like this:
+Your `ruby-buildpack/bin/detect`{{open}} script should look like this:
 
 <!-- test:file=ruby-buildpack/bin/detect -->
-```bash
+<pre class="file" data-filename="ruby-buildpack/bin/detect" data-target="replace">
 #!/usr/bin/env bash
 set -eo pipefail
 
 if [[ ! -f Gemfile ]]; then
    exit 100
 fi
-```
+</pre>
 
 Next, rebuild your app with the updated buildpack:
 
 <!-- test:exec;exit-code=-1 -->
 ```bash
 pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
-```
-<!--+- "{{execute}}"+-->
+```{{execute}}
 
 You should see the following output:
 
@@ -54,8 +50,3 @@ Notice that `detect` now passes because there is a valid `Gemfile` in the Ruby a
 
 You will also notice that `ANALYZING` now appears in the build output. This step is part of the buildpack lifecycle that looks to see if any previous image builds have layers that the buildpack can re-use. We will get into this topic in more detail later.
 
-<!--+if false+-->
----
-
-<a href="/docs/buildpack-author-guide/create-buildpack/build-app" class="button bg-pink">Next Step</a>
-<!--+end+-->

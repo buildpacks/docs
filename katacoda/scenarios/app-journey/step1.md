@@ -1,3 +1,5 @@
+# An App's Brief Journey from Source to Image
+
 ## Pack for the journey
 
 In this tutorial, we'll explain how to use `pack` and **buildpacks** to create a runnable app image from source code.
