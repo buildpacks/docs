@@ -610,12 +610,12 @@
 
         <p>If you would like to publish your buildpack image to the registry without requiring a human to click a button in a browser, you can automate the process using the helpers in the <a href="https://github.com/buildpacks/github-actions">buildpacks/github-actions</a> repository.</p>
 <p>To begin, you must store your buildpack source code in GitHub and <a href="https://github.com/features/actions">enable GitHub Actions</a>. Then create a directory named <code>.github/workflows</code> in your repository, and add a file named <code>release.yml</code> to it. The <code>release.yml</code> workflow can be <a href="https://docs.github.com/en/actions/reference/events-that-trigger-workflows">triggered</a> in many ways, but it&rsquo;s common to use a Release event as a trigger. To do so, add the following to your <code>release.yml</code>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Release</span><span class="w">
-</span><span class="w"></span><span class="nt">on</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="nt">release</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="nt">types</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- <span class="l">published</span><span class="w">
-</span></code></pre></div><p>Next, you must configure a job to run when this workflow is triggered. Each workflow job is a set of steps. The steps you&rsquo;ll need to run will depend on how your buildpack is built (for example, you may need to compile some code or download some artifacts). But every buildpack will need the following steps:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Release</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">on</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">release</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">types</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">published</span><span class="w">
+</span></span></span></code></pre></div><p>Next, you must configure a job to run when this workflow is triggered. Each workflow job is a set of steps. The steps you&rsquo;ll need to run will depend on how your buildpack is built (for example, you may need to compile some code or download some artifacts). But every buildpack will need the following steps:</p>
 <ol>
 <li>Checkout the source code</li>
 <li>Authenticate with an OCI Registry</li>
@@ -624,45 +624,45 @@
 <li>Register the image with the Buildpack Registry</li>
 </ol>
 <p>You can implement a job with these steps in your GitHub Action by adding the following code to your <code>release.yml</code> (note the indentation):</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">jobs</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="nt">register</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Package, Publish, and Register</span><span class="w">
-</span><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span>- <span class="l">ubuntu-latest</span><span class="w">
-</span><span class="w">    </span><span class="nt">steps</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span>- <span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l">checkout</span><span class="w">
-</span><span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">actions/checkout@v2</span><span class="w">
-</span><span class="w">    </span>- <span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l">${{ github.event_name != &#39;pull_request&#39; || ! github.event.pull_request.head.repo.fork }}</span><span class="w">
-</span><span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">docker/login-action@v1</span><span class="w">
-</span><span class="w">      </span><span class="nt">with</span><span class="p">:</span><span class="w">
-</span><span class="w">        </span><span class="nt">registry</span><span class="p">:</span><span class="w"> </span><span class="l">docker.io</span><span class="w">
-</span><span class="w">        </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l">${{ secrets.DOCKER_HUB_USER }}</span><span class="w">
-</span><span class="w">        </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l">${{ secrets.DOCKER_HUB_PASS }}</span><span class="w">
-</span><span class="w">    </span>- <span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l">setup-pack</span><span class="w">
-</span><span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks/github-actions/setup-pack@v4.4.0</span><span class="w">
-</span><span class="w">    </span>- <span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l">package</span><span class="w">
-</span><span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
-</span><span class="sd">        #!/usr/bin/env bash
-</span><span class="sd">        set -euo pipefail
-</span><span class="sd">        BP_ID=&#34;$(cat buildpack.toml | yj -t | jq -r .buildpack.id)&#34;
-</span><span class="sd">        VERSION=&#34;$(cat buildpack.toml | yj -t | jq -r .buildpack.version)&#34;
-</span><span class="sd">        PACKAGE=&#34;${REPO}/$(echo &#34;$BP_ID&#34; | sed &#39;s/\//_/g&#39;)&#34;
-</span><span class="sd">        pack buildpack package --publish ${PACKAGE}:${VERSION}
-</span><span class="sd">        DIGEST=&#34;$(crane digest ${PACKAGE}:${VERSION})&#34;
-</span><span class="sd">        echo &#34;::set-output name=bp_id::$BP_ID&#34;
-</span><span class="sd">        echo &#34;::set-output name=version::$VERSION&#34;
-</span><span class="sd">        echo &#34;::set-output name=address::${PACKAGE}@${DIGEST}&#34;</span><span class="w">        
-</span><span class="w">      </span><span class="nt">shell</span><span class="p">:</span><span class="w"> </span><span class="l">bash</span><span class="w">
-</span><span class="w">      </span><span class="nt">env</span><span class="p">:</span><span class="w">
-</span><span class="w">        </span><span class="nt">REPO</span><span class="p">:</span><span class="w"> </span><span class="l">docker.io/${{ secrets.DOCKER_HUB_USER }}</span><span class="w">
-</span><span class="w">    </span>- <span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l">register</span><span class="w">
-</span><span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">docker://ghcr.io/buildpacks/actions/registry/request-add-entry:4.4.0</span><span class="w">
-</span><span class="w">      </span><span class="nt">with</span><span class="p">:</span><span class="w">
-</span><span class="w">        </span><span class="nt">token</span><span class="p">:</span><span class="w">   </span><span class="l">${{ secrets.PUBLIC_REPO_TOKEN }}</span><span class="w">
-</span><span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w">      </span><span class="l">${{ steps.package.outputs.bp_id }}</span><span class="w">
-</span><span class="w">        </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l">${{ steps.package.outputs.version }}</span><span class="w">
-</span><span class="w">        </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="l">${{ steps.package.outputs.address }}</span><span class="w">
-</span></code></pre></div><p>Before you execute this GitHub Action, you must add three secrets to your GitHub repository:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">jobs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">register</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Package, Publish, and Register</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">ubuntu-latest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">steps</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l">checkout</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">actions/checkout@v2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l">${{ github.event_name != &#39;pull_request&#39; || ! github.event.pull_request.head.repo.fork }}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">docker/login-action@v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">registry</span><span class="p">:</span><span class="w"> </span><span class="l">docker.io</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l">${{ secrets.DOCKER_HUB_USER }}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="l">${{ secrets.DOCKER_HUB_PASS }}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l">setup-pack</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks/github-actions/setup-pack@v4.4.0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l">package</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">        #!/usr/bin/env bash
+</span></span></span><span class="line"><span class="cl"><span class="sd">        set -euo pipefail
+</span></span></span><span class="line"><span class="cl"><span class="sd">        BP_ID=&#34;$(cat buildpack.toml | yj -t | jq -r .buildpack.id)&#34;
+</span></span></span><span class="line"><span class="cl"><span class="sd">        VERSION=&#34;$(cat buildpack.toml | yj -t | jq -r .buildpack.version)&#34;
+</span></span></span><span class="line"><span class="cl"><span class="sd">        PACKAGE=&#34;${REPO}/$(echo &#34;$BP_ID&#34; | sed &#39;s/\//_/g&#39;)&#34;
+</span></span></span><span class="line"><span class="cl"><span class="sd">        pack buildpack package --publish ${PACKAGE}:${VERSION}
+</span></span></span><span class="line"><span class="cl"><span class="sd">        DIGEST=&#34;$(crane digest ${PACKAGE}:${VERSION})&#34;
+</span></span></span><span class="line"><span class="cl"><span class="sd">        echo &#34;::set-output name=bp_id::$BP_ID&#34;
+</span></span></span><span class="line"><span class="cl"><span class="sd">        echo &#34;::set-output name=version::$VERSION&#34;
+</span></span></span><span class="line"><span class="cl"><span class="sd">        echo &#34;::set-output name=address::${PACKAGE}@${DIGEST}&#34;</span><span class="w">        
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">shell</span><span class="p">:</span><span class="w"> </span><span class="l">bash</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">env</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">REPO</span><span class="p">:</span><span class="w"> </span><span class="l">docker.io/${{ secrets.DOCKER_HUB_USER }}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l">register</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">docker://ghcr.io/buildpacks/actions/registry/request-add-entry:4.4.0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">token</span><span class="p">:</span><span class="w">   </span><span class="l">${{ secrets.PUBLIC_REPO_TOKEN }}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w">      </span><span class="l">${{ steps.package.outputs.bp_id }}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l">${{ steps.package.outputs.version }}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">address</span><span class="p">:</span><span class="w"> </span><span class="l">${{ steps.package.outputs.address }}</span><span class="w">
+</span></span></span></code></pre></div><p>Before you execute this GitHub Action, you must add three secrets to your GitHub repository:</p>
 <ul>
 <li><code>DOCKER_HUB_USER</code> - your <a href="https://hub.docker.com/settings/general">Docker Hub</a> username.</li>
 <li><code>DOCKER_HUB_PASS</code> - a <a href="https://hub.docker.com/settings/security">Docker Hub access token</a>.</li>

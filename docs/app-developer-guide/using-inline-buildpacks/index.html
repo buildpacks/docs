@@ -611,40 +611,40 @@
         <p>You can supplement your app&rsquo;s build proces with custom scripts by creating an <em>inline buildpack</em>. An inline buildpack is an ephemeral buildpack that&rsquo;s defined in your <a href="/docs/app-developer-guide/using-project-descriptor/">project descriptor</a> (i.e. <code>project.toml</code>). You can include a script to run as part of the build without setting up all the files and directories that are required for a complete buildpack.</p>
 <p>Inline buildpacks are defined as an entry in the <code>[[build.buildpacks]]</code> table of the project descriptor by inlcuding an <code>inline</code> script in the <code>[build.buildpacks.script]</code> table.</p>
 <p>For example, you may want to run a Rake task against a Ruby app after the Ruby buildpack builds your app.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">project</span><span class="p">]</span>
-<span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;io.buildpacks.my-app&#34;</span>
-
-<span class="p">[[</span><span class="nx">build</span><span class="p">.</span><span class="nx">buildpacks</span><span class="p">]]</span>
-<span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;example/ruby&#34;</span>
-<span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;1.0&#34;</span>
-
-<span class="p">[[</span><span class="nx">build</span><span class="p">.</span><span class="nx">buildpacks</span><span class="p">]]</span>
-<span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;me/rake-tasks&#34;</span>
-
-  <span class="p">[</span><span class="nx">build</span><span class="p">.</span><span class="nx">buildpacks</span><span class="p">.</span><span class="nx">script</span><span class="p">]</span>
-  <span class="nx">api</span> <span class="p">=</span> <span class="s2">&#34;0.6&#34;</span>
-  <span class="nx">inline</span> <span class="p">=</span> <span class="s2">&#34;rake package&#34;</span>
-</code></pre></div><p>In this example, the <code>me/rake-tasks</code> inline buildpack is configured to run after the <code>example/ruby</code> buildpack. The inline script is compatible with API version <code>0.4</code> (this is a required field), and it will execute the <code>rake package</code> command during the build step.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">project</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;io.buildpacks.my-app&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">build</span><span class="p">.</span><span class="nx">buildpacks</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;example/ruby&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;1.0&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">build</span><span class="p">.</span><span class="nx">buildpacks</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;me/rake-tasks&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">build</span><span class="p">.</span><span class="nx">buildpacks</span><span class="p">.</span><span class="nx">script</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">api</span> <span class="p">=</span> <span class="s2">&#34;0.6&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">inline</span> <span class="p">=</span> <span class="s2">&#34;rake package&#34;</span>
+</span></span></code></pre></div><p>In this example, the <code>me/rake-tasks</code> inline buildpack is configured to run after the <code>example/ruby</code> buildpack. The inline script is compatible with API version <code>0.4</code> (this is a required field), and it will execute the <code>rake package</code> command during the build step.</p>
 <blockquote>
 <p><strong>Note:</strong> Inline buildpacks will <em>always</em> pass detection.</p>
 </blockquote>
 <p>Inline buildpacks aren&rsquo;t constrained to a single command, however. You can define complex scripts as <a href="https://toml.io/en/v1.0.0#string">heredocs</a> in your project descriptor. For example, this snippet of a descriptor will source a shell script contained in the app repo, use it to modify the app directory (and thus the files that go into the final image), and create slices for the app:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[[</span><span class="nx">build</span><span class="p">.</span><span class="nx">buildpacks</span><span class="p">]]</span>
-<span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;me/cleanup&#34;</span>
-
-  <span class="p">[</span><span class="nx">build</span><span class="p">.</span><span class="nx">buildpacks</span><span class="p">.</span><span class="nx">script</span><span class="p">]</span>
-  <span class="nx">api</span> <span class="p">=</span> <span class="s2">&#34;0.6&#34;</span>
-  <span class="nx">inline</span> <span class="p">=</span> <span class="s2">&#34;&#34;&#34;
-</span><span class="s2">set -e
-</span><span class="s2">source scripts/utils.sh
-</span><span class="s2">find . -type f -name $(my_data_files) -delete
-</span><span class="s2">cat &lt;&lt;EOF &gt; ${1}/launch.toml
-</span><span class="s2">[[processes]]
-</span><span class="s2">type = &#39;bash&#39;
-</span><span class="s2">command = &#39;bin/bash&#39;
-</span><span class="s2">EOF
-</span><span class="s2">&#34;&#34;&#34;</span>
-</code></pre></div><h3 id="further-reading">Further Reading</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">build</span><span class="p">.</span><span class="nx">buildpacks</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;me/cleanup&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">build</span><span class="p">.</span><span class="nx">buildpacks</span><span class="p">.</span><span class="nx">script</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">api</span> <span class="p">=</span> <span class="s2">&#34;0.6&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">inline</span> <span class="p">=</span> <span class="s2">&#34;&#34;&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s2">set -e
+</span></span></span><span class="line"><span class="cl"><span class="s2">source scripts/utils.sh
+</span></span></span><span class="line"><span class="cl"><span class="s2">find . -type f -name $(my_data_files) -delete
+</span></span></span><span class="line"><span class="cl"><span class="s2">cat &lt;&lt;EOF &gt; ${1}/launch.toml
+</span></span></span><span class="line"><span class="cl"><span class="s2">[[processes]]
+</span></span></span><span class="line"><span class="cl"><span class="s2">type = &#39;bash&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">command = &#39;bin/bash&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s2">EOF
+</span></span></span><span class="line"><span class="cl"><span class="s2">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><h3 id="further-reading">Further Reading</h3>
 <p>For more about project descriptors, look at the <a href="/docs/reference/project-descriptor/">schema</a>, as well as the <a href="https://github.com/buildpacks/spec/blob/main/extensions/project-descriptor.md">specification</a>.</p>
 
 

@@ -614,24 +614,24 @@
 </code></pre><h3 id="examples">Examples</h3>
 <pre tabindex="0"><code>pack build test_img --path apps/test-app --builder cnbs/sample-builder:bionic
 </code></pre><h3 id="options">Options</h3>
-<pre tabindex="0"><code>  -B, --builder string              Builder image (default &quot;cnbs/sample-builder:bionic&quot;)
+<pre tabindex="0"><code>  -B, --builder string              Builder image (default &#34;cnbs/sample-builder:bionic&#34;)
   -b, --buildpack strings           Buildpack to use. One of:
-                                      a buildpack by id and version in the form of '&lt;buildpack&gt;@&lt;version&gt;',
+                                      a buildpack by id and version in the form of &#39;&lt;buildpack&gt;@&lt;version&gt;&#39;,
                                       path to a buildpack directory (not supported on Windows),
                                       path/URL to a buildpack .tar or .tgz file, or
-                                      a packaged buildpack image name in the form of '&lt;hostname&gt;/&lt;repo&gt;[:&lt;tag&gt;]'
+                                      a packaged buildpack image name in the form of &#39;&lt;hostname&gt;/&lt;repo&gt;[:&lt;tag&gt;]&#39;
                                     Repeat for each buildpack in order, or supply once by comma-separated list
   -r, --buildpack-registry string   Buildpack Registry by name
       --cache-image string          Cache build layers in remote registry. Requires --publish
-      --clear-cache                 Clear image's associated cache before building
-  -D, --default-process string      Set the default process type. (default &quot;web&quot;)
+      --clear-cache                 Clear image&#39;s associated cache before building
+  -D, --default-process string      Set the default process type. (default &#34;web&#34;)
   -d, --descriptor string           Path to the project descriptor file
       --docker-host string          Address to docker daemon that will be exposed to the build container.
                                     If not set (or set to empty string) the standard socket location will be used.
-                                    Special value 'inherit' may be used in which case DOCKER_HOST environment variable will be used.
+                                    Special value &#39;inherit&#39; may be used in which case DOCKER_HOST environment variable will be used.
                                     This option may set DOCKER_HOST environment variable for the build container if needed.
                                     
-  -e, --env stringArray             Build-time environment variable, in the form 'VAR=VALUE' or 'VAR'.
+  -e, --env stringArray             Build-time environment variable, in the form &#39;VAR=VALUE&#39; or &#39;VAR&#39;.
                                     When using latter value-less form, value will be taken from current
                                       environment at the time this command is executed.
                                     This flag may be specified multiple times and will override
@@ -639,33 +639,33 @@
                                     Repeat for each env in order (comma-separated lists not accepted)
                                     NOTE: These are NOT available at image runtime.
       --env-file stringArray        Build-time environment variables file
-                                    One variable per line, of the form 'VAR=VALUE' or 'VAR'
+                                    One variable per line, of the form &#39;VAR=VALUE&#39; or &#39;VAR&#39;
                                     When using latter value-less form, value will be taken from current
                                       environment at the time this command is executed
-                                    NOTE: These are NOT available at image runtime.&quot;
-      --gid int                     Override GID of user's group in the stack's build and run images. The provided value must be a positive number
-  -h, --help                        Help for 'build'
+                                    NOTE: These are NOT available at image runtime.&#34;
+      --gid int                     Override GID of user&#39;s group in the stack&#39;s build and run images. The provided value must be a positive number
+  -h, --help                        Help for &#39;build&#39;
       --lifecycle-image string      Custom lifecycle image to use for analysis, restore, and export when builder is untrusted.
       --network string              Connect detect and build containers to network
   -p, --path string                 Path to app dir or zip-formatted file (defaults to current working directory)
       --previous-image string       Set previous image to a particular tag reference, digest reference, or (when performing a daemon build) image ID
       --publish                     Publish to registry
-      --pull-policy string          Pull policy to use. Accepted values are always, never, and if-not-present. (default &quot;always&quot;)
-      --run-image string            Run image (defaults to default stack's run image)
+      --pull-policy string          Pull policy to use. Accepted values are always, never, and if-not-present. (default &#34;always&#34;)
+      --run-image string            Run image (defaults to default stack&#39;s run image)
       --sbom-output-dir string      Path to export SBoM contents.
                                     Omitting the flag will yield no SBoM content.
   -t, --tag strings                 Additional tags to push the output image to.
-                                    Tags should be in the format 'image:tag' or 'repository/image:tag'.
+                                    Tags should be in the format &#39;image:tag&#39; or &#39;repository/image:tag&#39;.
                                     Repeat for each tag in order, or supply once by comma-separated list
       --trust-builder               Trust the provided builder
                                     All lifecycle phases will be run in a single container (if supported by the lifecycle).
-      --volume stringArray          Mount host volume into the build container, in the form '&lt;host path&gt;:&lt;target path&gt;[:&lt;options&gt;]'.
-                                    - 'host path': Name of the volume or absolute directory path to mount.
-                                    - 'target path': The path where the file or directory is available in the container.
-                                    - 'options' (default &quot;ro&quot;): An optional comma separated list of mount options.
-                                        - &quot;ro&quot;, volume contents are read-only.
-                                        - &quot;rw&quot;, volume contents are readable and writeable.
-                                        - &quot;volume-opt=&lt;key&gt;=&lt;value&gt;&quot;, can be specified more than once, takes a key-value pair consisting of the option name and its value.
+      --volume stringArray          Mount host volume into the build container, in the form &#39;&lt;host path&gt;:&lt;target path&gt;[:&lt;options&gt;]&#39;.
+                                    - &#39;host path&#39;: Name of the volume or absolute directory path to mount.
+                                    - &#39;target path&#39;: The path where the file or directory is available in the container.
+                                    - &#39;options&#39; (default &#34;ro&#34;): An optional comma separated list of mount options.
+                                        - &#34;ro&#34;, volume contents are read-only.
+                                        - &#34;rw&#34;, volume contents are readable and writeable.
+                                        - &#34;volume-opt=&lt;key&gt;=&lt;value&gt;&#34;, can be specified more than once, takes a key-value pair consisting of the option name and its value.
                                     Repeat for each volume in order (comma-separated lists not accepted)
       --workspace string            Location at which to mount the app dir in the build image
 </code></pre><h3 id="options-inherited-from-parent-commands">Options inherited from parent commands</h3>

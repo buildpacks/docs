@@ -656,34 +656,34 @@ docker volume rm test-volume
 -->
 <p>We&rsquo;ll create a new docker volume:</p>
 <!-- test:exec -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker volume create test-volume
-</code></pre></div><!--+- "{{execute}}"+-->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker volume create test-volume
+</span></span></code></pre></div><!--+- "{{execute}}"+-->
 <p>Next, we&rsquo;ll create a text file on the volume:</p>
 <!-- test:exec -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker run --rm <span class="se">\
-</span><span class="se"></span>    --volume test-volume:/tmp/volume:rw <span class="se">\
-</span><span class="se"></span>    bash <span class="se">\
-</span><span class="se"></span>    bash -c <span class="s1">&#39;echo &#34;Hello from a volume!&#34; &gt; /tmp/volume/volume_contents.txt&#39;</span>
-</code></pre></div><!--+- "{{execute}}"+-->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run --rm <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --volume test-volume:/tmp/volume:rw <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    bash <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    bash -c <span class="s1">&#39;echo &#34;Hello from a volume!&#34; &gt; /tmp/volume/volume_contents.txt&#39;</span>
+</span></span></code></pre></div><!--+- "{{execute}}"+-->
 <p>Now, we can mount this volume during <code>pack build</code>:</p>
 <!-- test:exec -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">ls -al
-pack build volume-example <span class="se">\
-</span><span class="se"></span>    --builder cnbs/sample-builder:bionic <span class="se">\
-</span><span class="se"></span>    --buildpack samples/buildpacks/hello-world <span class="se">\
-</span><span class="se"></span>    --path samples/apps/bash-script <span class="se">\
-</span><span class="se"></span>    --volume test-volume:/platform/volume:ro
-</code></pre></div><!--+- "{{execute}}"+-->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ls -al
+</span></span><span class="line"><span class="cl">pack build volume-example <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --builder cnbs/sample-builder:bionic <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --buildpack samples/buildpacks/hello-world <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --path samples/apps/bash-script <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --volume test-volume:/platform/volume:ro
+</span></span></code></pre></div><!--+- "{{execute}}"+-->
 <p>The above <code>pack build ...</code> command will mount the <code>test-volume</code> volume in the <code>/platform</code> directory of the container.</p>
 <p>Since we are using the <code>samples/hello-world</code> buildpack, we should see the <code>/platform</code> directory files listed:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">[builder]      platform_dir files:
-...
-[builder]        /platform/volume:
-[builder]        total 12
-[builder]        drwxr-xr-x 2 root root 4096 Sep 17 20:17 .
-[builder]        drwxr-xr-x 1 root root 4096 Sep 17 20:18 ..
-[builder]        -rw-r--r-- 1 root root   21 Sep 17 20:18 volume_contents.txt
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">[builder]      platform_dir files:
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">[builder]        /platform/volume:
+</span></span><span class="line"><span class="cl">[builder]        total 12
+</span></span><span class="line"><span class="cl">[builder]        drwxr-xr-x 2 root root 4096 Sep 17 20:17 .
+</span></span><span class="line"><span class="cl">[builder]        drwxr-xr-x 1 root root 4096 Sep 17 20:18 ..
+</span></span><span class="line"><span class="cl">[builder]        -rw-r--r-- 1 root root   21 Sep 17 20:18 volume_contents.txt
+</span></span></code></pre></div>
 
         
 

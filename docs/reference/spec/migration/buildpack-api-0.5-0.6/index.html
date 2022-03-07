@@ -616,22 +616,22 @@
 <p><strong>NOTE</strong>: Additionally, the <code>launch</code>, <code>build</code>, and <code>cache</code> keys are moved under a new <code>[types]</code> table in <code>&lt;layers&gt;/&lt;layer&gt;.toml</code> and removed from the top level.</p>
 </blockquote>
 <p>A Bash buildpack could write something like the following to <code>&lt;layers&gt;/&lt;layer&gt;.toml</code> in order to cache a layer:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">cat &gt;&gt; layer.toml <span class="s">&lt;&lt;EOL
-</span><span class="s">[types]
-</span><span class="s">cache = true
-</span><span class="s">EOL</span>
-</code></pre></div><h3 id="buildpacks-contribute-default-process-type">Buildpacks contribute default process type</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat &gt;&gt; layer.toml <span class="s">&lt;&lt;EOL
+</span></span></span><span class="line"><span class="cl"><span class="s">[types]
+</span></span></span><span class="line"><span class="cl"><span class="s">cache = true
+</span></span></span><span class="line"><span class="cl"><span class="s">EOL</span>
+</span></span></code></pre></div><h3 id="buildpacks-contribute-default-process-type">Buildpacks contribute default process type</h3>
 <p>Buildpacks may now contribute the default process type by writing <code>default = true</code> in the process type definition in <code>&lt;layers&gt;/launch.toml</code>. An individual buildpack may only specify one process type with <code>default = true</code>. The lifecycle will choose, from all buildpack-provided process types, the last process type with <code>default = true</code> as the buildpack-provided default. A user may override the buildpack-provided default process type by passing <code>-process-type</code> to the exporter. Note: to enable buildpacks implementing older Buildpack APIs to work with newer buildpacks, the lifecycle will assume that buildpacks on Buildpack API &lt; 0.6 intended for <code>web</code> processes to be the default.
 For example -</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="c"># launch.toml</span>
-<span class="p">[[</span><span class="nx">processes</span><span class="p">]]</span>
-<span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;&lt;process type&gt;&#34;</span>
-<span class="nx">command</span> <span class="p">=</span> <span class="s2">&#34;&lt;command&gt;&#34;</span>
-<span class="nx">args</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;&lt;arguments&gt;&#34;</span><span class="p">]</span>
-<span class="nx">direct</span> <span class="p">=</span> <span class="kc">false</span>
-<span class="c"># the default field is new</span>
-<span class="nx">default</span> <span class="p">=</span> <span class="kc">false</span>
-</code></pre></div><h3 id="new-fields-in-buildpack-descriptor">New fields in buildpack descriptor</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="c"># launch.toml</span>
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">processes</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;&lt;process type&gt;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">command</span> <span class="p">=</span> <span class="s2">&#34;&lt;command&gt;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">args</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;&lt;arguments&gt;&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">direct</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl"><span class="c"># the default field is new</span>
+</span></span><span class="line"><span class="cl"><span class="nx">default</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span></code></pre></div><h3 id="new-fields-in-buildpack-descriptor">New fields in buildpack descriptor</h3>
 <p>To introduce more information into the Buildpack Registry search API, the following are added to <code>buildpack.toml</code>:</p>
 <ul>
 <li>A <code>description</code> free text field</li>

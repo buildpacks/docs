@@ -616,110 +616,110 @@ Select Ruby version We&amp;rsquo;ll allow buildpack users to define the…">
 <p>We&rsquo;ll allow buildpack users to define the desired Ruby version via a <code>.ruby-version</code> file in their app. We&rsquo;ll first update the <code>detect</code> script to check for this file. We will then record the dependency we can <code>provide</code> (Ruby), as well as the specific dependency the application will <code>require</code>, in the <code>Build Plan</code>, a document the lifecycle uses to determine if the buildpack will provide everything the application needs.</p>
 <p>Update <code>ruby-buildpack/bin/detect</code> to look like this:</p>
 <!-- test:file=ruby-buildpack/bin/detect -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
-</span><span class="cp"></span><span class="nb">set</span> -eo pipefail
-
-<span class="k">if</span> <span class="o">[[</span> ! -f Gemfile <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
-   <span class="nb">exit</span> <span class="m">100</span>
-<span class="k">fi</span>
-
-<span class="c1"># ======= ADDED =======</span>
-<span class="nv">plan</span><span class="o">=</span><span class="nv">$2</span>
-<span class="nv">version</span><span class="o">=</span>2.5.1
-
-<span class="k">if</span> <span class="o">[[</span> -f .ruby-version <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
-    <span class="nv">version</span><span class="o">=</span><span class="k">$(</span>cat .ruby-version <span class="p">|</span> tr -d <span class="s1">&#39;[:space:]&#39;</span><span class="k">)</span>
-<span class="k">fi</span>
-
-<span class="nb">echo</span> <span class="s2">&#34;provides = [{ name = \&#34;ruby\&#34; }]&#34;</span> &gt; <span class="s2">&#34;</span><span class="nv">$plan</span><span class="s2">&#34;</span>
-<span class="nb">echo</span> <span class="s2">&#34;requires = [{ name = \&#34;ruby\&#34;, metadata = { version = \&#34;</span><span class="nv">$version</span><span class="s2">\&#34; } }]&#34;</span> &gt;&gt; <span class="s2">&#34;</span><span class="nv">$plan</span><span class="s2">&#34;</span>
-<span class="c1"># ======= /ADDED =======</span>
-</code></pre></div><p>Then you will need to update your <code>build</code> script to look for the recorded Ruby version in the build plan:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="nb">set</span> -eo pipefail
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[[</span> ! -f Gemfile <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">   <span class="nb">exit</span> <span class="m">100</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ======= ADDED =======</span>
+</span></span><span class="line"><span class="cl"><span class="nv">plan</span><span class="o">=</span><span class="nv">$2</span>
+</span></span><span class="line"><span class="cl"><span class="nv">version</span><span class="o">=</span>2.5.1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[[</span> -f .ruby-version <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">version</span><span class="o">=</span><span class="k">$(</span>cat .ruby-version <span class="p">|</span> tr -d <span class="s1">&#39;[:space:]&#39;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;provides = [{ name = \&#34;ruby\&#34; }]&#34;</span> &gt; <span class="s2">&#34;</span><span class="nv">$plan</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;requires = [{ name = \&#34;ruby\&#34;, metadata = { version = \&#34;</span><span class="nv">$version</span><span class="s2">\&#34; } }]&#34;</span> &gt;&gt; <span class="s2">&#34;</span><span class="nv">$plan</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ======= /ADDED =======</span>
+</span></span></code></pre></div><p>Then you will need to update your <code>build</code> script to look for the recorded Ruby version in the build plan:</p>
 <p>Your <code>ruby-buildpack/bin/build</code> script should look like the following:</p>
 <!-- test:file=ruby-buildpack/bin/build -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
-</span><span class="cp"></span><span class="nb">set</span> -eo pipefail
-
-<span class="nb">echo</span> <span class="s2">&#34;---&gt; Ruby Buildpack&#34;</span>
-
-<span class="c1"># ======= MODIFIED =======</span>
-<span class="c1"># 1. GET ARGS</span>
-<span class="nv">layersdir</span><span class="o">=</span><span class="nv">$1</span>
-<span class="nv">plan</span><span class="o">=</span><span class="nv">$3</span>
-
-<span class="c1"># 2. CREATE THE LAYER DIRECTORY</span>
-<span class="nv">rubylayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">&#34;</span>/ruby
-mkdir -p <span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>
-
-<span class="c1"># ======= MODIFIED =======</span>
-<span class="c1"># 3. DOWNLOAD RUBY</span>
-<span class="nv">ruby_version</span><span class="o">=</span><span class="k">$(</span>cat <span class="s2">&#34;</span><span class="nv">$plan</span><span class="s2">&#34;</span> <span class="p">|</span> yj -t <span class="p">|</span> jq -r <span class="s1">&#39;.entries[] | select(.name == &#34;ruby&#34;) | .metadata.version&#39;</span><span class="k">)</span>
-<span class="nb">echo</span> <span class="s2">&#34;---&gt; Downloading and extracting Ruby </span><span class="nv">$ruby_version</span><span class="s2">&#34;</span>
-<span class="nv">ruby_url</span><span class="o">=</span>https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-<span class="nv">$ruby_version</span>.tgz
-wget -q -O - <span class="s2">&#34;</span><span class="nv">$ruby_url</span><span class="s2">&#34;</span> <span class="p">|</span> tar -xzf - -C <span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>
-
-<span class="c1"># 4. MAKE RUBY AVAILABLE DURING LAUNCH</span>
-<span class="nb">echo</span> -e <span class="s1">&#39;[types]\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/ruby.toml&#34;</span>
-
-<span class="c1"># 5. MAKE RUBY AVAILABLE TO THIS SCRIPT</span>
-<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>/bin:<span class="nv">$PATH</span>
-<span class="nb">export</span> <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="p">:+</span><span class="si">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="si">}</span><span class="p">:</span><span class="si">}</span><span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">/lib&#34;</span>
-
-<span class="c1"># 6. INSTALL BUNDLER</span>
-<span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing bundler&#34;</span>
-gem install bundler --no-ri --no-rdoc
-
-<span class="c1"># 7. INSTALL GEMS</span>
-<span class="c1"># Compares previous Gemfile.lock checksum to the current Gemfile.lock</span>
-<span class="nv">bundlerlayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler&#34;</span>
-<span class="nv">local_bundler_checksum</span><span class="o">=</span><span class="k">$((</span>sha256sum Gemfile.lock <span class="o">||</span> <span class="nb">echo</span> <span class="s1">&#39;DOES_NOT_EXIST&#39;</span><span class="o">)</span> <span class="o">|</span> cut <span class="o">-</span>d <span class="s1">&#39; &#39;</span> <span class="o">-</span>f <span class="m">1</span><span class="o">)</span>
-<span class="nv">remote_bundler_checksum</span><span class="o">=</span><span class="k">$(</span>cat <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler.toml&#34;</span> <span class="p">|</span> yj -t <span class="p">|</span> jq -r .metadata.checksum 2&gt;/dev/null <span class="o">||</span> <span class="nb">echo</span> <span class="s1">&#39;DOES_NOT_EXIST&#39;</span><span class="k">)</span>
-<span class="c1"># Always set the types table so that we re-use the appropriate layers</span>
-<span class="nb">echo</span> <span class="o">-</span>e <span class="s1">&#39;[types]\ncache = true\nlaunch = true&#39;</span> &gt;&gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler.toml&#34;</span>
-
-<span class="k">if</span> <span class="o">[[</span> <span class="o">-</span>f Gemfile.lock <span class="o">&amp;&amp;</span> <span class="nv">$local_bundler_checksum</span> <span class="o">==</span> <span class="nv">$remote_bundler_checksum</span> <span class="o">]]</span> <span class="p">;</span> <span class="k">then</span>
-    <span class="c1"># Determine if no gem dependencies have changed, so it can reuse existing gems without running bundle install</span>
-    <span class="nb">echo</span> <span class="s2">&#34;---&gt; Reusing gems&#34;</span>
-    bundle config <span class="o">--</span><span class="nb">local</span> path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> &gt;/dev/null
-    bundle config <span class="o">--</span><span class="nb">local</span> bin <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span> &gt;/dev/null
-<span class="k">else</span>
-    <span class="c1"># Determine if there has been a gem dependency change and install new gems to the bundler layer; re-using existing and un-changed gems</span>
-    <span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing gems&#34;</span>
-    mkdir <span class="o">-</span>p <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span>
-    cat &gt;&gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler.toml&#34;</span> <span class="s">&lt;&lt; EOL
-</span><span class="s">[metadata]
-</span><span class="s">checksum = &#34;$local_bundler_checksum&#34;
-</span><span class="s">EOL</span>
-    bundle config <span class="nb">set</span> <span class="o">--</span><span class="nb">local</span> path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> <span class="o">&amp;&amp;</span> bundle install <span class="o">&amp;&amp;</span> bundle binstubs <span class="o">--</span>all <span class="o">--</span>path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span>
-
-<span class="k">fi</span>
-
-<span class="c1"># 8. SET DEFAULT START COMMAND</span>
-cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt; EOL
-</span><span class="s"># our web process
-</span><span class="s">[[processes]]
-</span><span class="s">type = &#34;web&#34;
-</span><span class="s">command = &#34;bundle exec ruby app.rb&#34;
-</span><span class="s">default = true
-</span><span class="s">
-</span><span class="s"># our worker process
-</span><span class="s">[[processes]]
-</span><span class="s">type = &#34;worker&#34;
-</span><span class="s">command = &#34;bundle exec ruby worker.rb&#34;
-</span><span class="s">EOL</span>
-</code></pre></div><p>Finally, create a file <code>ruby-sample-app/.ruby-version</code> with the following contents:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="nb">set</span> -eo pipefail
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;---&gt; Ruby Buildpack&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ======= MODIFIED =======</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 1. GET ARGS</span>
+</span></span><span class="line"><span class="cl"><span class="nv">layersdir</span><span class="o">=</span><span class="nv">$1</span>
+</span></span><span class="line"><span class="cl"><span class="nv">plan</span><span class="o">=</span><span class="nv">$3</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2. CREATE THE LAYER DIRECTORY</span>
+</span></span><span class="line"><span class="cl"><span class="nv">rubylayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">&#34;</span>/ruby
+</span></span><span class="line"><span class="cl">mkdir -p <span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ======= MODIFIED =======</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 3. DOWNLOAD RUBY</span>
+</span></span><span class="line"><span class="cl"><span class="nv">ruby_version</span><span class="o">=</span><span class="k">$(</span>cat <span class="s2">&#34;</span><span class="nv">$plan</span><span class="s2">&#34;</span> <span class="p">|</span> yj -t <span class="p">|</span> jq -r <span class="s1">&#39;.entries[] | select(.name == &#34;ruby&#34;) | .metadata.version&#39;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;---&gt; Downloading and extracting Ruby </span><span class="nv">$ruby_version</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">ruby_url</span><span class="o">=</span>https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-<span class="nv">$ruby_version</span>.tgz
+</span></span><span class="line"><span class="cl">wget -q -O - <span class="s2">&#34;</span><span class="nv">$ruby_url</span><span class="s2">&#34;</span> <span class="p">|</span> tar -xzf - -C <span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 4. MAKE RUBY AVAILABLE DURING LAUNCH</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> -e <span class="s1">&#39;[types]\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/ruby.toml&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 5. MAKE RUBY AVAILABLE TO THIS SCRIPT</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>/bin:<span class="nv">$PATH</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="p">:+</span><span class="si">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="si">}</span><span class="p">:</span><span class="si">}</span><span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">/lib&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 6. INSTALL BUNDLER</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing bundler&#34;</span>
+</span></span><span class="line"><span class="cl">gem install bundler --no-ri --no-rdoc
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 7. INSTALL GEMS</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Compares previous Gemfile.lock checksum to the current Gemfile.lock</span>
+</span></span><span class="line"><span class="cl"><span class="nv">bundlerlayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">local_bundler_checksum</span><span class="o">=</span><span class="k">$((</span>sha256sum Gemfile.lock <span class="o">||</span> <span class="nb">echo</span> <span class="s1">&#39;DOES_NOT_EXIST&#39;</span><span class="o">)</span> <span class="o">|</span> cut <span class="o">-</span>d <span class="s1">&#39; &#39;</span> <span class="o">-</span>f <span class="m">1</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">remote_bundler_checksum</span><span class="o">=</span><span class="k">$(</span>cat <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler.toml&#34;</span> <span class="p">|</span> yj -t <span class="p">|</span> jq -r .metadata.checksum 2&gt;/dev/null <span class="o">||</span> <span class="nb">echo</span> <span class="s1">&#39;DOES_NOT_EXIST&#39;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Always set the types table so that we re-use the appropriate layers</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="o">-</span>e <span class="s1">&#39;[types]\ncache = true\nlaunch = true&#39;</span> &gt;&gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler.toml&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[[</span> <span class="o">-</span>f Gemfile.lock <span class="o">&amp;&amp;</span> <span class="nv">$local_bundler_checksum</span> <span class="o">==</span> <span class="nv">$remote_bundler_checksum</span> <span class="o">]]</span> <span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Determine if no gem dependencies have changed, so it can reuse existing gems without running bundle install</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;---&gt; Reusing gems&#34;</span>
+</span></span><span class="line"><span class="cl">    bundle config <span class="o">--</span><span class="nb">local</span> path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> &gt;/dev/null
+</span></span><span class="line"><span class="cl">    bundle config <span class="o">--</span><span class="nb">local</span> bin <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span> &gt;/dev/null
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Determine if there has been a gem dependency change and install new gems to the bundler layer; re-using existing and un-changed gems</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing gems&#34;</span>
+</span></span><span class="line"><span class="cl">    mkdir <span class="o">-</span>p <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    cat &gt;&gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler.toml&#34;</span> <span class="s">&lt;&lt; EOL
+</span></span></span><span class="line"><span class="cl"><span class="s">[metadata]
+</span></span></span><span class="line"><span class="cl"><span class="s">checksum = &#34;$local_bundler_checksum&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">EOL</span>
+</span></span><span class="line"><span class="cl">    bundle config <span class="nb">set</span> <span class="o">--</span><span class="nb">local</span> path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> <span class="o">&amp;&amp;</span> bundle install <span class="o">&amp;&amp;</span> bundle binstubs <span class="o">--</span>all <span class="o">--</span>path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 8. SET DEFAULT START COMMAND</span>
+</span></span><span class="line"><span class="cl">cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt; EOL
+</span></span></span><span class="line"><span class="cl"><span class="s"># our web process
+</span></span></span><span class="line"><span class="cl"><span class="s">[[processes]]
+</span></span></span><span class="line"><span class="cl"><span class="s">type = &#34;web&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">command = &#34;bundle exec ruby app.rb&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">default = true
+</span></span></span><span class="line"><span class="cl"><span class="s">
+</span></span></span><span class="line"><span class="cl"><span class="s"># our worker process
+</span></span></span><span class="line"><span class="cl"><span class="s">[[processes]]
+</span></span></span><span class="line"><span class="cl"><span class="s">type = &#34;worker&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">command = &#34;bundle exec ruby worker.rb&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">EOL</span>
+</span></span></code></pre></div><p>Finally, create a file <code>ruby-sample-app/.ruby-version</code> with the following contents:</p>
 <!-- test:file=ruby-sample-app/.ruby-version -->
 <pre tabindex="0"><code>2.5.0
 </code></pre><p>Now when you run:</p>
 <!-- test:exec -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
-</code></pre></div><!--+- "{{execute}}"+-->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
+</span></span></code></pre></div><!--+- "{{execute}}"+-->
 <p>You will notice that version of Ruby specified in the app&rsquo;s <code>.ruby-version</code> file is downloaded.</p>
 <!-- test:assert=contains -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">===&gt; BUILDING
----&gt; Ruby Buildpack
----&gt; Downloading and extracting Ruby 2.5.0
-</code></pre></div><p>Next, let&rsquo;s see how buildpacks can store information about the dependencies provided in the output app image for introspection.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">===&gt; BUILDING
+</span></span><span class="line"><span class="cl">---&gt; Ruby Buildpack
+</span></span><span class="line"><span class="cl">---&gt; Downloading and extracting Ruby 2.5.0
+</span></span></code></pre></div><p>Next, let&rsquo;s see how buildpacks can store information about the dependencies provided in the output app image for introspection.</p>
 <!--+if false+-->
 <hr>
 <p><a href="/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials" class="button bg-pink">Next Step</a></p>

@@ -613,25 +613,25 @@ Replace exit 1 in the detect script with the following…">
         <!-- test:suite=create-buildpack;weight=3 -->
 <p>Next, you will want to actually detect that the app you are building is a Ruby app. In order to do this, you will need to check for a <code>Gemfile</code>.</p>
 <p>Replace <code>exit 1</code> in the <code>detect</code> script with the following check:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="k">if</span> <span class="o">[[</span> ! -f Gemfile <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
-   <span class="nb">exit</span> <span class="m">100</span>
-<span class="k">fi</span>
-</code></pre></div><p>Your <code>ruby-buildpack/bin/detect</code><!--+"{{open}}"+--> script should look like this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[[</span> ! -f Gemfile <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">   <span class="nb">exit</span> <span class="m">100</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span></code></pre></div><p>Your <code>ruby-buildpack/bin/detect</code><!--+"{{open}}"+--> script should look like this:</p>
 <!-- test:file=ruby-buildpack/bin/detect -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
-</span><span class="cp"></span><span class="nb">set</span> -eo pipefail
-
-<span class="k">if</span> <span class="o">[[</span> ! -f Gemfile <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
-   <span class="nb">exit</span> <span class="m">100</span>
-<span class="k">fi</span>
-</code></pre></div><p>Next, rebuild your app with the updated buildpack:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="nb">set</span> -eo pipefail
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[[</span> ! -f Gemfile <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">   <span class="nb">exit</span> <span class="m">100</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span></code></pre></div><p>Next, rebuild your app with the updated buildpack:</p>
 <!-- test:exec;exit-code=-1 -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
-</code></pre></div><!--+- "{{execute}}"+-->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
+</span></span></code></pre></div><!--+- "{{execute}}"+-->
 <p>You should see the following output:</p>
 <!-- test:assert=contains -->
 <pre tabindex="0"><code>===&gt; ANALYZING
-Previous image with name &quot;test-ruby-app&quot; not found
+Previous image with name &#34;test-ruby-app&#34; not found
 ===&gt; DETECTING
 examples/ruby 0.0.1
 ===&gt; RESTORING

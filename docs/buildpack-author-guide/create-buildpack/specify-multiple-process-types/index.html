@@ -612,92 +612,92 @@
 <p>One of the benefits of buildpacks is that they are multi-process - an image can have multiple entrypoints for each operational mode. Let&rsquo;s see how this works. We will extend our app to have a worker process.</p>
 <p>Let&rsquo;s create a worker file, <code>ruby-sample-app/worker.rb</code><!--+"{{open}}"+-->, with the following contents:</p>
 <!-- test:file=ruby-sample-app/worker.rb -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">0</span><span class="o">..</span><span class="mi">5</span>
-    <span class="nb">puts</span> <span class="s2">&#34;Running a worker task...&#34;</span>
-<span class="k">end</span>
-</code></pre></div><p>After building our app, we could run the resulting image with the <code>web</code> process (currently the default) or our new worker process.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">0</span><span class="o">..</span><span class="mi">5</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">puts</span> <span class="s2">&#34;Running a worker task...&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><p>After building our app, we could run the resulting image with the <code>web</code> process (currently the default) or our new worker process.</p>
 <p>To enable running the worker process, we&rsquo;ll need to have our buildpack define a &ldquo;process type&rdquo; for the worker.  Modify the section where processes are defined to:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># ...</span>
-
-cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt; EOL
-</span><span class="s"># our web process
-</span><span class="s">[[processes]]
-</span><span class="s">type = &#34;web&#34;
-</span><span class="s">command = &#34;bundle exec ruby app.rb&#34;
-</span><span class="s">default = true
-</span><span class="s">
-</span><span class="s"># our worker process
-</span><span class="s">[[processes]]
-</span><span class="s">type = &#34;worker&#34;
-</span><span class="s">command = &#34;bundle exec ruby worker.rb&#34;
-</span><span class="s">EOL</span>
-
-<span class="c1"># ...</span>
-</code></pre></div><p>Your full <code>ruby-buildpack/bin/build</code><!--+"{{open}}"+--> script should now look like the following:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># ...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt; EOL
+</span></span></span><span class="line"><span class="cl"><span class="s"># our web process
+</span></span></span><span class="line"><span class="cl"><span class="s">[[processes]]
+</span></span></span><span class="line"><span class="cl"><span class="s">type = &#34;web&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">command = &#34;bundle exec ruby app.rb&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">default = true
+</span></span></span><span class="line"><span class="cl"><span class="s">
+</span></span></span><span class="line"><span class="cl"><span class="s"># our worker process
+</span></span></span><span class="line"><span class="cl"><span class="s">[[processes]]
+</span></span></span><span class="line"><span class="cl"><span class="s">type = &#34;worker&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">command = &#34;bundle exec ruby worker.rb&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">EOL</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ...</span>
+</span></span></code></pre></div><p>Your full <code>ruby-buildpack/bin/build</code><!--+"{{open}}"+--> script should now look like the following:</p>
 <!-- test:file=ruby-buildpack/bin/build -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/usr/bin/env bash
-</span><span class="cp"></span><span class="nb">set</span> -eo pipefail
-
-<span class="nb">echo</span> <span class="s2">&#34;---&gt; Ruby Buildpack&#34;</span>
-
-<span class="c1"># 1. GET ARGS</span>
-<span class="nv">layersdir</span><span class="o">=</span><span class="nv">$1</span>
-
-<span class="c1"># 2. CREATE THE LAYER DIRECTORY</span>
-<span class="nv">rubylayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">&#34;</span>/ruby
-mkdir -p <span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>
-
-<span class="c1"># 3. DOWNLOAD RUBY</span>
-<span class="nb">echo</span> <span class="s2">&#34;---&gt; Downloading and extracting Ruby&#34;</span>
-<span class="nv">ruby_url</span><span class="o">=</span>https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-2.5.1.tgz
-wget -q -O - <span class="s2">&#34;</span><span class="nv">$ruby_url</span><span class="s2">&#34;</span> <span class="p">|</span> tar -xzf - -C <span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>
-
-<span class="c1"># 4. MAKE RUBY AVAILABLE DURING LAUNCH</span>
-<span class="nb">echo</span> -e <span class="s1">&#39;[types]\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/ruby.toml&#34;</span>
-
-<span class="c1"># 5. MAKE RUBY AVAILABLE TO THIS SCRIPT</span>
-<span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>/bin:<span class="nv">$PATH</span>
-<span class="nb">export</span> <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="p">:+</span><span class="si">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="si">}</span><span class="p">:</span><span class="si">}</span><span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">/lib&#34;</span>
-
-<span class="c1"># 6. INSTALL BUNDLER</span>
-<span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing bundler&#34;</span>
-gem install bundler --no-ri --no-rdoc
-
-<span class="c1"># 7. INSTALL GEMS</span>
-<span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing gems&#34;</span>
-bundle install
-
-<span class="c1"># ========== MODIFIED ===========</span>
-<span class="c1"># 8. SET DEFAULT START COMMAND</span>
-cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt; EOL
-</span><span class="s"># our web process
-</span><span class="s">[[processes]]
-</span><span class="s">type = &#34;web&#34;
-</span><span class="s">command = &#34;bundle exec ruby app.rb&#34;
-</span><span class="s">default = true
-</span><span class="s">
-</span><span class="s"># our worker process
-</span><span class="s">[[processes]]
-</span><span class="s">type = &#34;worker&#34;
-</span><span class="s">command = &#34;bundle exec ruby worker.rb&#34;
-</span><span class="s">EOL</span>
-</code></pre></div><p>Now if you rebuild your app using the updated buildpack:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="nb">set</span> -eo pipefail
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;---&gt; Ruby Buildpack&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 1. GET ARGS</span>
+</span></span><span class="line"><span class="cl"><span class="nv">layersdir</span><span class="o">=</span><span class="nv">$1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2. CREATE THE LAYER DIRECTORY</span>
+</span></span><span class="line"><span class="cl"><span class="nv">rubylayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">&#34;</span>/ruby
+</span></span><span class="line"><span class="cl">mkdir -p <span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 3. DOWNLOAD RUBY</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;---&gt; Downloading and extracting Ruby&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">ruby_url</span><span class="o">=</span>https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-2.5.1.tgz
+</span></span><span class="line"><span class="cl">wget -q -O - <span class="s2">&#34;</span><span class="nv">$ruby_url</span><span class="s2">&#34;</span> <span class="p">|</span> tar -xzf - -C <span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 4. MAKE RUBY AVAILABLE DURING LAUNCH</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> -e <span class="s1">&#39;[types]\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/ruby.toml&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 5. MAKE RUBY AVAILABLE TO THIS SCRIPT</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>/bin:<span class="nv">$PATH</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="p">:+</span><span class="si">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="si">}</span><span class="p">:</span><span class="si">}</span><span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">/lib&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 6. INSTALL BUNDLER</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing bundler&#34;</span>
+</span></span><span class="line"><span class="cl">gem install bundler --no-ri --no-rdoc
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 7. INSTALL GEMS</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing gems&#34;</span>
+</span></span><span class="line"><span class="cl">bundle install
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ========== MODIFIED ===========</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 8. SET DEFAULT START COMMAND</span>
+</span></span><span class="line"><span class="cl">cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt; EOL
+</span></span></span><span class="line"><span class="cl"><span class="s"># our web process
+</span></span></span><span class="line"><span class="cl"><span class="s">[[processes]]
+</span></span></span><span class="line"><span class="cl"><span class="s">type = &#34;web&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">command = &#34;bundle exec ruby app.rb&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">default = true
+</span></span></span><span class="line"><span class="cl"><span class="s">
+</span></span></span><span class="line"><span class="cl"><span class="s"># our worker process
+</span></span></span><span class="line"><span class="cl"><span class="s">[[processes]]
+</span></span></span><span class="line"><span class="cl"><span class="s">type = &#34;worker&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">command = &#34;bundle exec ruby worker.rb&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">EOL</span>
+</span></span></code></pre></div><p>Now if you rebuild your app using the updated buildpack:</p>
 <!-- test:exec -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
-</code></pre></div><!--+- "{{execute}}"+-->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
+</span></span></code></pre></div><!--+- "{{execute}}"+-->
 <p>You should then be able to run your new Ruby worker process:</p>
 <!-- test:exec -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker run --rm --entrypoint worker test-ruby-app
-</code></pre></div><!--+- "{{execute}}"+-->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run --rm --entrypoint worker test-ruby-app
+</span></span></code></pre></div><!--+- "{{execute}}"+-->
 <p>and see the worker log output:</p>
 <!-- test:assert=contains -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text">Running a worker task...
-Running a worker task...
-Running a worker task...
-Running a worker task...
-Running a worker task...
-Running a worker task...
-</code></pre></div><p>Next, we&rsquo;ll look at how to improve our buildpack by leveraging cache.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Running a worker task...
+</span></span><span class="line"><span class="cl">Running a worker task...
+</span></span><span class="line"><span class="cl">Running a worker task...
+</span></span><span class="line"><span class="cl">Running a worker task...
+</span></span><span class="line"><span class="cl">Running a worker task...
+</span></span><span class="line"><span class="cl">Running a worker task...
+</span></span></code></pre></div><p>Next, we&rsquo;ll look at how to improve our buildpack by leveraging cache.</p>
 <!--+if false+-->
 <hr>
 <p><a href="/docs/buildpack-author-guide/create-buildpack/caching" class="button bg-pink">Next Step</a></p>

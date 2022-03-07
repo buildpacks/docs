@@ -652,17 +652,17 @@ Additional relevant Git references</p>
 </li>
 </ul>
 <h6 id="example">Example</h6>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">source</span><span class="p">]</span>
-<span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;git&#34;</span>
-
-  <span class="p">[</span><span class="nx">source</span><span class="p">.</span><span class="nx">version</span><span class="p">]</span>
-  <span class="nx">commit</span> <span class="p">=</span> <span class="s2">&#34;63a73f1b0f2a4f6978c19184b0ea33ad3f092913&#34;</span>
-  <span class="nx">describe</span> <span class="p">=</span> <span class="s2">&#34;v0.18.1-2-g3f092913&#34;</span>
-
-  <span class="p">[</span><span class="nx">source</span><span class="p">.</span><span class="nx">metadata</span><span class="p">]</span>
-  <span class="nx">repository</span> <span class="p">=</span> <span class="s2">&#34;https://github.com/myorg/myrepo.git&#34;</span>
-  <span class="nx">refs</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;master&#34;</span><span class="p">,</span> <span class="s2">&#34;v3.0&#34;</span><span class="p">]</span>
-</code></pre></div><h4 id="image">Image</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">source</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;git&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">source</span><span class="p">.</span><span class="nx">version</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">commit</span> <span class="p">=</span> <span class="s2">&#34;63a73f1b0f2a4f6978c19184b0ea33ad3f092913&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">describe</span> <span class="p">=</span> <span class="s2">&#34;v0.18.1-2-g3f092913&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">source</span><span class="p">.</span><span class="nx">metadata</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">repository</span> <span class="p">=</span> <span class="s2">&#34;https://github.com/myorg/myrepo.git&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">refs</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;master&#34;</span><span class="p">,</span> <span class="s2">&#34;v3.0&#34;</span><span class="p">]</span>
+</span></span></code></pre></div><h4 id="image">Image</h4>
 <ul>
 <li>
 <h4 id="type-_string-required_-1"><code>type</code> <em>(string, required)</em></h4>
@@ -699,17 +699,17 @@ Additional relevant image names/tags</p>
 </li>
 </ul>
 <h6 id="example-1">Example</h6>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">source</span><span class="p">]</span>
-<span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;image&#34;</span>
-
-  <span class="p">[</span><span class="nx">source</span><span class="p">.</span><span class="nx">version</span><span class="p">]</span>
-  <span class="nx">digest</span> <span class="p">=</span> <span class="s2">&#34;146c4bce42545e6a4575283b32a7f01924ef86ce848273079693a42b52b27321&#34;</span>
-
-  <span class="p">[</span><span class="nx">source</span><span class="p">.</span><span class="nx">metadata</span><span class="p">]</span>
-   <span class="nx">path</span> <span class="p">=</span> <span class="s2">&#34;/source&#34;</span>
-   <span class="nx">repository</span> <span class="p">=</span>  <span class="s2">&#34;index.docker.io/example/image:latest&#34;</span>
-   <span class="nx">refs</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;index.docker.io/example/image:mytag&#34;</span><span class="p">,</span> <span class="s2">&#34;index.docker.io/example/image@sha256:146c4bce42545e6a4575283b32a7f01924ef86ce848273079693a42b52b27321&#34;</span><span class="p">]</span>
-</code></pre></div><h3 id="additive">Additive</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">source</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;image&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">source</span><span class="p">.</span><span class="nx">version</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">digest</span> <span class="p">=</span> <span class="s2">&#34;146c4bce42545e6a4575283b32a7f01924ef86ce848273079693a42b52b27321&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">source</span><span class="p">.</span><span class="nx">metadata</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">   <span class="nx">path</span> <span class="p">=</span> <span class="s2">&#34;/source&#34;</span>
+</span></span><span class="line"><span class="cl">   <span class="nx">repository</span> <span class="p">=</span>  <span class="s2">&#34;index.docker.io/example/image:latest&#34;</span>
+</span></span><span class="line"><span class="cl">   <span class="nx">refs</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;index.docker.io/example/image:mytag&#34;</span><span class="p">,</span> <span class="s2">&#34;index.docker.io/example/image@sha256:146c4bce42545e6a4575283b32a7f01924ef86ce848273079693a42b52b27321&#34;</span><span class="p">]</span>
+</span></span></code></pre></div><h3 id="additive">Additive</h3>
 <p>The following source information is considered additive and should not overlap with source <a href="#types">types</a>.</p>
 <h4 id="projecttoml"><code>project.toml</code></h4>
 <ul>
@@ -738,28 +738,28 @@ URL as declared in <code>_.source-url</code></li>
 </li>
 </ul>
 <h6 id="example-standalone">Example (standalone)</h6>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">source</span><span class="p">]</span>
-<span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;project&#34;</span>
-
-  <span class="p">[</span><span class="nx">source</span><span class="p">.</span><span class="nx">version</span><span class="p">]</span>
-  <span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;1.2.3&#34;</span>
-
-  <span class="p">[</span><span class="nx">source</span><span class="p">.</span><span class="nx">metadata</span><span class="p">]</span>
-  <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;https://github.com/example/repo&#34;</span>
-</code></pre></div><h6 id="example-w-image">Example (w/ Image)</h6>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[</span><span class="nx">source</span><span class="p">]</span>
-<span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;image&#34;</span>
-
-  <span class="p">[</span><span class="nx">source</span><span class="p">.</span><span class="nx">version</span><span class="p">]</span>
-  <span class="nx">digest</span> <span class="p">=</span> <span class="s2">&#34;146c4bce42545e6a4575283b32a7f01924ef86ce848273079693a42b52b27321&#34;</span>
-  <span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;1.2.3&#34;</span>
-
-  <span class="p">[</span><span class="nx">source</span><span class="p">.</span><span class="nx">metadata</span><span class="p">]</span>
-  <span class="nx">path</span> <span class="p">=</span> <span class="s2">&#34;/source&#34;</span>
-  <span class="nx">repository</span> <span class="p">=</span>  <span class="s2">&#34;index.docker.io/example/image:latest&#34;</span>
-  <span class="nx">refs</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;index.docker.io/example/image:mytag&#34;</span><span class="p">,</span> <span class="s2">&#34;index.docker.io/example/image@sha256:146c4bce42545e6a4575283b32a7f01924ef86ce848273079693a42b52b27321&#34;</span><span class="p">]</span>
-  <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;https://github.com/example/repo&#34;</span>
-</code></pre></div>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">source</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;project&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">source</span><span class="p">.</span><span class="nx">version</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;1.2.3&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">source</span><span class="p">.</span><span class="nx">metadata</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;https://github.com/example/repo&#34;</span>
+</span></span></code></pre></div><h6 id="example-w-image">Example (w/ Image)</h6>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">source</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;image&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">source</span><span class="p">.</span><span class="nx">version</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">digest</span> <span class="p">=</span> <span class="s2">&#34;146c4bce42545e6a4575283b32a7f01924ef86ce848273079693a42b52b27321&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;1.2.3&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">source</span><span class="p">.</span><span class="nx">metadata</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">path</span> <span class="p">=</span> <span class="s2">&#34;/source&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">repository</span> <span class="p">=</span>  <span class="s2">&#34;index.docker.io/example/image:latest&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">refs</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;index.docker.io/example/image:mytag&#34;</span><span class="p">,</span> <span class="s2">&#34;index.docker.io/example/image@sha256:146c4bce42545e6a4575283b32a7f01924ef86ce848273079693a42b52b27321&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;https://github.com/example/repo&#34;</span>
+</span></span></code></pre></div>
 
         
 

@@ -626,29 +626,29 @@ docker rmi test-ruby-app
 -->
 <p>First, we&rsquo;ll create a sample Ruby app that you can use when developing your buildpack:</p>
 <!-- test:exec -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">mkdir ruby-sample-app
-</code></pre></div><!--+- "{{execute}}"+-->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">mkdir ruby-sample-app
+</span></span></code></pre></div><!--+- "{{execute}}"+-->
 <p>Create a file in the current directory called <code>ruby-sample-app/app.rb</code><!--+"{{open}}"+--> with the following contents:</p>
 <!-- test:file=ruby-sample-app/app.rb -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;sinatra&#39;</span>
-
-<span class="n">set</span> <span class="ss">:bind</span><span class="p">,</span> <span class="s1">&#39;0.0.0.0&#39;</span>
-<span class="n">set</span> <span class="ss">:port</span><span class="p">,</span> <span class="mi">8080</span>
-
-<span class="n">get</span> <span class="s1">&#39;/&#39;</span> <span class="k">do</span>
-  <span class="s1">&#39;Hello World!&#39;</span>
-<span class="k">end</span>
-</code></pre></div><p>Then, create a file called <code>ruby-sample-app/Gemfile</code><!--+"{{open}}"+--> with the following contents:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="nb">require</span> <span class="s1">&#39;sinatra&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">set</span> <span class="ss">:bind</span><span class="p">,</span> <span class="s1">&#39;0.0.0.0&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">set</span> <span class="ss">:port</span><span class="p">,</span> <span class="mi">8080</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">get</span> <span class="s1">&#39;/&#39;</span> <span class="k">do</span>
+</span></span><span class="line"><span class="cl">  <span class="s1">&#39;Hello World!&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="k">end</span>
+</span></span></code></pre></div><p>Then, create a file called <code>ruby-sample-app/Gemfile</code><!--+"{{open}}"+--> with the following contents:</p>
 <!-- test:file=ruby-sample-app/Gemfile -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="n">source</span> <span class="s2">&#34;https://rubygems.org&#34;</span>
-
-<span class="n">git_source</span><span class="p">(</span><span class="ss">:github</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">repo_name</span><span class="o">|</span> <span class="s2">&#34;https://github.com/</span><span class="si">#{</span><span class="n">repo_name</span><span class="si">}</span><span class="s2">&#34;</span> <span class="p">}</span>
-
-<span class="n">gem</span> <span class="s2">&#34;sinatra&#34;</span>
-</code></pre></div><p>Finally, make sure your local Docker daemon is running by executing:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">source</span> <span class="s2">&#34;https://rubygems.org&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">git_source</span><span class="p">(</span><span class="ss">:github</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">repo_name</span><span class="o">|</span> <span class="s2">&#34;https://github.com/</span><span class="si">#{</span><span class="n">repo_name</span><span class="si">}</span><span class="s2">&#34;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">gem</span> <span class="s2">&#34;sinatra&#34;</span>
+</span></span></code></pre></div><p>Finally, make sure your local Docker daemon is running by executing:</p>
 <!-- test:exec -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker version
-</code></pre></div><!--+- "{{execute}}"+-->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker version
+</span></span></code></pre></div><!--+- "{{execute}}"+-->
 <p>If you see output similar to the following, you&rsquo;re good to go! Otherwise, start Docker and check again.</p>
 <pre tabindex="0"><code>Client: Docker Engine - Community
  Version:           20.10.9

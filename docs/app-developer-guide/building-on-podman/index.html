@@ -673,11 +673,11 @@
 </code></pre>
                 <h4 id="service">Service</h4>
 <p>Expose the service using <code>systemd</code>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">systemctl <span class="nb">enable</span> --user podman.socket
-systemctl start --user podman.socket
-</code></pre></div><h4 id="connection">Connection</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">export</span> <span class="nv">DOCKER_HOST</span><span class="o">=</span><span class="s2">&#34;unix://</span><span class="k">$(</span>podman info -f <span class="s2">&#34;{{.Host.RemoteSocket.Path}}&#34;</span><span class="k">)</span><span class="s2">&#34;</span>
-</code></pre></div><p><strong>Tip</strong>: put the command into your shell init file (e.g <code>~/.bashrc</code>).</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">systemctl <span class="nb">enable</span> --user podman.socket
+</span></span><span class="line"><span class="cl">systemctl start --user podman.socket
+</span></span></code></pre></div><h4 id="connection">Connection</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">DOCKER_HOST</span><span class="o">=</span><span class="s2">&#34;unix://</span><span class="k">$(</span>podman info -f <span class="s2">&#34;{{.Host.RemoteSocket.Path}}&#34;</span><span class="k">)</span><span class="s2">&#34;</span>
+</span></span></code></pre></div><p><strong>Tip</strong>: put the command into your shell init file (e.g <code>~/.bashrc</code>).</p>
 
               </div>
             
@@ -690,19 +690,19 @@ systemctl start --user podman.socket
 <p><strong>WARNING:</strong> These commands will UPGRADE existing packages.</p>
 </blockquote>
 <pre tabindex="0"><code class="language-shell=bash" data-lang="shell=bash">. /etc/os-release
-echo &quot;deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_${VERSION_ID}/ /&quot; | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list
-curl -L &quot;https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_${VERSION_ID}/Release.key&quot; | sudo apt-key add -
+echo &#34;deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_${VERSION_ID}/ /&#34; | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list
+curl -L &#34;https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_${VERSION_ID}/Release.key&#34; | sudo apt-key add -
 sudo apt-get update
 sudo apt-get -y upgrade
 sudo apt-get -y install podman
 </code></pre>
                 <h4 id="service">Service</h4>
 <p>Expose the service using <code>systemd</code>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">systemctl <span class="nb">enable</span> --user podman.socket
-systemctl start --user podman.socket
-</code></pre></div><h4 id="connection">Connection</h4>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">export</span> <span class="nv">DOCKER_HOST</span><span class="o">=</span><span class="s2">&#34;unix://</span><span class="k">$(</span>podman info -f <span class="s2">&#34;{{.Host.RemoteSocket.Path}}&#34;</span><span class="k">)</span><span class="s2">&#34;</span>
-</code></pre></div><p><strong>Tip</strong>: put the command into your shell init file (e.g <code>~/.bashrc</code>).</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">systemctl <span class="nb">enable</span> --user podman.socket
+</span></span><span class="line"><span class="cl">systemctl start --user podman.socket
+</span></span></code></pre></div><h4 id="connection">Connection</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">DOCKER_HOST</span><span class="o">=</span><span class="s2">&#34;unix://</span><span class="k">$(</span>podman info -f <span class="s2">&#34;{{.Host.RemoteSocket.Path}}&#34;</span><span class="k">)</span><span class="s2">&#34;</span>
+</span></span></code></pre></div><p><strong>Tip</strong>: put the command into your shell init file (e.g <code>~/.bashrc</code>).</p>
 
               </div>
             
@@ -749,7 +749,7 @@ systemctl start --user podman.socket
 </code></pre><h4 id="connection">Connection</h4>
 <ol>
 <li>Add the SSH key for the podman VM to your keychain:
-<pre tabindex="0"><code class="language-shell=zsh" data-lang="shell=zsh">ssh-add -k &quot;$HOME/.ssh/podman-machine-default&quot;
+<pre tabindex="0"><code class="language-shell=zsh" data-lang="shell=zsh">ssh-add -k &#34;$HOME/.ssh/podman-machine-default&#34;
 </code></pre></li>
 <li>Change default connection to use <code>root</code>:
 <pre tabindex="0"><code class="language-shell=zsh" data-lang="shell=zsh">podman system connection default podman-machine-default-root
@@ -759,7 +759,7 @@ For more information, see issue <a href="https://github.com/buildpacks/pack/issu
 </blockquote>
 </li>
 <li>Configure <code>DOCKER_HOST</code> with the connection information:
-<pre tabindex="0"><code class="language-shell=zsh" data-lang="shell=zsh">export DOCKER_HOST=&quot;$(podman system connection ls --format=&quot;{{.URI}}&quot; | grep root)&quot;
+<pre tabindex="0"><code class="language-shell=zsh" data-lang="shell=zsh">export DOCKER_HOST=&#34;$(podman system connection ls --format=&#34;{{.URI}}&#34; | grep root)&#34;
 </code></pre><blockquote>
 <p><strong>Tip</strong>: put the commands into your shell init file (e.g <code>~/.zshrc</code>).</p>
 </blockquote>
@@ -810,7 +810,7 @@ In the future, this may be <a href="https://github.com/buildpacks/pack/issues/13
 </li>
 <li>
 <p>With more time consuming builds and <code>--trust-builder=true</code> following error may occur:</p>
-<pre tabindex="0"><code>ERROR: failed to image: error during connect: Get &quot;http://%2Fvar%2Frun%2Fdocker.sock/v1.40/info&quot;: EOF
+<pre tabindex="0"><code>ERROR: failed to image: error during connect: Get &#34;http://%2Fvar%2Frun%2Fdocker.sock/v1.40/info&#34;: EOF
 </code></pre><p>There is a workaround for this, increase timeout of podman service:</p>
 <pre tabindex="0"><code class="language-shell=bash" data-lang="shell=bash">cat &lt;&lt;EOF &gt; /etc/systemd/user/podman.service
 [Unit]
@@ -823,7 +823,7 @@ StartLimitIntervalSec=0
 [Service]
 Type=exec
 KillMode=process
-Environment=LOGGING=&quot;--log-level=info&quot;
+Environment=LOGGING=&#34;--log-level=info&#34;
 ExecStart=/usr/bin/podman $LOGGING system service --time=1800
 
 [Install]

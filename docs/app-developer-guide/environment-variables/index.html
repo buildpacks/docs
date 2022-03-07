@@ -629,8 +629,8 @@
 <li>Build the app</li>
 </ol>
 <pre tabindex="0"><code>pack build sample-app \
-    --env &quot;HELLO=WORLD&quot; \
-    --env &quot;FOO&quot; \
+    --env &#34;HELLO=WORLD&#34; \
+    --env &#34;FOO&#34; \
     --builder cnbs/sample-builder:bionic \
     --buildpack  samples/buildpacks/hello-world/ \
     --buildpack samples/apps/bash-script/bash-script-buildpack/ \
@@ -678,7 +678,7 @@
 <ol start="2">
 <li>Create an env file</li>
 </ol>
-<pre tabindex="0"><code>echo -en &quot;HELLO=WORLD\nFOO&quot; &gt; ./envfile
+<pre tabindex="0"><code>echo -en &#34;HELLO=WORLD\nFOO&#34; &gt; ./envfile
 </code></pre><!--+- "{{execute}}"+-->
 <ol start="3">
 <li>Build the app</li>
@@ -731,8 +731,8 @@ You can define environment variables in an <code>env</code> table in the file, a
 <pre tabindex="0"><code>cat &gt;&gt; samples/apps/bash-script/project.toml &lt;&lt;EOL
 
 [[build.env]]
-name=&quot;HELLO&quot;
-value=&quot;WORLD&quot;
+name=&#34;HELLO&#34;
+value=&#34;WORLD&#34;
 EOL
 </code></pre><!--+- "{{execute}}"+-->
 <ol start="2">

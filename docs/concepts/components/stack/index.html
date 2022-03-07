@@ -623,18 +623,18 @@ stacks that can be used when running <code>pack builder create</code>, along wit
 <h2 id="using-stacks">Using stacks</h2>
 <p>Stacks are used by <a href="/docs/concepts/components/builder/">builders</a> and are configured through a builder&rsquo;s
 <a href="/docs/reference/config/builder-config/">configuration file</a>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[[</span><span class="nx">buildpacks</span><span class="p">]]</span>
-  <span class="c"># ...</span>
-
-<span class="p">[[</span><span class="nx">order</span><span class="p">]]</span>
-  <span class="c"># ...</span>
-
-<span class="p">[</span><span class="nx">stack</span><span class="p">]</span>
-  <span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;com.example.stack&#34;</span>
-  <span class="nx">build-image</span> <span class="p">=</span> <span class="s2">&#34;example/build&#34;</span>
-  <span class="nx">run-image</span> <span class="p">=</span> <span class="s2">&#34;example/run&#34;</span>
-  <span class="nx">run-image-mirrors</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;gcr.io/example/run&#34;</span><span class="p">,</span> <span class="s2">&#34;registry.example.com/example/run&#34;</span><span class="p">]</span>
-</code></pre></div><p>By providing the required <code>[stack]</code> section, a builder author can configure a stack&rsquo;s ID, build image, and run image
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">buildpacks</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">  <span class="c"># ...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">order</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">  <span class="c"># ...</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">stack</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;com.example.stack&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">build-image</span> <span class="p">=</span> <span class="s2">&#34;example/build&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">run-image</span> <span class="p">=</span> <span class="s2">&#34;example/run&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">run-image-mirrors</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;gcr.io/example/run&#34;</span><span class="p">,</span> <span class="s2">&#34;registry.example.com/example/run&#34;</span><span class="p">]</span>
+</span></span></code></pre></div><p>By providing the required <code>[stack]</code> section, a builder author can configure a stack&rsquo;s ID, build image, and run image
 (including any mirrors).</p>
 <h3 id="run-image-mirrors">Run image mirrors</h3>
 <p>Run image mirrors provide alternate locations for run images, for use during <code>build</code> (or <code>rebase</code>).
@@ -645,11 +645,11 @@ DockerHub is assumed). This is useful when publishing the resulting app image (v
 reducing the amount of data transfer required to push the app image.</p>
 <p>In the following example, assuming a builder configured with the example TOML above, the selected run image will be
 <code>registry.example.com/example/run</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ pack build registry.example.com/example/app
-</code></pre></div><p>while naming the app without a registry specified, <code>example/app</code>, will cause <code>example/run</code> to be selected as the app&rsquo;s
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ pack build registry.example.com/example/app
+</span></span></code></pre></div><p>while naming the app without a registry specified, <code>example/app</code>, will cause <code>example/run</code> to be selected as the app&rsquo;s
 run image.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ pack build example/app
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ pack build example/app
+</span></span></code></pre></div><blockquote>
 <p>For local development, it&rsquo;s often helpful to override the run image mirrors in a builder. For this, the
 <code>pack config run-image-mirrors</code> command can be used. This command does not modify the builder, and instead configures the
 user&rsquo;s local machine.</p>

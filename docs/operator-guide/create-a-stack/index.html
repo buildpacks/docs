@@ -620,9 +620,9 @@
 <p>Let&rsquo;s start by creating a base image containing layers that will be required by both the <code>build</code> and <code>run</code> images. In order to do this, switch to a clean workspace and create a <code>Dockerfile</code> as specified below:</p>
 <h4 id="defining-the-base">Defining the base</h4>
 <p>We start with <code>ubuntu:bionic</code> as our <code>base</code> image. Since we will be reusing these layers in both our build and run images we will be defining a common base image and leveraging <a href="https://docs.docker.com/develop/develop-images/multistage-build/">Docker&rsquo;s multi-stage builds</a> to ensure this acts as the common base image for both our build-time and run-time environment.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile"><span class="c"># 1. Set a common base</span><span class="err">
-</span><span class="err"></span><span class="k">FROM</span><span class="s"> ubuntu:bionic as base</span><span class="err">
-</span></code></pre></div><h4 id="set-required-cnb-information">Set required CNB information</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile"><span class="line"><span class="cl"><span class="c"># 1. Set a common base</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">FROM</span><span class="s"> ubuntu:bionic as base</span><span class="err">
+</span></span></span></code></pre></div><h4 id="set-required-cnb-information">Set required CNB information</h4>
 <p>Next, we will be setting up the base image as required by the <a href="https://github.com/buildpacks/spec/blob/main/platform.md#stacks">Cloud-Native Buildpack specification</a> noted below.</p>
 <h5 id="specification">Specification</h5>
 <p><strong>Labels</strong></p>
@@ -674,151 +674,151 @@
 <p>The <code>CNB_USER_ID</code> is the <code>UID</code>  of the user as which the <code>detect</code> and <code>build</code> steps are run. The given user <strong>MUST NOT</strong> be a root user
 and have it&rsquo;s home directly writeable. <code>CNB_GROUP_ID</code> is the primary <code>GID</code> of the above user.</p>
 <p>Let&rsquo;s update the <code>Dockerfile</code> to reflect the above specification.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile"><span class="c"># 1. Set a common base</span><span class="err">
-</span><span class="err"></span><span class="k">FROM</span><span class="s"> ubuntu:bionic as base</span><span class="err">
-</span><span class="err">
-</span><span class="err"></span><span class="c"># ========== ADDED ===========</span><span class="err">
-</span><span class="err"></span><span class="c"># 2. Set required CNB information</span><span class="err">
-</span><span class="err"></span><span class="k">ENV</span> <span class="nv">CNB_USER_ID</span><span class="o">=</span><span class="m">1000</span>
-<span class="k">ENV</span> <span class="nv">CNB_GROUP_ID</span><span class="o">=</span><span class="m">1000</span>
-<span class="k">ENV</span> <span class="nv">CNB_STACK_ID</span><span class="o">=</span><span class="s2">&#34;io.buildpacks.samples.stacks.bionic&#34;</span><span class="err">
-</span><span class="err"></span><span class="k">LABEL</span> io.buildpacks.stack.id<span class="o">=</span><span class="s2">&#34;io.buildpacks.samples.stacks.bionic&#34;</span><span class="err">
-</span><span class="err">
-</span><span class="err"></span><span class="c"># 3. Create the user</span><span class="err">
-</span><span class="err"></span><span class="k">RUN</span> groupadd cnb --gid <span class="si">${</span><span class="nv">CNB_GROUP_ID</span><span class="si">}</span> <span class="o">&amp;&amp;</span> <span class="se">\
-</span><span class="se"></span>  useradd --uid <span class="si">${</span><span class="nv">CNB_USER_ID</span><span class="si">}</span> --gid <span class="si">${</span><span class="nv">CNB_GROUP_ID</span><span class="si">}</span> -m -s /bin/bash cnb<span class="err">
-</span></code></pre></div><h4 id="install-base-system-packages">Install base system packages</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile"><span class="line"><span class="cl"><span class="c"># 1. Set a common base</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">FROM</span><span class="s"> ubuntu:bionic as base</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># ========== ADDED ===========</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># 2. Set required CNB information</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">ENV</span> <span class="nv">CNB_USER_ID</span><span class="o">=</span><span class="m">1000</span>
+</span></span><span class="line"><span class="cl"><span class="k">ENV</span> <span class="nv">CNB_GROUP_ID</span><span class="o">=</span><span class="m">1000</span>
+</span></span><span class="line"><span class="cl"><span class="k">ENV</span> <span class="nv">CNB_STACK_ID</span><span class="o">=</span><span class="s2">&#34;io.buildpacks.samples.stacks.bionic&#34;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">LABEL</span> io.buildpacks.stack.id<span class="o">=</span><span class="s2">&#34;io.buildpacks.samples.stacks.bionic&#34;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># 3. Create the user</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> groupadd cnb --gid <span class="si">${</span><span class="nv">CNB_GROUP_ID</span><span class="si">}</span> <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  useradd --uid <span class="si">${</span><span class="nv">CNB_USER_ID</span><span class="si">}</span> --gid <span class="si">${</span><span class="nv">CNB_GROUP_ID</span><span class="si">}</span> -m -s /bin/bash cnb<span class="err">
+</span></span></span></code></pre></div><h4 id="install-base-system-packages">Install base system packages</h4>
 <p>Next up, we will be installing any system packages that we want to make available to both our build-time and run-time environment. Our <code>Dockerfile</code> should now look like -</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile"><span class="c"># 1. Set a common base</span><span class="err">
-</span><span class="err"></span><span class="k">FROM</span><span class="s"> ubuntu:bionic as base</span><span class="err">
-</span><span class="err">
-</span><span class="err"></span><span class="c"># 2. Set required CNB information</span><span class="err">
-</span><span class="err"></span><span class="k">ENV</span> <span class="nv">CNB_USER_ID</span><span class="o">=</span><span class="m">1000</span>
-<span class="k">ENV</span> <span class="nv">CNB_GROUP_ID</span><span class="o">=</span><span class="m">1000</span>
-<span class="k">ENV</span> <span class="nv">CNB_STACK_ID</span><span class="o">=</span><span class="s2">&#34;io.buildpacks.samples.stacks.bionic&#34;</span><span class="err">
-</span><span class="err"></span><span class="k">LABEL</span> io.buildpacks.stack.id<span class="o">=</span><span class="s2">&#34;io.buildpacks.samples.stacks.bionic&#34;</span><span class="err">
-</span><span class="err">
-</span><span class="err"></span><span class="c"># 3. Create the user</span><span class="err">
-</span><span class="err"></span><span class="k">RUN</span> groupadd cnb --gid <span class="si">${</span><span class="nv">CNB_GROUP_ID</span><span class="si">}</span> <span class="o">&amp;&amp;</span> <span class="se">\
-</span><span class="se"></span>  useradd --uid <span class="si">${</span><span class="nv">CNB_USER_ID</span><span class="si">}</span> --gid <span class="si">${</span><span class="nv">CNB_GROUP_ID</span><span class="si">}</span> -m -s /bin/bash cnb<span class="err">
-</span><span class="err">
-</span><span class="err"></span><span class="c"># ========== ADDED ===========</span><span class="err">
-</span><span class="err"></span><span class="c"># 4. Install common packages</span><span class="err">
-</span><span class="err"></span><span class="k">RUN</span> apt-get update <span class="o">&amp;&amp;</span> <span class="se">\
-</span><span class="se"></span>  apt-get install -y xz-utils ca-certificates <span class="o">&amp;&amp;</span> <span class="se">\
-</span><span class="se"></span>  rm -rf /var/lib/apt/lists/*<span class="err">
-</span></code></pre></div><p>That should be it for our base image! Let&rsquo;s verify that we can successfully build this image by running:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker build . -t cnbs/sample-stack-base:bionic --target base
-</code></pre></div><h3 id="creating-the-run-image">Creating the run image</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile"><span class="line"><span class="cl"><span class="c"># 1. Set a common base</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">FROM</span><span class="s"> ubuntu:bionic as base</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># 2. Set required CNB information</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">ENV</span> <span class="nv">CNB_USER_ID</span><span class="o">=</span><span class="m">1000</span>
+</span></span><span class="line"><span class="cl"><span class="k">ENV</span> <span class="nv">CNB_GROUP_ID</span><span class="o">=</span><span class="m">1000</span>
+</span></span><span class="line"><span class="cl"><span class="k">ENV</span> <span class="nv">CNB_STACK_ID</span><span class="o">=</span><span class="s2">&#34;io.buildpacks.samples.stacks.bionic&#34;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">LABEL</span> io.buildpacks.stack.id<span class="o">=</span><span class="s2">&#34;io.buildpacks.samples.stacks.bionic&#34;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># 3. Create the user</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> groupadd cnb --gid <span class="si">${</span><span class="nv">CNB_GROUP_ID</span><span class="si">}</span> <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  useradd --uid <span class="si">${</span><span class="nv">CNB_USER_ID</span><span class="si">}</span> --gid <span class="si">${</span><span class="nv">CNB_GROUP_ID</span><span class="si">}</span> -m -s /bin/bash cnb<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># ========== ADDED ===========</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># 4. Install common packages</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> apt-get update <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  apt-get install -y xz-utils ca-certificates <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  rm -rf /var/lib/apt/lists/*<span class="err">
+</span></span></span></code></pre></div><p>That should be it for our base image! Let&rsquo;s verify that we can successfully build this image by running:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker build . -t cnbs/sample-stack-base:bionic --target base
+</span></span></code></pre></div><h3 id="creating-the-run-image">Creating the run image</h3>
 <p>Next up, we will create the run image. The run image is the base image for your runtime application environemnt.</p>
 <p>In order to create our run image all we need to do is to set the run image&rsquo;s <code>USER</code> to the user with <code>CNB_USER_ID</code>. Our final <code>Dockerfile</code> for the build image should look like -</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile"><span class="c"># 1. Set a common base</span><span class="err">
-</span><span class="err"></span><span class="k">FROM</span><span class="s"> ubuntu:bionic as base</span><span class="err">
-</span><span class="err">
-</span><span class="err"></span><span class="c"># 2. Set required CNB information</span><span class="err">
-</span><span class="err"></span><span class="k">ENV</span> <span class="nv">CNB_USER_ID</span><span class="o">=</span><span class="m">1000</span>
-<span class="k">ENV</span> <span class="nv">CNB_GROUP_ID</span><span class="o">=</span><span class="m">1000</span>
-<span class="k">ENV</span> <span class="nv">CNB_STACK_ID</span><span class="o">=</span><span class="s2">&#34;io.buildpacks.samples.stacks.bionic&#34;</span><span class="err">
-</span><span class="err"></span><span class="k">LABEL</span> io.buildpacks.stack.id<span class="o">=</span><span class="s2">&#34;io.buildpacks.samples.stacks.bionic&#34;</span><span class="err">
-</span><span class="err">
-</span><span class="err"></span><span class="c"># 3. Create the user</span><span class="err">
-</span><span class="err"></span><span class="k">RUN</span> groupadd cnb --gid <span class="si">${</span><span class="nv">CNB_GROUP_ID</span><span class="si">}</span> <span class="o">&amp;&amp;</span> <span class="se">\
-</span><span class="se"></span>  useradd --uid <span class="si">${</span><span class="nv">CNB_USER_ID</span><span class="si">}</span> --gid <span class="si">${</span><span class="nv">CNB_GROUP_ID</span><span class="si">}</span> -m -s /bin/bash cnb<span class="err">
-</span><span class="err">
-</span><span class="err"></span><span class="c"># 4. Install common packages</span><span class="err">
-</span><span class="err"></span><span class="k">RUN</span> apt-get update <span class="o">&amp;&amp;</span> <span class="se">\
-</span><span class="se"></span>  apt-get install -y xz-utils ca-certificates <span class="o">&amp;&amp;</span> <span class="se">\
-</span><span class="se"></span>  rm -rf /var/lib/apt/lists/*<span class="err">
-</span><span class="err">
-</span><span class="err"></span><span class="c"># ========== ADDED ===========</span><span class="err">
-</span><span class="err"></span><span class="c"># 5. Start a new run stage</span><span class="err">
-</span><span class="err"></span><span class="k">FROM</span><span class="s"> base as run</span><span class="err">
-</span><span class="err">
-</span><span class="err"></span><span class="c"># 6. Set user and group (as declared in base image)</span><span class="err">
-</span><span class="err"></span><span class="k">USER</span><span class="s"> ${CNB_USER_ID}:${CNB_GROUP_ID}</span><span class="err">
-</span></code></pre></div><p>That should be it for our run image! Let&rsquo;s verify that we can successfully build this image by running:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker build . -t cnbs/sample-stack-run:bionic --target run
-</code></pre></div><h3 id="creating-the-build-image">Creating the build image</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile"><span class="line"><span class="cl"><span class="c"># 1. Set a common base</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">FROM</span><span class="s"> ubuntu:bionic as base</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># 2. Set required CNB information</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">ENV</span> <span class="nv">CNB_USER_ID</span><span class="o">=</span><span class="m">1000</span>
+</span></span><span class="line"><span class="cl"><span class="k">ENV</span> <span class="nv">CNB_GROUP_ID</span><span class="o">=</span><span class="m">1000</span>
+</span></span><span class="line"><span class="cl"><span class="k">ENV</span> <span class="nv">CNB_STACK_ID</span><span class="o">=</span><span class="s2">&#34;io.buildpacks.samples.stacks.bionic&#34;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">LABEL</span> io.buildpacks.stack.id<span class="o">=</span><span class="s2">&#34;io.buildpacks.samples.stacks.bionic&#34;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># 3. Create the user</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> groupadd cnb --gid <span class="si">${</span><span class="nv">CNB_GROUP_ID</span><span class="si">}</span> <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  useradd --uid <span class="si">${</span><span class="nv">CNB_USER_ID</span><span class="si">}</span> --gid <span class="si">${</span><span class="nv">CNB_GROUP_ID</span><span class="si">}</span> -m -s /bin/bash cnb<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># 4. Install common packages</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> apt-get update <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  apt-get install -y xz-utils ca-certificates <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  rm -rf /var/lib/apt/lists/*<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># ========== ADDED ===========</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># 5. Start a new run stage</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">FROM</span><span class="s"> base as run</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># 6. Set user and group (as declared in base image)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">USER</span><span class="s"> ${CNB_USER_ID}:${CNB_GROUP_ID}</span><span class="err">
+</span></span></span></code></pre></div><p>That should be it for our run image! Let&rsquo;s verify that we can successfully build this image by running:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker build . -t cnbs/sample-stack-run:bionic --target run
+</span></span></code></pre></div><h3 id="creating-the-build-image">Creating the build image</h3>
 <p>Next up, we will create the build image. The build image is the base image for you builder and should contain any common build-time
 environment required by your buildpacks.</p>
 <h4 id="install-build-packages">Install build packages</h4>
 <p>Let&rsquo;s modify the <code>Dockerfile</code> to look like -</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile"><span class="c"># 1. Set a common base</span><span class="err">
-</span><span class="err"></span><span class="k">FROM</span><span class="s"> ubuntu:bionic as base</span><span class="err">
-</span><span class="err">
-</span><span class="err"></span><span class="c"># 2. Set required CNB information</span><span class="err">
-</span><span class="err"></span><span class="k">ENV</span> <span class="nv">CNB_USER_ID</span><span class="o">=</span><span class="m">1000</span>
-<span class="k">ENV</span> <span class="nv">CNB_GROUP_ID</span><span class="o">=</span><span class="m">1000</span>
-<span class="k">ENV</span> <span class="nv">CNB_STACK_ID</span><span class="o">=</span><span class="s2">&#34;io.buildpacks.samples.stacks.bionic&#34;</span><span class="err">
-</span><span class="err"></span><span class="k">LABEL</span> io.buildpacks.stack.id<span class="o">=</span><span class="s2">&#34;io.buildpacks.samples.stacks.bionic&#34;</span><span class="err">
-</span><span class="err">
-</span><span class="err"></span><span class="c"># 3. Create the user</span><span class="err">
-</span><span class="err"></span><span class="k">RUN</span> groupadd cnb --gid <span class="si">${</span><span class="nv">CNB_GROUP_ID</span><span class="si">}</span> <span class="o">&amp;&amp;</span> <span class="se">\
-</span><span class="se"></span>  useradd --uid <span class="si">${</span><span class="nv">CNB_USER_ID</span><span class="si">}</span> --gid <span class="si">${</span><span class="nv">CNB_GROUP_ID</span><span class="si">}</span> -m -s /bin/bash cnb<span class="err">
-</span><span class="err">
-</span><span class="err"></span><span class="c"># 4. Install common packages</span><span class="err">
-</span><span class="err"></span><span class="k">RUN</span> apt-get update <span class="o">&amp;&amp;</span> <span class="se">\
-</span><span class="se"></span>  apt-get install -y xz-utils ca-certificates <span class="o">&amp;&amp;</span> <span class="se">\
-</span><span class="se"></span>  rm -rf /var/lib/apt/lists/*<span class="err">
-</span><span class="err">
-</span><span class="err"></span><span class="c"># 5. Start a new run stage</span><span class="err">
-</span><span class="err"></span><span class="k">FROM</span><span class="s"> base as run</span><span class="err">
-</span><span class="err">
-</span><span class="err"></span><span class="c"># 6. Set user and group (as declared in base image)</span><span class="err">
-</span><span class="err"></span><span class="k">USER</span><span class="s"> ${CNB_USER_ID}:${CNB_GROUP_ID}</span><span class="err">
-</span><span class="err">
-</span><span class="err"></span><span class="c"># ========== ADDED ===========</span><span class="err">
-</span><span class="err"></span><span class="c"># 7. Start a new build stage</span><span class="err">
-</span><span class="err"></span><span class="k">FROM</span><span class="s"> base as build</span><span class="err">
-</span><span class="err">
-</span><span class="err"></span><span class="c"># 8. Install packages that we want to make available at build time</span><span class="err">
-</span><span class="err"></span><span class="k">RUN</span> apt-get update <span class="o">&amp;&amp;</span> <span class="se">\
-</span><span class="se"></span>  apt-get install -y git wget jq <span class="o">&amp;&amp;</span> <span class="se">\
-</span><span class="se"></span>  rm -rf /var/lib/apt/lists/* <span class="o">&amp;&amp;</span> <span class="se">\
-</span><span class="se"></span>  wget https://github.com/sclevine/yj/releases/download/v5.0.0/yj-linux -O /usr/local/bin/yj <span class="o">&amp;&amp;</span> <span class="se">\
-</span><span class="se"></span>  chmod +x /usr/local/bin/yj<span class="err">
-</span></code></pre></div><h4 id="setting-the-user">Setting the <code>USER</code></h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile"><span class="line"><span class="cl"><span class="c"># 1. Set a common base</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">FROM</span><span class="s"> ubuntu:bionic as base</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># 2. Set required CNB information</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">ENV</span> <span class="nv">CNB_USER_ID</span><span class="o">=</span><span class="m">1000</span>
+</span></span><span class="line"><span class="cl"><span class="k">ENV</span> <span class="nv">CNB_GROUP_ID</span><span class="o">=</span><span class="m">1000</span>
+</span></span><span class="line"><span class="cl"><span class="k">ENV</span> <span class="nv">CNB_STACK_ID</span><span class="o">=</span><span class="s2">&#34;io.buildpacks.samples.stacks.bionic&#34;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">LABEL</span> io.buildpacks.stack.id<span class="o">=</span><span class="s2">&#34;io.buildpacks.samples.stacks.bionic&#34;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># 3. Create the user</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> groupadd cnb --gid <span class="si">${</span><span class="nv">CNB_GROUP_ID</span><span class="si">}</span> <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  useradd --uid <span class="si">${</span><span class="nv">CNB_USER_ID</span><span class="si">}</span> --gid <span class="si">${</span><span class="nv">CNB_GROUP_ID</span><span class="si">}</span> -m -s /bin/bash cnb<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># 4. Install common packages</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> apt-get update <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  apt-get install -y xz-utils ca-certificates <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  rm -rf /var/lib/apt/lists/*<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># 5. Start a new run stage</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">FROM</span><span class="s"> base as run</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># 6. Set user and group (as declared in base image)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">USER</span><span class="s"> ${CNB_USER_ID}:${CNB_GROUP_ID}</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># ========== ADDED ===========</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># 7. Start a new build stage</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">FROM</span><span class="s"> base as build</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># 8. Install packages that we want to make available at build time</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> apt-get update <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  apt-get install -y git wget jq <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  rm -rf /var/lib/apt/lists/* <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  wget https://github.com/sclevine/yj/releases/download/v5.0.0/yj-linux -O /usr/local/bin/yj <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  chmod +x /usr/local/bin/yj<span class="err">
+</span></span></span></code></pre></div><h4 id="setting-the-user">Setting the <code>USER</code></h4>
 <p>Lastly to finish off our build image, we need to set the image&rsquo;s <code>USER</code> to the user with <code>CNB_USER_ID</code>. Our final <code>Dockerfile</code> for the build image should look like -</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile"><span class="c"># 1. Set a common base</span><span class="err">
-</span><span class="err"></span><span class="k">FROM</span><span class="s"> ubuntu:bionic as base</span><span class="err">
-</span><span class="err">
-</span><span class="err"></span><span class="c"># 2. Set required CNB information</span><span class="err">
-</span><span class="err"></span><span class="k">ENV</span> <span class="nv">CNB_USER_ID</span><span class="o">=</span><span class="m">1000</span>
-<span class="k">ENV</span> <span class="nv">CNB_GROUP_ID</span><span class="o">=</span><span class="m">1000</span>
-<span class="k">ENV</span> <span class="nv">CNB_STACK_ID</span><span class="o">=</span><span class="s2">&#34;io.buildpacks.samples.stacks.bionic&#34;</span><span class="err">
-</span><span class="err"></span><span class="k">LABEL</span> io.buildpacks.stack.id<span class="o">=</span><span class="s2">&#34;io.buildpacks.samples.stacks.bionic&#34;</span><span class="err">
-</span><span class="err">
-</span><span class="err"></span><span class="c"># 3. Create the user</span><span class="err">
-</span><span class="err"></span><span class="k">RUN</span> groupadd cnb --gid <span class="si">${</span><span class="nv">CNB_GROUP_ID</span><span class="si">}</span> <span class="o">&amp;&amp;</span> <span class="se">\
-</span><span class="se"></span>  useradd --uid <span class="si">${</span><span class="nv">CNB_USER_ID</span><span class="si">}</span> --gid <span class="si">${</span><span class="nv">CNB_GROUP_ID</span><span class="si">}</span> -m -s /bin/bash cnb<span class="err">
-</span><span class="err">
-</span><span class="err"></span><span class="c"># 4. Install common packages</span><span class="err">
-</span><span class="err"></span><span class="k">RUN</span> apt-get update <span class="o">&amp;&amp;</span> <span class="se">\
-</span><span class="se"></span>  apt-get install -y xz-utils ca-certificates <span class="o">&amp;&amp;</span> <span class="se">\
-</span><span class="se"></span>  rm -rf /var/lib/apt/lists/*<span class="err">
-</span><span class="err">
-</span><span class="err"></span><span class="c"># 5. Start a new run stage</span><span class="err">
-</span><span class="err"></span><span class="k">FROM</span><span class="s"> base as run</span><span class="err">
-</span><span class="err">
-</span><span class="err"></span><span class="c"># 6. Set user and group (as declared in base image)</span><span class="err">
-</span><span class="err"></span><span class="k">USER</span><span class="s"> ${CNB_USER_ID}:${CNB_GROUP_ID}</span><span class="err">
-</span><span class="err">
-</span><span class="err"></span><span class="c"># 7. Start a new build stage</span><span class="err">
-</span><span class="err"></span><span class="k">FROM</span><span class="s"> base as build</span><span class="err">
-</span><span class="err">
-</span><span class="err"></span><span class="c"># 8. Install packages that we want to make available at build time</span><span class="err">
-</span><span class="err"></span><span class="k">RUN</span> apt-get update <span class="o">&amp;&amp;</span> <span class="se">\
-</span><span class="se"></span>  apt-get install -y git wget jq <span class="o">&amp;&amp;</span> <span class="se">\
-</span><span class="se"></span>  rm -rf /var/lib/apt/lists/* <span class="o">&amp;&amp;</span> <span class="se">\
-</span><span class="se"></span>  wget https://github.com/sclevine/yj/releases/download/v5.0.0/yj-linux -O /usr/local/bin/yj <span class="o">&amp;&amp;</span> <span class="se">\
-</span><span class="se"></span>  chmod +x /usr/local/bin/yj<span class="err">
-</span><span class="err">
-</span><span class="err"></span><span class="c"># ========== ADDED ===========</span><span class="err">
-</span><span class="err"></span><span class="c"># 9. Set user and group (as declared in base image)</span><span class="err">
-</span><span class="err"></span><span class="k">USER</span><span class="s"> ${CNB_USER_ID}:${CNB_GROUP_ID}</span><span class="err">
-</span></code></pre></div><p>That should be it for our build image! Let&rsquo;s verify that we can successfully build this image by running:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker build . -t cnbs/sample-stack-build:bionic --target build
-</code></pre></div><p><strong>Congratulations!</strong> You&rsquo;ve got a custom stack!</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile"><span class="line"><span class="cl"><span class="c"># 1. Set a common base</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">FROM</span><span class="s"> ubuntu:bionic as base</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># 2. Set required CNB information</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">ENV</span> <span class="nv">CNB_USER_ID</span><span class="o">=</span><span class="m">1000</span>
+</span></span><span class="line"><span class="cl"><span class="k">ENV</span> <span class="nv">CNB_GROUP_ID</span><span class="o">=</span><span class="m">1000</span>
+</span></span><span class="line"><span class="cl"><span class="k">ENV</span> <span class="nv">CNB_STACK_ID</span><span class="o">=</span><span class="s2">&#34;io.buildpacks.samples.stacks.bionic&#34;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">LABEL</span> io.buildpacks.stack.id<span class="o">=</span><span class="s2">&#34;io.buildpacks.samples.stacks.bionic&#34;</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># 3. Create the user</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> groupadd cnb --gid <span class="si">${</span><span class="nv">CNB_GROUP_ID</span><span class="si">}</span> <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  useradd --uid <span class="si">${</span><span class="nv">CNB_USER_ID</span><span class="si">}</span> --gid <span class="si">${</span><span class="nv">CNB_GROUP_ID</span><span class="si">}</span> -m -s /bin/bash cnb<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># 4. Install common packages</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> apt-get update <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  apt-get install -y xz-utils ca-certificates <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  rm -rf /var/lib/apt/lists/*<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># 5. Start a new run stage</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">FROM</span><span class="s"> base as run</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># 6. Set user and group (as declared in base image)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">USER</span><span class="s"> ${CNB_USER_ID}:${CNB_GROUP_ID}</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># 7. Start a new build stage</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">FROM</span><span class="s"> base as build</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># 8. Install packages that we want to make available at build time</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> apt-get update <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  apt-get install -y git wget jq <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  rm -rf /var/lib/apt/lists/* <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  wget https://github.com/sclevine/yj/releases/download/v5.0.0/yj-linux -O /usr/local/bin/yj <span class="o">&amp;&amp;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  chmod +x /usr/local/bin/yj<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># ========== ADDED ===========</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># 9. Set user and group (as declared in base image)</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">USER</span><span class="s"> ${CNB_USER_ID}:${CNB_GROUP_ID}</span><span class="err">
+</span></span></span></code></pre></div><p>That should be it for our build image! Let&rsquo;s verify that we can successfully build this image by running:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker build . -t cnbs/sample-stack-build:bionic --target build
+</span></span></code></pre></div><p><strong>Congratulations!</strong> You&rsquo;ve got a custom stack!</p>
 <h2 id="additional-information">Additional information</h2>
 <h3 id="mixins">Mixins</h3>
 <p>Mixins provide a way to document OS-level dependencies that a stack provides to buildpacks. Mixins can be provided at build-time
@@ -850,10 +850,10 @@ The following rules apply for mixin declarations:</p>
 </ul>
 <h5 id="example">Example</h5>
 <p><em>Build image:</em></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="err">io.buildpacks.stack.mixins:</span> <span class="p">[</span><span class="s2">&#34;build:git&#34;</span><span class="p">,</span> <span class="s2">&#34;wget&#34;</span><span class="p">]</span>
-</code></pre></div><p><em>Run image:</em></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="err">io.buildpacks.stack.mixins:</span> <span class="p">[</span><span class="s2">&#34;run:imagemagick&#34;</span><span class="p">,</span> <span class="s2">&#34;wget&#34;</span><span class="p">]</span>
-</code></pre></div><h4 id="declaring-required-mixins">Declaring required mixins</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">io.buildpacks.stack.mixins:</span> <span class="p">[</span><span class="s2">&#34;build:git&#34;</span><span class="p">,</span> <span class="s2">&#34;wget&#34;</span><span class="p">]</span>
+</span></span></code></pre></div><p><em>Run image:</em></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">io.buildpacks.stack.mixins:</span> <span class="p">[</span><span class="s2">&#34;run:imagemagick&#34;</span><span class="p">,</span> <span class="s2">&#34;wget&#34;</span><span class="p">]</span>
+</span></span></code></pre></div><h4 id="declaring-required-mixins">Declaring required mixins</h4>
 <p>A buildpack must list any required mixins in the <code>stacks</code> section of its <code>buildpack.toml</code> file.</p>
 <p>When validating whether the buildpack&rsquo;s mixins are satisfied by a stack, the following rules apply:</p>
 <ul>
@@ -862,10 +862,10 @@ The following rules apply for mixin declarations:</p>
 <li>Unprefixed mixins must be provided by both stack images</li>
 </ul>
 <h5 id="example-1">Example</h5>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="p">[[</span><span class="nx">stacks</span><span class="p">]]</span>
-<span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;io.buildpacks.stacks.bionic&#34;</span>
-<span class="nx">mixins</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;build:git&#34;</span><span class="p">,</span> <span class="s2">&#34;run:imagemagick&#34;</span><span class="p">,</span> <span class="s2">&#34;wget&#34;</span><span class="p">]</span>
-</code></pre></div><h2 id="resources">Resources</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">stacks</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;io.buildpacks.stacks.bionic&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">mixins</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;build:git&#34;</span><span class="p">,</span> <span class="s2">&#34;run:imagemagick&#34;</span><span class="p">,</span> <span class="s2">&#34;wget&#34;</span><span class="p">]</span>
+</span></span></code></pre></div><h2 id="resources">Resources</h2>
 <p>For sample stacks, see our <a href="https://github.com/buildpacks/samples">samples</a> repo.
 For technical details on stacks, see the <a href="https://github.com/buildpacks/spec/blob/main/platform.md#stacks">platform specification for stacks</a>.</p>
 

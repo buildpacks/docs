@@ -29,7 +29,7 @@ Let&amp;rsquo;s create the directory where your buildpack will live:
 Using the Pack CLI The buildpack new &amp;lt;id&amp;gt; command will create a directory named for the buildpack ID.
 Example:
 pack buildpack new examples/ruby \  --api 0.7 \  --path ruby-buildpack \  --version 0.0.1 \  --stacks io.buildpacks.samples.stacks.bionic This command will create ruby-buildpack directory which contains buildpack.toml, bin/build, bin/detect files.
-Additional Parameters  -a, --api Buildpack API compatibility of the generated buildpack -h, --help Help for &amp;lsquo;new&amp;rsquo; --path the location on the filesystem to generate the artifacts.</description>
+Additional Parameters  -a, --api Buildpack API compatibility of the generated buildpack -h, --help Help for &amp;rsquo;new&#39; --path the location on the filesystem to generate the artifacts.</description>
     </item>
     
     <item>

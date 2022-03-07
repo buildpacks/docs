@@ -632,12 +632,12 @@ app.</p>
 <p>For this guide we&rsquo;re going to use a sample builder, <code>cnbs/sample-builder:dotnet-framework-1809</code>.</p>
 <h3 id="2-build-your-app">2. Build your app</h3>
 <p>Now we can build our app. For this example we&rsquo;ll use our <a href="https://github.com/buildpacks/samples">samples</a> repo for simplicity.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># clone the repo</span>
-git clone https://github.com/buildpacks/samples
-
-<span class="c1"># build the app</span>
-pack build sample-app --path samples/apps/aspnet --builder cnbs/sample-builder:dotnet-framework-1809 --trust-builder
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># clone the repo</span>
+</span></span><span class="line"><span class="cl">git clone https://github.com/buildpacks/samples
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># build the app</span>
+</span></span><span class="line"><span class="cl">pack build sample-app --path samples/apps/aspnet --builder cnbs/sample-builder:dotnet-framework-1809 --trust-builder
+</span></span></code></pre></div><blockquote>
 <p><strong>TIP:</strong> The builder may take a few minutes to download on the first use.</p>
 </blockquote>
 <blockquote>
@@ -645,8 +645,8 @@ pack build sample-app --path samples/apps/aspnet --builder cnbs/sample-builder:d
 builder by running <code>pack config default-builder &lt;BUILDER&gt;</code>.</p>
 </blockquote>
 <h3 id="3-run-it">3. Run it</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">docker run --rm -it -p 8080:80 sample-app
-</code></pre></div><p><strong>Congratulations!</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run --rm -it -p 8080:80 sample-app
+</span></span></code></pre></div><p><strong>Congratulations!</strong></p>
 <p>The app should now be running and accessible via <a href="http://localhost:8080">localhost:8080</a></p>
 <hr>
 <h2 id="using-remote-docker-hosts">Using remote Docker hosts</h2>

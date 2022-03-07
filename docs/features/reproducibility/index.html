@@ -628,11 +628,11 @@
 <li>The same set of buildpacks (see caveat below).</li>
 </ul>
 <p>Inspecting the results of the above command, we see the following output:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">$ docker pull cnbs/sample-hello-world:test <span class="o">&amp;&amp;</span> docker images --digest <span class="c1"># Pull remotely created image and view IDs and Digests</span>
-REPOSITORY                                   TAG                 DIGEST                                                                    IMAGE ID            CREATED             SIZE
-sample-hello-world                           <span class="nb">test</span>                sha256:9e3cfea3f90fb4fbbe855a2cc9ce505087ae10d6805cfcb44bd67a4b72628641   597c49cae461        <span class="m">40</span> years ago        95.2MB
-sample-hello-moon-app                        <span class="nb">test</span>                &lt;none&gt;                                                                    86aab15e22b8        <span class="m">40</span> years ago        43MB
-</code></pre></div><h3 id="consequences-and-caveats">Consequences and Caveats</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ docker pull cnbs/sample-hello-world:test <span class="o">&amp;&amp;</span> docker images --digest <span class="c1"># Pull remotely created image and view IDs and Digests</span>
+</span></span><span class="line"><span class="cl">REPOSITORY                                   TAG                 DIGEST                                                                    IMAGE ID            CREATED             SIZE
+</span></span><span class="line"><span class="cl">sample-hello-world                           <span class="nb">test</span>                sha256:9e3cfea3f90fb4fbbe855a2cc9ce505087ae10d6805cfcb44bd67a4b72628641   597c49cae461        <span class="m">40</span> years ago        95.2MB
+</span></span><span class="line"><span class="cl">sample-hello-moon-app                        <span class="nb">test</span>                &lt;none&gt;                                                                    86aab15e22b8        <span class="m">40</span> years ago        43MB
+</span></span></code></pre></div><h3 id="consequences-and-caveats">Consequences and Caveats</h3>
 <p>There are a couple things to note about the above output:</p>
 <ul>
 <li>We achieve reproducible builds by &ldquo;zeroing&rdquo; various timestamps of the layers of the output image. When images are inspected they may have confusing creation times (eg. &ldquo;40 years ago&rdquo;).</li>

@@ -680,20 +680,20 @@ The <code>launcher</code> will source any profile scripts (for <code>non-direct<
 <p>Now let&rsquo;s exit this shell and run an alternative entrypoint -</p>
 <pre tabindex="0"><code>exit
 </code></pre><!--+- "{{execute interrupt}}"+-->
-<pre tabindex="0"><code>docker run --rm --entrypoint launcher -it multi-process-app echo hello &quot;$WORLD&quot; # $WORLD is evaluated on the host machine
+<pre tabindex="0"><code>docker run --rm --entrypoint launcher -it multi-process-app echo hello &#34;$WORLD&#34; # $WORLD is evaluated on the host machine
 </code></pre><!--+- "{{execute interrupt}}"+-->
-<pre tabindex="0"><code>docker run --rm --entrypoint launcher -it multi-process-app echo hello '$WORLD' # $WORLD is evaluated in the container after profile scripts are sourced
+<pre tabindex="0"><code>docker run --rm --entrypoint launcher -it multi-process-app echo hello &#39;$WORLD&#39; # $WORLD is evaluated in the container after profile scripts are sourced
 </code></pre><!--+- "{{execute interrupt}}"+-->
 <h4 id="user-provided-shell-process-with-bash-script">User-provided shell process with bash script</h4>
 <p>An entire script may be provided as a single argument:</p>
-<pre tabindex="0"><code>docker run --rm --entrypoint launcher -it multi-process-app 'for opt in $JAVA_OPTS; do echo $opt; done'
+<pre tabindex="0"><code>docker run --rm --entrypoint launcher -it multi-process-app &#39;for opt in $JAVA_OPTS; do echo $opt; done&#39;
 </code></pre><!--+- "{{execute interrupt}}"+-->
 <h4 id="user-provided-direct-process">User-provided direct process</h4>
 <p>By passing <code>--</code> before the command, we instruct the <code>launcher</code> to start the provided process without <code>bash</code>.
 Note that while buildpack-provided environment variables will be set in the execution environment, no profile scripts will be sourced (as these require <code>bash</code>):</p>
 <pre tabindex="0"><code>docker run --rm --entrypoint launcher multi-process-app -- env # output will include buildpack-provided env vars
-docker run --rm --entrypoint launcher multi-process-app -- echo hello &quot;$WORLD&quot; # $WORLD is evaluated on the host machine
-docker run --rm --entrypoint launcher multi-process-app -- echo hello '$WORLD' # $WORLD is not evaluated, output will include string literal `$WORLD`
+docker run --rm --entrypoint launcher multi-process-app -- echo hello &#34;$WORLD&#34; # $WORLD is evaluated on the host machine
+docker run --rm --entrypoint launcher multi-process-app -- echo hello &#39;$WORLD&#39; # $WORLD is not evaluated, output will include string literal `$WORLD`
 </code></pre><h4 id="no-launcher">No launcher</h4>
 <p>You can bypass the launcher entirely by setting a new entrypoint for the run container:</p>
 <pre tabindex="0"><code>docker run --rm --entrypoint bash -it multi-process-app # profile scripts have NOT been sourced and buildpack-provided env vars are NOT set in this shell

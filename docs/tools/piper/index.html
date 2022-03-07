@@ -611,25 +611,25 @@
         <p><a href="https://www.project-piper.io/">Project &ldquo;Piper&rdquo;</a> (maintained by <a href="https://www.sap.com/">SAP</a>) is a set of ready-made Continuous Delivery pipelines for direct use in your project. It now also implements the CNB Platform spec as a step and makes it available in your Jenkins pipeline.</p>
 <h2 id="use">Use</h2>
 <p>The step called <a href="https://www.project-piper.io/steps/cnbBuild/">cnbBuild</a> allows you to integrate Cloud Native Buildpacks (CNB) into your Jenkins pipeline.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="nd">@Library</span><span class="o">([</span><span class="s2">&#34;piper-os&#34;</span><span class="o">])</span> <span class="n">_</span>
-
-<span class="n">node</span><span class="o">()</span> <span class="o">{</span>
-    <span class="n">stage</span><span class="o">(</span><span class="s2">&#34;Init&#34;</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">git</span> <span class="nl">branch:</span> <span class="s2">&#34;main&#34;</span><span class="o">,</span> <span class="nl">url:</span> <span class="s2">&#34;https://github.com/spring-projects/spring-petclinic&#34;</span>
-        <span class="n">setupCommonPipelineEnvironment</span><span class="o">(</span><span class="nl">script:</span> <span class="k">this</span><span class="o">)</span>
-    <span class="o">}</span>
-
-    <span class="n">stage</span><span class="o">(</span><span class="s2">&#34;Build&#34;</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">cnbBuild</span><span class="o">(</span>
-            <span class="nl">script:</span> <span class="k">this</span><span class="o">,</span>
-            <span class="nl">dockerConfigJsonCredentialsId:</span> <span class="s1">&#39;DOCKER_REGISTRY_CREDS&#39;</span><span class="o">,</span>
-            <span class="nl">containerImageName:</span> <span class="s1">&#39;image-name&#39;</span><span class="o">,</span>
-            <span class="nl">containerImageTag:</span> <span class="s1">&#39;v0.0.1&#39;</span><span class="o">,</span>
-            <span class="nl">containerRegistryUrl:</span> <span class="s1">&#39;gcr.io&#39;</span>
-        <span class="o">)</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><h3 id="references">References</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-groovy" data-lang="groovy"><span class="line"><span class="cl"><span class="nd">@Library</span><span class="o">([</span><span class="s2">&#34;piper-os&#34;</span><span class="o">])</span> <span class="n">_</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">node</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">stage</span><span class="o">(</span><span class="s2">&#34;Init&#34;</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">git</span> <span class="nl">branch:</span> <span class="s2">&#34;main&#34;</span><span class="o">,</span> <span class="nl">url:</span> <span class="s2">&#34;https://github.com/spring-projects/spring-petclinic&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">setupCommonPipelineEnvironment</span><span class="o">(</span><span class="nl">script:</span> <span class="k">this</span><span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">stage</span><span class="o">(</span><span class="s2">&#34;Build&#34;</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cnbBuild</span><span class="o">(</span>
+</span></span><span class="line"><span class="cl">            <span class="nl">script:</span> <span class="k">this</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nl">dockerConfigJsonCredentialsId:</span> <span class="s1">&#39;DOCKER_REGISTRY_CREDS&#39;</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nl">containerImageName:</span> <span class="s1">&#39;image-name&#39;</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nl">containerImageTag:</span> <span class="s1">&#39;v0.0.1&#39;</span><span class="o">,</span>
+</span></span><span class="line"><span class="cl">            <span class="nl">containerRegistryUrl:</span> <span class="s1">&#39;gcr.io&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">)</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h3 id="references">References</h3>
 <ul>
 <li><a href="https://www.project-piper.io/">Project Piper</a></li>
 <li><a href="https://www.project-piper.io/steps/cnbBuild/">cnbBuild step</a></li>
