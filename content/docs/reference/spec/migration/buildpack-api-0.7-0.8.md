@@ -34,7 +34,7 @@ For details, see [RFC 81](https://github.com/buildpacks/rfcs/blob/main/text/0081
 ### Deprecate Positional Args to `build` and `detect` Executables
 
 The positional arguments to the `detect` and `build` executables are deprecated.
-The lifecycle now provides these values as environment variables.
+Lifecycle now accepts these values as environment variables.
 
 To upgrade, buildpack authors should use the following environment variables:
 
