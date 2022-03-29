@@ -13,6 +13,34 @@ Partake in one or many of our following public events:
 
 ## Contributing
 
+#### How can I start contributing?
+
+If you are new to the project, the first thing you should do is gain some understanding of the project. This normaly entails doing the following:
+
+1. Watch a few [talks (videos)][talks].
+2. Next, run through some [tutorials][tutorials].
+
+If you run into issues or unexpected behaviour, that's probably the best place to start adding your first contribution.
+
+If you didn't find anything you'd like to improve while going through the tutorials you can browse the repositories below (some of those repositories may even have ["good first issues"][good-first-issues]):
+
+| Component                | Tech Stack             | Description
+|---                       |---                     |---
+| [`pack`][pack]           | Go, Docker             | CLI providing build and utility functions to end-users.
+| [`lifecycle`][lifecycle] | Go, Docker             | Executables that implement the main [specifications][spec] and are used by [platforms][platforms] such as `pack`.
+| [`docs`][docs]           | Hugo, HTML, JavaScript | Main website and documentation.
+
+> Dependending our your depth of understading or desires some components may be more ideal than others.
+
+[talks]: /docs/#talks
+[tutorials]: /docs/#tutorials
+[spec]: /docs/reference/spec/
+[platforms]: /docs/concepts/components/platform/
+[pack]: https://github.com/buildpacks/pack
+[lifecycle]: https://github.com/buildpacks/lifecycle
+[docs]: https://github.com/buildpacks/docs
+[good-first-issues]: https://github.com/search?q=org%3Abuildpacks+label%3A%22good+first+issue%22+state%3Aopen&type=Issues
+
 #### What type of contributions can I make?
 
 Buildpacks welcomes all types of contributions, not just those related to code. We value any help that you can provide, and are more than happy to guide you through the process.

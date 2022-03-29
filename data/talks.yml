@@ -1,27 +1,32 @@
 # - name (required): Name of video
 #   description: Short video description
+#   event_name: Name of the event
 #   preseters: Presenters of talk
 #      - Name, Employer
 #   youtube_id (required): URL to video
-#   year: Year recorded
+#   year (required): Year recorded
 #   resources: Resources to link to
 #     - name: Name of resource
 #       icon: Icon name (font-awesome 5 - https://fontawesome.com/icons?d=gallery&p=2&m=free)
 #       url: URL to resource
-- name: "Unraveling the magic behind Buildpacks"
+- name: "Intro to Cloud Native Buildpacks"
   presenters:
+    - Javier Romero, VMware
     - Sambhav Kothari, Bloomberg
-    - Natalie Arellano, VMware
   description: >-
-    In this talk we will explore how lifecycle - the binary at the heart of buildpacks - makes all this possible.
-    We will be going through the 5 different stages that the lifecycle executes - detect, analyze, restore, 
-    build and finally export and how it stitches up the final OCI image.
-  youtube_id: YoPUu8EryFY
+    Cloud Native Buildpacks transform your application source code into images that can run on any cloud.
+    In this session you'll learn the basics of using buildpacks, why they make a great choice over the
+    alternatives, and what new features the project has to offer. Cloud Native Buildpacks embrace modern
+    container standards, such as the OCI image format. They take advantage of the latest capabilities of
+    these standards, such as cross-repository blob mounting and image layer "rebasing" on Docker API v2
+    registries.
+  event_name: KubeCon NA
+  youtube_id: bpshvqQMYM0
   year: 2021
   resources: 
     - name: Slides
       icon: file-powerpoint
-      url: https://docs.google.com/presentation/d/1Ejo8Mf7GXxVHL7PjiApCZMJLtbX6VO8n2H7vEcZkV0I/view
+      url: https://docs.google.com/presentation/d/13j_Im9ZLPpAKmQmMSkkeZS9e4Tebhjc_bz8yTF8dR_w/edit?usp=sharing
 - name: "Introduction to Cloud Native Buildpacks"
   presenters:
     - Stephen Levine, VMware
@@ -30,6 +35,7 @@
     Cloud Native Buildpacks transform your application source code into images that can run on any cloud.
     In this session you'll learn the basics of using buildpacks, and why they make a great choice over
     the alternatives.
+  event_name: KubeCon EU
   youtube_id: r7VfuEHixtc
   year: 2021
   resources: 
@@ -39,20 +45,21 @@
     - name: Slides (Office Hours)
       icon: file-powerpoint
       url: https://docs.google.com/presentation/d/1eM-p7aWv6kiY77GBUR4kvdjuEBA-PEr_th9euNryoJE/view
-- name: "Deep Dive: Cloud Native Buildpacks"
+- name: "Unraveling the magic behind Buildpacks"
   presenters:
-    - Joe Kutner, Heroku
-    - Stephen Levine, Pivotal
+    - Sambhav Kothari, Bloomberg
+    - Natalie Arellano, VMware
   description: >-
-    Learn why you need a buildpack and how to create one. We'll take advantage of caching and Docker
-    layers to speed up rebuilds and deploys. Unlike Dockerfiles, buildpacks are composable. Finally,
-    you'll learn how to rebase your application layers on a new image. This allow operators to efficiently
-    handle the delivery of OS-level dependency upgrades. 
-  youtube_id: j9Ak5YLrihU
+    In this talk we will explore how lifecycle - the binary at the heart of buildpacks - makes all this possible.
+    We will be going through the 5 different stages that the lifecycle executes - detect, analyze, restore, 
+    build and finally export and how it stitches up the final OCI image.
+  event_name: PackagingCon
+  youtube_id: YoPUu8EryFY
+  year: 2021
   resources:
     - name: Slides
       icon: file-powerpoint
-      url: https://docs.google.com/presentation/d/14cjPH520VGx9aGi4rHRIqgl7RHdUmCRj6PYFEBINPhs/view
+      url: https://docs.google.com/presentation/d/1Ejo8Mf7GXxVHL7PjiApCZMJLtbX6VO8n2H7vEcZkV0I/view
 - name: "Pack to the Future: Cloud-Native Buildpacks on k8s"
   presenters:
     - Emily Casey, Pivotal
@@ -65,12 +72,45 @@
     experience and security guarantees provided by buildpacks. Cloud-Native Buildpacks (a CNCF sandbox
     project) represents a generational leap in buildpacks, bringing the power of buildpacks to k8s and
     beyond.
+  event_name: SpringOne Platform
   youtube_id: J2SXkmOo8iQ
   year: 2019
   resources:
     - name: Slides
       icon: file-powerpoint
       url: https://docs.google.com/presentation/d/14rkLA2hn3nVu_liiW6Y7hy3hSsnz1HueEdLkhvChONM/view
+- name: "Production CI/CD w/CNBs: Tekton, Gitlab & CircleCI(plus), Oh My!"
+  presenters:
+    - David Freilich, VMware
+    - Natalie Arellano, VMware
+  description: >-
+    Dive into some new functionality of Cloud Native Buildpacks which can be powerful in the enterprise
+    context, such as the ability to narrowly define trusted builders, allowing developers and operators
+    to restrict access to registry credentials, as well as the ability to create Windows images in a
+    number of CI/CD systems, including Tekton, Gitlab and CircleCI.
+  event_name: KubeCon NA
+  youtube_id: RNN8XwRWGjk
+  year: 2020
+  resources: 
+    - name: Slides
+      icon: file-powerpoint
+      url: https://docs.google.com/presentation/d/1vDv33oHU277mh6oCP7vBqQomMpPFIuzSmMTtfaQyBoY/view
+- name: "Deep Dive: Cloud Native Buildpacks"
+  presenters:
+    - Joe Kutner, Heroku
+    - Stephen Levine, Pivotal
+  year: 2019
+  description: >-
+    Learn why you need a buildpack and how to create one. We'll take advantage of caching and Docker
+    layers to speed up rebuilds and deploys. Unlike Dockerfiles, buildpacks are composable. Finally,
+    you'll learn how to rebase your application layers on a new image. This allow operators to efficiently
+    handle the delivery of OS-level dependency upgrades.
+  event_name: KubeCon NA
+  youtube_id: j9Ak5YLrihU
+  resources:
+    - name: Slides
+      icon: file-powerpoint
+      url: https://docs.google.com/presentation/d/14cjPH520VGx9aGi4rHRIqgl7RHdUmCRj6PYFEBINPhs/view
 - name: "Cloud Native Buildpacks: Containers for Everyone"
   presenters:
     - Danielle Adams, Heroku
@@ -81,24 +121,10 @@
     In this talk, Node developers can learn how to perform both OS and application-level upgrades,
     create Docker images without Dockerfiles, and run containerized Node.js apps with little
     configuration. (Docker experience not required.)
+  event_name: Node+JS Interactive
   youtube_id: "-u5FIbi3Gs8"
   year: 2019
   resources:
     - name: Slides
       icon: file-powerpoint
       url: https://slides.com/danielleadams/cnbs-node-js-interactive-19
-- name: "Production CI/CD w/CNBs: Tekton, Gitlab & CircleCI(plus), Oh My!"
-  presenters:
-    - David Freilich, VMware
-    - Natalie Arellano, VMware
-  description: >-
-    Dive into some new functionality of Cloud Native Buildpacks which can be powerful in the enterprise
-    context, such as the ability to narrowly define trusted builders, allowing developers and operators
-    to restrict access to registry credentials, as well as the ability to create Windows images in a
-    number of CI/CD systems, including Tekton, Gitlab and CircleCI.
-  youtube_id: RNN8XwRWGjk
-  year: 2020
-  resources: 
-    - name: Slides
-      icon: file-powerpoint
-      url: https://docs.google.com/presentation/d/1vDv33oHU277mh6oCP7vBqQomMpPFIuzSmMTtfaQyBoY/view
