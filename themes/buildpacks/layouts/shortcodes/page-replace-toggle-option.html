@@ -1,0 +1,3 @@
+<button type="button" class="btn btn-outline-primary" data-search='{{ .Get "search" }}' data-replace='{{ .Get "replace" }}'>
+  {{- .Inner | markdownify -}}
+</button>

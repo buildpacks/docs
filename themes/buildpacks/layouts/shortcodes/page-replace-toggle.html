@@ -1,0 +1,13 @@
+<div id="page-replacer" class="btn-group py-2" role="group">
+  {{- .Inner -}}
+</div>
+<script type="application/javascript">
+  jQuery('#page-replacer button').on('click', function() {
+    jQuery('#page-replacer button').removeClass('active');
+    let el = this;
+    jQuery(el).addClass('active');
+    jQuery('.docs-content *:not([data-search])').replaceText(el.dataset.search, el.dataset.replace);
+  });
+  jQuery('#page-replacer button:first').click();
+</script>
+
