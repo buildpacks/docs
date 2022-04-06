@@ -3,7 +3,7 @@
     - name: Arch Linux
       content: |
         On Arch Linux, there are two packages available:
-        
+
         - [pack-cli](https://aur.archlinux.org/packages/pack-cli/)
         - [pack-cli-bin](https://aur.archlinux.org/packages/pack-cli-bin/)
     - &container
@@ -36,7 +36,7 @@
       default: true
       content: |
         `pack` can be installed via [Homebrew](https://brew.sh/):
-        
+
         ```bash
         brew install buildpacks/tap/pack
         ```
@@ -59,7 +59,7 @@
     - &manually
       name: Manually
       content: |
-        To manually install `pack`, visit the [releases page on GitHub](https://github.com/buildpacks/pack/releases). 
+        To manually install `pack`, visit the [releases page on GitHub](https://github.com/buildpacks/pack/releases).
         1. Download the `.tgz` or `.zip` file for your platform
         2. Extract the `pack` binary
         3. (Optional) Add the directory containing `pack` to `PATH`
@@ -68,6 +68,19 @@
   methods:
     - *container
     - *homebrew
+    - name: Script Install
+      content: |
+        The following command will download the latest version of `pack` from [GitHub](https://github.com/buildpacks/pack/releases) and install it in `/usr/local/bin/`.
+
+        Intel:
+        ```bash
+        (curl -sSL "https://github.com/buildpacks/pack/releases/download/v<PACK_VERSION>/pack-v<PACK_VERSION>-macos.tgz" | sudo tar -C /usr/local/bin/ --no-same-owner -xzv pack)
+        ```
+
+        Apple Silicon:
+        ```bash
+        (curl -sSL "https://github.com/buildpacks/pack/releases/download/v<PACK_VERSION>/pack-v<PACK_VERSION>-macos-arm64.tgz" | sudo tar -C /usr/local/bin/ --no-same-owner -xzv pack)
+        ```
     - *manually
 - name: Windows
   methods:
@@ -81,8 +94,8 @@
     - *container
     - name: Scoop
       content: |
-       `pack` can be installed via [Scoop](https://scoop.sh/):
-        ```
-        scoop install pack
-        ```
+        `pack` can be installed via [Scoop](https://scoop.sh/):
+         ```
+         scoop install pack
+         ```
     - *manually
