@@ -783,6 +783,10 @@
             
               
               
+              <li><a href="#macos-script-install" class="nav-link small ">Script Install</a></li>
+            
+              
+              
               <li><a href="#macos-manually" class="nav-link small ">Manually</a></li>
             
           </ul>
@@ -823,6 +827,17 @@
               <div class="tab-pane px-3 fade active in show" id="macos-homebrew">
                 <p><code>pack</code> can be installed via <a href="https://brew.sh/">Homebrew</a>:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">brew install buildpacks/tap/pack
+</span></span></code></pre></div>
+              </div>
+            
+              
+              
+              <div class="tab-pane px-3 fade " id="macos-script-install">
+                <p>The following command will download the latest version of <code>pack</code> from <a href="https://github.com/buildpacks/pack/releases">GitHub</a> and install it in <code>/usr/local/bin/</code>.</p>
+<p>Intel:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">(</span>curl -sSL <span class="s2">&#34;https://github.com/buildpacks/pack/releases/download/v0.24.1/pack-v0.24.1-macos.tgz&#34;</span> <span class="p">|</span> sudo tar -C /usr/local/bin/ --no-same-owner -xzv pack<span class="o">)</span>
+</span></span></code></pre></div><p>Apple Silicon:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">(</span>curl -sSL <span class="s2">&#34;https://github.com/buildpacks/pack/releases/download/v0.24.1/pack-v0.24.1-macos-arm64.tgz&#34;</span> <span class="p">|</span> sudo tar -C /usr/local/bin/ --no-same-owner -xzv pack<span class="o">)</span>
 </span></span></code></pre></div>
               </div>
             
