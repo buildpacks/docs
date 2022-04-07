@@ -8,8 +8,8 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="This section provides a series of guides for migrating from one version of the Cloud Native Buildpack API specification (either buildpack or platform) to the next. Most buildpack users won&amp;rsquo;t…"/>
-<link rel="canonical" content="https://buildpacks.io/docs/reference/spec/migration/">
+
+<link rel="canonical" content="https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.7-0.8/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
 
@@ -17,12 +17,12 @@
 
 
 
-<meta property="og:title" content="Migration · Cloud Native Buildpacks">
+<meta property="og:title" content="Buildpack API 0.7 -&gt; 0.8 · Cloud Native Buildpacks">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://buildpacks.io/docs/reference/spec/migration/">
+<meta property="og:url" content="https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.7-0.8/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-<meta property="og:description" content="This section provides a series of guides for migrating from one version of the Cloud Native Buildpack API specification (either buildpack or platform) to the next. Most buildpack users won&amp;rsquo;t…">
+
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -33,7 +33,7 @@
 
 
 
-<meta property="twitter:title" content="Migration · Cloud Native Buildpacks">
+<meta property="twitter:title" content="Buildpack API 0.7 -&gt; 0.8 · Cloud Native Buildpacks">
 <meta property="twitter:card" content="summary">
 <meta property="twitter:image" content="https://buildpacks.io/images/buildpacks-social-card-square.jpg">
 <meta property="twitter:image:alt" content="Buildpacks project logo">
@@ -82,7 +82,7 @@
     gtag('config', 'G-CJLSR4FQXL');
   </script>
 
-  <title>Migration · Cloud Native Buildpacks</title>
+  <title>Buildpack API 0.7 - 0.8 · Cloud Native Buildpacks</title>
 </head>
 
 <body>
@@ -544,7 +544,7 @@
 <li data-nav-id="/docs/reference/spec/distribution-api/" class="dd-item depth-2">
   <a href="/docs/reference/spec/distribution-api/">Distribution API</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/" class="dd-item depth-2 parent active haschildren">
+<li data-nav-id="/docs/reference/spec/migration/" class="dd-item depth-2 parent haschildren">
   <a href="/docs/reference/spec/migration/">Migration</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.4-0.5/" class="dd-item depth-3">
@@ -556,7 +556,7 @@
 <li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.6-0.7/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/buildpack-api-0.6-0.7/">Buildpack API 0.6 -&gt; 0.7</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.7-0.8/" class="dd-item depth-3">
+<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.7-0.8/" class="dd-item depth-3 active">
   <a href="/docs/reference/spec/migration/buildpack-api-0.7-0.8/">Buildpack API 0.7 -&gt; 0.8</a>
 </li>
 <li data-nav-id="/docs/reference/spec/migration/platform-api-0.3-0.4/" class="dd-item depth-3">
@@ -595,12 +595,12 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BMigration%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Freference%2Fspec%2Fmigration%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BBuildpack&#43;API&#43;0.7&#43;-%26gt%3B&#43;0.8%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Freference%2Fspec%2Fmigration%2Fbuildpack-api-0.7-0.8%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/reference/spec/migration/_index.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/reference/spec/migration/buildpack-api-0.7-0.8.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
@@ -608,91 +608,41 @@
 
 
         <div class="heading">
-          <h1 class="title">Migration</h1>
+          <h1 class="title">Buildpack API 0.7 -&gt; 0.8</h1>
         </div>
 
-        <p>This section provides a series of guides for migrating from one version of the
-Cloud Native Buildpack API specification (either buildpack or platform) to the next. Most
-buildpack users won&rsquo;t need this information unless they are writing a buildpack or
-a platform that supports buildpacks.</p>
-<p>Each guide describes changes from the previous minor, who these changes impact,
-as well as any actions that may be necessary.</p>
-<p>The following guides are available:</p>
+        <p>This guide is most relevant to buildpack authors.</p>
+<p>See the <a href="https://github.com/buildpacks/spec/releases/tag/buildpack%2Fv0.8">spec release</a> for buildpack API 0.8 for the full list of changes and further details.</p>
+<h3 id="process-specific-working-directory">Process-Specific Working Directory</h3>
+<p>Buildpacks may specify the working directory for a process by setting the <code>working-dir</code> field on the process in <a href="https://github.com/buildpacks/spec/blob/buildpack/0.8/buildpack.md#launchtoml-toml"><code>launch.toml</code></a>.</p>
+<p>Prior to this, all processes ran from the app directory (<code>CNB_APP_DIR</code>).
+Running a process from a different directory typically involved running a shell to execute a <code>cd</code> command and then start the process, like:</p>
+<pre tabindex="0"><code>[[processes]]
+command = &#34;bash&#34;
+args = [&#34;-c&#34;, &#34;cd &lt;working-dir&gt; &amp;&amp; &lt;start-process&gt;&#34;]
+</code></pre><p>Buildpacks can now specify the process directly with a specific working directory, like:</p>
+<pre tabindex="0"><code>[[processes]]
+command = &#34;&lt;start-process&gt;&#34;
+working-dir = &#34;&lt;working-dir&gt;&#34;
+</code></pre><p>For details, see <a href="https://github.com/buildpacks/rfcs/blob/main/text/0081-process-specific-working-directory.md">RFC 81</a>.</p>
+<h3 id="deprecate-positional-args-to-build-and-detect-executables">Deprecate Positional Args to <code>build</code> and <code>detect</code> Executables</h3>
+<p>The positional arguments to the <code>detect</code> and <code>build</code> executables are deprecated.
+Lifecycle now accepts these values as environment variables.</p>
+<p>To upgrade, buildpack authors should use the following environment variables:</p>
+<p>For <code>detect</code>:</p>
+<ul>
+<li><code>CNB_PLATFORM_DIR</code> replaces the first positional argument.</li>
+<li><code>CNB_BUILD_PLAN_PATH</code> replaces the second positional argument.</li>
+</ul>
+<p>For <code>build</code>:</p>
+<ul>
+<li><code>CNB_LAYERS_DIR</code> replaces the first positional argument.</li>
+<li><code>CNB_PLATFORM_DIR</code> replaces the second positional argument.</li>
+<li><code>CNB_BP_PLAN_PATH</code> replaces the third positional argument.</li>
+</ul>
+<p>For details, see <a href="https://github.com/buildpacks/rfcs/blob/main/text/0100-buildpack-input-vars.md">RFC 100</a>.</p>
 
         
-      
-        
-          <h2><a href="https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.4-0.5/" class="">Buildpack API 0.4 -&gt; 0.5</a></h2>
-          <p class="m-1"></p>
-
-          
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.4-0.5/">Learn more →</a>
-            </div>
-        
-          <h2><a href="https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.5-0.6/" class="">Buildpack API 0.5 -&gt; 0.6</a></h2>
-          <p class="m-1"></p>
-
-          
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.5-0.6/">Learn more →</a>
-            </div>
-        
-          <h2><a href="https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.6-0.7/" class="">Buildpack API 0.6 -&gt; 0.7</a></h2>
-          <p class="m-1"></p>
-
-          
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.6-0.7/">Learn more →</a>
-            </div>
-        
-          <h2><a href="https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.7-0.8/" class="">Buildpack API 0.7 -&gt; 0.8</a></h2>
-          <p class="m-1"></p>
-
-          
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.7-0.8/">Learn more →</a>
-            </div>
-        
-          <h2><a href="https://buildpacks.io/docs/reference/spec/migration/platform-api-0.3-0.4/" class="">Platform API 0.3 -&gt; 0.4</a></h2>
-          <p class="m-1"></p>
-
-          
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/reference/spec/migration/platform-api-0.3-0.4/">Learn more →</a>
-            </div>
-        
-          <h2><a href="https://buildpacks.io/docs/reference/spec/migration/platform-api-0.4-0.5/" class="">Platform API 0.4 -&gt; 0.5</a></h2>
-          <p class="m-1"></p>
-
-          
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/reference/spec/migration/platform-api-0.4-0.5/">Learn more →</a>
-            </div>
-        
-          <h2><a href="https://buildpacks.io/docs/reference/spec/migration/platform-api-0.5-0.6/" class="">Platform API 0.5 -&gt; 0.6</a></h2>
-          <p class="m-1"></p>
-
-          
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/reference/spec/migration/platform-api-0.5-0.6/">Learn more →</a>
-            </div>
-        
-          <h2><a href="https://buildpacks.io/docs/reference/spec/migration/platform-api-0.6-0.7/" class="">Platform API 0.6 -&gt; 0.7</a></h2>
-          <p class="m-1"></p>
-
-          
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/reference/spec/migration/platform-api-0.6-0.7/">Learn more →</a>
-            </div>
-        
-          <h2><a href="https://buildpacks.io/docs/reference/spec/migration/platform-api-0.7-0.8/" class="">Platform API 0.7 -&gt; 0.8</a></h2>
-          <p class="m-1"></p>
-
-          
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/reference/spec/migration/platform-api-0.7-0.8/">Learn more →</a>
-            </div>
 
         <hr>
 <div class='footline d-block'>
@@ -700,12 +650,12 @@ as well as any actions that may be necessary.</p>
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BMigration%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Freference%2Fspec%2Fmigration%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BBuildpack&#43;API&#43;0.7&#43;-%26gt%3B&#43;0.8%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Freference%2Fspec%2Fmigration%2Fbuildpack-api-0.7-0.8%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/reference/spec/migration/_index.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/reference/spec/migration/buildpack-api-0.7-0.8.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   

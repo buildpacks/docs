@@ -558,6 +558,9 @@
 <li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.6-0.7/" class="dd-item depth-3 collapse">
   <a href="/docs/reference/spec/migration/buildpack-api-0.6-0.7/">Buildpack API 0.6 -&gt; 0.7</a>
 </li>
+<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.7-0.8/" class="dd-item depth-3 collapse">
+  <a href="/docs/reference/spec/migration/buildpack-api-0.7-0.8/">Buildpack API 0.7 -&gt; 0.8</a>
+</li>
 <li data-nav-id="/docs/reference/spec/migration/platform-api-0.3-0.4/" class="dd-item depth-3 collapse">
   <a href="/docs/reference/spec/migration/platform-api-0.3-0.4/">Platform API 0.3 -&gt; 0.4</a>
 </li>
@@ -622,19 +625,20 @@ This API will be used by buildpack authors.</p>
 can be executables compiled from a language like Go.</p>
 <h2 id="bindetect"><code>bin/detect</code></h2>
 <h3 id="usage">Usage</h3>
-<pre tabindex="0"><code>bin/detect PLATFORM_DIR BUILD_PLAN
+<pre tabindex="0"><code>bin/detect
 </code></pre><h3 id="summary">Summary</h3>
 <p>This entrypoint is used to determine if a buildpack should
 run against a given codebase. It will often check for the existence of a particular
 file or some configuration indicating what kind of application has been provided.
-It accepts two positional arguments:</p>
+Two environment variables identify important file system paths:</p>
 <ul>
-<li><code>PLATFORM_DIR</code> - a directory containing platform provided configuration, such as environment variables.</li>
-<li><code>BUILD_PLAN</code> - a path to a file containing the <a href="#build-plan">Build Plan</a>.</li>
+<li><code>CNB_PLATFORM_DIR</code> - a directory containing platform provided configuration, such as environment variables.</li>
+<li><code>CNB_BUILD_PLAN_PATH</code> - a path to a file containing the <a href="#build-plan">Build Plan</a>.</li>
 </ul>
 <p>In addition, the working directory is defined as the location of the codebase
 the buildpack will execute against.</p>
-<p>The executable must return an exit code of <code>0</code> if the codebase can be serviced by this buildpack.</p>
+<p>The executable must return an exit code of <code>0</code> if the codebase can be serviced by this buildpack, and <code>100</code> if it cannot.
+Other exit codes indicate an error during detection.</p>
 <h3 id="example">Example</h3>
 <p>This is a simple example of a buildpack that detects a Python application by
 checking for the presence of a <code>requirements.txt</code> file:</p>
@@ -644,25 +648,25 @@ if [ -f requirements.txt ]; then
   echo &#34;Python Buildpack&#34;
   exit 0
 else
-  exit 1
+  exit 100
 fi
 </code></pre><h2 id="binbuild"><code>bin/build</code></h2>
 <h3 id="usage-1">Usage</h3>
-<pre tabindex="0"><code>bin/build LAYERS_DIR PLATFORM_DIR BUILD_PLAN
+<pre tabindex="0"><code>bin/build
 </code></pre><p>This entrypoint transforms a codebase.
 It will often resolve dependencies, install binary packages, and compile code.
-It accepts three positional arguments:</p>
+Three environment variables identify important file system paths:</p>
 <ul>
-<li><code>LAYERS_DIR</code> - a directory that may contain subdirectories representing each layer created by the buildpack in the final image or build cache.</li>
-<li><code>PLATFORM_DIR</code> - a directory containing platform provided configuration, such as environment variables.</li>
-<li><code>BUILD_PLAN</code> - a path to a file containing the <a href="#build-plan">Build Plan</a>.</li>
+<li><code>CNB_LAYERS_DIR</code> - a directory that may contain subdirectories representing each layer created by the buildpack in the final image or build cache.</li>
+<li><code>CNB_PLATFORM_DIR</code> - a directory containing platform provided configuration, such as environment variables.</li>
+<li><code>CNB_BP_PLAN_PATH</code> - a path to a file containing the <a href="#build-plan">Build Plan</a>.</li>
 </ul>
 <p>In addition, the working directory is defined as the location of the codebase
 this buildpack will execute against.</p>
 <p>All changes to the codebase in the working directory will be included in the final
-image, along with any launch layers created in the <code>LAYERS_DIR</code>.</p>
+image, along with any launch layers created in the <code>CNB_LAYERS_DIR</code>.</p>
 <h4 id="layers">Layers</h4>
-<p>Each directory created by the buildpack under the <code>LAYERS_DIR</code> can be used for any
+<p>Each directory created by the buildpack under the <code>CNB_LAYERS_DIR</code> can be used for any
 of the following purposes:</p>
 <ul>
 <li>Launch - the directory will be included in the run image as a single layer</li>
@@ -670,8 +674,8 @@ of the following purposes:</p>
 <li>Build - the directory will be accessible by subsequent buildpacks</li>
 </ul>
 <p>A buildpack defines how a layer will by used by creating a <code>&lt;layer&gt;.toml</code> with
-a name matching the directory it describes in the <code>LAYERS_DIR</code>. For example, a
-buildpack might create a <code>$LAYERS_DIR/python</code> directory and a <code>$LAYERS_DIR/python.toml</code>
+a name matching the directory it describes in the <code>CNB_LAYERS_DIR</code>. For example, a
+buildpack might create a <code>$CNB_LAYERS_DIR/python</code> directory and a <code>$CNB_LAYERS_DIR/python.toml</code>
 with the following contents:</p>
 <pre tabindex="0"><code>launch = true
 cache = true
@@ -683,9 +687,7 @@ cached for future builds, and will be accessible to subsequent buildpacks.</p>
 to resolve dependencies:</p>
 <pre tabindex="0"><code>#!/bin/sh
 
-LAYERS_DIR=&#34;$1&#34;
-
-PIP_LAYER=&#34;$LAYERS_DIR/pip&#34;
+PIP_LAYER=&#34;$CNB_LAYERS_DIR/pip&#34;
 mkdir -p &#34;$PIP_LAYER/modules&#34; &#34;$PIP_LAYER/env&#34;
 
 pip install -r requirements.txt -t &#34;$PIP_LAYER/modules&#34; \
@@ -696,7 +698,7 @@ echo &#34;launch = true&#34; &gt; &#34;$PIP_LAYER.toml&#34;
 </code></pre><h2 id="buildpacktoml"><code>buildpack.toml</code></h2>
 <p>A buildpack must contain a <code>buildpack.toml</code> file in its root directory.</p>
 <h3 id="example-2">Example</h3>
-<pre tabindex="0"><code>api = &#34;0.7&#34;
+<pre tabindex="0"><code>api = &#34;0.8&#34;
 
 [buildpack]
 id = &#34;example.com/python&#34;
@@ -708,7 +710,7 @@ id = &#34;io.buildpacks.stacks.bionic&#34;
 <p>The schema is as follows:</p>
 <ul>
 <li>
-<p><strong><code>api</code></strong> <em>(string, required, current: <code>0.7</code>)</em><br>
+<p><strong><code>api</code></strong> <em>(string, required, current: <code>0.8</code>)</em><br>
 The Buildpack API version the buildpack adheres to. Used to ensure <a href="#api-compatibility">compatibility</a> against
 the <a href="/docs/concepts/components/lifecycle/">lifecycle</a>.</p>
 <blockquote>
@@ -855,7 +857,7 @@ version-source = &#34;.nvmrc&#34;
 <p>The NPM buildpack could write the following to the build plan, if the buildpack sees that <code>npm</code> is necessary (e.g., it sees a <code>package.json</code> file in the app directory):</p>
 <pre tabindex="0"><code>[[requires]]
 name = &#34;node&#34;
-</code></pre><p>If, looking in the <code>package.json</code> file, the NPM buildpack see a specific version of <code>node</code> requested in the <a href="https://docs.npmjs.com/files/package.json#engines">engines</a> field (e.g. <code>14.1</code>), it may write the following to the build plan:</p>
+</code></pre><p>If, looking in the <code>package.json</code> file, the NPM buildpack sees a specific version of <code>node</code> requested in the <a href="https://docs.npmjs.com/files/package.json#engines">engines</a> field (e.g. <code>14.1</code>), it may write the following to the build plan:</p>
 <pre tabindex="0"><code>[[requires]]
 name = &#34;node&#34;
 version = &#34;14.1&#34;
