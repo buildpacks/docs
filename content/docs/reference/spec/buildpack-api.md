@@ -22,7 +22,7 @@ can be executables compiled from a language like Go.
 ### Usage
 
 ```
-bin/detect PLATFORM_DIR BUILD_PLAN
+bin/detect
 ```
 
 ### Summary
@@ -30,15 +30,16 @@ bin/detect PLATFORM_DIR BUILD_PLAN
 This entrypoint is used to determine if a buildpack should
 run against a given codebase. It will often check for the existence of a particular
 file or some configuration indicating what kind of application has been provided.
-It accepts two positional arguments:
+Two environment variables identify important file system paths:
 
-* `PLATFORM_DIR` - a directory containing platform provided configuration, such as environment variables.
-* `BUILD_PLAN` - a path to a file containing the [Build Plan](#build-plan).
+* `CNB_PLATFORM_DIR` - a directory containing platform provided configuration, such as environment variables.
+* `CNB_BUILD_PLAN_PATH` - a path to a file containing the [Build Plan](#build-plan).
 
 In addition, the working directory is defined as the location of the codebase
 the buildpack will execute against.
 
-The executable must return an exit code of `0` if the codebase can be serviced by this buildpack.
+The executable must return an exit code of `0` if the codebase can be serviced by this buildpack, and `100` if it cannot.
+Other exit codes indicate an error during detection.
 
 ### Example
 
@@ -52,7 +53,7 @@ if [ -f requirements.txt ]; then
   echo "Python Buildpack"
   exit 0
 else
-  exit 1
+  exit 100
 fi
 ```
 
@@ -61,26 +62,26 @@ fi
 ### Usage
 
 ```
-bin/build LAYERS_DIR PLATFORM_DIR BUILD_PLAN
+bin/build
 ```
 
 This entrypoint transforms a codebase.
 It will often resolve dependencies, install binary packages, and compile code.
-It accepts three positional arguments:
+Three environment variables identify important file system paths:
 
-* `LAYERS_DIR` - a directory that may contain subdirectories representing each layer created by the buildpack in the final image or build cache.
-* `PLATFORM_DIR` - a directory containing platform provided configuration, such as environment variables.
-* `BUILD_PLAN` - a path to a file containing the [Build Plan](#build-plan).
+* `CNB_LAYERS_DIR` - a directory that may contain subdirectories representing each layer created by the buildpack in the final image or build cache.
+* `CNB_PLATFORM_DIR` - a directory containing platform provided configuration, such as environment variables.
+* `CNB_BP_PLAN_PATH` - a path to a file containing the [Build Plan](#build-plan).
 
 In addition, the working directory is defined as the location of the codebase
 this buildpack will execute against.
 
 All changes to the codebase in the working directory will be included in the final
-image, along with any launch layers created in the `LAYERS_DIR`.
+image, along with any launch layers created in the `CNB_LAYERS_DIR`.
 
 #### Layers
 
-Each directory created by the buildpack under the `LAYERS_DIR` can be used for any
+Each directory created by the buildpack under the `CNB_LAYERS_DIR` can be used for any
 of the following purposes:
 
 * Launch - the directory will be included in the run image as a single layer
@@ -88,8 +89,8 @@ of the following purposes:
 * Build - the directory will be accessible by subsequent buildpacks
 
 A buildpack defines how a layer will by used by creating a `<layer>.toml` with
-a name matching the directory it describes in the `LAYERS_DIR`. For example, a
-buildpack might create a `$LAYERS_DIR/python` directory and a `$LAYERS_DIR/python.toml`
+a name matching the directory it describes in the `CNB_LAYERS_DIR`. For example, a
+buildpack might create a `$CNB_LAYERS_DIR/python` directory and a `$CNB_LAYERS_DIR/python.toml`
 with the following contents:
 
 ```
@@ -109,9 +110,7 @@ to resolve dependencies:
 ```
 #!/bin/sh
 
-LAYERS_DIR="$1"
-
-PIP_LAYER="$LAYERS_DIR/pip"
+PIP_LAYER="$CNB_LAYERS_DIR/pip"
 mkdir -p "$PIP_LAYER/modules" "$PIP_LAYER/env"
 
 pip install -r requirements.txt -t "$PIP_LAYER/modules" \
@@ -129,7 +128,7 @@ A buildpack must contain a `buildpack.toml` file in its root directory.
 ### Example
 
 ```
-api = "0.7"
+api = "0.8"
 
 [buildpack]
 id = "example.com/python"
@@ -142,7 +141,7 @@ id = "io.buildpacks.stacks.bionic"
 ### Schema
 
 The schema is as follows:
-- **`api`** _(string, required, current: `0.7`)_\
+- **`api`** _(string, required, current: `0.8`)_\
     The Buildpack API version the buildpack adheres to. Used to ensure [compatibility](#api-compatibility) against
     the [lifecycle][lifecycle].
 
@@ -268,7 +267,7 @@ The NPM buildpack could write the following to the build plan, if the buildpack 
 name = "node"
 ```
 
-If, looking in the `package.json` file, the NPM buildpack see a specific version of `node` requested in the [engines](https://docs.npmjs.com/files/package.json#engines) field (e.g. `14.1`), it may write the following to the build plan:
+If, looking in the `package.json` file, the NPM buildpack sees a specific version of `node` requested in the [engines](https://docs.npmjs.com/files/package.json#engines) field (e.g. `14.1`), it may write the following to the build plan:
 ```
 [[requires]]
 name = "node"
