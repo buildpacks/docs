@@ -256,6 +256,8 @@
   </url><url>
     <loc>https://buildpacks.io/docs/reference/spec/migration/platform-api-0.7-0.8/</loc>
   </url><url>
+    <loc>https://buildpacks.io/docs/reference/spec/migration/platform-api-0.8-0.9/</loc>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/piper/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/reference/config/project-descriptor/</loc>
