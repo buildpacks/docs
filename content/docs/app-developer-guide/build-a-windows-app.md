@@ -4,18 +4,15 @@ weight=2
 summary="The basics of taking your Windows app from source code to runnable image."
 +++
 
-> **EXPERIMENTAL:**
->
-> - Please note that **Windows container support is currently experimental**. You may be asked to enable experimental features in `pack` when running the following commands. Simply follow the on-screen instructions to do so.
-> - If you encounter any problems while experimenting, we'd love for you to let us know by filing an issue on the [pack][pack-issues] or [lifecycle][lifecycle-issues] repo.
+### Precursor
 
-### Recommended reading
+#### Recommended reading
 
 Before trying out builds for Windows images, we recommend following the [Linux image tutorial][app-journey] under [Getting Started][getting-started]. Don't worry, you can still run it on a Windows OS if you need to -- just make sure to [enable Linux containers][container-mode] for Docker first.
 
 When you're done, head back here.
 
-### Enable Windows container mode
+#### Enable Windows container mode
 
 In order to produce Windows container images, ensure [Windows container mode][container-mode] is enabled in your Docker settings (available only in Docker for Windows).
 
@@ -24,6 +21,28 @@ Then, building a Windows app using Cloud Native Buildpacks is nearly identical t
 > **Not using Windows?**
 >
 > `pack` can build Windows apps using a remote Windows Docker by setting a `DOCKER_HOST`. [Learn more](#using-remote-docker-hosts)
+
+---
+
+### 0. Determine Windows Version
+
+Before we can start, we'll want to match your Windows environment.
+
+Type the following command in PowerShell:
+
+```powershell
+Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion" | Format-Table -Property ReleaseId, CurrentBuild
+```
+
+Select the output that best matches your environment:
+{{< page-replace-toggle >}}
+{{< page-replace-toggle-option search="2004" replace="1809" >}} Release ID: 1809, Build: <i>any</i> {{< /page-replace-toggle-option >}}
+{{< page-replace-toggle-option search="1809" replace="2004" >}} Release ID: 2009, Build: 1904<i>x</i> {{< /page-replace-toggle-option >}}
+{{< /page-replace-toggle >}}
+
+<small>[Learn more about compatibility][compatibility].</small>
+
+[compatibility]: https://docs.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/version-compatibility?tabs=windows-server-2019%2Cwindows-10-20H2#windows-client-host-os-compatibility
 
 ### 1. Select a builder
 
@@ -41,8 +60,11 @@ Now we can build our app. For this example we'll use our [samples][samples] repo
 # clone the repo
 git clone https://github.com/buildpacks/samples
 
+# change directory to samples
+cd samples
+
 # build the app
-pack build sample-app --path samples/apps/aspnet --builder cnbs/sample-builder:dotnet-framework-1809 --trust-builder
+pack build sample-app --path apps/aspnet --builder cnbs/sample-builder:dotnet-framework-1809 --trust-builder
 ```
 
 > **TIP:** The builder may take a few minutes to download on the first use.
