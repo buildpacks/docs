@@ -41,7 +41,8 @@
 <meta property="twitter:creator" content="@buildpacks_io">
 
   <script
-    src="https://cdn.jsdelivr.net/combine/npm/axios@0.21.0,npm/jquery@3.5.1,npm/bootstrap@4.5.3,npm/fullcalendar@5.4.0"></script>
+    src="https://cdn.jsdelivr.net/combine/npm/axios@0.21.0,npm/jquery@3.5.1,npm/bootstrap@4.5.3,npm/fullcalendar@5.4.0,npm/jquery-replacetext@1.1.0/replacetext.min.js"></script>
+
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css"
     crossorigin="anonymous">
@@ -614,23 +615,39 @@
           <h1 class="title">Build a Windows app</h1>
         </div>
 
-        <blockquote>
-<p><strong>EXPERIMENTAL:</strong></p>
-<ul>
-<li>Please note that <strong>Windows container support is currently experimental</strong>. You may be asked to enable experimental features in <code>pack</code> when running the following commands. Simply follow the on-screen instructions to do so.</li>
-<li>If you encounter any problems while experimenting, we&rsquo;d love for you to let us know by filing an issue on the <a href="https://github.com/buildpacks/pack/issues">pack</a> or <a href="https://github.com/buildpacks/lifecycle/issues">lifecycle</a> repo.</li>
-</ul>
-</blockquote>
-<h3 id="recommended-reading">Recommended reading</h3>
+        <h3 id="precursor">Precursor</h3>
+<h4 id="recommended-reading">Recommended reading</h4>
 <p>Before trying out builds for Windows images, we recommend following the <a href="/docs/app-journey">Linux image tutorial</a> under <a href="/docs">Getting Started</a>. Don&rsquo;t worry, you can still run it on a Windows OS if you need to &ndash; just make sure to <a href="https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers">enable Linux containers</a> for Docker first.</p>
 <p>When you&rsquo;re done, head back here.</p>
-<h3 id="enable-windows-container-mode">Enable Windows container mode</h3>
+<h4 id="enable-windows-container-mode">Enable Windows container mode</h4>
 <p>In order to produce Windows container images, ensure <a href="https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers">Windows container mode</a> is enabled in your Docker settings (available only in Docker for Windows).</p>
 <p>Then, building a Windows app using Cloud Native Buildpacks is nearly identical to <a href="/docs/app-developer-guide/build-an-app">building for Linux</a>:</p>
 <blockquote>
 <p><strong>Not using Windows?</strong></p>
 <p><code>pack</code> can build Windows apps using a remote Windows Docker by setting a <code>DOCKER_HOST</code>. <a href="#using-remote-docker-hosts">Learn more</a></p>
 </blockquote>
+<hr>
+<h3 id="0-determine-windows-version">0. Determine Windows Version</h3>
+<p>Before we can start, we&rsquo;ll want to match your Windows environment.</p>
+<p>Type the following command in PowerShell:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">Get-ItemProperty</span> <span class="s2">&#34;HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion&#34;</span> <span class="p">|</span> <span class="nb">Format-Table</span> <span class="n">-Property</span> <span class="n">ReleaseId</span><span class="p">,</span> <span class="n">CurrentBuild</span>
+</span></span></code></pre></div><p>Select the output that best matches your environment:
+<div id="page-replacer" class="btn-group py-2" role="group">
+<button type="button" class="btn btn-outline-primary" data-search='2004' data-replace='1809'>Release ID: 1809, Build: <i>any</i></button>
+<button type="button" class="btn btn-outline-primary" data-search='1809' data-replace='2004'>Release ID: 2009, Build: 1904<i>x</i></button>
+</div>
+<script type="application/javascript">
+  jQuery('#page-replacer button').on('click', function() {
+    jQuery('#page-replacer button').removeClass('active');
+    let el = this;
+    jQuery(el).addClass('active');
+    jQuery('.docs-content *:not([data-search])').replaceText(el.dataset.search, el.dataset.replace);
+  });
+  jQuery('#page-replacer button:first').click();
+</script>
+
+</p>
+<p><small><a href="https://docs.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/version-compatibility?tabs=windows-server-2019%2Cwindows-10-20H2#windows-client-host-os-compatibility">Learn more about compatibility</a>.</small></p>
 <h3 id="1-select-a-builder">1. Select a builder</h3>
 <p>To <a href="/docs/concepts/operations/build">build</a> an app you must first decide which <a href="/docs/concepts/components/builder">builder</a> you&rsquo;re going to use. A builder
 includes the <a href="/docs/concepts/components/buildpack">buildpacks</a> that will be used as well as the environment for building your
@@ -641,8 +658,11 @@ app.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># clone the repo</span>
 </span></span><span class="line"><span class="cl">git clone https://github.com/buildpacks/samples
 </span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># change directory to samples</span>
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> samples
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># build the app</span>
-</span></span><span class="line"><span class="cl">pack build sample-app --path samples/apps/aspnet --builder cnbs/sample-builder:dotnet-framework-1809 --trust-builder
+</span></span><span class="line"><span class="cl">pack build sample-app --path apps/aspnet --builder cnbs/sample-builder:dotnet-framework-1809 --trust-builder
 </span></span></code></pre></div><blockquote>
 <p><strong>TIP:</strong> The builder may take a few minutes to download on the first use.</p>
 </blockquote>
