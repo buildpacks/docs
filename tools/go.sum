@@ -241,6 +241,8 @@ github.com/buildpacks/pack v0.23.0 h1:VYeHWwR7TV0NWfb8dOmRM7YsjuF8pBmQ+/5GPr6+19
 github.com/buildpacks/pack v0.23.0/go.mod h1:eNVcFMwQ4INr/ZBU+L5SFVZWCr2eU3nv3aBxzhqmsrk=
 github.com/buildpacks/pack v0.24.0 h1:Oeq7DImb7PLX5z/11h5kWJC/YZtgCAxJiEBTU/XsnNo=
 github.com/buildpacks/pack v0.24.0/go.mod h1:3BMdtlXEXTHUGAv31eeuPAebXq+JYZhFrAd7tEi6m0g=
+github.com/buildpacks/pack v0.24.1 h1:CkrdFCWCk/I71E3noNmKtcPha1s+1F9j8ykhbxHLV04=
+github.com/buildpacks/pack v0.24.1/go.mod h1:3BMdtlXEXTHUGAv31eeuPAebXq+JYZhFrAd7tEi6m0g=
 github.com/cenkalti/backoff/v4 v4.1.1/go.mod h1:scbssz8iZGpm3xbr14ovlUdkxfGXNInqkPWOWmG2CLw=
 github.com/census-instrumentation/opencensus-proto v0.2.0/go.mod h1:f6KPmirojxKA12rnyqOA5BBL4O983OfeGPqjHWSTneU=
 github.com/census-instrumentation/opencensus-proto v0.2.1/go.mod h1:f6KPmirojxKA12rnyqOA5BBL4O983OfeGPqjHWSTneU=

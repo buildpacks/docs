@@ -2,12 +2,13 @@
   {{- .Inner -}}
 </div>
 <script type="application/javascript">
-  jQuery('#page-replacer button').on('click', function() {
+  jQuery('#page-replacer button').on('click', function () {
     jQuery('#page-replacer button').removeClass('active');
     let el = this;
     jQuery(el).addClass('active');
-    jQuery('.docs-content *:not([data-search])').replaceText(el.dataset.search, el.dataset.replace);
+    for (const search of el.dataset.search.split("|")) {
+      jQuery('.docs-content *:not([data-search])').replaceText(search, el.dataset.replace);
+    }
   });
   jQuery('#page-replacer button:first').click();
 </script>
-
