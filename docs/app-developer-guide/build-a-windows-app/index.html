@@ -615,7 +615,11 @@
           <h1 class="title">Build a Windows app</h1>
         </div>
 
-        <h3 id="precursor">Precursor</h3>
+        <blockquote>
+<p><strong>EXPERIMENTAL</strong> Windows support is experiment!</p>
+<p>Enable experimental mode by running: <code>pack config experimental true</code></p>
+</blockquote>
+<h3 id="precursor">Precursor</h3>
 <h4 id="recommended-reading">Recommended reading</h4>
 <p>Before trying out builds for Windows images, we recommend following the <a href="/docs/app-journey">Linux image tutorial</a> under <a href="/docs">Getting Started</a>. Don&rsquo;t worry, you can still run it on a Windows OS if you need to &ndash; just make sure to <a href="https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers">enable Linux containers</a> for Docker first.</p>
 <p>When you&rsquo;re done, head back here.</p>
@@ -633,19 +637,21 @@
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">Get-ItemProperty</span> <span class="s2">&#34;HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion&#34;</span> <span class="p">|</span> <span class="nb">Format-Table</span> <span class="n">-Property</span> <span class="n">ReleaseId</span><span class="p">,</span> <span class="n">CurrentBuild</span>
 </span></span></code></pre></div><p>Select the output that best matches your environment:
 <div id="page-replacer" class="btn-group py-2" role="group">
-<button type="button" class="btn btn-outline-primary" data-search='2004' data-replace='1809'>Release ID: 1809, Build: <i>any</i></button>
-<button type="button" class="btn btn-outline-primary" data-search='1809' data-replace='2004'>Release ID: 2009, Build: 1904<i>x</i></button>
+<button type="button" class="btn btn-outline-primary" data-search='1809|2004|2022' data-replace='1809'>Release ID: 1809, Build: <i>any</i></button>
+<button type="button" class="btn btn-outline-primary" data-search='1809|2004|2022' data-replace='2004'>Release ID: 2009, Build: 1904<i>x</i></button>
+<button type="button" class="btn btn-outline-primary" data-search='1809|2004|2022' data-replace='2022'>Release ID: 2009, Build: 2200<i>x</i></button>
 </div>
 <script type="application/javascript">
-  jQuery('#page-replacer button').on('click', function() {
+  jQuery('#page-replacer button').on('click', function () {
     jQuery('#page-replacer button').removeClass('active');
     let el = this;
     jQuery(el).addClass('active');
-    jQuery('.docs-content *:not([data-search])').replaceText(el.dataset.search, el.dataset.replace);
+    for (const search of el.dataset.search.split("|")) {
+      jQuery('.docs-content *:not([data-search])').replaceText(search, el.dataset.replace);
+    }
   });
   jQuery('#page-replacer button:first').click();
 </script>
-
 </p>
 <p><small><a href="https://docs.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/version-compatibility?tabs=windows-server-2019%2Cwindows-10-20H2#windows-client-host-os-compatibility">Learn more about compatibility</a>.</small></p>
 <h3 id="1-select-a-builder">1. Select a builder</h3>
