@@ -4,6 +4,10 @@ weight=2
 summary="The basics of taking your Windows app from source code to runnable image."
 +++
 
+> **EXPERIMENTAL** Windows support is experiment!
+>
+> Enable experimental mode by running: `pack config experimental true`
+
 ### Precursor
 
 #### Recommended reading
@@ -36,8 +40,9 @@ Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion" | Format-T
 
 Select the output that best matches your environment:
 {{< page-replace-toggle >}}
-{{< page-replace-toggle-option search="2004" replace="1809" >}} Release ID: 1809, Build: <i>any</i> {{< /page-replace-toggle-option >}}
-{{< page-replace-toggle-option search="1809" replace="2004" >}} Release ID: 2009, Build: 1904<i>x</i> {{< /page-replace-toggle-option >}}
+{{< page-replace-toggle-option search="1809|2004|2022" replace="1809" >}} Release ID: 1809, Build: <i>any</i> {{< /page-replace-toggle-option >}}
+{{< page-replace-toggle-option search="1809|2004|2022" replace="2004" >}} Release ID: 2009, Build: 1904<i>x</i> {{< /page-replace-toggle-option >}}
+{{< page-replace-toggle-option search="1809|2004|2022" replace="2022" >}} Release ID: 2009, Build: 2200<i>x</i> {{< /page-replace-toggle-option >}}
 {{< /page-replace-toggle >}}
 
 <small>[Learn more about compatibility][compatibility].</small>
