@@ -1,6 +1,6 @@
 +++
 title="Software Bill of Materials"
-summary="A Software `Software Bill-of-Materials` (`SBoM`) gives you a layer-by-layer view of what's inside your container in a variety of formats."
+summary="A `Software Bill-of-Materials` (`SBoM`) gives you a layer-by-layer view of what's inside your container in a variety of formats."
 +++
 
 ## Summary
