@@ -165,7 +165,7 @@ tools-tidy:
 	cd tools; go mod tidy
 
 .PHONY: prepare-for-pr
-prepare-for-pr: check-links test tools-tidy
+prepare-for-pr: check-links test tools-tidy katacoda
 	@echo "========"
 	@echo "It looks good! :)"
 	@echo "Make sure to commit all changes!"

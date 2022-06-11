@@ -4,7 +4,7 @@ content/docs/app-developer-guide/using-cache-image.md,katacoda/scenarios/app-dev
 content/docs/app-developer-guide/environment-variables.md,katacoda/scenarios/app-developer-guide/environment-variables.md
 content/docs/app-developer-guide/mounting-volumes.md,katacoda/scenarios/app-developer-guide/mounting-volumes.md
 content/docs/app-developer-guide/run-an-app.md,katacoda/scenarios/app-developer-guide/run-an-app.md
-content/docs/app-developer-guide/specify-buildpacks.md,katacoda/scenarios/app-developer-guide/specify-buildpacks.md#
+content/docs/app-developer-guide/specify-buildpacks.md,katacoda/scenarios/app-developer-guide/specify-buildpacks.md
 content/docs/buildpack-author-guide/create-buildpack/_index.md,katacoda/scenarios/buildpack-author-guide/intro.md
 content/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials.md,katacoda/scenarios/buildpack-author-guide/adding-bill-of-materials.md
 content/docs/buildpack-author-guide/create-buildpack/build-app.md,katacoda/scenarios/buildpack-author-guide/build-app.md
