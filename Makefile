@@ -98,7 +98,7 @@ check-pack-cli-version:
 .PHONY: install-ugo
 install-ugo:
 	@echo "> Installing ugo..."
-	cd tools; go install github.com/jromero/ugo/cmd/ugo@0.0.3
+	cd tools; go install github.com/jromero/ugo/cmd/ugo@0.0.4
 
 .PHONY: pack-docs-update
 pack-docs-update: upgrade-pack
