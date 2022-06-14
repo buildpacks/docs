@@ -28,8 +28,8 @@ source &amp;#34;https://rubygems.org&amp;#34; git_source(:github) {|repo_name| &
 Let&amp;rsquo;s create the directory where your buildpack will live:
 Using the Pack CLI The buildpack new &amp;lt;id&amp;gt; command will create a directory named for the buildpack ID.
 Example:
-pack buildpack new examples/ruby \  --api 0.7 \  --path ruby-buildpack \  --version 0.0.1 \  --stacks io.buildpacks.samples.stacks.bionic This command will create ruby-buildpack directory which contains buildpack.toml, bin/build, bin/detect files.
-Additional Parameters  -a, --api Buildpack API compatibility of the generated buildpack -h, --help Help for &amp;rsquo;new&#39; --path the location on the filesystem to generate the artifacts.</description>
+pack buildpack new examples/ruby \ --api 0.7 \ --path ruby-buildpack \ --version 0.0.1 \ --stacks io.buildpacks.samples.stacks.bionic This command will create ruby-buildpack directory which contains buildpack.toml, bin/build, bin/detect files.
+Additional Parameters -a, --api Buildpack API compatibility of the generated buildpack -h, --help Help for &amp;rsquo;new&#39; --path the location on the filesystem to generate the artifacts.</description>
     </item>
     
     <item>
@@ -51,7 +51,7 @@ if [[ ! -f Gemfile ]]; then exit 100 fi Your ruby-buildpack/bin/detect script sh
       
       <guid>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/build-app/</guid>
       <description>Now we&amp;rsquo;ll change the build step you created to install application dependencies. This will require updates to the build script such that it performs the following steps:
- Creates a layer for the Ruby runtime Downloads the Ruby runtime and installs it to the layer Installs Bundler (the Ruby dependency manager) Uses Bundler to install dependencies  By doing this, you&amp;rsquo;ll learn how to create arbitrary layers with your buildpack, and how to read the contents of the app in order to perform actions like downloading dependencies.</description>
+Creates a layer for the Ruby runtime Downloads the Ruby runtime and installs it to the layer Installs Bundler (the Ruby dependency manager) Uses Bundler to install dependencies By doing this, you&amp;rsquo;ll learn how to create arbitrary layers with your buildpack, and how to read the contents of the app in order to perform actions like downloading dependencies.</description>
     </item>
     
     <item>
@@ -105,7 +105,7 @@ Select Ruby version We&amp;rsquo;ll allow buildpack users to define the desired 
       
       <guid>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials/</guid>
       <description>One of the benefits of buildpacks is they can also populate the app image with metadata from the build process, allowing you to audit the app image for information like:
- The process types that are available and the commands associated with them The run-image the app image was based on The buildpacks were used to create the app image And more&amp;hellip;!  You can find some of this information using pack via its inspect-image command.</description>
+The process types that are available and the commands associated with them The run-image the app image was based on The buildpacks were used to create the app image And more&amp;hellip;! You can find some of this information using pack via its inspect-image command.</description>
     </item>
     
   </channel>

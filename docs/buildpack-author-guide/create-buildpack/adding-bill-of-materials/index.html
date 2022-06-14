@@ -9,7 +9,7 @@
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="One of the benefits of buildpacks is they can also populate the app image with metadata from the build process, allowing you to audit the app image for information like:
- The process types that are…"/>
+The process types that are…"/>
 <link rel="canonical" content="https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
@@ -24,7 +24,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
 <meta property="og:description" content="One of the benefits of buildpacks is they can also populate the app image with metadata from the build process, allowing you to audit the app image for information like:
- The process types that are…">
+The process types that are…">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -639,9 +639,9 @@
 </span></span><span class="line"><span class="cl">  examples/ruby        0.0.1          -
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">Processes:
-</span></span><span class="line"><span class="cl">  TYPE                 SHELL        COMMAND                        ARGS
-</span></span><span class="line"><span class="cl">  web (default)        bash         bundle exec ruby app.rb        
-</span></span><span class="line"><span class="cl">  worker               bash         bundle exec ruby worker.rb
+</span></span><span class="line"><span class="cl">  TYPE                 SHELL        COMMAND                           ARGS        WORK DIR
+</span></span><span class="line"><span class="cl">  web (default)        bash         bundle exec ruby app.rb                       /workspace
+</span></span><span class="line"><span class="cl">  worker               bash         bundle exec ruby worker.rb                    /workspace
 </span></span></code></pre></div><p>Apart from the above standard metadata, buildpacks can also populate information about the dependencies they have provided in form of a <code>Bill-of-Materials</code>. Let&rsquo;s see how we can use this to populate information about the version of <code>ruby</code> that was installed in the output app image.</p>
 <p>To add the <code>ruby</code> version to the output of <code>pack download sbom</code>, we will have to provide a <a href="https://en.wikipedia.org/wiki/Software_bill_of_materials">Software <code>Bill-of-Materials</code></a> (<code>SBOM</code>) containing this information. There are three &ldquo;standard&rdquo; ways to report SBOM data.  You&rsquo;ll need to choose to use on of <a href="https://cyclonedx.org/">CycloneDX</a>, <a href="https://spdx.dev/">SPDX</a> or <a href="https://github.com/anchore/syft">Syft</a> update the <code>ruby.sbom.&lt;ext&gt;</code> (where <code>&lt;ext&gt;</code> is the extension appropriate for your SBOM standard, one of <code>cdx.json</code>, <code>spdx.json</code> or <code>syft.json</code>) at the end of your <code>build</code> script.  Discussion of which SBOM format to choose is outside the scope of this tutorial, but we will note that the SBOM format you choose to use is likely to be the output format of any SBOM scanner (eg: <a href="https://github.com/anchore/syft"><code>syft cli</code></a>) you might choose to use.  In this example we will use the CycloneDX json format.</p>
 <p>First, annotate the <code>buildpack.toml</code> to specify that it emits CycloneDX:</p>

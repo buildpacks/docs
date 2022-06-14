@@ -631,6 +631,7 @@
   -r, --buildpack-registry string   Buildpack Registry by name
       --cache-image string          Cache build layers in remote registry. Requires --publish
       --clear-cache                 Clear image&#39;s associated cache before building
+      --creation-time string        Desired create time in the output image config. Accepted values are Unix timestamps (e.g., &#39;1641013200&#39;), or &#39;now&#39;. Platform API version must be at least 0.9 to use this feature.
   -D, --default-process string      Set the default process type. (default &#34;web&#34;)
   -d, --descriptor string           Path to the project descriptor file
       --docker-host string          Address to docker daemon that will be exposed to the build container.
