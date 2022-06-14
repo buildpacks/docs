@@ -31,9 +31,9 @@ Buildpacks:
   examples/ruby        0.0.1          -
 
 Processes:
-  TYPE                 SHELL        COMMAND                        ARGS
-  web (default)        bash         bundle exec ruby app.rb        
-  worker               bash         bundle exec ruby worker.rb
+  TYPE                 SHELL        COMMAND                           ARGS        WORK DIR
+  web (default)        bash         bundle exec ruby app.rb                       /workspace
+  worker               bash         bundle exec ruby worker.rb                    /workspace
 ```
 
 Apart from the above standard metadata, buildpacks can also populate information about the dependencies they have provided in form of a `Bill-of-Materials`. Let's see how we can use this to populate information about the version of `ruby` that was installed in the output app image.
