@@ -1038,7 +1038,7 @@ This API is used by platform implementors.&lt;/p&gt;</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://buildpacks.io/docs/features/bill-of-materials/</guid>
-      <description>A Software &lt;code&gt;Software Bill-of-Materials&lt;/code&gt; (&lt;code&gt;SBoM&lt;/code&gt;) gives you a layer-by-layer view of what&amp;rsquo;s inside your container in a variety of formats.</description>
+      <description>A &lt;code&gt;Software Bill-of-Materials&lt;/code&gt; (&lt;code&gt;SBoM&lt;/code&gt;) gives you a layer-by-layer view of what&amp;rsquo;s inside your container in a variety of formats.</description>
     </item>
     
     <item>
