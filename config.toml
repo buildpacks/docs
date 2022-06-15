@@ -18,6 +18,8 @@ description = "Cloud Native Buildpacks transform your application source code in
 
 pack_version_env_var = "PACK_VERSION"
 
+featureKatacoda = false
+
 [menu]
 
   [[menu.main]]
