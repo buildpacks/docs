@@ -1,1 +1,3 @@
+{{ if $.Site.Params.featureKatacoda }}
 <a href='{{- .Get "href" -}}' class='button learn-button icon-button {{ with .Get "color"}}bg-{{.}}{{ end }}'>{{- .Inner -}}</a><br />
+{{ end }}
