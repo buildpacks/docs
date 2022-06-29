@@ -52,7 +52,7 @@
   {{- if ne $numberOfPages 0 }}
   {{- $depth = add (int $depth) 1 }}
   <ul class="ml-2">
-    {{- $expand = .Params.expand -}}
+    {{- $expand = (or .Params.expand $isCurrent) -}}
     {{- $pages := (.Pages | union .Sections) }}
     {{- range $pages.ByWeight }}
     {{- if (not .Params.hidden) }}
