@@ -37,7 +37,6 @@ pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 
 You should see the following output:
 
-<!-- test:assert=contains -->
 ```
 ===> ANALYZING
 Previous image with name "test-ruby-app" not found
