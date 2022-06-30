@@ -12,7 +12,7 @@ require (
 	github.com/bep/debounce v1.2.1 // indirect
 	github.com/bep/gitmap v1.3.0 // indirect
 	github.com/buildpacks/lifecycle v0.14.1 // indirect
-	github.com/buildpacks/pack v0.26.0
+	github.com/buildpacks/pack v0.27.0
 	github.com/clbanning/mxj/v2 v2.5.6 // indirect
 	github.com/containerd/cgroups v1.0.4 // indirect
 	github.com/containerd/containerd v1.6.6 // indirect
@@ -32,6 +32,7 @@ require (
 	github.com/pelletier/go-toml/v2 v2.0.2 // indirect
 	github.com/rivo/tview v0.0.0-20220610163003-691f46d6f500 // indirect
 	github.com/spf13/cobra v1.4.0
+	github.com/spf13/viper v1.10.0 // indirect
 	github.com/tdewolff/minify/v2 v2.11.9 // indirect
 	github.com/tdewolff/parse/v2 v2.6.0 // indirect
 	gocloud.dev v0.25.0 // indirect
