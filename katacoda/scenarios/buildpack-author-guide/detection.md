@@ -34,7 +34,6 @@ pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 You should see the following output:
 
 ```
-===> ANALYZING
 Previous image with name "test-ruby-app" not found
 ===> DETECTING
 examples/ruby 0.0.1
