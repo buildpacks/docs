@@ -35,7 +35,6 @@ You should see the following output:
 
 <!-- test:assert=contains -->
 ```
-===> ANALYZING
 Previous image with name "test-ruby-app" not found
 ===> DETECTING
 examples/ruby 0.0.1
