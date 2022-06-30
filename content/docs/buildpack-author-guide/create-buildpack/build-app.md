@@ -129,8 +129,6 @@ You will see the following output:
 ```
 ===> DETECTING
 ...
-===> ANALYZING
-...
 ===> RESTORING
 ===> BUILDING
 ---> Ruby Buildpack
