@@ -47,7 +47,7 @@ examples/ruby 0.0.1
 ===> BUILDING
 ---> Ruby Buildpack
 ERROR: failed to build: exit status 1
-ERROR: failed to build: executing lifecycle
+ERROR: failed to build: executing lifecycle: failed with status code: 51
 ```
 
 Notice that `detect` now passes because there is a valid `Gemfile` in the Ruby app at `ruby-sample-app`, but now `build` fails because it is currently written to error out.
