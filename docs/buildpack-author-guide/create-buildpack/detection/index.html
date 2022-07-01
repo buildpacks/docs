@@ -636,7 +636,6 @@ Replace exit 1 in the detect script with the following…">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 </span></span></code></pre></div><!--+- "{{execute}}"+-->
 <p>You should see the following output:</p>
-<!-- test:assert=contains -->
 <pre tabindex="0"><code>Previous image with name &#34;test-ruby-app&#34; not found
 ===&gt; DETECTING
 examples/ruby 0.0.1
@@ -644,7 +643,7 @@ examples/ruby 0.0.1
 ===&gt; BUILDING
 ---&gt; Ruby Buildpack
 ERROR: failed to build: exit status 1
-ERROR: failed to build: executing lifecycle
+ERROR: failed to build: executing lifecycle: failed with status code: 51
 </code></pre><p>Notice that <code>detect</code> now passes because there is a valid <code>Gemfile</code> in the Ruby app at <code>ruby-sample-app</code>, but now <code>build</code> fails because it is currently written to error out.</p>
 <p>You will also notice that <code>ANALYZING</code> now appears in the build output. This step is part of the buildpack lifecycle that looks to see if any previous image builds have layers that the buildpack can re-use. We will get into this topic in more detail later.</p>
 <!--+if false+-->
