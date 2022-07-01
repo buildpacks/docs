@@ -82,13 +82,12 @@ install-pack-cli: upgrade-pack
 	else \
 		echo "pack already installed at $(PACK_BIN)"; \
 	fi
-	@echo "pack version: $(shell pack --version)"
+	@echo "pack version: " `pack --version`
 
 .PHONY: check-pack-cli-version
-check-pack-cli-version: export INSTALLED_VERSION:=$(shell pack --version | cut -d '+' -f 1)
 check-pack-cli-version:
-	@echo "> Installed pack version: $(INSTALLED_VERSION)"
-	@if [ "$(INSTALLED_VERSION)" != "$(PACK_VERSION)" ]; then \
+	@echo "> Installed pack version: " `pack --version | cut -d '+' -f 1`
+	@if [ `pack --version | cut -d '+' -f 1` != "$(PACK_VERSION)" ]; then \
 		echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"; \
 		echo "WARNING: Expected pack version: $(PACK_VERSION)"; \
 		echo "You may need to upgrade your version of pack!  "; \
