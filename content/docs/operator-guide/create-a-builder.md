@@ -30,7 +30,7 @@ uri = "samples/buildpacks/hello-processes"
 [[buildpacks]]
 # Packaged buildpacks to include in builder;
 # the "hello-universe" package contains the "hello-world" and "hello-moon" buildpacks
-uri = "cnbs/sample-package:hello-universe"
+uri = "docker://cnbs/sample-package:hello-universe"
 
 # Order used for detection
 [[order]]
