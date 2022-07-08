@@ -4,7 +4,9 @@ weight=2
 summary="The basics of taking your app from source code to runnable ARM image."
 +++
 
-As of today, there are no CNB platforms (e.g. [pack][pack]) that support building ARM application images. In the following tutorial, we will be performing a build "manually", in that we will be performing a build by invoking the lifecycle directly.
+As of today, there are no known released CNB builder images that support building ARM application images. Users can create their own ARM64 builder image by following [this guide][this guide].
+
+In the following tutorial, we will be performing a build "manually", in that we will be performing a build by invoking the lifecycle directly.
 
 ### 1. Prepare your working directory
 
@@ -90,3 +92,4 @@ The app image should now be built and stored on the docker daemon. You may perfo
 [docker]: https://docs.docker.com
 [samples]: https://github.com/buildpacks/samples
 [lifecycle]: https://github.com/buildpacks/lifecycle
+[this guide]: https://github.com/dmikusa-pivotal/paketo-arm64
