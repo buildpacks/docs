@@ -615,7 +615,8 @@
           <h1 class="title">Build an ARM app</h1>
         </div>
 
-        <p>As of today, there are no CNB platforms (e.g. <a href="https://github.com/buildpacks/pack">pack</a>) that support building ARM application images. In the following tutorial, we will be performing a build &ldquo;manually&rdquo;, in that we will be performing a build by invoking the lifecycle directly.</p>
+        <p>As of today, there are no known released CNB builder images that support building ARM application images. Users can create their own ARM64 builder image by following <a href="https://github.com/dmikusa-pivotal/paketo-arm64">this guide</a>.</p>
+<p>In the following tutorial, we will be performing a build &ldquo;manually&rdquo;, in that we will be performing a build by invoking the lifecycle directly.</p>
 <h3 id="1-prepare-your-working-directory">1. Prepare your working directory</h3>
 <p>On your Linux ARM machine with a <a href="https://docs.docker.com">docker</a> daemon installed, prepare the following directory tree structure.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tree ~/workspace/
