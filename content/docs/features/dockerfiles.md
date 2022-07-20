@@ -219,4 +219,4 @@ Your feedback is appreciated! As the feature evolves, we want to hear from you -
 and anything else you'd like to see. Please reach out in [Slack](https://cncf.slack.io) (#buildpacks channel)
 or [GitHub](https://github.com/buildpacks).
 
-[TODO]: /docs/_index.md
+[TODO]: /docs/index.html
