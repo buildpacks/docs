@@ -144,13 +144,11 @@ Successfully built image hello-extensions
     called `curl`
   * `cat extensions/curl/bin/generate` - the extension generates a Dockerfile that switches the runtime base image
     reference to `run-image-curl`
-  * If we want to use this extension, we need an image with reference `run-image-curl` in our export target - in this
-    case, the Docker daemon. Let's build that image:
+  * Build a run image with reference `run-image-curl`, so that we can use the extension:
     * `cat $workspace/samples/stacks/alpine/run/curl.Dockerfile` - this is a simple Dockerfile that creates a CNB run
       image by adding the required user configuration and `io.buildpacks.stack.id` label; the Dockerfile could come from
       anywhere - we include it in the `stacks` directory for convenience
-    * `docker build --tag run-image-curl --file $workspace/samples/stacks/alpine/run/curl.Dockerfile .` - build the run
-      image
+    * `docker build --tag run-image-curl --file $workspace/samples/stacks/alpine/run/curl.Dockerfile .`
   * Re-create our builder with the `hello-extensions` buildpack updated to require `curl`:
     * Edit `$workspace/samples/buildpacks/hello-extensions/bin/detect` to uncomment the lines that output `[[requires]]`
       to the build plan
