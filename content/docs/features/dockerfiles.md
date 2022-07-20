@@ -17,7 +17,7 @@ Buildpacks are often presented as an alternative to Dockerfiles, but we think bu
 together. Whereas buildpacks are optimized for creating layers that are efficient and logically mapped to the
 dependencies that they provide, Dockerfiles are the most-used and best-understood mechanism for constructing base images
 and installing OS-level dependencies for containers. The CNB Dockerfiles feature allows Dockerfiles to "provide"
-dependencies that buildpacks "require" through a shared [build plan](TODO), by introducing the concept of image
+dependencies that buildpacks "require" through a shared [build plan][TODO], by introducing the concept of image
 extensions ([**experimental**](#risks)).
 
 ## What are image extensions?
@@ -25,7 +25,7 @@ extensions ([**experimental**](#risks)).
 Image extensions are somewhat like buildpacks, although they are also very different. Their purpose is to generate
 Dockerfiles that can be used to extend the builder or run images prior to buildpacks builds. Like buildpacks, extensions
 participate in the `detect` phase - analyzing application source code to determine if they are needed. During `detect`,
-extensions can contribute to the [build plan](TODO) - recording dependencies that they are able to "provide" (though
+extensions can contribute to the [build plan][TODO] - recording dependencies that they are able to "provide" (though
 unlike buildpacks, they can't "require" anything). If the provided order contains extensions, the output of `detect`
 will be a group of image extensions and a group of buildpacks that together produce a valid build plan.
 
@@ -50,7 +50,7 @@ An image extension could be defined with the following directory:
   outputs either or both of `build.Dockerfile` or `run.Dockerfile` for extending the builder or run image,
   respectively (in the [initial implementation](#phased-approach), only limited `run.Dockerfile`s are allowed).
 
-For more information, see [authoring an image extension](TODO).
+For more information, see [authoring an image extension][TODO].
 
 ## A platform's perspective
 
@@ -59,7 +59,7 @@ at build time.
 
 To use image extensions, a platform should do the following:
 
-* Include image extensions in the provided builder (see [packaging an image extension](TODO))
+* Include image extensions in the provided builder (see [packaging an image extension][TODO])
 * When invoking the `detector` binary, include image extensions in the provided order
   * Note that the new `generate` phase is a responsibility of the `detector` and thus happens automatically after (and
     in the same container as) `detect`
@@ -77,7 +77,7 @@ operators should be mindful that:
 
 * Dockerfiles are very powerful - in fact, you can do anything with a Dockerfile! Introducing image extensions into your
   CNB builds can eliminate the security and compatibility guarantees that buildpacks provide if not done with great
-  care. Consult the [guidelines and best practices](TODO) for more information.
+  care. Consult the [guidelines and best practices][TODO] for more information.
 * When Dockerfiles are used to switch the run image from that defined on the provided builder, the resulting run image
   may not have all the mixins required by buildpacks in the builder. Platforms may wish to optionally re-validate mixins
   prior to `export` when using extensions.
@@ -221,3 +221,5 @@ use cases. Consult the [RFC](https://github.com/buildpacks/rfcs/pull/173) for fu
 Your feedback is appreciated! As the feature evolves, we want to hear from you - what's going well, what's challenging,
 and anything else you'd like to see. Please reach out in [Slack](cncf.slack.io) (#buildpacks channel)
 or [GitHub](github.com/buildpacks).
+
+[TODO]: /docs/_index.md
