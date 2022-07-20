@@ -22,21 +22,22 @@ extensions ([**experimental**](#risks)).
 
 ## What are image extensions?
 
-Image extensions are somewhat like buildpacks, although there are important differences. Like buildpacks, extensions
-participate in the `detect` phase - analyzing application source code to determine if they are needed. During `detect`
-, extensions can contribute to the [build plan](TODO) - recording dependencies that they are able to "provide" (though
-unlike buildpacks, they don't "require" anything). If the provided order contains extensions, the output of `detect`
-will be an (optional) group of image extensions and a group of buildpacks that together produce a valid build plan.
+Image extensions are somewhat like buildpacks, although they are also very different. Their purpose is to generate
+Dockerfiles that can be used to extend the builder or run images prior to buildpacks builds. Like buildpacks, extensions
+participate in the `detect` phase - analyzing application source code to determine if they are needed. During `detect`,
+extensions can contribute to the [build plan](TODO) - recording dependencies that they are able to "provide" (though
+unlike buildpacks, they can't "require" anything). If the provided order contains extensions, the output of `detect`
+will be a group of image extensions and a group of buildpacks that together produce a valid build plan.
 
-The selected group of image extensions will be used to generate Dockerfiles that can be used to extend the build- or
-run-time base images prior to the `build` and `export` phases (in the [initial implementation](#phased-approach), only
-limited Dockerfiles for run-image customization are allowed).
+The selected group of image extensions will be used to generate Dockerfiles prior to the `build` and `export` phases (in
+the [initial implementation](#phased-approach), only limited Dockerfiles for run-image customization are allowed). Image
+extensions only generate Dockerfiles - they don't create layers or participate in the `build` phase.
 
 An image extension could be defined with the following directory:
 
 ```
 .
-├── extension.toml <- similar to a buildpack extension.toml
+├── extension.toml <- similar to a buildpack buildpack.toml
 ├── bin
 │   ├── detect     <- similar to a buildpack ./bin/detect
 │   ├── generate   <- similar to a buildpack ./bin/build
@@ -45,40 +46,74 @@ An image extension could be defined with the following directory:
 * The `extension.toml` describes the extension, containing information such as its name, ID, and version.
 * `./bin/detect` is invoked during the `detect` phase. It analyzes application source code to determine if the extension
   is needed and contributes build plan entries.
-* `./bin/generate` is invoked during the `generate` phase. It outputs either or both of `build.Dockerfile` or
-  `run.Dockerfile` for extending the build- or run-time base image, respectively (in
-  the [initial implementation](#phased-approach), only limited `run.Dockerfile`s are allowed).
+* `./bin/generate` is invoked during the `generate` phase (a new lifecycle phase that happens after `detect`). It
+  outputs either or both of `build.Dockerfile` or `run.Dockerfile` for extending the builder or run image,
+  respectively (in the [initial implementation](#phased-approach), only limited `run.Dockerfile`s are allowed).
 
 For more information, see [authoring an image extension](TODO).
 
 ## A platform's perspective
 
-Platforms may wish to use image extensions if TODO.
+Platforms may wish to use image extensions if they wish to provide the flexibility of modifying base images dynamically
+at build time.
 
 To use image extensions, a platform should do the following:
 
 * Include image extensions in the provided builder (see [packaging an image extension](TODO))
-* When running the `detect` phase, include image extensions in the provided order
-* After running the `detect` phase, but before running the `build` or `export` phases, apply the generated Dockerfiles
-  to the build- or run-time base images (in the [initial implementation](#phased-approach), this is not needed)
-* Invoke the `build` and `export` phases as usual
+* When invoking the `detector` binary, include image extensions in the provided order
+  * Note that the new `generate` phase is a responsibility of the `detector` and thus happens automatically after (and
+    in the same container as) `detect`
+  * Note also that extensions workflows are not currently supported when using the `creator` binary - support may be
+    added in the future, but with a lower priority
+* After invoking the `detector`, and before invoking the `builder` or `exporter`, apply the generated Dockerfiles to the
+  builder or run images (in the [initial implementation](#phased-approach), this is not needed as only run image
+  switching is permitted)
+* Invoke the `builder` and `exporter` binaries as usual
 
 ### Risks
 
-Image extensions / Dockerfiles are considered experimental and susceptible to change in future API versions.
-Additionally, platform operators should be mindful that:
+Image extensions are considered experimental and susceptible to change in future API versions. Additionally, platform
+operators should be mindful that:
 
-* You can do anything with a Dockerfile TODO
-* Mixins TODO
+* Dockerfiles are very powerful - in fact, you can do anything with a Dockerfile! Introducing image extensions into your
+  CNB builds can eliminate the security and compatibility guarantees that buildpacks provide if not done with great
+  care. Consult the [guidelines and best practices](TODO) for more information.
+* When Dockerfiles are used to switch the run image from that defined on the provided builder, the resulting run image
+  may not have all the mixins required by buildpacks in the builder. Platforms may wish to optionally re-validate mixins
+  prior to `export` when using extensions.
 
 ### Phased approach
 
-Some limitations of the initial implementation of this feature have already been mentioned, and we'll expand on them
-here. As this is a large and complicated feature, TODO.
+Some limitations of the initial implementation of the Dockerfiles feature have already been mentioned, and we'll expand
+on them here. As this is a large and complicated feature, the implementation has been split into phases in order to
+deliver incremental value and gather feedback.
+
+* Phase 1: `run.Dockerfile`s can be used to switch (only) the run image; no image modifications are allowed (this
+  eliminates the need for an `extend` lifecycle phase)
+* Phase 2: `build.Dockerfile`s can be used to extend the builder image
+  * A new `extend` lifecycle phase is introduced to apply the `build.Dockerfile`s from `generate` to the builder image
+* Phase 3: `run.Dockerfile`s can be used to extend the run image
+  * The `extend` lifecycle phase can be run in parallel for the builder and run images
+
+The final ordering of lifecycle phases will look something like the following:
+
+* `analyze`
+* `detect` - after standard detection `detect` will also run extensions' `./bin/generate`, output Dockerfiles are
+  written to a volume
+* `extend` - applies `build.Dockerfile`s to the builder image
+* `extend` - applies `run.Dockerfile`s to the run image (could run in parallel with builder image extension)
+* `restore`
+* `build`
+* `export`
+
+Note that the method of applying Dockerfiles is left up to the platform, but could utilize the Docker daemon if
+available, or [`kaniko`](https://github.com/GoogleContainerTools/kaniko) for containerized workflows. The CNB lifecycle
+will have an `extender` binary to cover one or possibly both cases.
 
 ## In action: a CNB build with extensions
 
-Let's walk through a build that uses extensions, step by step.
+Let's walk through a build that uses extensions, step by step. We will see an image extension that switches the run
+image from an image that does not have `curl` installed to an image that does have `curl` installed.
 
 * `workspace=<workspace>` - set a variable to hold the location of your preferred workspace directory
 * Clone the lifecycle repo and build it (TODO: remove when lifecycle v0.15.0-rc.1 released)
@@ -175,8 +210,14 @@ Successfully built image hello-extensions
 
 ## What's next?
 
-TODO
+The `curl` example is very simple, but we could do more just with the ability to switch the run image. Platforms could
+have several run images available, each tailored to a specific language family, thus limiting the number of installed
+dependencies for each image to the minimum necessary to support the targeted language. Image extensions could be used to
+switch the run image to the appropriate one for each application.
 
-* This is a simple example, but we could do more
-* Run image tailored to each language family (keeping the number of installed packages very small)
-* In the future, we'll be able to extend the build and run images (not just switch them) - keep an eye out here
+In the future, run image switching and builder / run image extension will both be supported, opening the door to other
+use cases. Consult the [RFC](https://github.com/buildpacks/rfcs/pull/173) for further information.
+
+Your feedback is appreciated! As the feature evolves, we want to hear from you - what's going well, what's challenging,
+and anything else you'd like to see. Please reach out in [Slack](cncf.slack.io) (#buildpacks channel)
+or [GitHub](github.com/buildpacks).
