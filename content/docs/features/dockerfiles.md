@@ -133,13 +133,10 @@ Successfully built image hello-extensions
     group (`skip: samples/curl@0.0.1 provides unused curl`). Let's take a look at what the `samples/curl` extension
     does...
 * Second build (success case)
-  * `cat ./extensions/curl/detect/plan.toml`
-    * This extension always detects and provides a dependency called `curl` (to understand why there is
-      no `./bin/detect` binary, see [authoring an image extension](TODO))
-  * `cat ./extensions/curl/generate/run.Dockerfile`
-    * This extension during the `generate` phase outputs a Dockerfile that switches the runtime base image to the
-      reference `run-image-curl` (to understand why there is no `./bin/generate` binary,
-      see [authoring an image extension](TODO))
+  * `cat ./extensions/curl/bin/detect`
+    * This extension always detects and provides a dependency called `curl`
+  * `cat extensions/curl/bin/generate`
+    * This extension generates a Dockerfile that switches the runtime base image reference to `run-image-curl`
   * If we want to use this extension, we need an image with reference `run-image-curl` in our export target - in this
     case, the Docker daemon. Let's build that image:
     * `cat ./stacks/alpine/run/curl.Dockerfile`
@@ -169,7 +166,8 @@ Successfully built image hello-extensions
 * continuing...
   * `docker run hello-extensions`
     * You should see something akin to: `curl 7.84.0-DEV`
-  * What happened: the `samples/curl` extension switched the run image to `run-image-curl` which has `curl` installed.
+  * What happened: the `samples/curl` extension switched the run image to `run-image-curl` which has `curl` installed,
+    so our process succeeded!
 
 ## What's next?
 
