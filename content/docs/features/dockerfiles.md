@@ -18,7 +18,7 @@ together. Whereas buildpacks are optimized for creating layers that are efficien
 dependencies that they provide, Dockerfiles are the most-used and best-understood mechanism for constructing base images
 and installing OS-level dependencies for containers. The CNB Dockerfiles feature allows Dockerfiles to "provide"
 dependencies that buildpacks "require" through a shared [build plan][TODO], by introducing the concept of image
-extensions ([**experimental**](#risks)).
+extensions.
 
 ## What are image extensions?
 
@@ -27,11 +27,8 @@ Dockerfiles that can be used to extend the builder or run images prior to buildp
 participate in the `detect` phase - analyzing application source code to determine if they are needed. During `detect`,
 extensions can contribute to the [build plan][TODO] - recording dependencies that they are able to "provide" (though
 unlike buildpacks, they can't "require" anything). If the provided order contains extensions, the output of `detect`
-will be a group of image extensions and a group of buildpacks that together produce a valid build plan.
-
-The selected group of image extensions will be used to generate Dockerfiles prior to the `build` and `export` phases (in
-the [initial implementation](#phased-approach), only limited Dockerfiles for run-image customization are allowed). Image
-extensions only generate Dockerfiles - they don't create layers or participate in the `build` phase.
+will be a group of image extensions and a group of buildpacks that together produce a valid build plan. Image extensions
+only generate Dockerfiles - they don't create layers or participate in the `build` phase.
 
 An image extension could be defined with the following directory:
 
@@ -79,7 +76,7 @@ operators should be mindful that:
   CNB builds can eliminate the security and compatibility guarantees that buildpacks provide if not done with great
   care. Consult the [guidelines and best practices][TODO] for more information.
 * When Dockerfiles are used to switch the run image from that defined on the provided builder, the resulting run image
-  may not have all the mixins required by buildpacks in the builder. Platforms may wish to optionally re-validate mixins
+  may not have all the mixins required by buildpacks that detected. Platforms may wish to optionally re-validate mixins
   prior to `export` when using extensions.
 
 ### Phased approach
@@ -88,20 +85,20 @@ Some limitations of the initial implementation of the Dockerfiles feature have a
 on them here. As this is a large and complicated feature, the implementation has been split into phases in order to
 deliver incremental value and gather feedback.
 
-* Phase 1: `run.Dockerfile`s can be used to switch (only) the run image; no image modifications are allowed (this
-  eliminates the need for an `extend` lifecycle phase)
-* Phase 2: `build.Dockerfile`s can be used to extend the builder image
-  * A new `extend` lifecycle phase is introduced to apply the `build.Dockerfile`s from `generate` to the builder image
-* Phase 3: `run.Dockerfile`s can be used to extend the run image
+* Phase 1: one or more `run.Dockerfile` can be used to switch (only) the run image; no image modifications are allowed (
+  this eliminates the need for an `extend` lifecycle phase)
+* Phase 2: one or more `build.Dockerfile` can be used to extend the builder image
+  * A new `extend` lifecycle phase is introduced to apply `build.Dockerfile`s from `generate` to the builder image
+* Phase 3: one or more `run.Dockerfile` can be used to extend the run image
   * The `extend` lifecycle phase can be run in parallel for the builder and run images
 
 The final ordering of lifecycle phases will look something like the following:
 
 * `analyze`
-* `detect` - after standard detection `detect` will also run extensions' `./bin/generate`, output Dockerfiles are
+* `detect` - after standard detection, `detect` will also run extensions' `./bin/generate`; output Dockerfiles are
   written to a volume
-* `extend` - applies `build.Dockerfile`s to the builder image
-* `extend` - applies `run.Dockerfile`s to the run image (could run in parallel with builder image extension)
+* `extend` - applies one or more `build.Dockerfile` to the builder image
+* `extend` - applies one or more `run.Dockerfile` to the run image (could run in parallel with builder image extension)
 * `restore`
 * `build`
 * `export`
@@ -174,7 +171,7 @@ Successfully built image hello-extensions
     buildpack didn't require `curl` in the build plan, the extension was omitted from the detected
     group (`skip: samples/curl@0.0.1 provides unused curl`). Let's take a look at what the `samples/curl` extension
     does...
-* Second build (success case)
+* See a build in action (success case)
   * `cat $workspace/samples/extensions/curl/bin/detect` - the extension always detects and provides a dependency
     called `curl`
   * `cat extensions/curl/bin/generate` - the extension generates a Dockerfile that switches the runtime base image
@@ -213,13 +210,13 @@ Successfully built image hello-extensions
 The `curl` example is very simple, but we could do more just with the ability to switch the run image. Platforms could
 have several run images available, each tailored to a specific language family, thus limiting the number of installed
 dependencies for each image to the minimum necessary to support the targeted language. Image extensions could be used to
-switch the run image to the appropriate one for each application.
+switch the run image to that most appropriate for the current application.
 
-In the future, run image switching and builder / run image extension will both be supported, opening the door to other
-use cases. Consult the [RFC](https://github.com/buildpacks/rfcs/pull/173) for further information.
+In the future, run image switching and image modification will all be supported, opening the door to other use cases.
+Consult the [RFC](https://github.com/buildpacks/rfcs/pull/173) for further information.
 
 Your feedback is appreciated! As the feature evolves, we want to hear from you - what's going well, what's challenging,
-and anything else you'd like to see. Please reach out in [Slack](cncf.slack.io) (#buildpacks channel)
-or [GitHub](github.com/buildpacks).
+and anything else you'd like to see. Please reach out in [Slack](https://cncf.slack.io) (#buildpacks channel)
+or [GitHub](https://github.com/buildpacks).
 
 [TODO]: /docs/_index.md
