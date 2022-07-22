@@ -77,7 +77,7 @@ operators should be mindful that:
   care. Consult the [guidelines and best practices][TODO] for more information.
 * When Dockerfiles are used to switch the run image from that defined on the provided builder, the resulting run image
   may not have all the mixins required by buildpacks that detected. Platforms may wish to optionally re-validate mixins
-  prior to `export` when using extensions.
+  prior to `build` when using extensions.
 
 ### Phased approach
 
@@ -102,6 +102,12 @@ The final ordering of lifecycle phases will look something like the following:
 * `restore`
 * `build`
 * `export`
+
+The [pack cli](https://github.com/buildpacks/pack)
+and [Tekton task](https://github.com/tektoncd/catalog/tree/main/task/buildpacks-phases/0.2) have or will eventually have
+support for builds using image extensions. However, [kpack](https://github.com/pivotal/kpack) - while able to use image
+extensions in builds - will need additional updating to propagate changes such as a switched run image back to the
+appropriate resource to avoid breaking rebase.
 
 Note that the method of applying Dockerfiles is left up to the platform, but could utilize the Docker daemon if
 available, or [`kaniko`](https://github.com/GoogleContainerTools/kaniko) for containerized workflows. The CNB lifecycle
@@ -184,7 +190,6 @@ Successfully built image hello-extensions
   the `hello-extensions` buildpack didn't require `curl` in the build plan, the extension was omitted from the detected
   group (`skip: samples/curl@0.0.1 provides unused curl`). Let's take a look at what the `samples/curl` extension
   does...
-*
 
 ### 7. Examine `curl` extension
 
@@ -200,7 +205,7 @@ Successfully built image hello-extensions
   - we include it in the `stacks` directory for convenience
 * `docker build --tag run-image-curl --file $workspace/samples/stacks/alpine/run/curl.Dockerfile .`
 
-### 9. Re-create our builder with `hello-extensions` updated to require `curl`:
+### 9. Re-create our builder with `hello-extensions` updated to require `curl`
 
 * Edit `$workspace/samples/buildpacks/hello-extensions/bin/detect` to uncomment the lines that output `[[requires]]`
   to the build plan
@@ -234,7 +239,7 @@ have several run images available, each tailored to a specific language family, 
 dependencies for each image to the minimum necessary to support the targeted language. Image extensions could be used to
 switch the run image to that most appropriate for the current application.
 
-In the future, run image switching and image modification will all be supported, opening the door to other use cases.
+In the future, both run image switching and image modification will be supported, opening the door to other use cases.
 Consult the [RFC](https://github.com/buildpacks/rfcs/pull/173) for further information.
 
 Your feedback is appreciated! As the feature evolves, we want to hear from you - what's going well, what's challenging,
