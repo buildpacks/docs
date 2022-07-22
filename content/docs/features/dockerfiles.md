@@ -112,44 +112,58 @@ will have an `extender` binary to cover one or possibly both cases.
 Let's walk through a build that uses extensions, step by step. We will see an image extension that switches the run
 image from an image that does not have `curl` installed to an image that does have `curl` installed.
 
-* `workspace=<workspace>` - set a variable to hold the location of your preferred workspace directory
-* Clone the lifecycle repo and build it (TODO: remove when lifecycle v0.15.0-rc.1 released)
-  * `cd $workspace`
-  * `git clone git@github.com:buildpacks/lifecycle.git`
-  * `cd lifecycle`
-  * `make clean build-linux-amd64 package-linux-amd64`
-  * `LIFECYCLE_TARBALL=$(ls out/lifecycle-*.tgz)` - used for `pack builder create`
-  * `LIFECYCLE_IMAGE=$(make build-image-linux-amd64 | grep 'tag lifecycle:' | cut -d ' ' -f 12)` - used for `pack build`
-* Clone the pack repo and build it (TODO: remove when pack v0.28.0-rc.1 released)
-  * `cd $workspace`
-  * `git clone git@github.com:buildpacks/pack.git`
-  * `cd pack`
-  * `git checkout extensions-phase-1`
-  * `make clean build`
-* Clone the samples repo
-  * `cd $workspace`
-  * `git clone git@github.com:buildpacks/samples.git`
-  * `cd samples`
-  * `git checkout extensions-phase-1` (TODO: remove when `extensions-phase-1` merged)
-* Create a builder with extensions
-  * `echo LIFECYCLE_TARBALL: $workspace/lifecycle/$LIFECYCLE_TARBALL`
-  * Edit `$workspace/samples/builders/alpine/builder.toml` to add the following at the end of the file:
+### 0. Setup workspace directory
+
+* `workspace=<preferred workspace directory>`
+
+### 1. Clone the lifecycle repo and build it (TODO: remove when lifecycle v0.15.0-rc.1 released)
+
+* `cd $workspace`
+* `git clone git@github.com:buildpacks/lifecycle.git`
+* `cd lifecycle`
+* `make clean build-linux-amd64 package-linux-amd64`
+* `LIFECYCLE_TARBALL=$(ls out/lifecycle-*.tgz)` - used for `pack builder create`
+* `LIFECYCLE_IMAGE=$(make build-image-linux-amd64 | grep 'tag lifecycle:' | cut -d ' ' -f 12)` - used for `pack build`
+
+### 2. Clone the pack repo and build it (TODO: remove when pack v0.28.0-rc.1 released)
+
+* `cd $workspace`
+* `git clone git@github.com:buildpacks/pack.git`
+* `cd pack`
+* `git checkout extensions-phase-1`
+* `make clean build`
+
+### 3. Clone the samples repo
+
+* `cd $workspace`
+* `git clone git@github.com:buildpacks/samples.git`
+* `cd samples`
+* `git checkout extensions-phase-1` (TODO: remove when `extensions-phase-1` merged)
+
+### 4. Create a builder with extensions
+
+* `echo LIFECYCLE_TARBALL: $workspace/lifecycle/$LIFECYCLE_TARBALL`
+* Edit `$workspace/samples/builders/alpine/builder.toml` to add the following at the end of the file:
 
 ```
 [lifecycle]
 uri = <path to lifecycle tarball>
 ```
 
-* continuing...
-  * `$workspace/pack/out/pack builder create extensions-builder --config $workspace/samples/builders/alpine/builder.toml`
-* See a build in action (failure case)
-  * `cat $workspace/samples/buildpacks/hello-extensions/bin/detect` - the buildpack always detects but doesn't require
-    any dependencies (as the output build plan is empty)
-  * `cat $workspace/samples/buildpacks/hello-extensions/bin/build` - the buildpack defines a process called `curl` that
-    runs `curl --version`; it will be the default process invoked when the application image is run
-  * `$workspace/pack/out/pack build hello-extensions --builder extensions-builder --lifecycle-image $LIFECYCLE_IMAGE --verbose`
-    - build the application image (note that the "source" directory is effectively ignored in our example); you should
-      see:
+* `$workspace/pack/out/pack builder create extensions-builder --config $workspace/samples/builders/alpine/builder.toml`
+
+### 5. Examine `hello-extensions` buildpack
+
+* `cat $workspace/samples/buildpacks/hello-extensions/bin/detect` - the buildpack always detects but doesn't require any
+  dependencies (as the output build plan is empty)
+* `cat $workspace/samples/buildpacks/hello-extensions/bin/build` - the buildpack defines a process called `curl` that
+  runs `curl --version`; it will be the default process invoked when the application image is run
+
+### 6. See a build in action (failure case)
+
+* `$workspace/pack/out/pack build hello-extensions --builder extensions-builder --lifecycle-image $LIFECYCLE_IMAGE --verbose`
+  - build the application image (note that the "source" directory is effectively ignored in our example); you should
+    see:
 
 ```
 [detector] ======== Results ========
@@ -163,30 +177,39 @@ uri = <path to lifecycle tarball>
 Successfully built image hello-extensions
 ```
 
-* continuing...
-  * `docker run hello-extensions` - run the application image; you should
-    see: `ERROR: failed to launch: path lookup: exec: "curl": executable file not found in $PATH`
-  * What happened: the default run image (`cnbs/sample-stack-run:alpine`) doesn't have curl installed. Even though there
-    is a `samples/curl` extension that passed detection (`pass: samples/curl@0.0.1`), because the `hello-extensions`
-    buildpack didn't require `curl` in the build plan, the extension was omitted from the detected
-    group (`skip: samples/curl@0.0.1 provides unused curl`). Let's take a look at what the `samples/curl` extension
-    does...
-* See a build in action (success case)
-  * `cat $workspace/samples/extensions/curl/bin/detect` - the extension always detects and provides a dependency
-    called `curl`
-  * `cat extensions/curl/bin/generate` - the extension generates a Dockerfile that switches the runtime base image
-    reference to `run-image-curl`
-  * Build a run image with reference `run-image-curl`, so that we can use the extension:
-    * `cat $workspace/samples/stacks/alpine/run/curl.Dockerfile` - this is a simple Dockerfile that creates a CNB run
-      image by adding the required user configuration and `io.buildpacks.stack.id` label; the Dockerfile could come from
-      anywhere - we include it in the `stacks` directory for convenience
-    * `docker build --tag run-image-curl --file $workspace/samples/stacks/alpine/run/curl.Dockerfile .`
-  * Re-create our builder with the `hello-extensions` buildpack updated to require `curl`:
-    * Edit `$workspace/samples/buildpacks/hello-extensions/bin/detect` to uncomment the lines that output `[[requires]]`
-      to the build plan
-    * `$workspace/pack/out/pack builder create extensions-builder --config $workspace/samples/builders/alpine/builder.toml`
-  * `$workspace/pack/out/pack build hello-extensions --builder extensions-builder --lifecycle-image $LIFECYCLE_IMAGE --verbose`
-    - build the application image; you should see:
+* `docker run hello-extensions` - run the application image; you should
+  see: `ERROR: failed to launch: path lookup: exec: "curl": executable file not found in $PATH`
+* What happened: the default run image for our builder (`cnbs/sample-stack-run:alpine`) doesn't have curl installed.
+  Even though there is a `samples/curl` extension that passed detection (`pass: samples/curl@0.0.1`), because
+  the `hello-extensions` buildpack didn't require `curl` in the build plan, the extension was omitted from the detected
+  group (`skip: samples/curl@0.0.1 provides unused curl`). Let's take a look at what the `samples/curl` extension
+  does...
+*
+
+### 7. Examine `curl` extension
+
+* `cat $workspace/samples/extensions/curl/bin/detect` - the extension always detects and provides a dependency
+  called `curl`
+* `cat extensions/curl/bin/generate` - the extension generates a Dockerfile that switches the runtime base image
+  reference to `run-image-curl`
+
+### 8. Build a run image for `curl` extension to use
+
+* `cat $workspace/samples/stacks/alpine/run/curl.Dockerfile` - this is a simple Dockerfile that creates a CNB run image
+  by adding the required user configuration and `io.buildpacks.stack.id` label; the Dockerfile could come from anywhere
+  - we include it in the `stacks` directory for convenience
+* `docker build --tag run-image-curl --file $workspace/samples/stacks/alpine/run/curl.Dockerfile .`
+
+### 9. Re-create our builder with `hello-extensions` updated to require `curl`:
+
+* Edit `$workspace/samples/buildpacks/hello-extensions/bin/detect` to uncomment the lines that output `[[requires]]`
+  to the build plan
+* `$workspace/pack/out/pack builder create extensions-builder --config $workspace/samples/builders/alpine/builder.toml`
+
+### 10. See a build in action (success case)
+
+* `$workspace/pack/out/pack build hello-extensions --builder extensions-builder --lifecycle-image $LIFECYCLE_IMAGE --verbose`
+  - build the application image; you should see:
 
 ```
 [detector] ======== Results ========
@@ -200,10 +223,9 @@ Successfully built image hello-extensions
 Successfully built image hello-extensions
 ```
 
-* continuing...
-  * `docker run hello-extensions` - run the application image; you should see something akin to: `curl 7.84.0-DEV`
-  * What happened: the `samples/curl` extension switched the run image to `run-image-curl` which has `curl` installed,
-    so our process succeeded!
+* `docker run hello-extensions` - run the application image; you should see something akin to: `curl 7.84.0-DEV`
+* What happened: the `samples/curl` extension switched the run image to `run-image-curl` which has `curl` installed, so
+  our process succeeded!
 
 ## What's next?
 
