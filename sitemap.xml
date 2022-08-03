@@ -84,6 +84,8 @@
   </url><url>
     <loc>https://buildpacks.io/docs/app-developer-guide/run-an-app/</loc>
   </url><url>
+    <loc>https://buildpacks.io/docs/buildpack-author-guide/caching-strategies/</loc>
+  </url><url>
     <loc>https://buildpacks.io/docs/concepts/components/lifecycle/create/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/platform-guide/</loc>

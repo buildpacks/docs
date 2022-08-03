@@ -277,6 +277,15 @@ Install Docker Install pack NOTE: pack is only one implementation of the Cloud N
     </item>
     
     <item>
+      <title>Caching Strategies</title>
+      <link>https://buildpacks.io/docs/buildpack-author-guide/caching-strategies/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/buildpack-author-guide/caching-strategies/</guid>
+      <description>Learn strategies for caching layers.</description>
+    </item>
+    
+    <item>
       <title>Create</title>
       <link>https://buildpacks.io/docs/concepts/components/lifecycle/create/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

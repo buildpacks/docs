@@ -8,8 +8,8 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<link rel="canonical" content="https://buildpacks.io/docs/tools/pack/cli/pack_config_run-image-mirrors_list/">
+<meta name="description" content="Learn strategies for caching layers."/>
+<link rel="canonical" content="https://buildpacks.io/docs/buildpack-author-guide/caching-strategies/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
 
@@ -17,12 +17,12 @@
 
 
 
-<meta property="og:title" content="pack config run-image-mirrors list · Cloud Native Buildpacks">
+<meta property="og:title" content="Caching Strategies · Cloud Native Buildpacks">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://buildpacks.io/docs/tools/pack/cli/pack_config_run-image-mirrors_list/">
+<meta property="og:url" content="https://buildpacks.io/docs/buildpack-author-guide/caching-strategies/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-
+<meta property="og:description" content="Learn strategies for caching layers.">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -33,7 +33,7 @@
 
 
 
-<meta property="twitter:title" content="pack config run-image-mirrors list · Cloud Native Buildpacks">
+<meta property="twitter:title" content="Caching Strategies · Cloud Native Buildpacks">
 <meta property="twitter:card" content="summary">
 <meta property="twitter:image" content="https://buildpacks.io/images/buildpacks-social-card-square.jpg">
 <meta property="twitter:image:alt" content="Buildpacks project logo">
@@ -83,7 +83,7 @@
     gtag('config', 'G-CJLSR4FQXL');
   </script>
 
-  <title>pack config run-image-mirrors list · Cloud Native Buildpacks</title>
+  <title>Caching Strategies · Cloud Native Buildpacks</title>
 </head>
 
 <body>
@@ -279,7 +279,7 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/buildpack-author-guide/" class="dd-item depth-0 haschildren">
+<li data-nav-id="/docs/buildpack-author-guide/" class="dd-item depth-0 parent haschildren">
   <a href="/docs/buildpack-author-guide/">Buildpack Author Guide</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/" class="dd-item depth-1 haschildren">
@@ -323,7 +323,7 @@
 <li data-nav-id="/docs/buildpack-author-guide/publishing-with-github-actions/" class="dd-item depth-1">
   <a href="/docs/buildpack-author-guide/publishing-with-github-actions/">Publishing with Github Actions</a>
 </li>
-<li data-nav-id="/docs/buildpack-author-guide/caching-strategies/" class="dd-item depth-1">
+<li data-nav-id="/docs/buildpack-author-guide/caching-strategies/" class="dd-item depth-1 active">
   <a href="/docs/buildpack-author-guide/caching-strategies/">Caching Strategies</a>
 </li>
   </ul>
@@ -352,13 +352,13 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/tools/" class="dd-item depth-0 parent haschildren">
+<li data-nav-id="/docs/tools/" class="dd-item depth-0 haschildren">
   <a href="/docs/tools/">Tools</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/tools/pack/" class="dd-item depth-1 parent haschildren">
+<li data-nav-id="/docs/tools/pack/" class="dd-item depth-1 haschildren">
   <a href="/docs/tools/pack/">Pack</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/tools/pack/concepts/" class="dd-item depth-2 haschildren">
+<li data-nav-id="/docs/tools/pack/concepts/" class="dd-item depth-2 collapse haschildren">
   <a href="/docs/tools/pack/concepts/">Concepts</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/tools/pack/concepts/trusted_builders/" class="dd-item depth-3 collapse">
@@ -366,139 +366,139 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/" class="dd-item depth-2 parent haschildren">
+<li data-nav-id="/docs/tools/pack/cli/" class="dd-item depth-2 collapse haschildren">
   <a href="/docs/tools/pack/cli/">CLI Docs</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/tools/pack/cli/pack/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack/">pack</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_build/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_build/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_build/">pack build</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_builder/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_builder/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_builder/">pack builder</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_builder_create/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_builder_create/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_builder_create/">pack builder create</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_builder_inspect/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_builder_inspect/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_builder_inspect/">pack builder inspect</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_builder_suggest/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_builder_suggest/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_builder_suggest/">pack builder suggest</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_buildpack/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_buildpack/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_buildpack/">pack buildpack</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_inspect/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_inspect/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_buildpack_inspect/">pack buildpack inspect</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_new/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_new/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_buildpack_new/">pack buildpack new</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_package/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_package/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_buildpack_package/">pack buildpack package</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_pull/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_pull/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_buildpack_pull/">pack buildpack pull</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_register/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_register/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_buildpack_register/">pack buildpack register</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_yank/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_yank/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_buildpack_yank/">pack buildpack yank</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_completion/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_completion/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_completion/">pack completion</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config/">pack config</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_default-builder/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_default-builder/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_default-builder/">pack config default-builder</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_experimental/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_experimental/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_experimental/">pack config experimental</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_lifecycle-image/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_lifecycle-image/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_lifecycle-image/">pack config lifecycle-image</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_pull-policy/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_pull-policy/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_pull-policy/">pack config pull-policy</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_registries/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_registries/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_registries/">pack config registries</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_registries_add/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_registries_add/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_registries_add/">pack config registries add</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_registries_default/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_registries_default/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_registries_default/">pack config registries default</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_registries_list/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_registries_list/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_registries_list/">pack config registries list</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_registries_remove/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_registries_remove/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_registries_remove/">pack config registries remove</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_registry-mirrors/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_registry-mirrors/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_registry-mirrors/">pack config registry-mirrors</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_registry-mirrors_add/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_registry-mirrors_add/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_registry-mirrors_add/">pack config registry-mirrors add</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_registry-mirrors_list/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_registry-mirrors_list/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_registry-mirrors_list/">pack config registry-mirrors list</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_registry-mirrors_remove/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_registry-mirrors_remove/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_registry-mirrors_remove/">pack config registry-mirrors remove</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_run-image-mirrors/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_run-image-mirrors/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_run-image-mirrors/">pack config run-image-mirrors</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_run-image-mirrors_add/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_run-image-mirrors_add/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_run-image-mirrors_add/">pack config run-image-mirrors add</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_run-image-mirrors_list/" class="dd-item depth-3 active">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_run-image-mirrors_list/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_run-image-mirrors_list/">pack config run-image-mirrors list</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_run-image-mirrors_remove/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_run-image-mirrors_remove/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_run-image-mirrors_remove/">pack config run-image-mirrors remove</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_trusted-builders/">pack config trusted-builders</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders_add/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders_add/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_trusted-builders_add/">pack config trusted-builders add</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders_list/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders_list/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_trusted-builders_list/">pack config trusted-builders list</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders_remove/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders_remove/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_trusted-builders_remove/">pack config trusted-builders remove</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_inspect/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_inspect/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_inspect/">pack inspect</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_rebase/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_rebase/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_rebase/">pack rebase</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_report/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_report/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_report/">pack report</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_sbom/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_sbom/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_sbom/">pack sbom</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_sbom_download/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_sbom_download/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_sbom_download/">pack sbom download</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_stack/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_stack/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_stack/">pack stack</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_stack_suggest/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_stack_suggest/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_stack_suggest/">pack stack suggest</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_version/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_version/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_version/">pack version</a>
 </li>
   </ul>
@@ -602,37 +602,71 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5Bpack&#43;config&#43;run-image-mirrors&#43;list%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ftools%2Fpack%2Fcli%2Fpack_config_run-image-mirrors_list%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BCaching&#43;Strategies%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fbuildpack-author-guide%2Fcaching-strategies%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
+    
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/buildpack-author-guide/caching-strategies.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+       class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
 </div>
 
 
         <div class="heading">
-          <h1 class="title">pack config run-image-mirrors list</h1>
+          <h1 class="title">Caching Strategies</h1>
         </div>
 
-        <h2 id="pack-config-run-image-mirrors-list">pack config run-image-mirrors list</h2>
-<p>List run-image-mirrors</p>
-<h3 id="synopsis">Synopsis</h3>
-<p>List all run image mirrors. If a run image is provided, it will return</p>
-<pre tabindex="0"><code>pack config run-image-mirrors list [&lt;run-image&gt;] [flags]
-</code></pre><h3 id="examples">Examples</h3>
-<pre tabindex="0"><code>pack config run-image-mirrors list
-</code></pre><h3 id="options">Options</h3>
-<pre tabindex="0"><code>  -h, --help   help for list
-</code></pre><h3 id="options-inherited-from-parent-commands">Options inherited from parent commands</h3>
-<pre tabindex="0"><code>      --no-color     Disable color output
-  -q, --quiet        Show less output
-      --timestamps   Enable timestamps in output
-  -v, --verbose      Show more output
-</code></pre><h3 id="see-also">SEE ALSO</h3>
+        <h1 id="caching">Caching</h1>
+<p>There are three types of layers that can be contributed to an image</p>
 <ul>
-<li><a href="/docs/tools/pack/cli/pack_config_run-image-mirrors/">pack config run-image-mirrors</a>	 - List, add and remove run image mirrors</li>
+<li><code>build</code> layers &ndash; the directory will be accessible by subsequent buildpacks,</li>
+<li><code>cache</code> layers &ndash; the directory will be included in the cache,</li>
+<li><code>launch</code> layers &ndash; the directory will be included in the run image as a single layer,</li>
 </ul>
+<p>A fourth type of layer</p>
+<ul>
+<li><code>ignored</code> layers</li>
+</ul>
+<p>are available to buildpack authors for use as temporary layers.</p>
+<p>In this section we look at caching each layer type.</p>
+<h2 id="layer-metadata">Layer Metadata</h2>
+<p>buildpacks ensure byte-for-byte reproducibility of layers.  File creation time is <a href="https://medium.com/buildpacks/time-travel-with-pack-e0efd8bf05db">normalized to January 1, 1980</a> to ensure reproducibility.  Byte-for-byte reproducibility means previous layers can be reused.  However, we want to invalidate previously cached layers if</p>
+<ul>
+<li>the buildpacks API changes,</li>
+<li>the type of the layer changes.</li>
+</ul>
+<p>A layer built using a buildpack at API version <code>0.7</code> should be considered invalid if the API version for that buildpack has been updated to <code>0.8</code>.  Similarly, if a layer is changed from being a cache-only layer to being a cache and launch layer, then the cache should be considered invalid.</p>
+<p>In addition to general cache invalidation conditions a buildpack should invalidate a previous layer if an important property changes, such as:</p>
+<ul>
+<li>the major version of the runtime changes eg: NodeJS changes from 16 to 18</li>
+<li>requested application dependencies have changed eg: a Python application adds a dependency on the <code>requests</code> module</li>
+</ul>
+<p>Launch layers are exported to an OCI registry and layer metadata is stored with the launch layer.  The layer metadata is commonly used when deciding if a launch layer should be re-used from cache.</p>
+<h2 id="strategies">Strategies</h2>
+<p>Caching during the production of an application image is necessarily very flexible.  Most buildpacks that wish to contribute a layer to the application image need only to</p>
+<ol>
+<li>Check that the metadata of the cached layer is current,</li>
+<li>Create an empty layer, and</li>
+<li>Set <code>launch = true</code>.</li>
+</ol>
+<p>This will guarantee that the previously published application image layer in the registry is re-used if the layer metadata matches the requested metadata.  In this most straightforward use-case <code>launch</code> is <code>true</code> and both <code>build</code> and <code>cache</code> are set to <code>false</code>.  That is to say, the most common case is where <code>cache = false</code>, <code>build = false</code> and <code>launch = true</code>.  It is important to note that the layer is re-used on the OCI registry.  This avoids expensive rebuilds of the layer and expensive pulls of the layer to the host running the build.</p>
+<p>Setting <code>build = true</code> makes a layer available to subsequent buildpacks.  Therefore binaries installed to the <code>bin</code> directory on a <code>build = true</code> layer are available to subsequent buildpacks during the build phase.  It is also the case that <code>lib</code> directories on a <code>build = true</code> later are added to the <code>LD_LIBRARY_PATH</code> during the build phase of subsequent buildpacks.  Environment variables defined in a <code>build = true</code> layer are similarly available.  For any layer where <code>launch = true</code> and <code>build = true</code>, a launch layer from the OCI registry can no longer be reused. Instead, the layer must be made available locally so that subsequent buildpacks can use it.</p>
+<p>Setting <code>cache = true</code> allows additional fine-grained control over caching.  The <code>cache = true</code> flag caches a layer and allows a buildpack to make <em>content</em> level decisions about the validity of the cache (as opposed to using the less granular metadata).  As an example, suppose a layer where <code>launch = true</code> installs a <code>jq</code> binary with version <code>1.5</code> and sets <code>version=1.5</code> in the layer metadata.  By default, this layer will not be re-used from the registry when a buildpack requests <code>jq</code> with <code>version=1.6</code> to be installed.  However, setting <code>cache = true</code> makes a previously built layer available during the build.  A buildpack could then prefer to implement logic to restore <code>jq</code> with <code>version=1.5</code> instead of performing a potentially expensive download of <code>jq</code> with <code>version=1.6</code>.  The <code>cache = true</code> setting allows for cache validation decisions to be made at a level of granularity that is much finer grained than layer metadata.</p>
+<p>Setting <code>cache = false</code>, <code>build = false</code>, and <code>launch = true</code> is the most common configuration.  If <code>cache = false</code>, <code>build = false</code>, and <code>launch = true</code> is not appropriate for your layer, then <code>cache = true</code>, <code>build = true</code>, and <code>launch = true</code> should be the next combination to evaluate:</p>
+<ul>
+<li>When <code>cache = true, build = true, launch = true</code>, explicitly setting <code>build = true</code> makes the layer available, to subsequent buildpacks, during the build phase.  As <code>cache = true</code> the layer is restored from local cache before proceeding to the build phase.  For example, a Python distribution could be provided in a cached, build and launch layer. The build phase could verify that the restored cached version of the Python distribution contains Python 3.10 but disregard the patch number of the Python interpreter.</li>
+<li><code>cache = true, build = true, launch = true</code> is an appropriate setting for a layer providing a distribution or runtime such as a Python interpreter or NodeJS runtime.</li>
+</ul>
+<p>Other common configurations include</p>
+<ul>
+<li><code>cache = true, build = false, launch = true</code> Allows the same caching behavior as <code>cache = true, build = true, launch = true</code>, but the layer is not available to subsequent buildpacks.  For example, the build phase can restore a Python distribution disregarding the patch number of the <code>major.minor.patch</code> number stored in the metadata.  As <code>build = false</code> the python interpreter is unavailable to subsequent buildpacks.</li>
+<li><code>cache = true, build = true, launch = false</code> This configuration is useful where a build time dependency is provided.  For example, a JDK could be provided as a cached build layer that is not added as a launch layer. Instead, a JRE could be provided as a launch layer in the application image.</li>
+<li><code>cache = true, build = false, launch = false</code> This configuration is particularly useful in layers that download resources.  Using a cache-only layer supports allows a  buildpack to re-use cached downloads during installation.  For example, pip wheels could be downloaded as a cache-only layer and the same buildpack could install the wheels in to a launch layer.</li>
+</ul>
+<p>There are other boolean combinations of cache, build and launch.  These provide significant flexibility in the caching system.  Users of less common caching strategies need a good understanding of the <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#layer-types">buildpacks specification on Layer Types</a>.</p>
+
 
         
 
@@ -642,10 +676,13 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5Bpack&#43;config&#43;run-image-mirrors&#43;list%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ftools%2Fpack%2Fcli%2Fpack_config_run-image-mirrors_list%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BCaching&#43;Strategies%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fbuildpack-author-guide%2Fcaching-strategies%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
+    
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/buildpack-author-guide/caching-strategies.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+       class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
 </div>

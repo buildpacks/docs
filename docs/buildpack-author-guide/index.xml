@@ -33,5 +33,14 @@
       <description>Learn how to automatically publish your buildpack to the Buildpack Registry from a Github Action.</description>
     </item>
     
+    <item>
+      <title>Caching Strategies</title>
+      <link>https://buildpacks.io/docs/buildpack-author-guide/caching-strategies/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/buildpack-author-guide/caching-strategies/</guid>
+      <description>Learn strategies for caching layers.</description>
+    </item>
+    
   </channel>
 </rss>
