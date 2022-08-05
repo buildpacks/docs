@@ -42,5 +42,14 @@
       <description>Learn strategies for caching layers.</description>
     </item>
     
+    <item>
+      <title>Overview of Buildpacks Phases</title>
+      <link>https://buildpacks.io/docs/buildpack-author-guide/build-phases-overview/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/buildpack-author-guide/build-phases-overview/</guid>
+      <description>We work through a full example of building a &amp;ldquo;hello world&amp;rdquo; NodeJs web application. In the example we run pack on the NodeJS application to produce an application image. We assume that we have a NodeJS buildpack, registry.fake/buildpacks/nodejs:latest, that is decomposed into buildpacks that help with the build. We expand each of the buildpacks phases to explain the process. Throughout the example we take a production-level view of their operation. For example, our assumed NodeJS buildpack will be described to create different build, cache and launch layers in a manner similar to how a real NodeJS buildpack would operate.</description>
+    </item>
+    
   </channel>
 </rss>

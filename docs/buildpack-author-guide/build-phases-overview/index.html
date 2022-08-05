@@ -8,8 +8,8 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Environment variables are a common way to configure various buildpacks at build-time."/>
-<link rel="canonical" content="https://buildpacks.io/docs/app-developer-guide/environment-variables/">
+<meta name="description" content="We work through a full example of building a &amp;ldquo;hello world&amp;rdquo; NodeJs web application. In the example we run pack on the NodeJS application to produce an application image. We assume that we…"/>
+<link rel="canonical" content="https://buildpacks.io/docs/buildpack-author-guide/build-phases-overview/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
 
@@ -17,12 +17,12 @@
 
 
 
-<meta property="og:title" content="Environment variables · Cloud Native Buildpacks">
+<meta property="og:title" content="Overview of Buildpacks Phases · Cloud Native Buildpacks">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://buildpacks.io/docs/app-developer-guide/environment-variables/">
+<meta property="og:url" content="https://buildpacks.io/docs/buildpack-author-guide/build-phases-overview/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-<meta property="og:description" content="Environment variables are a common way to configure various buildpacks at build-time.">
+<meta property="og:description" content="We work through a full example of building a &amp;ldquo;hello world&amp;rdquo; NodeJs web application. In the example we run pack on the NodeJS application to produce an application image. We assume that we…">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -33,7 +33,7 @@
 
 
 
-<meta property="twitter:title" content="Environment variables · Cloud Native Buildpacks">
+<meta property="twitter:title" content="Overview of Buildpacks Phases · Cloud Native Buildpacks">
 <meta property="twitter:card" content="summary">
 <meta property="twitter:image" content="https://buildpacks.io/images/buildpacks-social-card-square.jpg">
 <meta property="twitter:image:alt" content="Buildpacks project logo">
@@ -96,7 +96,7 @@
     gtag('config', 'G-CJLSR4FQXL');
   </script>
 
-  <title>Environment variables · Cloud Native Buildpacks</title>
+  <title>Overview of Buildpacks Phases · Cloud Native Buildpacks</title>
 </head>
 
 <body>
@@ -251,7 +251,7 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/app-developer-guide/" class="dd-item depth-0 parent haschildren">
+<li data-nav-id="/docs/app-developer-guide/" class="dd-item depth-0 haschildren">
   <a href="/docs/app-developer-guide/">App Developer Guide</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/app-developer-guide/build-an-app/" class="dd-item depth-1">
@@ -263,7 +263,7 @@
 <li data-nav-id="/docs/app-developer-guide/build-an-arm-app/" class="dd-item depth-1">
   <a href="/docs/app-developer-guide/build-an-arm-app/">Build an ARM app</a>
 </li>
-<li data-nav-id="/docs/app-developer-guide/environment-variables/" class="dd-item depth-1 active">
+<li data-nav-id="/docs/app-developer-guide/environment-variables/" class="dd-item depth-1">
   <a href="/docs/app-developer-guide/environment-variables/">Environment variables</a>
 </li>
 <li data-nav-id="/docs/app-developer-guide/using-cache-image/" class="dd-item depth-1">
@@ -292,7 +292,7 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/buildpack-author-guide/" class="dd-item depth-0 haschildren">
+<li data-nav-id="/docs/buildpack-author-guide/" class="dd-item depth-0 parent haschildren">
   <a href="/docs/buildpack-author-guide/">Buildpack Author Guide</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/buildpack-author-guide/create-buildpack/" class="dd-item depth-1 haschildren">
@@ -339,7 +339,7 @@
 <li data-nav-id="/docs/buildpack-author-guide/caching-strategies/" class="dd-item depth-1">
   <a href="/docs/buildpack-author-guide/caching-strategies/">Caching Strategies</a>
 </li>
-<li data-nav-id="/docs/buildpack-author-guide/build-phases-overview/" class="dd-item depth-1">
+<li data-nav-id="/docs/buildpack-author-guide/build-phases-overview/" class="dd-item depth-1 active">
   <a href="/docs/buildpack-author-guide/build-phases-overview/">Overview of Buildpacks Phases</a>
 </li>
   </ul>
@@ -618,12 +618,12 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BEnvironment&#43;variables%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fapp-developer-guide%2Fenvironment-variables%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BOverview&#43;of&#43;Buildpacks&#43;Phases%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fbuildpack-author-guide%2Fbuild-phases-overview%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/app-developer-guide/environment-variables.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/buildpack-author-guide/build-phases-overview.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
@@ -631,174 +631,293 @@
 
 
         <div class="heading">
-          <h1 class="title">Environment variables</h1>
+          <h1 class="title">Overview of Buildpacks Phases</h1>
         </div>
 
-        <!--+- `
-# Environment variables
-`+-->
-<p>Environment variables are a common way to configure various buildpacks at build-time.</p>
-<p>Below are a few ways you can do so. All of them will use our <a href="https://github.com/buildpacks/samples">samples</a> repo for simplicity.</p>
-<h3 id="using-cli-arguments---env">Using CLI arguments (<code>--env</code>)</h3>
-<p>The <code>--env</code> parameter must be one of the following:</p>
+        <p>We work through a full example of building a &ldquo;hello world&rdquo; NodeJs web application.  In the example we run <code>pack</code> on the NodeJS application to produce an application image.  We assume that we have a NodeJS buildpack, <code>registry.fake/buildpacks/nodejs:latest</code>, that is decomposed into buildpacks that help with the build.  We expand each of the buildpacks phases to explain the process.  Throughout the example we take a production-level view of their operation.  For example, our assumed NodeJS buildpack will be described to create different build, cache and launch layers in a manner similar to how a real NodeJS buildpack would operate.</p>
+<h2 id="nodejs-buildpack">NodeJS buildpack</h2>
+<p>The example NodeJS buildpack is a meta-buildpack.  It is composed of</p>
 <ul>
-<li><code>VARIABLE=VALUE</code></li>
-<li><code>VARIABLE</code>, where the value of <code>VARIABLE</code> will be taken from the local environment</li>
+<li><code>node-engine</code> buildpack that provides the <code>node</code> and <code>npm</code> binaries,</li>
+<li><code>yarn</code> buildpack that provides the <code>yarn</code> binary,</li>
+<li><code>yarn-install</code> and <code>npm-install</code> buildpacks that install dependencies using either <code>yarn</code> or <code>npm</code>,</li>
+<li><code>yarn-start</code> and <code>npm-start</code> buildpacks that configure the entrypoint to the application image,</li>
+<li><code>procfile</code> a buildpack that allows developers to provide a <a href="https://devcenter.heroku.com/articles/procfile#procfile-format">Heroku-style</a> entrypoint for the image.</li>
 </ul>
-<h5 id="example">Example:</h5>
-<ol>
-<li>Set an environment variable</li>
-</ol>
-<pre tabindex="0"><code>export FOO=BAR
-</code></pre><!--+- "{{execute}}"+-->
-<ol start="2">
-<li>Build the app</li>
-</ol>
-<pre tabindex="0"><code>pack build sample-app \
-    --env &#34;HELLO=WORLD&#34; \
-    --env &#34;FOO&#34; \
-    --builder cnbs/sample-builder:bionic \
-    --buildpack  samples/buildpacks/hello-world/ \
-    --buildpack samples/apps/bash-script/bash-script-buildpack/ \
-    --path  samples/apps/bash-script/
-</code></pre><!--+- "{{execute}}"+-->
-<ol start="3">
-<li>Run the app</li>
-</ol>
-<pre tabindex="0"><code>docker run sample-app
-</code></pre><!--+- "{{execute}}"+-->
-<p>The following environment variables were set and available to buildpacks at build-time:</p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Value</th>
-<th><em>Source</em></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>HELLO</code></td>
-<td><code>WORLD</code></td>
-<td><em>hard-coded inline value</em></td>
-</tr>
-<tr>
-<td><code>FOO</code></td>
-<td><code>BAR</code></td>
-<td><em>current environment</em></td>
-</tr>
-</tbody>
-</table>
-<h3 id="using-env-files---env-file">Using env files (<code>--env-file</code>)</h3>
-<p>The <code>--env-file</code> parameter must be a path to a file where each line is one of the following:</p>
-<ul>
-<li><code>VARIABLE=VALUE</code></li>
-<li><code>VARIABLE</code>, where the value of <code>VARIABLE</code> will be taken from the current environment</li>
-</ul>
-<h5 id="example-1">Example:</h5>
-<ol>
-<li>Set an environment variable</li>
-</ol>
-<pre tabindex="0"><code>export FOO=BAR
-</code></pre><!--+- "{{execute}}"+-->
-<ol start="2">
-<li>Create an env file</li>
-</ol>
-<pre tabindex="0"><code>echo -en &#34;HELLO=WORLD\nFOO&#34; &gt; ./envfile
-</code></pre><!--+- "{{execute}}"+-->
-<ol start="3">
-<li>Build the app</li>
-</ol>
-<pre tabindex="0"><code>pack build sample-app \
-    --env-file ./envfile \
-    --builder cnbs/sample-builder:bionic \
-    --buildpack  samples/buildpacks/hello-world/ \
-    --buildpack samples/apps/bash-script/bash-script-buildpack/ \
-    --path  samples/apps/bash-script/
-</code></pre><!--+- "{{execute}}"+-->
-<ol start="4">
-<li>Run the app</li>
-</ol>
-<pre tabindex="0"><code>docker run sample-app
-</code></pre><!--+- "{{execute}}"+-->
-<p>The following environment variables were set and available to buildpacks at build-time:</p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Value</th>
-<th><em>Source</em></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>HELLO</code></td>
-<td><code>WORLD</code></td>
-<td><em>hard-coded value in file</em></td>
-</tr>
-<tr>
-<td><code>FOO</code></td>
-<td><code>BAR</code></td>
-<td><em>current environment</em></td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p><strong>NOTE:</strong> Variables defined using <code>--env</code> take precedence over variables defined in <code>--env-file</code>.</p>
-</blockquote>
-<h3 id="using-project-descriptor">Using Project Descriptor</h3>
-<p>The <code>--descriptor</code> parameter must be a path to a file which follows the project.toml <a href="/docs/reference/project-descriptor/">schema</a>.
-Without the <code>--descriptor</code> flag, <code>pack build</code> will use the <code>project.toml</code> file in the application directory if it exists.
-You can define environment variables in an <code>env</code> table in the file, and pass those into the application.</p>
-<h5 id="example-2">Example:</h5>
-<ol>
-<li>Add an environment variable to the project.toml</li>
-</ol>
-<pre tabindex="0"><code>cat &gt;&gt; samples/apps/bash-script/project.toml &lt;&lt;EOL
+<p>The <code>nodejs</code> buildpack itself is a meta-buildpack which defines two <strong>order groups</strong>.  Here we represent the order groups visually:</p>
+<p><img src="/images/order-groups.svg" alt="nodejs order groups"></p>
+<p>The order group containing <code>yarn</code> logic has higher precedence in the <code>nodejs</code> buildpack than the order group containing <code>npm-install</code>.  In both order groups the <code>procfile</code> buildpack is optional.  The function of order groups will become more clear as we proceed through our example.</p>
+<h2 id="running-pack">Running <code>pack</code></h2>
+<p>Our example NodeJS application is a &ldquo;hello world&rdquo; REST-like API.  Any request to the <code>/</code> URL results in the response <code>{&quot;message&quot;, &quot;Hello world&quot;}</code>.  Our application contains the two source files</p>
+<pre tabindex="0"><code class="language-command" data-lang="command">$ tree .
+.
+├── index.js
+└── package.json
 
-[[build.env]]
-name=&#34;HELLO&#34;
-value=&#34;WORLD&#34;
-EOL
-</code></pre><!--+- "{{execute}}"+-->
-<ol start="2">
-<li>Build the app</li>
-</ol>
-<pre tabindex="0"><code>pack build sample-app \
-    --builder cnbs/sample-builder:bionic \
-    --buildpack  samples/buildpacks/hello-world/ \
-    --buildpack samples/apps/bash-script/bash-script-buildpack/ \
-    --path  samples/apps/bash-script/
-</code></pre><!--+- "{{execute}}"+-->
-<ol start="3">
-<li>Run the app</li>
-</ol>
-<pre tabindex="0"><code>docker run sample-app
-</code></pre><!--+- "{{execute}}"+-->
-<p>The following environment variables were set and available to buildpacks at build-time:</p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Value</th>
-<th><em>Source</em></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>HELLO</code></td>
-<td><code>WORLD</code></td>
-<td><em>hard-coded value in file</em></td>
-</tr>
-</tbody>
-</table>
+0 directories, 2 files
+</code></pre><p>The core logic is contained in <code>index.js</code>, our dependencies are declared in <code>package.json</code> and <code>package.json</code> also describes how to start our application.  The logic in <code>index.js</code> listens on a <code>PORT</code>, provided as an environment variable:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">app</span> <span class="o">=</span> <span class="nx">express</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">app</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">res</span><span class="p">.</span><span class="nx">send</span><span class="p">({</span><span class="s1">&#39;message&#39;</span><span class="o">:</span> <span class="s1">&#39;Hello World&#39;</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">var</span> <span class="nx">port</span> <span class="o">=</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">PORT</span> <span class="o">||</span> <span class="s1">&#39;8080&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">app</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">port</span><span class="p">)</span>
+</span></span></code></pre></div><p>The dependencies are provided using the mechanism an NodeJS developer expects.  In this example we depend upon <code>express</code> to provide a framework for our REST-like service.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;hello-world&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;1.0.0&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;description&#34;</span><span class="p">:</span> <span class="s2">&#34;A hello-world nodejs example&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;main&#34;</span><span class="p">:</span> <span class="s2">&#34;index.js&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;scripts&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;start&#34;</span><span class="p">:</span> <span class="s2">&#34;node index.js&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">},</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&#34;dependencies&#34;</span><span class="p">:</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&#34;express&#34;</span><span class="p">:</span> <span class="s2">&#34;^4.18.1&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Finally, we describe the container entrypoint using a script in the <code>package.json</code>.  The script must be named <code>start</code> according to NodeJS convention.   Here we see that the entrypoint should run the provided <code>node index.js</code> command.</p>
+<p>We build our application using the default builder and specify to only use the <code>nodejs</code> meta-buildpack in the build.  The restriction to use only the <code>nodejs</code> meta-buildpack simplifies the explanation as that buildpack provides only two order groups.</p>
+<p><asciinema-player
+idle-time-limit="0.5s"
+font-size="medium"
+poster="data:text/plain,$ pack build example --verbose --buildpack docker://registry.fake/buildpacks/nodejs:latest" src="/images/pack-hello-world-nodejs.cast"></asciinema-player></p>
+<p>Now that we understand the example application we can step through each of the Buildpack phases.</p>
+<h2 id="phases">Phases</h2>
+<p>There are five phases to a buildpacks build.  These logic for each phaze is provided by a binary within <a href="https://github.com/buildpacks/lifecycle"><code>lifecycle</code></a> and the orchestration of running each of the binaries is the responsibility of the Buildpacks platform.  In this case we are using <code>pack</code> as our Buildpacks platform.</p>
+<p>At a high-level each layer:</p>
+<ul>
+<li>Analyze phase - Reads metadata from any previously built image and ensures we have access to the OCI registry to be able to write the image we will build.</li>
+<li>Detect phase - Chooses buildpacks (via /bin/detect) and produces a build plan.</li>
+<li>Restore phase - Restores layer metadata from the previous image and from the cache, and restores cached layers.</li>
+<li>Build phase - Executes buildpacks (via /bin/build).</li>
+<li>Export phase - Creates an image and caches layers.</li>
+</ul>
+<p>We consider each of the buildpacks phases in the context of our invocation of <code>pack build example --buildpack docker://registry.fake/buildpacks/nodejs:latest</code>.</p>
+<h3 id="phase-1-analyze">Phase 1: Analyze</h3>
+<p>The analyze phase checks a registry for previous images called <code>example</code>.  It resolves the image metadata making it available to the subsequent restore phaze.  In addition, analyze verifies that we have write access to the registry to create or update the image called <code>example</code>.</p>
+<p>In our case <code>pack</code> tells us that there is no previous <code>example</code> image.  It provides the output.</p>
+<pre tabindex="0"><code>Previous image with name &#34;example&#34; not found
+Analyzing image &#34;98070ee549c522cbc08d15683d134aa0af1817fcdc56f450b07e6b4a7903f9b
+0&#34;
+</code></pre><p>The analyze phase writes to disk the metadata it has found.  The metadata is used by the restore phase when restoring cached image layers.</p>
+<h3 id="phase-2-detect">Phase 2: Detect</h3>
+<p>The detect phase runs the <code>detect</code> binary of each buildpack in the order provided in the buildpack metadata.</p>
+<p>The invocation of <code>pack build example --buildpack docker://registry.fake/buildpacks/nodejs:latest</code> explicitly defines a buildpack order.  The command line invocation includes a single <code>nodejs</code> buildpack.   In our example the detect phase runs the <code>detect</code> binary from each buildpack in the first order group.  The <code>yarn-install</code> <code>detect</code> binary will fail as no yarn lock file is present in our source project.  As the <code>detect</code> binary of a non-optional buildpack has failed, then detection of the entire build group containing <code>yarn-install</code> has failed.  The detect phase then proceeds to run the <code>detect</code> binary of each buildpack in the second order group.  As all non-optional buildpacks in this group have passed the detect phase, all the passing buildpacks are added to the build order.</p>
+<p><img src="/images/order-groups-detect.svg" alt="nodejs order groups"></p>
+<!-- ALERT-NOTE -->
 <blockquote>
-<p><strong>NOTE:</strong> Variables defined using <code>--env</code> or <code>--env-file</code> take precedence over variables defined in the <code>project.toml</code>.</p>
+<p>The <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#order-resolution">specification for order resolution</a> shows each order group as a matrix and the resolution as an operation on matrices.</p>
 </blockquote>
+<p>The above diagram shows that the <code>detect</code> binary of each required buildpack in the second order group passes.  The detect phase is summarized by pack as</p>
+<pre tabindex="0"><code>===&gt; DETECTING
+======== Output: example/yarn-install@0.0.2 ========
+failed
+======== Output: example/yarn-start@0.0.3 ========
+failed
+======== Results ========
+pass: example/node-engine@0.0.5
+pass: example/yarn@0.0.3
+fail: example/yarn-install@0.0.2
+fail: example/yarn-start@0.0.3
+skip: example/procfile@0.0.2
+======== Results ========
+pass: example/node-engine@0.0.5
+pass: example/npm-install@0.0.2
+pass: example/npm-start@0.0.2
+skip: example/procfile@0.0.2
+Resolving plan... (try #1)
+fail: example/npm-install@0.0.2 requires npm
+Resolving plan... (try #2)
+3 of 4 buildpacks participating
+example/node-engine 0.0.5
+example/npm-install 0.0.2
+example/npm-start   0.0.2
+</code></pre><p>The output of the detect phase includes a <strong>build plan</strong>.</p>
 <blockquote>
-<p><strong>NOTE:</strong> <code>project.toml</code> can&rsquo;t detect environment variables (so, for instance, if one ran <code>export FOO=BAR</code> and added
-<code>name=FOO</code> to the <code>project.toml</code>, it wouldn&rsquo;t detect any value set for <code>FOO</code>).</p>
+<p>The build plan is a toml file containing declarations of what each buildpack provides and what it requires.</p>
 </blockquote>
+<p>For example, the <code>example/node-engine</code> buildpack will contribute metadata stating that it provides <code>node</code>.  In addition, it declares a requirement for the subsequent build phase to satisfy the <code>node</code> with some specific metadata.  That is to say, it requires that the build phase installs a node 14.17.5 runtime.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">provides</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;node&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">requires</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;node&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nx">requires</span><span class="p">.</span><span class="nx">metadata</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;14.17.5&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">version-source</span> <span class="p">=</span> <span class="s2">&#34;14.17.5&#34;</span>
+</span></span></code></pre></div><p>The <code>npm-install</code> <code>detect</code> binary contributes more metadata to the build plan. <code>npm-install</code> requires that a node runtime available.  We will find that the <code>example/node-engine</code> buildpack will satisfy that requirement.  <code>npm-install</code> also requires that the build phase satisfies the <code>npm</code> requirement.  It is interesting to note that the <code>npm-install</code> detect phase attaches additional <code>build = true</code> metadata to each of its requirements.  We will see that this is interpreted by the build phase as the <code>node</code> runtime and <code>npm</code> install process contributing <strong>build layers</strong> i.e. as layers that are available to subsequent buildpacks for the purposes of building the application.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">provides</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">   <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;npm&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">requires</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;node&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nx">requires</span><span class="p">.</span><span class="nx">metadata</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">build</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">requires</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;npm&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nx">entries</span><span class="p">.</span><span class="nx">requires</span><span class="p">.</span><span class="nx">metadata</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">build</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span></code></pre></div><p>The <code>detect</code> binary of <code>npm-start</code> detects the existence of a <code>start</code> command within <code>package.json</code>.  If such a command exists it contributes requirements to the build plan that require <code>node</code> and <code>npm</code> to be available within a <strong>launch layer</strong> i.e. as layers in the output image.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">requires</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;node&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nx">requires</span><span class="p">.</span><span class="nx">metadata</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">launch</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">requires</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;npm&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nx">requires</span><span class="p">.</span><span class="nx">metadata</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">launch</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span></code></pre></div><p>The build plans provided by each <code>detect</code> binary are resolved as an output of the detect phase.  The detect phase can fail if a buildpack requires a dependency that cannot be resolved.</p>
+<p>We have provided a complete example of the detect phase for our &ldquo;hello world&rdquo; NodeJS application.  Given input application code and buildpacks, the output is largely a declarative TOML file passed to the build phase.  The detected order is written to a <code>group.toml</code> file which is used in the restore phase.</p>
+<h3 id="phase-3-restore">Phase 3: Restore</h3>
+<p>The restore phase uses metadata provided by the analyze phase and <code>group.toml</code> from the detect phase.  It outputs cached layers to <code>$CNB_LAYERS_DIR/&lt;buildpack-id&gt;</code> in the application image.  If a layer is restored at the restore phase then we skip the build phase for that layer.</p>
+<p>In our running example there is no previous build.  The analyze phase returned no cached image.  Therefore the restore phase is similarly quiet and <code>pack</code> outputs the following:</p>
+<pre tabindex="0"><code>===&gt; RESTORING
+Reading buildpack directory: /layers/example_node-engine
+Not restoring &#34;example/node-engine:node&#34; from cache, marked as launch=true
+Reading buildpack directory: /layers/example_npm-install
+Not restoring &#34;example/npm-install:modules&#34; from cache, marked as launch=true
+Not restoring &#34;example/npm-install:npm-cache&#34; from cache, marked as launch=true
+Reading buildpack directory: /layers/example_npm-start
+Reading buildpack directory: /layers/example_procfile
+Reading buildpack directory: /layers/example_node-engine
+Reading buildpack directory: /layers/example_npm-install
+Reading buildpack directory: /layers/example_npm-start
+Reading buildpack directory: /layers/example_procfile
+</code></pre><p>Having resolved the build plan and any cached layers, the build phase can concentrate on creating layers.</p>
+<h3 id="phase-4-build">Phase 4: Build</h3>
+<p>The build phase is provided as input the order in which to run the buildpacks (<code>group.toml</code>) and the build plan (<code>plan.toml</code>).  The build phase runs the <code>build</code> binary of each buildpack.  The build binary for a buildpack outputs zero or more layers into <code>$(CNB_LAYERS_DIR)/&lt;buildpack-id&gt;</code> and writes metadata for each layer as TOML files in that directory.  Buildpacks should also provide Software Bill-of-Materials for each layer that they contribute to the build.</p>
+<p>In our running NodeJS example the build phase runs the <code>build</code> binary from the</p>
+<ul>
+<li><code>example/node-engine</code> buildpack, followed by</li>
+<li><code>example/node-install</code>, followed by</li>
+<li><code>example/node-start</code>, and finally</li>
+<li><code>example/procfile</code>.</li>
+</ul>
+<p>In this example, each buildpack contributes a single layer to the output image.</p>
+<p>Each invocation of <code>build</code> is passed a <strong>buildpack plan</strong> specific to each buildpack.  The buildpack plan are those entries from the build plan that reference something provided by that buildpack.</p>
+<h4 id="node-engine-build-execution"><code>node-engine</code> build execution</h4>
+<p>The <code>example/node-engine</code> buildpack provides <code>node</code>.  Therefore all entries in the build plan that require <code>node</code> are passed in the buildpack plan for this buildpack.  The buildpack plan provided to <code>example/node-engine</code> in this example is</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">entries</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;node&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">entries</span><span class="p">.</span><span class="nx">metadata</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;14.17.5&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">version-source</span> <span class="p">=</span> <span class="s2">&#34;14.17.5&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">entries</span><span class="p">.</span><span class="nx">metadata</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">build</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">entries</span><span class="p">.</span><span class="nx">metadata</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">launch</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span></code></pre></div><p>Given the metadata from the buildpack plan, an archive containing <code>node</code> version <code>14.17.5</code> is fetched from a network source and expanded as a layer contributed by this buildpack.</p>
+<pre tabindex="0"><code>===&gt; BUILDING
+Starting build
+Running build for buildpack example/node-engine@0.0.5
+Looking up buildpack
+Finding plan
+Running build for buildpack node-engine 0.0.5
+Creating plan directory
+Preparing paths
+Running build command
+node-engine 0.0.5
+  Resolving Node Engine version
+    Candidate version sources (in priority order):
+                -&gt; &#34;&#34;
+      &lt;unknown&gt; -&gt; &#34;&#34;
+
+    Selected Node Engine version (using ): 14.17.5
+
+  Executing build process
+    Installing Node Engine 14.17.5
+      Completed in 31.715s
+
+  Configuring build environment
+    NODE_ENV     -&gt; &#34;production&#34;
+    NODE_HOME    -&gt; &#34;/layers/example_node-engine/node&#34;
+    NODE_VERBOSE -&gt; &#34;false&#34;
+
+  Configuring launch environment
+    NODE_ENV     -&gt; &#34;production&#34;
+    NODE_HOME    -&gt; &#34;/layers/example_node-engine/node&#34;
+    NODE_VERBOSE -&gt; &#34;false&#34;
+
+    Writing profile.d/0_memory_available.sh
+      Calculates available memory based on container limits at launch time.
+      Made available in the MEMORY_AVAILABLE environment variable.
+
+Processing layers
+Updating environment
+Reading output files
+Updating buildpack processes
+Updating process list
+Finished running build for buildpack example/node-engine@0.0.5
+</code></pre><p>The <code>node-engine</code> buildpack contributes a layer containing <code>bin/node</code>, the supporting libraries for <code>bin/node</code> and sets environment variables that are specific to the node binary.</p>
+<h4 id="npm-install-build-execution"><code>npm-install</code> build execution</h4>
+<p>The <code>npm-install</code> buildpack contributes at least two layers.  One layer is a cache-only layer and is never exported as part of the application image.  The cache layer holds <code>npm</code> metadata and the installed <code>node_modules</code>.  If <code>npm</code> is also required to provide a launch layer, as it is in our running example, then the <code>node_modules</code> of the cache layer are provided as a layer in the application image.  In addition, a script is provided to set up some symlinks.  The script executes on container startup ensuring that our <code>index.js</code> can resolve JavaScript modules installed in the layer.</p>
+<pre tabindex="0"><code>Running build for buildpack example/npm-install@0.0.2
+Looking up buildpack
+Finding plan
+Running build for buildpack npm-install 0.0.2
+Creating plan directory
+Preparing paths
+Running build command
+npm-install 0.0.2
+  Resolving installation process
+    Process inputs:
+      node_modules      -&gt; &#34;Not found&#34;
+      npm-cache         -&gt; &#34;Not found&#34;
+      package-lock.json -&gt; &#34;Found&#34;
+
+    Selected NPM build process: &#39;npm ci&#39;
+
+  Executing build process
+    Running &#39;npm ci --unsafe-perm --cache /layers/example_npm-install/npm-cache&#39;
+      Completed in 11.255s
+
+  Configuring launch environment
+    NPM_CONFIG_LOGLEVEL -&gt; &#34;error&#34;
+
+  Configuring environment shared by build and launch
+    PATH -&gt; &#34;$PATH:/layers/example_npm-install/modules/node_modules/.bin&#34;
+
+
+Processing layers
+Updating environment
+Reading output files
+Updating buildpack processes
+Updating process list
+Finished running build for buildpack example/npm-install@0.0.2
+</code></pre><p>In the verbose output of an execution of <code>npm-install</code>&rsquo;s <code>build</code> binary we can observe that the <code>NPM_CONFIG_LOGLEVEL</code> environment variable is set on the application image and the <code>PATH</code> environmental variable is extended so that binaries installed via <code>npm</code> can be found.</p>
+<h4 id="npm-start-build-execution"><code>npm-start</code> build execution</h4>
+<p>The <code>npm-start</code> build phase creates an entrypoint in the application image.</p>
+<pre tabindex="0"><code>Running build for buildpack example/npm-start@0.0.2
+Looking up buildpack
+Finding plan
+Running build for buildpack npm-start 0.0.2
+Creating plan directory
+Preparing paths
+Running build command
+npm-start 0.0.2
+  Assigning launch processes
+    web: node index.js
+
+Processing layers
+Updating environment
+Reading output files
+Updating buildpack processes
+Updating process list
+Finished running build for buildpack example/npm-start@0.0.2
+</code></pre><p>The output layers contributed by each buildpack are then exported as an OCI image.</p>
+<h3 id="phase-5-export">Phase 5: Export</h3>
+<p>The export phase constructs a new OCI image using all the layers provided in the build phase.  In addition the application source is added as a layer to the output image and the image <code>ENTRYPOINT</code> is set.  The exported image, which we call <code>example</code>, contains only launch layers.  Cache layers are preserved on the local machine for subsequent builds.</p>
+<p>Our NodeJS example image requires an entrypoint called <code>web</code>.  The <code>web</code> entrypoint is implemented on the application image as a symlink to the <code>launcher</code> binary.  As we have specified a single entrypoint, this then becomes the default entrypoint of the image.</p>
+<h2 id="summary">Summary</h2>
+<p>We have taken a detailed look at how buildpacks are used to build a sample application.  The meta-buildpack contains two order groups and we have seen examples of how an order group is resolved.  In addition we have looked at the contributions that a buildpack makes to the build plan and considerd how these are resolved into a buildpack plan to be provided to the build phase of specific buildpacks.  Finally, we have briefly considered how the analyze and restore phases can allow advanced caching strategies.</p>
 
 
         
@@ -809,12 +928,12 @@ EOL
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BEnvironment&#43;variables%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fapp-developer-guide%2Fenvironment-variables%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BOverview&#43;of&#43;Buildpacks&#43;Phases%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fbuildpack-author-guide%2Fbuild-phases-overview%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/app-developer-guide/environment-variables.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/buildpack-author-guide/build-phases-overview.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
