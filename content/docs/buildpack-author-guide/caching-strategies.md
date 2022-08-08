@@ -1,10 +1,10 @@
 +++
-title="Caching Strategies"
+title="Layer Types"
 weight=6
 summary="Learn strategies for caching layers."
 +++
 
-# Caching
+# Layers
 
 There are three types of layers that can be contributed to an image
 
@@ -23,7 +23,7 @@ buildpacks ensure byte-for-byte reproducibility of layers.  File creation time i
 
 Launch layers are exported to an OCI registry.  The layer metadata is commonly used when deciding if a launch layer should be re-used.  A launch layer may be re-used on an OCI registry without downloading the layer to the machine running a build.
 
-## Strategies
+## Caching Strategies
 
 Caching during the production of an application image is necessarily very flexible.  Most buildpacks that wish to contribute a layer to the application image need only to
 
