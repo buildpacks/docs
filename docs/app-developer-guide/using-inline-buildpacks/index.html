@@ -650,7 +650,7 @@
 </span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">build</span><span class="p">.</span><span class="nx">buildpacks</span><span class="p">.</span><span class="nx">script</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">api</span> <span class="p">=</span> <span class="s2">&#34;0.6&#34;</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">inline</span> <span class="p">=</span> <span class="s2">&#34;rake package&#34;</span>
-</span></span></code></pre></div><p>In this example, the <code>me/rake-tasks</code> inline buildpack is configured to run after the <code>example/ruby</code> buildpack. The inline script is compatible with API version <code>0.4</code> (this is a required field), and it will execute the <code>rake package</code> command during the build step.</p>
+</span></span></code></pre></div><p>In this example, the <code>me/rake-tasks</code> inline buildpack is configured to run after the <code>example/ruby</code> buildpack. The inline script is compatible with buildpack API version <code>0.6</code> (this is a required field), and it will execute the <code>rake package</code> command during the build step.</p>
 <blockquote>
 <p><strong>Note:</strong> Inline buildpacks will <em>always</em> pass detection.</p>
 </blockquote>
