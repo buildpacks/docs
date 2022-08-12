@@ -17,7 +17,7 @@
 
 
 
-<meta property="og:title" content="Caching Strategies · Cloud Native Buildpacks">
+<meta property="og:title" content="Layer Types · Cloud Native Buildpacks">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://buildpacks.io/docs/buildpack-author-guide/caching-strategies/">
 <meta property="og:locale" content="en_US">
@@ -33,7 +33,7 @@
 
 
 
-<meta property="twitter:title" content="Caching Strategies · Cloud Native Buildpacks">
+<meta property="twitter:title" content="Layer Types · Cloud Native Buildpacks">
 <meta property="twitter:card" content="summary">
 <meta property="twitter:image" content="https://buildpacks.io/images/buildpacks-social-card-square.jpg">
 <meta property="twitter:image:alt" content="Buildpacks project logo">
@@ -96,7 +96,7 @@
     gtag('config', 'G-CJLSR4FQXL');
   </script>
 
-  <title>Caching Strategies · Cloud Native Buildpacks</title>
+  <title>Layer Types · Cloud Native Buildpacks</title>
 </head>
 
 <body>
@@ -337,7 +337,7 @@
   <a href="/docs/buildpack-author-guide/publishing-with-github-actions/">Publishing with Github Actions</a>
 </li>
 <li data-nav-id="/docs/buildpack-author-guide/caching-strategies/" class="dd-item depth-1 active">
-  <a href="/docs/buildpack-author-guide/caching-strategies/">Caching Strategies</a>
+  <a href="/docs/buildpack-author-guide/caching-strategies/">Layer Types</a>
 </li>
 <li data-nav-id="/docs/buildpack-author-guide/build-phases-overview/" class="dd-item depth-1">
   <a href="/docs/buildpack-author-guide/build-phases-overview/">Overview of Buildpacks Phases</a>
@@ -618,7 +618,7 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BCaching&#43;Strategies%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fbuildpack-author-guide%2Fcaching-strategies%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BLayer&#43;Types%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fbuildpack-author-guide%2Fcaching-strategies%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
@@ -631,36 +631,25 @@
 
 
         <div class="heading">
-          <h1 class="title">Caching Strategies</h1>
+          <h1 class="title">Layer Types</h1>
         </div>
 
-        <h1 id="caching">Caching</h1>
+        <h1 id="layers">Layers</h1>
 <p>There are three types of layers that can be contributed to an image</p>
 <ul>
 <li><code>build</code> layers &ndash; the directory will be accessible by subsequent buildpacks,</li>
 <li><code>cache</code> layers &ndash; the directory will be included in the cache,</li>
 <li><code>launch</code> layers &ndash; the directory will be included in the run image as a single layer,</li>
 </ul>
-<p>A fourth type of layer</p>
-<ul>
-<li><code>ignored</code> layers</li>
-</ul>
-<p>are available to buildpack authors for use as temporary layers.</p>
 <p>In this section we look at caching each layer type.</p>
 <h2 id="layer-metadata">Layer Metadata</h2>
-<p>buildpacks ensure byte-for-byte reproducibility of layers.  File creation time is <a href="https://medium.com/buildpacks/time-travel-with-pack-e0efd8bf05db">normalized to January 1, 1980</a> to ensure reproducibility.  Byte-for-byte reproducibility means previous layers can be reused.  However, we want to invalidate previously cached layers if</p>
-<ul>
-<li>the buildpacks API changes,</li>
-<li>the type of the layer changes.</li>
-</ul>
-<p>A layer built using a buildpack at API version <code>0.7</code> should be considered invalid if the API version for that buildpack has been updated to <code>0.8</code>.  Similarly, if a layer is changed from being a cache-only layer to being a cache and launch layer, then the cache should be considered invalid.</p>
-<p>In addition to general cache invalidation conditions a buildpack should invalidate a previous layer if an important property changes, such as:</p>
+<p>buildpacks ensure byte-for-byte reproducibility of layers.  File creation time is <a href="https://medium.com/buildpacks/time-travel-with-pack-e0efd8bf05db">normalized to January 1, 1980</a> to ensure reproducibility.  Byte-for-byte reproducibility means previous layers can be reused.  However, we may want to invalidate previously cached layers if an important property changes, such as:</p>
 <ul>
 <li>the major version of the runtime changes eg: NodeJS changes from 16 to 18</li>
 <li>requested application dependencies have changed eg: a Python application adds a dependency on the <code>requests</code> module</li>
 </ul>
-<p>Launch layers are exported to an OCI registry and layer metadata is stored with the launch layer.  The layer metadata is commonly used when deciding if a launch layer should be re-used from cache.</p>
-<h2 id="strategies">Strategies</h2>
+<p>Launch layers are exported to an OCI registry.  The layer metadata is commonly used when deciding if a launch layer should be re-used.  A launch layer may be re-used on an OCI registry without downloading the layer to the machine running a build.</p>
+<h2 id="caching-strategies">Caching Strategies</h2>
 <p>Caching during the production of an application image is necessarily very flexible.  Most buildpacks that wish to contribute a layer to the application image need only to</p>
 <ol>
 <li>Check that the metadata of the cached layer is current,</li>
@@ -669,7 +658,7 @@
 </ol>
 <p>This will guarantee that the previously published application image layer in the registry is re-used if the layer metadata matches the requested metadata.  In this most straightforward use-case <code>launch</code> is <code>true</code> and both <code>build</code> and <code>cache</code> are set to <code>false</code>.  That is to say, the most common case is where <code>cache = false</code>, <code>build = false</code> and <code>launch = true</code>.  It is important to note that the layer is re-used on the OCI registry.  This avoids expensive rebuilds of the layer and expensive pulls of the layer to the host running the build.</p>
 <p>Setting <code>build = true</code> makes a layer available to subsequent buildpacks.  Therefore binaries installed to the <code>bin</code> directory on a <code>build = true</code> layer are available to subsequent buildpacks during the build phase.  It is also the case that <code>lib</code> directories on a <code>build = true</code> later are added to the <code>LD_LIBRARY_PATH</code> during the build phase of subsequent buildpacks.  Environment variables defined in a <code>build = true</code> layer are similarly available.  For any layer where <code>launch = true</code> and <code>build = true</code>, a launch layer from the OCI registry can no longer be reused. Instead, the layer must be made available locally so that subsequent buildpacks can use it.</p>
-<p>Setting <code>cache = true</code> allows additional fine-grained control over caching.  The <code>cache = true</code> flag caches a layer and allows a buildpack to make <em>content</em> level decisions about the validity of the cache (as opposed to using the less granular metadata).  As an example, suppose a layer where <code>launch = true</code> installs a <code>jq</code> binary with version <code>1.5</code> and sets <code>version=1.5</code> in the layer metadata.  By default, this layer will not be re-used from the registry when a buildpack requests <code>jq</code> with <code>version=1.6</code> to be installed.  However, setting <code>cache = true</code> makes a previously built layer available during the build.  A buildpack could then prefer to implement logic to restore <code>jq</code> with <code>version=1.5</code> instead of performing a potentially expensive download of <code>jq</code> with <code>version=1.6</code>.  The <code>cache = true</code> setting allows for cache validation decisions to be made at a level of granularity that is much finer grained than layer metadata.</p>
+<p>Setting <code>cache = true</code> ensures that the layer is restored locally before the buildpacks build phase.</p>
 <p>Setting <code>cache = false</code>, <code>build = false</code>, and <code>launch = true</code> is the most common configuration.  If <code>cache = false</code>, <code>build = false</code>, and <code>launch = true</code> is not appropriate for your layer, then <code>cache = true</code>, <code>build = true</code>, and <code>launch = true</code> should be the next combination to evaluate:</p>
 <ul>
 <li>When <code>cache = true, build = true, launch = true</code>, explicitly setting <code>build = true</code> makes the layer available, to subsequent buildpacks, during the build phase.  As <code>cache = true</code> the layer is restored from local cache before proceeding to the build phase.  For example, a Python distribution could be provided in a cached, build and launch layer. The build phase could verify that the restored cached version of the Python distribution contains Python 3.10 but disregard the patch number of the Python interpreter.</li>
@@ -682,6 +671,7 @@
 <li><code>cache = true, build = false, launch = false</code> This configuration is particularly useful in layers that download resources.  Using a cache-only layer supports allows a  buildpack to re-use cached downloads during installation.  For example, pip wheels could be downloaded as a cache-only layer and the same buildpack could install the wheels in to a launch layer.</li>
 </ul>
 <p>There are other boolean combinations of cache, build and launch.  These provide significant flexibility in the caching system.  Users of less common caching strategies need a good understanding of the <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#layer-types">buildpacks specification on Layer Types</a>.</p>
+<p>The flexibility of buildpacks layer options allow fine-grained control over caching.  A buildpack may make <em>content</em> level decisions about the validity of a previous layer (as opposed to using the less granular metadata).  A buildpack may contribute a launch layer that includes a built application and its dependencies.  The same buildpack can also contribute a cache-only layer containing the source dependencies.  In subsequent builds the buildpack can detect whether application dependencies have changed.  The subset of dependencies that have changed may be updated on the cache layer.  Then all dependencies may be restored from the cache layer and the built application is contributed as a new launch layer.  In this way we make content-level decisions about the validity of dependencies.  In addition, content-level caching strategies can save time and bandwidth by choosing to update only a subset of the cached content.</p>
 
 
         
@@ -692,7 +682,7 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BCaching&#43;Strategies%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fbuildpack-author-guide%2Fcaching-strategies%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BLayer&#43;Types%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fbuildpack-author-guide%2Fcaching-strategies%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
