@@ -35,7 +35,7 @@ This will guarantee that the previously published application image layer in the
 
 Setting `build = true` makes a layer available to subsequent buildpacks.  Therefore binaries installed to the `bin` directory on a `build = true` layer are available to subsequent buildpacks during the build phase.  It is also the case that `lib` directories on a `build = true` later are added to the `LD_LIBRARY_PATH` during the build phase of subsequent buildpacks.  Environment variables defined in a `build = true` layer are similarly available.  For any layer where `launch = true` and `build = true`, a launch layer from the OCI registry can no longer be reused. Instead, the layer must be made available locally so that subsequent buildpacks can use it.
 
-Setting `cache = true` keeps a local cache of the layer.  The cache is restored before the buildpacks build phase.  
+Setting `cache = true` ensures that the layer is restored locally before the buildpacks build phase.
 
 Setting `cache = false`, `build = false`, and `launch = true` is the most common configuration.  If `cache = false`, `build = false`, and `launch = true` is not appropriate for your layer, then `cache = true`, `build = true`, and `launch = true` should be the next combination to evaluate:
 
