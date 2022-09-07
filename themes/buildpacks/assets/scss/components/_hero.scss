@@ -3,6 +3,10 @@
 Hero
 
 **********************************/
+@keyframes colorIn {
+  0% { filter: grayscale(1); }
+  100% { filter: grayscale(0); }
+}
 
 .hero {
   background-image: url("/images/bg-pattern.png");
@@ -10,7 +14,7 @@ Hero
   background-blend-mode: multiply;
 
   .container {
-    padding: 6vw;
+    padding: 4vw;
     text-align: center;
 
     .strong {
@@ -19,8 +23,6 @@ Hero
 
     h2 {
       font-weight: 300;
-      max-width: 620px;
-      margin: 0 auto 20px;
       color: $white;
       text-shadow: 2px 2px rgba($black, .2);
     }
@@ -37,6 +39,34 @@ Hero
       margin: 20px 0 10px;
       max-width: 200px;
       box-shadow: 2px 2px rgba($black, .1);
+    }
+
+    .nav-item {
+      .nav-link {
+        margin-right: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        background-color: $blue-dark;
+        opacity: 1;
+
+        &:not(.active) {
+          img {
+            filter: grayscale(1.0);
+          }
+
+          &:hover {
+            img {
+              animation: colorIn 500ms;
+              filter: none;
+            }
+          }
+        }
+        
+        &.active {
+          background-color: $white;
+          color: $white  !important;
+        }
+      }
     }
   }
 
