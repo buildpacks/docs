@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<meta name="generator" content="Hugo 0.101.0" />
+	<meta name="generator" content="Hugo 0.102.3" />
   
 
 
@@ -162,37 +162,59 @@
   <div class="well bg-transparent">
     <section class="container">
       <div class="row">
-        <h2 class="col-sm px-4">
-          <span class="strong">Cloud Native Buildpacks</span><br/> transform your application source code into images that can run on any cloud.
-        </h2>
-        <div class="col-sm bg-white mb-2 border rounded">
-          <ul class="nav nav-pills nav-fill" id="introVideo">
-            <li class="nav-item">
-              <a class="nav-link active" data-toggle="tab" href="#python-video">Python</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#javascript-video">JavaScript</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" data-toggle="tab" href="#java-video">Java</a>
-            </li>
-          </ul>
-          <div class="tab-content clearfix" id="introVideoContent">
-            <div class="tab-pane active" id="python-video">
-              <iframe width="100%" src="https://www.youtube-nocookie.com/embed/4zOEp8dyqoM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <div class="col-lg p-3 mb-lg-5 align-self-center d-table-cell">
+          <h2>
+            <span class="strong">Cloud Native Buildpacks</span><br /> transform your application source code into images
+            that can run on any cloud.
+          </h2>
+          <p class="button-holder">
+            <a href="/docs/" class="bg-pink button">Get Started</a>
+          </p>
+        </div>
+        <div class="col-lg d-flex flex-column my-4" style="height: 350px;">
+          <div class="tab-content flex-grow-1 d-flex flex-column bg-white p-1 rounded" style="height: 300px">
+            <div class="tab-pane flex-grow-1 active" id="java-video">
+              <iframe width="100%" height="100%"
+                src="https://www.youtube-nocookie.com/embed/d_L_AZyocWA?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1"
+                frameborder="0" allowfullscreen></iframe>
             </div>
-            <div class="tab-pane" id="javascript-video">
-              <iframe width="100%" src="https://www.youtube-nocookie.com/embed/kfourVy7zBk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="tab-pane flex-grow-1" id="javascript-video">
+              <iframe width="100%" height="100%"
+                src="https://www.youtube-nocookie.com/embed/kfourVy7zBk?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1"
+                frameborder="0" allowfullscreen></iframe>
             </div>
-            <div class="tab-pane" id="java-video">
-              <iframe width="100%" src="https://www.youtube-nocookie.com/embed/d_L_AZyocWA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <div class="tab-pane flex-grow-1" id="python-video">
+              <iframe width="100%" height="100%"
+                src="https://www.youtube-nocookie.com/embed/4zOEp8dyqoM?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1"
+                frameborder="0" allowfullscreen></iframe>
             </div>
+            
+          </div>
+          <div>
+            <ul class="nav nav-pills flex-md-row justify-content-end">
+              <li class="nav-item">
+                <a class="nav-link py-3 active" data-toggle="tab" href="#java-video">
+                  <img width="40" height="40"
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java" />
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link py-3" data-toggle="tab" href="#javascript-video">
+                  <img width="40" height="40"
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+                    alt="JavaScript" />
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link py-3" data-toggle="tab" href="#python-video">
+                  <img width="40" height="40"
+                    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" />
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
-      <p class="button-holder">
-        <a href="/docs/" class="bg-pink button">Get Started</a>
-      </p>
     </section>
   </div>
 </div>
@@ -293,15 +315,23 @@
   <h2>About the Project</h2>
   <section class="row">
     <div class="col-sm">
-      <p><strong>Buildpacks</strong> were first conceived by Heroku in 2011. Since then, they have been adopted by Cloud Foundry and other PaaS such as Google App Engine, Gitlab, Knative, Deis, Dokku, and Drie.</p>
+      <p><strong>Buildpacks</strong> were first conceived by Heroku in 2011. Since then, they have been adopted by Cloud
+        Foundry and other PaaS such as Google App Engine, Gitlab, Knative, Deis, Dokku, and Drie.</p>
 
       <div class="text-center mb-4">
         <img src="/images/history.png" alt="Buildpacks history" />
       </div>
 
-      <p>The <b>Cloud Native Buildpacks</b> project was initiated by Pivotal and Heroku in January 2018 and joined the <a href="https://www.cncf.io/">Cloud Native Computing Foundation</a> in October 2018. The project aims to unify the buildpack ecosystems with a <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md" target="_blank" rel="noopener noreferrer">platform-to-buildpack contract</a> that is well-defined and that incorporates learnings from maintaining production-grade buildpacks for years at both Pivotal and Heroku.</p>
+      <p>The <b>Cloud Native Buildpacks</b> project was initiated by Pivotal and Heroku in January 2018 and joined the
+        <a href="https://www.cncf.io/">Cloud Native Computing Foundation</a> in October 2018. The project aims to unify
+        the buildpack ecosystems with a <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md"
+          target="_blank" rel="noopener noreferrer">platform-to-buildpack contract</a> that is well-defined and that
+        incorporates learnings from maintaining production-grade buildpacks for years at both Pivotal and Heroku.
+      </p>
 
-      <p>Cloud Native Buildpacks embrace modern container standards, such as the OCI image format. They take advantage of the latest capabilities of these standards, such as cross-repository blob mounting and image layer "rebasing" on Docker API v2 registries.</p>
+      <p>Cloud Native Buildpacks embrace modern container standards, such as the OCI image format. They take advantage
+        of the latest capabilities of these standards, such as cross-repository blob mounting and image layer "rebasing"
+        on Docker API v2 registries.</p>
     </div>
   </section>
 </div>

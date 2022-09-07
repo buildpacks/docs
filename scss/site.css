@@ -772,19 +772,23 @@ header .logo img {
 Hero
 
 **********************************/
+@keyframes colorIn {
+  0% {
+    filter: grayscale(1); }
+  100% {
+    filter: grayscale(0); } }
+
 .hero {
   background-image: url("/images/bg-pattern.png");
   background-color: #47529E;
   background-blend-mode: multiply; }
   .hero .container {
-    padding: 6vw;
+    padding: 4vw;
     text-align: center; }
     .hero .container .strong {
       font-weight: bold; }
     .hero .container h2 {
       font-weight: 300;
-      max-width: 620px;
-      margin: 0 auto 20px;
       color: #FFFFFF;
       text-shadow: 2px 2px rgba(0, 0, 0, 0.2); }
     .hero .container .button-holder {
@@ -797,6 +801,20 @@ Hero
       margin: 20px 0 10px;
       max-width: 200px;
       box-shadow: 2px 2px rgba(0, 0, 0, 0.1); }
+    .hero .container .nav-item .nav-link {
+      margin-right: 10px;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      background-color: #242960;
+      opacity: 1; }
+      .hero .container .nav-item .nav-link:not(.active) img {
+        filter: grayscale(1); }
+      .hero .container .nav-item .nav-link:not(.active):hover img {
+        animation: colorIn 500ms;
+        filter: none; }
+      .hero .container .nav-item .nav-link.active {
+        background-color: #FFFFFF;
+        color: #FFFFFF !important; }
   @media (min-width: 768px) {
     .hero .container.hero .button-holder {
       flex-direction: row; }
