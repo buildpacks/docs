@@ -664,7 +664,7 @@ examples/ruby 0.0.1
 ERROR: failed to build: exit status 1
 ERROR: failed to build: executing lifecycle: failed with status code: 51
 </code></pre><p>Notice that <code>detect</code> now passes because there is a valid <code>Gemfile</code> in the Ruby app at <code>ruby-sample-app</code>, but now <code>build</code> fails because it is currently written to error out.</p>
-<p>You will also notice that <code>ANALYZING</code> now appears in the build output. This step is part of the buildpack lifecycle that looks to see if any previous image builds have layers that the buildpack can re-use. We will get into this topic in more detail later.</p>
+<p>You will also notice that <code>RESTORING</code> now appears in the build output. This step is part of the buildpack lifecycle that looks to see if any previous image builds have layers that the buildpack can re-use. We will get into this topic in more detail later.</p>
 <!--+if false+-->
 <hr>
 <p><a href="/docs/buildpack-author-guide/create-buildpack/build-app" class="button bg-pink">Next Step</a></p>
