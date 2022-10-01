@@ -766,7 +766,7 @@ of simplicity we&rsquo;ll create <code>ruby-sample-app/Gemfile.lock</code> manua
 </span></span><span class="line"><span class="cl">    <span class="c1"># Determine if there has been a gem dependency change and install new gems to the bundler layer; re-using existing and un-changed gems</span>
 </span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing gems&#34;</span>
 </span></span><span class="line"><span class="cl">    mkdir <span class="o">-</span>p <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl">    cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler.toml&#34;</span> <span class="s">&lt;&lt; EOL
+</span></span><span class="line"><span class="cl">    cat &gt;&gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler.toml&#34;</span> <span class="s">&lt;&lt; EOL
 </span></span></span><span class="line"><span class="cl"><span class="s">[metadata]
 </span></span></span><span class="line"><span class="cl"><span class="s">checksum = &#34;$local_bundler_checksum&#34;
 </span></span></span><span class="line"><span class="cl"><span class="s">EOL</span>
