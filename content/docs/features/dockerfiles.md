@@ -166,7 +166,8 @@ uri = <path to lifecycle tarball>
 
 * Ensure experimental features are enabled: `$workspace/pack/out/pack config experimental true`
 * Set the lifecycle image for `pack` to use in the untrusted builder workflow (as the trusted workflow that uses
-  the `creator` is not currently supported): `LIFECYCLE_IMAGE=buildpacksio/lifecycle:0.15.0-rc.1` (TODO: update to 0.15.0 when released)
+  the `creator` is not currently supported): `LIFECYCLE_IMAGE=buildpacksio/lifecycle:0.15.0-rc.1` (TODO: update to
+  0.15.0 when released)
 * Build the application image (note that the "source" directory is effectively ignored in our
   example): `$workspace/pack/out/pack build hello-extensions --builder $registry_namespace/extensions-builder --lifecycle-image $LIFECYCLE_IMAGE --verbose --pull-policy always`
   - you should see:
@@ -289,8 +290,8 @@ Successfully built image hello-extensions
 
 * See the image run successfully: `docker run hello-extensions` - you should see something akin
   to `curl 7.85.0-DEV (x86_64-pc-linux-musl)`
-* What happened: now that `hello-extensions` requires both `tree` and `curl` in its build plan, both extensions run and
-  provide the needed dependencies for build and launch, respectively.
+* What happened: now that `hello-extensions` requires both `tree` and `curl` in its build plan, both extensions are
+  included in the build and provide the needed dependencies for build and launch, respectively
   * The `tree` extension installs `tree` at build time, as before
   * The `curl` extension switches the run image to `run-image-curl`, which has `curl` installed. Now our `curl` process
     can succeed!
