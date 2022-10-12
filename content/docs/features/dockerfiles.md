@@ -47,8 +47,6 @@ An image extension could be defined with the following directory:
   outputs either or both of `build.Dockerfile` or `run.Dockerfile` for extending the builder or run image,
   respectively (in the [initial implementation](#phased-approach), only limited `run.Dockerfile`s are allowed).
 
-For more information, see [authoring an image extension][TODO].
-
 ## A platform's perspective
 
 Platforms may wish to use image extensions if they wish to provide the flexibility of modifying base images dynamically
@@ -57,7 +55,7 @@ at build time.
 To use image extensions, a platform should do the following:
 
 * Ensure the platform API in use is at least `0.10`
-* Include image extensions in the provided builder (see [packaging an image extension][TODO])
+* Include image extensions in the provided builder
 * When invoking the `detector` binary, include image extensions in `order.toml`
   * Note that the new `generate` phase is a sub-task of the `detector` and thus happens automatically after (and in the
     same container as) `detect`
@@ -79,7 +77,7 @@ operators should be mindful that:
 
 * Dockerfiles are very powerful - in fact, you can do anything with a Dockerfile! Introducing image extensions into your
   CNB builds can eliminate the security and compatibility guarantees that buildpacks provide if not done with great
-  care. Consult the [guidelines and best practices][TODO] for more information.
+  care.
 * When Dockerfiles are used to switch the run image from that defined on the provided builder, the resulting run image
   may not have all the mixins required by buildpacks that detected. Platforms may wish to optionally re-validate mixins
   prior to `build` when using extensions.
@@ -168,7 +166,7 @@ uri = <path to lifecycle tarball>
 
 * Ensure experimental features are enabled: `$workspace/pack/out/pack config experimental true`
 * Set the lifecycle image for `pack` to use in the untrusted builder workflow (as the trusted workflow that uses
-  the `creator` is not currently supported): `LIFECYCLE_IMAGE=buildpacksio/lifecycle:0.15.0-rc.1`
+  the `creator` is not currently supported): `LIFECYCLE_IMAGE=buildpacksio/lifecycle:0.15.0-rc.1` (TODO: update to 0.15.0 when released)
 * Build the application image (note that the "source" directory is effectively ignored in our
   example): `$workspace/pack/out/pack build hello-extensions --builder $registry_namespace/extensions-builder --lifecycle-image $LIFECYCLE_IMAGE --verbose --pull-policy always`
   - you should see:
