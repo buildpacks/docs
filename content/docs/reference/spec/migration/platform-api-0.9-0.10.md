@@ -10,7 +10,7 @@ See the [spec release](https://github.com/buildpacks/spec/releases/tag/platform%
 
 ## Platform Operator
 
-### The `launcher` supports overridable process args
+### The `launcher` supports overridable process arguments
 
 The way user-provided arguments are handled by the launcher depends on the buildpack API of the buildpack that created the process definition.
 
@@ -48,7 +48,7 @@ command = ["some-command"]
 args = ["always-1", "always-2"]
 ```
 
-The `command` list will never have more than one entry. `always-1` and `always-2` are arguments that are always provided to `some-command`. If no user-provided arguments are specified when the application image is launched, `always-1` and `always-2` will be provided only. If user-provided arguments are specified, these will be **appended** to the `args` list. Example:
+The `command` list will never have more than one element. `always-1` and `always-2` are arguments that are always provided to `some-command`. If no user-provided arguments are specified when the application image is launched, `always-1` and `always-2` will be provided only. If user-provided arguments are specified, these will be **appended** to the `args` list. Example:
 
 ```
 docker run --entrypoint from-newer-buildpack my-image
