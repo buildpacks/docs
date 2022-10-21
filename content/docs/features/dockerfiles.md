@@ -5,24 +5,24 @@ summary="Dockerfiles can be used to extend base images for buildpacks builds"
 ## Why Dockerfiles?
 
 Buildpacks can do a lot, but there are some things buildpacks can't do. They can't install operating system packages,
-for example. Why not? Buildpacks run unprivileged and cannot make arbitrary changes to the filesystem. This enhances
+for example. Why not? Buildpacks run unprivileged (i.e buildpacks do not run as the `root` user) and cannot make arbitrary changes to the filesystem. This enhances
 security, enables buildpack interoperability, and preserves the ability to rebase - but it comes at a cost. Base image
-authors must anticipate the OS-level dependencies that will be needed at build- and run-time ahead of time, and this
+authors must anticipate the OS-level dependencies that will be needed at build and run-time ahead of time, and this
 isn't always possible. This has been a longstanding source of [discussion](https://github.com/buildpacks/rfcs/pull/173)
 within the CNB project: how can we preserve the benefits of buildpacks while enabling more powerful capabilities?
 
 ## Buildpacks and Dockerfiles can work together
 
 Buildpacks are often presented as an alternative to Dockerfiles, but we think buildpacks and Dockerfiles can work
-together. Whereas buildpacks are optimized for creating layers that are efficient and logically mapped to the
-dependencies that they provide, Dockerfiles are the most-used and best-understood mechanism for constructing base images
+together. Buildpacks are optimized for creating layers that are efficient and logically mapped to the
+dependencies that they provide.  By contrast, Dockerfiles are the most-used and best-understood mechanism for constructing base images
 and installing OS-level dependencies for containers. The CNB Dockerfiles feature allows Dockerfiles to "provide"
 dependencies that buildpacks "require" through a shared [build plan][TODO], by introducing the concept of image
 extensions.
 
 ## What are image extensions?
 
-Image extensions are somewhat like buildpacks, although they are also very different. Their purpose is to generate
+Image extensions are buildpack-like components that use a restricted `Dockerfile` syntax to expand base images. Their purpose is to generate
 Dockerfiles that can be used to extend the builder or run images prior to buildpacks builds. Like buildpacks, extensions
 participate in the `detect` phase - analyzing application source code to determine if they are needed. During `detect`,
 extensions can contribute to the [build plan][TODO] - recording dependencies that they are able to "provide" (though
@@ -54,7 +54,7 @@ at build time.
 
 To use image extensions, a platform should do the following:
 
-* Ensure the platform API in use is at least `0.10`
+* Ensure the platform API in use is at least `0.10`; image extensions were introduced in API version `0.10`
 * Include image extensions in the provided builder
 * When invoking the `detector` binary, include image extensions in `order.toml`
   * Note that the new `generate` phase is a sub-task of the `detector` and thus happens automatically after (and in the
@@ -67,17 +67,15 @@ To use image extensions, a platform should do the following:
     a sub-task of the `extender` and thus happens automatically after (and in the same container as) `extend`
 * Invoke the `exporter` as usual
 
-Extensions workflows are not currently supported when using the `creator` binary - support may be added in the future,
-but with a lower priority.
+Extensions workflows are not currently supported when using the `creator` binary - support may be added in the future.
 
 ### Risks
 
-Image extensions are considered experimental and susceptible to change in future API versions. Additionally, platform
+Image extensions are considered experimental and susceptible to change in future API versions.  However, image extension should be **used with great care**.  Platform
 operators should be mindful that:
 
 * Dockerfiles are very powerful - in fact, you can do anything with a Dockerfile! Introducing image extensions into your
-  CNB builds can eliminate the security and compatibility guarantees that buildpacks provide if not done with great
-  care.
+  CNB builds can eliminate the security and compatibility guarantees that buildpacks provide.
 * When Dockerfiles are used to switch the run image from that defined on the provided builder, the resulting run image
   may not have all the mixins required by buildpacks that detected. Platforms may wish to optionally re-validate mixins
   prior to `build` when using extensions.
@@ -134,7 +132,7 @@ the builder image, and switches the run image to an image that has `curl` instal
 ### 2. Clone the samples repo
 
 * `cd $workspace`
-* `git clone git@github.com:buildpacks/samples.git`
+* `git clone https://github.com/buildpacks/samples.git`
 * `cd samples`
 * `git checkout extensions-phase-2` (TODO: remove when `extensions-phase-2` merged)
 
