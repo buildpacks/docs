@@ -89,11 +89,12 @@ The final ordering of lifecycle phases will look something like the following:
 * `build`
 * `export`
 
-The [pack cli](https://github.com/buildpacks/pack)
-and [Tekton task](https://github.com/tektoncd/catalog/tree/main/task/buildpacks-phases/0.2) have or will eventually have
-support for builds using image extensions. However, [kpack](https://github.com/pivotal/kpack) - while able to use image
-extensions in builds - will need additional updating to propagate changes such as a switched run image back to the
-appropriate resource to avoid breaking rebase.
+Supported platforms:
+* [pack cli](https://github.com/buildpacks/pack) (version TODO and above)
+
+Needs support:
+* [Tekton task](https://github.com/tektoncd/catalog/tree/main/task/buildpacks-phases/0.2) ([GitHub issue](TODO))
+* [kpack](https://github.com/pivotal/kpack) ([GitHub issue](TODO))
 
 ## In action: a CNB build with extensions
 
@@ -121,6 +122,7 @@ the builder image, and switches the run image to an image that has `curl` instal
 
 ### 3. Create a builder with extensions and publish it
 
+* Ensure experimental features are enabled: `$workspace/pack/out/pack config experimental true`
 * Download the latest lifecycle tarball from the GitHub release
   page: https://github.com/buildpacks/lifecycle/releases/tag/v0.15.0-rc.1 (TODO: update to 0.15.0 when released)
 * Edit `$workspace/samples/builders/alpine/builder.toml` to add the following at the end of the file:
