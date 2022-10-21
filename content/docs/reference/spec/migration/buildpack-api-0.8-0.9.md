@@ -26,4 +26,6 @@ For older platforms (platform API version 0.9 and below), arguments in `args` wi
 
 ### Image extensions are supported (experimental)
 
-TODO
+Platform 0.10 introduces image extensions as experimental components for customizing build and run-time base images (see [here][TODO] for more information).
+
+For more information, see [authoring an image extension][TODO].
