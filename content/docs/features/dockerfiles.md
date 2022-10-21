@@ -50,24 +50,7 @@ An image extension could be defined with the following directory:
 ## A platform's perspective
 
 Platforms may wish to use image extensions if they wish to provide the flexibility of modifying base images dynamically
-at build time.
-
-To use image extensions, a platform should do the following:
-
-* Ensure the platform API in use is at least `0.10`; image extensions were introduced in API version `0.10`
-* Include image extensions in the provided builder
-* When invoking the `detector` binary, include image extensions in `order.toml`
-  * Note that the new `generate` phase is a sub-task of the `detector` and thus happens automatically after (and in the
-    same container as) `detect`
-* Invoke the `restorer` with the `-build-image` flag and cache volume mounted at `/kaniko`
-  * The `restorer` will gather data from the registry that is necessary for builder image extension
-* Invoke the `extender` binary with the builder image digest reference as the first argument and cache volume mounted
-  at `/kaniko`
-  * Note that when extending the builder image, there is no need to invoke the `builder` binary as the `build` phase is
-    a sub-task of the `extender` and thus happens automatically after (and in the same container as) `extend`
-* Invoke the `exporter` as usual
-
-Extensions workflows are not currently supported when using the `creator` binary - support may be added in the future.
+at build time. For more information, consult the [migration guide][TODO].
 
 ### Risks
 
