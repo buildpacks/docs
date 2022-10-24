@@ -46,7 +46,7 @@ Server: Docker Engine - Community
 
 `cd pack`
 
-`git checkout extensions-phase-2`
+`git checkout extensions-phase-2-rc2`
 
 `make clean build`
 
