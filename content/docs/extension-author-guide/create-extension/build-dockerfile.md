@@ -7,25 +7,37 @@ weight=404
 
 #### detect
 
-* `cat $workspace/samples/extensions/tree/bin/detect` - the extension always detects (because its exit code is `0`) and provides a dependency
-  called `tree` by writing to the build plan.
+`cat $workspace/samples/extensions/tree/bin/detect` - the extension always detects (because its exit code is `0`) and provides a dependency
+  called `tree` by writing to the build plan
 
 #### generate
 
-* `cat extensions/tree/bin/generate` - the extension generates a `build.Dockerfile` that installs `tree` on the builder
+`cat extensions/tree/bin/generate` - the extension generates a `build.Dockerfile` that installs `tree` on the builder
   image
 
 ### Re-create our builder with `hello-extensions` updated to require `tree`
 
-* Edit `$workspace/samples/buildpacks/hello-extensions/bin/detect` to uncomment the first set of lines that
+1. Edit `$workspace/samples/buildpacks/hello-extensions/bin/detect` to uncomment the first set of lines that
   output `[[requires]]` to the build plan
-* `$workspace/pack/out/pack builder create $registry_namespace/extensions-builder --config $workspace/samples/builders/alpine/builder.toml --publish`
 
-### See a build in action (run failure case)
+2. Create the builder:
 
-* Build the application
-  image: `$workspace/pack/out/pack build hello-extensions --builder $registry_namespace/extensions-builder --lifecycle-image $LIFECYCLE_IMAGE --verbose`
-  - you should see:
+```
+$workspace/pack/out/pack builder create $registry_namespace/extensions-builder \
+  --config $workspace/samples/builders/alpine/builder.toml \
+  --publish
+```
+
+### Build the application image
+
+```
+$workspace/pack/out/pack build hello-extensions \
+  --builder $registry_namespace/extensions-builder \
+  --lifecycle-image $LIFECYCLE_IMAGE \
+  --verbose
+```
+
+You should see:
 
 ```
 [detector] ======== Results ========
@@ -46,10 +58,20 @@ weight=404
 Successfully built image hello-extensions
 ```
 
-* See the image fail to run: `docker run hello-extensions` - you should
-  see `ERROR: failed to launch: path lookup: exec: "curl": executable file not found in $PATH`.
-* What happened: our builder uses run image `cnbs/sample-stack-run:alpine` which does not have `curl` installed, so our
-  process failed to launch
+### See the image fail to run
+
+`docker run hello-extensions`
+
+You should see:
+
+```
+ERROR: failed to launch: path lookup: exec: "curl": executable file not found in $PATH
+```
+
+What happened: our builder uses run image `cnbs/sample-stack-run:alpine` which does not have `curl` installed, so our
+  process failed to launch.
+
+Let's take a look at how the `samples/curl` extension fixes the error by switching the run image to another image...
 
 <!--+ if false+-->
 ---

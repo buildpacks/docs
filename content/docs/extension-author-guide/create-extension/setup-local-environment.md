@@ -8,7 +8,7 @@ the builder image, and switches the run image to an image that has `curl` instal
 
 ### Ensure Docker is running
 
-* `docker version`
+`docker version`
 
 If you see output similar to the following, you're good to go! Otherwise, start Docker and check again.
 
@@ -36,22 +36,29 @@ Server: Docker Engine - Community
 
 ### Setup workspace directory
 
-* `workspace=<your preferred workspace directory>`
+`workspace=<your preferred workspace directory>`
 
 ### Clone the pack repo and build it (FIXME: remove when pack with extensions-phase-2 support is released)
 
-* `cd $workspace`
-* `git clone git@github.com:buildpacks/pack.git`
-* `cd pack`
-* `git checkout extensions-phase-2`
-* `make clean build`
+`cd $workspace`
+
+`git clone git@github.com:buildpacks/pack.git`
+
+`cd pack`
+
+`git checkout extensions-phase-2`
+
+`make clean build`
 
 ### Clone the samples repo
 
-* `cd $workspace`
-* `git clone https://github.com/buildpacks/samples.git`
-* `cd samples`
-* `git checkout extensions-phase-2` (FIXME: remove when `extensions-phase-2` merged)
+`cd $workspace`
+
+`git clone https://github.com/buildpacks/samples.git`
+
+`cd samples`
+
+`git checkout extensions-phase-2` (FIXME: remove when `extensions-phase-2` merged)
 
 <!--+ if false +-->
 ---

@@ -17,7 +17,7 @@ Before we get started, make sure you've got the following installed:
 
 This is a step-by-step tutorial for creating a CNB Image Extension for `curl`.
 
-- [Set up your local environment](/docs/buildpack-author-guide/create-buildpack/setup-local-environment)
+- [Set up your local environment](/docs/extension-author-guide/create-extension/setup-local-environment)
 - [See a build that requires base image extension in order to succeed](/docs/extension-author-guide/create-extension/why-dockerfiles)
 - [Building blocks of an extension](/docs/extension-author-guide/create-extension/building-blocks-extension)
 - [Generating a build.Dockerfile for your application](/docs/extension-author-guide/create-extension/build-dockerfile)

@@ -5,7 +5,7 @@ weight=403
 
 ### Examine `tree` extension
 
-* `tree $workspace/samples/extensions/tree`
+`tree $workspace/samples/extensions/tree`
 
 You should see something akin to the following:
 

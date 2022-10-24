@@ -1,36 +1,46 @@
-+++ title="Dockerfiles"
++++
+title="Dockerfiles"
 summary="Dockerfiles can be used to extend base images for buildpacks builds"
 +++
 
 ## Why Dockerfiles?
 
 Buildpacks can do a lot, but there are some things buildpacks can't do. They can't install operating system packages,
-for example. Why not? Buildpacks run unprivileged (i.e, buildpacks do not run as the `root` user) and cannot make
-arbitrary changes to the filesystem. This enhances security, enables buildpack interoperability, and preserves the
-ability to rebase - but it comes at a cost. Base image authors must anticipate the OS-level dependencies that will be
-needed at build and run-time ahead of time, and this isn't always possible. This has been a longstanding source
-of [discussion](https://github.com/buildpacks/rfcs/pull/173) within the CNB project: how can we preserve the benefits
-of buildpacks while enabling more powerful capabilities?
+for example. Why not?
+
+Buildpacks run unprivileged (i.e, buildpacks do not run as the `root` user) and cannot make arbitrary changes to the
+filesystem. This enhances security, enables buildpack interoperability, and preserves the ability to rebase - but it
+comes at a cost. Base image authors must anticipate the OS-level dependencies that will be needed at build and run-time
+ahead of time, and this isn't always possible.
+
+This has been a longstanding source of [discussion](https://github.com/buildpacks/rfcs/pull/173) within the CNB project:
+how can we preserve the benefits of buildpacks while enabling more powerful capabilities?
 
 ## Buildpacks and Dockerfiles can work together
 
 Buildpacks are often presented as an alternative to Dockerfiles, but we think buildpacks and Dockerfiles can work
-together. Buildpacks are optimized for creating layers that are efficient and logically mapped to the dependencies that
-they provide. By contrast, Dockerfiles are the most-used and best-understood mechanism for constructing base images and
-installing OS-level dependencies for containers. The CNB Dockerfiles feature allows Dockerfiles to "provide"
-dependencies that buildpacks "require" through a shared [build plan](/docs/reference/spec/buildpack-api/#build-plan), by introducing the concept of image
-extensions.
+together.
+
+Buildpacks are optimized for creating layers that are efficient and logically mapped to the dependencies that they
+provide. By contrast, Dockerfiles are the most-used and best-understood mechanism for constructing base images and
+installing OS-level dependencies for containers.
+
+The CNB Dockerfiles feature allows Dockerfiles to "provide" dependencies that buildpacks "require" through a
+shared [build plan](/docs/reference/spec/buildpack-api/#build-plan), by introducing the concept of image extensions.
 
 ## What are image extensions?
 
 Image extensions are buildpack-like components that use a restricted `Dockerfile` syntax to expand base images. Their
-purpose is to generate Dockerfiles that can be used to extend the builder or run images prior to buildpacks builds. Like
-buildpacks, extensions participate in the `detect` phase - analyzing application source code to determine if they are
-needed. During `detect`, extensions can contribute to the [build plan](/docs/reference/spec/buildpack-api/#build-plan) - recording dependencies that they are able
-to "provide" (though unlike buildpacks, they can't "require" anything). If the provided order contains extensions, the
-output of `detect`
-will be a group of image extensions and a group of buildpacks that together produce a valid build plan. Image extensions
-only generate Dockerfiles - they don't create layers or participate in the `build` phase.
+purpose is to generate Dockerfiles that can be used to extend the builder or run images prior to buildpacks builds.
+
+Like buildpacks, extensions participate in the `detect` phase - analyzing application source code to determine if they
+are needed. During `detect`, extensions can contribute to
+the [build plan](/docs/reference/spec/buildpack-api/#build-plan) - recording dependencies that they are able to "
+provide" (though unlike buildpacks, they can't "require" anything).
+
+If the provided order contains extensions, the output of `detect` will be a group of image extensions and a group of
+buildpacks that together produce a valid build plan. Image extensions only generate Dockerfiles - they don't create
+layers or participate in the `build` phase.
 
 An image extension could be defined with the following directory:
 
@@ -49,7 +59,8 @@ An image extension could be defined with the following directory:
   outputs either or both of `build.Dockerfile` or `run.Dockerfile` for extending the builder or run image,
   respectively (in the [initial implementation](#phased-approach), only limited `run.Dockerfile`s are allowed).
 
-For more information and to see a build in action, see [authoring an image extension](/docs/extension-author-guide/create-extension).
+For more information and to see a build in action,
+see [authoring an image extension](/docs/extension-author-guide/create-extension).
 
 ## A platform's perspective
 
@@ -73,14 +84,22 @@ Some limitations of the initial implementation of the Dockerfiles feature have a
 on them here. As this is a large and complicated feature, the implementation has been split into phases in order to
 deliver incremental value and gather feedback.
 
-* Phase 1 (supported in lifecycle `0.15.0` or greater): one or more `run.Dockerfile`s each containing a single `FROM`
-  instruction can be used to switch the original run image to a new image (as no image modifications are permitted,
-  there is no need to run `extend` on the run image)
-* Phase 2 (supported in lifecycle `0.15.0` or greater): one or more `build.Dockerfile`s can be used to extend the
-  builder image
-  * A new `extend` lifecycle phase is introduced to apply `build.Dockerfile`s from `generate` to the builder image
-* Phase 3 (future): one or more `run.Dockerfile`s can be used to extend the run image
-  * The `extend` lifecycle phase can be run in parallel for the builder and run images
+#### Phase 1 (supported in lifecycle `0.15.0` or greater)
+
+One or more `run.Dockerfile`s each containing a single `FROM` instruction can be used to switch the original run image
+to a new image (as no image modifications are permitted, there is no need to run `extend` on the run image)
+
+#### Phase 2 (supported in lifecycle `0.15.0` or greater)
+
+One or more `build.Dockerfile`s can be used to extend the builder image
+
+* A new `extend` lifecycle phase is introduced to apply `build.Dockerfile`s from `generate` to the builder image
+
+#### Phase 3 (future)
+
+One or more `run.Dockerfile`s can be used to extend the run image
+
+* The `extend` lifecycle phase can be run in parallel for the builder and run images
 
 The final ordering of lifecycle phases will look something like the following:
 
@@ -97,7 +116,7 @@ For more information, consult the [migration guide](/docs/reference/spec/migrati
 
 #### Platform support for Dockerfiles
 
-Supported:
+Supported (phases 1 and 2):
 
 * [pack cli](https://github.com/buildpacks/pack) (version FIXME and above)
 

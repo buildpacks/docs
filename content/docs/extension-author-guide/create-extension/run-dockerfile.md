@@ -7,32 +7,51 @@ weight=405
 
 #### detect
 
-* `cat $workspace/samples/extensions/curl/bin/detect` - the extension always detects and provides a dependency
+`cat $workspace/samples/extensions/curl/bin/detect` - the extension always detects and provides a dependency
   called `curl`
 
 #### generate
 
-* `cat extensions/curl/bin/generate` - the extension generates a `run.Dockerfile` that switches the run image to
+`cat extensions/curl/bin/generate` - the extension generates a `run.Dockerfile` that switches the run image to
   reference `run-image-curl`
 
 ### Build a run image for `curl` extension to use
 
-* `cat $workspace/samples/stacks/alpine/run/curl.Dockerfile` - this is a simple Dockerfile that creates a CNB run image
-  from the `curl` base image by adding the required CNB user configuration and `io.buildpacks.stack.id` label; the
-  Dockerfile could come from anywhere, but we include it in the `stacks` directory for convenience
-* `docker build --tag run-image-curl --file $workspace/samples/stacks/alpine/run/curl.Dockerfile .`
+1. `cat $workspace/samples/stacks/alpine/run/curl.Dockerfile` - this is a simple Dockerfile that creates a CNB run image
+  from the `curl` base image by adding the required CNB user configuration and `io.buildpacks.stack.id` label
+   * The Dockerfile could come from anywhere, but we include it in the `stacks` directory for convenience
+
+2. Build the image:
+
+```
+docker build \
+  --file $workspace/samples/stacks/alpine/run/curl.Dockerfile \
+  --tag run-image-curl .
+```
 
 ### Re-create our builder with `hello-extensions` updated to require `curl`
 
-* Edit `$workspace/samples/buildpacks/hello-extensions/bin/detect` to uncomment the second set of lines that
+1. Edit `$workspace/samples/buildpacks/hello-extensions/bin/detect` to uncomment the second set of lines that
   output `[[requires]]` to the build plan
-* `$workspace/pack/out/pack builder create $registry_namespace/extensions-builder --config $workspace/samples/builders/alpine/builder.toml --publish`
 
-### See a build in action (success case)
+2. Create the builder:
 
-* Build the application
-  image: `$workspace/pack/out/pack build hello-extensions --builder $registry_namespace/extensions-builder --lifecycle-image $LIFECYCLE_IMAGE --verbose`
-  - you should see:
+```
+$workspace/pack/out/pack builder create $registry_namespace/extensions-builder \
+  --config $workspace/samples/builders/alpine/builder.toml \
+  --publish
+```
+
+### Build the application image
+
+```
+$workspace/pack/out/pack build hello-extensions \
+  --builder $registry_namespace/extensions-builder \
+  --lifecycle-image $LIFECYCLE_IMAGE \
+  --verbose
+```
+
+You should see:
 
 ```
 [detector] ======== Results ========
@@ -60,12 +79,20 @@ weight=405
 Successfully built image hello-extensions
 ```
 
-* See the image run successfully: `docker run hello-extensions` - you should see something akin
-  to `curl 7.85.0-DEV (x86_64-pc-linux-musl)`
-* What happened: now that `hello-extensions` requires both `tree` and `curl` in its build plan, both extensions are
+### See the image run successfully
+
+`docker run hello-extensions`
+
+You should see something akin to:
+
+```
+curl 7.85.0-DEV (x86_64-pc-linux-musl)
+```
+
+What happened: now that `hello-extensions` requires both `tree` and `curl` in its build plan, both extensions are
   included in the build and provide the needed dependencies for build and launch, respectively
-  * The `tree` extension installs `tree` at build time, as before
-  * The `curl` extension switches the run image to `run-image-curl`, which has `curl` installed. Now our `curl` process
+* The `tree` extension installs `tree` at build time, as before
+* The `curl` extension switches the run image to `run-image-curl`, which has `curl` installed. Now our `curl` process
     can succeed!
 
 ## What's next?
