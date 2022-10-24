@@ -12,7 +12,7 @@ weight=405
 
 #### generate
 
-`cat extensions/curl/bin/generate` - the extension generates a `run.Dockerfile` that switches the run image to
+`cat $workspace/samples/extensions/curl/bin/generate` - the extension generates a `run.Dockerfile` that switches the run image to
   reference `run-image-curl`
 
 ### Build a run image for `curl` extension to use

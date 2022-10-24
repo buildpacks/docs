@@ -12,7 +12,7 @@ weight=404
 
 #### generate
 
-`cat extensions/tree/bin/generate` - the extension generates a `build.Dockerfile` that installs `tree` on the builder
+`cat $workspace/samples/extensions/tree/bin/generate` - the extension generates a `build.Dockerfile` that installs `tree` on the builder
   image
 
 ### Re-create our builder with `hello-extensions` updated to require `tree`
