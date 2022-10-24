@@ -1,7 +1,7 @@
 +++
 title="Create an extension"
 weight=4
-summary="This is a step-by-step tutorial for creating a CNB Image Extension for `curl`."
+summary="This is a step-by-step tutorial for creating and using CNB image extensions"
 +++
 
 <!--+if false+-->
@@ -15,7 +15,7 @@ Before we get started, make sure you've got the following installed:
 ## Overview
 <!--+end+-->
 
-This is a step-by-step tutorial for creating a CNB Image Extension for `curl`.
+This is a step-by-step tutorial for creating and using CNB image extensions.
 
 - [Set up your local environment](/docs/extension-author-guide/create-extension/setup-local-environment)
 - [See a build that requires base image extension in order to succeed](/docs/extension-author-guide/create-extension/why-dockerfiles)

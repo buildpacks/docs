@@ -92,17 +92,20 @@ curl 7.85.0-DEV (x86_64-pc-linux-musl)
 What happened: now that `hello-extensions` requires both `tree` and `curl` in its build plan, both extensions are
   included in the build and provide the needed dependencies for build and launch, respectively
 * The `tree` extension installs `tree` at build time, as before
-* The `curl` extension switches the run image to `run-image-curl`, which has `curl` installed. Now our `curl` process
-    can succeed!
+* The `curl` extension switches the run image to `run-image-curl`, which has `curl` installed
+
+Now our `curl` process can succeed!
 
 ## What's next?
 
 The `tree` and `curl` examples are very simple, but we can unlock powerful new features with this functionality.
+
 Platforms could have several run images available, each tailored to a specific language family, thus limiting the number
 of installed dependencies for each image to the minimum necessary to support the targeted language. Image extensions
-could be used to switch the run image to that most appropriate for the current application. Similarly, builder images
-could be kept lean if image extensions are used to dynamically install the needed dependencies depending on the
-requirements of each application.
+could be used to switch the run image to that most appropriate for the current application.
+
+Similarly, builder images could be kept lean if image extensions are used to dynamically install the needed dependencies
+for each application.
 
 In the future, both run image switching and run image modification will be supported, opening the door to other use
 cases. Consult the [RFC](https://github.com/buildpacks/rfcs/pull/173) for further information.
