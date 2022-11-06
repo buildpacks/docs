@@ -28,3 +28,4 @@ variables:
 [devops]: https://docs.gitlab.com/ee/topics/autodevops/
 [devops-guide]: https://docs.gitlab.com/ee/topics/autodevops/quick_start_guide.html
 [use-cnbs]: https://docs.gitlab.com/ee/topics/autodevops/stages.html#auto-build-using-cloud-native-buildpacks-beta
+. 
