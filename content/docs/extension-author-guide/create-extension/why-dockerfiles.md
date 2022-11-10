@@ -22,7 +22,7 @@ phase, and defines a launch process called `curl` that runs `curl --version` at 
 1. Ensure experimental features are enabled: `$workspace/pack/out/pack config experimental true`
 
 2. Download the latest lifecycle tarball from the GitHub release
-   page: https://github.com/buildpacks/lifecycle/releases/tag/v0.15.0-rc.2 (FIXME: update to 0.15.0 when released)
+   page: https://github.com/buildpacks/lifecycle/releases/tag/v0.15.1
 
 3. Edit `$workspace/samples/builders/alpine/builder.toml` to add the following at the end of the file:
 
@@ -49,8 +49,7 @@ $workspace/pack/out/pack builder create $registry_namespace/extensions-builder \
 1. Ensure experimental features are enabled: `$workspace/pack/out/pack config experimental true`
 
 2. Set the lifecycle image for `pack` to use in the untrusted builder workflow (as the trusted workflow that uses
-   the `creator` is not currently supported): `LIFECYCLE_IMAGE=buildpacksio/lifecycle:0.15.0-rc.2` (FIXME: update to
-   0.15.0 when released)
+   the `creator` is not currently supported): `LIFECYCLE_IMAGE=buildpacksio/lifecycle:0.15.1`
 
 3. Build the application image (note that the "source" directory is effectively ignored in our example):
 
