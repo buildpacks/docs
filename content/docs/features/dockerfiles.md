@@ -8,10 +8,10 @@ summary="Dockerfiles can be used to extend base images for buildpacks builds"
 Buildpacks can do a lot, but there are some things buildpacks can't do. They can't install operating system packages,
 for example. Why not?
 
-Buildpacks run unprivileged (i.e, buildpacks do not run as the `root` user) and cannot make arbitrary changes to the
-filesystem. This enhances security, enables buildpack interoperability, and preserves the ability to rebase - but it
-comes at a cost. Base image authors must anticipate the OS-level dependencies that will be needed at build and run-time
-ahead of time, and this isn't always possible.
+Buildpacks do not run as the `root` user and cannot make arbitrary changes to the filesystem. This enhances security,
+enables buildpack interoperability, and preserves the ability to rebase - but it comes at a cost. Base image authors
+must anticipate the OS-level dependencies that will be needed at build and run-time ahead of time, and this isn't always
+possible.
 
 This has been a longstanding source of [discussion](https://github.com/buildpacks/rfcs/pull/173) within the CNB project:
 how can we preserve the benefits of buildpacks while enabling more powerful capabilities?
