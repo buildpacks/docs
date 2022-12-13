@@ -38,17 +38,9 @@ Server: Docker Engine - Community
 
 `workspace=<your preferred workspace directory>`
 
-### Clone the pack repo and build it (FIXME: remove when pack with extensions-phase-2 support is released)
+### Ensure pack version supports image extensions
 
-`cd $workspace`
-
-`git clone git@github.com:buildpacks/pack.git`
-
-`cd pack`
-
-`git checkout extensions-phase-2-rc2`
-
-`make clean build`
+`pack version` - should be at least `0.28.0`
 
 ### Clone the samples repo
 
@@ -57,8 +49,6 @@ Server: Docker Engine - Community
 `git clone https://github.com/buildpacks/samples.git`
 
 `cd samples`
-
-`git checkout extensions-phase-2` (FIXME: remove when `extensions-phase-2` merged)
 
 <!--+ if false +-->
 ---

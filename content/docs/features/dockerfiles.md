@@ -118,7 +118,7 @@ For more information, consult the [migration guide](/docs/reference/spec/migrati
 
 Supported (phases 1 and 2):
 
-* [pack cli](https://github.com/buildpacks/pack) (version FIXME and above)
+* [pack cli](https://github.com/buildpacks/pack) (version `0.28.0` and above)
 
 Needs support:
 
