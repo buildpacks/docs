@@ -40,11 +40,15 @@ ifeq ($(OS),Windows_NT)
 ifeq ($(PROCESSOR_ARCHITECTURE),AMD64)
 	HUGO_ARCH:=64bit
 endif
-else
+endif
+
 ifeq ($(shell uname -s),Darwin)
 	HUGO_OS:=macOS
+	HUGO_ARCH:=universal
 endif
-UNAME_M:=$(shell uname -m)
+
+ifeq ($(shell uname -s),Linux)
+	UNAME_M:=$(shell uname -m)
 ifneq ($(filter %64,$(UNAME_M)),)
 	HUGO_ARCH:=64bit
 endif
