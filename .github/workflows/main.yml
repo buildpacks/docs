@@ -24,10 +24,7 @@ jobs:
       - name: Install Dependencies
         run: sudo apt-get install make curl jq
       - name: Install pack
-        run: |
-          sudo add-apt-repository ppa:cncf-buildpacks/pack-cli
-          sudo apt-get update
-          sudo apt-get install pack-cli
+        uses: buildpacks/github-actions/setup-pack@v4.1.0
       - name: Test
         run: make test
         env:
