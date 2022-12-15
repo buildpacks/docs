@@ -23,6 +23,11 @@ jobs:
           go-version: '1.x'
       - name: Install Dependencies
         run: sudo apt-get install make curl jq
+      - name: Install pack
+        run: |
+          sudo add-apt-repository ppa:cncf-buildpacks/pack-cli
+          sudo apt-get update
+          sudo apt-get install pack-cli
       - name: Test
         run: make test
         env:
