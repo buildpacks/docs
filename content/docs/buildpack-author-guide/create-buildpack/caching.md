@@ -169,7 +169,7 @@ else
     # Determine if there has been a gem dependency change and install new gems to the bundler layer; re-using existing and un-changed gems
     echo "---> Installing gems"
     mkdir -p "$bundlerlayer"
-    cat > "$layersdir/bundler.toml" << EOL
+    cat >> "$layersdir/bundler.toml" << EOL
 [metadata]
 checksum = "$local_bundler_checksum"
 EOL

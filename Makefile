@@ -40,11 +40,15 @@ ifeq ($(OS),Windows_NT)
 ifeq ($(PROCESSOR_ARCHITECTURE),AMD64)
 	HUGO_ARCH:=64bit
 endif
-else
+endif
+
 ifeq ($(shell uname -s),Darwin)
 	HUGO_OS:=macOS
+	HUGO_ARCH:=universal
 endif
-UNAME_M:=$(shell uname -m)
+
+ifeq ($(shell uname -s),Linux)
+	UNAME_M:=$(shell uname -m)
 ifneq ($(filter %64,$(UNAME_M)),)
 	HUGO_ARCH:=64bit
 endif
@@ -70,8 +74,10 @@ endif
 
 .PHONY: upgrade-pack
 upgrade-pack: pack-version
-	@echo "> Upgrading pack library version $(PACK_VERSION)"
-	cd tools; go get github.com/buildpacks/pack@v$(PACK_VERSION)
+	@if [ ! $(`which pack` && `pack --version | cut -d '+' -f 1` != "$(PACK_VERSION)") ]; then \
+		echo "> Upgrading pack library version $(PACK_VERSION)"; \
+		cd tools; go get github.com/buildpacks/pack@v$(PACK_VERSION); \
+	fi
 
 .PHONY: install-pack-cli
 install-pack-cli: export PACK_BIN:=$(shell which pack)

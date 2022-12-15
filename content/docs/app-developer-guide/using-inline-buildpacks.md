@@ -26,7 +26,7 @@ id = "me/rake-tasks"
   inline = "rake package"
 ```
 
-In this example, the `me/rake-tasks` inline buildpack is configured to run after the `example/ruby` buildpack. The inline script is compatible with API version `0.4` (this is a required field), and it will execute the `rake package` command during the build step.
+In this example, the `me/rake-tasks` inline buildpack is configured to run after the `example/ruby` buildpack. The inline script is compatible with buildpack API version `0.6` (this is a required field), and it will execute the `rake package` command during the build step.
 
 > **Note:** Inline buildpacks will _always_ pass detection.
 
