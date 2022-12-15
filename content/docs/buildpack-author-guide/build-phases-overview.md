@@ -78,7 +78,7 @@ Now that we understand the example application we can step through each of the B
 
 ## Phases
 
-There are five phases to a buildpacks build.  These logic for each phaze is provided by a binary within [`lifecycle`](https://github.com/buildpacks/lifecycle) and the orchestration of running each of the binaries is the responsibility of the Buildpacks platform.  In this case we are using `pack` as our Buildpacks platform.
+There are five phases to a buildpacks build.  These logic for each phase is provided by a binary within [`lifecycle`](https://github.com/buildpacks/lifecycle) and the orchestration of running each of the binaries is the responsibility of the Buildpacks platform.  In this case we are using `pack` as our Buildpacks platform.
 
 At a high-level each layer:
 
@@ -92,7 +92,7 @@ We consider each of the buildpacks phases in the context of our invocation of `p
 
 ### Phase 1: Analyze
 
-The analyze phase checks a registry for previous images called `example`.  It resolves the image metadata making it available to the subsequent restore phaze.  In addition, analyze verifies that we have write access to the registry to create or update the image called `example`.
+The analyze phase checks a registry for previous images called `example`.  It resolves the image metadata making it available to the subsequent restore phase.  In addition, analyze verifies that we have write access to the registry to create or update the image called `example`.
 
 In our case `pack` tells us that there is no previous `example` image.  It provides the output.
 
