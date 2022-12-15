@@ -686,7 +686,7 @@ font-size="medium"
 poster="data:text/plain,$ pack build example --verbose --buildpack docker://registry.fake/buildpacks/nodejs:latest" src="/images/pack-hello-world-nodejs.cast"></asciinema-player></p>
 <p>Now that we understand the example application we can step through each of the Buildpack phases.</p>
 <h2 id="phases">Phases</h2>
-<p>There are five phases to a buildpacks build.  These logic for each phaze is provided by a binary within <a href="https://github.com/buildpacks/lifecycle"><code>lifecycle</code></a> and the orchestration of running each of the binaries is the responsibility of the Buildpacks platform.  In this case we are using <code>pack</code> as our Buildpacks platform.</p>
+<p>There are five phases to a buildpacks build.  These logic for each phase is provided by a binary within <a href="https://github.com/buildpacks/lifecycle"><code>lifecycle</code></a> and the orchestration of running each of the binaries is the responsibility of the Buildpacks platform.  In this case we are using <code>pack</code> as our Buildpacks platform.</p>
 <p>At a high-level each layer:</p>
 <ul>
 <li>Analyze phase - Reads metadata from any previously built image and ensures we have access to the OCI registry to be able to write the image we will build.</li>
@@ -697,7 +697,7 @@ poster="data:text/plain,$ pack build example --verbose --buildpack docker://regi
 </ul>
 <p>We consider each of the buildpacks phases in the context of our invocation of <code>pack build example --buildpack docker://registry.fake/buildpacks/nodejs:latest</code>.</p>
 <h3 id="phase-1-analyze">Phase 1: Analyze</h3>
-<p>The analyze phase checks a registry for previous images called <code>example</code>.  It resolves the image metadata making it available to the subsequent restore phaze.  In addition, analyze verifies that we have write access to the registry to create or update the image called <code>example</code>.</p>
+<p>The analyze phase checks a registry for previous images called <code>example</code>.  It resolves the image metadata making it available to the subsequent restore phase.  In addition, analyze verifies that we have write access to the registry to create or update the image called <code>example</code>.</p>
 <p>In our case <code>pack</code> tells us that there is no previous <code>example</code> image.  It provides the output.</p>
 <pre tabindex="0"><code>Previous image with name &#34;example&#34; not found
 Analyzing image &#34;98070ee549c522cbc08d15683d134aa0af1817fcdc56f450b07e6b4a7903f9b
