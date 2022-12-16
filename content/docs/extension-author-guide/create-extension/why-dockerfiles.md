@@ -19,7 +19,7 @@ phase, and defines a launch process called `curl` that runs `curl --version` at 
 
 ### Create a builder with extensions and publish it
 
-1. Ensure experimental features are enabled: `$workspace/pack/out/pack config experimental true`
+1. Ensure experimental features are enabled: `pack config experimental true`
 
 2. Download the latest lifecycle tarball from the GitHub release
    page: https://github.com/buildpacks/lifecycle/releases/tag/v0.15.1
@@ -39,14 +39,14 @@ uri = <path to lifecycle tarball in previous step>
 6. Create the builder:
 
 ```
-$workspace/pack/out/pack builder create $registry_namespace/extensions-builder \
+pack builder create $registry_namespace/extensions-builder \
   --config $workspace/samples/builders/alpine/builder.toml \
   --publish
 ```
 
 ### Build the application image
 
-1. Ensure experimental features are enabled: `$workspace/pack/out/pack config experimental true`
+1. Ensure experimental features are enabled: `pack config experimental true`
 
 2. Set the lifecycle image for `pack` to use in the untrusted builder workflow (as the trusted workflow that uses
    the `creator` is not currently supported): `LIFECYCLE_IMAGE=buildpacksio/lifecycle:0.15.1`
@@ -54,7 +54,7 @@ $workspace/pack/out/pack builder create $registry_namespace/extensions-builder \
 3. Build the application image (note that the "source" directory is effectively ignored in our example):
 
 ```
-$workspace/pack/out/pack build hello-extensions \
+pack build hello-extensions \
   --builder $registry_namespace/extensions-builder \
   --lifecycle-image $LIFECYCLE_IMAGE \
   --pull-policy always \

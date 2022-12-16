@@ -37,7 +37,7 @@ docker build \
 2. Create the builder:
 
 ```
-$workspace/pack/out/pack builder create $registry_namespace/extensions-builder \
+pack builder create $registry_namespace/extensions-builder \
   --config $workspace/samples/builders/alpine/builder.toml \
   --publish
 ```
@@ -45,7 +45,7 @@ $workspace/pack/out/pack builder create $registry_namespace/extensions-builder \
 ### Build the application image
 
 ```
-$workspace/pack/out/pack build hello-extensions \
+pack build hello-extensions \
   --builder $registry_namespace/extensions-builder \
   --lifecycle-image $LIFECYCLE_IMAGE \
   --verbose
