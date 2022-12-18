@@ -74,8 +74,10 @@ endif
 
 .PHONY: upgrade-pack
 upgrade-pack: pack-version
-	@echo "> Upgrading pack library version $(PACK_VERSION)"
-	cd tools; go get github.com/buildpacks/pack@v$(PACK_VERSION)
+	@if [ ! $(`which pack` && `pack --version | cut -d '+' -f 1` != "$(PACK_VERSION)") ]; then \
+		echo "> Upgrading pack library version $(PACK_VERSION)"; \
+		cd tools; go get github.com/buildpacks/pack@v$(PACK_VERSION); \
+	fi
 
 .PHONY: install-pack-cli
 install-pack-cli: export PACK_BIN:=$(shell which pack)
