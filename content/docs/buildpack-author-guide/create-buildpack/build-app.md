@@ -40,7 +40,7 @@ Next, we'll download the Ruby runtime and install it into the layer directory. A
 <!-- file=ruby-buildpack/bin/build data-target=append -->
 ```bash
 echo "---> Downloading and extracting Ruby"
-ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-2.5.1.tgz
+ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-3.1.3.tgz
 wget -q -O - "$ruby_url" | tar -xzf - -C "$rubylayer"
 ```
 
@@ -67,9 +67,6 @@ Now we can install Bundler, a dependency manager for Ruby, and run the `bundle i
 
 <!-- file=ruby-buildpack/bin/build data-target=append -->
 ```bash
-echo "---> Installing bundler"
-gem install bundler --no-ri --no-rdoc
-
 echo "---> Installing gems"
 bundle install
 ```
@@ -97,7 +94,7 @@ mkdir -p "$rubylayer"
 
 # 3. DOWNLOAD RUBY
 echo "---> Downloading and extracting Ruby"
-ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-2.5.1.tgz
+ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-3.1.3.tgz
 wget -q -O - "$ruby_url" | tar -xzf - -C "$rubylayer"
 
 # 4. MAKE RUBY AVAILABLE DURING LAUNCH
@@ -107,11 +104,7 @@ echo -e '[types]\nlaunch = true' > "$layersdir/ruby.toml"
 export PATH="$rubylayer"/bin:$PATH
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}"$rubylayer/lib"
 
-# 6. INSTALL BUNDLER
-echo "---> Installing bundler"
-gem install bundler --no-ri --no-rdoc
-
-# 7. INSTALL GEMS
+# 6. INSTALL GEMS
 echo "---> Installing gems"
 bundle install
 ```
@@ -133,8 +126,6 @@ You will see the following output:
 ===> BUILDING
 ---> Ruby Buildpack
 ---> Downloading and extracting Ruby
----> Installing bundler
-...
 ---> Installing gems
 ...
 ===> EXPORTING
