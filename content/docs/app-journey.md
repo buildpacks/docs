@@ -103,14 +103,6 @@ deploying your new image to your favorite cloud!
 > In case you need it, `pack build` has a handy flag called `--publish` that will build your image directly onto a Docker
 > registry. You can learn more about `pack` features in the [documentation][pack-docs].
 
-## What about Windows apps?
-
-Windows image builds are now supported!
-
-<!--+- if false+-->
-<a href="/docs/app-developer-guide/build-a-windows-app" class="button bg-blue">Windows build guide</a>
-<!--+end+-->
-
 [builder]: /docs/concepts/components/builder/
 [buildpack]: /docs/concepts/components/buildpack/
 [samples-java-maven]: https://github.com/buildpacks/samples/tree/main/apps/java-maven
