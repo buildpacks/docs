@@ -666,7 +666,7 @@ The process types that are…">
 <p>First, annotate the <code>buildpack.toml</code> to specify that it emits CycloneDX:</p>
 <!-- test:file=ruby-buildpack/buildpack.toml -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="c"># Buildpack API version</span>
-</span></span><span class="line"><span class="cl"><span class="nx">api</span> <span class="p">=</span> <span class="s2">&#34;0.7&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">api</span> <span class="p">=</span> <span class="s2">&#34;0.8&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c"># Buildpack ID and metadata</span>
 </span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">buildpack</span><span class="p">]</span>
@@ -750,11 +750,7 @@ The process types that are…">
 </span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>/bin:<span class="nv">$PATH</span>
 </span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="p">:+</span><span class="si">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="si">}</span><span class="p">:</span><span class="si">}</span><span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">/lib&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 6. INSTALL BUNDLER</span>
-</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing bundler&#34;</span>
-</span></span><span class="line"><span class="cl">gem install bundler --no-ri --no-rdoc
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 7. INSTALL GEMS</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 6. INSTALL GEMS</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># Compares previous Gemfile.lock checksum to the current Gemfile.lock</span>
 </span></span><span class="line"><span class="cl"><span class="nv">bundlerlayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">local_bundler_checksum</span><span class="o">=</span><span class="k">$((</span>sha256sum Gemfile.lock <span class="o">||</span> <span class="nb">echo</span> <span class="s1">&#39;DOES_NOT_EXIST&#39;</span><span class="o">)</span> <span class="o">|</span> cut <span class="o">-</span>d <span class="s1">&#39; &#39;</span> <span class="o">-</span>f <span class="m">1</span><span class="o">)</span>
@@ -779,7 +775,7 @@ The process types that are…">
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">fi</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 8. SET DEFAULT START COMMAND</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 7. SET DEFAULT START COMMAND</span>
 </span></span><span class="line"><span class="cl">cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt; EOL
 </span></span></span><span class="line"><span class="cl"><span class="s"># our web process
 </span></span></span><span class="line"><span class="cl"><span class="s">[[processes]]
@@ -794,7 +790,7 @@ The process types that are…">
 </span></span></span><span class="line"><span class="cl"><span class="s">EOL</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># ========== ADDED ===========</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 9. ADD A SBOM</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 8. ADD A SBOM</span>
 </span></span><span class="line"><span class="cl"><span class="nv">rubybom</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">layersdir</span><span class="si">}</span><span class="s2">/ruby.sbom.cdx.json&#34;</span>
 </span></span><span class="line"><span class="cl">cat &gt;&gt; <span class="si">${</span><span class="nv">rubybom</span><span class="si">}</span> <span class="s">&lt;&lt; EOL
 </span></span></span><span class="line"><span class="cl"><span class="s">{
@@ -842,7 +838,7 @@ The process types that are…">
 </span></span><span class="line"><span class="cl">    {
 </span></span><span class="line"><span class="cl">      &#34;type&#34;: &#34;library&#34;,
 </span></span><span class="line"><span class="cl">      &#34;name&#34;: &#34;ruby&#34;,
-</span></span><span class="line"><span class="cl">      &#34;version&#34;: &#34;2.5.0&#34;
+</span></span><span class="line"><span class="cl">      &#34;version&#34;: &#34;3.1.0&#34;
 </span></span><span class="line"><span class="cl">    },
 </span></span><span class="line"><span class="cl">...
 </span></span><span class="line"><span class="cl">  ]

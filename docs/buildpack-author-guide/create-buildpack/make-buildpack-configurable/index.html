@@ -651,7 +651,7 @@ Select Ruby version We&amp;rsquo;ll allow buildpack users to define the…">
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># ======= ADDED =======</span>
 </span></span><span class="line"><span class="cl"><span class="nv">plan</span><span class="o">=</span><span class="nv">$2</span>
-</span></span><span class="line"><span class="cl"><span class="nv">version</span><span class="o">=</span>2.5.1
+</span></span><span class="line"><span class="cl"><span class="nv">version</span><span class="o">=</span>3.1.3
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[[</span> -f .ruby-version <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
 </span></span><span class="line"><span class="cl">    <span class="nv">version</span><span class="o">=</span><span class="k">$(</span>cat .ruby-version <span class="p">|</span> tr -d <span class="s1">&#39;[:space:]&#39;</span><span class="k">)</span>
@@ -691,11 +691,7 @@ Select Ruby version We&amp;rsquo;ll allow buildpack users to define the…">
 </span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>/bin:<span class="nv">$PATH</span>
 </span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="p">:+</span><span class="si">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="si">}</span><span class="p">:</span><span class="si">}</span><span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">/lib&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 6. INSTALL BUNDLER</span>
-</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing bundler&#34;</span>
-</span></span><span class="line"><span class="cl">gem install bundler --no-ri --no-rdoc
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 7. INSTALL GEMS</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 6. INSTALL GEMS</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># Compares previous Gemfile.lock checksum to the current Gemfile.lock</span>
 </span></span><span class="line"><span class="cl"><span class="nv">bundlerlayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">local_bundler_checksum</span><span class="o">=</span><span class="k">$((</span>sha256sum Gemfile.lock <span class="o">||</span> <span class="nb">echo</span> <span class="s1">&#39;DOES_NOT_EXIST&#39;</span><span class="o">)</span> <span class="o">|</span> cut <span class="o">-</span>d <span class="s1">&#39; &#39;</span> <span class="o">-</span>f <span class="m">1</span><span class="o">)</span>
@@ -720,7 +716,7 @@ Select Ruby version We&amp;rsquo;ll allow buildpack users to define the…">
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">fi</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 8. SET DEFAULT START COMMAND</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 7. SET DEFAULT START COMMAND</span>
 </span></span><span class="line"><span class="cl">cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt; EOL
 </span></span></span><span class="line"><span class="cl"><span class="s"># our web process
 </span></span></span><span class="line"><span class="cl"><span class="s">[[processes]]
@@ -735,7 +731,7 @@ Select Ruby version We&amp;rsquo;ll allow buildpack users to define the…">
 </span></span></span><span class="line"><span class="cl"><span class="s">EOL</span>
 </span></span></code></pre></div><p>Finally, create a file <code>ruby-sample-app/.ruby-version</code> with the following contents:</p>
 <!-- test:file=ruby-sample-app/.ruby-version -->
-<pre tabindex="0"><code>2.5.0
+<pre tabindex="0"><code>3.1.0
 </code></pre><p>Now when you run:</p>
 <!-- test:exec -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
@@ -744,7 +740,7 @@ Select Ruby version We&amp;rsquo;ll allow buildpack users to define the…">
 <!-- test:assert=contains -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">===&gt; BUILDING
 </span></span><span class="line"><span class="cl">---&gt; Ruby Buildpack
-</span></span><span class="line"><span class="cl">---&gt; Downloading and extracting Ruby 2.5.0
+</span></span><span class="line"><span class="cl">---&gt; Downloading and extracting Ruby 3.1.0
 </span></span></code></pre></div><p>Next, let&rsquo;s see how buildpacks can store information about the dependencies provided in the output app image for introspection.</p>
 <!--+if false+-->
 <hr>
