@@ -45,7 +45,7 @@ First, annotate the `buildpack.toml` to specify that it emits CycloneDX:
 <!-- test:file=ruby-buildpack/buildpack.toml -->
 ```toml
 # Buildpack API version
-api = "0.7"
+api = "0.8"
 
 # Buildpack ID and metadata
 [buildpack]
@@ -141,11 +141,7 @@ echo -e '[types]\nlaunch = true' > "$layersdir/ruby.toml"
 export PATH="$rubylayer"/bin:$PATH
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}"$rubylayer/lib"
 
-# 6. INSTALL BUNDLER
-echo "---> Installing bundler"
-gem install bundler --no-ri --no-rdoc
-
-# 7. INSTALL GEMS
+# 6. INSTALL GEMS
 # Compares previous Gemfile.lock checksum to the current Gemfile.lock
 bundlerlayer="$layersdir/bundler"
 local_bundler_checksum=$((sha256sum Gemfile.lock || echo 'DOES_NOT_EXIST') | cut -d ' ' -f 1)
@@ -170,7 +166,7 @@ EOL
 
 fi
 
-# 8. SET DEFAULT START COMMAND
+# 7. SET DEFAULT START COMMAND
 cat > "$layersdir/launch.toml" << EOL
 # our web process
 [[processes]]
@@ -185,7 +181,7 @@ command = "bundle exec ruby worker.rb"
 EOL
 
 # ========== ADDED ===========
-# 9. ADD A SBOM
+# 8. ADD A SBOM
 rubybom="${layersdir}/ruby.sbom.cdx.json"
 cat >> ${rubybom} << EOL
 {
@@ -249,7 +245,7 @@ You should find that the included `ruby` version is `2.5.0` as expected.
     {
       "type": "library",
       "name": "ruby",
-      "version": "2.5.0"
+      "version": "3.1.0"
     },
 ...
   ]
