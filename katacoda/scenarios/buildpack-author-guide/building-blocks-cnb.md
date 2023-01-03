@@ -14,7 +14,7 @@ Example:
 <!-- test:exec -->
 ```bash
 pack buildpack new examples/ruby \
-    --api 0.7 \
+    --api 0.8 \
     --path ruby-buildpack \
     --version 0.0.1 \
     --stacks io.buildpacks.samples.stacks.bionic
@@ -37,7 +37,7 @@ You will have `ruby-buildpack/buildpack.toml`{{open}} in your buildpack director
 <!-- test:file=ruby-buildpack/buildpack.toml -->
 <pre class="file" data-filename="ruby-buildpack/buildpack.toml" data-target="replace">
 # Buildpack API version
-api = "0.7"
+api = "0.8"
 
 # Buildpack ID and metadata
 [buildpack]

@@ -24,7 +24,7 @@ fi
 
 # ======= ADDED =======
 plan=$2
-version=2.5.1
+version=3.1.3
 
 if [[ -f .ruby-version ]]; then
     version=$(cat .ruby-version | tr -d '[:space:]')
@@ -69,11 +69,7 @@ echo -e '[types]\nlaunch = true' > "$layersdir/ruby.toml"
 export PATH="$rubylayer"/bin:$PATH
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}"$rubylayer/lib"
 
-# 6. INSTALL BUNDLER
-echo "---> Installing bundler"
-gem install bundler --no-ri --no-rdoc
-
-# 7. INSTALL GEMS
+# 6. INSTALL GEMS
 # Compares previous Gemfile.lock checksum to the current Gemfile.lock
 bundlerlayer="$layersdir/bundler"
 local_bundler_checksum=$((sha256sum Gemfile.lock || echo 'DOES_NOT_EXIST') | cut -d ' ' -f 1)
@@ -98,7 +94,7 @@ EOL
 
 fi
 
-# 8. SET DEFAULT START COMMAND
+# 7. SET DEFAULT START COMMAND
 cat > "$layersdir/launch.toml" << EOL
 # our web process
 [[processes]]
@@ -117,7 +113,7 @@ Finally, create a file `ruby-sample-app/.ruby-version` with the following conten
 
 <!-- test:file=ruby-sample-app/.ruby-version -->
 ```
-2.5.0
+3.1.0
 ```
 
 Now when you run:
@@ -134,7 +130,7 @@ You will notice that version of Ruby specified in the app's `.ruby-version` file
 ```text
 ===> BUILDING
 ---> Ruby Buildpack
----> Downloading and extracting Ruby 2.5.0
+---> Downloading and extracting Ruby 3.1.0
 ```
 
 Next, let's see how buildpacks can store information about the dependencies provided in the output app image for introspection.

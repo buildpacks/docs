@@ -30,14 +30,4 @@
       <a class="github-button icon-button bg-blue button d-none d-lg-flex" href="https://github.com/buildpacks">GitHub</a>
     </div>
   </nav>
-
-  <nav id="subnav" class="navbar navbar-expand-sm" role="navigation">
-    <ul class="nav navbar-nav">
-      {{ range $.Site.Menus.docs }}
-      <li class="nav-link text-center">
-        <a class="nav-link py-2 py-lg-0 px-1" href="{{.URL}}">{{.Name}}</a>
-      </li>
-      {{ end }}
-    </ul>
-  </nav>
 </header>

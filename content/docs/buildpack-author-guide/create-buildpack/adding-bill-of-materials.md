@@ -38,14 +38,14 @@ Processes:
 
 Apart from the above standard metadata, buildpacks can also populate information about the dependencies they have provided in form of a `Bill-of-Materials`. Let's see how we can use this to populate information about the version of `ruby` that was installed in the output app image.
 
-To add the `ruby` version to the output of `pack download sbom`, we will have to provide a [Software `Bill-of-Materials`](https://en.wikipedia.org/wiki/Software_bill_of_materials) (`SBOM`) containing this information. There are three "standard" ways to report SBOM data.  You'll need to choose to use on of [CycloneDX](https://cyclonedx.org/), [SPDX](https://spdx.dev/) or [Syft](https://github.com/anchore/syft) update the `ruby.sbom.<ext>` (where `<ext>` is the extension appropriate for your SBOM standard, one of `cdx.json`, `spdx.json` or `syft.json`) at the end of your `build` script.  Discussion of which SBOM format to choose is outside the scope of this tutorial, but we will note that the SBOM format you choose to use is likely to be the output format of any SBOM scanner (eg: [`syft cli`](https://github.com/anchore/syft)) you might choose to use.  In this example we will use the CycloneDX json format.
+To add the `ruby` version to the output of `pack download sbom`, we will have to provide a [Software `Bill-of-Materials`](https://en.wikipedia.org/wiki/Software_bill_of_materials) (`SBOM`) containing this information. There are three "standard" ways to report SBOM data.  You'll need to choose to use one of [CycloneDX](https://cyclonedx.org/), [SPDX](https://spdx.dev/) or [Syft](https://github.com/anchore/syft) update the `ruby.sbom.<ext>` (where `<ext>` is the extension appropriate for your SBOM standard, one of `cdx.json`, `spdx.json` or `syft.json`) at the end of your `build` script.  Discussion of which SBOM format to choose is outside the scope of this tutorial, but we will note that the SBOM format you choose to use is likely to be the output format of any SBOM scanner (eg: [`syft cli`](https://github.com/anchore/syft)) you might choose to use.  In this example we will use the CycloneDX json format.
 
 First, annotate the `buildpack.toml` to specify that it emits CycloneDX:
 
 <!-- test:file=ruby-buildpack/buildpack.toml -->
 ```toml
 # Buildpack API version
-api = "0.7"
+api = "0.8"
 
 # Buildpack ID and metadata
 [buildpack]
@@ -141,11 +141,7 @@ echo -e '[types]\nlaunch = true' > "$layersdir/ruby.toml"
 export PATH="$rubylayer"/bin:$PATH
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}"$rubylayer/lib"
 
-# 6. INSTALL BUNDLER
-echo "---> Installing bundler"
-gem install bundler --no-ri --no-rdoc
-
-# 7. INSTALL GEMS
+# 6. INSTALL GEMS
 # Compares previous Gemfile.lock checksum to the current Gemfile.lock
 bundlerlayer="$layersdir/bundler"
 local_bundler_checksum=$((sha256sum Gemfile.lock || echo 'DOES_NOT_EXIST') | cut -d ' ' -f 1)
@@ -170,7 +166,7 @@ EOL
 
 fi
 
-# 8. SET DEFAULT START COMMAND
+# 7. SET DEFAULT START COMMAND
 cat > "$layersdir/launch.toml" << EOL
 # our web process
 [[processes]]
@@ -185,7 +181,7 @@ command = "bundle exec ruby worker.rb"
 EOL
 
 # ========== ADDED ===========
-# 9. ADD A SBOM
+# 8. ADD A SBOM
 rubybom="${layersdir}/ruby.sbom.cdx.json"
 cat >> ${rubybom} << EOL
 {
@@ -237,7 +233,7 @@ The SBOM information is now downloaded to the local file system:
 cat layers/sbom/launch/examples_ruby/ruby/sbom.cdx.json | jq -M
 ```
 
-You should find that the included `ruby` version is `2.5.0` as expected.
+You should find that the included `ruby` version is `3.1.0` as expected.
 
 <!-- test:assert=contains;ignore-lines=... -->
 ```text
@@ -249,7 +245,7 @@ You should find that the included `ruby` version is `2.5.0` as expected.
     {
       "type": "library",
       "name": "ruby",
-      "version": "2.5.0"
+      "version": "3.1.0"
     },
 ...
   ]

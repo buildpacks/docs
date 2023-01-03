@@ -81,21 +81,6 @@ featureKatacoda = false
   url        = "https://github.com/buildpacks"
   weight     = 4
 
-  [[menu.docs]]
-  name       = "Application Developer Guide"
-  url        = "/docs/app-developer-guide"
-  weight     = 1
-
-  [[menu.docs]]
-  name       = "Buildpack Author Guide"
-  url        = "/docs/buildpack-author-guide"
-  weight     = 2
-
-  [[menu.docs]]
-  name       = "Platform Operator Guide"
-  url        = "/docs/operator-guide/"
-  weight     = 3
-
 [security]
   enableInlineShortcodes = false
   [security.exec]

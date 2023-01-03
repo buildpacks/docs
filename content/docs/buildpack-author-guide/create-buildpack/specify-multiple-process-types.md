@@ -57,7 +57,7 @@ mkdir -p "$rubylayer"
 
 # 3. DOWNLOAD RUBY
 echo "---> Downloading and extracting Ruby"
-ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-2.5.1.tgz
+ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-3.1.3.tgz
 wget -q -O - "$ruby_url" | tar -xzf - -C "$rubylayer"
 
 # 4. MAKE RUBY AVAILABLE DURING LAUNCH
@@ -67,16 +67,12 @@ echo -e '[types]\nlaunch = true' > "$layersdir/ruby.toml"
 export PATH="$rubylayer"/bin:$PATH
 export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}"$rubylayer/lib"
 
-# 6. INSTALL BUNDLER
-echo "---> Installing bundler"
-gem install bundler --no-ri --no-rdoc
-
-# 7. INSTALL GEMS
+# 6. INSTALL GEMS
 echo "---> Installing gems"
 bundle install
 
 # ========== MODIFIED ===========
-# 8. SET DEFAULT START COMMAND
+# 7. SET DEFAULT START COMMAND
 cat > "$layersdir/launch.toml" << EOL
 # our web process
 [[processes]]
