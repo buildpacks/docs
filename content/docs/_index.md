@@ -58,4 +58,4 @@ Find out the various ways that _you_ can contribute to the Cloud Native Buildpac
 
 ## Project Roadmap
 
-This is a community driven project and our roadmap is publicly available on our [Github page](https://github.com/buildpacks/community/blob/main/ROADMAP.md). We encourage you to contribute with feature requests.
+This is a community driven project and our roadmap is publicly available on our [Github page](https://github.com/buildpacks/community/blob/main/ROADMAP.md). We encourage you to contribute with feature requests.[![Build](https://github.com/buildpacks/docs/actions/workflows/main.yml/badge.svg)](https://github.com/buildpacks/docs/actions/workflows/main.yml)
