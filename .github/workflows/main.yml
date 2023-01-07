@@ -24,7 +24,7 @@ jobs:
       - name: Install Dependencies
         run: sudo apt-get install make curl jq
       - name: Install pack
-        uses: buildpacks/github-actions/setup-pack@v4.9.0
+        uses: buildpacks/github-actions/setup-pack@v5.0.1
         with:
           pack-version: '0.28.0'
       - name: Test
@@ -38,9 +38,6 @@ jobs:
       - name: Check links
         run: |
           make check-links
-      - name: Check katacoda
-        run: |
-          make check-katacoda
       - name: Upload public folder
         uses: actions/upload-artifact@v3
         env:
