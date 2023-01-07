@@ -88,4 +88,4 @@ You may store your buildpack image in any standard OCI registry, such as [Docker
 [docker-hub]: https://hub.docker.com/
 [gcr]: https://cloud.google.com/container-registry/
 [ghcr]: https://docs.github.com/en/packages/guides/about-github-container-registry
-[github-packages]: https://docs.github.com/en/packages/guides/configuring-docker-for-use-with-github-packages
+[github-packages]: https://docs.github.com/en/packages/guides/configuring-docker-for-use-with-github-packages[![Build](https://github.com/buildpacks/docs/actions/workflows/main.yml/badge.svg)](https://github.com/buildpacks/docs/actions/workflows/main.yml)
