@@ -10,7 +10,7 @@ See the [spec release](https://github.com/buildpacks/spec/releases/tag/platform%
 
 ### Windows support
 
-Windows image builds are now supported! See the [Windows build guide](/docs/app-developer-guide/build-a-windows-app)
+Windows image builds are now supported! See the [Windows build guide](/docs/app-developer-guide/)
 for more details.
 
 ### Multicall launcher
