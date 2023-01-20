@@ -125,7 +125,7 @@ curl http://10.0.0.1:8080
 [lifecycle-issues]: https://github.com/buildpacks/lifecycle/issues
 [app-journey]: /docs/app-journey
 [getting-started]: /docs
-[container-mode]: https://docs.docker.com/desktop/windows/#switch-between-windows-and-linux-containers
+[container-mode]: https://docs.docker.com/desktop/faqs/windowsfaqs/#how-do-i-switch-between-windows-and-linux-containers
 [docker-env-vars]: https://docs.docker.com/engine/reference/commandline/cli/#environment-variables
 [docker-hosts]: #understanding-docker-hosts
 [build-linux]: /docs/app-developer-guide/build-an-app
