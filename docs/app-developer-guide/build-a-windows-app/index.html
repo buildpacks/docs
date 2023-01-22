@@ -640,10 +640,10 @@
 </blockquote>
 <h3 id="precursor">Precursor</h3>
 <h4 id="recommended-reading">Recommended reading</h4>
-<p>Before trying out builds for Windows images, we recommend following the <a href="/docs/app-journey">Linux image tutorial</a> under <a href="/docs">Getting Started</a>. Don&rsquo;t worry, you can still run it on a Windows OS if you need to &ndash; just make sure to <a href="https://docs.docker.com/desktop/windows/#switch-between-windows-and-linux-containers">enable Linux containers</a> for Docker first.</p>
+<p>Before trying out builds for Windows images, we recommend following the <a href="/docs/app-journey">Linux image tutorial</a> under <a href="/docs">Getting Started</a>. Don&rsquo;t worry, you can still run it on a Windows OS if you need to &ndash; just make sure to <a href="https://docs.docker.com/desktop/faqs/windowsfaqs/#how-do-i-switch-between-windows-and-linux-containers">enable Linux containers</a> for Docker first.</p>
 <p>When you&rsquo;re done, head back here.</p>
 <h4 id="enable-windows-container-mode">Enable Windows container mode</h4>
-<p>In order to produce Windows container images, ensure <a href="https://docs.docker.com/desktop/windows/#switch-between-windows-and-linux-containers">Windows container mode</a> is enabled in your Docker settings (available only in Docker for Windows).</p>
+<p>In order to produce Windows container images, ensure <a href="https://docs.docker.com/desktop/faqs/windowsfaqs/#how-do-i-switch-between-windows-and-linux-containers">Windows container mode</a> is enabled in your Docker settings (available only in Docker for Windows).</p>
 <p>Then, building a Windows app using Cloud Native Buildpacks is nearly identical to <a href="/docs/app-developer-guide/build-an-app">building for Linux</a>:</p>
 <blockquote>
 <p><strong>Not using Windows?</strong></p>
@@ -703,7 +703,7 @@ builder by running <code>pack config default-builder &lt;BUILDER&gt;</code>.</p>
 <h2 id="using-remote-docker-hosts">Using remote Docker hosts</h2>
 <p><code>pack</code> and your source code don&rsquo;t need to be on the same machine as your Docker daemon, thanks to support for the <a href="https://docs.docker.com/engine/reference/commandline/cli/#environment-variables"><code>DOCKER_HOST</code></a> environment variable.</p>
 <p>Essentially, this points your local Docker client (e.g. <code>docker</code> or <code>pack</code> CLI) to a remote Docker daemon. For instance, if the IP address of your host is <code>10.0.0.1</code> and its daemon is listening on port <code>2375</code>, you can set <code>DOCKER_HOST</code> to <code>tcp://10.0.0.1:2375</code>. Any subsequent <code>pack</code> or <code>docker</code> commands would communicate with the daemon on that machine instead of a local daemon.</p>
-<p>This can be used to make <code>pack</code> build Windows container images, as long as your remote Docker host is configured to support them (i.e. the host runs a Windows OS, has <a href="https://docs.docker.com/desktop/windows/#switch-between-windows-and-linux-containers">Windows container mode enabled</a>).</p>
+<p>This can be used to make <code>pack</code> build Windows container images, as long as your remote Docker host is configured to support them (i.e. the host runs a Windows OS, has <a href="https://docs.docker.com/desktop/faqs/windowsfaqs/#how-do-i-switch-between-windows-and-linux-containers">Windows container mode enabled</a>).</p>
 <p>Here&rsquo;s an example where <code>pack</code> on a Linux/MacOS machine can access a Windows 10 machine with Docker Desktop, using the <a href="https://docs.docker.com/docker-for-windows/#general">localhost:2375 listener</a> and the built-in <a href="https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse">OpenSSH Server</a>.</p>
 <pre tabindex="0"><code># ssh port-forward for localhost:2375 to remote daemon
 ssh -f -N -L 2375:127.0.0.1:2375 10.0.0.1
