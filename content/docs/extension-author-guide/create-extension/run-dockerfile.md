@@ -86,7 +86,7 @@ Successfully built image hello-extensions
 You should see something akin to:
 
 ```
-curl 7.85.0-DEV (x86_64-pc-linux-musl)
+curl 7.85.0-DEV (x86_64-pc-linux-musl) ... more stuff here ...
 ```
 
 What happened: now that `hello-extensions` requires both `tree` and `curl` in its build plan, both extensions are

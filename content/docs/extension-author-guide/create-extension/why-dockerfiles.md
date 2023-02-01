@@ -9,8 +9,8 @@ Let's see a build that requires base image extension in order to succeed.
 
 #### detect
 
-`cat $workspace/samples/buildpacks/hello-extensions/bin/detect` - the buildpack always detects but doesn't require any
-dependencies (as the output build plan is empty)
+`cat $workspace/samples/buildpacks/hello-extensions/bin/detect` - the buildpack always detects (because its exit code is `0`)
+but doesn't require any dependencies (as the output build plan is empty)
 
 #### build
 
@@ -21,8 +21,8 @@ phase, and defines a launch process called `curl` that runs `curl --version` at 
 
 1. Ensure experimental features are enabled: `pack config experimental true`
 
-2. Download the latest lifecycle tarball from the GitHub release
-   page: https://github.com/buildpacks/lifecycle/releases/tag/v0.15.1
+2. Download the latest lifecycle tarball from the GitHub [release page](https://github.com/buildpacks/lifecycle/releases/tag/v0.15.1)
+   * For linux containers on x86 architectures: `wget https://github.com/buildpacks/lifecycle/releases/download/v0.15.1/lifecycle-v0.15.1+linux.x86-64.tgz`
 
 3. Edit `$workspace/samples/builders/alpine/builder.toml` to add the following at the end of the file:
 
@@ -33,7 +33,7 @@ uri = <path to lifecycle tarball in previous step>
 
 4. Ensure you are authenticated with an OCI registry: `docker login` should succeed
 
-5. Set your preferred registry namespace: `registry_namespace=<your preferred registry namespace>`
+5. Set your preferred registry namespace (typically your username): `registry_namespace=<your preferred registry namespace>`
   * For now, it is necessary for the builder to be pushed to a registry for builds with image extensions to succeed
 
 6. Create the builder:

@@ -7,7 +7,7 @@ weight=403
 
 `tree $workspace/samples/extensions/tree`
 
-You should see something akin to the following:
+(That's right, we're using the very tool we will later be installing!) You should see something akin to the following:
 
 ```
 .
