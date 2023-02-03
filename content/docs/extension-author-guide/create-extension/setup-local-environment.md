@@ -3,12 +3,17 @@ title="Set up your local environment"
 weight=401
 +++
 
+<!-- test:suite=dockerfiles;weight=1 -->
+
 Let's walk through a build that uses extensions, step by step. We will see an image extension that installs `curl` on
 the builder image, and switches the run image to an image that has `curl` installed.
 
 ### Ensure Docker is running
 
-`docker version`
+<!-- test:exec -->
+```bash
+docker version
+```
 
 If you see output similar to the following, you're good to go! Otherwise, start Docker and check again.
 
@@ -36,19 +41,35 @@ Server: Docker Engine - Community
 
 ### Setup workspace directory
 
-`workspace=<your preferred workspace directory>`
+<!-- test:exec -->
+```bash
+workspace=$PWD # or your preferred workspace directory
+```
 
 ### Ensure pack version supports image extensions
 
-`pack version` - should be at least `0.28.0`
+<!-- test:exec -->
+```bash
+pack version
+```
+
+The version should be at least `0.28.0`
+
+### Enable experimental features in pack
+
+<!-- test:exec -->
+```bash
+pack config experimental true
+```
 
 ### Clone the samples repo
 
-`cd $workspace`
-
-`git clone https://github.com/buildpacks/samples.git`
-
-`cd samples`
+<!-- test:exec -->
+```bash
+cd $workspace
+git clone https://github.com/buildpacks/samples.git
+cd samples
+```
 
 <!--+ if false +-->
 ---

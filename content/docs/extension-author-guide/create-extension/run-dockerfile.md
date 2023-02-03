@@ -3,27 +3,43 @@ title="Generating a run.Dockerfile"
 weight=405
 +++
 
+<!-- test:suite=dockerfiles;weight=5 -->
+
 ### Examine `curl` extension
 
 #### detect
 
-`cat $workspace/samples/extensions/curl/bin/detect` - the extension always detects and provides a dependency
-  called `curl`
+<!-- test:exec -->
+```bash
+cat $workspace/samples/extensions/curl/bin/detect
+```
+
+The extension always detects (because its exit code is `0`) and provides a dependency called `curl`.
 
 #### generate
 
-`cat $workspace/samples/extensions/curl/bin/generate` - the extension generates a `run.Dockerfile` that switches the run image to
-  reference `run-image-curl`
+<!-- test:exec -->
+```bash
+cat $workspace/samples/extensions/curl/bin/generate
+```
+
+The extension generates a `run.Dockerfile` that switches the run image to reference `run-image-curl`.
 
 ### Build a run image for `curl` extension to use
 
-1. `cat $workspace/samples/stacks/alpine/run/curl.Dockerfile` - this is a simple Dockerfile that creates a CNB run image
-  from the `curl` base image by adding the required CNB user configuration and `io.buildpacks.stack.id` label
-   * The Dockerfile could come from anywhere, but we include it in the `stacks` directory for convenience
-
-2. Build the image:
-
+<!-- test:exec -->
+```bash
+cat $workspace/samples/stacks/alpine/run/curl.Dockerfile
 ```
+
+This is a simple Dockerfile that creates a CNB run image from the `curl` base image by adding the required CNB user configuration and `io.buildpacks.stack.id` label.
+
+The Dockerfile could come from anywhere, but we include it in the `stacks` directory for convenience.
+
+Build the run image:
+
+<!-- test:exec -->
+```bash
 docker build \
   --file $workspace/samples/stacks/alpine/run/curl.Dockerfile \
   --tag run-image-curl .
@@ -31,25 +47,34 @@ docker build \
 
 ### Re-create our builder with `hello-extensions` updated to require `curl`
 
-1. Edit `$workspace/samples/buildpacks/hello-extensions/bin/detect` to uncomment the second set of lines that
-  output `[[requires]]` to the build plan
+Edit `$workspace/samples/buildpacks/hello-extensions/bin/detect` to uncomment the second set of lines that output `[[requires]]` to the build plan:
 
-2. Create the builder:
-
+<!-- test:exec -->
+```bash
+sed -i '' "14,15s/#//" $workspace/samples/buildpacks/hello-extensions/bin/detect
 ```
+
+Re-create the builder:
+
+<!-- test:exec -->
+```bash
 pack builder create $registry_namespace/extensions-builder \
   --config $workspace/samples/builders/alpine/builder.toml \
   --publish
 ```
 
-### Build the application image
+### Re-build the application image
 
-```
+<!-- test:exec -->
+```bash
 pack build hello-extensions \
   --builder $registry_namespace/extensions-builder \
-  --lifecycle-image $LIFECYCLE_IMAGE \
+  --path $workspace/samples/apps/java-maven \
+  --network host \
   --verbose
 ```
+
+Note that `--network host` is necessary when using `registry_namespace=localhost:5000`.
 
 You should see:
 
@@ -81,7 +106,10 @@ Successfully built image hello-extensions
 
 ### See the image run successfully
 
-`docker run hello-extensions`
+<!-- test:exec -->
+```bash
+docker run hello-extensions
+```
 
 You should see something akin to:
 

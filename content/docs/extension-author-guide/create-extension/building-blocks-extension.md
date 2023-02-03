@@ -3,9 +3,14 @@ title="Building blocks of a CNB Image Extension"
 weight=403
 +++
 
+<!-- test:suite=dockerfiles;weight=3 -->
+
 ### Examine `tree` extension
 
-`tree $workspace/samples/extensions/tree`
+<!-- test:exec -->
+```bash
+tree $workspace/samples/extensions/tree
+```
 
 (That's right, we're using the very tool we will later be installing!) You should see something akin to the following:
 

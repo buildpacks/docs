@@ -3,39 +3,58 @@ title="Generating a build.Dockerfile"
 weight=404
 +++
 
+<!-- test:suite=dockerfiles;weight=4 -->
+
 ### Examine `tree` extension
 
 #### detect
 
-`cat $workspace/samples/extensions/tree/bin/detect` - the extension always detects (because its exit code is `0`) and provides a dependency
-  called `tree` by writing to the build plan
+<!-- test:exec -->
+```bash
+cat $workspace/samples/extensions/tree/bin/detect
+```
+
+The extension always detects (because its exit code is `0`) and provides a dependency called `tree` by writing to the build plan.
 
 #### generate
 
-`cat $workspace/samples/extensions/tree/bin/generate` - the extension generates a `build.Dockerfile` that installs `tree` on the builder
-  image
+<!-- test:exec -->
+```bash
+cat $workspace/samples/extensions/tree/bin/generate
+```
+
+The extension generates a `build.Dockerfile` that installs `tree` on the builder image.
 
 ### Re-create our builder with `hello-extensions` updated to require `tree`
 
-1. Edit `$workspace/samples/buildpacks/hello-extensions/bin/detect` to uncomment the first set of lines that
-  output `[[requires]]` to the build plan
+Edit `$workspace/samples/buildpacks/hello-extensions/bin/detect` to uncomment the first set of lines that output `[[requires]]` to the build plan:
 
-2. Create the builder:
+<!-- test:exec -->
+```bash
+sed -i '' "10,11s/#//" $workspace/samples/buildpacks/hello-extensions/bin/detect
+```
 
+Re-create the builder:
+
+<!-- test:exec -->
 ```
 pack builder create $registry_namespace/extensions-builder \
   --config $workspace/samples/builders/alpine/builder.toml \
   --publish
 ```
 
-### Build the application image
+### Re-build the application image
 
+<!-- test:exec -->
 ```
 pack build hello-extensions \
   --builder $registry_namespace/extensions-builder \
-  --lifecycle-image $LIFECYCLE_IMAGE \
+  --network host \
+  --path $workspace/samples/apps/java-maven \
   --verbose
 ```
+
+Note that `--network host` is necessary when using `registry_namespace=localhost:5000`.
 
 You should see:
 
@@ -60,7 +79,9 @@ Successfully built image hello-extensions
 
 ### See the image fail to run
 
-`docker run hello-extensions`
+```
+docker run hello-extensions
+```
 
 You should see:
 
