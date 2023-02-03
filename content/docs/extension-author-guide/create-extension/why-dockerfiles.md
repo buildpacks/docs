@@ -13,7 +13,7 @@ Let's see a build that requires base image extension in order to succeed.
 
 <!-- test:exec -->
 ```bash
-cat $workspace/samples/buildpacks/hello-extensions/bin/detect
+cat $PWD/samples/buildpacks/hello-extensions/bin/detect
 ```
 
 The buildpack always detects (because its exit code is `0`) but doesn't require any dependencies (as the output build plan is empty).
@@ -22,7 +22,7 @@ The buildpack always detects (because its exit code is `0`) but doesn't require 
 
 <!-- test:exec -->
 ```bash
-cat $workspace/samples/buildpacks/hello-extensions/bin/build
+cat $PWD/samples/buildpacks/hello-extensions/bin/build
 ```
 
 The buildpack tries to use `tree` at build-time, and defines a launch process called `curl` that runs `curl --version` at runtime.
@@ -52,8 +52,8 @@ Create the builder:
 
 <!-- test:exec -->
 ```bash
-pack builder create $registry_namespace/extensions-builder \
-  --config $workspace/samples/builders/alpine/builder.toml \
+pack builder create localhost:5000/extensions-builder \
+  --config $PWD/samples/builders/alpine/builder.toml \
   --publish
 ```
 
@@ -63,14 +63,14 @@ Run `pack build` (note that the "source" directory is effectively ignored in our
 
 ```
 pack build hello-extensions \
-  --builder $registry_namespace/extensions-builder \
+  --builder localhost:5000/extensions-builder \
   --network host \
-  --path $workspace/samples/apps/java-maven \
+  --path $PWD/samples/apps/java-maven \
   --pull-policy always \
   --verbose
 ```
 
-Note that `--network host` is necessary when using `registry_namespace=localhost:5000`.
+Note that `--network host` is necessary when publishing to a local registry.
 
 You should see:
 

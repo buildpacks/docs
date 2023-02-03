@@ -9,7 +9,7 @@ weight=403
 
 <!-- test:exec -->
 ```bash
-tree $workspace/samples/extensions/tree
+tree $PWD/samples/extensions/tree
 ```
 
 (That's right, we're using the very tool we will later be installing!) You should see something akin to the following:

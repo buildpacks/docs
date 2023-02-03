@@ -41,9 +41,8 @@ Server: Docker Engine - Community
 
 ### Setup workspace directory
 
-<!-- test:exec -->
 ```bash
-workspace=$PWD # or your preferred workspace directory
+cd <your preferred workspace directory>
 ```
 
 ### Ensure pack version supports image extensions
@@ -66,9 +65,7 @@ pack config experimental true
 
 <!-- test:exec -->
 ```bash
-cd $workspace
 git clone https://github.com/buildpacks/samples.git
-cd samples
 ```
 
 <!--+ if false +-->

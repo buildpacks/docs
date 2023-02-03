@@ -11,7 +11,7 @@ weight=404
 
 <!-- test:exec -->
 ```bash
-cat $workspace/samples/extensions/tree/bin/detect
+cat $PWD/samples/extensions/tree/bin/detect
 ```
 
 The extension always detects (because its exit code is `0`) and provides a dependency called `tree` by writing to the build plan.
@@ -20,26 +20,26 @@ The extension always detects (because its exit code is `0`) and provides a depen
 
 <!-- test:exec -->
 ```bash
-cat $workspace/samples/extensions/tree/bin/generate
+cat $PWD/samples/extensions/tree/bin/generate
 ```
 
 The extension generates a `build.Dockerfile` that installs `tree` on the builder image.
 
 ### Re-create our builder with `hello-extensions` updated to require `tree`
 
-Edit `$workspace/samples/buildpacks/hello-extensions/bin/detect` to uncomment the first set of lines that output `[[requires]]` to the build plan:
+Edit `$PWD/samples/buildpacks/hello-extensions/bin/detect` to uncomment the first set of lines that output `[[requires]]` to the build plan:
 
 <!-- test:exec -->
 ```bash
-sed -i '' "10,11s/#//" $workspace/samples/buildpacks/hello-extensions/bin/detect
+sed -i "10,11s/#//" $PWD/samples/buildpacks/hello-extensions/bin/detect
 ```
 
 Re-create the builder:
 
 <!-- test:exec -->
 ```
-pack builder create $registry_namespace/extensions-builder \
-  --config $workspace/samples/builders/alpine/builder.toml \
+pack builder create localhost:5000/extensions-builder \
+  --config $PWD/samples/builders/alpine/builder.toml \
   --publish
 ```
 
@@ -48,13 +48,14 @@ pack builder create $registry_namespace/extensions-builder \
 <!-- test:exec -->
 ```
 pack build hello-extensions \
-  --builder $registry_namespace/extensions-builder \
+  --builder localhost:5000/extensions-builder \
   --network host \
-  --path $workspace/samples/apps/java-maven \
+  --path $PWD/samples/apps/java-maven \
+  --pull-policy always \
   --verbose
 ```
 
-Note that `--network host` is necessary when using `registry_namespace=localhost:5000`.
+Note that `--network host` is necessary when publishing to a local registry.
 
 You should see:
 
