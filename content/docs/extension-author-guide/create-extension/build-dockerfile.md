@@ -34,6 +34,8 @@ Edit `$PWD/samples/buildpacks/hello-extensions/bin/detect` to uncomment the firs
 sed -i "10,11s/#//" $PWD/samples/buildpacks/hello-extensions/bin/detect
 ```
 
+(On Mac, use `sed -i '' "10,11s/#//" $PWD/samples/buildpacks/hello-extensions/bin/detect`)
+
 Re-create the builder:
 
 <!-- test:exec -->

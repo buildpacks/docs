@@ -54,6 +54,8 @@ Edit `$PWD/samples/buildpacks/hello-extensions/bin/detect` to uncomment the seco
 sed -i "14,15s/#//" $PWD/samples/buildpacks/hello-extensions/bin/detect
 ```
 
+(On Mac, use `sed -i '' "14,15s/#//" $PWD/samples/buildpacks/hello-extensions/bin/detect`)
+
 Re-create the builder:
 
 <!-- test:exec -->
