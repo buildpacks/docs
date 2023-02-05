@@ -155,7 +155,7 @@ You can bypass the launcher entirely by setting a new entrypoint for the run con
 
 ```
 docker run --rm --entrypoint bash -it multi-process-app # profile scripts have NOT been sourced and buildpack-provided env vars are NOT set in this shell
-```
+```dn
 <!--+- "{{execute interrupt}}"+-->
 
 To learn more about the launcher, see the [platform spec](https://github.com/buildpacks/spec/blob/main/platform.md#launcher).
