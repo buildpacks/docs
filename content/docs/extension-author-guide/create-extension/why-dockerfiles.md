@@ -29,24 +29,17 @@ The buildpack tries to use `tree` at build-time, and defines a launch process ca
 
 ### Create a builder with extensions and publish it
 
-Ensure you are authenticated with an OCI registry: `docker login` should succeed
+For now, it is necessary for the builder image to be pushed to an OCI registry for builds with image extensions to succeed.
 
-For test purposes, you can launch a local unauthenticated registry:
+For demo purposes, we will launch a local unauthenticated registry:
 
 <!-- test:exec -->
 ```bash
 docker run -d --rm -p 5000:5000 registry:2
 ```
 
-Set your preferred registry namespace (typically your username if using Docker Hub): `registry_namespace=<your preferred registry namespace>`
-* For now, it is necessary for the builder to be pushed to a registry for builds with image extensions to succeed
-
-If using a test registry:
-
-<!-- test:exec -->
-```bash
-registry_namespace=localhost:5000
-```
+You can push the builder to any registry of your choice - just ensure that `docker login` succeeds and replace `localhost:5000` in the following examples with your registry namespace -
+e.g., `index.docker.io/<username>`.
 
 Create the builder:
 
