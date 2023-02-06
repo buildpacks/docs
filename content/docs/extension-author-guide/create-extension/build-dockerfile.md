@@ -83,7 +83,7 @@ Successfully built image hello-extensions
 ### See the image fail to run
 
 ```
-docker run hello-extensions
+docker run --rm hello-extensions
 ```
 
 You should see:

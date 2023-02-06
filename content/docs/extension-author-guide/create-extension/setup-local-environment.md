@@ -54,12 +54,16 @@ pack version
 
 The version should be at least `0.28.0`
 
-### Enable experimental features in pack
+### Update pack configuration
 
 <!-- test:exec -->
 ```bash
 pack config experimental true
+pack config lifecycle-image --unset
 ```
+
+As base image extension with Dockerfiles is currently an experimental feature, we must enable it in `pack`.
+We unset any custom lifecycle image that may have been provided to ensure that the latest version is used.
 
 ### Clone the samples repo
 

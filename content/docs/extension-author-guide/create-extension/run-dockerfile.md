@@ -111,7 +111,7 @@ Successfully built image hello-extensions
 
 <!-- test:exec -->
 ```bash
-docker run hello-extensions
+docker run --rm hello-extensions
 ```
 
 You should see something akin to:
