@@ -23,7 +23,7 @@ You can also choose to download the `SBoM` from an image hosted in a remote regi
 pack sbom download your-image-name --remote
 ```
 
-The following example demonstrates  running `pack sbom download ...` on an image containing an `SBoM` in  `syft` format.  Running `pack sbom download ...` creates a `layers/sbom` directory and populates that directory with `sbom.syft.json` files.  The combined metadata from all of the `sbom.syft.json` files is the image `SBoM`. Where an image generates CycloneDX `SBoM` metadata, the files a named `sbom.cdx.json`. Similarly, Spdx files are named `sbom.cdx.json`.
+The following example demonstrates  running `pack sbom download ...` on an image containing an `SBoM` in  `syft` format.  Running `pack sbom download ...` creates a `layers/sbom` directory and populates that directory with `sbom.syft.json` files.  The combined metadata from all of the `sbom.syft.json` files is the image `SBoM`. Where an image generates CycloneDX `SBoM` metadata, the files are named `sbom.cdx.json`. Similarly, Spdx files are named `sbom.spdx.json`.
 
 ```bash
 layers
