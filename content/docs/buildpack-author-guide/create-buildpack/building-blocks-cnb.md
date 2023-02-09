@@ -108,7 +108,7 @@ Then run the following `pack` command:
 
 <!-- test:exec;exit-code=1 -->
 ```bash
-pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
+pack build test-ruby-app --path . --buildpack ./ruby-buildpack
 ```
 <!--+- "{{execute}}"+-->
 
