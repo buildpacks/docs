@@ -68,7 +68,7 @@ Then rebuild your app using the updated buildpack:
 
 <!-- test:exec -->
 ```bash
-pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
+pack build test-ruby-app --path . --buildpack ./ruby-buildpack
 ```
 <!--+- "{{execute}}"+-->
 
