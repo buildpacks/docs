@@ -7,6 +7,15 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://buildpacks.io/docs/features/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Dockerfiles</title>
+      <link>https://buildpacks.io/docs/features/dockerfiles/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/features/dockerfiles/</guid>
+      <description>Dockerfiles can be used to extend base images for buildpacks builds</description>
+    </item>
+    
+    <item>
       <title>Reproducibility</title>
       <link>https://buildpacks.io/docs/features/reproducibility/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

@@ -66,6 +66,10 @@
   </url><url>
     <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/</loc>
   </url><url>
+    <loc>https://buildpacks.io/docs/extension-author-guide/create-extension/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/extension-author-guide/</loc>
+  </url><url>
     <loc>https://buildpacks.io/docs/app-developer-guide/mounting-volumes/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/app-developer-guide/specify-buildpacks/</loc>
@@ -112,11 +116,21 @@
   </url><url>
     <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/setup-local-environment/</loc>
   </url><url>
+    <loc>https://buildpacks.io/docs/extension-author-guide/create-extension/setup-local-environment/</loc>
+  </url><url>
     <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/extension-author-guide/create-extension/why-dockerfiles/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/extension-author-guide/create-extension/building-blocks-extension/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/detection/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/build-app/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/extension-author-guide/create-extension/build-dockerfile/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/extension-author-guide/create-extension/run-dockerfile/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/make-app-runnable/</loc>
   </url><url>
@@ -140,6 +154,8 @@
   </url><url>
     <loc>https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.7-0.8/</loc>
   </url><url>
+    <loc>https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.8-0.9/</loc>
+  </url><url>
     <loc>https://buildpacks.io/categories/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/tools/circleci/</loc>
@@ -151,6 +167,8 @@
     <loc>https://buildpacks.io/docs/reference/config/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/reference/spec/distribution-api/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/features/dockerfiles/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/tools/gitlab/</loc>
   </url><url>
@@ -261,6 +279,8 @@
     <loc>https://buildpacks.io/docs/reference/spec/migration/platform-api-0.7-0.8/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/reference/spec/migration/platform-api-0.8-0.9/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/reference/spec/migration/platform-api-0.9-0.10/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/tools/piper/</loc>
   </url><url>

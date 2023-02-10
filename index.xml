@@ -370,6 +370,17 @@ source &amp;#34;https://rubygems.org&amp;#34; git_source(:github) {|repo_name| &
     </item>
     
     <item>
+      <title>Set up your local environment</title>
+      <link>https://buildpacks.io/docs/extension-author-guide/create-extension/setup-local-environment/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/extension-author-guide/create-extension/setup-local-environment/</guid>
+      <description>Let&amp;rsquo;s walk through a build that uses extensions, step by step. We will see an image extension that installs curl on the builder image, and switches the run image to an image that has curl installed.
+Ensure Docker is running docker version If you see output similar to the following, you&amp;rsquo;re good to go! Otherwise, start Docker and check again.
+Client: Docker Engine - Community Version: 20.10.9 API version: 1.</description>
+    </item>
+    
+    <item>
       <title>Building blocks of a Cloud Native Buildpack</title>
       <link>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -381,6 +392,28 @@ Using the Pack CLI The buildpack new &amp;lt;id&amp;gt; command will create a di
 Example:
 pack buildpack new examples/ruby \ --api 0.8 \ --path ruby-buildpack \ --version 0.0.1 \ --stacks io.buildpacks.samples.stacks.bionic This command will create ruby-buildpack directory which contains buildpack.toml, bin/build, bin/detect files.
 Additional Parameters -a, --api Buildpack API compatibility of the generated buildpack -h, --help Help for &amp;rsquo;new&#39; --path the location on the filesystem to generate the artifacts.</description>
+    </item>
+    
+    <item>
+      <title>Why Dockerfiles</title>
+      <link>https://buildpacks.io/docs/extension-author-guide/create-extension/why-dockerfiles/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/extension-author-guide/create-extension/why-dockerfiles/</guid>
+      <description>Let&amp;rsquo;s see a build that requires base image extension in order to succeed.
+Examine hello-extensions buildpack detect cat $PWD/samples/buildpacks/hello-extensions/bin/detect The buildpack always detects (because its exit code is 0) but doesn&amp;rsquo;t require any dependencies (as the output build plan is empty).
+build cat $PWD/samples/buildpacks/hello-extensions/bin/build The buildpack tries to use tree at build-time, and defines a launch process called curl that runs curl --version at runtime.
+Create a builder with extensions and publish it For now, it is necessary for the builder image to be pushed to an OCI registry for builds with image extensions to succeed.</description>
+    </item>
+    
+    <item>
+      <title>Building blocks of a CNB Image Extension</title>
+      <link>https://buildpacks.io/docs/extension-author-guide/create-extension/building-blocks-extension/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/extension-author-guide/create-extension/building-blocks-extension/</guid>
+      <description>Examine tree extension tree $PWD/samples/extensions/tree (That&amp;rsquo;s right, we&amp;rsquo;re using the very tool we will later be installing!) You should see something akin to the following:
+. ├── bin │ ├── detect &amp;lt;- similar to a buildpack ./bin/detect │ ├── generate &amp;lt;- similar to a buildpack ./bin/build ├── extension.toml &amp;lt;- similar to a buildpack buildpack.toml The extension.toml describes the extension, containing information such as its name, ID, and version, as well as the buildpack API that it implements.</description>
     </item>
     
     <item>
@@ -403,6 +436,29 @@ if [[ ! -f Gemfile ]]; then exit 100 fi Your ruby-buildpack/bin/detect script sh
       <guid>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/build-app/</guid>
       <description>Now we&amp;rsquo;ll change the build step you created to install application dependencies. This will require updates to the build script such that it performs the following steps:
 Creates a layer for the Ruby runtime Downloads the Ruby runtime and installs it to the layer Installs Bundler (the Ruby dependency manager) Uses Bundler to install dependencies By doing this, you&amp;rsquo;ll learn how to create arbitrary layers with your buildpack, and how to read the contents of the app in order to perform actions like downloading dependencies.</description>
+    </item>
+    
+    <item>
+      <title>Generating a build.Dockerfile</title>
+      <link>https://buildpacks.io/docs/extension-author-guide/create-extension/build-dockerfile/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/extension-author-guide/create-extension/build-dockerfile/</guid>
+      <description>Examine tree extension detect cat $PWD/samples/extensions/tree/bin/detect The extension always detects (because its exit code is 0) and provides a dependency called tree by writing to the build plan.
+generate cat $PWD/samples/extensions/tree/bin/generate The extension generates a build.Dockerfile that installs tree on the builder image.
+Re-create our builder with hello-extensions updated to require tree Edit $PWD/samples/buildpacks/hello-extensions/bin/detect to uncomment the first set of lines that output [[requires]] to the build plan:
+sed -i &amp;#34;10,11s/#//&amp;#34; $PWD/samples/buildpacks/hello-extensions/bin/detect (On Mac, use sed -i &#39;&#39; &amp;quot;10,11s/#//&amp;quot; $PWD/samples/buildpacks/hello-extensions/bin/detect)</description>
+    </item>
+    
+    <item>
+      <title>Generating a run.Dockerfile</title>
+      <link>https://buildpacks.io/docs/extension-author-guide/create-extension/run-dockerfile/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/extension-author-guide/create-extension/run-dockerfile/</guid>
+      <description>Examine curl extension detect cat $PWD/samples/extensions/curl/bin/detect The extension always detects (because its exit code is 0) and provides a dependency called curl.
+generate cat $PWD/samples/extensions/curl/bin/generate The extension generates a run.Dockerfile that switches the run image to reference run-image-curl.
+Build a run image for curl extension to use cat $PWD/samples/stacks/alpine/run/curl.Dockerfile This is a simple Dockerfile that creates a CNB run image from the curl base image by adding the required CNB user configuration and io.</description>
     </item>
     
     <item>
@@ -515,6 +571,15 @@ This API will be used by buildpack authors.&lt;/p&gt;</description>
     </item>
     
     <item>
+      <title>Buildpack API 0.8 -&gt; 0.9</title>
+      <link>https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.8-0.9/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.8-0.9/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>CircleCI</title>
       <link>https://buildpacks.io/docs/tools/circleci/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -531,6 +596,15 @@ which allows users to run &lt;a href=&#34;https://buildpacks.io/docs/install-pac
       
       <guid>https://buildpacks.io/docs/reference/spec/distribution-api/</guid>
       <description>&lt;p&gt;This specification defines the artifact format, delivery mechanism, and order resolution process for buildpacks.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Dockerfiles</title>
+      <link>https://buildpacks.io/docs/features/dockerfiles/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/features/dockerfiles/</guid>
+      <description>Dockerfiles can be used to extend base images for buildpacks builds</description>
     </item>
     
     <item>
@@ -1019,6 +1093,15 @@ This API is used by platform implementors.&lt;/p&gt;</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://buildpacks.io/docs/reference/spec/migration/platform-api-0.8-0.9/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Platform API 0.9 -&gt; 0.10</title>
+      <link>https://buildpacks.io/docs/reference/spec/migration/platform-api-0.9-0.10/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/reference/spec/migration/platform-api-0.9-0.10/</guid>
       <description></description>
     </item>
     
