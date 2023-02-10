@@ -1,6 +1,6 @@
 +++
 title="Create an extension"
-weight=4
+weight=1
 summary="This is a step-by-step tutorial for creating and using CNB image extensions"
 +++
 

@@ -1,6 +1,6 @@
 +++
 title="Using Inline Buildpacks"
-weight=7
+weight=1
 summary="Learn how to create an ephemeral buildpack to customize your build."
 +++
 

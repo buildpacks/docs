@@ -1,5 +1,5 @@
 +++
-title="Extension Author Guide"
+title="Extending Buildpacks"
 weight=4
 include_summaries=true
 expand=true
