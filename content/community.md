@@ -15,7 +15,7 @@ Partake in one or many of our following public events:
 
 #### How can I start contributing?
 
-If you are new to the project, the first thing you should do is gain some understanding of the project. This normaly entails doing the following:
+If you are new to the project, the first thing you should do is gain some understanding of the project. This normally entails doing the following:
 
 1. Watch a few [talks (videos)][talks].
 2. Next, run through some [tutorials][tutorials].
@@ -30,7 +30,7 @@ If you didn't find anything you'd like to improve while going through the tutori
 | [`lifecycle`][lifecycle] | Go, Docker             | Executables that implement the main [specifications][spec] and are used by [platforms][platforms] such as `pack`.
 | [`docs`][docs]           | Hugo, HTML, JavaScript | Main website and documentation.
 
-> Dependending our your depth of understading or desires some components may be more ideal than others.
+> Depending our your depth of understanding or desires some components may be more ideal than others.
 
 [talks]: /docs/#talks
 [tutorials]: /docs/#tutorials

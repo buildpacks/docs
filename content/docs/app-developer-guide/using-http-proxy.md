@@ -25,7 +25,7 @@ The `pack` tool uses the Docker daemon to manage the local image registry on you
 
 
 ### Docker Desktop (Windows and MacOS)
-Docker's documetation states "Docker Desktop lets you configure HTTP/HTTPS Proxy Settings and automatically propagates these to Docker".  Set the system proxy using the [MacOS documentation](https://support.apple.com/en-gb/guide/mac-help/mchlp2591/mac) or [Windows documentation](https://www.dummies.com/computers/operating-systems/windows-10/how-to-set-up-a-proxy-in-windows-10/).  The system proxy settings will be used by Docker Desktop.
+Docker's documentation states "Docker Desktop lets you configure HTTP/HTTPS Proxy Settings and automatically propagates these to Docker".  Set the system proxy using the [MacOS documentation](https://support.apple.com/en-gb/guide/mac-help/mchlp2591/mac) or [Windows documentation](https://www.dummies.com/computers/operating-systems/windows-10/how-to-set-up-a-proxy-in-windows-10/).  The system proxy settings will be used by Docker Desktop.
 
 ### Linux
 The Docker project documents [how to configure configure the HTTP/HTTPS proxy](https://docs.docker.com/config/daemon/systemd/#httphttps-proxy) settings for the Docker daemon on Linux.  You should configure the `HTTP_PROXY` and `HTTPS_PROXY` environment variables as part of the Docker daemon startup.

@@ -58,7 +58,7 @@ api = "0.8"
   id = "io.buildpacks.samples.stacks.bionic"
 ```
 
-Then, in our buildpack implemetnation we will generate the necessary SBOM metadata:
+Then, in our buildpack implementation we will generate the necessary SBOM metadata:
 
 ```bash
 # ...
