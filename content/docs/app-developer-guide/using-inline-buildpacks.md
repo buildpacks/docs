@@ -4,7 +4,7 @@ weight=7
 summary="Learn how to create an ephemeral buildpack to customize your build."
 +++
 
-You can supplement your app's build proces with custom scripts by creating an _inline buildpack_. An inline buildpack is an ephemeral buildpack that's defined in your [project descriptor][project-toml] (i.e. `project.toml`). You can include a script to run as part of the build without setting up all the files and directories that are required for a complete buildpack.
+You can supplement your app's build process with custom scripts by creating an _inline buildpack_. An inline buildpack is an ephemeral buildpack that's defined in your [project descriptor][project-toml] (i.e. `project.toml`). You can include a script to run as part of the build without setting up all the files and directories that are required for a complete buildpack.
 
 Inline buildpacks are defined as an entry in the `[[build.buildpacks]]` table of the project descriptor by inlcuding an `inline` script in the `[build.buildpacks.script]` table.
 
@@ -37,7 +37,7 @@ Inline buildpacks aren't constrained to a single command, however. You can defin
 id = "me/cleanup"
 
   [build.buildpacks.script]
-  api = "0.6"
+  api = "0.9"
   inline = """
 set -e
 source scripts/utils.sh
