@@ -46,11 +46,12 @@ Then, create a file called `ruby-sample-app/Gemfile`<!--+"{{open}}"+--> with the
 
 <!-- test:file=ruby-sample-app/Gemfile -->
 ```ruby
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
 git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
-gem "sinatra"
+gem 'sinatra'
+gem 'webrick'
 ```
 
 Finally, make sure your local Docker daemon is running by executing:
