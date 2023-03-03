@@ -16,7 +16,9 @@ Let's see a build that requires base image extension in order to succeed.
 cat $PWD/samples/buildpacks/hello-extensions/bin/detect
 ```
 
-The buildpack always detects (because its exit code is `0`) but doesn't require any dependencies (as the output build plan is empty).
+The buildpack opts-out of the build (exits with non-zero code) unless the `BP_EXT_DEMO` environment variable is set.
+
+If the `BP_EXT_DEMO` environment variable is set, the buildpack detects (exits with code `0`), but doesn't require any dependencies through a build plan unless the `BP_REQUIRES` environment variable is set.
 
 #### build
 
@@ -57,6 +59,7 @@ Run `pack build` (note that the "source" directory is effectively ignored in our
 ```
 pack build hello-extensions \
   --builder localhost:5000/extensions-builder \
+  --env BP_EXT_DEMO=1 \
   --network host \
   --path $PWD/samples/apps/java-maven \
   --pull-policy always \
