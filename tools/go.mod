@@ -10,7 +10,6 @@ require (
 	github.com/bep/gitmap v1.3.0 // indirect
 	github.com/buildpacks/pack v0.28.0
 	github.com/clbanning/mxj/v2 v2.5.6 // indirect
-	github.com/containerd/cgroups v1.0.4 // indirect
 	github.com/evanw/esbuild v0.14.43 // indirect
 	github.com/getkin/kin-openapi v0.96.0 // indirect
 	github.com/go-openapi/swag v0.21.1 // indirect
@@ -18,16 +17,12 @@ require (
 	github.com/invopop/yaml v0.2.0 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/mattn/go-ieproxy v0.0.7 // indirect
-	github.com/moby/sys/mount v0.3.3 // indirect
 	github.com/niklasfasching/go-org v1.6.5 // indirect
 	github.com/pelletier/go-toml/v2 v2.0.2 // indirect
 	github.com/rivo/tview v0.0.0-20220610163003-691f46d6f500 // indirect
 	github.com/spf13/cobra v1.6.1
-	github.com/spf13/viper v1.10.0 // indirect
 	github.com/tdewolff/minify/v2 v2.11.9 // indirect
 	github.com/tdewolff/parse/v2 v2.6.0 // indirect
 	gocloud.dev v0.25.0 // indirect
-	golang.org/x/image v0.0.0-20220601225756-64ec528b34cd // indirect
-	gopkg.in/natefinch/npipe.v2 v2.0.0-20160621034901-c1b8fa8bdcce // indirect
-	gopkg.in/src-d/go-git.v4 v4.13.1 // indirect
+	golang.org/x/image v0.5.0 // indirect
 )
