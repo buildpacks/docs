@@ -43,7 +43,7 @@ endif
 endif
 
 ifeq ($(shell uname -s),Darwin)
-	HUGO_OS:=macOS
+	HUGO_OS:=darwin
 	HUGO_ARCH:=universal
 endif
 
