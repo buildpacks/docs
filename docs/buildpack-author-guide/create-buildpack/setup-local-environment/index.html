@@ -700,11 +700,12 @@ docker rmi test-ruby-app
 </span></span><span class="line"><span class="cl"><span class="k">end</span>
 </span></span></code></pre></div><p>Then, create a file called <code>ruby-sample-app/Gemfile</code><!--+"{{open}}"+--> with the following contents:</p>
 <!-- test:file=ruby-sample-app/Gemfile -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">source</span> <span class="s2">&#34;https://rubygems.org&#34;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ruby" data-lang="ruby"><span class="line"><span class="cl"><span class="n">source</span> <span class="s1">&#39;https://rubygems.org&#39;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">git_source</span><span class="p">(</span><span class="ss">:github</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">repo_name</span><span class="o">|</span> <span class="s2">&#34;https://github.com/</span><span class="si">#{</span><span class="n">repo_name</span><span class="si">}</span><span class="s2">&#34;</span> <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="n">gem</span> <span class="s2">&#34;sinatra&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">gem</span> <span class="s1">&#39;sinatra&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="n">gem</span> <span class="s1">&#39;webrick&#39;</span>
 </span></span></code></pre></div><p>Finally, make sure your local Docker daemon is running by executing:</p>
 <!-- test:exec -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker version

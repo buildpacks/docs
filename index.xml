@@ -366,7 +366,7 @@ Install Docker Install pack NOTE: pack is only one implementation of the Cloud N
       <description>First, we&amp;rsquo;ll create a sample Ruby app that you can use when developing your buildpack:
 mkdir ruby-sample-app Create a file in the current directory called ruby-sample-app/app.rb with the following contents:
 require &amp;#39;sinatra&amp;#39; set :bind, &amp;#39;0.0.0.0&amp;#39; set :port, 8080 get &amp;#39;/&amp;#39; do &amp;#39;Hello World!&amp;#39; end Then, create a file called ruby-sample-app/Gemfile with the following contents:
-source &amp;#34;https://rubygems.org&amp;#34; git_source(:github) {|repo_name| &amp;#34;https://github.com/#{repo_name}&amp;#34; } gem &amp;#34;sinatra&amp;#34; Finally, make sure your local Docker daemon is running by executing:</description>
+source &amp;#39;https://rubygems.org&amp;#39; git_source(:github) {|repo_name| &amp;#34;https://github.com/#{repo_name}&amp;#34; } gem &amp;#39;sinatra&amp;#39; gem &amp;#39;webrick&amp;#39; Finally, make sure your local Docker daemon is running by executing:</description>
     </item>
     
     <item>
