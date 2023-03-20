@@ -709,9 +709,9 @@
 </span></span></span><span class="line"><span class="cl"><span class="sd">        PACKAGE=&#34;${REPO}/$(echo &#34;$BP_ID&#34; | sed &#39;s/\//_/g&#39;)&#34;
 </span></span></span><span class="line"><span class="cl"><span class="sd">        pack buildpack package --publish ${PACKAGE}:${VERSION}
 </span></span></span><span class="line"><span class="cl"><span class="sd">        DIGEST=&#34;$(crane digest ${PACKAGE}:${VERSION})&#34;
-</span></span></span><span class="line"><span class="cl"><span class="sd">        echo &#34;::set-output name=bp_id::$BP_ID&#34;
-</span></span></span><span class="line"><span class="cl"><span class="sd">        echo &#34;::set-output name=version::$VERSION&#34;
-</span></span></span><span class="line"><span class="cl"><span class="sd">        echo &#34;::set-output name=address::${PACKAGE}@${DIGEST}&#34;</span><span class="w">        
+</span></span></span><span class="line"><span class="cl"><span class="sd">        echo &#34;bp_id=$BP_ID&#34; &gt;&gt; &#34;$GITHUB_OUTPUT&#34;
+</span></span></span><span class="line"><span class="cl"><span class="sd">        echo &#34;version=$VERSION&#34; &gt;&gt; &#34;$GITHUB_OUTPUT&#34;
+</span></span></span><span class="line"><span class="cl"><span class="sd">        echo &#34;address=${PACKAGE}@${DIGEST}&#34; &gt;&gt; &#34;$GITHUB_OUTPUT&#34;</span><span class="w">        
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">shell</span><span class="p">:</span><span class="w"> </span><span class="l">bash</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">env</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">REPO</span><span class="p">:</span><span class="w"> </span><span class="l">docker.io/${{ secrets.DOCKER_HUB_USER }}</span><span class="w">
