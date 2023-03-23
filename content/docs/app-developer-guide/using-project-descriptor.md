@@ -84,7 +84,7 @@ uri = "../../buildpacks/hello-world/"
 [[build.buildpacks]]
 uri = "bash-script-buildpack/"
 
-[[build.env]]al
+[[build.env]]
 name='HELLO'
 value='WORLD'
 ```
