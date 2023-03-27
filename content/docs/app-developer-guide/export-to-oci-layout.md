@@ -37,7 +37,7 @@ The configuration shows the experimental mode was **enabled** and a local direct
 
 ### 2. Build the app
 
-If you haven't already, please follow the steps to [build an app](/docs/app-developer-guide/build-an-app). 
+If you haven't already, please follow the steps to [build an app](/docs/app-developer-guide/build-an-app), once you managed to build a sample application you can try exporting the sample application to disk in OCI layout format. 
 
 The OCI layout feature must be enabled using the convention `oci:<path/to/save/image>` in the `<image-name>` parameter when invoking `pack build`.
 
@@ -47,26 +47,38 @@ For example:
 pack build oci:sample-app --path samples/apps/java-maven --builder cnbs/sample-builder:bionic
 ```
 
-It will save the image in a folder *sample-app* created in the current directory.
+It will save the image in a folder `./sample-app` created in your current directory.
 
 ### 3. Check your image
 
 **Congratulations!**
 
-You can verify your application image was saved on disk in a folder called *sample-app* in your current directory in OCI layout format, for example:
+You can verify your application image was saved on disk in a folder called `./sample-app` in your current directory in OCI layout format, for example:
 
 ```bash
 tree sample-app
 
 sample-app
 ├── blobs
-│   └── sha256
-│       ├── 2fa192256ce255c6ea6c1296eadfe2feba8094f40e6aa85e699645caca2e85d8
-│       ├── 5a44e4f7b58d74fe6f92dd7028075c91191128d1e2e7f39846fe061a9a98836e
-│       └── 622426666a7b61c086c84203082d5f64495be1f8b085137e53b0554cfcdb50ab
+│ └── sha256
+│     ├── 141bfb0cd434d425bc70edb9e56ea11d07aed76450eb0e73e6110645f251a8d3
+│     ├── 2fa192256ce255c6ea6c1296eadfe2feba8094f40e6aa85e699645caca2e85d8
+│     ├── 5a44e4f7b58d74fe6f92dd7028075c91191128d1e2e7f39846fe061a9a98836e
+│     ├── 72d9f18d70f395ff9bfae4d193077ccea3ca583e3da3dd66f5c84520c0100727
+│     ├── 827746ec7ba80f4e4811b6c9195b6f810fbc2d58a6c9cc337bf0305791f24e97
+│     ├── ad13830c92258c952f25d561d8bf7d9eb58b8a3003960db1502cbda8239130b5
+│     ├── b97b58b190d5f731c879b0f7446a2bd554863b51851e03757199c74dd922ce61
+│     ├── c44222730efa142cd5bedc0babf82a9a07d325494be7f5c3cfde56f43166b65f
+│     ├── e1048fb89c3194a1f0542c0847aa086a7034dd7867c48fe8c93675cf36f90610
+│     ├── f0a30c5bc44742065b1b4ffa95271a39994f05ba7a03dd7e7143d1d3e45fa0b1
+│     └── f9d6350d0c44c0e7165a522155f53181ce8c163a6b8ead1f6baea22d1a8d8a78
 ├── index.json
-└── oci-layout     
+└── oci-layout  
+
+3 directories, 13 files
 ```
+If you are interested on keep playing with the image in  OCI layout format, one tool you can take a look is [umoci](https://umo.ci/) it can help you to create a 
+[runtime bundler](https://github.com/opencontainers/runtime-spec) that can be executed with another tool like [runc](https://github.com/opencontainers/runc)
 
 ---
 
@@ -74,7 +86,40 @@ sample-app
 
 ### Skip saving your run-image layers on disk
 
-If you don't need your `run-image` layers on disk, you can skip them using `--sparse` flag in your `pack build` command invocation
+Before using this option we suggest to remove your local layout directory (the one configured in your pack config.toml with the key `layout-repo-dir`) and 
+your application image folder (if you are planning to use the same folder), the reason for this is pack doesn't remove the blobs saved in the `layout-repo-dir` if you use the `--sparse` flag 
+
+If you don't need your `run-image` layers on disk, you can skip them using `--sparse` flag in your `pack build` command invocation.
+
+For example:
+
+```bash
+pack build oci:sample-app --sparse --path samples/apps/java-maven --builder cnbs/sample-builder:bionic
+```
+
+Verify your application image
+
+```bash
+sample-app
+├── blobs
+│ └── sha256
+│     ├── 2ebed3ab57806441e2bf814eaf0648ed77289e058340d2b76d32b422fbaac5d8
+│     ├── 2fa192256ce255c6ea6c1296eadfe2feba8094f40e6aa85e699645caca2e85d8
+│     ├── 5a44e4f7b58d74fe6f92dd7028075c91191128d1e2e7f39846fe061a9a98836e
+│     ├── 741e558b7b807fea350b26b8152170a2463277cb3d1268b60de76ec12608518a
+│     ├── 907c84671180d979a38affb62d9a6ea8e9a510e27639e0b60a34a42f1a846ddc
+│     ├── ad13830c92258c952f25d561d8bf7d9eb58b8a3003960db1502cbda8239130b5
+│     ├── c44222730efa142cd5bedc0babf82a9a07d325494be7f5c3cfde56f43166b65f
+│     └── f9d6350d0c44c0e7165a522155f53181ce8c163a6b8ead1f6baea22d1a8d8a78
+├── index.json
+└── oci-layout
+
+3 directories, 10 files
+```
+
+As you can see, there are 3 missing files at `sample-app/blobs/sha256` folder, the missing 3 blobs are the blobs from the 
+`run-image` that were not downloaded but if you check your config file you'll notice you have the same number of layers as 
+when you export the full image.
 
 ## Implementation notes
 
