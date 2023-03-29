@@ -12,7 +12,7 @@ See the [spec release](https://github.com/buildpacks/spec/releases/tag/buildpack
 The buildpack may now indicate compatibility with any stack by specifying the special value `*`.
 
 ### Character restrictions for process types
-For each process in `launch.toml`, `type` is now restricted to only contain numbers, letters, and the characters `.`, `_`, and `-`, so symlinks on both linux and windows filesystems can be created.
+For each process in `launch.toml`, `type` is now restricted to only contain numbers, letters, and the characters `.`, `_`, and `-`, so symlinks on both Linux and windows filesystems can be created.
  
 ### Override env vars
 Override is now the default behavior for env files without a suffix.
