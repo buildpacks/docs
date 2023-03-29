@@ -52,9 +52,9 @@ jobs:
         PACKAGE="${REPO}/$(echo "$BP_ID" | sed 's/\//_/g')"
         pack buildpack package --publish ${PACKAGE}:${VERSION}
         DIGEST="$(crane digest ${PACKAGE}:${VERSION})"
-        echo "::set-output name=bp_id::$BP_ID"
-        echo "::set-output name=version::$VERSION"
-        echo "::set-output name=address::${PACKAGE}@${DIGEST}"
+        echo "bp_id=$BP_ID" >> "$GITHUB_OUTPUT"
+        echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+        echo "address=${PACKAGE}@${DIGEST}" >> "$GITHUB_OUTPUT"
       shell: bash
       env:
         REPO: docker.io/${{ secrets.DOCKER_HUB_USER }}
