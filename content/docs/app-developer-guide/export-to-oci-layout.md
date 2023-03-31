@@ -6,7 +6,7 @@ summary="Learn how to export your application image to disk in OCI layout format
 
 <div class="quote mb-4">
     The OCI Image Layout is the directory structure for OCI content-addressable blobs and location-addressable references.
-    <div class="author">See the <a href="https://github.com/opencontainers/image-spec/blob/main/image-layout.md">specification</a></div>
+    <div class="author">See the <a href="https://github.com/opencontainers/image-spec/blob/main/image-layout.md">specification.</a></div>
 </div>
 
 Exporting to OCI layout format is an **experimental** feature available on pack since version X.Y.Z
@@ -25,7 +25,7 @@ Enable the experimental features on pack
 pack config experimental true
 ```
 
-You can confirm everything is fine, checking the `config.toml` file in your `PACK_HOME` installation folder, for example:
+You can confirm everything is fine, checking the `config.toml` file in your `PACK_HOME` installation folder. For example:
 
 ```bash
 cat ~/.pack/config.toml
@@ -37,7 +37,7 @@ The configuration shows the experimental mode was **enabled** and a local direct
 
 ### 2. Build the app
 
-If you haven't already, please follow the steps to [build an app](/docs/app-developer-guide/build-an-app), once you managed to build a sample application you can try exporting the sample application to disk in OCI layout format. 
+Please first follow the steps to [build an app](/docs/app-developer-guide/build-an-app), once you have successfully built an application you can export the sample application to disk in OCI layout format. 
 
 The OCI layout feature must be enabled using the convention `oci:<path/to/save/image>` in the `<image-name>` parameter when invoking `pack build`.
 
@@ -53,7 +53,7 @@ It will save the image in a folder `./sample-app` created in your current direct
 
 **Congratulations!**
 
-You can verify your application image was saved on disk in a folder called `./sample-app` in your current directory in OCI layout format, for example:
+You can verify your application image was saved on disk in a folder called `./sample-app` in your current directory in OCI layout format. For example:
 
 ```bash
 tree sample-app
@@ -77,7 +77,7 @@ sample-app
 
 3 directories, 13 files
 ```
-If you are interested on keep playing with the image in  OCI layout format, one tool you can take a look is [umoci](https://umo.ci/) it can help you to create a 
+If you want to keep playing with the image in  OCI layout format, one tool you can take a look at is [umoci](https://umo.ci/). It can help you to create a 
 [runtime bundler](https://github.com/opencontainers/runtime-spec) that can be executed with another tool like [runc](https://github.com/opencontainers/runc)
 
 ---
@@ -87,7 +87,7 @@ If you are interested on keep playing with the image in  OCI layout format, one 
 ### Skip saving your run-image layers on disk
 
 Before using this option we suggest to remove your local layout directory (the one configured in your pack config.toml with the key `layout-repo-dir`) and 
-your application image folder (if you are planning to use the same folder), the reason for this is pack doesn't remove the blobs saved in the `layout-repo-dir` if you use the `--sparse` flag 
+your application image folder (if you are planning to use the same folder). The reason for this is pack doesn't remove the blobs saved in the `layout-repo-dir` if you use the `--sparse` flag 
 
 If you don't need your `run-image` layers on disk, you can skip them using `--sparse` flag in your `pack build` command invocation.
 
@@ -117,7 +117,7 @@ sample-app
 3 directories, 10 files
 ```
 
-As you can see, there are 3 missing files at `sample-app/blobs/sha256` folder, the missing 3 blobs are the blobs from the 
+As you can see, there are 3 missing files at `sample-app/blobs/sha256` folder. The missing 3 blobs are the blobs from the 
 `run-image` that were not downloaded but if you check your config file you'll notice you have the same number of layers as 
 when you export the full image.
 
