@@ -71,18 +71,23 @@ Note that `--network host` is necessary when publishing to a local registry.
 You should see:
 
 ```
+...
 [detector] ======== Results ========
 [detector] pass: samples/tree@0.0.1
+[detector] pass: samples/curl@0.0.1
+[detector] pass: samples/cowsay@0.0.1
 [detector] pass: samples/hello-extensions@0.0.1
 [detector] Resolving plan... (try #1)
 [detector] skip: samples/tree@0.0.1 provides unused tree
-[detector] 1 of 2 buildpacks participating
+[detector] skip: samples/curl@0.0.1 provides unused curl
+[detector] skip: samples/cowsay@0.0.1 provides unused cowsay
+[detector] 1 of 4 buildpacks participating
 [detector] samples/hello-extensions 0.0.1
 ...
-[extender] Running build command
-[extender] ---> Hello Extensions Buildpack
-[extender] /cnb/buildpacks/samples_hello-extensions/0.0.1/bin/build: line 6: tree: command not found
-[extender] ERROR: failed to build: exit status 127
+[extender (build)] Running build command
+[extender (build)] ---> Hello Extensions Buildpack
+[extender (build)] /cnb/buildpacks/samples_hello-extensions/0.0.1/bin/build: line 6: tree: command not found
+[extender (build)] ERROR: failed to build: exit status 127
 ```
 
 What happened: our builder doesn't have `tree` installed, so the `hello-extensions` buildpack failed to build (as it

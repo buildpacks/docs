@@ -1,9 +1,13 @@
 +++
-title="Generating a run.Dockerfile"
+title="Generating a run.Dockerfile that switches the runtime base image"
 weight=405
 +++
 
 <!-- test:suite=dockerfiles;weight=5 -->
+
+Platforms can have several run images available, each tailored to a specific language family - thus limiting the number
+of installed dependencies for each image to the minimum necessary to support the targeted language. Image extensions
+can be used to switch the run image to that most appropriate for the current application.
 
 ### Examine `curl` extension
 
@@ -69,8 +73,11 @@ You should see:
 [detector] ======== Results ========
 [detector] pass: samples/tree@0.0.1
 [detector] pass: samples/curl@0.0.1
+[detector] pass: samples/cowsay@0.0.1
 [detector] pass: samples/hello-extensions@0.0.1
 [detector] Resolving plan... (try #1)
+[detector] skip: samples/cowsay@0.0.1 provides unused cowsay
+[detector] 3 of 4 buildpacks participating
 [detector] samples/tree             0.0.1
 [detector] samples/curl             0.0.1
 [detector] samples/hello-extensions 0.0.1
@@ -79,14 +86,14 @@ You should see:
 [detector] Running generate for extension samples/curl@0.0.1
 ...
 [detector] Checking for new run image
-[detector] Found a run.Dockerfile configuring image 'run-image-curl' from extension with id 'samples/curl'
+[detector] Found a run.Dockerfile from extension 'samples/curl' setting run image to 'run-image-curl'
 ...
-[extender] Found build Dockerfile for extension 'samples/tree'
-[extender] Applying the Dockerfile at /layers/generated/build/samples_tree/Dockerfile...
+[extender (build)] Found build Dockerfile for extension 'samples/tree'
+[extender (build)] Applying the Dockerfile at /layers/generated/build/samples_tree/Dockerfile...
 ...
-[extender] Running build command
-[extender] ---> Hello Extensions Buildpack
-[extender] tree v1.8.0 (c) 1996 - 2018 by Steve Baker, Thomas Moore, Francesc Rocher, Florian Sesser, Kyosuke Tokoro
+[extender (build)] Running build command
+[extender (build)] ---> Hello Extensions Buildpack
+[extender (build)] tree v1.8.0 (c) 1996 - 2018 by Steve Baker, Thomas Moore, Francesc Rocher, Florian Sesser, Kyosuke Tokoro
 ...
 Successfully built image hello-extensions
 ```
@@ -111,16 +118,27 @@ What happened: now that `hello-extensions` requires both `tree` and `curl` in it
 
 Now our `curl` process can succeed!
 
-## What's next?
+### Next steps
 
-The `tree` and `curl` examples are very simple, but we can unlock powerful new features with this functionality.
+Our `curl` process succeeded, but there is another process type defined on our image:
 
-Platforms could have several run images available, each tailored to a specific language family, thus limiting the number
-of installed dependencies for each image to the minimum necessary to support the targeted language. Image extensions
-could be used to switch the run image to that most appropriate for the current application.
+```
+docker run --rm --entrypoint cowsay hello-extensions
+```
 
-Similarly, builder images could be kept lean if image extensions are used to dynamically install the needed dependencies
-for each application.
+You should see:
 
-In the future, both run image switching and run image modification will be supported, opening the door to other use
-cases. Consult the [RFC](https://github.com/buildpacks/rfcs/pull/173) for further information.
+```
+ERROR: failed to launch: path lookup: exec: "cowsay": executable file not found in $PATH
+```
+
+Our run image, `run-image-curl`, has `curl` installed, but it doesn't have `cowsay`.
+
+In general, we may not always have a preconfigured run image available with all the needed dependencies for the current application.
+Luckily, we can also use image extensions to dynamically install runtime dependencies at build time. Let's look at that next.
+
+<!--+ if false+-->
+---
+
+<a href="/docs/extension-author-guide/create-extension/run-dockerfile" class="button bg-pink">Next Step</a>
+<!--+ end +-->

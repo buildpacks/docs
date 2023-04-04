@@ -5,6 +5,9 @@ weight=404
 
 <!-- test:suite=dockerfiles;weight=4 -->
 
+Builder images can be kept lean if image extensions are used to dynamically install the needed dependencies
+for the current application.
+
 ### Examine `tree` extension
 
 #### detect
@@ -46,20 +49,26 @@ Note that `--network host` is necessary when publishing to a local registry.
 You should see:
 
 ```
+...
 [detector] ======== Results ========
 [detector] pass: samples/tree@0.0.1
+[detector] pass: samples/curl@0.0.1
+[detector] pass: samples/cowsay@0.0.1
 [detector] pass: samples/hello-extensions@0.0.1
 [detector] Resolving plan... (try #1)
+[detector] skip: samples/curl@0.0.1 provides unused curl
+[detector] skip: samples/cowsay@0.0.1 provides unused cowsay
+[detector] 2 of 4 buildpacks participating
 [detector] samples/tree             0.0.1
 [detector] samples/hello-extensions 0.0.1
 [detector] Running generate for extension samples/tree@0.0.1
 ...
-[extender] Found build Dockerfile for extension 'samples/tree'
-[extender] Applying the Dockerfile at /layers/generated/build/samples_tree/Dockerfile...
+[extender (build)] Found build Dockerfile for extension 'samples/tree'
+[extender (build)] Applying the Dockerfile at /layers/generated/build/samples_tree/Dockerfile...
 ...
-[extender] Running build command
-[extender] ---> Hello Extensions Buildpack
-[extender] tree v1.8.0 (c) 1996 - 2018 by Steve Baker, Thomas Moore, Francesc Rocher, Florian Sesser, Kyosuke Tokoro
+[extender (build)] Running build command
+[extender (build)] ---> Hello Extensions Buildpack
+[extender (build)] tree v1.8.0 (c) 1996 - 2018 by Steve Baker, Thomas Moore, Francesc Rocher, Florian Sesser, Kyosuke Tokoro
 ...
 Successfully built image hello-extensions
 ```
