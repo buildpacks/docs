@@ -58,7 +58,7 @@ Next, we will be setting up the base image as required by the [Cloud-Native Buil
 
 
 The `CNB_USER_ID` is the `UID`  of the user as which the `detect` and `build` steps are run. The given user **MUST NOT** be a root user
-and have it's home directly writeable. `CNB_GROUP_ID` is the primary `GID` of the above user.
+and have it's home directly writable. `CNB_GROUP_ID` is the primary `GID` of the above user.
 
 Let's update the `Dockerfile` to reflect the above specification.
 
@@ -111,7 +111,7 @@ docker build . -t cnbs/sample-stack-base:bionic --target base
 
 ### Creating the run image
 
-Next up, we will create the run image. The run image is the base image for your runtime application environemnt.
+Next up, we will create the run image. The run image is the base image for your runtime application environment.
 
 In order to create our run image all we need to do is to set the run image's `USER` to the user with `CNB_USER_ID`. Our final `Dockerfile` for the build image should look like - 
 

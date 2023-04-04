@@ -102,7 +102,7 @@ A buildpack located in a CNB Registry
 - `urn:cnb:registry:bp-id@bp.version`
 
 <small><sup>†</sup> Directory buildpacks are not currently supported on Windows.</small><br />
-<small><sup>‡</sup> Version may be omited if there is only one buildpack in the builder matching the `id`.</small>
+<small><sup>‡</sup> Version may be omitted if there is only one buildpack in the builder matching the `id`.</small>
 
 [project-toml]: /docs/app-developer-guide/using-project-descriptor/
 [samples]: https://github.com/buildpacks/samples
