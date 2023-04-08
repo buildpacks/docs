@@ -46,7 +46,7 @@ Then, create a file called `ruby-sample-app/Gemfile`<!--+"{{open}}"+--> with the
 
 <!-- test:file=ruby-sample-app/Gemfile -->
 ```ruby
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
