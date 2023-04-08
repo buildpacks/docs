@@ -97,10 +97,10 @@ For additional sample builders and buildpacks, check out our [samples][samples] 
 
 You can also check out our reference of the builder config [here][builder-config].
 
-If you would like to customize the stack used by your builder, check out our [Create a stack][create-a-stack] tutorial.
+If you would like to customize the image your builder builds in, check out our [Create custom build and run images][create-targets] tutorial.
 
 [build]: /docs/concepts/operations/build/
 [builder]: /docs/concepts/components/builder/
 [builder-config]: /docs/reference/builder-config/
-[create-a-stack]: /docs/operator-guide/create-a-stack
+[create-targets]: /docs/operator-guide/create-targets
 [samples]: https://github.com/buildpacks/samples
