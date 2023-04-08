@@ -51,7 +51,7 @@ api = "0.8"
 
 # Stacks that the buildpack will work with
 [[stacks]]
-  id = "io.buildpacks.samples.stacks.bionic"
+  id = "io.buildpacks.samples.stacks.jammy"
 </pre>
 
 Then, in our buildpack implemetnation we will generate the necessary SBOM metadata:

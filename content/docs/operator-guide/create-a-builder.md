@@ -51,7 +51,7 @@ uri = "docker://cnbs/sample-package:hello-universe"
 
 # Stack that will be used by the builder
 [stack]
-id = "io.buildpacks.samples.stacks.bionic"
+id = "io.buildpacks.samples.stacks.jammy"
 # This image is used at runtime
 run-image = "cnbs/sample-stack-run:jammy"
 # This image is used at build-time

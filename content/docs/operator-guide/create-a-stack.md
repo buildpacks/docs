@@ -53,8 +53,8 @@ Next, we will be setting up the base image as required by the [Cloud-Native Buil
 <p class="spacer"></p>
 
 > **NOTE:** The **stack identifier** implies compatibility with other stacks of that same identifier. For instance, a custom stack may use
-> `io.buildpacks.stacks.bionic` as its identifier so long as it will work with buildpacks that declare compatibility with the
-> `io.buildpacks.stacks.bionic` stack.
+> `io.buildpacks.stacks.jammy` as its identifier so long as it will work with buildpacks that declare compatibility with the
+> `io.buildpacks.stacks.jammy` stack.
 
 
 The `CNB_USER_ID` is the `UID`  of the user as which the `detect` and `build` steps are run. The given user **MUST NOT** be a root user
@@ -70,8 +70,8 @@ FROM ubuntu:jammy as base
 # 2. Set required CNB information
 ENV CNB_USER_ID=1000
 ENV CNB_GROUP_ID=1000
-ENV CNB_STACK_ID="io.buildpacks.samples.stacks.bionic"
-LABEL io.buildpacks.stack.id="io.buildpacks.samples.stacks.bionic"
+ENV CNB_STACK_ID="io.buildpacks.samples.stacks.jammy"
+LABEL io.buildpacks.stack.id="io.buildpacks.samples.stacks.jammy"
 
 # 3. Create the user
 RUN groupadd cnb --gid ${CNB_GROUP_ID} && \
@@ -89,8 +89,8 @@ FROM ubuntu:jammy as base
 # 2. Set required CNB information
 ENV CNB_USER_ID=1000
 ENV CNB_GROUP_ID=1000
-ENV CNB_STACK_ID="io.buildpacks.samples.stacks.bionic"
-LABEL io.buildpacks.stack.id="io.buildpacks.samples.stacks.bionic"
+ENV CNB_STACK_ID="io.buildpacks.samples.stacks.jammy"
+LABEL io.buildpacks.stack.id="io.buildpacks.samples.stacks.jammy"
 
 # 3. Create the user
 RUN groupadd cnb --gid ${CNB_GROUP_ID} && \
@@ -123,8 +123,8 @@ FROM ubuntu:jammy as base
 # 2. Set required CNB information
 ENV CNB_USER_ID=1000
 ENV CNB_GROUP_ID=1000
-ENV CNB_STACK_ID="io.buildpacks.samples.stacks.bionic"
-LABEL io.buildpacks.stack.id="io.buildpacks.samples.stacks.bionic"
+ENV CNB_STACK_ID="io.buildpacks.samples.stacks.jammy"
+LABEL io.buildpacks.stack.id="io.buildpacks.samples.stacks.jammy"
 
 # 3. Create the user
 RUN groupadd cnb --gid ${CNB_GROUP_ID} && \
@@ -166,8 +166,8 @@ FROM ubuntu:jammy as base
 # 2. Set required CNB information
 ENV CNB_USER_ID=1000
 ENV CNB_GROUP_ID=1000
-ENV CNB_STACK_ID="io.buildpacks.samples.stacks.bionic"
-LABEL io.buildpacks.stack.id="io.buildpacks.samples.stacks.bionic"
+ENV CNB_STACK_ID="io.buildpacks.samples.stacks.jammy"
+LABEL io.buildpacks.stack.id="io.buildpacks.samples.stacks.jammy"
 
 # 3. Create the user
 RUN groupadd cnb --gid ${CNB_GROUP_ID} && \
@@ -207,8 +207,8 @@ FROM ubuntu:jammy as base
 # 2. Set required CNB information
 ENV CNB_USER_ID=1000
 ENV CNB_GROUP_ID=1000
-ENV CNB_STACK_ID="io.buildpacks.samples.stacks.bionic"
-LABEL io.buildpacks.stack.id="io.buildpacks.samples.stacks.bionic"
+ENV CNB_STACK_ID="io.buildpacks.samples.stacks.jammy"
+LABEL io.buildpacks.stack.id="io.buildpacks.samples.stacks.jammy"
 
 # 3. Create the user
 RUN groupadd cnb --gid ${CNB_GROUP_ID} && \
@@ -297,7 +297,7 @@ When validating whether the buildpack's mixins are satisfied by a stack, the fol
 
 ```toml
 [[stacks]]
-id = "io.buildpacks.stacks.bionic"
+id = "io.buildpacks.stacks.jammy"
 mixins = ["build:git", "run:imagemagick", "wget"]
 ```
 
