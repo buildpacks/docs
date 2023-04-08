@@ -20,7 +20,7 @@ pack buildpack new examples/ruby \
     --api 0.8 \
     --path ruby-buildpack \
     --version 0.0.1 \
-    --stacks io.buildpacks.samples.stacks.bionic
+    --stacks io.buildpacks.samples.stacks.jammy
 ```
 <!--+- "{{execute}}"+-->
 This command will create `ruby-buildpack` directory which contains `buildpack.toml`, `bin/build`,  `bin/detect` files.
@@ -50,7 +50,7 @@ api = "0.8"
 
 # Stacks that the buildpack will work with
 [[stacks]]
-  id = "io.buildpacks.samples.stacks.bionic"
+  id = "io.buildpacks.samples.stacks.jammy"
 
 ```
 
@@ -92,7 +92,7 @@ Set your default [builder][builder] by running the following:
 
 <!-- test:exec -->
 ```bash
-pack config default-builder cnbs/sample-builder:bionic
+pack config default-builder cnbs/sample-builder:jammy
 ```
 <!--+- "{{execute}}"+-->
 
@@ -100,7 +100,7 @@ Tell pack to trust our default builder:
 
 <!-- test:exec -->
 ```bash
-pack config trusted-builders add cnbs/sample-builder:bionic
+pack config trusted-builders add cnbs/sample-builder:jammy
 ```
 <!--+- "{{execute}}"+-->
 
