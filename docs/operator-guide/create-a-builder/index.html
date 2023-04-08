@@ -523,6 +523,27 @@
 <li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders_remove/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_trusted-builders_remove/">pack config trusted-builders remove</a>
 </li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension/" class="dd-item depth-3 collapse">
+  <a href="/docs/tools/pack/cli/pack_extension/">pack extension</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_inspect/" class="dd-item depth-3 collapse">
+  <a href="/docs/tools/pack/cli/pack_extension_inspect/">pack extension inspect</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_new/" class="dd-item depth-3 collapse">
+  <a href="/docs/tools/pack/cli/pack_extension_new/">pack extension new</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_package/" class="dd-item depth-3 collapse">
+  <a href="/docs/tools/pack/cli/pack_extension_package/">pack extension package</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_pull/" class="dd-item depth-3 collapse">
+  <a href="/docs/tools/pack/cli/pack_extension_pull/">pack extension pull</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_register/" class="dd-item depth-3 collapse">
+  <a href="/docs/tools/pack/cli/pack_extension_register/">pack extension register</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_yank/" class="dd-item depth-3 collapse">
+  <a href="/docs/tools/pack/cli/pack_extension_yank/">pack extension yank</a>
+</li>
 <li data-nav-id="/docs/tools/pack/cli/pack_inspect/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_inspect/">pack inspect</a>
 </li>
@@ -706,22 +727,22 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c"># Stack that will be used by the builder</span>
 </span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">stack</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl"><span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;io.buildpacks.samples.stacks.bionic&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;io.buildpacks.samples.stacks.jammy&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="c"># This image is used at runtime</span>
-</span></span><span class="line"><span class="cl"><span class="nx">run-image</span> <span class="p">=</span> <span class="s2">&#34;cnbs/sample-stack-run:bionic&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">run-image</span> <span class="p">=</span> <span class="s2">&#34;cnbs/sample-stack-run:jammy&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="c"># This image is used at build-time</span>
-</span></span><span class="line"><span class="cl"><span class="nx">build-image</span> <span class="p">=</span> <span class="s2">&#34;cnbs/sample-stack-build:bionic&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">build-image</span> <span class="p">=</span> <span class="s2">&#34;cnbs/sample-stack-build:jammy&#34;</span>
 </span></span></code></pre></div><h3 id="2-create-builder">2. Create builder</h3>
 <p>Creating a builder is now as simple as running the following command:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># create builder</span>
-</span></span><span class="line"><span class="cl">pack builder create my-builder:bionic --config ./builder.toml
+</span></span><span class="line"><span class="cl">pack builder create my-builder:jammy --config ./builder.toml
 </span></span></code></pre></div><blockquote>
 <p><strong>TIP:</strong> <code>builder create</code> has a <code>--publish</code> flag that can be used to publish the generated builder image to a registry.</p>
 </blockquote>
 <p><strong>Congratulations!</strong> You&rsquo;ve got a custom builder.</p>
 <h3 id="3-use-your-builder">3. Use your builder</h3>
 <p>Let&rsquo;s go a little further and use our builder to <a href="/docs/concepts/operations/build/"><code>build</code></a> an app by running:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack build my-app --builder my-builder:bionic --path samples/apps/java-maven/
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack build my-app --builder my-builder:jammy --path samples/apps/java-maven/
 </span></span></code></pre></div><h3 id="4-running-the-app">4. Running the app</h3>
 <p>Remember that we mentioned that the buildpacks we used as part of this builder don&rsquo;t really do much. To be honest, they
 didn&rsquo;t even use the app source code. What they did do was show the environment in which they run on and now by running

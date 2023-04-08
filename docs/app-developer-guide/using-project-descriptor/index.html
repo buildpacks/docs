@@ -521,6 +521,27 @@
 <li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders_remove/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_trusted-builders_remove/">pack config trusted-builders remove</a>
 </li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension/" class="dd-item depth-3 collapse">
+  <a href="/docs/tools/pack/cli/pack_extension/">pack extension</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_inspect/" class="dd-item depth-3 collapse">
+  <a href="/docs/tools/pack/cli/pack_extension_inspect/">pack extension inspect</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_new/" class="dd-item depth-3 collapse">
+  <a href="/docs/tools/pack/cli/pack_extension_new/">pack extension new</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_package/" class="dd-item depth-3 collapse">
+  <a href="/docs/tools/pack/cli/pack_extension_package/">pack extension package</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_pull/" class="dd-item depth-3 collapse">
+  <a href="/docs/tools/pack/cli/pack_extension_pull/">pack extension pull</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_register/" class="dd-item depth-3 collapse">
+  <a href="/docs/tools/pack/cli/pack_extension_register/">pack extension register</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_yank/" class="dd-item depth-3 collapse">
+  <a href="/docs/tools/pack/cli/pack_extension_yank/">pack extension yank</a>
+</li>
 <li data-nav-id="/docs/tools/pack/cli/pack_inspect/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_inspect/">pack inspect</a>
 </li>
@@ -695,14 +716,14 @@ file at the root of the application. For more on <code>gitignore</code> matching
 </span></span></code></pre></div><p>To use a <code>project.toml</code> file, simply:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># build the app</span>
 </span></span><span class="line"><span class="cl">pack build sample-app <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --builder cnbs/sample-builder:bionic <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --builder cnbs/sample-builder:jammy <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>    --path  samples/apps/bash-script/
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># run the app</span>
 </span></span><span class="line"><span class="cl">docker run sample-app
 </span></span></code></pre></div><p>If the descriptor is named <code>project.toml</code>, it will be read by <code>pack</code> automatically. Otherwise, you can run:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">pack build sample-app <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --builder cnbs/sample-builder:bionic <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --builder cnbs/sample-builder:jammy <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>    --path  samples/apps/bash-script/ <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>    --descriptor  samples/apps/bash-script/&lt;project-descriptor-file.toml&gt;
 </span></span></code></pre></div><p>to specify an alternatively named <code>project descriptor</code>.</p>
@@ -738,7 +759,7 @@ to use different buildpacks in the above case, we could also call <code>pack bui
 </span></span></code></pre></div><p>Paste the above <code>toml</code> as <code>new-project.toml</code> in the <code>samples/apps/bash-script/</code> directory, and simply:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># build the app</span>
 </span></span><span class="line"><span class="cl">pack build sample-app <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --builder cnbs/sample-builder:bionic <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --builder cnbs/sample-builder:jammy <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>    --path  samples/apps/bash-script/ <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>    --descriptor samples/apps/bash-script/new-project.toml
 </span></span><span class="line"><span class="cl">

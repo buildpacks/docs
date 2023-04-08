@@ -248,6 +248,20 @@
   </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_trusted-builders_remove/</loc>
   </url><url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_extension/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_extension_inspect/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_extension_new/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_extension_package/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_extension_pull/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_extension_register/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_extension_yank/</loc>
+  </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_inspect/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/cli/pack_rebase/</loc>

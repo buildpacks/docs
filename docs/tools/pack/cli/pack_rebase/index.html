@@ -521,6 +521,27 @@
 <li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders_remove/" class="dd-item depth-3">
   <a href="/docs/tools/pack/cli/pack_config_trusted-builders_remove/">pack config trusted-builders remove</a>
 </li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension/" class="dd-item depth-3">
+  <a href="/docs/tools/pack/cli/pack_extension/">pack extension</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_inspect/" class="dd-item depth-3">
+  <a href="/docs/tools/pack/cli/pack_extension_inspect/">pack extension inspect</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_new/" class="dd-item depth-3">
+  <a href="/docs/tools/pack/cli/pack_extension_new/">pack extension new</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_package/" class="dd-item depth-3">
+  <a href="/docs/tools/pack/cli/pack_extension_package/">pack extension package</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_pull/" class="dd-item depth-3">
+  <a href="/docs/tools/pack/cli/pack_extension_pull/">pack extension pull</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_register/" class="dd-item depth-3">
+  <a href="/docs/tools/pack/cli/pack_extension_register/">pack extension register</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_yank/" class="dd-item depth-3">
+  <a href="/docs/tools/pack/cli/pack_extension_yank/">pack extension yank</a>
+</li>
 <li data-nav-id="/docs/tools/pack/cli/pack_inspect/" class="dd-item depth-3">
   <a href="/docs/tools/pack/cli/pack_inspect/">pack inspect</a>
 </li>
@@ -673,10 +694,12 @@
 </code></pre><h3 id="examples">Examples</h3>
 <pre tabindex="0"><code>pack rebase buildpacksio/pack
 </code></pre><h3 id="options">Options</h3>
-<pre tabindex="0"><code>  -h, --help                 Help for &#39;rebase&#39;
-      --publish              Publish to registry
-      --pull-policy string   Pull policy to use. Accepted values are always, never, and if-not-present. The default is always
-      --run-image string     Run image to use for rebasing
+<pre tabindex="0"><code>  -h, --help                       Help for &#39;rebase&#39;
+      --publish                    Publish to registry
+      --pull-policy string         Pull policy to use. Accepted values are always, never, and if-not-present. The default is always
+      --report-output-dir string   Path to export build report.toml.
+                                   Omitting the flag yield no report file.
+      --run-image string           Run image to use for rebasing
 </code></pre><h3 id="options-inherited-from-parent-commands">Options inherited from parent commands</h3>
 <pre tabindex="0"><code>      --no-color     Disable color output
   -q, --quiet        Show less output

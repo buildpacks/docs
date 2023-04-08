@@ -331,6 +331,69 @@
     </item>
     
     <item>
+      <title>pack extension</title>
+      <link>https://buildpacks.io/docs/tools/pack/cli/pack_extension/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_extension/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pack extension inspect</title>
+      <link>https://buildpacks.io/docs/tools/pack/cli/pack_extension_inspect/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_extension_inspect/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pack extension new</title>
+      <link>https://buildpacks.io/docs/tools/pack/cli/pack_extension_new/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_extension_new/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pack extension package</title>
+      <link>https://buildpacks.io/docs/tools/pack/cli/pack_extension_package/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_extension_package/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pack extension pull</title>
+      <link>https://buildpacks.io/docs/tools/pack/cli/pack_extension_pull/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_extension_pull/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pack extension register</title>
+      <link>https://buildpacks.io/docs/tools/pack/cli/pack_extension_register/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_extension_register/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pack extension yank</title>
+      <link>https://buildpacks.io/docs/tools/pack/cli/pack_extension_yank/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/tools/pack/cli/pack_extension_yank/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>pack inspect</title>
       <link>https://buildpacks.io/docs/tools/pack/cli/pack_inspect/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

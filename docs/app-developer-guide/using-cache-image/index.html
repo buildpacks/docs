@@ -521,6 +521,27 @@
 <li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders_remove/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_trusted-builders_remove/">pack config trusted-builders remove</a>
 </li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension/" class="dd-item depth-3 collapse">
+  <a href="/docs/tools/pack/cli/pack_extension/">pack extension</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_inspect/" class="dd-item depth-3 collapse">
+  <a href="/docs/tools/pack/cli/pack_extension_inspect/">pack extension inspect</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_new/" class="dd-item depth-3 collapse">
+  <a href="/docs/tools/pack/cli/pack_extension_new/">pack extension new</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_package/" class="dd-item depth-3 collapse">
+  <a href="/docs/tools/pack/cli/pack_extension_package/">pack extension package</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_pull/" class="dd-item depth-3 collapse">
+  <a href="/docs/tools/pack/cli/pack_extension_pull/">pack extension pull</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_register/" class="dd-item depth-3 collapse">
+  <a href="/docs/tools/pack/cli/pack_extension_register/">pack extension register</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_yank/" class="dd-item depth-3 collapse">
+  <a href="/docs/tools/pack/cli/pack_extension_yank/">pack extension yank</a>
+</li>
 <li data-nav-id="/docs/tools/pack/cli/pack_inspect/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_inspect/">pack inspect</a>
 </li>
@@ -686,14 +707,14 @@ These images can improve performance when using <code>pack</code> in ephemeral e
 <blockquote>
 <p><strong>NOTE:</strong>  If we wish to publish to an external registry like <code>Dockerhub</code> we will first need to authenticate with <code>docker</code> to allow us to push images. We can do this via <code>docker login</code></p>
 </blockquote>
-<p>Next we trust the <code>cnbs/sample-builder:bionic</code> builder in order to allow access to docker credentials when publishing.</p>
-<pre tabindex="0"><code>pack config trusted-builders add cnbs/sample-builder:bionic
+<p>Next we trust the <code>cnbs/sample-builder:jammy</code> builder in order to allow access to docker credentials when publishing.</p>
+<pre tabindex="0"><code>pack config trusted-builders add cnbs/sample-builder:jammy
 </code></pre><!--+- "{{execute}}"+-->
 <p>To build the <code>localhost:5000/buildpack-examples/cache-image-example</code> application image
 and the <code>localhost:5000/buildpack-examples/maven-cache-image:latest</code> cache image
 we may run the following</p>
 <pre tabindex="0"><code>pack build localhost:5000/buildpack-examples/cache-image-example \
-    --builder cnbs/sample-builder:bionic \
+    --builder cnbs/sample-builder:jammy \
     --buildpack samples/java-maven \
     --path samples/apps/java-maven \
     --cache-image localhost:5000/buildpack-examples/maven-cache-image:latest \
@@ -716,7 +737,7 @@ docker inspect localhost:5000/buildpack-examples/maven-cache-image:latest
 builds may also update the specified <code>cache-image</code>.</p>
 <p>The following command will restore data for the <code>samples/java-maven:maven_m2</code> layer from the cache image.</p>
 <pre tabindex="0"><code>pack build localhost:5000/buildpack-examples/second-cache-image-example \
-    --builder cnbs/sample-builder:bionic \
+    --builder cnbs/sample-builder:jammy \
     --buildpack samples/java-maven \
     --path samples/apps/java-maven \
     --cache-image localhost:5000/buildpack-examples/maven-cache-image:latest \

@@ -521,6 +521,27 @@
 <li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders_remove/" class="dd-item depth-3">
   <a href="/docs/tools/pack/cli/pack_config_trusted-builders_remove/">pack config trusted-builders remove</a>
 </li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension/" class="dd-item depth-3">
+  <a href="/docs/tools/pack/cli/pack_extension/">pack extension</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_inspect/" class="dd-item depth-3">
+  <a href="/docs/tools/pack/cli/pack_extension_inspect/">pack extension inspect</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_new/" class="dd-item depth-3">
+  <a href="/docs/tools/pack/cli/pack_extension_new/">pack extension new</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_package/" class="dd-item depth-3">
+  <a href="/docs/tools/pack/cli/pack_extension_package/">pack extension package</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_pull/" class="dd-item depth-3">
+  <a href="/docs/tools/pack/cli/pack_extension_pull/">pack extension pull</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_register/" class="dd-item depth-3">
+  <a href="/docs/tools/pack/cli/pack_extension_register/">pack extension register</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_yank/" class="dd-item depth-3">
+  <a href="/docs/tools/pack/cli/pack_extension_yank/">pack extension yank</a>
+</li>
 <li data-nav-id="/docs/tools/pack/cli/pack_inspect/" class="dd-item depth-3">
   <a href="/docs/tools/pack/cli/pack_inspect/">pack inspect</a>
 </li>
@@ -668,7 +689,7 @@
         <h2 id="pack-config-trusted-builders">pack config trusted-builders</h2>
 <p>List, add and remove trusted builders</p>
 <h3 id="synopsis">Synopsis</h3>
-<p>When pack considers a builder to be trusted, <code>pack build</code> operations will use a single lifecycle binary called the creator. This is more efficient than using an untrusted builder, where pack will execute five separate lifecycle binaries: detect, analyze, restore, build and export.</p>
+<p>When pack considers a builder to be trusted, <code>pack build</code> operations will use a single lifecycle binary called the creator. This is more efficient than using an untrusted builder, where pack will execute five separate lifecycle binaries, each in its own container: analyze, detect, restore, build and export.</p>
 <p>For more on trusted builders, and when to trust or untrust a builder, check out our docs here: <a href="https://buildpacks.io/docs/tools/pack/concepts/trusted_builders/">https://buildpacks.io/docs/tools/pack/concepts/trusted_builders/</a></p>
 <pre tabindex="0"><code>pack config trusted-builders [flags]
 </code></pre><h3 id="options">Options</h3>

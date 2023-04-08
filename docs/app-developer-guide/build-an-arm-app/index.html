@@ -521,6 +521,27 @@
 <li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders_remove/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_trusted-builders_remove/">pack config trusted-builders remove</a>
 </li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension/" class="dd-item depth-3 collapse">
+  <a href="/docs/tools/pack/cli/pack_extension/">pack extension</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_inspect/" class="dd-item depth-3 collapse">
+  <a href="/docs/tools/pack/cli/pack_extension_inspect/">pack extension inspect</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_new/" class="dd-item depth-3 collapse">
+  <a href="/docs/tools/pack/cli/pack_extension_new/">pack extension new</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_package/" class="dd-item depth-3 collapse">
+  <a href="/docs/tools/pack/cli/pack_extension_package/">pack extension package</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_pull/" class="dd-item depth-3 collapse">
+  <a href="/docs/tools/pack/cli/pack_extension_pull/">pack extension pull</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_register/" class="dd-item depth-3 collapse">
+  <a href="/docs/tools/pack/cli/pack_extension_register/">pack extension register</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_yank/" class="dd-item depth-3 collapse">
+  <a href="/docs/tools/pack/cli/pack_extension_yank/">pack extension yank</a>
+</li>
 <li data-nav-id="/docs/tools/pack/cli/pack_inspect/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_inspect/">pack inspect</a>
 </li>
@@ -710,8 +731,8 @@
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  --volume ~/workspace/platform:/platform <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  --mount <span class="nv">type</span><span class="o">=</span>bind,source<span class="o">=</span>~/workspace/order.toml,target<span class="o">=</span>/cnb/order.toml <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  --env <span class="nv">CNB_PLATFORM_API</span><span class="o">=</span>0.7 <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  ubuntu:bionic <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  /cnb/lifecycle/creator -log-level debug -daemon -run-image ubuntu:bionic hello-arm64
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  ubuntu:jammy <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  /cnb/lifecycle/creator -log-level debug -daemon -run-image ubuntu:jammy hello-arm64
 </span></span></code></pre></div><h3 id="4-run-it">4. Run it</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run --rm hello-arm64
 </span></span></code></pre></div><p><strong>Congratulations!</strong></p>

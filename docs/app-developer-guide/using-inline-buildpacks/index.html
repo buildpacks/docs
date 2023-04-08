@@ -521,6 +521,27 @@
 <li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders_remove/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_trusted-builders_remove/">pack config trusted-builders remove</a>
 </li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension/" class="dd-item depth-3 collapse">
+  <a href="/docs/tools/pack/cli/pack_extension/">pack extension</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_inspect/" class="dd-item depth-3 collapse">
+  <a href="/docs/tools/pack/cli/pack_extension_inspect/">pack extension inspect</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_new/" class="dd-item depth-3 collapse">
+  <a href="/docs/tools/pack/cli/pack_extension_new/">pack extension new</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_package/" class="dd-item depth-3 collapse">
+  <a href="/docs/tools/pack/cli/pack_extension_package/">pack extension package</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_pull/" class="dd-item depth-3 collapse">
+  <a href="/docs/tools/pack/cli/pack_extension_pull/">pack extension pull</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_register/" class="dd-item depth-3 collapse">
+  <a href="/docs/tools/pack/cli/pack_extension_register/">pack extension register</a>
+</li>
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_yank/" class="dd-item depth-3 collapse">
+  <a href="/docs/tools/pack/cli/pack_extension_yank/">pack extension yank</a>
+</li>
 <li data-nav-id="/docs/tools/pack/cli/pack_inspect/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_inspect/">pack inspect</a>
 </li>
@@ -668,8 +689,8 @@
           <h1 class="title">Using Inline Buildpacks</h1>
         </div>
 
-        <p>You can supplement your app&rsquo;s build proces with custom scripts by creating an <em>inline buildpack</em>. An inline buildpack is an ephemeral buildpack that&rsquo;s defined in your <a href="/docs/app-developer-guide/using-project-descriptor/">project descriptor</a> (i.e. <code>project.toml</code>). You can include a script to run as part of the build without setting up all the files and directories that are required for a complete buildpack.</p>
-<p>Inline buildpacks are defined as an entry in the <code>[[build.buildpacks]]</code> table of the project descriptor by inlcuding an <code>inline</code> script in the <code>[build.buildpacks.script]</code> table.</p>
+        <p>You can supplement your app&rsquo;s build process with custom scripts by creating an <em>inline buildpack</em>. An inline buildpack is an ephemeral buildpack that&rsquo;s defined in your <a href="/docs/app-developer-guide/using-project-descriptor/">project descriptor</a> (i.e. <code>project.toml</code>). You can include a script to run as part of the build without setting up all the files and directories that are required for a complete buildpack.</p>
+<p>Inline buildpacks are defined as an entry in the <code>[[build.buildpacks]]</code> table of the project descriptor by including an <code>inline</code> script in the <code>[build.buildpacks.script]</code> table.</p>
 <p>For example, you may want to run a Rake task against a Ruby app after the Ruby buildpack builds your app.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">project</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl"><span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;io.buildpacks.my-app&#34;</span>
@@ -693,7 +714,7 @@
 </span></span><span class="line"><span class="cl"><span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;me/cleanup&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">  <span class="p">[</span><span class="nx">build</span><span class="p">.</span><span class="nx">buildpacks</span><span class="p">.</span><span class="nx">script</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">api</span> <span class="p">=</span> <span class="s2">&#34;0.6&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">api</span> <span class="p">=</span> <span class="s2">&#34;0.9&#34;</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">inline</span> <span class="p">=</span> <span class="s2">&#34;&#34;&#34;
 </span></span></span><span class="line"><span class="cl"><span class="s2">set -e
 </span></span></span><span class="line"><span class="cl"><span class="s2">source scripts/utils.sh
