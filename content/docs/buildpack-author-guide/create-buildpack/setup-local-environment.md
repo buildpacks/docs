@@ -9,7 +9,7 @@ weight=401
 <!--
 ```bash
 docker rmi test-ruby-app
-pack config trusted-builders add cnbs/sample-builder:bionic
+pack config trusted-builders add cnbs/sample-builder:jammy
 ```
 -->
 

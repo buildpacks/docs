@@ -88,14 +88,14 @@ Set your default [builder][builder] by running the following:
 
 <!-- test:exec -->
 ```bash
-pack config default-builder cnbs/sample-builder:bionic
+pack config default-builder cnbs/sample-builder:jammy
 ```{{execute}}
 
 Tell pack to trust our default builder:
 
 <!-- test:exec -->
 ```bash
-pack config trusted-builders add cnbs/sample-builder:bionic
+pack config trusted-builders add cnbs/sample-builder:jammy
 ```{{execute}}
 
 Then run the following `pack` command:

@@ -24,11 +24,11 @@ In this tutorial we will create a sample stack based on `Ubuntu Bionic`. To crea
 Let's start by creating a base image containing layers that will be required by both the `build` and `run` images. In order to do this, switch to a clean workspace and create a `Dockerfile` as specified below:
 
 #### Defining the base
-We start with `ubuntu:bionic` as our `base` image. Since we will be reusing these layers in both our build and run images we will be defining a common base image and leveraging [Docker's multi-stage builds](https://docs.docker.com/develop/develop-images/multistage-build/) to ensure this acts as the common base image for both our build-time and run-time environment.
+We start with `ubuntu:jammy` as our `base` image. Since we will be reusing these layers in both our build and run images we will be defining a common base image and leveraging [Docker's multi-stage builds](https://docs.docker.com/develop/develop-images/multistage-build/) to ensure this acts as the common base image for both our build-time and run-time environment.
 
 ```Dockerfile
 # 1. Set a common base
-FROM ubuntu:bionic as base
+FROM ubuntu:jammy as base
 ```
 
 #### Set required CNB information
@@ -64,7 +64,7 @@ Let's update the `Dockerfile` to reflect the above specification.
 
 ```Dockerfile
 # 1. Set a common base
-FROM ubuntu:bionic as base
+FROM ubuntu:jammy as base
 
 # ========== ADDED ===========
 # 2. Set required CNB information
@@ -84,7 +84,7 @@ Next up, we will be installing any system packages that we want to make availabl
 
 ```Dockerfile
 # 1. Set a common base
-FROM ubuntu:bionic as base
+FROM ubuntu:jammy as base
 
 # 2. Set required CNB information
 ENV CNB_USER_ID=1000
@@ -106,7 +106,7 @@ RUN apt-get update && \
 That should be it for our base image! Let's verify that we can successfully build this image by running:
 
 ```bash
-docker build . -t cnbs/sample-stack-base:bionic --target base
+docker build . -t cnbs/sample-stack-base:jammy --target base
 ```
 
 ### Creating the run image
@@ -118,7 +118,7 @@ In order to create our run image all we need to do is to set the run image's `US
 
 ```Dockerfile
 # 1. Set a common base
-FROM ubuntu:bionic as base
+FROM ubuntu:jammy as base
 
 # 2. Set required CNB information
 ENV CNB_USER_ID=1000
@@ -146,7 +146,7 @@ USER ${CNB_USER_ID}:${CNB_GROUP_ID}
 That should be it for our run image! Let's verify that we can successfully build this image by running:
 
 ```bash
-docker build . -t cnbs/sample-stack-run:bionic --target run
+docker build . -t cnbs/sample-stack-run:jammy --target run
 ```
 
 ### Creating the build image
@@ -161,7 +161,7 @@ Let's modify the `Dockerfile` to look like -
 
 ```Dockerfile
 # 1. Set a common base
-FROM ubuntu:bionic as base
+FROM ubuntu:jammy as base
 
 # 2. Set required CNB information
 ENV CNB_USER_ID=1000
@@ -202,7 +202,7 @@ Lastly to finish off our build image, we need to set the image's `USER` to the u
 
 ```Dockerfile
 # 1. Set a common base
-FROM ubuntu:bionic as base
+FROM ubuntu:jammy as base
 
 # 2. Set required CNB information
 ENV CNB_USER_ID=1000
@@ -243,7 +243,7 @@ USER ${CNB_USER_ID}:${CNB_GROUP_ID}
 That should be it for our build image! Let's verify that we can successfully build this image by running:
 
 ```bash
-docker build . -t cnbs/sample-stack-build:bionic --target build
+docker build . -t cnbs/sample-stack-build:jammy --target build
 ```
 
 **Congratulations!** You've got a custom stack!

@@ -24,7 +24,7 @@ You should see the following:
 <!-- test:assert=contains -->
 ```text
 Run Images:
-  cnbs/sample-stack-run:bionic
+  cnbs/sample-stack-run:jammy
 
 Buildpacks:
   ID                   VERSION        HOMEPAGE
