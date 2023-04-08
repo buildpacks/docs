@@ -21,13 +21,13 @@ Targets allow buildpack authors to directly specify details such as OS and archi
 Targets are available starting with the 0.12 Platform API but should be safely ignored by older platforms.
 
 
-#### Wait - are you cutting me off?
-My friend, never fear. We have a long horizon and a heartfelt desire to ease your transition. We will provide backwards compatibility with stacks for so long that we haven't even decided yet when we're going to turn them off.
+#### How long can I keep using stacks?
+We do not yet have a defined end-date. Historically this project allows deprecated features to remain for 6-24+ months.
 
 
-#### So what should I do?
+#### What is the current recommended best practice?
 We currently recommend that buildpack authors use both a stack and a target.
-We anticipate it will take some time before all platforms catch up with this change, but by using both you'll achieve a sort of timeless existence usually reserved for quantum particles, great works of art, and the supernatural. Your buildpacks will work with all platforms past, present, and future.
+We anticipate it will take some time before all platforms catch up with this change, but by using both your buildpacks will work with all platforms past, present, and future.
 
 In order to ease this process for those using the io.buildpacks.stacks.bionic, lifecycle will translate any section that sets this as on of the stacks:
 
@@ -46,7 +46,7 @@ name = "ubuntu"
 versions = ["18.04"]
 ```
 
-## OK thanks but what is a stack?
+## (Deprecated) stack documentation
 
 A stack is composed of two images that are intended to work together:
 
