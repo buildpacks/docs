@@ -9,10 +9,9 @@ aliases=[
 ## What is a stack and Why is it deprecated?
 
 ### Deprecation
-Stacks are great - long live the stack! 
-However, a stack is basically an extra layer on top of the **build image** (where your app is built)
-and the **run image** (where your app runs) and [the community decided](https://github.com/buildpacks/rfcs/blob/main/text/0096-remove-stacks-mixins.md)
-to use those two concepts directly without the additional layer formerly known as _stack_. 
+A stack restricts buildpacks to run on top of a set of related **build images** (where your app is built)
+and **run images** (where your app runs).  Practical experience of the buildpacks community has not found that the stack concept adds any value therefore [the community decided](https://github.com/buildpacks/rfcs/blob/main/text/0096-remove-stacks-mixins.md)
+to use buildpacks with build and run images without the additional concept formerly known as _stack_. 
 
 Stacks will continue to be supported with full backwards compatibility.
 
