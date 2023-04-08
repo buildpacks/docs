@@ -1,16 +1,9 @@
 +++
-title="Create a stack"
+title="Create Target Images"
 weight=2
 +++
-## Deprecation Notice
-Stacks are deprecated in favor of using build and run images directly.
-See [RFC 96](https://github.com/buildpacks/rfcs/blob/main/text/0096-remove-stacks-mixins.md) for a detailed discussion.
-If you were thinking of creating a custom stack, you can follow 
-[this simpler guide](create-targets.md) to create build and run images.
 
-## Create a Stack
-
-Creating a custom [stack][stack] allows you to configure the base images for the build-time environment for your [builder][builder] and the run-time for your application.
+Creating a custom Build and Run images allows you to configure the base images for the build-time environment for your [builder][builder] and the run-time for your application.
 
 <!--more-->
 
@@ -20,54 +13,65 @@ Before we get started, make sure you've got the following installed:
 
 {{< download-button href="https://store.docker.com/search?type=edition&offering=community" color="blue" >}} Install Docker {{</>}}
 
+## Creating custom images
 
-## Creating a custom stack
-
-In this tutorial we will create a sample stack based on `Ubuntu Bionic`. To create a custom stack, we need to create customized build and run images. Let's see how we can do so!
-
+In this tutorial we will create sample build and run images based on `Ubuntu Jammy.`
 
 ### Create a common base image
 
-Let's start by creating a base image containing layers that will be required by both the `build` and `run` images. In order to do this, switch to a clean workspace and create a `Dockerfile` as specified below:
+Let's start by creating a base image containing layers that will be required both the `build` and `run` images.
+In order to do this, switch to a clean workspace and create a `Dockerfile` as specified below:
 
 #### Defining the base
-We start with `ubuntu:jammy` as our `base` image. Since we will be reusing these layers in both our build and run images we will be defining a common base image and leveraging [Docker's multi-stage builds](https://docs.docker.com/develop/develop-images/multistage-build/) to ensure this acts as the common base image for both our build-time and run-time environment.
+We start with `ubuntu:jammy` as our `base` image, and we hope you like jammy too!
+Since we will be reusing these layers in both our build and run images we will be defining a common base image and leveraging [Docker's multi-stage builds](https://docs.docker.com/develop/develop-images/multistage-build/) to ensure this acts as the common base image for both our build-time and run-time environment.
 
 ```Dockerfile
 # 1. Set a common base
 FROM ubuntu:jammy as base
 ```
 
+
 #### Set required CNB information
 
-Next, we will be setting up the base image as required by the [Cloud-Native Buildpack specification][stack-spec] noted below.
+Next, we will be setting up the base image as required by the [Cloud-Native Buildpack specification](https://github.com/buildpacks/spec/blob/main/platform.md).
 
 ##### Specification
 
-**Labels**
+The image's config's `os` and `architecture` should be set ot valid values according to the
+[OCI Image Specification](https://github.com/opencontainers/image-spec/blob/main/config.md) with the addition of wildcards: 
+Buildpack images may have their architecture set to `*` to indicate "any" - e.g. a shell script that is expected to succeed in any architecture could specify `*`. 
+Similarly 
+
+**Labels (optional)**
+
+##### TODO / question:   I think the spec says that "the platform"  (as opposed to the build image author) should set the labels?
+https://github.com/buildpacks/spec/pull/335/files#diff-e603760990971da3f77be4bb8d77c3405098f006814fd8c054d2d15f395b8330R199
+should we mention them in this tutorial? 
+##### end TODO /question
+
+
 
 | Name                     | Description              | Format |
 | ------------------------ | ------------------------ | ------ |
-| `io.buildpacks.stack.id` | Identifier for the stack | String |
+| `io.buildpacks.distribution.name` | OS Distribution Name | String |
+| `io.buildpacks.distribution.version` | OS Distribution Version | String |
 
 **Environment Variables**
 
 | Name           | Description                            |
 | -------------- | -------------------------------------- |
-| `CNB_STACK_ID` | Identifier for the stack               |
 | `CNB_USER_ID`  | UID of the user specified in the image |
 | `CNB_GROUP_ID` | GID of the user specified in the image |
 <p class="spacer"></p>
 
-> **NOTE:** The **stack identifier** implies compatibility with other stacks of that same identifier. For instance, a custom stack may use
-> `io.buildpacks.stacks.jammy` as its identifier so long as it will work with buildpacks that declare compatibility with the
-> `io.buildpacks.stacks.jammy` stack.
 
 
 The `CNB_USER_ID` is the `UID`  of the user as which the `detect` and `build` steps are run. The given user **MUST NOT** be a root user
 and have it's home directly writable. `CNB_GROUP_ID` is the primary `GID` of the above user.
 
 Let's update the `Dockerfile` to reflect the above specification.
+
 
 ```Dockerfile
 # 1. Set a common base
@@ -77,8 +81,6 @@ FROM ubuntu:jammy as base
 # 2. Set required CNB information
 ENV CNB_USER_ID=1000
 ENV CNB_GROUP_ID=1000
-ENV CNB_STACK_ID="io.buildpacks.samples.stacks.jammy"
-LABEL io.buildpacks.stack.id="io.buildpacks.samples.stacks.jammy"
 
 # 3. Create the user
 RUN groupadd cnb --gid ${CNB_GROUP_ID} && \
@@ -91,13 +93,13 @@ Next up, we will be installing any system packages that we want to make availabl
 
 ```Dockerfile
 # 1. Set a common base
-FROM ubuntu:jammy as base
+FROM ubuntu:bionic as base
 
 # 2. Set required CNB information
 ENV CNB_USER_ID=1000
 ENV CNB_GROUP_ID=1000
-ENV CNB_STACK_ID="io.buildpacks.samples.stacks.jammy"
-LABEL io.buildpacks.stack.id="io.buildpacks.samples.stacks.jammy"
+ENV CNB_STACK_ID="io.buildpacks.samples.stacks.bionic"
+LABEL io.buildpacks.stack.id="io.buildpacks.samples.stacks.bionic"
 
 # 3. Create the user
 RUN groupadd cnb --gid ${CNB_GROUP_ID} && \
@@ -130,8 +132,6 @@ FROM ubuntu:jammy as base
 # 2. Set required CNB information
 ENV CNB_USER_ID=1000
 ENV CNB_GROUP_ID=1000
-ENV CNB_STACK_ID="io.buildpacks.samples.stacks.jammy"
-LABEL io.buildpacks.stack.id="io.buildpacks.samples.stacks.jammy"
 
 # 3. Create the user
 RUN groupadd cnb --gid ${CNB_GROUP_ID} && \
@@ -153,7 +153,7 @@ USER ${CNB_USER_ID}:${CNB_GROUP_ID}
 That should be it for our run image! Let's verify that we can successfully build this image by running:
 
 ```bash
-docker build . -t cnbs/sample-stack-run:jammy --target run
+docker build . -t cnbs/sample-run:jammy --target run
 ```
 
 ### Creating the build image
@@ -173,8 +173,6 @@ FROM ubuntu:jammy as base
 # 2. Set required CNB information
 ENV CNB_USER_ID=1000
 ENV CNB_GROUP_ID=1000
-ENV CNB_STACK_ID="io.buildpacks.samples.stacks.jammy"
-LABEL io.buildpacks.stack.id="io.buildpacks.samples.stacks.jammy"
 
 # 3. Create the user
 RUN groupadd cnb --gid ${CNB_GROUP_ID} && \
@@ -214,8 +212,6 @@ FROM ubuntu:jammy as base
 # 2. Set required CNB information
 ENV CNB_USER_ID=1000
 ENV CNB_GROUP_ID=1000
-ENV CNB_STACK_ID="io.buildpacks.samples.stacks.jammy"
-LABEL io.buildpacks.stack.id="io.buildpacks.samples.stacks.jammy"
 
 # 3. Create the user
 RUN groupadd cnb --gid ${CNB_GROUP_ID} && \
@@ -250,70 +246,21 @@ USER ${CNB_USER_ID}:${CNB_GROUP_ID}
 That should be it for our build image! Let's verify that we can successfully build this image by running:
 
 ```bash
-docker build . -t cnbs/sample-stack-build:jammy --target build
+docker build . -t cnbs/sample-build:jammy --target build
 ```
 
-**Congratulations!** You've got a custom stack!
 
 
-## Additional information
+**Congratulations!** You've got custom build and run images!
 
-### Mixins
 
-Mixins provide a way to document OS-level dependencies that a stack provides to buildpacks. Mixins can be provided at build-time
-(name prefixed with `build:`), run-time (name prefixed with `run:`), or both (name unprefixed).
 
-#### Declaring provided mixins
+## Resources and Additional Information
 
-When declaring provided mixins, both the build and run image of a stack must contain the following label:
+**Image Extensions** provide a way to add functionality that could be shared by multiple base images. see:
 
-| Name                         | Description             | Format            |
-| ---------------------------- | ----------------------- | ----------------- |
-| `io.buildpacks.stack.mixins` | List of provided mixins | JSON string array |
+[Image Extension Spec](https://github.com/buildpacks/spec/blob/main/image_extension.md) and [Extension Author Guide](https://buildpacks.io/docs/extension-author-guide/)
 
-\
-The following rules apply for mixin declarations:
 
- - `build:`-prefixed mixins may not be declared on a run image
- - `run:`-prefixed mixins may not be declared on a build image
- - Unprefixed mixins must be declared on both stack images
-
-##### Example
-
-_Build image:_
-```json
-io.buildpacks.stack.mixins: ["build:git", "wget"]
-```
-
-_Run image:_
-```json
-io.buildpacks.stack.mixins: ["run:imagemagick", "wget"]
-```
-
-#### Declaring required mixins
-
-A buildpack must list any required mixins in the `stacks` section of its `buildpack.toml` file.
-
-When validating whether the buildpack's mixins are satisfied by a stack, the following rules apply:
-
-- `build:`-prefixed mixins must be provided by stack's build image
-- `run:`-prefixed mixins must be provided by stack's run image
-- Unprefixed mixins must be provided by both stack images
-
-##### Example
-
-```toml
-[[stacks]]
-id = "io.buildpacks.stacks.jammy"
-mixins = ["build:git", "run:imagemagick", "wget"]
-```
-
-## Resources
-
-For sample stacks, see our [samples][samples] repo.
-For technical details on stacks, see the [platform specification for stacks][stack-spec].
-
-[stack]: /docs/concepts/components/stack/
 [builder]: /docs/concepts/components/builder/
 [samples]: https://github.com/buildpacks/samples
-[stack-spec]: https://github.com/buildpacks/spec/blob/main/platform.md#stacks
