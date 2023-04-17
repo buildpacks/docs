@@ -46,7 +46,7 @@ Build the run image:
 ```bash
 docker build \
   --file $PWD/samples/stacks/alpine/run/curl.Dockerfile \
-  --tag run-image-curl .
+  --tag localhost:5000/run-image-curl .
 ```
 
 ### Configure the `hello-extensions` buildpack to require `curl`
@@ -86,7 +86,7 @@ You should see:
 [detector] Running generate for extension samples/curl@0.0.1
 ...
 [detector] Checking for new run image
-[detector] Found a run.Dockerfile from extension 'samples/curl' setting run image to 'run-image-curl'
+[detector] Found a run.Dockerfile from extension 'samples/curl' setting run image to 'localhost:5000/run-image-curl'
 ...
 [extender (build)] Found build Dockerfile for extension 'samples/tree'
 [extender (build)] Applying the Dockerfile at /layers/generated/build/samples_tree/Dockerfile...

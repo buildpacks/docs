@@ -28,6 +28,16 @@ cat $PWD/samples/extensions/cowsay/bin/generate
 
 The extension generates a `run.Dockerfile` that installs `cowsay` on the current run image.
 
+### Push run image to test registry
+
+Now that we are extending the run image (vs switching it, as in the previous example) it must reside in a registry
+so that we can pull its manifest (necessary for the extension process).
+
+<!-- test:exec -->
+```bash
+docker push localhost:5000/run-image-curl
+```
+
 ### Configure the `hello-extensions` buildpack to require `cowsay`
 
 Set the `BP_REQUIRES` build-time environment variable to configure the `hello-extensions` buildpack to require both `tree` and `curl` (review the `./bin/detect` script to see why this works).
