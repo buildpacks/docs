@@ -54,6 +54,9 @@ pack version
 
 The version should be at least `0.28.0`
 
+**Note**: to follow this demo all the way through to the end (including run image extension),
+the pack version should be at least `0.30.0-pre2`. Consult the [releases page](https://github.com/buildpacks/pack/releases) for more information.
+
 ### Update pack configuration
 
 <!-- test:exec -->
@@ -70,6 +73,7 @@ We unset any custom lifecycle image that may have been provided to ensure that t
 <!-- test:exec -->
 ```bash
 git clone https://github.com/buildpacks/samples.git
+git checkout runext/update-samples # FIXME: remove when https://github.com/buildpacks/samples/pull/149 is merged
 ```
 
 <!--+ if false +-->

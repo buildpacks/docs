@@ -43,6 +43,15 @@ docker run -d --rm -p 5000:5000 registry:2
 You can push the builder to any registry of your choice - just ensure that `docker login` succeeds and replace `localhost:5000` in the following examples with your registry namespace -
 e.g., `index.docker.io/<username>`.
 
+**Note**: to follow this demo all the way through to the end (including run image extension), you will need a pre-release version of the lifecycle.
+* Download the `.tgz` file for your os/arch from the [releases page](https://github.com/buildpacks/lifecycle/releases)
+* Add the following lines to `$PWD/samples/builders/alpine/builder.toml`:
+
+```bash
+[lifecycle]
+uri = <path to .tgz>
+```
+
 Create the builder:
 
 <!-- test:exec -->
