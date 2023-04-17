@@ -37,7 +37,7 @@ Next, we'll download the Ruby runtime and install it into the layer directory. A
 <!-- file=ruby-buildpack/bin/build data-target=append -->
 <pre class="file" data-filename="ruby-buildpack/bin/build" data-target="append">
 echo "---> Downloading and extracting Ruby"
-ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-3.1.3.tgz
+ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-22/ruby-3.1.3.tgz
 wget -q -O - "$ruby_url" | tar -xzf - -C "$rubylayer"
 </pre>
 
@@ -91,7 +91,7 @@ mkdir -p "$rubylayer"
 
 # 3. DOWNLOAD RUBY
 echo "---> Downloading and extracting Ruby"
-ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-3.1.3.tgz
+ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-22/ruby-3.1.3.tgz
 wget -q -O - "$ruby_url" | tar -xzf - -C "$rubylayer"
 
 # 4. MAKE RUBY AVAILABLE DURING LAUNCH

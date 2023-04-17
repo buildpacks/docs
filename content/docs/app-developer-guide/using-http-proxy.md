@@ -16,8 +16,8 @@ We show how to solve both of these constraints.
 You may need the `pack` command-line tool to download buildpacks and images via your proxy.  Building an application with an incorrectly configured proxy results in errors such as the following:
 
 ```console
-$ pack build sample-app --path samples/apps/java-maven --builder cnbs/sample-builder:bionic
-ERROR: failed to build: failed to fetch builder image 'index.docker.io/cnbs/sample-builder:bionic'
+$ pack build sample-app --path samples/apps/java-maven --builder cnbs/sample-builder:jammy
+ERROR: failed to build: failed to fetch builder image 'index.docker.io/cnbs/sample-builder:jammy'
 : Error response from daemon: Get "https//registry-1.docker.io/v2/": context deadline exceeded
 ```
 
@@ -25,7 +25,7 @@ The `pack` tool uses the Docker daemon to manage the local image registry on you
 
 
 ### Docker Desktop (Windows and MacOS)
-Docker's documetation states "Docker Desktop lets you configure HTTP/HTTPS Proxy Settings and automatically propagates these to Docker".  Set the system proxy using the [MacOS documentation](https://support.apple.com/en-gb/guide/mac-help/mchlp2591/mac) or [Windows documentation](https://www.dummies.com/computers/operating-systems/windows-10/how-to-set-up-a-proxy-in-windows-10/).  The system proxy settings will be used by Docker Desktop.
+Docker's documentation states "Docker Desktop lets you configure HTTP/HTTPS Proxy Settings and automatically propagates these to Docker".  Set the system proxy using the [MacOS documentation](https://support.apple.com/en-gb/guide/mac-help/mchlp2591/mac) or [Windows documentation](https://www.dummies.com/computers/operating-systems/windows-10/how-to-set-up-a-proxy-in-windows-10/).  The system proxy settings will be used by Docker Desktop.
 
 ### Linux
 The Docker project documents [how to configure configure the HTTP/HTTPS proxy](https://docs.docker.com/config/daemon/systemd/#httphttps-proxy) settings for the Docker daemon on Linux.  You should configure the `HTTP_PROXY` and `HTTPS_PROXY` environment variables as part of the Docker daemon startup.
@@ -37,7 +37,7 @@ Buildpacks may also need to be aware of your http and https proxies at build tim
 ```console
 export http_proxy=http://user:pass@my-proxy.example.com:3128
 export https_proxy=https://my-proxy.example.com:3129
-pack build sample-app --path samples/apps/java-maven --builder cnbs/sample-builder:bionic
+pack build sample-app --path samples/apps/java-maven --builder cnbs/sample-builder:jammy
 ```
 
 ## Making your Application Proxy Aware

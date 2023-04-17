@@ -15,15 +15,15 @@ Some use cases in which this may be desired...
 ### Process
 
 1. A milestone in the following format is created: `<component(s)>/<version>` <sup>*</sup>
-1. Issues are created and tagged with appropriete milestone.
+1. Issues are created and tagged with appropriate milestone.
 1. A release branch in the following format is created off of `main`: `release/<component(s)>/<version>` <sup>*</sup>
 1. As changes are completed, PRs would target the release branch and merged using the same guidelines as merging to `main`.
-1. Once all issues and/or the associated component release is shipped, the release branch is merged into `main` by subteam maintainers.
+1. Once all issues and/or the associated component release is shipped, the release branch is merged into `main` by sub-team maintainers.
 
 _* may require a [project contributor or maintainer](https://github.com/buildpacks/community/blob/main/TEAMS.md) intervention._
 
 
-##### Example Namings
+##### Example Naming
 
 Branches:
 
@@ -42,7 +42,7 @@ Milestones:
 
 ##### Example Workflow
 
-Let's imagine `pack` is releasing version `1.2.3`. It is known that there will be a decent amount of changes to a few guides and we'd like to seperate the entire set of changes per guide. The steps that would be taken are as follows:
+Let's imagine `pack` is releasing version `1.2.3`. It is known that there will be a decent amount of changes to a few guides and we'd like to separate the entire set of changes per guide. The steps that would be taken are as follows:
 
 1. A milestone `pack/1.2.3` would be created.
 1. Issues for the necessary changes would be tagged with milestone `pack/1.2.3`.

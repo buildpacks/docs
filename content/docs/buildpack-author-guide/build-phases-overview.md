@@ -376,4 +376,4 @@ Our NodeJS example image requires an entrypoint called `web`.  The `web` entrypo
 
 ## Summary
 
-We have taken a detailed look at how buildpacks are used to build a sample application.  The meta-buildpack contains two order groups and we have seen examples of how an order group is resolved.  In addition we have looked at the contributions that a buildpack makes to the build plan and considerd how these are resolved into a buildpack plan to be provided to the build phase of specific buildpacks.  Finally, we have briefly considered how the analyze and restore phases can allow advanced caching strategies.
+We have taken a detailed look at how buildpacks are used to build a sample application.  The meta-buildpack contains two order groups and we have seen examples of how an order group is resolved.  In addition we have looked at the contributions that a buildpack makes to the build plan and considered how these are resolved into a buildpack plan to be provided to the build phase of specific buildpacks.  Finally, we have briefly considered how the analyze and restore phases can allow advanced caching strategies.
