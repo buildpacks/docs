@@ -27,7 +27,7 @@ The extension always detects (because its exit code is `0`) and provides a depen
 cat $PWD/samples/extensions/curl/bin/generate
 ```
 
-The extension generates a `run.Dockerfile` that switches the run image to reference `run-image-curl`.
+The extension generates a `run.Dockerfile` that switches the run image to reference `localhost:5000/run-image-curl`.
 
 ### Build a run image for `curl` extension to use
 
@@ -114,7 +114,7 @@ curl 7.85.0-DEV (x86_64-pc-linux-musl) ... more stuff here ...
 What happened: now that `hello-extensions` requires both `tree` and `curl` in its build plan, both extensions are
   included in the build and provide the needed dependencies for build and launch, respectively
 * The `tree` extension installs `tree` at build time, as before
-* The `curl` extension switches the run image to `run-image-curl`, which has `curl` installed
+* The `curl` extension switches the run image to `localhost:5000/run-image-curl`, which has `curl` installed
 
 Now our `curl` process can succeed!
 
@@ -132,7 +132,7 @@ You should see:
 ERROR: failed to launch: path lookup: exec: "cowsay": executable file not found in $PATH
 ```
 
-Our run image, `run-image-curl`, has `curl` installed, but it doesn't have `cowsay`.
+Our run image, `localhost:5000/run-image-curl`, has `curl` installed, but it doesn't have `cowsay`.
 
 In general, we may not always have a preconfigured run image available with all the needed dependencies for the current application.
 Luckily, we can also use image extensions to dynamically install runtime dependencies at build time. Let's look at that next.
