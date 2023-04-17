@@ -695,7 +695,7 @@ default, be named <code>project.toml</code>, though users can name it differentl
 </span></span></code></pre></div><p>The schema for the <code>project descriptor</code> is:</p>
 <ul>
 <li>
-<h4 id="project-_table-optional_"><code>project</code> <em>(table, optional)</em></h4>
+<h4 id="_-_table-optional_"><code>_</code> <em>(table, optional)</em></h4>
 <p>A configuration table for a project.</p>
 <ul>
 <li>
@@ -739,11 +739,11 @@ If the project uses a nonstandard license, you may use <code>uri</code> to point
 </ul>
 </li>
 <li>
-<h4 id="build-_table-optional_"><code>build</code> <em>(table, optional)</em></h4>
+<h4 id="iobuildpacks-_table-optional_"><code>io.buildpacks</code> <em>(table, optional)</em></h4>
 <p>A list of specifications for build-time configuration of the project.</p>
 <ul>
 <li>
-<p><strong><code>env</code></strong> <em>(list, optional)</em>
+<p><strong><code>build.env</code></strong> <em>(list, optional)</em>
 You can set environment variables at build time, by defining each with the following fields:</p>
 <ul>
 <li>
@@ -771,7 +771,7 @@ A list of files to exclude from the build, while including everything else.</p>
 </blockquote>
 <ul>
 <li>
-<p><strong><code>buildpacks</code></strong> <em>(list, optional)</em>
+<p><strong><code>group</code></strong> <em>(list, optional)</em>
 A list of buildpacks. Either a <code>version</code>, <code>uri</code>, or <code>script</code> table must be included, but it must not include any combination of these elements.</p>
 <ul>
 <li>
@@ -815,11 +815,11 @@ The shell used to execute the <code>inline</code> script.</p>
 </ul>
 <h2 id="example">Example</h2>
 <p>An example <code>project.toml</code> is:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">project</span><span class="p">]</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">_</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl"><span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;io.buildpacks.my-app&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;0.1&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">build</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">io</span><span class="p">.</span><span class="nx">buildpacks</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl"><span class="nx">include</span> <span class="p">=</span> <span class="p">[</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;cmd/&#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;go.mod&#34;</span><span class="p">,</span>
@@ -827,22 +827,22 @@ The shell used to execute the <code>inline</code> script.</p>
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;*.go&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="p">]</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">build</span><span class="p">.</span><span class="nx">env</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">io</span><span class="p">.</span><span class="nx">buildpacks</span><span class="p">.</span><span class="nx">build</span><span class="p">.</span><span class="nx">env</span><span class="p">]]</span>
 </span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;JAVA_OPTS&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nx">value</span> <span class="p">=</span> <span class="s2">&#34;-Xmx1g&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">build</span><span class="p">.</span><span class="nx">buildpacks</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">io</span><span class="p">.</span><span class="nx">buildpacks</span><span class="p">.</span><span class="nx">group</span><span class="p">]]</span>
 </span></span><span class="line"><span class="cl"><span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;io.buildpacks/java&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;1.0&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">build</span><span class="p">.</span><span class="nx">buildpacks</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">io</span><span class="p">.</span><span class="nx">buildpacks</span><span class="p">.</span><span class="nx">group</span><span class="p">]]</span>
 </span></span><span class="line"><span class="cl"><span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;io.buildpacks/nodejs&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;1.0&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">metadata</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">_</span><span class="p">.</span><span class="nx">metadata</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl"><span class="nx">foo</span> <span class="p">=</span> <span class="s2">&#34;bar&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">metadata</span><span class="p">.</span><span class="nx">fizz</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">_</span><span class="p">.</span><span class="nx">metadata</span><span class="p">.</span><span class="nx">fizz</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl"><span class="nx">buzz</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;b&#34;</span><span class="p">,</span> <span class="s2">&#34;c&#34;</span><span class="p">]</span>
 </span></span></code></pre></div><h2 id="specification">Specification</h2>
 <p>For more detail, you can check out the <code>project.toml</code> <a href="https://github.com/buildpacks/spec/blob/main/extensions/project-descriptor.md">specification</a></p>
