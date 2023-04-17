@@ -93,5 +93,5 @@ Let's take a look at how the `samples/curl` extension fixes the error by switchi
 <!--+ if false+-->
 ---
 
-<a href="/docs/extension-author-guide/create-extension/run-dockerfile" class="button bg-pink">Next Step</a>
+<a href="/docs/extension-author-guide/create-extension/run-dockerfile-switch" class="button bg-pink">Next Step</a>
 <!--+ end +-->
