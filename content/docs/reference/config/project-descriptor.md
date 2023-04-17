@@ -12,7 +12,7 @@ $ pack build --descriptor <project-descriptor path>
 
 The schema for the `project descriptor` is:
 
-- #### `project` _(table, optional)_
+- #### `_` _(table, optional)_
   A configuration table for a project.
 
   - **`id`** _(string, optional)_\
@@ -42,10 +42,10 @@ The schema for the `project descriptor` is:
       - **`uri`** _(string, optional)_\
         If the project uses a nonstandard license, you may use `uri` to point to the license.
 
-- #### `build` _(table, optional)_
+- #### `io.buildpacks` _(table, optional)_
   A list of specifications for build-time configuration of the project.
 
-   - **`env`** _(list, optional)_
+   - **`build.env`** _(list, optional)_
     You can set environment variables at build time, by defining each with the following fields:
 
       - **`name`** _(string, optional)_\
@@ -64,7 +64,7 @@ The schema for the `project descriptor` is:
 
     > If `include` and `exclude` are both present, the lifecycle will error out.
 
-   - **`buildpacks`** _(list, optional)_
+   - **`group`** _(list, optional)_
     A list of buildpacks. Either a `version`, `uri`, or `script` table must be included, but it must not include any combination of these elements.
 
       - **`id`** _(string, optional)_\
@@ -94,11 +94,11 @@ The schema for the `project descriptor` is:
 ## Example
 An example `project.toml` is:
 ```toml
-[project]
+[_]
 id = "io.buildpacks.my-app"
 version = "0.1"
 
-[build]
+[io.buildpacks]
 include = [
     "cmd/",
     "go.mod",
@@ -106,22 +106,22 @@ include = [
     "*.go"
 ]
 
-[[build.env]]
+[[io.buildpacks.build.env]]
 name = "JAVA_OPTS"
 value = "-Xmx1g"
 
-[[build.buildpacks]]
+[[io.buildpacks.group]]
 id = "io.buildpacks/java"
 version = "1.0"
 
-[[build.buildpacks]]
+[[io.buildpacks.group]]
 id = "io.buildpacks/nodejs"
 version = "1.0"
 
-[metadata]
+[_.metadata]
 foo = "bar"
 
-[metadata.fizz]
+[_.metadata.fizz]
 buzz = ["a", "b", "c"]
 ```
 
