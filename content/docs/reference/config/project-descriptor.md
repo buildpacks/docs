@@ -95,6 +95,7 @@ The schema for the `project descriptor` is:
 An example `project.toml` is:
 ```toml
 [_]
+schema-version = "0.2"
 id = "io.buildpacks.my-app"
 version = "0.1"
 
