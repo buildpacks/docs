@@ -754,21 +754,22 @@
 </ul>
 </blockquote>
 <h2 id="using-a-project-descriptor">Using a Project Descriptor</h2>
-<p>The <a href="/docs/app-developer-guide/using-project-descriptor/"><code>project.toml</code></a> format allows for Buildpack URIs to be specified in the <code>[[build.buildpacks]]</code> table with the <code>uri</code> key.</p>
+<p>The <a href="/docs/app-developer-guide/using-project-descriptor/"><code>project.toml</code></a> format allows for Buildpack URIs to be specified in the <code>[[io.buildpacks.group]]</code> table with the <code>uri</code> key.</p>
 <h5 id="example-1">Example:</h5>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">project</span><span class="p">]</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">_</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">schema-version</span> <span class="p">=</span> <span class="s2">&#34;0.3&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;sample-java-maven-app&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Sample Java App&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;1.0.0&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">build</span><span class="p">.</span><span class="nx">buildpacks</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">io</span><span class="p">.</span><span class="nx">buildpacks</span><span class="p">.</span><span class="nx">group</span><span class="p">]]</span>
 </span></span><span class="line"><span class="cl"><span class="nx">uri</span> <span class="p">=</span> <span class="s2">&#34;samples/java-maven&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">build</span><span class="p">.</span><span class="nx">buildpacks</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">io</span><span class="p">.</span><span class="nx">buildpacks</span><span class="p">.</span><span class="nx">group</span><span class="p">]]</span>
 </span></span><span class="line"><span class="cl"><span class="nx">uri</span> <span class="p">=</span> <span class="s2">&#34;samples/buildpacks/hello-processes/&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">build</span><span class="p">.</span><span class="nx">buildpacks</span><span class="p">]]</span>
-</span></span><span class="line"><span class="cl"><span class="nx">uri</span> <span class="p">=</span> <span class="s2">&#34;docker://cnbs/sample-package:hello-univers&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">io</span><span class="p">.</span><span class="nx">buildpacks</span><span class="p">.</span><span class="nx">group</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">uri</span> <span class="p">=</span> <span class="s2">&#34;docker://cnbs/sample-package:hello-universe&#34;</span>
 </span></span></code></pre></div><h2 id="uri-examples">URI Examples</h2>
 <p>A path to a directory<sup><small>†</small></sup>, <code>tar</code> file, or <code>tgz</code> file</p>
 <ul>
