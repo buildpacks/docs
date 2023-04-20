@@ -41,8 +41,10 @@ jobs:
         registry: docker.io
         username: ${{ secrets.DOCKER_HUB_USER }}
         password: ${{ secrets.DOCKER_HUB_PASS }}
+    - id: setup-tools
+      uses: buildpacks/github-actions/setup-tools@v5.1.0
     - id: setup-pack
-      uses: buildpacks/github-actions/setup-pack@v4.9.0
+      uses: buildpacks/github-actions/setup-pack@v5.1.0
     - id: package
       run: |
         #!/usr/bin/env bash
@@ -59,7 +61,7 @@ jobs:
       env:
         REPO: docker.io/${{ secrets.DOCKER_HUB_USER }}
     - id: register
-      uses: docker://ghcr.io/buildpacks/actions/registry/request-add-entry:4.9.0
+      uses: docker://ghcr.io/buildpacks/actions/registry/request-add-entry:5.1.0
       with:
         token:   ${{ secrets.PUBLIC_REPO_TOKEN }}
         id:      ${{ steps.package.outputs.bp_id }}
