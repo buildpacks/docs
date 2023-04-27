@@ -33,7 +33,7 @@ In order to ease this process for those using the io.buildpacks.stacks.bionic, l
 
 ```
 [[stacks]]
-id = "io.buildpacks.stacks.bionic
+id = "io.buildpacks.stacks.bionic"
 ```
 
 to
