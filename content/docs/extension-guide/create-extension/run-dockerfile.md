@@ -1,6 +1,9 @@
 +++
 title="Generating a run.Dockerfile"
 weight=405
+aliases = [
+  "/docs/extension-author-guide/run-dockerfile/"
+  ]
 +++
 
 <!-- test:suite=dockerfiles;weight=5 -->

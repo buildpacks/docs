@@ -1,6 +1,9 @@
 +++
 title="Building blocks of a CNB Image Extension"
 weight=403
+aliases = [
+  "/docs/extension-author-guide/building-blocks-extension/"
+  ]
 +++
 
 <!-- test:suite=dockerfiles;weight=3 -->
@@ -46,5 +49,5 @@ We'll take a closer look at the executables for the `tree` extension in the next
 <!--+ if false+-->
 ---
 
-<a href="/docs/extension-author-guide/create-extension/build-dockerfile" class="button bg-pink">Next Step</a>
+<a href="/docs/extension-guide/create-extension/build-dockerfile" class="button bg-pink">Next Step</a>
 <!--+ end +-->
