@@ -1,5 +1,5 @@
 +++
-title="Extension Author Guide"
+title="Extension Guide"
 weight=4
 include_summaries=true
 expand=true
