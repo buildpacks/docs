@@ -19,12 +19,12 @@ Note the `include` and `exclude` sections in the below `project.toml` file use `
 file at the root of the application. For more on `gitignore` matching see [these docs](https://linuxize.com/post/gitignore-ignoring-files-in-git/#literal-file-names).
 
 ```toml
-[project]
+[_]
 id = "io.buildpacks.bash-script"
 name = "Bash Script"
 version = "1.0.0"
 
-[build]
+[io.buildpacks]
 exclude = [
     "/README.md",
     "bash-script-buildpack"
@@ -32,7 +32,7 @@ exclude = [
 
 include = []
 
-[[build.buildpacks]]
+[[io.buildpacks.group]]
 uri = "bash-script-buildpack/"
 ```
 
@@ -40,7 +40,7 @@ To use a `project.toml` file, simply:
 ```shell script
 # build the app
 pack build sample-app \
-    --builder cnbs/sample-builder:bionic \
+    --builder cnbs/sample-builder:jammy \
     --path  samples/apps/bash-script/
 
 # run the app
@@ -50,7 +50,7 @@ docker run sample-app
 If the descriptor is named `project.toml`, it will be read by `pack` automatically. Otherwise, you can run:
 ```shell script
 pack build sample-app \
-    --builder cnbs/sample-builder:bionic \
+    --builder cnbs/sample-builder:jammy \
     --path  samples/apps/bash-script/ \
     --descriptor  samples/apps/bash-script/<project-descriptor-file.toml>
 ```
@@ -67,24 +67,24 @@ understand the environment), we would want to add it to our `project.toml`.
 Below is an expanded `project.toml`, with an additional buildpack and environment variable included.
 
 ```toml
-[project]
+[_]
 id = "io.buildpacks.bash-script"
 name = "Bash Script"
 version = "1.0.0"
 
-[build]
+[io.buildpacks]
 exclude = [
     "README.md",
     "bash-script-buildpack"
 ]
-[[build.buildpacks]]
+[[io.buildpacks.group]]
 uri = "../../buildpacks/hello-world/"
 
 
-[[build.buildpacks]]
+[[io.buildpacks.group]]
 uri = "bash-script-buildpack/"
 
-[[build.env]]
+[[io.buildpacks.build.env]]
 name='HELLO'
 value='WORLD'
 ```
@@ -93,7 +93,7 @@ Paste the above `toml` as `new-project.toml` in the `samples/apps/bash-script/` 
 ```shell script
 # build the app
 pack build sample-app \
-    --builder cnbs/sample-builder:bionic \
+    --builder cnbs/sample-builder:jammy \
     --path  samples/apps/bash-script/ \
     --descriptor samples/apps/bash-script/new-project.toml
 

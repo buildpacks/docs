@@ -51,11 +51,11 @@ uri = "docker://cnbs/sample-package:hello-universe"
 
 # Stack that will be used by the builder
 [stack]
-id = "io.buildpacks.samples.stacks.bionic"
+id = "io.buildpacks.samples.stacks.jammy"
 # This image is used at runtime
-run-image = "cnbs/sample-stack-run:bionic"
+run-image = "cnbs/sample-stack-run:jammy"
 # This image is used at build-time
-build-image = "cnbs/sample-stack-build:bionic"
+build-image = "cnbs/sample-stack-build:jammy"
 ```
 
 ### 2. Create builder
@@ -64,7 +64,7 @@ Creating a builder is now as simple as running the following command:
 
 ```bash
 # create builder
-pack builder create my-builder:bionic --config ./builder.toml
+pack builder create my-builder:jammy --config ./builder.toml
 ```
 
 > **TIP:** `builder create` has a `--publish` flag that can be used to publish the generated builder image to a registry.
@@ -76,7 +76,7 @@ pack builder create my-builder:bionic --config ./builder.toml
 Let's go a little further and use our builder to [`build`][build] an app by running:
 
 ```bash
-pack build my-app --builder my-builder:bionic --path samples/apps/java-maven/
+pack build my-app --builder my-builder:jammy --path samples/apps/java-maven/
 ```
 
 ### 4. Running the app
