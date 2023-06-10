@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Create an extension on Cloud Native Buildpacks</title>
-    <link>https://buildpacks.io/docs/extension-author-guide/create-extension/</link>
+    <link>https://buildpacks.io/docs/extension-guide/create-extension/</link>
     <description>Recent content in Create an extension on Cloud Native Buildpacks</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://buildpacks.io/docs/extension-author-guide/create-extension/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://buildpacks.io/docs/extension-guide/create-extension/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Set up your local environment</title>
-      <link>https://buildpacks.io/docs/extension-author-guide/create-extension/setup-local-environment/</link>
+      <link>https://buildpacks.io/docs/extension-guide/create-extension/setup-local-environment/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://buildpacks.io/docs/extension-author-guide/create-extension/setup-local-environment/</guid>
+      <guid>https://buildpacks.io/docs/extension-guide/create-extension/setup-local-environment/</guid>
       <description>Let&amp;rsquo;s walk through a build that uses extensions, step by step. We will see an image extension that installs curl on the builder image, and switches the run image to an image that has curl installed.
 Ensure Docker is running docker version If you see output similar to the following, you&amp;rsquo;re good to go! Otherwise, start Docker and check again.
 Client: Docker Engine - Community Version: 20.10.9 API version: 1.</description>
@@ -19,10 +19,10 @@ Client: Docker Engine - Community Version: 20.10.9 API version: 1.</description>
     
     <item>
       <title>Why Dockerfiles</title>
-      <link>https://buildpacks.io/docs/extension-author-guide/create-extension/why-dockerfiles/</link>
+      <link>https://buildpacks.io/docs/extension-guide/create-extension/why-dockerfiles/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://buildpacks.io/docs/extension-author-guide/create-extension/why-dockerfiles/</guid>
+      <guid>https://buildpacks.io/docs/extension-guide/create-extension/why-dockerfiles/</guid>
       <description>Let&amp;rsquo;s see a build that requires base image extension in order to succeed.
 Examine hello-extensions buildpack detect cat $PWD/samples/buildpacks/hello-extensions/bin/detect The buildpack always detects (because its exit code is 0) but doesn&amp;rsquo;t require any dependencies (as the output build plan is empty).
 build cat $PWD/samples/buildpacks/hello-extensions/bin/build The buildpack tries to use tree at build-time, and defines a launch process called curl that runs curl --version at runtime.
@@ -31,20 +31,20 @@ Create a builder with extensions and publish it For now, it is necessary for the
     
     <item>
       <title>Building blocks of a CNB Image Extension</title>
-      <link>https://buildpacks.io/docs/extension-author-guide/create-extension/building-blocks-extension/</link>
+      <link>https://buildpacks.io/docs/extension-guide/create-extension/building-blocks-extension/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://buildpacks.io/docs/extension-author-guide/create-extension/building-blocks-extension/</guid>
+      <guid>https://buildpacks.io/docs/extension-guide/create-extension/building-blocks-extension/</guid>
       <description>Examine tree extension tree $PWD/samples/extensions/tree (That&amp;rsquo;s right, we&amp;rsquo;re using the very tool we will later be installing!) You should see something akin to the following:
 . ├── bin │ ├── detect &amp;lt;- similar to a buildpack ./bin/detect │ ├── generate &amp;lt;- similar to a buildpack ./bin/build ├── extension.toml &amp;lt;- similar to a buildpack buildpack.toml The extension.toml describes the extension, containing information such as its name, ID, and version, as well as the buildpack API that it implements.</description>
     </item>
     
     <item>
       <title>Generating a build.Dockerfile</title>
-      <link>https://buildpacks.io/docs/extension-author-guide/create-extension/build-dockerfile/</link>
+      <link>https://buildpacks.io/docs/extension-guide/create-extension/build-dockerfile/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://buildpacks.io/docs/extension-author-guide/create-extension/build-dockerfile/</guid>
+      <guid>https://buildpacks.io/docs/extension-guide/create-extension/build-dockerfile/</guid>
       <description>Examine tree extension detect cat $PWD/samples/extensions/tree/bin/detect The extension always detects (because its exit code is 0) and provides a dependency called tree by writing to the build plan.
 generate cat $PWD/samples/extensions/tree/bin/generate The extension generates a build.Dockerfile that installs tree on the builder image.
 Re-create our builder with hello-extensions updated to require tree Edit $PWD/samples/buildpacks/hello-extensions/bin/detect to uncomment the first set of lines that output [[requires]] to the build plan:
@@ -53,10 +53,10 @@ sed -i &amp;#34;10,11s/#//&amp;#34; $PWD/samples/buildpacks/hello-extensions/bin
     
     <item>
       <title>Generating a run.Dockerfile</title>
-      <link>https://buildpacks.io/docs/extension-author-guide/create-extension/run-dockerfile/</link>
+      <link>https://buildpacks.io/docs/extension-guide/create-extension/run-dockerfile/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://buildpacks.io/docs/extension-author-guide/create-extension/run-dockerfile/</guid>
+      <guid>https://buildpacks.io/docs/extension-guide/create-extension/run-dockerfile/</guid>
       <description>Examine curl extension detect cat $PWD/samples/extensions/curl/bin/detect The extension always detects (because its exit code is 0) and provides a dependency called curl.
 generate cat $PWD/samples/extensions/curl/bin/generate The extension generates a run.Dockerfile that switches the run image to reference run-image-curl.
 Build a run image for curl extension to use cat $PWD/samples/stacks/alpine/run/curl.Dockerfile This is a simple Dockerfile that creates a CNB run image from the curl base image by adding the required CNB user configuration and io.</description>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Extension Guide on Cloud Native Buildpacks</title>
+    <link>https://buildpacks.io/docs/extension-guide/</link>
+    <description>Recent content in Extension Guide on Cloud Native Buildpacks</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://buildpacks.io/docs/extension-guide/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

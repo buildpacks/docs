@@ -8,9 +8,9 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Examine curl extension detect cat $PWD/samples/extensions/curl/bin/detect The extension always detects (because its exit code is 0) and provides a dependency called curl.
-generate cat…"/>
-<link rel="canonical" content="https://buildpacks.io/docs/extension-author-guide/create-extension/run-dockerfile/">
+<meta name="description" content="Let&amp;rsquo;s see a build that requires base image extension in order to succeed.
+Examine hello-extensions buildpack detect cat $PWD/samples/buildpacks/hello-extensions/bin/detect The buildpack always…"/>
+<link rel="canonical" content="https://buildpacks.io/docs/extension-guide/create-extension/why-dockerfiles/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
 
@@ -18,13 +18,13 @@ generate cat…"/>
 
 
 
-<meta property="og:title" content="Generating a run.Dockerfile · Cloud Native Buildpacks">
+<meta property="og:title" content="Why Dockerfiles · Cloud Native Buildpacks">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://buildpacks.io/docs/extension-author-guide/create-extension/run-dockerfile/">
+<meta property="og:url" content="https://buildpacks.io/docs/extension-guide/create-extension/why-dockerfiles/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-<meta property="og:description" content="Examine curl extension detect cat $PWD/samples/extensions/curl/bin/detect The extension always detects (because its exit code is 0) and provides a dependency called curl.
-generate cat…">
+<meta property="og:description" content="Let&amp;rsquo;s see a build that requires base image extension in order to succeed.
+Examine hello-extensions buildpack detect cat $PWD/samples/buildpacks/hello-extensions/bin/detect The buildpack always…">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -35,7 +35,7 @@ generate cat…">
 
 
 
-<meta property="twitter:title" content="Generating a run.Dockerfile · Cloud Native Buildpacks">
+<meta property="twitter:title" content="Why Dockerfiles · Cloud Native Buildpacks">
 <meta property="twitter:card" content="summary">
 <meta property="twitter:image" content="https://buildpacks.io/images/buildpacks-social-card-square.jpg">
 <meta property="twitter:image:alt" content="Buildpacks project logo">
@@ -98,7 +98,7 @@ generate cat…">
     gtag('config', 'G-CJLSR4FQXL');
   </script>
 
-  <title>Generating a run.Dockerfile · Cloud Native Buildpacks</title>
+  <title>Why Dockerfiles · Cloud Native Buildpacks</title>
 </head>
 
 <body>
@@ -349,26 +349,37 @@ generate cat…">
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/extension-author-guide/" class="dd-item depth-0 parent haschildren">
-  <a href="/docs/extension-author-guide/">Extension Author Guide</a>
+<li data-nav-id="/docs/extension-guide/" class="dd-item depth-0 parent haschildren">
+  <a href="/docs/extension-guide/">Extension Guide</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/extension-author-guide/create-extension/" class="dd-item depth-1 parent haschildren">
-  <a href="/docs/extension-author-guide/create-extension/">Create an extension</a>
+<li data-nav-id="/docs/extension-guide/consume-extension/" class="dd-item depth-1 haschildren">
+  <a href="/docs/extension-guide/consume-extension/">Consume an extension</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/extension-author-guide/create-extension/setup-local-environment/" class="dd-item depth-2">
-  <a href="/docs/extension-author-guide/create-extension/setup-local-environment/">Set up your local environment</a>
+<li data-nav-id="/docs/extension-guide/consume-extension/from-cli/" class="dd-item depth-2 collapse">
+  <a href="/docs/extension-guide/consume-extension/from-cli/">Specifying an Image Extension at Build Time</a>
 </li>
-<li data-nav-id="/docs/extension-author-guide/create-extension/why-dockerfiles/" class="dd-item depth-2">
-  <a href="/docs/extension-author-guide/create-extension/why-dockerfiles/">Why Dockerfiles</a>
+<li data-nav-id="/docs/extension-guide/consume-extension/in-builder/" class="dd-item depth-2 collapse">
+  <a href="/docs/extension-guide/consume-extension/in-builder/">Specifying an Image Extension in the Builder</a>
 </li>
-<li data-nav-id="/docs/extension-author-guide/create-extension/building-blocks-extension/" class="dd-item depth-2">
-  <a href="/docs/extension-author-guide/create-extension/building-blocks-extension/">Building blocks of a CNB Image Extension</a>
+  </ul>
 </li>
-<li data-nav-id="/docs/extension-author-guide/create-extension/build-dockerfile/" class="dd-item depth-2">
-  <a href="/docs/extension-author-guide/create-extension/build-dockerfile/">Generating a build.Dockerfile</a>
+<li data-nav-id="/docs/extension-guide/create-extension/" class="dd-item depth-1 parent haschildren">
+  <a href="/docs/extension-guide/create-extension/">Create an extension</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/extension-guide/create-extension/setup-local-environment/" class="dd-item depth-2">
+  <a href="/docs/extension-guide/create-extension/setup-local-environment/">Set up your local environment</a>
 </li>
-<li data-nav-id="/docs/extension-author-guide/create-extension/run-dockerfile/" class="dd-item depth-2 active">
-  <a href="/docs/extension-author-guide/create-extension/run-dockerfile/">Generating a run.Dockerfile</a>
+<li data-nav-id="/docs/extension-guide/create-extension/why-dockerfiles/" class="dd-item depth-2 active">
+  <a href="/docs/extension-guide/create-extension/why-dockerfiles/">Why Dockerfiles</a>
+</li>
+<li data-nav-id="/docs/extension-guide/create-extension/building-blocks-extension/" class="dd-item depth-2">
+  <a href="/docs/extension-guide/create-extension/building-blocks-extension/">Building blocks of a CNB Image Extension</a>
+</li>
+<li data-nav-id="/docs/extension-guide/create-extension/build-dockerfile/" class="dd-item depth-2">
+  <a href="/docs/extension-guide/create-extension/build-dockerfile/">Generating a build.Dockerfile</a>
+</li>
+<li data-nav-id="/docs/extension-guide/create-extension/run-dockerfile/" class="dd-item depth-2">
+  <a href="/docs/extension-guide/create-extension/run-dockerfile/">Generating a run.Dockerfile</a>
 </li>
   </ul>
 </li>
@@ -675,12 +686,12 @@ generate cat…">
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BGenerating&#43;a&#43;run.Dockerfile%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fextension-author-guide%2Fcreate-extension%2Frun-dockerfile%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BWhy&#43;Dockerfiles%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fextension-guide%2Fcreate-extension%2Fwhy-dockerfiles%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/extension-author-guide/create-extension/run-dockerfile.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/extension-guide/create-extension/why-dockerfiles.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
@@ -688,93 +699,64 @@ generate cat…">
 
 
         <div class="heading">
-          <h1 class="title">Generating a run.Dockerfile</h1>
+          <h1 class="title">Why Dockerfiles</h1>
         </div>
 
-        <!-- test:suite=dockerfiles;weight=5 -->
-<h3 id="examine-curl-extension">Examine <code>curl</code> extension</h3>
+        <!-- test:suite=dockerfiles;weight=2 -->
+<p>Let&rsquo;s see a build that requires base image extension in order to succeed.</p>
+<h3 id="examine-hello-extensions-buildpack">Examine <code>hello-extensions</code> buildpack</h3>
 <h4 id="detect">detect</h4>
 <!-- test:exec -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat <span class="nv">$PWD</span>/samples/extensions/curl/bin/detect
-</span></span></code></pre></div><p>The extension always detects (because its exit code is <code>0</code>) and provides a dependency called <code>curl</code>.</p>
-<h4 id="generate">generate</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat <span class="nv">$PWD</span>/samples/buildpacks/hello-extensions/bin/detect
+</span></span></code></pre></div><p>The buildpack always detects (because its exit code is <code>0</code>) but doesn&rsquo;t require any dependencies (as the output build plan is empty).</p>
+<h4 id="build">build</h4>
 <!-- test:exec -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat <span class="nv">$PWD</span>/samples/extensions/curl/bin/generate
-</span></span></code></pre></div><p>The extension generates a <code>run.Dockerfile</code> that switches the run image to reference <code>run-image-curl</code>.</p>
-<h3 id="build-a-run-image-for-curl-extension-to-use">Build a run image for <code>curl</code> extension to use</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat <span class="nv">$PWD</span>/samples/buildpacks/hello-extensions/bin/build
+</span></span></code></pre></div><p>The buildpack tries to use <code>tree</code> at build-time, and defines a launch process called <code>curl</code> that runs <code>curl --version</code> at runtime.</p>
+<h3 id="create-a-builder-with-extensions-and-publish-it">Create a builder with extensions and publish it</h3>
+<p>For now, it is necessary for the builder image to be pushed to an OCI registry for builds with image extensions to succeed.</p>
+<p>For demo purposes, we will launch a local unauthenticated registry:</p>
 <!-- test:exec -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat <span class="nv">$PWD</span>/samples/stacks/alpine/run/curl.Dockerfile
-</span></span></code></pre></div><p>This is a simple Dockerfile that creates a CNB run image from the <code>curl</code> base image by adding the required CNB user configuration and <code>io.buildpacks.stack.id</code> label.</p>
-<p>The Dockerfile could come from anywhere, but we include it in the <code>stacks</code> directory for convenience.</p>
-<p>Build the run image:</p>
-<!-- test:exec -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker build <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --file <span class="nv">$PWD</span>/samples/stacks/alpine/run/curl.Dockerfile <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --tag run-image-curl .
-</span></span></code></pre></div><h3 id="re-create-our-builder-with-hello-extensions-updated-to-require-curl">Re-create our builder with <code>hello-extensions</code> updated to require <code>curl</code></h3>
-<p>Edit <code>$PWD/samples/buildpacks/hello-extensions/bin/detect</code> to uncomment the second set of lines that output <code>[[requires]]</code> to the build plan:</p>
-<!-- test:exec -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sed -i <span class="s2">&#34;14,15s/#//&#34;</span> <span class="nv">$PWD</span>/samples/buildpacks/hello-extensions/bin/detect
-</span></span></code></pre></div><p>(On Mac, use <code>sed -i '' &quot;14,15s/#//&quot; $PWD/samples/buildpacks/hello-extensions/bin/detect</code>)</p>
-<p>Re-create the builder:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run -d --rm -p 5000:5000 registry:2
+</span></span></code></pre></div><p>You can push the builder to any registry of your choice - just ensure that <code>docker login</code> succeeds and replace <code>localhost:5000</code> in the following examples with your registry namespace -
+e.g., <code>index.docker.io/&lt;username&gt;</code>.</p>
+<p>Create the builder:</p>
 <!-- test:exec -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack builder create localhost:5000/extensions-builder <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  --config <span class="nv">$PWD</span>/samples/builders/alpine/builder.toml <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  --publish
-</span></span></code></pre></div><h3 id="re-build-the-application-image">Re-build the application image</h3>
-<!-- test:exec -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack build hello-extensions <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --builder localhost:5000/extensions-builder <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --path <span class="nv">$PWD</span>/samples/apps/java-maven <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --pull-policy always <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --network host <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --verbose
-</span></span></code></pre></div><p>Note that <code>--network host</code> is necessary when publishing to a local registry.</p>
+</span></span></code></pre></div><h3 id="build-the-application-image">Build the application image</h3>
+<p>Run <code>pack build</code> (note that the &ldquo;source&rdquo; directory is effectively ignored in our example):</p>
+<pre tabindex="0"><code>pack build hello-extensions \
+  --builder localhost:5000/extensions-builder \
+  --network host \
+  --path $PWD/samples/apps/java-maven \
+  --pull-policy always \
+  --verbose
+</code></pre><p>Note that <code>--network host</code> is necessary when publishing to a local registry.</p>
 <p>You should see:</p>
 <pre tabindex="0"><code>[detector] ======== Results ========
 [detector] pass: samples/tree@0.0.1
-[detector] pass: samples/curl@0.0.1
 [detector] pass: samples/hello-extensions@0.0.1
 [detector] Resolving plan... (try #1)
-[detector] samples/tree             0.0.1
-[detector] samples/curl             0.0.1
+[detector] skip: samples/tree@0.0.1 provides unused tree
+[detector] 1 of 2 buildpacks participating
 [detector] samples/hello-extensions 0.0.1
-[detector] Running generate for extension samples/tree@0.0.1
-...
-[detector] Running generate for extension samples/curl@0.0.1
-...
-[detector] Checking for new run image
-[detector] Found a run.Dockerfile configuring image &#39;run-image-curl&#39; from extension with id &#39;samples/curl&#39;
-...
-[extender] Found build Dockerfile for extension &#39;samples/tree&#39;
-[extender] Applying the Dockerfile at /layers/generated/build/samples_tree/Dockerfile...
 ...
 [extender] Running build command
 [extender] ---&gt; Hello Extensions Buildpack
-[extender] tree v1.8.0 (c) 1996 - 2018 by Steve Baker, Thomas Moore, Francesc Rocher, Florian Sesser, Kyosuke Tokoro
-...
-Successfully built image hello-extensions
-</code></pre><h3 id="see-the-image-run-successfully">See the image run successfully</h3>
-<!-- test:exec -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run --rm hello-extensions
-</span></span></code></pre></div><p>You should see something akin to:</p>
-<pre tabindex="0"><code>curl 7.85.0-DEV (x86_64-pc-linux-musl) ... more stuff here ...
-</code></pre><p>What happened: now that <code>hello-extensions</code> requires both <code>tree</code> and <code>curl</code> in its build plan, both extensions are
-included in the build and provide the needed dependencies for build and launch, respectively</p>
-<ul>
-<li>The <code>tree</code> extension installs <code>tree</code> at build time, as before</li>
-<li>The <code>curl</code> extension switches the run image to <code>run-image-curl</code>, which has <code>curl</code> installed</li>
-</ul>
-<p>Now our <code>curl</code> process can succeed!</p>
-<h2 id="whats-next">What&rsquo;s next?</h2>
-<p>The <code>tree</code> and <code>curl</code> examples are very simple, but we can unlock powerful new features with this functionality.</p>
-<p>Platforms could have several run images available, each tailored to a specific language family, thus limiting the number
-of installed dependencies for each image to the minimum necessary to support the targeted language. Image extensions
-could be used to switch the run image to that most appropriate for the current application.</p>
-<p>Similarly, builder images could be kept lean if image extensions are used to dynamically install the needed dependencies
-for each application.</p>
-<p>In the future, both run image switching and run image modification will be supported, opening the door to other use
-cases. Consult the <a href="https://github.com/buildpacks/rfcs/pull/173">RFC</a> for further information.</p>
+[extender] /cnb/buildpacks/samples_hello-extensions/0.0.1/bin/build: line 6: tree: command not found
+[extender] ERROR: failed to build: exit status 127
+</code></pre><p>What happened: our builder doesn&rsquo;t have <code>tree</code> installed, so the <code>hello-extensions</code> buildpack failed to build (as it
+tries to run <code>tree --version</code> in its <code>./bin/build</code> script).</p>
+<p>Even though there is a <code>samples/tree</code> extension that passed detection (<code>pass: samples/tree@0.0.1</code>), because
+the <code>hello-extensions</code> buildpack didn&rsquo;t require <code>tree</code> in the build plan, the extension was omitted from the detected
+group (<code>skip: samples/tree@0.0.1 provides unused tree</code>).</p>
+<p>Let&rsquo;s take a look at how the <code>samples/tree</code> extension installs <code>tree</code> on the builder image&hellip;</p>
+<!--+ if false+-->
+<hr>
+<p><a href="/docs/extension-guide/create-extension/building-blocks-extension" class="button bg-pink">Next Step</a></p>
+<!--+ end +-->
 
 
         
@@ -785,12 +767,12 @@ cases. Consult the <a href="https://github.com/buildpacks/rfcs/pull/173">RFC</a>
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BGenerating&#43;a&#43;run.Dockerfile%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fextension-author-guide%2Fcreate-extension%2Frun-dockerfile%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BWhy&#43;Dockerfiles%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fextension-guide%2Fcreate-extension%2Fwhy-dockerfiles%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/extension-author-guide/create-extension/run-dockerfile.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/extension-guide/create-extension/why-dockerfiles.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   

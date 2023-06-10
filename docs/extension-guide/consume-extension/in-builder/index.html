@@ -8,9 +8,8 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Examine tree extension tree $PWD/samples/extensions/tree (That&amp;rsquo;s right, we&amp;rsquo;re using the very tool we will later be installing!) You should see something akin to the following:
-. ├── bin │…"/>
-<link rel="canonical" content="https://buildpacks.io/docs/extension-author-guide/create-extension/building-blocks-extension/">
+<meta name="description" content=" Specifying an Image Extension in the Builder You&amp;rsquo;re pretty sharp, and you know what your buildpack users will need. That&amp;rsquo;s why you&amp;rsquo;re going to add something similar to the…"/>
+<link rel="canonical" content="https://buildpacks.io/docs/extension-guide/consume-extension/in-builder/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
 
@@ -18,13 +17,12 @@
 
 
 
-<meta property="og:title" content="Building blocks of a CNB Image Extension · Cloud Native Buildpacks">
+<meta property="og:title" content="Specifying an Image Extension in the Builder · Cloud Native Buildpacks">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://buildpacks.io/docs/extension-author-guide/create-extension/building-blocks-extension/">
+<meta property="og:url" content="https://buildpacks.io/docs/extension-guide/consume-extension/in-builder/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-<meta property="og:description" content="Examine tree extension tree $PWD/samples/extensions/tree (That&amp;rsquo;s right, we&amp;rsquo;re using the very tool we will later be installing!) You should see something akin to the following:
-. ├── bin │…">
+<meta property="og:description" content=" Specifying an Image Extension in the Builder You&amp;rsquo;re pretty sharp, and you know what your buildpack users will need. That&amp;rsquo;s why you&amp;rsquo;re going to add something similar to the…">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -35,7 +33,7 @@
 
 
 
-<meta property="twitter:title" content="Building blocks of a CNB Image Extension · Cloud Native Buildpacks">
+<meta property="twitter:title" content="Specifying an Image Extension in the Builder · Cloud Native Buildpacks">
 <meta property="twitter:card" content="summary">
 <meta property="twitter:image" content="https://buildpacks.io/images/buildpacks-social-card-square.jpg">
 <meta property="twitter:image:alt" content="Buildpacks project logo">
@@ -98,7 +96,7 @@
     gtag('config', 'G-CJLSR4FQXL');
   </script>
 
-  <title>Building blocks of a CNB Image Extension · Cloud Native Buildpacks</title>
+  <title>Specifying an Image Extension in the Builder · Cloud Native Buildpacks</title>
 </head>
 
 <body>
@@ -349,26 +347,37 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/extension-author-guide/" class="dd-item depth-0 parent haschildren">
-  <a href="/docs/extension-author-guide/">Extension Author Guide</a>
+<li data-nav-id="/docs/extension-guide/" class="dd-item depth-0 parent haschildren">
+  <a href="/docs/extension-guide/">Extension Guide</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/extension-author-guide/create-extension/" class="dd-item depth-1 parent haschildren">
-  <a href="/docs/extension-author-guide/create-extension/">Create an extension</a>
+<li data-nav-id="/docs/extension-guide/consume-extension/" class="dd-item depth-1 parent haschildren">
+  <a href="/docs/extension-guide/consume-extension/">Consume an extension</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/extension-author-guide/create-extension/setup-local-environment/" class="dd-item depth-2">
-  <a href="/docs/extension-author-guide/create-extension/setup-local-environment/">Set up your local environment</a>
+<li data-nav-id="/docs/extension-guide/consume-extension/from-cli/" class="dd-item depth-2">
+  <a href="/docs/extension-guide/consume-extension/from-cli/">Specifying an Image Extension at Build Time</a>
 </li>
-<li data-nav-id="/docs/extension-author-guide/create-extension/why-dockerfiles/" class="dd-item depth-2">
-  <a href="/docs/extension-author-guide/create-extension/why-dockerfiles/">Why Dockerfiles</a>
+<li data-nav-id="/docs/extension-guide/consume-extension/in-builder/" class="dd-item depth-2 active">
+  <a href="/docs/extension-guide/consume-extension/in-builder/">Specifying an Image Extension in the Builder</a>
 </li>
-<li data-nav-id="/docs/extension-author-guide/create-extension/building-blocks-extension/" class="dd-item depth-2 active">
-  <a href="/docs/extension-author-guide/create-extension/building-blocks-extension/">Building blocks of a CNB Image Extension</a>
+  </ul>
 </li>
-<li data-nav-id="/docs/extension-author-guide/create-extension/build-dockerfile/" class="dd-item depth-2">
-  <a href="/docs/extension-author-guide/create-extension/build-dockerfile/">Generating a build.Dockerfile</a>
+<li data-nav-id="/docs/extension-guide/create-extension/" class="dd-item depth-1 haschildren">
+  <a href="/docs/extension-guide/create-extension/">Create an extension</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/extension-guide/create-extension/setup-local-environment/" class="dd-item depth-2 collapse">
+  <a href="/docs/extension-guide/create-extension/setup-local-environment/">Set up your local environment</a>
 </li>
-<li data-nav-id="/docs/extension-author-guide/create-extension/run-dockerfile/" class="dd-item depth-2">
-  <a href="/docs/extension-author-guide/create-extension/run-dockerfile/">Generating a run.Dockerfile</a>
+<li data-nav-id="/docs/extension-guide/create-extension/why-dockerfiles/" class="dd-item depth-2 collapse">
+  <a href="/docs/extension-guide/create-extension/why-dockerfiles/">Why Dockerfiles</a>
+</li>
+<li data-nav-id="/docs/extension-guide/create-extension/building-blocks-extension/" class="dd-item depth-2 collapse">
+  <a href="/docs/extension-guide/create-extension/building-blocks-extension/">Building blocks of a CNB Image Extension</a>
+</li>
+<li data-nav-id="/docs/extension-guide/create-extension/build-dockerfile/" class="dd-item depth-2 collapse">
+  <a href="/docs/extension-guide/create-extension/build-dockerfile/">Generating a build.Dockerfile</a>
+</li>
+<li data-nav-id="/docs/extension-guide/create-extension/run-dockerfile/" class="dd-item depth-2 collapse">
+  <a href="/docs/extension-guide/create-extension/run-dockerfile/">Generating a run.Dockerfile</a>
 </li>
   </ul>
 </li>
@@ -675,12 +684,12 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BBuilding&#43;blocks&#43;of&#43;a&#43;CNB&#43;Image&#43;Extension%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fextension-author-guide%2Fcreate-extension%2Fbuilding-blocks-extension%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BSpecifying&#43;an&#43;Image&#43;Extension&#43;in&#43;the&#43;Builder%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fextension-guide%2Fconsume-extension%2Fin-builder%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/extension-author-guide/create-extension/building-blocks-extension.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/extension-guide/consume-extension/in-builder.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
@@ -688,48 +697,23 @@
 
 
         <div class="heading">
-          <h1 class="title">Building blocks of a CNB Image Extension</h1>
+          <h1 class="title">Specifying an Image Extension in the Builder</h1>
         </div>
 
-        <!-- test:suite=dockerfiles;weight=3 -->
-<h3 id="examine-tree-extension">Examine <code>tree</code> extension</h3>
-<!-- test:exec -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tree <span class="nv">$PWD</span>/samples/extensions/tree
-</span></span></code></pre></div><p>(That&rsquo;s right, we&rsquo;re using the very tool we will later be installing!) You should see something akin to the following:</p>
-<pre tabindex="0"><code>.
-├── bin
-│   ├── detect     &lt;- similar to a buildpack ./bin/detect
-│   ├── generate   &lt;- similar to a buildpack ./bin/build
-├── extension.toml &lt;- similar to a buildpack buildpack.toml
-</code></pre><ul>
-<li>The <code>extension.toml</code> describes the extension, containing information such as its name, ID, and version, as well as the
-buildpack API that it implements. Though extensions are not buildpacks, they are expected to conform to the buildpack
-API except where noted. Consult the <a href="https://github.com/buildpacks/spec/blob/buildpack/main/image_extension.md">spec</a>
-for further details.</li>
-<li><code>./bin/detect</code> is invoked during the <code>detect</code> phase. It analyzes application source code to determine if the extension
-is needed and contributes <a href="/docs/reference/spec/buildpack-api/#build-plan">build plan</a> entries (much like a
-buildpack <code>./bin/detect</code>). Just like for buildpacks, a <code>./bin/detect</code> that exits with code <code>0</code> is considered to have
-passed detection, and fails otherwise.</li>
-<li><code>./bin/generate</code> is invoked during the <code>generate</code> phase (a new lifecycle phase that happens after <code>detect</code>). It
-outputs either or both of <code>build.Dockerfile</code> or <code>run.Dockerfile</code> for extending the builder or run image, respectively.
-<ul>
-<li>Only a limited set of Dockerfile instructions is supported - consult
-the <a href="https://github.com/buildpacks/spec/blob/buildpack/main/image_extension.md">spec</a>
-for further details.</li>
-<li>In the <a href="/docs/features/dockerfiles#phased-approach">initial implementation</a>, <code>run.Dockerfile</code> instructions are
-limited to a single <code>FROM</code> instruction (effectively, it is only possible to switch the run-time base image to a
-pre-created image i.e., no dynamic image modification is allowed). Consult
-the <a href="https://github.com/buildpacks/spec/blob/buildpack/main/image_extension.md">spec</a>
-for further details.</li>
-</ul>
-</li>
-</ul>
-<p>We&rsquo;ll take a closer look at the executables for the <code>tree</code> extension in the next step.</p>
-<!--+ if false+-->
-<hr>
-<p><a href="/docs/extension-author-guide/create-extension/build-dockerfile" class="button bg-pink">Next Step</a></p>
-<!--+ end +-->
+        <!-- test:suite=dockerfiles;weight=5 -->
+<h3 id="specifying-an-image-extension-in-the-builder">Specifying an Image Extension in the Builder</h3>
+<p>You&rsquo;re pretty sharp, and you know what your buildpack users will need.
+That&rsquo;s why you&rsquo;re going to add something similar to the following lines directly to <code>builder.toml</code>:</p>
+<pre tabindex="0"><code>[[order-extensions]]
+[[order-extensions.group]]
+id = &#34;foo&#34;
+version = &#34;0.0.1&#34;
 
+[[extensions]]
+id = &#34;foo&#34;
+version = &#34;0.0.1&#34;
+uri = &#34;/local/path/to/extension/foo&#34; # can be relative or absolute
+</code></pre>
 
         
 
@@ -739,12 +723,12 @@ for further details.</li>
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BBuilding&#43;blocks&#43;of&#43;a&#43;CNB&#43;Image&#43;Extension%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fextension-author-guide%2Fcreate-extension%2Fbuilding-blocks-extension%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BSpecifying&#43;an&#43;Image&#43;Extension&#43;in&#43;the&#43;Builder%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fextension-guide%2Fconsume-extension%2Fin-builder%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/extension-author-guide/create-extension/building-blocks-extension.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/extension-guide/consume-extension/in-builder.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
