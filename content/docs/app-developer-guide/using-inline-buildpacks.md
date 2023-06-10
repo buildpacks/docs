@@ -37,7 +37,7 @@ Inline buildpacks aren't constrained to a single command, however. You can defin
 [[io.buildpacks.group]]
 id = "me/cleanup"
 
-  [io.buildpacks.script]
+  [io.buildpacks.group.script]
   api = "0.9"
   inline = """
 set -e
