@@ -60,7 +60,7 @@ An image extension could be defined with the following directory:
   respectively (in the [initial implementation](#phased-approach), only limited `run.Dockerfile`s are allowed).
 
 For more information and to see a build in action,
-see [authoring an image extension](/docs/extension-author-guide/create-extension).
+see [authoring an image extension](/docs/extension-guide/create-extension).
 
 ## A platform's perspective
 

@@ -9,6 +9,24 @@
 #     - name: Name of resource
 #       icon: Icon name (font-awesome 5 - https://fontawesome.com/icons?d=gallery&p=2&m=free)
 #       url: URL to resource
+- name: "Customizing your Buildpacks Build"
+  presenters:
+    - Natalie Arellano, VMware
+    - Aidan Delaney, Bloomberg
+  description: >-
+    Cloud Native Buildpacks makes building container images as easy as running “pack build.” However,
+    you will eventually want to customize that out-of-the-box experience. This talk explores the many
+    buildpacks extension points that enable custom workflows. For application developers, we introduce
+    inline buildpacks and build time environment variables. For platform operators, we present image
+    extension with Dockerfiles, and how to control the level of customization available in order to
+    adhere to security requirements.
+  event_name: KubeCon EU
+  youtube_id: ZrxAyk1-pSs
+  year: 2023
+  resources:
+    - name: Slides
+      icon: file-powerpoint
+      url: https://docs.google.com/presentation/d/13eW9rm_lhrbRbwrk_sCeUCkitFI52OJRLbsGVy7eJmA/edit#slide=id.g879acc97aa_0_71
 - name: "Intro to Cloud Native Buildpacks"
   presenters:
     - Javier Romero, VMware
