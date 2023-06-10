@@ -28,4 +28,4 @@ For older platforms (platform API version 0.9 and below), arguments in `args` wi
 
 Platform 0.10 introduces image extensions as experimental components for customizing build and run-time base images (see [here](/docs/features/dockerfiles) for more information).
 
-For more information, see [authoring an image extension](/docs/extension-author-guide/create-extension).
+For more information, see [authoring an image extension](/docs/extension-guide/create-extension).
