@@ -10,6 +10,7 @@ One of the benefits of buildpacks is they can also populate the app image with m
 * The process types that are available and the commands associated with them
 * The run-image the app image was based on
 * The buildpacks were used to create the app image
+* Whether the run-image can be rebased with a new version through the `Rebasable` label or not
 * And more...!
 
 You can find some of this information using `pack` via its `inspect-image` command.  The bill-of-materials information will be available using `pack sbom download`.
@@ -25,6 +26,8 @@ You should see the following:
 ```text
 Run Images:
   cnbs/sample-stack-run:jammy
+
+Rebasable: false
 
 Buildpacks:
   ID                   VERSION        HOMEPAGE

@@ -49,6 +49,8 @@ Base Image:
 
 Run Images:
   cnbs/sample-stack-run:alpine
+  
+Rebasable: true
 
 Buildpacks:
   ID                             VERSION           HOMEPAGE
