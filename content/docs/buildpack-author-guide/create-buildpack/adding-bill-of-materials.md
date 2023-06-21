@@ -27,8 +27,6 @@ You should see the following:
 Run Images:
   cnbs/sample-stack-run:jammy
 
-Rebasable: false
-
 Buildpacks:
   ID                   VERSION        HOMEPAGE
   examples/ruby        0.0.1          -
