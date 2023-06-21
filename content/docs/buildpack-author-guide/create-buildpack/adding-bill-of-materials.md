@@ -26,6 +26,8 @@ You should see the following:
 ```text
 Run Images:
   cnbs/sample-stack-run:jammy
+  
+Rebasable: true
 
 Buildpacks:
   ID                   VERSION        HOMEPAGE
