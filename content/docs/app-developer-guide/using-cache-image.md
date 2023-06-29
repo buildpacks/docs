@@ -85,4 +85,11 @@ pack build localhost:5000/buildpack-examples/second-cache-image-example \
 ```
 <!--+- "{{execute}}"+-->
 
+### Images retention
+
+Managing the lifecycle of images should be the responsibility of the owner, as `the platform does not automatically clean up old images from the registry`.   
+You can refer to your registry's documentation to learn how to accomplish this.   
+For example, if you are using [AWS ECR](https://aws.amazon.com/ecr/), you can find information on how to delete images in the AWS ECR documentation, specifically in the section on [image deletion](https://docs.aws.amazon.com/AmazonECR/latest/userguide/delete_image.html).
+
+
 [samples]: https://github.com/buildpack/samples
