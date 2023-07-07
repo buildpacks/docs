@@ -55,10 +55,7 @@ cd <your preferred workspace directory>
 pack version
 ```
 
-The version should be at least `0.28.0`
-
-**Note**: to follow this demo all the way through to the end (including run image extension),
-the pack version should be at least `0.30.0-rc1`. Consult the [releases page](https://github.com/buildpacks/pack/releases) for more information.
+The version should be at least `0.30.0`
 
 ### Update pack configuration
 
