@@ -1,6 +1,9 @@
 +++
 title="Generating a run.Dockerfile that switches the runtime base image"
 weight=405
+aliases = [
+  "/docs/extension-author-guide/run-dockerfile/"
+  ]
 +++
 
 <!-- test:suite=dockerfiles;weight=5 -->
@@ -140,5 +143,5 @@ Luckily, we can also use image extensions to dynamically install runtime depende
 <!--+ if false+-->
 ---
 
-<a href="/docs/extension-author-guide/create-extension/run-dockerfile-extend" class="button bg-pink">Next Step</a>
+<a href="/docs/extension-guide/create-extension/run-dockerfile-extend" class="button bg-pink">Next Step</a>
 <!--+ end +-->
