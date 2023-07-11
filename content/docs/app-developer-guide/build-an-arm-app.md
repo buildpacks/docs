@@ -38,7 +38,7 @@ First we download and extract the [lifecycle][lifecycle] release, compiled for A
 cd ~/workspace
 
 # download and extract lifecycle
-curl -L https://github.com/buildpacks/lifecycle/releases/download/v<RELEASE-VERSION>/lifecycle-v<RELEASE-VERSION>+linux.arm64.tgz | tar xf -
+curl -L https://github.com/buildpacks/lifecycle/releases/download/v<RELEASE-VERSION>/lifecycle-v<RELEASE-VERSION>+linux.arm64.tgz | tar xzf -
 ```
 
 Next we make sure that our buildpack directory is structured in a way that the lifecycle will expect.
