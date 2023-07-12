@@ -1,0 +1,6 @@
+{{ $name := (.Get "name") }}
+
+{{ $tab := dict "name" $name "content" .Inner }}
+{{ $tab = merge $tab (dict "content" .Inner) }}
+
+{{ .Parent.Scratch.Add "contenttabs" (slice $tab) }}

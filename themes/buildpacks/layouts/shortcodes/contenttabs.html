@@ -1,0 +1,31 @@
+{{/* do nothing with .Inner but still needs to be called */}}
+{{- with .Inner }}{{ end -}}
+<div class="tab-container">
+  {{- $groupId := .Get "id" | default "default" -}}
+  <div class="tab-nav">
+    <ul class="nav nav-tabs" id="{{ $groupId }}" role="tablist">
+      {{- range $idx, $tab := .Scratch.Get "contenttabs" -}}
+        <li class="nav-item">
+          <a
+            id="tab-{{ urlize .name }}"
+            class='nav-link {{ cond (eq $idx 0) "active" "" }}'
+            data-toggle="tab"
+            href="#{{ urlize .name }}"
+          >{{ .name }}
+          </a>
+        </li>
+      {{- end -}}
+    </ul>
+  </div>
+  <div class="tab-content">
+    {{- range $idx, $tab := .Scratch.Get "contenttabs" -}}
+    <div
+      class='tab-pane fade {{ cond (eq $idx 0) "show active" "" }}'
+      id="{{ urlize .name }}"
+      role="tabpanel"
+      >
+      {{ markdownify .content }}
+    </div>
+    {{- end -}}
+  </div>
+</div>
