@@ -54,24 +54,25 @@ pack build sample-java-maven-app \
 
 ## Using a Project Descriptor
 
-The [`project.toml`][project-toml] format allows for Buildpack URIs to be specified in the `[[build.buildpacks]]` table with the `uri` key.
+The [`project.toml`][project-toml] format allows for Buildpack URIs to be specified in the `[[io.buildpacks.group]]` table with the `uri` key.
 
 ##### Example:
 
 ```toml
-[project]
+[_]
+schema-version = "0.3"
 id = "sample-java-maven-app"
 name = "Sample Java App"
 version = "1.0.0"
 
-[[build.buildpacks]]
+[[io.buildpacks.group]]
 uri = "samples/java-maven"
 
-[[build.buildpacks]]
+[[io.buildpacks.group]]
 uri = "samples/buildpacks/hello-processes/"
 
-[[build.buildpacks]]
-uri = "docker://cnbs/sample-package:hello-univers"
+[[io.buildpacks.group]]
+uri = "docker://cnbs/sample-package:hello-universe"
 ```
 
 ## URI Examples

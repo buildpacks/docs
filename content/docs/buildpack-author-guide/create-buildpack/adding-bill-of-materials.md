@@ -24,7 +24,7 @@ You should see the following:
 <!-- test:assert=contains -->
 ```text
 Run Images:
-  cnbs/sample-stack-run:bionic
+  cnbs/sample-stack-run:jammy
 
 Buildpacks:
   ID                   VERSION        HOMEPAGE
@@ -55,7 +55,7 @@ api = "0.8"
 
 # Stacks that the buildpack will work with
 [[stacks]]
-  id = "io.buildpacks.samples.stacks.bionic"
+  id = "io.buildpacks.samples.stacks.jammy"
 ```
 
 Then, in our buildpack implementation we will generate the necessary SBOM metadata:
@@ -131,7 +131,7 @@ mkdir -p "$rubylayer"
 # 3. DOWNLOAD RUBY
 ruby_version=$(cat "$plan" | yj -t | jq -r '.entries[] | select(.name == "ruby") | .metadata.version')
 echo "---> Downloading and extracting Ruby $ruby_version"
-ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-18/ruby-$ruby_version.tgz
+ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-22/ruby-$ruby_version.tgz
 wget -q -O - "$ruby_url" | tar -xzf - -C "$rubylayer"
 
 # 4. MAKE RUBY AVAILABLE DURING LAUNCH

@@ -1,6 +1,9 @@
 +++
 title="Why Dockerfiles"
 weight=402
+aliases = [
+  "/docs/extension-author-guide/create-extension/why-dockerfiles/",
+  ]
 +++
 
 <!-- test:suite=dockerfiles;weight=2 -->
@@ -94,5 +97,5 @@ Let's take a look at how the `samples/tree` extension installs `tree` on the bui
 <!--+ if false+-->
 ---
 
-<a href="/docs/extension-author-guide/create-extension/building-blocks-extension" class="button bg-pink">Next Step</a>
+<a href="/docs/extension-guide/create-extension/building-blocks-extension" class="button bg-pink">Next Step</a>
 <!--+ end +-->

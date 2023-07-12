@@ -1,6 +1,9 @@
 +++
 title="Generating a build.Dockerfile"
 weight=404
+aliases = [
+  "/docs/extension-author-guide/create-extension/build-dockerfile/",
+  ]
 +++
 
 <!-- test:suite=dockerfiles;weight=4 -->
@@ -100,5 +103,5 @@ Let's take a look at how the `samples/curl` extension fixes the error by switchi
 <!--+ if false+-->
 ---
 
-<a href="/docs/extension-author-guide/create-extension/run-dockerfile" class="button bg-pink">Next Step</a>
+<a href="/docs/extension-guide/create-extension/run-dockerfile" class="button bg-pink">Next Step</a>
 <!--+ end +-->

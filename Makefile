@@ -139,7 +139,7 @@ build: $(HUGO_BIN) pack-version pack-docs-update
 .PHONY: test
 test: install-pack-cli check-pack-cli-version install-ugo
 	@echo "> Testing..."
-	ugo run -r -p ./content/docs/
+	ugo run -v -r -p ./content/docs/
 
 .PHONY: htmltest-install
 htmltest-install:

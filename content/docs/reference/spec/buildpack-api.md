@@ -135,7 +135,7 @@ id = "example.com/python"
 version = "1.0"
 
 [[stacks]]
-id = "io.buildpacks.stacks.bionic"
+id = "io.buildpacks.stacks.jammy"
 ```
 
 ### Schema
