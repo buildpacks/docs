@@ -26,7 +26,7 @@ Before we set out, you'll need to know the basics of **buildpacks** and how they
 
 ### What is a [buildpack][buildpack]?
 
-A buildpack is something you've probably leveraged without knowing, as they're currently
+A buildpack is something you've probably used without knowing, as they're currently
 being used in many cloud platforms. A buildpack's job is to gather everything your app needs to build and run,
 and it often does this job quickly and quietly.
 
@@ -35,8 +35,8 @@ code into a runnable app image.
 
 ##### Auto-detection
 
-What enables buildpacks to go unnoticed is auto-detection. This happens when a platform sequentially
-tests groups of buildpacks against your app's source code. The first group that deems itself fit for your source code
+What enables buildpacks to be transparent is auto-detection. This happens when a platform sequentially
+tests groups of buildpacks against your app's source code. The first group that succesfully detects your source code
 will become the selected set of buildpacks for your app. Detection criteria is specific to each buildpack -- for
 instance, an **NPM buildpack** might look for a `package.json`, and a **Go buildpack** might look for Go source files.
 

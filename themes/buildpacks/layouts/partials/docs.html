@@ -44,7 +44,7 @@
           </ul>
         {{ else }}
           <h{{ $headerLvl }}><a href="{{.Permalink}}" class="">{{ .Title | markdownify }}</a></h{{ $headerLvl }}>
-          <p class="m-1">{{ .Summary | replaceRE "<h[0-9].*>.*</h[0-9]>" "" | plainify | safeHTML }}</p>
+          <p class="m-1">{{ .Summary | replaceRE "<h[0-9].*>.*</h[0-9]>" "" | markdownify | safeHTML }}</p>
 
           {{ if .Params.include_summaries }}
             {{- template "subsection-summary" dict "currentSection" . "depth" (add $depth 1)  "titleOnlyAfterDepth" $titleOnlyAfterDepth "maxDepth" $maxDepth -}}
