@@ -36,7 +36,7 @@ code into a runnable app image.
 ##### Auto-detection
 
 What enables buildpacks to be transparent is auto-detection. This happens when a platform sequentially
-tests groups of buildpacks against your app's source code. The first group that succesfully detects your source code
+tests groups of buildpacks against your app's source code. The first group that successfully detects your source code
 will become the selected set of buildpacks for your app. Detection criteria is specific to each buildpack -- for
 instance, an **NPM buildpack** might look for a `package.json`, and a **Go buildpack** might look for Go source files.
 
