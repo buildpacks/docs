@@ -26,7 +26,7 @@ Before we set out, you'll need to know the basics of **buildpacks** and how they
 
 ### What is a [buildpack][buildpack]?
 
-A buildpack is something you've probably used without knowing, as they're currently
+A buildpack is something you've probably used without knowing it, as they're currently
 being used in many cloud platforms. A buildpack's job is to gather everything your app needs to build and run,
 and it often does this job quickly and quietly.
 
