@@ -9,14 +9,14 @@ summary="Learn how to specify exactly what buildpacks are used during the build 
 
 You may specify exactly what buildpacks are used during the build process by referencing them with a URI in any of the following formats.
 
-| Type | Format |
-|----- |------- |
-| Relative | `<path>` |
-| Filesystem | `file://[<host>]/<path>` |
-| URL | `http[s]://<host>/<path>` |
-| Docker | `docker://[<host>]/<path>[:<tag>⏐@<digest>]` |
-| CNB Builder Resource | `urn:cnb:builder[:<id>[@<version>]]` |
-| CNB Registry Resource | `urn:cnb:registry[:<id>[@<version>]]` |
+| Type                  | Format                                       |
+| --------------------- | -------------------------------------------- |
+| Relative              | `<path>`                                     |
+| Filesystem            | `file://[<host>]/<path>`                     |
+| URL                   | `http[s]://<host>/<path>`                    |
+| Docker                | `docker://[<host>]/<path>[:<tag>⏐@<digest>]` |
+| CNB Builder Resource  | `urn:cnb:builder[:<id>[@<version>]]`         |
+| CNB Registry Resource | `urn:cnb:registry[:<id>[@<version>]]`        |
 
 ##### Fallback Behavior
 
@@ -60,7 +60,7 @@ The [`project.toml`][project-toml] format allows for Buildpack URIs to be specif
 
 ```toml
 [_]
-schema-version = "0.3"
+schema-version = "0.2"
 id = "sample-java-maven-app"
 name = "Sample Java App"
 version = "1.0.0"
