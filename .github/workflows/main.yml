@@ -24,7 +24,7 @@ jobs:
       - name: Install Dependencies
         run: sudo apt-get install make curl jq
       - name: Install pack
-        uses: buildpacks/github-actions/setup-pack@v5.2.0
+        uses: buildpacks/github-actions/setup-pack@v5.3.0
         with:
           pack-version: '0.28.0'
       - name: Test
