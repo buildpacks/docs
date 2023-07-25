@@ -89,7 +89,8 @@ pack build localhost:5000/buildpack-examples/second-cache-image-example \
 
 Managing the lifecycle of images should be the responsibility of the owner, as `the platform does not automatically clean up old images from the registry`.   
 You can refer to your registry's documentation to learn how to accomplish this.   
-For example, if you are using [AWS ECR](https://aws.amazon.com/ecr/), you can find information on how to delete images in the AWS ECR documentation, specifically in the section on [image deletion](https://docs.aws.amazon.com/AmazonECR/latest/userguide/delete_image.html).
+* [AWS ECR](https://aws.amazon.com/ecr/) users can find information on how to delete images in the AWS ECR documentation, specifically in the section on [image deletion](https://docs.aws.amazon.com/AmazonECR/latest/userguide/delete_image.html).
+* [Docker](https://docs.docker.com/engine/) users can consult the Docker documentation on [Advanced Image Management](https://docs.docker.com/docker-hub/image-management/) to find out how to delete images.
 
 
 [samples]: https://github.com/buildpack/samples
