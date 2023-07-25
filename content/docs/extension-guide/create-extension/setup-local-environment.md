@@ -75,7 +75,7 @@ We unset any custom lifecycle image that may have been provided to ensure that t
 # FIXME: remove branch when https://github.com/buildpacks/samples/pull/149 is merged
 git clone https://github.com/buildpacks/samples.git && \
   cd samples && \
-  git fetch origin runext/update-samples && \
+  git fetch --all && \
   git checkout runext/update-samples && \
   cd ..
 ```

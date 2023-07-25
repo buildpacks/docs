@@ -11,36 +11,36 @@ aliases = [
 Builder images can be kept lean if image extensions are used to dynamically install the needed dependencies
 for the current application.
 
-### Examine `tree` extension
+### Examine `vim` extension
 
 #### detect
 
 <!-- test:exec -->
 ```bash
-cat $PWD/samples/extensions/tree/bin/detect
+cat $PWD/samples/extensions/vim/bin/detect
 ```
 
-The extension always detects (because its exit code is `0`) and provides a dependency called `tree` by writing to the build plan.
+The extension always detects (because its exit code is `0`) and provides a dependency called `vim` by writing to the build plan.
 
 #### generate
 
 <!-- test:exec -->
 ```bash
-cat $PWD/samples/extensions/tree/bin/generate
+cat $PWD/samples/extensions/vim/bin/generate
 ```
 
-The extension generates a `build.Dockerfile` that installs `tree` on the builder image.
+The extension generates a `build.Dockerfile` that installs `vim` on the builder image.
 
-### Configure the `hello-extensions` buildpack to require `tree`
+### Configure the `hello-extensions` buildpack to require `vim`
 
-Set the `BP_REQUIRES` build-time environment variable to configure the `hello-extensions` buildpack to require `tree` (review the `./bin/detect` script to see why this works).
+Set the `BP_REQUIRES` build-time environment variable to configure the `hello-extensions` buildpack to require `vim` (review the `./bin/detect` script to see why this works).
 
 <!-- test:exec -->
 ```
 pack build hello-extensions \
   --builder localhost:5000/extensions-builder \
   --env BP_EXT_DEMO=1 \
-  --env BP_REQUIRES=tree \
+  --env BP_REQUIRES=vim \
   --network host \
   --path $PWD/samples/apps/java-maven \
   --pull-policy always \
@@ -54,7 +54,7 @@ You should see:
 ```
 ...
 [detector] ======== Results ========
-[detector] pass: samples/tree@0.0.1
+[detector] pass: samples/vim@0.0.1
 [detector] pass: samples/curl@0.0.1
 [detector] pass: samples/cowsay@0.0.1
 [detector] pass: samples/hello-extensions@0.0.1
@@ -62,16 +62,16 @@ You should see:
 [detector] skip: samples/curl@0.0.1 provides unused curl
 [detector] skip: samples/cowsay@0.0.1 provides unused cowsay
 [detector] 2 of 4 buildpacks participating
-[detector] samples/tree             0.0.1
+[detector] samples/vim             0.0.1
 [detector] samples/hello-extensions 0.0.1
-[detector] Running generate for extension samples/tree@0.0.1
+[detector] Running generate for extension samples/vim@0.0.1
 ...
-[extender (build)] Found build Dockerfile for extension 'samples/tree'
-[extender (build)] Applying the Dockerfile at /layers/generated/build/samples_tree/Dockerfile...
+[extender (build)] Found build Dockerfile for extension 'samples/vim'
+[extender (build)] Applying the Dockerfile at /layers/generated/build/samples_vim/Dockerfile...
 ...
 [extender (build)] Running build command
 [extender (build)] ---> Hello Extensions Buildpack
-[extender (build)] tree v1.8.0 (c) 1996 - 2018 by Steve Baker, Thomas Moore, Francesc Rocher, Florian Sesser, Kyosuke Tokoro
+[extender (build)] VIM - Vi IMproved 9.0 (2022 Jun 28, compiled May 19 2023 16:28:36)
 ...
 Successfully built image hello-extensions
 ```

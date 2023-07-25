@@ -40,14 +40,14 @@ docker push localhost:5000/run-image-curl
 
 ### Configure the `hello-extensions` buildpack to require `cowsay`
 
-Set the `BP_REQUIRES` build-time environment variable to configure the `hello-extensions` buildpack to require both `tree` and `curl` (review the `./bin/detect` script to see why this works).
+Set the `BP_REQUIRES` build-time environment variable to configure the `hello-extensions` buildpack to require both `vim` and `curl` (review the `./bin/detect` script to see why this works).
 
 <!-- test:exec -->
 ```bash
 pack build hello-extensions \
   --builder localhost:5000/extensions-builder \
   --env BP_EXT_DEMO=1 \
-  --env BP_REQUIRES=tree,curl,cowsay \
+  --env BP_REQUIRES=vim,curl,cowsay \
   --path $PWD/samples/apps/java-maven \
   --pull-policy always \
   --network host \
@@ -61,16 +61,16 @@ You should see:
 ```
 ...
 [detector] ======== Results ========
-[detector] pass: samples/tree@0.0.1
+[detector] pass: samples/vim@0.0.1
 [detector] pass: samples/curl@0.0.1
 [detector] pass: samples/cowsay@0.0.1
 [detector] pass: samples/hello-extensions@0.0.1
 [detector] Resolving plan... (try #1)
-[detector] samples/tree             0.0.1
+[detector] samples/vim             0.0.1
 [detector] samples/curl             0.0.1
 [detector] samples/cowsay           0.0.1
 [detector] samples/hello-extensions 0.0.1
-[detector] Running generate for extension samples/tree@0.0.1
+[detector] Running generate for extension samples/vim@0.0.1
 ...
 [detector] Running generate for extension samples/curl@0.0.1
 ...
@@ -78,8 +78,8 @@ You should see:
 ...
 [detector] Found a run.Dockerfile from extension 'samples/curl' setting run image to 'localhost:5000/run-image-curl'
 ...
-[extender (build)] Found build Dockerfile for extension 'samples/tree'
-[extender (build)] Applying Dockerfile at /layers/generated/build/samples_tree/Dockerfile...
+[extender (build)] Found build Dockerfile for extension 'samples/vim'
+[extender (build)] Applying Dockerfile at /layers/generated/build/samples_vim/Dockerfile...
 [extender (run)] Found run Dockerfile for extension 'samples/curl'
 [extender (run)] Found run Dockerfile for extension 'samples/cowsay'
 [extender (run)] Applying Dockerfile at /layers/generated/run/samples_curl/Dockerfile...
@@ -88,7 +88,7 @@ You should see:
 ...
 [extender (build)] Running build command
 [extender (build)] ---> Hello Extensions Buildpack
-[extender (build)] tree v1.8.0 (c) 1996 - 2018 by Steve Baker, Thomas Moore, Francesc Rocher, Florian Sesser, Kyosuke Tokoro
+[extender (build)] VIM - Vi IMproved 9.0 (2022 Jun 28, compiled May 19 2023 16:28:36)
 ...
 Successfully built image hello-extensions
 ```

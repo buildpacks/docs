@@ -30,7 +30,7 @@ If the `BP_EXT_DEMO` environment variable is set, the buildpack detects (exits w
 cat $PWD/samples/buildpacks/hello-extensions/bin/build
 ```
 
-The buildpack tries to use `tree` at build-time, and defines a launch process called `curl` that runs `curl --version` at runtime.
+The buildpack tries to use `vim` at build-time, and defines a launch process called `curl` that runs `curl --version` at runtime.
 
 ### Create a builder with extensions and publish it
 
@@ -45,15 +45,6 @@ docker run -d --rm -p 5000:5000 registry:2
 
 You can push the builder to any registry of your choice - just ensure that `docker login` succeeds and replace `localhost:5000` in the following examples with your registry namespace -
 e.g., `index.docker.io/<username>`.
-
-**Note**: to follow this demo all the way through to the end (including run image extension), you will need a pre-release version of the lifecycle.
-* Download the `.tgz` file for your os/arch from the [releases page](https://github.com/buildpacks/lifecycle/releases)
-* Add the following lines to `$PWD/samples/builders/alpine/builder.toml`:
-
-```bash
-[lifecycle]
-uri = <path to .tgz>
-```
 
 Create the builder:
 
@@ -85,12 +76,12 @@ You should see:
 ```
 ...
 [detector] ======== Results ========
-[detector] pass: samples/tree@0.0.1
+[detector] pass: samples/vim@0.0.1
 [detector] pass: samples/curl@0.0.1
 [detector] pass: samples/cowsay@0.0.1
 [detector] pass: samples/hello-extensions@0.0.1
 [detector] Resolving plan... (try #1)
-[detector] skip: samples/tree@0.0.1 provides unused tree
+[detector] skip: samples/vim@0.0.1 provides unused vim
 [detector] skip: samples/curl@0.0.1 provides unused curl
 [detector] skip: samples/cowsay@0.0.1 provides unused cowsay
 [detector] 1 of 4 buildpacks participating
@@ -98,18 +89,18 @@ You should see:
 ...
 [extender (build)] Running build command
 [extender (build)] ---> Hello Extensions Buildpack
-[extender (build)] /cnb/buildpacks/samples_hello-extensions/0.0.1/bin/build: line 6: tree: command not found
+[extender (build)] /cnb/buildpacks/samples_hello-extensions/0.0.1/bin/build: line 6: vim: command not found
 [extender (build)] ERROR: failed to build: exit status 127
 ```
 
-What happened: our builder doesn't have `tree` installed, so the `hello-extensions` buildpack failed to build (as it
-tries to run `tree --version` in its `./bin/build` script).
+What happened: our builder doesn't have `vim` installed, so the `hello-extensions` buildpack failed to build (as it
+tries to run `vim --version` in its `./bin/build` script).
 
-Even though there is a `samples/tree` extension that passed detection (`pass: samples/tree@0.0.1`), because
-the `hello-extensions` buildpack didn't require `tree` in the build plan, the extension was omitted from the detected
-group (`skip: samples/tree@0.0.1 provides unused tree`).
+Even though there is a `samples/vim` extension that passed detection (`pass: samples/vim@0.0.1`), because
+the `hello-extensions` buildpack didn't require `vim` in the build plan, the extension was omitted from the detected
+group (`skip: samples/vim@0.0.1 provides unused vim`).
 
-Let's take a look at how the `samples/tree` extension installs `tree` on the builder image...
+Let's take a look at how the `samples/vim` extension installs `vim` on the builder image...
 
 <!--+ if false+-->
 ---
