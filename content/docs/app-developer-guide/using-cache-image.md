@@ -85,7 +85,7 @@ pack build localhost:5000/buildpack-examples/second-cache-image-example \
 ```
 <!--+- "{{execute}}"+-->
 
-### Images retention
+### Image Retention
 
 Managing the lifecycle of images should be the responsibility of the owner, as `the platform does not automatically clean up old images from the registry`.   
 You can refer to your registry's documentation to learn how to accomplish this.   
