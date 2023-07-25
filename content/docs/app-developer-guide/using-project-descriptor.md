@@ -20,6 +20,7 @@ file at the root of the application. For more on `gitignore` matching see [these
 
 ```toml
 [_]
+schema-version = "0.2"
 id = "io.buildpacks.bash-script"
 name = "Bash Script"
 version = "1.0.0"
@@ -68,6 +69,7 @@ Below is an expanded `project.toml`, with an additional buildpack and environmen
 
 ```toml
 [_]
+schema-version = "0.2"
 id = "io.buildpacks.bash-script"
 name = "Bash Script"
 version = "1.0.0"
