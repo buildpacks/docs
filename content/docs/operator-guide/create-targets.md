@@ -15,7 +15,7 @@ Before we get started, make sure you've got the following installed:
 
 ## Creating custom images
 
-In this tutorial we will create sample build and run images based on `Ubuntu Jammy.`
+In this tutorial we will create sample build and run images based on `Ubuntu Jammy`.
 
 ### Create a common base image
 
