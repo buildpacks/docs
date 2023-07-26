@@ -17,7 +17,7 @@ Stacks will continue to be supported with full backwards compatibility.
 
 ### What's Next?
 [Targets](https://github.com/buildpacks/rfcs/blob/main/text/0096-remove-stacks-mixins.md#example-buildpacktoml-targets-table) replace stacks.
-Targets allow buildpack authors to directly specify details such as OS and architecture directly without the intermediate object known as a "stack." 
+Targets allow buildpack authors to directly specify details such as OS and architecture directly without the intermediate object known as a "stack".
 Targets are available starting with the 0.12 Platform API but should be safely ignored by older platforms.
 
 
