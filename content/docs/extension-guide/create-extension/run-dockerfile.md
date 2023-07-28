@@ -61,7 +61,6 @@ sed -i "14,15s/#//" $PWD/samples/buildpacks/hello-extensions/bin/detect
 
 Re-create the builder:
 
-<!-- test:exec -->
 ```bash
 pack builder create localhost:5000/extensions-builder \
   --config $PWD/samples/builders/alpine/builder.toml \
@@ -70,7 +69,6 @@ pack builder create localhost:5000/extensions-builder \
 
 ### Re-build the application image
 
-<!-- test:exec -->
 ```bash
 pack build hello-extensions \
   --builder localhost:5000/extensions-builder \
@@ -112,7 +110,6 @@ Successfully built image hello-extensions
 
 ### See the image run successfully
 
-<!-- test:exec -->
 ```bash
 docker run --rm hello-extensions
 ```
