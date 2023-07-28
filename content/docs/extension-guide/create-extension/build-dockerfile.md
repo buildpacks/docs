@@ -28,32 +28,14 @@ cat $PWD/samples/extensions/tree/bin/generate
 
 The extension generates a `build.Dockerfile` that installs `tree` on the builder image.
 
-### Re-create our builder with `hello-extensions` updated to require `tree`
-
-Edit `$PWD/samples/buildpacks/hello-extensions/bin/detect` to uncomment the first set of lines that output `[[requires]]` to the build plan:
-
-<!-- test:exec -->
-```bash
-sed -i "10,11s/#//" $PWD/samples/buildpacks/hello-extensions/bin/detect
-```
-
-(On Mac, use `sed -i '' "10,11s/#//" $PWD/samples/buildpacks/hello-extensions/bin/detect`)
-
-Re-create the builder:
-
-<!-- test:exec -->
-```
-pack builder create localhost:5000/extensions-builder \
-  --config $PWD/samples/builders/alpine/builder.toml \
-  --publish
-```
-
 ### Re-build the application image
 
 <!-- test:exec -->
 ```
 pack build hello-extensions \
   --builder localhost:5000/extensions-builder \
+  --env BP_EXT_DEMO=1 \
+  --env BP_REQUIRES=tree \
   --network host \
   --path $PWD/samples/apps/java-maven \
   --pull-policy always \

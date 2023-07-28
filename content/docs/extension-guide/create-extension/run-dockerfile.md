@@ -48,32 +48,14 @@ docker build \
   --tag run-image-curl .
 ```
 
-### Re-create our builder with `hello-extensions` updated to require `curl`
-
-Edit `$PWD/samples/buildpacks/hello-extensions/bin/detect` to uncomment the second set of lines that output `[[requires]]` to the build plan:
-
-<!-- test:exec -->
-```bash
-sed -i "14,15s/#//" $PWD/samples/buildpacks/hello-extensions/bin/detect
-```
-
-(On Mac, use `sed -i '' "14,15s/#//" $PWD/samples/buildpacks/hello-extensions/bin/detect`)
-
-Re-create the builder:
-
-<!-- test:exec -->
-```bash
-pack builder create localhost:5000/extensions-builder \
-  --config $PWD/samples/builders/alpine/builder.toml \
-  --publish
-```
-
 ### Re-build the application image
 
 <!-- test:exec -->
 ```bash
 pack build hello-extensions \
   --builder localhost:5000/extensions-builder \
+  --env BP_EXT_DEMO=1 \
+  --env BP_REQUIRES=tree,curl \
   --path $PWD/samples/apps/java-maven \
   --pull-policy always \
   --network host \
