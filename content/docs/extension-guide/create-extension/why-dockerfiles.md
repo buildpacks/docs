@@ -46,7 +46,6 @@ e.g., `index.docker.io/<username>`.
 
 Create the builder:
 
-<!-- test:exec -->
 ```bash
 pack builder create localhost:5000/extensions-builder \
   --config $PWD/samples/builders/alpine/builder.toml \
