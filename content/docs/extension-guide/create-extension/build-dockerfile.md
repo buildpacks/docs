@@ -41,7 +41,6 @@ sed -i "10,11s/#//" $PWD/samples/buildpacks/hello-extensions/bin/detect
 
 Re-create the builder:
 
-<!-- test:exec -->
 ```
 pack builder create localhost:5000/extensions-builder \
   --config $PWD/samples/builders/alpine/builder.toml \
@@ -50,7 +49,6 @@ pack builder create localhost:5000/extensions-builder \
 
 ### Re-build the application image
 
-<!-- test:exec -->
 ```
 pack build hello-extensions \
   --builder localhost:5000/extensions-builder \
