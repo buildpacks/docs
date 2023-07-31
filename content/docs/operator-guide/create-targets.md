@@ -43,20 +43,6 @@ The image's config's `os` and `architecture` should be set ot valid values accor
 Buildpack images may have their architecture set to `*` to indicate "any" - e.g. a shell script that is expected to succeed in any architecture could specify `*`. 
 Similarly 
 
-**Labels (optional)**
-
-##### TODO / question:   I think the spec says that "the platform"  (as opposed to the build image author) should set the labels?
-https://github.com/buildpacks/spec/pull/335/files#diff-e603760990971da3f77be4bb8d77c3405098f006814fd8c054d2d15f395b8330R199
-should we mention them in this tutorial? 
-##### end TODO /question
-
-
-
-| Name                     | Description              | Format |
-| ------------------------ | ------------------------ | ------ |
-| `io.buildpacks.distribution.name` | OS Distribution Name | String |
-| `io.buildpacks.distribution.version` | OS Distribution Version | String |
-
 **Environment Variables**
 
 | Name           | Description                            |
