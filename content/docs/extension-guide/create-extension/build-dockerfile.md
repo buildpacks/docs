@@ -8,25 +8,25 @@ aliases = [
 
 <!-- test:suite=dockerfiles;weight=4 -->
 
-### Examine `tree` extension
+### Examine `vim` extension
 
 #### detect
 
 <!-- test:exec -->
 ```bash
-cat $PWD/samples/extensions/tree/bin/detect
+cat $PWD/samples/extensions/vim/bin/detect
 ```
 
-The extension always detects (because its exit code is `0`) and provides a dependency called `tree` by writing to the build plan.
+The extension always detects (because its exit code is `0`) and provides a dependency called `vim` by writing to the build plan.
 
 #### generate
 
 <!-- test:exec -->
 ```bash
-cat $PWD/samples/extensions/tree/bin/generate
+cat $PWD/samples/extensions/vim/bin/generate
 ```
 
-The extension generates a `build.Dockerfile` that installs `tree` on the builder image.
+The extension generates a `build.Dockerfile` that installs `vim` on the builder image.
 
 ### Re-build the application image
 
@@ -35,7 +35,7 @@ The extension generates a `build.Dockerfile` that installs `tree` on the builder
 pack build hello-extensions \
   --builder localhost:5000/extensions-builder \
   --env BP_EXT_DEMO=1 \
-  --env BP_REQUIRES=tree \
+  --env BP_REQUIRES=vim \
   --network host \
   --path $PWD/samples/apps/java-maven \
   --pull-policy always \
@@ -48,19 +48,19 @@ You should see:
 
 ```
 [detector] ======== Results ========
-[detector] pass: samples/tree@0.0.1
+[detector] pass: samples/vim@0.0.1
 [detector] pass: samples/hello-extensions@0.0.1
 [detector] Resolving plan... (try #1)
-[detector] samples/tree             0.0.1
+[detector] samples/vim             0.0.1
 [detector] samples/hello-extensions 0.0.1
-[detector] Running generate for extension samples/tree@0.0.1
+[detector] Running generate for extension samples/vim@0.0.1
 ...
-[extender] Found build Dockerfile for extension 'samples/tree'
-[extender] Applying the Dockerfile at /layers/generated/build/samples_tree/Dockerfile...
+[extender] Found build Dockerfile for extension 'samples/vim'
+[extender] Applying the Dockerfile at /layers/generated/build/samples_vim/Dockerfile...
 ...
 [extender] Running build command
 [extender] ---> Hello Extensions Buildpack
-[extender] tree v1.8.0 (c) 1996 - 2018 by Steve Baker, Thomas Moore, Francesc Rocher, Florian Sesser, Kyosuke Tokoro
+[extender] vim v1.8.0 (c) 1996 - 2018 by Steve Baker, Thomas Moore, Francesc Rocher, Florian Sesser, Kyosuke Tokoro
 ...
 Successfully built image hello-extensions
 ```
