@@ -12,7 +12,7 @@ aliases = [
 
 <!-- test:exec -->
 ```bash
-vim $PWD/samples/extensions/vim
+vim --help
 ```
 
 (That's right, we're using the very tool we will later be installing!) You should see something akin to the following:
