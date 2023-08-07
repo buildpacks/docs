@@ -45,7 +45,7 @@ Build the run image:
 ```bash
 docker build \
   --file $PWD/samples/stacks/alpine/run/curl.Dockerfile \
-  --tag run-image-curl .
+  --tag localhost:5000/run-image-curl .
 ```
 
 ### Re-build the application image
@@ -55,7 +55,7 @@ docker build \
 pack build hello-extensions \
   --builder localhost:5000/extensions-builder \
   --env BP_EXT_DEMO=1 \
-  --env BP_REQUIRES=tree,curl \
+  --env BP_REQUIRES=vim,curl \
   --path $PWD/samples/apps/java-maven \
   --pull-policy always \
   --network host \
@@ -68,26 +68,26 @@ You should see:
 
 ```
 [detector] ======== Results ========
-[detector] pass: samples/tree@0.0.1
+[detector] pass: samples/vim@0.0.1
 [detector] pass: samples/curl@0.0.1
 [detector] pass: samples/hello-extensions@0.0.1
 [detector] Resolving plan... (try #1)
-[detector] samples/tree             0.0.1
+[detector] samples/vim             0.0.1
 [detector] samples/curl             0.0.1
 [detector] samples/hello-extensions 0.0.1
-[detector] Running generate for extension samples/tree@0.0.1
+[detector] Running generate for extension samples/vim@0.0.1
 ...
 [detector] Running generate for extension samples/curl@0.0.1
 ...
 [detector] Checking for new run image
 [detector] Found a run.Dockerfile configuring image 'run-image-curl' from extension with id 'samples/curl'
 ...
-[extender] Found build Dockerfile for extension 'samples/tree'
-[extender] Applying the Dockerfile at /layers/generated/build/samples_tree/Dockerfile...
+[extender] Found build Dockerfile for extension 'samples/vim'
+[extender] Applying the Dockerfile at /layers/generated/build/samples_vim/Dockerfile...
 ...
 [extender] Running build command
 [extender] ---> Hello Extensions Buildpack
-[extender] tree v1.8.0 (c) 1996 - 2018 by Steve Baker, Thomas Moore, Francesc Rocher, Florian Sesser, Kyosuke Tokoro
+[extender] vim v1.8.0 (c) 1996 - 2018 by Steve Baker, Thomas Moore, Francesc Rocher, Florian Sesser, Kyosuke Tokoro
 ...
 Successfully built image hello-extensions
 ```
@@ -105,16 +105,16 @@ You should see something akin to:
 curl 7.85.0-DEV (x86_64-pc-linux-musl) ... more stuff here ...
 ```
 
-What happened: now that `hello-extensions` requires both `tree` and `curl` in its build plan, both extensions are
+What happened: now that `hello-extensions` requires both `vim` and `curl` in its build plan, both extensions are
   included in the build and provide the needed dependencies for build and launch, respectively
-* The `tree` extension installs `tree` at build time, as before
+* The `vim` extension installs `vim` at build time, as before
 * The `curl` extension switches the run image to `run-image-curl`, which has `curl` installed
 
 Now our `curl` process can succeed!
 
 ## What's next?
 
-The `tree` and `curl` examples are very simple, but we can unlock powerful new features with this functionality.
+The `vim` and `curl` examples are very simple, but we can unlock powerful new features with this functionality.
 
 Platforms could have several run images available, each tailored to a specific language family, thus limiting the number
 of installed dependencies for each image to the minimum necessary to support the targeted language. Image extensions
