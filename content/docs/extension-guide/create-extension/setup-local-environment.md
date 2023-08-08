@@ -72,12 +72,7 @@ We unset any custom lifecycle image that may have been provided to ensure that t
 
 <!-- test:exec -->
 ```bash
-# FIXME: remove branch when https://github.com/buildpacks/samples/pull/149 is merged
-git clone https://github.com/buildpacks/samples.git && \
-  cd samples && \
-  git fetch --all && \
-  git checkout runext/update-samples && \
-  cd ..
+git clone https://github.com/buildpacks/samples.git
 ```
 
 <!--+ if false +-->
