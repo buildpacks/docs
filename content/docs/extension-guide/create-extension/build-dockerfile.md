@@ -55,13 +55,8 @@ You should see:
 ...
 [detector] ======== Results ========
 [detector] pass: samples/vim@0.0.1
-[detector] pass: samples/curl@0.0.1
-[detector] pass: samples/cowsay@0.0.1
 [detector] pass: samples/hello-extensions@0.0.1
 [detector] Resolving plan... (try #1)
-[detector] skip: samples/curl@0.0.1 provides unused curl
-[detector] skip: samples/cowsay@0.0.1 provides unused cowsay
-[detector] 2 of 4 buildpacks participating
 [detector] samples/vim             0.0.1
 [detector] samples/hello-extensions 0.0.1
 [detector] Running generate for extension samples/vim@0.0.1
