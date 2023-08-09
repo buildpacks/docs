@@ -715,7 +715,7 @@
 </code></pre><ul>
 <li>The <code>extension.toml</code> describes the extension, containing information such as its name, ID, and version, as well as the
 buildpack API that it implements. Though extensions are not buildpacks, they are expected to conform to the buildpack
-API except where noted. Consult the <a href="https://github.com/buildpacks/spec/blob/buildpack/main/image_extension.md">spec</a>
+API except where noted. Consult the <a href="https://github.com/buildpacks/spec/blob/main/image_extension.md">spec</a>
 for further details.</li>
 <li><code>./bin/detect</code> is invoked during the <code>detect</code> phase. It analyzes application source code to determine if the extension
 is needed and contributes <a href="/docs/reference/spec/buildpack-api/#build-plan">build plan</a> entries (much like a
@@ -725,12 +725,12 @@ passed detection, and fails otherwise.</li>
 outputs either or both of <code>build.Dockerfile</code> or <code>run.Dockerfile</code> for extending the builder or run image, respectively.
 <ul>
 <li>Only a limited set of Dockerfile instructions is supported - consult
-the <a href="https://github.com/buildpacks/spec/blob/buildpack/main/image_extension.md">spec</a>
+the <a href="https://github.com/buildpacks/spec/blob/main/image_extension.md">spec</a>
 for further details.</li>
 <li>In the <a href="/docs/features/dockerfiles#phased-approach">initial implementation</a>, <code>run.Dockerfile</code> instructions are
 limited to a single <code>FROM</code> instruction (effectively, it is only possible to switch the run-time base image to a
 pre-created image i.e., no dynamic image modification is allowed). Consult
-the <a href="https://github.com/buildpacks/spec/blob/buildpack/main/image_extension.md">spec</a>
+the <a href="https://github.com/buildpacks/spec/blob/main/image_extension.md">spec</a>
 for further details.</li>
 </ul>
 </li>
