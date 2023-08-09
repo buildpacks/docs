@@ -16,7 +16,7 @@ Before we get started, make sure you've got the following installed:
 
 ## Creating a custom stack
 
-In this tutorial we will create a sample stack based on `Ubuntu Bionic`. To create a custom stack, we need to create customized build and run images. Let's see how we can do so!
+In this tutorial we will create a sample stack based on `Ubuntu Jammy Jellyfish`. To create a custom stack, we need to create customized build and run images. Let's see how we can do so!
 
 
 ### Create a common base image
