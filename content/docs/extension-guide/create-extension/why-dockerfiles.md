@@ -60,6 +60,7 @@ Run `pack build` (note that the "source" directory is effectively ignored in our
 ```
 pack build hello-extensions \
   --builder localhost:5000/extensions-builder \
+  --env BP_EXT_DEMO=1 \
   --network host \
   --path $PWD/samples/apps/java-maven \
   --pull-policy always \
