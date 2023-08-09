@@ -22,12 +22,11 @@ pack inspect-image test-ruby-app
 <!--+- "{{execute}}"+-->
 You should see the following:
 
-<!-- test:assert=contains -->
+<!-- test:assert=contains;ignore-lines=... -->
 ```text
 Run Images:
   cnbs/sample-stack-run:jammy
-  
-Rebasable: true
+...
 
 Buildpacks:
   ID                   VERSION        HOMEPAGE

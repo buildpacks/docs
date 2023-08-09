@@ -18,7 +18,7 @@ jobs:
       - name: Git Checkout
         uses: actions/checkout@v3
       - name: Setup Go environment
-        uses: actions/setup-go@v3
+        uses: actions/setup-go@v4
         with:
           go-version: '1.x'
       - name: Install Dependencies
@@ -26,7 +26,7 @@ jobs:
       - name: Install pack
         uses: buildpacks/github-actions/setup-pack@v5.2.0
         with:
-          pack-version: '0.28.0'
+          pack-version: '0.30.0-rc1'
       - name: Test
         run: make test
         env:

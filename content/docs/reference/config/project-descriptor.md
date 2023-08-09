@@ -15,6 +15,9 @@ The schema for the `project descriptor` is:
 - #### `_` _(table, optional)_
   A configuration table for a project.
 
+  - **`schema-version`** _(string, optional)_\
+    A version identifier for the schema of the `_` table and structure of the project descriptor file. It is a string that follows the format of the [Buildpack API Version](https://github.com/buildpacks/spec/blob/main/buildpack.md#buildpack-api-version). The schema is documented [in the project descriptor specification](https://github.com/buildpacks/spec/blob/main/extensions/project-descriptor.md#schema-version) and is presently `0.2`.
+
   - **`id`** _(string, optional)_\
     A machine readable identifier for the `project`. For example, `com.example.myservice`.
 
