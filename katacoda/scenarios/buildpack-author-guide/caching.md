@@ -251,6 +251,7 @@ it will download the gems:
 <!-- test:assert=contains;ignore-lines=... -->
 ```text
 ===> BUILDING
+...
 ---> Ruby Buildpack
 ---> Downloading and extracting Ruby
 ---> Installing gems
@@ -268,6 +269,7 @@ you will see the new caching logic at work during the `BUILDING` phase:
 <!-- test:assert=contains;ignore-lines=... -->
 ```text
 ===> BUILDING
+...
 ---> Ruby Buildpack
 ---> Downloading and extracting Ruby
 ---> Reusing gems

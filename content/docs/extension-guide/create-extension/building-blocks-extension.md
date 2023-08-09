@@ -8,11 +8,11 @@ aliases = [
 
 <!-- test:suite=dockerfiles;weight=3 -->
 
-### Examine `tree` extension
+### Examine `vim` extension
 
 <!-- test:exec -->
 ```bash
-tree $PWD/samples/extensions/tree
+vim --help
 ```
 
 (That's right, we're using the very tool we will later be installing!) You should see something akin to the following:
@@ -44,7 +44,7 @@ tree $PWD/samples/extensions/tree
     the [spec](https://github.com/buildpacks/spec/blob/buildpack/main/image_extension.md)
     for further details.
 
-We'll take a closer look at the executables for the `tree` extension in the next step.
+We'll take a closer look at the executables for the `vim` extension in the next step.
 
 <!--+ if false+-->
 ---
