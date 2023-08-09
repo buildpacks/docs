@@ -230,7 +230,7 @@
                     return subcalendar;
                 })
         })).then(subcalendars => {
-            // convert to usable events and merge all calendar events to a single array
+            
             return subcalendars.flatMap(subcalendar => {
                 return subcalendar.events.map(teamup_event => {
                     let event = {

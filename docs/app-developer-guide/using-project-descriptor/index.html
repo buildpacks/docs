@@ -710,6 +710,7 @@ and human-readable <code>name</code> of the application we are building, and a <
 <p>Note the <code>include</code> and <code>exclude</code> sections in the below <code>project.toml</code> file use <code>gitignore</code> syntax. So <code>&quot;/README.md&quot;</code> excludes the <code>README</code>
 file at the root of the application. For more on <code>gitignore</code> matching see <a href="https://linuxize.com/post/gitignore-ignoring-files-in-git/#literal-file-names">these docs</a>.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">_</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">schema-version</span> <span class="p">=</span> <span class="s2">&#34;0.2&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;io.buildpacks.bash-script&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Bash Script&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;1.0.0&#34;</span>
@@ -748,6 +749,7 @@ to use different buildpacks in the above case, we could also call <code>pack bui
 </blockquote>
 <p>Below is an expanded <code>project.toml</code>, with an additional buildpack and environment variable included.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">_</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">schema-version</span> <span class="p">=</span> <span class="s2">&#34;0.2&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;io.buildpacks.bash-script&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Bash Script&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;1.0.0&#34;</span>

@@ -773,9 +773,11 @@ Using the Pack CLI The buildpack new &amp;lt;id&amp;gt; command will create a di
 </span></span></code></pre></div><!--+- "{{execute}}"+-->
 <p>The <code>pack build</code> command takes in your Ruby sample app as the <code>--path</code> argument and your buildpack as the <code>--buildpack</code> argument.</p>
 <p>After running the command, you should see that it failed to detect, as the <code>detect</code> script is currently written to simply error out.</p>
-<!-- test:assert=contains -->
+<!-- test:assert=contains;ignore-lines=... -->
 <pre tabindex="0"><code>===&gt; DETECTING
+...
 err:  examples/ruby@0.0.1 (1)
+...
 ERROR: No buildpack groups passed detection.
 ERROR: failed to detect: buildpack(s) failed with err
 </code></pre><!--+ if false+-->

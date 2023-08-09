@@ -729,6 +729,7 @@ e.g., <code>index.docker.io/&lt;username&gt;</code>.</p>
 <p>Run <code>pack build</code> (note that the &ldquo;source&rdquo; directory is effectively ignored in our example):</p>
 <pre tabindex="0"><code>pack build hello-extensions \
   --builder localhost:5000/extensions-builder \
+  --env BP_EXT_DEMO=1 \
   --network host \
   --path $PWD/samples/apps/java-maven \
   --pull-policy always \

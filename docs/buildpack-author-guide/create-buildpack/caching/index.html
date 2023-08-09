@@ -907,6 +907,7 @@ of simplicity we&rsquo;ll create <code>ruby-sample-app/Gemfile.lock</code> manua
 <p>it will download the gems:</p>
 <!-- test:assert=contains;ignore-lines=... -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">===&gt; BUILDING
+</span></span><span class="line"><span class="cl">...
 </span></span><span class="line"><span class="cl">---&gt; Ruby Buildpack
 </span></span><span class="line"><span class="cl">---&gt; Downloading and extracting Ruby
 </span></span><span class="line"><span class="cl">---&gt; Installing gems
@@ -917,6 +918,7 @@ of simplicity we&rsquo;ll create <code>ruby-sample-app/Gemfile.lock</code> manua
 <p>you will see the new caching logic at work during the <code>BUILDING</code> phase:</p>
 <!-- test:assert=contains;ignore-lines=... -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">===&gt; BUILDING
+</span></span><span class="line"><span class="cl">...
 </span></span><span class="line"><span class="cl">---&gt; Ruby Buildpack
 </span></span><span class="line"><span class="cl">---&gt; Downloading and extracting Ruby
 </span></span><span class="line"><span class="cl">---&gt; Reusing gems

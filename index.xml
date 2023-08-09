@@ -412,7 +412,7 @@ Create a builder with extensions and publish it For now, it is necessary for the
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://buildpacks.io/docs/extension-guide/create-extension/building-blocks-extension/</guid>
-      <description>Examine tree extension tree $PWD/samples/extensions/tree (That&amp;rsquo;s right, we&amp;rsquo;re using the very tool we will later be installing!) You should see something akin to the following:
+      <description>Examine vim extension vim --help (That&amp;rsquo;s right, we&amp;rsquo;re using the very tool we will later be installing!) You should see something akin to the following:
 . ├── bin │ ├── detect &amp;lt;- similar to a buildpack ./bin/detect │ ├── generate &amp;lt;- similar to a buildpack ./bin/build ├── extension.toml &amp;lt;- similar to a buildpack buildpack.toml The extension.toml describes the extension, containing information such as its name, ID, and version, as well as the buildpack API that it implements.</description>
     </item>
     
@@ -444,10 +444,9 @@ Creates a layer for the Ruby runtime Downloads the Ruby runtime and installs it 
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://buildpacks.io/docs/extension-guide/create-extension/build-dockerfile/</guid>
-      <description>Examine tree extension detect cat $PWD/samples/extensions/tree/bin/detect The extension always detects (because its exit code is 0) and provides a dependency called tree by writing to the build plan.
-generate cat $PWD/samples/extensions/tree/bin/generate The extension generates a build.Dockerfile that installs tree on the builder image.
-Re-create our builder with hello-extensions updated to require tree Edit $PWD/samples/buildpacks/hello-extensions/bin/detect to uncomment the first set of lines that output [[requires]] to the build plan:
-sed -i &amp;#34;10,11s/#//&amp;#34; $PWD/samples/buildpacks/hello-extensions/bin/detect (On Mac, use sed -i &#39;&#39; &amp;quot;10,11s/#//&amp;quot; $PWD/samples/buildpacks/hello-extensions/bin/detect)</description>
+      <description>Examine vim extension detect cat $PWD/samples/extensions/vim/bin/detect The extension always detects (because its exit code is 0) and provides a dependency called vim by writing to the build plan.
+generate cat $PWD/samples/extensions/vim/bin/generate The extension generates a build.Dockerfile that installs vim on the builder image.
+Re-build the application image pack build hello-extensions \ --builder localhost:5000/extensions-builder \ --env BP_EXT_DEMO=1 \ --env BP_REQUIRES=vim \ --network host \ --path $PWD/samples/apps/java-maven \ --pull-policy always \ --verbose Note that --network host is necessary when publishing to a local registry.</description>
     </item>
     
     <item>

@@ -710,6 +710,10 @@ default, be named <code>project.toml</code>, though users can name it differentl
 <p>A configuration table for a project.</p>
 <ul>
 <li>
+<p><strong><code>schema-version</code></strong> <em>(string, optional)</em><br>
+A version identifier for the schema of the <code>_</code> table and structure of the project descriptor file. It is a string that follows the format of the <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#buildpack-api-version">Buildpack API Version</a>. The schema is documented <a href="https://github.com/buildpacks/spec/blob/main/extensions/project-descriptor.md#schema-version">in the project descriptor specification</a> and is presently <code>0.2</code>.</p>
+</li>
+<li>
 <p><strong><code>id</code></strong> <em>(string, optional)</em><br>
 A machine readable identifier for the <code>project</code>. For example, <code>com.example.myservice</code>.</p>
 </li>

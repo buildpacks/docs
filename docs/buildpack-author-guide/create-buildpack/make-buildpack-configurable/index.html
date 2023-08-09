@@ -803,8 +803,9 @@ Select Ruby version We&amp;rsquo;ll allow buildpack users to define the…">
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
 </span></span></code></pre></div><!--+- "{{execute}}"+-->
 <p>You will notice that version of Ruby specified in the app&rsquo;s <code>.ruby-version</code> file is downloaded.</p>
-<!-- test:assert=contains -->
+<!-- test:assert=contains;ignore-lines=... -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">===&gt; BUILDING
+</span></span><span class="line"><span class="cl">...
 </span></span><span class="line"><span class="cl">---&gt; Ruby Buildpack
 </span></span><span class="line"><span class="cl">---&gt; Downloading and extracting Ruby 3.1.0
 </span></span></code></pre></div><p>Next, let&rsquo;s see how buildpacks can store information about the dependencies provided in the output app image for introspection.</p>

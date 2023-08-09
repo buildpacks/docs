@@ -721,21 +721,13 @@ generate cat…">
 <!-- test:exec -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker build <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  --file <span class="nv">$PWD</span>/samples/stacks/alpine/run/curl.Dockerfile <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --tag run-image-curl .
-</span></span></code></pre></div><h3 id="re-create-our-builder-with-hello-extensions-updated-to-require-curl">Re-create our builder with <code>hello-extensions</code> updated to require <code>curl</code></h3>
-<p>Edit <code>$PWD/samples/buildpacks/hello-extensions/bin/detect</code> to uncomment the second set of lines that output <code>[[requires]]</code> to the build plan:</p>
-<!-- test:exec -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sed -i <span class="s2">&#34;14,15s/#//&#34;</span> <span class="nv">$PWD</span>/samples/buildpacks/hello-extensions/bin/detect
-</span></span></code></pre></div><p>(On Mac, use <code>sed -i '' &quot;14,15s/#//&quot; $PWD/samples/buildpacks/hello-extensions/bin/detect</code>)</p>
-<p>Re-create the builder:</p>
-<!-- test:exec -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack builder create localhost:5000/extensions-builder <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --config <span class="nv">$PWD</span>/samples/builders/alpine/builder.toml <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --publish
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --tag localhost:5000/run-image-curl .
 </span></span></code></pre></div><h3 id="re-build-the-application-image">Re-build the application image</h3>
 <!-- test:exec -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack build hello-extensions <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  --builder localhost:5000/extensions-builder <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --env <span class="nv">BP_EXT_DEMO</span><span class="o">=</span><span class="m">1</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --env <span class="nv">BP_REQUIRES</span><span class="o">=</span>vim,curl <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  --path <span class="nv">$PWD</span>/samples/apps/java-maven <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  --pull-policy always <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  --network host <span class="se">\
@@ -743,26 +735,26 @@ generate cat…">
 </span></span></code></pre></div><p>Note that <code>--network host</code> is necessary when publishing to a local registry.</p>
 <p>You should see:</p>
 <pre tabindex="0"><code>[detector] ======== Results ========
-[detector] pass: samples/tree@0.0.1
+[detector] pass: samples/vim@0.0.1
 [detector] pass: samples/curl@0.0.1
 [detector] pass: samples/hello-extensions@0.0.1
 [detector] Resolving plan... (try #1)
-[detector] samples/tree             0.0.1
+[detector] samples/vim             0.0.1
 [detector] samples/curl             0.0.1
 [detector] samples/hello-extensions 0.0.1
-[detector] Running generate for extension samples/tree@0.0.1
+[detector] Running generate for extension samples/vim@0.0.1
 ...
 [detector] Running generate for extension samples/curl@0.0.1
 ...
 [detector] Checking for new run image
 [detector] Found a run.Dockerfile configuring image &#39;run-image-curl&#39; from extension with id &#39;samples/curl&#39;
 ...
-[extender] Found build Dockerfile for extension &#39;samples/tree&#39;
-[extender] Applying the Dockerfile at /layers/generated/build/samples_tree/Dockerfile...
+[extender] Found build Dockerfile for extension &#39;samples/vim&#39;
+[extender] Applying the Dockerfile at /layers/generated/build/samples_vim/Dockerfile...
 ...
 [extender] Running build command
 [extender] ---&gt; Hello Extensions Buildpack
-[extender] tree v1.8.0 (c) 1996 - 2018 by Steve Baker, Thomas Moore, Francesc Rocher, Florian Sesser, Kyosuke Tokoro
+[extender] vim v1.8.0 (c) 1996 - 2018 by Steve Baker, Thomas Moore, Francesc Rocher, Florian Sesser, Kyosuke Tokoro
 ...
 Successfully built image hello-extensions
 </code></pre><h3 id="see-the-image-run-successfully">See the image run successfully</h3>
@@ -770,15 +762,15 @@ Successfully built image hello-extensions
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run --rm hello-extensions
 </span></span></code></pre></div><p>You should see something akin to:</p>
 <pre tabindex="0"><code>curl 7.85.0-DEV (x86_64-pc-linux-musl) ... more stuff here ...
-</code></pre><p>What happened: now that <code>hello-extensions</code> requires both <code>tree</code> and <code>curl</code> in its build plan, both extensions are
+</code></pre><p>What happened: now that <code>hello-extensions</code> requires both <code>vim</code> and <code>curl</code> in its build plan, both extensions are
 included in the build and provide the needed dependencies for build and launch, respectively</p>
 <ul>
-<li>The <code>tree</code> extension installs <code>tree</code> at build time, as before</li>
+<li>The <code>vim</code> extension installs <code>vim</code> at build time, as before</li>
 <li>The <code>curl</code> extension switches the run image to <code>run-image-curl</code>, which has <code>curl</code> installed</li>
 </ul>
 <p>Now our <code>curl</code> process can succeed!</p>
 <h2 id="whats-next">What&rsquo;s next?</h2>
-<p>The <code>tree</code> and <code>curl</code> examples are very simple, but we can unlock powerful new features with this functionality.</p>
+<p>The <code>vim</code> and <code>curl</code> examples are very simple, but we can unlock powerful new features with this functionality.</p>
 <p>Platforms could have several run images available, each tailored to a specific language family, thus limiting the number
 of installed dependencies for each image to the minimum necessary to support the targeted language. Image extensions
 could be used to switch the run image to that most appropriate for the current application.</p>
