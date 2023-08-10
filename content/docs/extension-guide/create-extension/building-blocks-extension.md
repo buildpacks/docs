@@ -38,13 +38,9 @@ You should see something akin to the following:
   * Only a limited set of Dockerfile instructions is supported - consult
     the [spec](https://github.com/buildpacks/spec/blob/main/image_extension.md)
     for further details.
-  * In the [initial implementation](/docs/features/dockerfiles#phased-approach), `run.Dockerfile` instructions are
-    limited to a single `FROM` instruction (effectively, it is only possible to switch the run-time base image to a
-    pre-created image i.e., no dynamic image modification is allowed). Consult
-    the [spec](https://github.com/buildpacks/spec/blob/main/image_extension.md)
-    for further details.
 
 We'll take a closer look at the executables for the `vim` extension in the next step.
+For guidance around writing extensions and more advanced use cases, see [here](/docs/extension-guide/create-extension/advanced-extensions).
 
 <!--+ if false+-->
 ---
