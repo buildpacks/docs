@@ -105,7 +105,7 @@ Select Ruby version We&amp;rsquo;ll allow buildpack users to define the desired 
       
       <guid>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials/</guid>
       <description>One of the benefits of buildpacks is they can also populate the app image with metadata from the build process, allowing you to audit the app image for information like:
-The process types that are available and the commands associated with them The run-image the app image was based on The buildpacks were used to create the app image And more&amp;hellip;! You can find some of this information using pack via its inspect-image command.</description>
+The process types that are available and the commands associated with them The run-image the app image was based on The buildpacks were used to create the app image Whether the run-image can be rebased with a new version through the Rebasable label or not And more&amp;hellip;!</description>
     </item>
     
   </channel>
