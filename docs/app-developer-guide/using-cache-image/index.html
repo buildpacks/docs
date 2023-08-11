@@ -755,6 +755,13 @@ builds may also update the specified <code>cache-image</code>.</p>
     --network host \
     --publish
 </code></pre><!--+- "{{execute}}"+-->
+<h3 id="image-retention">Image Retention</h3>
+<p>Managing the lifecycle of images should be the responsibility of the owner, as <code>the platform does not automatically clean up old images from the registry</code>.<br>
+You can refer to your registry&rsquo;s documentation to learn how to accomplish this.</p>
+<ul>
+<li><a href="https://aws.amazon.com/ecr/">AWS ECR</a> users can find information on how to delete images in the AWS ECR documentation, specifically in the section on <a href="https://docs.aws.amazon.com/AmazonECR/latest/userguide/delete_image.html">image deletion</a>.</li>
+<li><a href="https://docs.docker.com/engine/">Docker</a> users can consult the Docker documentation on <a href="https://docs.docker.com/docker-hub/image-management/">Advanced Image Management</a> to find out how to delete images.</li>
+</ul>
 
 
         
