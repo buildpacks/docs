@@ -114,9 +114,9 @@ The root directory for a typical extension might look like the following:
 ```
 .
 ├── bin
-│   ├── detect     <- similar to a buildpack ./bin/detect
-│   ├── generate   <- similar to a buildpack ./bin/build
-├── extension.toml <- similar to a buildpack buildpack.toml
+│   ├── detect
+│   ├── generate
+├── extension.toml
 ```
 
 But it could also look like any of the following:
