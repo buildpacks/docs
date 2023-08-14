@@ -19,7 +19,9 @@ Let's see a build that requires base image extension in order to succeed.
 cat $PWD/samples/buildpacks/hello-extensions/bin/detect
 ```
 
-The buildpack always detects (because its exit code is `0`) but doesn't require any dependencies (as the output build plan is empty).
+The buildpack opts-out of the build (exits with non-zero code) unless the `BP_EXT_DEMO` environment variable is set.
+
+If the `BP_EXT_DEMO` environment variable is set, the buildpack detects (exits with code `0`), but doesn't require any dependencies through a build plan unless the `BP_REQUIRES` environment variable is set.
 
 #### build
 
@@ -28,7 +30,7 @@ The buildpack always detects (because its exit code is `0`) but doesn't require 
 cat $PWD/samples/buildpacks/hello-extensions/bin/build
 ```
 
-The buildpack tries to use `tree` at build-time, and defines a launch process called `curl` that runs `curl --version` at runtime.
+The buildpack tries to use `vim` at build-time, and defines a launch process called `curl` that runs `curl --version` at runtime.
 
 ### Create a builder with extensions and publish it
 
@@ -72,28 +74,33 @@ Note that `--network host` is necessary when publishing to a local registry.
 You should see:
 
 ```
+...
 [detector] ======== Results ========
-[detector] pass: samples/tree@0.0.1
+[detector] pass: samples/vim@0.0.1
+[detector] pass: samples/curl@0.0.1
+[detector] pass: samples/cowsay@0.0.1
 [detector] pass: samples/hello-extensions@0.0.1
 [detector] Resolving plan... (try #1)
-[detector] skip: samples/tree@0.0.1 provides unused tree
-[detector] 1 of 2 buildpacks participating
+[detector] skip: samples/vim@0.0.1 provides unused vim
+[detector] skip: samples/curl@0.0.1 provides unused curl
+[detector] skip: samples/cowsay@0.0.1 provides unused cowsay
+[detector] 1 of 4 buildpacks participating
 [detector] samples/hello-extensions 0.0.1
 ...
-[extender] Running build command
-[extender] ---> Hello Extensions Buildpack
-[extender] /cnb/buildpacks/samples_hello-extensions/0.0.1/bin/build: line 6: tree: command not found
-[extender] ERROR: failed to build: exit status 127
+[extender (build)] Running build command
+[extender (build)] ---> Hello Extensions Buildpack
+[extender (build)] /cnb/buildpacks/samples_hello-extensions/0.0.1/bin/build: line 6: vim: command not found
+[extender (build)] ERROR: failed to build: exit status 127
 ```
 
-What happened: our builder doesn't have `tree` installed, so the `hello-extensions` buildpack failed to build (as it
-tries to run `tree --version` in its `./bin/build` script).
+What happened: our builder doesn't have `vim` installed, so the `hello-extensions` buildpack failed to build (as it
+tries to run `vim --version` in its `./bin/build` script).
 
-Even though there is a `samples/tree` extension that passed detection (`pass: samples/tree@0.0.1`), because
-the `hello-extensions` buildpack didn't require `tree` in the build plan, the extension was omitted from the detected
-group (`skip: samples/tree@0.0.1 provides unused tree`).
+Even though there is a `samples/vim` extension that passed detection (`pass: samples/vim@0.0.1`), because
+the `hello-extensions` buildpack didn't require `vim` in the build plan, the extension was omitted from the detected
+group (`skip: samples/vim@0.0.1 provides unused vim`).
 
-Let's take a look at how the `samples/tree` extension installs `tree` on the builder image...
+Let's take a look at how the `samples/vim` extension installs `vim` on the builder image...
 
 <!--+ if false+-->
 ---
