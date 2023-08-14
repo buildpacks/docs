@@ -13,7 +13,7 @@ Exporting to OCI layout format is an **experimental** feature available on pack 
 
 ### 1. Enable experimental feature
 
-Verify your pack version is equal or greater than X.Y.Z
+Verify your pack version is equal or greater than 0.29.0
 
 ```bash
 pack version
