@@ -123,6 +123,10 @@ But it could also look like any of the following:
 
 #### ./bin/detect is optional!
 
+If `./bin/detect` is missing,
+the extension is assumed to pass detection and
+the lifecycle will interpret the contents of `./detect` as the contents of `$CNB_OUTPUT_DIR`.
+
 ```
 .
 ├── bin
@@ -133,6 +137,9 @@ But it could also look like any of the following:
 ```
 
 #### ./bin/generate is optional!
+
+If `./bin/generate` is missing,
+the lifecycle will interpret the contents of `./generate` as the contents of `$CNB_OUTPUT_DIR`.
 
 ```
 ├── bin
