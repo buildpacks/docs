@@ -42,6 +42,8 @@ Base Image:
 Run Images:
   cnbs/sample-stack-run:alpine
 
+Rebasable: true
+
 Buildpacks:
   ID                             VERSION           HOMEPAGE
   samples/java-maven             0.0.1             https://github.com/buildpacks/samples/tree/main/buildpacks/java-maven
