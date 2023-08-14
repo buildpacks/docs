@@ -8,9 +8,9 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Examine curl extension detect cat $PWD/samples/extensions/curl/bin/detect The extension always detects (because its exit code is 0) and provides a dependency called curl.
-generate cat…"/>
-<link rel="canonical" content="https://buildpacks.io/docs/extension-guide/create-extension/run-dockerfile/">
+<meta name="description" content="Run images can be kept lean if image extensions are used to dynamically install the needed dependencies for the current application.
+Examine cowsay extension detect cat…"/>
+<link rel="canonical" content="https://buildpacks.io/docs/extension-guide/create-extension/run-dockerfile-extend/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
 
@@ -18,13 +18,13 @@ generate cat…"/>
 
 
 
-<meta property="og:title" content="Generating a run.Dockerfile · Cloud Native Buildpacks">
+<meta property="og:title" content="Generating a run.Dockerfile that extends the runtime base image · Cloud Native Buildpacks">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://buildpacks.io/docs/extension-guide/create-extension/run-dockerfile/">
+<meta property="og:url" content="https://buildpacks.io/docs/extension-guide/create-extension/run-dockerfile-extend/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-<meta property="og:description" content="Examine curl extension detect cat $PWD/samples/extensions/curl/bin/detect The extension always detects (because its exit code is 0) and provides a dependency called curl.
-generate cat…">
+<meta property="og:description" content="Run images can be kept lean if image extensions are used to dynamically install the needed dependencies for the current application.
+Examine cowsay extension detect cat…">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -35,7 +35,7 @@ generate cat…">
 
 
 
-<meta property="twitter:title" content="Generating a run.Dockerfile · Cloud Native Buildpacks">
+<meta property="twitter:title" content="Generating a run.Dockerfile that extends the runtime base image · Cloud Native Buildpacks">
 <meta property="twitter:card" content="summary">
 <meta property="twitter:image" content="https://buildpacks.io/images/buildpacks-social-card-square.jpg">
 <meta property="twitter:image:alt" content="Buildpacks project logo">
@@ -98,7 +98,7 @@ generate cat…">
     gtag('config', 'G-CJLSR4FQXL');
   </script>
 
-  <title>Generating a run.Dockerfile · Cloud Native Buildpacks</title>
+  <title>Generating a run.Dockerfile that extends the runtime base image · Cloud Native Buildpacks</title>
 </head>
 
 <body>
@@ -378,8 +378,11 @@ generate cat…">
 <li data-nav-id="/docs/extension-guide/create-extension/build-dockerfile/" class="dd-item depth-2">
   <a href="/docs/extension-guide/create-extension/build-dockerfile/">Generating a build.Dockerfile</a>
 </li>
-<li data-nav-id="/docs/extension-guide/create-extension/run-dockerfile/" class="dd-item depth-2 active">
-  <a href="/docs/extension-guide/create-extension/run-dockerfile/">Generating a run.Dockerfile</a>
+<li data-nav-id="/docs/extension-guide/create-extension/run-dockerfile-switch/" class="dd-item depth-2">
+  <a href="/docs/extension-guide/create-extension/run-dockerfile-switch/">Generating a run.Dockerfile that switches the runtime base image</a>
+</li>
+<li data-nav-id="/docs/extension-guide/create-extension/run-dockerfile-extend/" class="dd-item depth-2 active">
+  <a href="/docs/extension-guide/create-extension/run-dockerfile-extend/">Generating a run.Dockerfile that extends the runtime base image</a>
 </li>
   </ul>
 </li>
@@ -686,12 +689,12 @@ generate cat…">
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BGenerating&#43;a&#43;run.Dockerfile%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fextension-guide%2Fcreate-extension%2Frun-dockerfile%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BGenerating&#43;a&#43;run.Dockerfile&#43;that&#43;extends&#43;the&#43;runtime&#43;base&#43;image%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fextension-guide%2Fcreate-extension%2Frun-dockerfile-extend%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/extension-guide/create-extension/run-dockerfile.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/extension-guide/create-extension/run-dockerfile-extend.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
@@ -699,86 +702,81 @@ generate cat…">
 
 
         <div class="heading">
-          <h1 class="title">Generating a run.Dockerfile</h1>
+          <h1 class="title">Generating a run.Dockerfile that extends the runtime base image</h1>
         </div>
 
-        <!-- test:suite=dockerfiles;weight=5 -->
-<h3 id="examine-curl-extension">Examine <code>curl</code> extension</h3>
+        <!-- test:suite=dockerfiles;weight=6 -->
+<p>Run images can be kept lean if image extensions are used to dynamically install the needed dependencies
+for the current application.</p>
+<h3 id="examine-cowsay-extension">Examine <code>cowsay</code> extension</h3>
 <h4 id="detect">detect</h4>
 <!-- test:exec -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat <span class="nv">$PWD</span>/samples/extensions/curl/bin/detect
-</span></span></code></pre></div><p>The extension always detects (because its exit code is <code>0</code>) and provides a dependency called <code>curl</code>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat <span class="nv">$PWD</span>/samples/extensions/cowsay/bin/detect
+</span></span></code></pre></div><p>The extension always detects (because its exit code is <code>0</code>) and provides a dependency called <code>cowsay</code>.</p>
 <h4 id="generate">generate</h4>
 <!-- test:exec -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat <span class="nv">$PWD</span>/samples/extensions/curl/bin/generate
-</span></span></code></pre></div><p>The extension generates a <code>run.Dockerfile</code> that switches the run image to reference <code>run-image-curl</code>.</p>
-<h3 id="build-a-run-image-for-curl-extension-to-use">Build a run image for <code>curl</code> extension to use</h3>
-<!-- test:exec -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat <span class="nv">$PWD</span>/samples/stacks/alpine/run/curl.Dockerfile
-</span></span></code></pre></div><p>This is a simple Dockerfile that creates a CNB run image from the <code>curl</code> base image by adding the required CNB user configuration and <code>io.buildpacks.stack.id</code> label.</p>
-<p>The Dockerfile could come from anywhere, but we include it in the <code>stacks</code> directory for convenience.</p>
-<p>Build the run image:</p>
-<!-- test:exec -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker build <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --file <span class="nv">$PWD</span>/samples/stacks/alpine/run/curl.Dockerfile <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --tag localhost:5000/run-image-curl .
-</span></span></code></pre></div><h3 id="re-build-the-application-image">Re-build the application image</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat <span class="nv">$PWD</span>/samples/extensions/cowsay/bin/generate
+</span></span></code></pre></div><p>The extension generates a <code>run.Dockerfile</code> that installs <code>cowsay</code> on the current run image.</p>
+<h3 id="configure-the-hello-extensions-buildpack-to-require-cowsay">Configure the <code>hello-extensions</code> buildpack to require <code>cowsay</code></h3>
+<p>Set the <code>BP_REQUIRES</code> build-time environment variable to configure the <code>hello-extensions</code> buildpack to require both <code>vim</code> and <code>curl</code> (review the <code>./bin/detect</code> script to see why this works).</p>
 <!-- test:exec -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack build hello-extensions <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  --builder localhost:5000/extensions-builder <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  --env <span class="nv">BP_EXT_DEMO</span><span class="o">=</span><span class="m">1</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --env <span class="nv">BP_REQUIRES</span><span class="o">=</span>vim,curl <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --env <span class="nv">BP_REQUIRES</span><span class="o">=</span>vim,curl,cowsay <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  --path <span class="nv">$PWD</span>/samples/apps/java-maven <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  --pull-policy always <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  --network host <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  --verbose
 </span></span></code></pre></div><p>Note that <code>--network host</code> is necessary when publishing to a local registry.</p>
 <p>You should see:</p>
-<pre tabindex="0"><code>[detector] ======== Results ========
+<pre tabindex="0"><code>...
+[detector] ======== Results ========
 [detector] pass: samples/vim@0.0.1
 [detector] pass: samples/curl@0.0.1
+[detector] pass: samples/cowsay@0.0.1
 [detector] pass: samples/hello-extensions@0.0.1
 [detector] Resolving plan... (try #1)
 [detector] samples/vim             0.0.1
 [detector] samples/curl             0.0.1
+[detector] samples/cowsay           0.0.1
 [detector] samples/hello-extensions 0.0.1
 [detector] Running generate for extension samples/vim@0.0.1
 ...
 [detector] Running generate for extension samples/curl@0.0.1
 ...
-[detector] Checking for new run image
-[detector] Found a run.Dockerfile configuring image &#39;run-image-curl&#39; from extension with id &#39;samples/curl&#39;
+[detector] Running generate for extension samples/cowsay@0.0.1
 ...
-[extender] Found build Dockerfile for extension &#39;samples/vim&#39;
-[extender] Applying the Dockerfile at /layers/generated/build/samples_vim/Dockerfile...
+[detector] Found a run.Dockerfile from extension &#39;samples/curl&#39; setting run image to &#39;localhost:5000/run-image-curl&#39;
 ...
-[extender] Running build command
-[extender] ---&gt; Hello Extensions Buildpack
-[extender] vim v1.8.0 (c) 1996 - 2018 by Steve Baker, Thomas Moore, Francesc Rocher, Florian Sesser, Kyosuke Tokoro
+[extender (build)] Found build Dockerfile for extension &#39;samples/vim&#39;
+[extender (build)] Applying Dockerfile at /layers/generated/build/samples_vim/Dockerfile...
+[extender (run)] Found run Dockerfile for extension &#39;samples/curl&#39;
+[extender (run)] Found run Dockerfile for extension &#39;samples/cowsay&#39;
+[extender (run)] Applying Dockerfile at /layers/generated/run/samples_curl/Dockerfile...
+...
+[extender (run)] Applying Dockerfile at /layers/generated/run/samples_cowsay/Dockerfile
+...
+[extender (build)] Running build command
+[extender (build)] ---&gt; Hello Extensions Buildpack
+[extender (build)] VIM - Vi IMproved 9.0 (2022 Jun 28, compiled May 19 2023 16:28:36)
 ...
 Successfully built image hello-extensions
-</code></pre><h3 id="see-the-image-run-successfully">See the image run successfully</h3>
+</code></pre><p>Note: build image extension and run image extension are done in parallel,
+so the log lines for those phases may print in a different order from that shown above.</p>
+<h3 id="see-the-image-run-successfully">See the image run successfully</h3>
 <!-- test:exec -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run --rm hello-extensions
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run --rm --entrypoint cowsay hello-extensions
 </span></span></code></pre></div><p>You should see something akin to:</p>
-<pre tabindex="0"><code>curl 7.85.0-DEV (x86_64-pc-linux-musl) ... more stuff here ...
-</code></pre><p>What happened: now that <code>hello-extensions</code> requires both <code>vim</code> and <code>curl</code> in its build plan, both extensions are
-included in the build and provide the needed dependencies for build and launch, respectively</p>
-<ul>
-<li>The <code>vim</code> extension installs <code>vim</code> at build time, as before</li>
-<li>The <code>curl</code> extension switches the run image to <code>run-image-curl</code>, which has <code>curl</code> installed</li>
-</ul>
-<p>Now our <code>curl</code> process can succeed!</p>
-<h2 id="whats-next">What&rsquo;s next?</h2>
-<p>The <code>vim</code> and <code>curl</code> examples are very simple, but we can unlock powerful new features with this functionality.</p>
-<p>Platforms could have several run images available, each tailored to a specific language family, thus limiting the number
-of installed dependencies for each image to the minimum necessary to support the targeted language. Image extensions
-could be used to switch the run image to that most appropriate for the current application.</p>
-<p>Similarly, builder images could be kept lean if image extensions are used to dynamically install the needed dependencies
-for each application.</p>
-<p>In the future, both run image switching and run image modification will be supported, opening the door to other use
-cases. Consult the <a href="https://github.com/buildpacks/rfcs/pull/173">RFC</a> for further information.</p>
-
+<pre tabindex="0"><code> ________
+&lt; MOOOO! &gt;
+ --------
+        \   ^__^
+         \  (oo)\_______
+            (__)\       )\/\
+                ||----w |
+                ||     ||
+</code></pre>
 
         
 
@@ -788,12 +786,12 @@ cases. Consult the <a href="https://github.com/buildpacks/rfcs/pull/173">RFC</a>
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BGenerating&#43;a&#43;run.Dockerfile%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fextension-guide%2Fcreate-extension%2Frun-dockerfile%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BGenerating&#43;a&#43;run.Dockerfile&#43;that&#43;extends&#43;the&#43;runtime&#43;base&#43;image%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fextension-guide%2Fcreate-extension%2Frun-dockerfile-extend%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/extension-guide/create-extension/run-dockerfile.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/extension-guide/create-extension/run-dockerfile-extend.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   

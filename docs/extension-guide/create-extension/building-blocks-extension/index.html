@@ -8,8 +8,8 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Examine vim extension vim --help (That&amp;rsquo;s right, we&amp;rsquo;re using the very tool we will later be installing!) You should see something akin to the following:
-. ├── bin │ ├── detect &amp;lt;-…"/>
+<meta name="description" content="Examine vim extension tree $PWD/samples/extensions/vim You should see something akin to the following:
+. ├── bin │ ├── detect &amp;lt;- similar to a buildpack ./bin/detect │ ├── generate &amp;lt;- similar to…"/>
 <link rel="canonical" content="https://buildpacks.io/docs/extension-guide/create-extension/building-blocks-extension/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
@@ -23,8 +23,8 @@
 <meta property="og:url" content="https://buildpacks.io/docs/extension-guide/create-extension/building-blocks-extension/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-<meta property="og:description" content="Examine vim extension vim --help (That&amp;rsquo;s right, we&amp;rsquo;re using the very tool we will later be installing!) You should see something akin to the following:
-. ├── bin │ ├── detect &amp;lt;-…">
+<meta property="og:description" content="Examine vim extension tree $PWD/samples/extensions/vim You should see something akin to the following:
+. ├── bin │ ├── detect &amp;lt;- similar to a buildpack ./bin/detect │ ├── generate &amp;lt;- similar to…">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -378,8 +378,11 @@
 <li data-nav-id="/docs/extension-guide/create-extension/build-dockerfile/" class="dd-item depth-2">
   <a href="/docs/extension-guide/create-extension/build-dockerfile/">Generating a build.Dockerfile</a>
 </li>
-<li data-nav-id="/docs/extension-guide/create-extension/run-dockerfile/" class="dd-item depth-2">
-  <a href="/docs/extension-guide/create-extension/run-dockerfile/">Generating a run.Dockerfile</a>
+<li data-nav-id="/docs/extension-guide/create-extension/run-dockerfile-switch/" class="dd-item depth-2">
+  <a href="/docs/extension-guide/create-extension/run-dockerfile-switch/">Generating a run.Dockerfile that switches the runtime base image</a>
+</li>
+<li data-nav-id="/docs/extension-guide/create-extension/run-dockerfile-extend/" class="dd-item depth-2">
+  <a href="/docs/extension-guide/create-extension/run-dockerfile-extend/">Generating a run.Dockerfile that extends the runtime base image</a>
 </li>
   </ul>
 </li>
@@ -705,8 +708,8 @@
         <!-- test:suite=dockerfiles;weight=3 -->
 <h3 id="examine-vim-extension">Examine <code>vim</code> extension</h3>
 <!-- test:exec -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">vim --help
-</span></span></code></pre></div><p>(That&rsquo;s right, we&rsquo;re using the very tool we will later be installing!) You should see something akin to the following:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tree <span class="nv">$PWD</span>/samples/extensions/vim
+</span></span></code></pre></div><p>You should see something akin to the following:</p>
 <pre tabindex="0"><code>.
 ├── bin
 │   ├── detect     &lt;- similar to a buildpack ./bin/detect
@@ -725,11 +728,6 @@ passed detection, and fails otherwise.</li>
 outputs either or both of <code>build.Dockerfile</code> or <code>run.Dockerfile</code> for extending the builder or run image, respectively.
 <ul>
 <li>Only a limited set of Dockerfile instructions is supported - consult
-the <a href="https://github.com/buildpacks/spec/blob/main/image_extension.md">spec</a>
-for further details.</li>
-<li>In the <a href="/docs/features/dockerfiles#phased-approach">initial implementation</a>, <code>run.Dockerfile</code> instructions are
-limited to a single <code>FROM</code> instruction (effectively, it is only possible to switch the run-time base image to a
-pre-created image i.e., no dynamic image modification is allowed). Consult
 the <a href="https://github.com/buildpacks/spec/blob/main/image_extension.md">spec</a>
 for further details.</li>
 </ul>

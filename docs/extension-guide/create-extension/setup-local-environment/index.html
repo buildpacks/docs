@@ -376,8 +376,11 @@
 <li data-nav-id="/docs/extension-guide/create-extension/build-dockerfile/" class="dd-item depth-2">
   <a href="/docs/extension-guide/create-extension/build-dockerfile/">Generating a build.Dockerfile</a>
 </li>
-<li data-nav-id="/docs/extension-guide/create-extension/run-dockerfile/" class="dd-item depth-2">
-  <a href="/docs/extension-guide/create-extension/run-dockerfile/">Generating a run.Dockerfile</a>
+<li data-nav-id="/docs/extension-guide/create-extension/run-dockerfile-switch/" class="dd-item depth-2">
+  <a href="/docs/extension-guide/create-extension/run-dockerfile-switch/">Generating a run.Dockerfile that switches the runtime base image</a>
+</li>
+<li data-nav-id="/docs/extension-guide/create-extension/run-dockerfile-extend/" class="dd-item depth-2">
+  <a href="/docs/extension-guide/create-extension/run-dockerfile-extend/">Generating a run.Dockerfile that extends the runtime base image</a>
 </li>
   </ul>
 </li>
@@ -731,7 +734,7 @@ Server: Docker Engine - Community
 </span></span></code></pre></div><h3 id="ensure-pack-version-supports-image-extensions">Ensure pack version supports image extensions</h3>
 <!-- test:exec -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack version
-</span></span></code></pre></div><p>The version should be at least <code>0.28.0</code></p>
+</span></span></code></pre></div><p>The version should be at least <code>0.30.0</code></p>
 <h3 id="update-pack-configuration">Update pack configuration</h3>
 <!-- test:exec -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack config experimental <span class="nb">true</span>

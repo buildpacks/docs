@@ -132,13 +132,15 @@
   </url><url>
     <loc>https://buildpacks.io/docs/extension-guide/create-extension/build-dockerfile/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/extension-guide/create-extension/run-dockerfile/</loc>
+    <loc>https://buildpacks.io/docs/extension-guide/create-extension/run-dockerfile-switch/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/make-app-runnable/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/extension-guide/consume-extension/from-cli/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/extension-guide/consume-extension/in-builder/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/extension-guide/create-extension/run-dockerfile-extend/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/specify-multiple-process-types/</loc>
   </url><url>

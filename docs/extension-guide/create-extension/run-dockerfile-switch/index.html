@@ -8,8 +8,8 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<link rel="canonical" content="https://buildpacks.io/docs/tools/pack/cli/pack_config_run-image-mirrors_add/">
+<meta name="description" content="Platforms can have several run images available, each tailored to a specific language family - thus limiting the number of installed dependencies for each image to the minimum necessary to support…"/>
+<link rel="canonical" content="https://buildpacks.io/docs/extension-guide/create-extension/run-dockerfile-switch/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
 
@@ -17,12 +17,12 @@
 
 
 
-<meta property="og:title" content="pack config run-image-mirrors add · Cloud Native Buildpacks">
+<meta property="og:title" content="Generating a run.Dockerfile that switches the runtime base image · Cloud Native Buildpacks">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://buildpacks.io/docs/tools/pack/cli/pack_config_run-image-mirrors_add/">
+<meta property="og:url" content="https://buildpacks.io/docs/extension-guide/create-extension/run-dockerfile-switch/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-
+<meta property="og:description" content="Platforms can have several run images available, each tailored to a specific language family - thus limiting the number of installed dependencies for each image to the minimum necessary to support…">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -33,7 +33,7 @@
 
 
 
-<meta property="twitter:title" content="pack config run-image-mirrors add · Cloud Native Buildpacks">
+<meta property="twitter:title" content="Generating a run.Dockerfile that switches the runtime base image · Cloud Native Buildpacks">
 <meta property="twitter:card" content="summary">
 <meta property="twitter:image" content="https://buildpacks.io/images/buildpacks-social-card-square.jpg">
 <meta property="twitter:image:alt" content="Buildpacks project logo">
@@ -96,7 +96,7 @@
     gtag('config', 'G-CJLSR4FQXL');
   </script>
 
-  <title>pack config run-image-mirrors add · Cloud Native Buildpacks</title>
+  <title>Generating a run.Dockerfile that switches the runtime base image · Cloud Native Buildpacks</title>
 </head>
 
 <body>
@@ -347,7 +347,7 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/extension-guide/" class="dd-item depth-0 haschildren">
+<li data-nav-id="/docs/extension-guide/" class="dd-item depth-0 parent haschildren">
   <a href="/docs/extension-guide/">Extension Guide</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/extension-guide/consume-extension/" class="dd-item depth-1 haschildren">
@@ -361,25 +361,25 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/extension-guide/create-extension/" class="dd-item depth-1 haschildren">
+<li data-nav-id="/docs/extension-guide/create-extension/" class="dd-item depth-1 parent haschildren">
   <a href="/docs/extension-guide/create-extension/">Create an extension</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/extension-guide/create-extension/setup-local-environment/" class="dd-item depth-2 collapse">
+<li data-nav-id="/docs/extension-guide/create-extension/setup-local-environment/" class="dd-item depth-2">
   <a href="/docs/extension-guide/create-extension/setup-local-environment/">Set up your local environment</a>
 </li>
-<li data-nav-id="/docs/extension-guide/create-extension/why-dockerfiles/" class="dd-item depth-2 collapse">
+<li data-nav-id="/docs/extension-guide/create-extension/why-dockerfiles/" class="dd-item depth-2">
   <a href="/docs/extension-guide/create-extension/why-dockerfiles/">Why Dockerfiles</a>
 </li>
-<li data-nav-id="/docs/extension-guide/create-extension/building-blocks-extension/" class="dd-item depth-2 collapse">
+<li data-nav-id="/docs/extension-guide/create-extension/building-blocks-extension/" class="dd-item depth-2">
   <a href="/docs/extension-guide/create-extension/building-blocks-extension/">Building blocks of a CNB Image Extension</a>
 </li>
-<li data-nav-id="/docs/extension-guide/create-extension/build-dockerfile/" class="dd-item depth-2 collapse">
+<li data-nav-id="/docs/extension-guide/create-extension/build-dockerfile/" class="dd-item depth-2">
   <a href="/docs/extension-guide/create-extension/build-dockerfile/">Generating a build.Dockerfile</a>
 </li>
-<li data-nav-id="/docs/extension-guide/create-extension/run-dockerfile-switch/" class="dd-item depth-2 collapse">
+<li data-nav-id="/docs/extension-guide/create-extension/run-dockerfile-switch/" class="dd-item depth-2 active">
   <a href="/docs/extension-guide/create-extension/run-dockerfile-switch/">Generating a run.Dockerfile that switches the runtime base image</a>
 </li>
-<li data-nav-id="/docs/extension-guide/create-extension/run-dockerfile-extend/" class="dd-item depth-2 collapse">
+<li data-nav-id="/docs/extension-guide/create-extension/run-dockerfile-extend/" class="dd-item depth-2">
   <a href="/docs/extension-guide/create-extension/run-dockerfile-extend/">Generating a run.Dockerfile that extends the runtime base image</a>
 </li>
   </ul>
@@ -410,13 +410,13 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/tools/" class="dd-item depth-0 parent haschildren">
+<li data-nav-id="/docs/tools/" class="dd-item depth-0 haschildren">
   <a href="/docs/tools/">Tools</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/tools/pack/" class="dd-item depth-1 parent haschildren">
+<li data-nav-id="/docs/tools/pack/" class="dd-item depth-1 haschildren">
   <a href="/docs/tools/pack/">Pack</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/tools/pack/concepts/" class="dd-item depth-2 haschildren">
+<li data-nav-id="/docs/tools/pack/concepts/" class="dd-item depth-2 collapse haschildren">
   <a href="/docs/tools/pack/concepts/">Concepts</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/tools/pack/concepts/trusted_builders/" class="dd-item depth-3 collapse">
@@ -424,160 +424,160 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/" class="dd-item depth-2 parent haschildren">
+<li data-nav-id="/docs/tools/pack/cli/" class="dd-item depth-2 collapse haschildren">
   <a href="/docs/tools/pack/cli/">CLI Docs</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/tools/pack/cli/pack/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack/">pack</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_build/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_build/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_build/">pack build</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_builder/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_builder/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_builder/">pack builder</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_builder_create/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_builder_create/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_builder_create/">pack builder create</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_builder_inspect/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_builder_inspect/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_builder_inspect/">pack builder inspect</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_builder_suggest/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_builder_suggest/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_builder_suggest/">pack builder suggest</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_buildpack/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_buildpack/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_buildpack/">pack buildpack</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_inspect/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_inspect/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_buildpack_inspect/">pack buildpack inspect</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_new/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_new/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_buildpack_new/">pack buildpack new</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_package/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_package/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_buildpack_package/">pack buildpack package</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_pull/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_pull/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_buildpack_pull/">pack buildpack pull</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_register/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_register/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_buildpack_register/">pack buildpack register</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_yank/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_buildpack_yank/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_buildpack_yank/">pack buildpack yank</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_completion/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_completion/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_completion/">pack completion</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config/">pack config</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_default-builder/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_default-builder/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_default-builder/">pack config default-builder</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_experimental/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_experimental/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_experimental/">pack config experimental</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_lifecycle-image/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_lifecycle-image/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_lifecycle-image/">pack config lifecycle-image</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_pull-policy/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_pull-policy/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_pull-policy/">pack config pull-policy</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_registries/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_registries/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_registries/">pack config registries</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_registries_add/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_registries_add/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_registries_add/">pack config registries add</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_registries_default/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_registries_default/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_registries_default/">pack config registries default</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_registries_list/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_registries_list/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_registries_list/">pack config registries list</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_registries_remove/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_registries_remove/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_registries_remove/">pack config registries remove</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_registry-mirrors/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_registry-mirrors/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_registry-mirrors/">pack config registry-mirrors</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_registry-mirrors_add/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_registry-mirrors_add/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_registry-mirrors_add/">pack config registry-mirrors add</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_registry-mirrors_list/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_registry-mirrors_list/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_registry-mirrors_list/">pack config registry-mirrors list</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_registry-mirrors_remove/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_registry-mirrors_remove/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_registry-mirrors_remove/">pack config registry-mirrors remove</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_run-image-mirrors/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_run-image-mirrors/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_run-image-mirrors/">pack config run-image-mirrors</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_run-image-mirrors_add/" class="dd-item depth-3 active">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_run-image-mirrors_add/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_run-image-mirrors_add/">pack config run-image-mirrors add</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_run-image-mirrors_list/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_run-image-mirrors_list/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_run-image-mirrors_list/">pack config run-image-mirrors list</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_run-image-mirrors_remove/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_run-image-mirrors_remove/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_run-image-mirrors_remove/">pack config run-image-mirrors remove</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_trusted-builders/">pack config trusted-builders</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders_add/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders_add/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_trusted-builders_add/">pack config trusted-builders add</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders_list/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders_list/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_trusted-builders_list/">pack config trusted-builders list</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders_remove/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_config_trusted-builders_remove/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_config_trusted-builders_remove/">pack config trusted-builders remove</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_extension/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_extension/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_extension/">pack extension</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_extension_inspect/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_inspect/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_extension_inspect/">pack extension inspect</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_extension_new/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_new/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_extension_new/">pack extension new</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_extension_package/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_package/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_extension_package/">pack extension package</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_extension_pull/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_pull/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_extension_pull/">pack extension pull</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_extension_register/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_register/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_extension_register/">pack extension register</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_extension_yank/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_extension_yank/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_extension_yank/">pack extension yank</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_inspect/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_inspect/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_inspect/">pack inspect</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_rebase/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_rebase/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_rebase/">pack rebase</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_report/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_report/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_report/">pack report</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_sbom/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_sbom/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_sbom/">pack sbom</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_sbom_download/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_sbom_download/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_sbom_download/">pack sbom download</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_stack/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_stack/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_stack/">pack stack</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_stack_suggest/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_stack_suggest/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_stack_suggest/">pack stack suggest</a>
 </li>
-<li data-nav-id="/docs/tools/pack/cli/pack_version/" class="dd-item depth-3">
+<li data-nav-id="/docs/tools/pack/cli/pack_version/" class="dd-item depth-3 collapse">
   <a href="/docs/tools/pack/cli/pack_version/">pack version</a>
 </li>
   </ul>
@@ -687,39 +687,111 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5Bpack&#43;config&#43;run-image-mirrors&#43;add%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ftools%2Fpack%2Fcli%2Fpack_config_run-image-mirrors_add%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BGenerating&#43;a&#43;run.Dockerfile&#43;that&#43;switches&#43;the&#43;runtime&#43;base&#43;image%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fextension-guide%2Fcreate-extension%2Frun-dockerfile-switch%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
+    
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/extension-guide/create-extension/run-dockerfile-switch.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+       class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
 </div>
 
 
         <div class="heading">
-          <h1 class="title">pack config run-image-mirrors add</h1>
+          <h1 class="title">Generating a run.Dockerfile that switches the runtime base image</h1>
         </div>
 
-        <h2 id="pack-config-run-image-mirrors-add">pack config run-image-mirrors add</h2>
-<p>Add a mirror for a run image</p>
-<h3 id="synopsis">Synopsis</h3>
-<p>Set mirrors to other repositories for a given run image</p>
-<pre tabindex="0"><code>pack config run-image-mirrors add &lt;image&gt; [-m &lt;mirror...] [flags]
-</code></pre><h3 id="examples">Examples</h3>
-<pre tabindex="0"><code>pack config run-image-mirrors add cnbs/sample-stack-run:bionic --mirror index.docker.io/cnbs/sample-stack-run:bionic --mirror gcr.io/cnbs/sample-stack-run:bionic
-</code></pre><h3 id="options">Options</h3>
-<pre tabindex="0"><code>  -h, --help             help for add
-  -m, --mirror strings   Run image mirror
-                         Repeat for each mirror in order, or supply once by comma-separated list
-</code></pre><h3 id="options-inherited-from-parent-commands">Options inherited from parent commands</h3>
-<pre tabindex="0"><code>      --no-color     Disable color output
-  -q, --quiet        Show less output
-      --timestamps   Enable timestamps in output
-  -v, --verbose      Show more output
-</code></pre><h3 id="see-also">SEE ALSO</h3>
+        <!-- test:suite=dockerfiles;weight=5 -->
+<p>Platforms can have several run images available, each tailored to a specific language family - thus limiting the number
+of installed dependencies for each image to the minimum necessary to support the targeted language. Image extensions
+can be used to switch the run image to that most appropriate for the current application.</p>
+<h3 id="examine-curl-extension">Examine <code>curl</code> extension</h3>
+<h4 id="detect">detect</h4>
+<!-- test:exec -->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat <span class="nv">$PWD</span>/samples/extensions/curl/bin/detect
+</span></span></code></pre></div><p>The extension always detects (because its exit code is <code>0</code>) and provides a dependency called <code>curl</code>.</p>
+<h4 id="generate">generate</h4>
+<!-- test:exec -->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat <span class="nv">$PWD</span>/samples/extensions/curl/bin/generate
+</span></span></code></pre></div><p>The extension generates a <code>run.Dockerfile</code> that switches the run image to reference <code>localhost:5000/run-image-curl</code>.</p>
+<h3 id="build-a-run-image-for-curl-extension-to-use">Build a run image for <code>curl</code> extension to use</h3>
+<!-- test:exec -->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat <span class="nv">$PWD</span>/samples/stacks/alpine/run/curl.Dockerfile
+</span></span></code></pre></div><p>This is a simple Dockerfile that creates a CNB run image from the <code>curl</code> base image by adding the required CNB user configuration and <code>io.buildpacks.stack.id</code> label.</p>
+<p>The Dockerfile could come from anywhere, but we include it in the <code>stacks</code> directory for convenience.</p>
+<p>Build the run image:</p>
+<!-- test:exec -->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker build <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --file <span class="nv">$PWD</span>/samples/stacks/alpine/run/curl.Dockerfile <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --tag localhost:5000/run-image-curl .
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">docker push localhost:5000/run-image-curl
+</span></span></code></pre></div><h3 id="configure-the-hello-extensions-buildpack-to-require-curl">Configure the <code>hello-extensions</code> buildpack to require <code>curl</code></h3>
+<p>Set the <code>BP_REQUIRES</code> build-time environment variable to configure the <code>hello-extensions</code> buildpack to require both <code>vim</code> and <code>curl</code> (review the <code>./bin/detect</code> script to see why this works).</p>
+<!-- test:exec -->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack build hello-extensions <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --builder localhost:5000/extensions-builder <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --env <span class="nv">BP_EXT_DEMO</span><span class="o">=</span><span class="m">1</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --env <span class="nv">BP_REQUIRES</span><span class="o">=</span>vim,curl <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --path <span class="nv">$PWD</span>/samples/apps/java-maven <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --pull-policy always <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --network host <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --verbose
+</span></span></code></pre></div><p>Note that <code>--network host</code> is necessary when publishing to a local registry.</p>
+<p>You should see:</p>
+<pre tabindex="0"><code>[detector] ======== Results ========
+[detector] pass: samples/vim@0.0.1
+[detector] pass: samples/curl@0.0.1
+[detector] pass: samples/cowsay@0.0.1
+[detector] pass: samples/hello-extensions@0.0.1
+[detector] Resolving plan... (try #1)
+[detector] skip: samples/cowsay@0.0.1 provides unused cowsay
+[detector] 3 of 4 buildpacks participating
+[detector] samples/vim             0.0.1
+[detector] samples/curl             0.0.1
+[detector] samples/hello-extensions 0.0.1
+[detector] Running generate for extension samples/vim@0.0.1
+...
+[detector] Running generate for extension samples/curl@0.0.1
+...
+[detector] Checking for new run image
+[detector] Found a run.Dockerfile from extension &#39;samples/curl&#39; setting run image to &#39;localhost:5000/run-image-curl&#39;
+...
+[extender (build)] Found build Dockerfile for extension &#39;samples/vim&#39;
+[extender (build)] Applying the Dockerfile at /layers/generated/build/samples_vim/Dockerfile...
+...
+[extender (build)] Running build command
+[extender (build)] ---&gt; Hello Extensions Buildpack
+[extender (build)] VIM - Vi IMproved 9.0 (2022 Jun 28, compiled May 19 2023 16:28:36)
+...
+Successfully built image hello-extensions
+</code></pre><h3 id="see-the-image-run-successfully">See the image run successfully</h3>
+<!-- test:exec -->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run --rm hello-extensions
+</span></span></code></pre></div><p>You should see something akin to:</p>
+<pre tabindex="0"><code>curl 7.85.0-DEV (x86_64-pc-linux-musl) ... more stuff here ...
+</code></pre><p>What happened: now that <code>hello-extensions</code> requires both <code>vim</code> and <code>curl</code> in its build plan, both extensions are
+included in the build and provide the needed dependencies for build and launch, respectively</p>
 <ul>
-<li><a href="/docs/tools/pack/cli/pack_config_run-image-mirrors/">pack config run-image-mirrors</a>	 - List, add and remove run image mirrors</li>
+<li>The <code>vim</code> extension installs <code>vim</code> at build time, as before</li>
+<li>The <code>curl</code> extension switches the run image to <code>localhost:5000/run-image-curl</code>, which has <code>curl</code> installed</li>
 </ul>
+<p>Now our <code>curl</code> process can succeed!</p>
+<h3 id="next-steps">Next steps</h3>
+<p>Our <code>curl</code> process succeeded, but there is another process type defined on our image:</p>
+<pre tabindex="0"><code>docker run --rm --entrypoint cowsay hello-extensions
+</code></pre><p>You should see:</p>
+<pre tabindex="0"><code>ERROR: failed to launch: path lookup: exec: &#34;cowsay&#34;: executable file not found in $PATH
+</code></pre><p>Our run image, <code>localhost:5000/run-image-curl</code>, has <code>curl</code> installed, but it doesn&rsquo;t have <code>cowsay</code>.</p>
+<p>In general, we may not always have a preconfigured run image available with all the needed dependencies for the current application.
+Luckily, we can also use image extensions to dynamically install runtime dependencies at build time. Let&rsquo;s look at that next.</p>
+<!--+ if false+-->
+<hr>
+<p><a href="/docs/extension-guide/create-extension/run-dockerfile-extend" class="button bg-pink">Next Step</a></p>
+<!--+ end +-->
+
 
         
 
@@ -729,10 +801,13 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5Bpack&#43;config&#43;run-image-mirrors&#43;add%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ftools%2Fpack%2Fcli%2Fpack_config_run-image-mirrors_add%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BGenerating&#43;a&#43;run.Dockerfile&#43;that&#43;switches&#43;the&#43;runtime&#43;base&#43;image%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fextension-guide%2Fcreate-extension%2Frun-dockerfile-switch%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
+    
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/extension-guide/create-extension/run-dockerfile-switch.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+       class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
 </div>
