@@ -56,11 +56,10 @@ An image extension could be defined with the following directory:
 * `./bin/detect` is invoked during the `detect` phase. It analyzes application source code to determine if the extension
   is needed and contributes build plan entries.
 * `./bin/generate` is invoked during the `generate` phase (a new lifecycle phase that happens after `detect`). It
-  outputs either or both of `build.Dockerfile` or `run.Dockerfile` for extending the builder or run image,
-  respectively (in the [initial implementation](#phased-approach), only limited `run.Dockerfile`s are allowed).
+  outputs either or both of `build.Dockerfile` or `run.Dockerfile` for extending the builder or run image.
 
 For more information and to see a build in action,
-see [authoring an image extension](/docs/extension-author-guide/create-extension).
+see [authoring an image extension](/docs/extension-guide/create-extension).
 
 ## A platform's perspective
 
@@ -78,30 +77,9 @@ should be **used with great care**. Platform operators should be mindful that:
   may not have all the mixins required by buildpacks that detected. Platforms may wish to optionally re-validate mixins
   prior to `build` when using extensions.
 
-### Phased approach
+### Putting it all together
 
-Some limitations of the initial implementation of the Dockerfiles feature have already been mentioned, and we'll expand
-on them here. As this is a large and complicated feature, the implementation has been split into phases in order to
-deliver incremental value and gather feedback.
-
-#### Phase 1 (supported in lifecycle `0.15.0` or greater)
-
-One or more `run.Dockerfile`s each containing a single `FROM` instruction can be used to switch the original run image
-to a new image (as no image modifications are permitted, there is no need to run `extend` on the run image)
-
-#### Phase 2 (supported in lifecycle `0.15.0` or greater)
-
-One or more `build.Dockerfile`s can be used to extend the builder image
-
-* A new `extend` lifecycle phase is introduced to apply `build.Dockerfile`s from `generate` to the builder image
-
-#### Phase 3 (future)
-
-One or more `run.Dockerfile`s can be used to extend the run image
-
-* The `extend` lifecycle phase can be run in parallel for the builder and run images
-
-The final ordering of lifecycle phases will look something like the following:
+The ordering of lifecycle phases looks like the following:
 
 * `analyze`
 * `detect` - after standard detection, `detect` will also run extensions' `./bin/generate`; output Dockerfiles are
@@ -116,9 +94,9 @@ For more information, consult the [migration guide](/docs/reference/spec/migrati
 
 #### Platform support for Dockerfiles
 
-Supported (phases 1 and 2):
+Supported:
 
-* [pack cli](https://github.com/buildpacks/pack) (version `0.28.0` and above)
+* [pack cli](https://github.com/buildpacks/pack) (prefer version `0.30.0` and above)
 
 Needs support:
 

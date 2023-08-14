@@ -1,6 +1,9 @@
 +++
 title="Set up your local environment"
 weight=401
+aliases = [
+  "/docs/extension-author-guide/create-extension/setup-local-environment/",
+  ]
 +++
 
 <!-- test:suite=dockerfiles;weight=1 -->
@@ -52,7 +55,7 @@ cd <your preferred workspace directory>
 pack version
 ```
 
-The version should be at least `0.28.0`
+The version should be at least `0.30.0`
 
 ### Update pack configuration
 
@@ -75,5 +78,5 @@ git clone https://github.com/buildpacks/samples.git
 <!--+ if false +-->
 ---
 
-<a href="/docs/extension-author-guide/create-extension/why-dockerfiles" class="button bg-pink">Next Step</a>
+<a href="/docs/extension-guide/create-extension/why-dockerfiles" class="button bg-pink">Next Step</a>
 <!--+ end+-->
