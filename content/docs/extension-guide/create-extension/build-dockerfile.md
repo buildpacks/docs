@@ -8,6 +8,9 @@ aliases = [
 
 <!-- test:suite=dockerfiles;weight=4 -->
 
+Builder images can be kept lean if image extensions are used to dynamically install the needed dependencies
+for the current application.
+
 ### Examine `vim` extension
 
 #### detect
@@ -28,7 +31,9 @@ cat $PWD/samples/extensions/vim/bin/generate
 
 The extension generates a `build.Dockerfile` that installs `vim` on the builder image.
 
-### Re-build the application image
+### Configure the `hello-extensions` buildpack to require `vim`
+
+Set the `BP_REQUIRES` build-time environment variable to configure the `hello-extensions` buildpack to require `vim` (review the `./bin/detect` script to see why this works).
 
 <!-- test:exec -->
 ```
@@ -47,6 +52,7 @@ Note that `--network host` is necessary when publishing to a local registry.
 You should see:
 
 ```
+...
 [detector] ======== Results ========
 [detector] pass: samples/vim@0.0.1
 [detector] pass: samples/hello-extensions@0.0.1
@@ -55,12 +61,12 @@ You should see:
 [detector] samples/hello-extensions 0.0.1
 [detector] Running generate for extension samples/vim@0.0.1
 ...
-[extender] Found build Dockerfile for extension 'samples/vim'
-[extender] Applying the Dockerfile at /layers/generated/build/samples_vim/Dockerfile...
+[extender (build)] Found build Dockerfile for extension 'samples/vim'
+[extender (build)] Applying the Dockerfile at /layers/generated/build/samples_vim/Dockerfile...
 ...
-[extender] Running build command
-[extender] ---> Hello Extensions Buildpack
-[extender] vim v1.8.0 (c) 1996 - 2018 by Steve Baker, Thomas Moore, Francesc Rocher, Florian Sesser, Kyosuke Tokoro
+[extender (build)] Running build command
+[extender (build)] ---> Hello Extensions Buildpack
+[extender (build)] VIM - Vi IMproved 9.0 (2022 Jun 28, compiled May 19 2023 16:28:36)
 ...
 Successfully built image hello-extensions
 ```
@@ -85,5 +91,4 @@ Let's take a look at how the `samples/curl` extension fixes the error by switchi
 <!--+ if false+-->
 ---
 
-<a href="/docs/extension-guide/create-extension/run-dockerfile" class="button bg-pink">Next Step</a>
-<!--+ end +-->
+<a href="/docs/extension-guide/create-extension/run-dockerfile-switch" class="button bg-pink">Next Step</a>
