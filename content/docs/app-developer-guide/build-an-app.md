@@ -6,12 +6,6 @@ aliases=[
     "/docs/using-pack/building-app/"
 ]
 +++
-<!--+- if false+-->
-<div class="quote mb-4">
-    {{< summary "docs/concepts/operations/build.md" >}}
-    <div class="author"><a href="/docs/concepts/operations/build">build</a></div>
-</div>
-<!--+- end+-->
 <!--+- `
 # Build an app
 `+-->
