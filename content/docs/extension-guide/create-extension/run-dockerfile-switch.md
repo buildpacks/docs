@@ -1,5 +1,5 @@
 +++
-title="Generating a run.Dockerfile"
+title="Generating a run.Dockerfile that switches the runtime base image"
 weight=405
 aliases = [
   "/docs/extension-author-guide/run-dockerfile/"
@@ -7,6 +7,10 @@ aliases = [
 +++
 
 <!-- test:suite=dockerfiles;weight=5 -->
+
+Platforms can have several run images available, each tailored to a specific language family - thus limiting the number
+of installed dependencies for each image to the minimum necessary to support the targeted language. Image extensions
+can be used to switch the run image to that most appropriate for the current application.
 
 ### Examine `curl` extension
 
@@ -26,7 +30,7 @@ The extension always detects (because its exit code is `0`) and provides a depen
 cat $PWD/samples/extensions/curl/bin/generate
 ```
 
-The extension generates a `run.Dockerfile` that switches the run image to reference `run-image-curl`.
+The extension generates a `run.Dockerfile` that switches the run image to reference `localhost:5000/run-image-curl`.
 
 ### Build a run image for `curl` extension to use
 
@@ -46,9 +50,13 @@ Build the run image:
 docker build \
   --file $PWD/samples/stacks/alpine/run/curl.Dockerfile \
   --tag localhost:5000/run-image-curl .
+
+docker push localhost:5000/run-image-curl
 ```
 
-### Re-build the application image
+### Configure the `hello-extensions` buildpack to require `curl`
+
+Set the `BP_REQUIRES` build-time environment variable to configure the `hello-extensions` buildpack to require both `vim` and `curl` (review the `./bin/detect` script to see why this works).
 
 <!-- test:exec -->
 ```bash
@@ -70,8 +78,11 @@ You should see:
 [detector] ======== Results ========
 [detector] pass: samples/vim@0.0.1
 [detector] pass: samples/curl@0.0.1
+[detector] pass: samples/cowsay@0.0.1
 [detector] pass: samples/hello-extensions@0.0.1
 [detector] Resolving plan... (try #1)
+[detector] skip: samples/cowsay@0.0.1 provides unused cowsay
+[detector] 3 of 4 buildpacks participating
 [detector] samples/vim             0.0.1
 [detector] samples/curl             0.0.1
 [detector] samples/hello-extensions 0.0.1
@@ -80,14 +91,14 @@ You should see:
 [detector] Running generate for extension samples/curl@0.0.1
 ...
 [detector] Checking for new run image
-[detector] Found a run.Dockerfile configuring image 'run-image-curl' from extension with id 'samples/curl'
+[detector] Found a run.Dockerfile from extension 'samples/curl' setting run image to 'localhost:5000/run-image-curl'
 ...
-[extender] Found build Dockerfile for extension 'samples/vim'
-[extender] Applying the Dockerfile at /layers/generated/build/samples_vim/Dockerfile...
+[extender (build)] Found build Dockerfile for extension 'samples/vim'
+[extender (build)] Applying the Dockerfile at /layers/generated/build/samples_vim/Dockerfile...
 ...
-[extender] Running build command
-[extender] ---> Hello Extensions Buildpack
-[extender] vim v1.8.0 (c) 1996 - 2018 by Steve Baker, Thomas Moore, Francesc Rocher, Florian Sesser, Kyosuke Tokoro
+[extender (build)] Running build command
+[extender (build)] ---> Hello Extensions Buildpack
+[extender (build)] VIM - Vi IMproved 9.0 (2022 Jun 28, compiled May 19 2023 16:28:36)
 ...
 Successfully built image hello-extensions
 ```
@@ -108,20 +119,31 @@ curl 7.85.0-DEV (x86_64-pc-linux-musl) ... more stuff here ...
 What happened: now that `hello-extensions` requires both `vim` and `curl` in its build plan, both extensions are
   included in the build and provide the needed dependencies for build and launch, respectively
 * The `vim` extension installs `vim` at build time, as before
-* The `curl` extension switches the run image to `run-image-curl`, which has `curl` installed
+* The `curl` extension switches the run image to `localhost:5000/run-image-curl`, which has `curl` installed
 
 Now our `curl` process can succeed!
 
-## What's next?
+### Next steps
 
-The `vim` and `curl` examples are very simple, but we can unlock powerful new features with this functionality.
+Our `curl` process succeeded, but there is another process type defined on our image:
 
-Platforms could have several run images available, each tailored to a specific language family, thus limiting the number
-of installed dependencies for each image to the minimum necessary to support the targeted language. Image extensions
-could be used to switch the run image to that most appropriate for the current application.
+```
+docker run --rm --entrypoint cowsay hello-extensions
+```
 
-Similarly, builder images could be kept lean if image extensions are used to dynamically install the needed dependencies
-for each application.
+You should see:
 
-In the future, both run image switching and run image modification will be supported, opening the door to other use
-cases. Consult the [RFC](https://github.com/buildpacks/rfcs/pull/173) for further information.
+```
+ERROR: failed to launch: path lookup: exec: "cowsay": executable file not found in $PATH
+```
+
+Our run image, `localhost:5000/run-image-curl`, has `curl` installed, but it doesn't have `cowsay`.
+
+In general, we may not always have a preconfigured run image available with all the needed dependencies for the current application.
+Luckily, we can also use image extensions to dynamically install runtime dependencies at build time. Let's look at that next.
+
+<!--+ if false+-->
+---
+
+<a href="/docs/extension-guide/create-extension/run-dockerfile-extend" class="button bg-pink">Next Step</a>
+<!--+ end +-->

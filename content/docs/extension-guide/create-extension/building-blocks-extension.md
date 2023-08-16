@@ -12,10 +12,10 @@ aliases = [
 
 <!-- test:exec -->
 ```bash
-vim --help
+tree $PWD/samples/extensions/vim
 ```
 
-(That's right, we're using the very tool we will later be installing!) You should see something akin to the following:
+You should see something akin to the following:
 
 ```
 .
@@ -36,11 +36,6 @@ vim --help
 * `./bin/generate` is invoked during the `generate` phase (a new lifecycle phase that happens after `detect`). It
   outputs either or both of `build.Dockerfile` or `run.Dockerfile` for extending the builder or run image, respectively.
   * Only a limited set of Dockerfile instructions is supported - consult
-    the [spec](https://github.com/buildpacks/spec/blob/main/image_extension.md)
-    for further details.
-  * In the [initial implementation](/docs/features/dockerfiles#phased-approach), `run.Dockerfile` instructions are
-    limited to a single `FROM` instruction (effectively, it is only possible to switch the run-time base image to a
-    pre-created image i.e., no dynamic image modification is allowed). Consult
     the [spec](https://github.com/buildpacks/spec/blob/main/image_extension.md)
     for further details.
 

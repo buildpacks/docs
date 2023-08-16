@@ -24,7 +24,7 @@ This is a step-by-step tutorial for creating and using CNB image extensions.
 - [See a build that requires base image extension in order to succeed](/docs/extension-guide/create-extension/why-dockerfiles)
 - [Building blocks of an extension](/docs/extension-guide/create-extension/building-blocks-extension)
 - [Generating a build.Dockerfile for your application](/docs/extension-guide/create-extension/build-dockerfile)
-- [Generating a run.Dockerfile for your application](/docs/extension-guide/create-extension/run-dockerfile)
+- [Generating a run.Dockerfile for your application](/docs/extension-guide/create-extension/run-dockerfile-switch)
 
 <!--+if false+-->
 ---

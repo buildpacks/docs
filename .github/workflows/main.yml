@@ -26,7 +26,7 @@ jobs:
       - name: Install pack
         uses: buildpacks/github-actions/setup-pack@v5.2.0
         with:
-          pack-version: '0.30.0-rc1'
+          pack-version: '0.30.0-rc1' # FIXME: update to 0.30.0 when available
       - name: Test
         run: make test
         env:
