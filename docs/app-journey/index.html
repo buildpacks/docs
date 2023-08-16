@@ -719,14 +719,14 @@ In order to run the build process in an isolated fashion,…">
 <h2 id="buildpack-base-camp">Buildpack base camp</h2>
 <p>Before we set out, you&rsquo;ll need to know the basics of <strong>buildpacks</strong> and how they work.</p>
 <h3 id="what-is-a-buildpackbuildpack">What is a <a href="/docs/concepts/components/buildpack/">buildpack</a>?</h3>
-<p>A buildpack is something you&rsquo;ve probably leveraged without knowing, as they&rsquo;re currently
+<p>A buildpack is something you&rsquo;ve probably used without knowing it, as they&rsquo;re currently
 being used in many cloud platforms. A buildpack&rsquo;s job is to gather everything your app needs to build and run,
 and it often does this job quickly and quietly.</p>
 <p>That said, while buildpacks are often a behind-the-scenes detail, they are at the heart of transforming your source
 code into a runnable app image.</p>
 <h5 id="auto-detection">Auto-detection</h5>
-<p>What enables buildpacks to go unnoticed is auto-detection. This happens when a platform sequentially
-tests groups of buildpacks against your app&rsquo;s source code. The first group that deems itself fit for your source code
+<p>What enables buildpacks to be transparent is auto-detection. This happens when a platform sequentially
+tests groups of buildpacks against your app&rsquo;s source code. The first group that successfully detects your source code
 will become the selected set of buildpacks for your app. Detection criteria is specific to each buildpack &ndash; for
 instance, an <strong>NPM buildpack</strong> might look for a <code>package.json</code>, and a <strong>Go buildpack</strong> might look for Go source files.</p>
 <h3 id="what-is-a-builderbuilder">What is a <a href="/docs/concepts/components/builder/">builder</a>?</h3>

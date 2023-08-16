@@ -717,8 +717,7 @@
             </div>
         
           <h2><a href="https://buildpacks.io/docs/concepts/components/buildpack/" class="">Buildpack</a></h2>
-          <p class="m-1"> A buildpack is a set of executables that inspects your app source code and creates a plan to build and run your application.
-</p>
+          <p class="m-1">A buildpack is a set of executables that inspects your app source code and creates a plan to build and run your application.</p>
 
           
             <div class="text-md-right">
@@ -726,8 +725,7 @@
             </div>
         
           <h2><a href="https://buildpacks.io/docs/concepts/components/lifecycle/" class="">Lifecycle</a></h2>
-          <p class="m-1"> The lifecycle orchestrates buildpack execution, then assembles the resulting artifacts into a final app image.
-</p>
+          <p class="m-1">The lifecycle orchestrates buildpack execution, then assembles the resulting artifacts into a final app image.</p>
 
           <div class="text-md-right">
               <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/concepts/components/lifecycle/">Learn more →</a>
@@ -743,8 +741,7 @@
             </div>
         
           <h2><a href="https://buildpacks.io/docs/concepts/components/platform/" class="">Platform</a></h2>
-          <p class="m-1"> A platform uses a lifecycle, buildpacks (packaged in a builder), and application source code to produce an OCI image.
-</p>
+          <p class="m-1">A <code>platform</code> uses a <a href="/docs/concepts/components/lifecycle/">lifecycle</a>, <a href="/docs/concepts/components/buildpack/">buildpacks</a> (packaged in a <a href="/docs/concepts/components/builder/">builder</a>), and application source code to produce an OCI image.</p>
 
           
             <div class="text-md-right">
@@ -752,8 +749,11 @@
             </div>
         
           <h2><a href="https://buildpacks.io/docs/concepts/components/stack/" class="">Stack</a></h2>
-          <p class="m-1"> A stack is composed of two images that are intended to work together:
-The build image of a stack provides the base image from which the build environment is constructed. The build environment is the containerized environment in which the lifecycle (and thereby buildpacks) are executed. The run image of a stack provides the base image from which application images are built. </p>
+          <p class="m-1"><p>A stack is composed of two images that are intended to work together:</p>
+<ol>
+<li>The <strong>build image</strong> of a stack provides the base image from which the build environment is constructed. The build environment is the containerized environment in which the <a href="/docs/concepts/components/lifecycle/">lifecycle</a> (and thereby <a href="/docs/concepts/components/buildpack/">buildpacks</a>) are executed.</li>
+<li>The <strong>run image</strong> of a stack provides the base image from which application images are built.</li>
+</ol></p>
 
           
             <div class="text-md-right">
