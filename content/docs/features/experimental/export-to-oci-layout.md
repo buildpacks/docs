@@ -9,11 +9,11 @@ summary="Learn how to export your application image to disk in OCI layout format
     <div class="author">See the <a href="https://github.com/opencontainers/image-spec/blob/main/image-layout.md">specification.</a></div>
 </div>
 
-Exporting to OCI layout format is an **experimental** feature available on pack since version X.Y.Z
+Exporting to OCI layout format is an **experimental** feature available on pack since version 0.30.0
 
 ### 1. Enable experimental feature
 
-Verify your pack version is equal or greater than 0.29.0
+Verify your pack version is equal or greater than 0.30.0
 
 ```bash
 pack version
@@ -33,7 +33,8 @@ experimental = true
 layout-repo-dir = "<$HOME>/.pack/layout-repo"
 ```
 
-The configuration shows the experimental mode was **enabled** and a local directory to save images on disk was configured to path `<$HOME>/.pack/layout-repo`.
+The configuration shows the experimental mode was **enabled** and a local directory to save images on disk was configured to path `<$HOME>/.pack/layout-repo`. `layout-repo-dir` is being used as a [local repository](https://github.com/buildpacks/rfcs/blob/main/text/0119-export-to-oci.md#how-it-works) 
+to save images requires by `pack build` command in OCI layout format.
 
 ### 2. Build the app
 
@@ -143,7 +144,7 @@ But [crane](https://github.com/google/go-containerregistry/tree/main/cmd/crane)
 ```bash
 crane pull <your-image> <dest> --format=oci
 ```
-It will give you `application/vnd.docker.distribution.manifest.list.v2+json`, which will fail
+It will give you `application/vnd.docker.distribution.manifest.list.v2+json`, which will fail because of the [state of our current implementation](https://github.com/buildpacks/rfcs/pull/203#discussion_r1092449172), we will improve this behavior in future versions.
 
 
 
