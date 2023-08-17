@@ -745,6 +745,12 @@
                                      When using latter value-less form, value will be taken from current
                                        environment at the time this command is executed
                                      NOTE: These are NOT available at image runtime.&#34;
+      --extension strings            Extension to use. One of:
+                                       an extension by id and version in the form of &#39;&lt;extension&gt;@&lt;version&gt;&#39;,
+                                       path to an extension directory (not supported on Windows),
+                                       path/URL to an extension .tar or .tgz file, or
+                                       a packaged extension image name in the form of &#39;&lt;hostname&gt;/&lt;repo&gt;[:&lt;tag&gt;]&#39;
+                                     Repeat for each extension in order, or supply once by comma-separated list
       --gid int                      Override GID of user&#39;s group in the stack&#39;s build and run images. The provided value must be a positive number
   -h, --help                         Help for &#39;build&#39;
       --interactive                  Launch a terminal UI to depict the build process

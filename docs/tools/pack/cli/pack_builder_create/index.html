@@ -713,6 +713,10 @@
 </code></pre><h3 id="options">Options</h3>
 <pre tabindex="0"><code>  -R, --buildpack-registry string   Buildpack Registry by name
   -c, --config string               Path to builder TOML file (required)
+      --depth int                   Max depth to flatten each composite buildpack.
+                                    Omission of this flag or values &lt; 0 will flatten the entire tree. (default -1)
+      --flatten                     Flatten each composite buildpack into a single layer
+  -e, --flatten-exclude strings     Buildpacks to exclude from flattening, in the form of &#39;&lt;buildpack-id&gt;@&lt;buildpack-version&gt;&#39;
   -h, --help                        Help for &#39;create&#39;
       --publish                     Publish to registry
       --pull-policy string          Pull policy to use. Accepted values are always, never, and if-not-present. The default is always

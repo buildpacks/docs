@@ -711,6 +711,10 @@ pack buildpack package my-buildpack.cnb --config ./package.toml --f file
 </code></pre><h3 id="options">Options</h3>
 <pre tabindex="0"><code>  -r, --buildpack-registry string   Buildpack Registry name
   -c, --config string               Path to package TOML config
+      --depth int                   Max depth to flatten.
+                                    Omission of this flag or values &lt; 0 will flatten the entire tree. (default -1)
+      --flatten                     Flatten the buildpack into a single layer
+  -e, --flatten-exclude strings     Buildpacks to exclude from flattening, in the form of &#39;&lt;buildpack-id&gt;@&lt;buildpack-version&gt;&#39;
   -f, --format string               Format to save package as (&#34;image&#34; or &#34;file&#34;)
   -h, --help                        Help for &#39;package&#39;
   -p, --path string                 Path to the Buildpack that needs to be packaged
