@@ -163,6 +163,15 @@ Install Docker Install pack NOTE: pack is only one implementation of the Cloud N
     </item>
     
     <item>
+      <title>Export to OCI layout format</title>
+      <link>https://buildpacks.io/docs/features/experimental/export-to-oci-layout/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/features/experimental/export-to-oci-layout/</guid>
+      <description>Learn how to export your application image to disk in OCI layout format</description>
+    </item>
+    
+    <item>
       <title>Platform</title>
       <link>https://buildpacks.io/docs/concepts/components/platform/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

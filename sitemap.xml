@@ -16,6 +16,8 @@
   </url><url>
     <loc>https://buildpacks.io/docs/operator-guide/create-a-builder/</loc>
   </url><url>
+    <loc>https://buildpacks.io/docs/features/experimental/</loc>
+  </url><url>
     <loc>https://buildpacks.io/features/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/</loc>
@@ -47,6 +49,8 @@
     <loc>https://buildpacks.io/docs/concepts/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/app-developer-guide/environment-variables/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/features/experimental/export-to-oci-layout/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/features/</loc>
   </url><url>
