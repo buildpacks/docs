@@ -6,7 +6,7 @@ title="Platform API 0.3 -> 0.4"
 
 This guide is most relevant to platform operators.
 
-See the [spec release](https://github.com/buildpacks/spec/releases/tag/platform%2Fv0.4) for platform API 0.4 for the full list of changes and further details.
+See the [spec release](https://github.com/buildpacks/spec/releases/tag/platform%2Fv0.4) for Platform API 0.4 for the full list of changes and further details.
 
 ### Windows support
 

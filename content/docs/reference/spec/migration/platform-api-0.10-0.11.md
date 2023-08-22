@@ -4,9 +4,9 @@ title="Platform API 0.10 -> 0.11"
 
 <!--more-->
 
-This guide is most relevant to platform operators.
+This guide is most relevant to platform operators and builder authors.
 
-See the [spec release](https://github.com/buildpacks/spec/releases/tag/platform%2Fv0.11) for platform API 0.11 for the full list of changes and further details.
+See the [spec release](https://github.com/buildpacks/spec/releases/tag/platform%2Fv0.11) for Platform API 0.11 for the full list of changes and further details.
 
 ## Platform Operator
 
@@ -24,6 +24,27 @@ which are exported to `<layers>/sbom/launch/<buildpack-id>/<layer>/sbom.<ext>` (
 and copied to `<layers>/sbom/launch/<buildpack-id>/sbom.<ext>` (for build-time dependencies).
 Platforms that are already handling these files should not need to take additional action -
 the resulting SBOMs will simply be more complete.
+
+### The rebaser accepts a -previous-image flag to allow rebasing by digest reference
+
+Previously, when rebasing an image, the rebased image would always be saved to the same tag as the original image.
+This prevented rebasing by digest, among other use cases.
+
+In Platform 0.11, the original image may be specified separately from the destination image with the `previous-image` flag, as in the following:
+
+```bash
+/cnb/lifecycle/rebaser -previous-image some-original-image some-destination-image
+```
+
+As before, additional tags for the destination image can also be provided:
+
+```bash
+/cnb/lifecycle/rebaser -previous-image some-original-image -tag some-additional-tag:latest some-destination-image
+```
+
+To use this feature, platforms can provide the new `-previous-image` flag to the `rebaser`.
+
+## Builder Author
 
 ### Platforms can specify build time environment variables
 
@@ -44,23 +65,4 @@ The order of application for env directories is:
 
 For additional information, see the [buildpack environment](https://github.com/buildpacks/spec/blob/main/platform.md#buildpack-environment) section in the Platform spec.
 
-To use this feature, during builder creation operators should include a `/cnb/build-config/env/` directory with the desired configuration. 
-
-### The rebaser accepts a -previous-image flag to allow rebasing by digest reference
-
-Previously, when rebasing an image, the rebased image would always be saved to the same tag as the original image.
-This prevented rebasing by digest, among other use cases.
-
-In Platform 0.11, the original image may be specified separately from the destination image with the `previous-image` flag, as in the following:
-
-```bash
-/cnb/lifecycle/rebaser -previous-image some-original-image some-destination-image
-```
-
-As before, additional tags for the destination image can also be provided:
-
-```bash
-/cnb/lifecycle/rebaser -previous-image some-original-image -tag some-additional-tag:latest some-destination-image
-```
-
-To use this feature, platforms can provide the new `-previous-image` flag to the `rebaser`.
+To use this feature, builder authors should include a `/cnb/build-config/env/` directory with the desired configuration.

@@ -6,7 +6,7 @@ title="Platform API 0.9 -> 0.10"
 
 This guide is most relevant to platform operators.
 
-See the [spec release](https://github.com/buildpacks/spec/releases/tag/platform%2Fv0.10) for platform API 0.10 for the full list of changes and further details.
+See the [spec release](https://github.com/buildpacks/spec/releases/tag/platform%2Fv0.10) for Platform API 0.10 for the full list of changes and further details.
 
 ## Platform Operator
 
