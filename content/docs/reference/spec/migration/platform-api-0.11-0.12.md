@@ -73,9 +73,11 @@ The lifecycle phases affected by this new behavior are:
 - [Export](https://buildpacks.io/docs/concepts/components/lifecycle/export/)
 - [Create](https://buildpacks.io/docs/concepts/components/lifecycle/create/)
 
+**Note** [Rebase](https://buildpacks.io/docs/concepts/components/lifecycle/rebase/) an image exported to OCI layout format is not supported.
+
 #### Before executing the lifecycle
 
-Input images required by any phase, like the `run-image`, must be saved on disk in OCI layout format in the local storage previously defined following the 
+Input images required by any phase, like the `run-image` or `previous-image`, must be saved on disk in OCI layout format in the local storage previously defined following the 
 [rules](https://github.com/buildpacks/spec/blob/platform/v0.12/platform.md#map-an-image-reference-to-a-path-in-the-layout-directory) to convert the reference to a path.
 
 #### During lifecycle execution
