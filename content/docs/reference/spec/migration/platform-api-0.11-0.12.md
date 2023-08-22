@@ -26,8 +26,9 @@ that indicates the location of a `run.toml` file with schema:
  mirrors = ["<mirror>", "<mirror>"]
 ```
 
-For each image in `[[images]]`, `image` is a tag reference to a run image and `mirrors` contains tag references to its mirrors.
+This file will be created automatically during `pack builder create` if the `pack` version is at least `0.30.0` (see below).
 
+For each image in `[[images]]`, `image` is a tag reference to a run image and `mirrors` contains tag references to its mirrors.
 Note that whereas `stack.toml` (removed in this API version) only contained a single run image with mirrors, `run.toml` contains a list of images.
 This is because of image extensions and the possibility of run image switching, introduced in Platform 0.10.
 For platforms that do not use image extensions, only a single run image with mirrors is needed in `run.toml`.
@@ -50,7 +51,7 @@ If `-force` is not provided,
   * `io.buildpacks.base.distro.name` label (if specified)
   * `io.buildpacks.base.distro.version` label (if specified)
 * If `-run-image` is provided it must be found in `io.buildpacks.lifecycle.metadata` in either `runImage.image` or `runImage.mirrors`
-* `io.buildpacks.rebasable` must be `true` (see run image extension below)
+* `io.buildpacks.rebasable` must be `true` (see below)
 
 ### Run image extensions is supported (experimental)
 
