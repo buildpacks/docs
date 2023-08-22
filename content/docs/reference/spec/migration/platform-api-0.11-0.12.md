@@ -59,9 +59,30 @@ In Platform 0.12 extensions can be used to extend not only build-time base image
 
 TODO
 
-### OCI layout is a supported export format
+### OCI layout is a supported export format (experimental)
 
-TODO
+In Platform 0.12 a new capability to [export an application images on disk in OCI format](https://github.com/buildpacks/rfcs/blob/main/text/0119-export-to-oci.md) was added.
+
+Platform must take care of preparing a [local storage](https://github.com/buildpacks/rfcs/blob/main/text/0119-export-to-oci.md#how-it-works) on disk where images are being saved in OCI layout format and passing it through to the lifecycle.
+
+#### Lifecycle phases affected
+
+The lifecycle phases affected by this new behavior are:
+- [Analyze](https://buildpacks.io/docs/concepts/components/lifecycle/analyze/)
+- [Restore](https://buildpacks.io/docs/concepts/components/lifecycle/restore/)
+- [Export](https://buildpacks.io/docs/concepts/components/lifecycle/export/)
+- [Create](https://buildpacks.io/docs/concepts/components/lifecycle/create/)
+
+#### Before executing the lifecycle
+
+Input images required by any phase, like the `run-image`, must be saved on disk in OCI layout format in the local storage previously defined following the 
+[rules](https://github.com/buildpacks/spec/blob/platform/v0.12/platform.md#map-an-image-reference-to-a-path-in-the-layout-directory) to convert the reference to a path.
+
+#### During lifecycle execution
+
+For the phases affected, the feature is enabled using a new flag `-layout` or setting to **true** an environment variable named `CNB_USE_LAYOUT`.
+* If the feature is enabled: 
+  *  A path to a directory where the images are saved in OCI layout format must be specified, either by setting the flag `-layout-dir` or the environment variable `CNB_LAYOUT_DIR`.
 
 ## Base Image Author
 
