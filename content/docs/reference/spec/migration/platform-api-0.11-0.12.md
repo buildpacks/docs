@@ -61,9 +61,9 @@ TODO
 
 ### OCI layout is a supported export format (experimental)
 
-In Platform 0.12 a new capability to [export an application images on disk in OCI format](https://github.com/buildpacks/rfcs/blob/main/text/0119-export-to-oci.md) was added.
+In Platform 0.12, a new capability to [export application images on disk in OCI layout format](https://github.com/buildpacks/rfcs/blob/main/text/0119-export-to-oci.md) was added.
 
-Platform must take care of preparing a [local storage](https://github.com/buildpacks/rfcs/blob/main/text/0119-export-to-oci.md#how-it-works) on disk where images are being saved in OCI layout format and passing it through to the lifecycle.
+Platform must prepare a [layout directory](https://github.com/buildpacks/rfcs/blob/main/text/0119-export-to-oci.md#how-it-works) containing input images in OCI layout format, and provide the location of the directory to the lifecycle.
 
 #### Lifecycle phases affected
 
@@ -80,9 +80,9 @@ Input images required by any phase, like the `run-image`, must be saved on disk 
 
 #### During lifecycle execution
 
-For the phases affected, the feature is enabled using a new flag `-layout` or setting to **true** an environment variable named `CNB_USE_LAYOUT`.
+For the phases affected, the feature is enabled by providing a new `-layout` flag or by setting the `CNB_USE_LAYOUT` environment variable to `true`.
 * If the feature is enabled: 
-  *  A path to a directory where the images are saved in OCI layout format must be specified, either by setting the flag `-layout-dir` or the environment variable `CNB_LAYOUT_DIR`.
+  *  A path to a directory where the images are located and saved must be specified, either by providing a `-layout-dir` flag or by setting the `CNB_LAYOUT_DIR` environment variable.
 
 ## Base Image Author
 
