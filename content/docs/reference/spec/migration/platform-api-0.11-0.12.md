@@ -26,7 +26,7 @@ that indicates the location of a `run.toml` file with schema:
  mirrors = ["<mirror>", "<mirror>"]
 ```
 
-This file will be created automatically during `pack builder create` if the `pack` version is at least `0.30.0` (see below).
+This file will be created automatically at `/cnb/run.toml` during `pack builder create` if the `pack` version is at least `0.30.0` (see below).
 
 For each image in `[[images]]`, `image` is a tag reference to a run image and `mirrors` contains tag references to its mirrors.
 Note that whereas `stack.toml` (removed in this API version) only contained a single run image with mirrors, `run.toml` contains a list of images.
@@ -69,7 +69,7 @@ To use the feature, platforms should:
 * Invoke `extender` as usual to extend the builder image (see [migration guide](/docs/reference/spec/migration/platform-api-0.9-0.10/index.html) for Platform 0.10)
 * Inspect the contents of `analyzed.toml` - if `run-image.extend` is `true` we must run the `extender` on the run image
 * Using the **run image** as the basis for the container, invoke `extender` with flags `-kind run` and `-extended <extended dir>`
-  * `<extended dir>` is the directory where layers from applying each `run.Dockerfile` to the run image will be saved for use by the `exporter`; it defaults to `<layers>/extended`
+  * `<extended dir>` is the directory where layers created from the application of each `run.Dockerfile` to the run image will be saved for use by the `exporter`; it defaults to `<layers>/extended`
   * Run image extension may be done in parallel with builder image extension
 * Invoke `exporter` with the `-extended` flag
 
