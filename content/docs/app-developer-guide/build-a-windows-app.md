@@ -4,11 +4,11 @@ weight=2
 summary="The basics of taking your Windows app from source code to runnable image."
 +++
 
-> **EXPERIMENTAL** Windows support is experiment!
+> **EXPERIMENTAL** Windows support is experimental!
 >
 > Enable experimental mode by running: `pack config experimental true`
 
-### Precursor
+### Before You Start
 
 #### Recommended reading
 
@@ -20,7 +20,7 @@ When you're done, head back here.
 
 In order to produce Windows container images, ensure [Windows container mode][container-mode] is enabled in your Docker settings (available only in Docker for Windows).
 
-Then, building a Windows app using Cloud Native Buildpacks is nearly identical to [building for Linux][build-linux]:
+Then, building a Windows app using Cloud Native Buildpacks is nearly identical to [building for Linux][build-linux].
 
 > **Not using Windows?**
 >
