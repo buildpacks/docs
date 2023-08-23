@@ -80,6 +80,13 @@ The `io.buildpacks.rebasable` label on the exported application image will be `f
 The `-force` flag must be provided to the `rebaser` in order to rebase images with unsafe extension layers,
 and should be used with great care.
 
+### The `exporter` no longer deletes cache images
+
+The `exporter` will no longer delete the previous version of the cache image before saving the new version -
+which could lead to untagged blobs in the registry.
+
+Platforms should ensure that any untagged blobs are cleaned periodically if their registry does not already support such pruning.
+
 ### OCI layout is a supported export format (experimental)
 
 Platform 0.12 adds a new capability to [export application images on disk in OCI layout format](https://github.com/buildpacks/rfcs/blob/main/text/0119-export-to-oci.md).
