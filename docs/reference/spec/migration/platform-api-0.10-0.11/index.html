@@ -8,9 +8,8 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Next, you will want to actually detect that the app you are building is a Ruby app. In order to do this, you will need to check for a Gemfile.
-Replace exit 1 in the detect script with the following…"/>
-<link rel="canonical" content="https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/detection/">
+
+<link rel="canonical" content="https://buildpacks.io/docs/reference/spec/migration/platform-api-0.10-0.11/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
 
@@ -18,13 +17,12 @@ Replace exit 1 in the detect script with the following…"/>
 
 
 
-<meta property="og:title" content="Detecting your application · Cloud Native Buildpacks">
+<meta property="og:title" content="Platform API 0.10 -&gt; 0.11 · Cloud Native Buildpacks">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/detection/">
+<meta property="og:url" content="https://buildpacks.io/docs/reference/spec/migration/platform-api-0.10-0.11/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-<meta property="og:description" content="Next, you will want to actually detect that the app you are building is a Ruby app. In order to do this, you will need to check for a Gemfile.
-Replace exit 1 in the detect script with the following…">
+
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -35,7 +33,7 @@ Replace exit 1 in the detect script with the following…">
 
 
 
-<meta property="twitter:title" content="Detecting your application · Cloud Native Buildpacks">
+<meta property="twitter:title" content="Platform API 0.10 -&gt; 0.11 · Cloud Native Buildpacks">
 <meta property="twitter:card" content="summary">
 <meta property="twitter:image" content="https://buildpacks.io/images/buildpacks-social-card-square.jpg">
 <meta property="twitter:image:alt" content="Buildpacks project logo">
@@ -98,7 +96,7 @@ Replace exit 1 in the detect script with the following…">
     gtag('config', 'G-CJLSR4FQXL');
   </script>
 
-  <title>Detecting your application · Cloud Native Buildpacks</title>
+  <title>Platform API 0.10 -&gt; 0.11 · Cloud Native Buildpacks</title>
 </head>
 
 <body>
@@ -305,37 +303,37 @@ Replace exit 1 in the detect script with the following…">
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/buildpack-author-guide/" class="dd-item depth-0 parent haschildren">
+<li data-nav-id="/docs/buildpack-author-guide/" class="dd-item depth-0 haschildren">
   <a href="/docs/buildpack-author-guide/">Buildpack Author Guide</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/buildpack-author-guide/create-buildpack/" class="dd-item depth-1 parent haschildren">
+<li data-nav-id="/docs/buildpack-author-guide/create-buildpack/" class="dd-item depth-1 haschildren">
   <a href="/docs/buildpack-author-guide/create-buildpack/">Create a buildpack</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/buildpack-author-guide/create-buildpack/setup-local-environment/" class="dd-item depth-2">
+<li data-nav-id="/docs/buildpack-author-guide/create-buildpack/setup-local-environment/" class="dd-item depth-2 collapse">
   <a href="/docs/buildpack-author-guide/create-buildpack/setup-local-environment/">Set up your local environment</a>
 </li>
-<li data-nav-id="/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb/" class="dd-item depth-2">
+<li data-nav-id="/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb/" class="dd-item depth-2 collapse">
   <a href="/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb/">Building blocks of a Cloud Native Buildpack</a>
 </li>
-<li data-nav-id="/docs/buildpack-author-guide/create-buildpack/detection/" class="dd-item depth-2 active">
+<li data-nav-id="/docs/buildpack-author-guide/create-buildpack/detection/" class="dd-item depth-2 collapse">
   <a href="/docs/buildpack-author-guide/create-buildpack/detection/">Detecting your application</a>
 </li>
-<li data-nav-id="/docs/buildpack-author-guide/create-buildpack/build-app/" class="dd-item depth-2">
+<li data-nav-id="/docs/buildpack-author-guide/create-buildpack/build-app/" class="dd-item depth-2 collapse">
   <a href="/docs/buildpack-author-guide/create-buildpack/build-app/">Building your application</a>
 </li>
-<li data-nav-id="/docs/buildpack-author-guide/create-buildpack/make-app-runnable/" class="dd-item depth-2">
+<li data-nav-id="/docs/buildpack-author-guide/create-buildpack/make-app-runnable/" class="dd-item depth-2 collapse">
   <a href="/docs/buildpack-author-guide/create-buildpack/make-app-runnable/">Make your application runnable</a>
 </li>
-<li data-nav-id="/docs/buildpack-author-guide/create-buildpack/specify-multiple-process-types/" class="dd-item depth-2">
+<li data-nav-id="/docs/buildpack-author-guide/create-buildpack/specify-multiple-process-types/" class="dd-item depth-2 collapse">
   <a href="/docs/buildpack-author-guide/create-buildpack/specify-multiple-process-types/">Specify multiple process types</a>
 </li>
-<li data-nav-id="/docs/buildpack-author-guide/create-buildpack/caching/" class="dd-item depth-2">
+<li data-nav-id="/docs/buildpack-author-guide/create-buildpack/caching/" class="dd-item depth-2 collapse">
   <a href="/docs/buildpack-author-guide/create-buildpack/caching/">Improving performance with caching</a>
 </li>
-<li data-nav-id="/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable/" class="dd-item depth-2">
+<li data-nav-id="/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable/" class="dd-item depth-2 collapse">
   <a href="/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable/">Making your buildpack configurable</a>
 </li>
-<li data-nav-id="/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials/" class="dd-item depth-2">
+<li data-nav-id="/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials/" class="dd-item depth-2 collapse">
   <a href="/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials/">Adding Bill-of-Materials</a>
 </li>
   </ul>
@@ -611,10 +609,10 @@ Replace exit 1 in the detect script with the following…">
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/reference/" class="dd-item depth-0 haschildren">
+<li data-nav-id="/docs/reference/" class="dd-item depth-0 parent haschildren">
   <a href="/docs/reference/">Reference</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/reference/config/" class="dd-item depth-1 collapse haschildren">
+<li data-nav-id="/docs/reference/config/" class="dd-item depth-1 haschildren">
   <a href="/docs/reference/config/">Configuration</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/reference/config/builder-config/" class="dd-item depth-2 collapse">
@@ -628,7 +626,7 @@ Replace exit 1 in the detect script with the following…">
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/reference/spec/" class="dd-item depth-1 collapse haschildren">
+<li data-nav-id="/docs/reference/spec/" class="dd-item depth-1 parent haschildren">
   <a href="/docs/reference/spec/">Specification</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/reference/spec/buildpack-api/" class="dd-item depth-2">
@@ -637,52 +635,52 @@ Replace exit 1 in the detect script with the following…">
 <li data-nav-id="/docs/reference/spec/distribution-api/" class="dd-item depth-2">
   <a href="/docs/reference/spec/distribution-api/">Distribution API</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/" class="dd-item depth-2 haschildren">
+<li data-nav-id="/docs/reference/spec/migration/" class="dd-item depth-2 parent haschildren">
   <a href="/docs/reference/spec/migration/">Migration</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.4-0.5/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.4-0.5/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/buildpack-api-0.4-0.5/">Buildpack API 0.4 -&gt; 0.5</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.5-0.6/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.5-0.6/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/buildpack-api-0.5-0.6/">Buildpack API 0.5 -&gt; 0.6</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.6-0.7/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.6-0.7/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/buildpack-api-0.6-0.7/">Buildpack API 0.6 -&gt; 0.7</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.7-0.8/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.7-0.8/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/buildpack-api-0.7-0.8/">Buildpack API 0.7 -&gt; 0.8</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.8-0.9/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.8-0.9/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/buildpack-api-0.8-0.9/">Buildpack API 0.8 -&gt; 0.9</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.9-0.10/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.9-0.10/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/buildpack-api-0.9-0.10/">Buildpack API 0.9 -&gt; 0.10</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.10-0.11/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.10-0.11/" class="dd-item depth-3 active">
   <a href="/docs/reference/spec/migration/platform-api-0.10-0.11/">Platform API 0.10 -&gt; 0.11</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.11-0.12/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.11-0.12/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/platform-api-0.11-0.12/">Platform API 0.11 -&gt; 0.12</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.3-0.4/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.3-0.4/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/platform-api-0.3-0.4/">Platform API 0.3 -&gt; 0.4</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.4-0.5/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.4-0.5/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/platform-api-0.4-0.5/">Platform API 0.4 -&gt; 0.5</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.5-0.6/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.5-0.6/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/platform-api-0.5-0.6/">Platform API 0.5 -&gt; 0.6</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.6-0.7/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.6-0.7/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/platform-api-0.6-0.7/">Platform API 0.6 -&gt; 0.7</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.7-0.8/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.7-0.8/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/platform-api-0.7-0.8/">Platform API 0.7 -&gt; 0.8</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.8-0.9/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.8-0.9/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/platform-api-0.8-0.9/">Platform API 0.8 -&gt; 0.9</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.9-0.10/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.9-0.10/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/platform-api-0.9-0.10/">Platform API 0.9 -&gt; 0.10</a>
 </li>
   </ul>
@@ -706,12 +704,12 @@ Replace exit 1 in the detect script with the following…">
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BDetecting&#43;your&#43;application%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fbuildpack-author-guide%2Fcreate-buildpack%2Fdetection%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BPlatform&#43;API&#43;0.10&#43;-%26gt%3B&#43;0.11%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Freference%2Fspec%2Fmigration%2Fplatform-api-0.10-0.11%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/buildpack-author-guide/create-buildpack/detection.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/reference/spec/migration/platform-api-0.10-0.11.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
@@ -719,43 +717,49 @@ Replace exit 1 in the detect script with the following…">
 
 
         <div class="heading">
-          <h1 class="title">Detecting your application</h1>
+          <h1 class="title">Platform API 0.10 -&gt; 0.11</h1>
         </div>
 
-        <!-- test:suite=create-buildpack;weight=3 -->
-<p>Next, you will want to actually detect that the app you are building is a Ruby app. In order to do this, you will need to check for a <code>Gemfile</code>.</p>
-<p>Replace <code>exit 1</code> in the <code>detect</code> script with the following check:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[[</span> ! -f Gemfile <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
-</span></span><span class="line"><span class="cl">   <span class="nb">exit</span> <span class="m">100</span>
-</span></span><span class="line"><span class="cl"><span class="k">fi</span>
-</span></span></code></pre></div><p>Your <code>ruby-buildpack/bin/detect</code><!--+"{{open}}"+--> script should look like this:</p>
-<!-- test:file=ruby-buildpack/bin/detect -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="nb">set</span> -eo pipefail
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[[</span> ! -f Gemfile <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
-</span></span><span class="line"><span class="cl">   <span class="nb">exit</span> <span class="m">100</span>
-</span></span><span class="line"><span class="cl"><span class="k">fi</span>
-</span></span></code></pre></div><p>Next, rebuild your app with the updated buildpack:</p>
-<!-- test:exec;exit-code=-1 -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
-</span></span></code></pre></div><!--+- "{{execute}}"+-->
-<p>You should see the following output:</p>
-<pre tabindex="0"><code>Previous image with name &#34;test-ruby-app&#34; not found
-===&gt; DETECTING
-examples/ruby 0.0.1
-===&gt; RESTORING
-===&gt; BUILDING
----&gt; Ruby Buildpack
-ERROR: failed to build: exit status 1
-ERROR: failed to build: executing lifecycle: failed with status code: 51
-</code></pre><p>Notice that <code>detect</code> now passes because there is a valid <code>Gemfile</code> in the Ruby app at <code>ruby-sample-app</code>, but now <code>build</code> fails because it is currently written to error out.</p>
-<p>You will also notice that <code>RESTORING</code> now appears in the build output. This step is part of the buildpack lifecycle that looks to see if any previous image builds have layers that the buildpack can re-use. We will get into this topic in more detail later.</p>
-<!--+if false+-->
-<hr>
-<p><a href="/docs/buildpack-author-guide/create-buildpack/build-app" class="button bg-pink">Next Step</a></p>
-<!--+end+-->
-
+        <p>This guide is most relevant to platform operators and builder authors.</p>
+<p>See the <a href="https://github.com/buildpacks/spec/releases/tag/platform%2Fv0.11">spec release</a> for Platform API 0.11 for the full list of changes and further details.</p>
+<h2 id="platform-operator">Platform Operator</h2>
+<h3 id="sbom-files-for-the-launcher-are-included-in-the-application-image">SBOM files for the <code>launcher</code> are included in the application image</h3>
+<p>In Platform 0.11, the lifecycle ships with standardized SBOM files describing the <code>lifecycle</code> and <code>launcher</code> binaries
+(these are included in the tarball on the GitHub release page and within the image at <code>index.docker.io/buildpacksio/lifecycle:&lt;version&gt;</code>).</p>
+<p>After a build, SBOM files describing the <code>launcher</code> are included in the application image at <code>&lt;layers&gt;/sbom/launch/buildpacksio_lifecycle/launcher/sbom.&lt;ext&gt;</code>,
+where <code>&lt;ext&gt;</code> is each of: <code>cdx.json</code>, <code>spdx.json</code>, and <code>syft.json</code>.
+Additionally, SBOM files describing the <code>lifecycle</code> are copied to <code>&lt;layers&gt;/sbom/build/buildpacksio_lifecycle/sbom.&lt;ext&gt;</code>,
+where they may be saved off by the platform prior to the build container exiting.</p>
+<p>This mirrors what is already being done as of Platform 0.8 for buildpack-provided standardized SBOM files,
+which are exported to <code>&lt;layers&gt;/sbom/launch/&lt;buildpack-id&gt;/&lt;layer&gt;/sbom.&lt;ext&gt;</code> (for runtime dependencies)
+and copied to <code>&lt;layers&gt;/sbom/launch/&lt;buildpack-id&gt;/sbom.&lt;ext&gt;</code> (for build-time dependencies).</p>
+<p>To use this feature, no additional action is required from platforms that are already handling buildpack-provided SBOM files.
+The SBOMs for the image will simply be more complete.</p>
+<h3 id="the-rebaser-accepts-a--previous-image-flag-to-allow-rebasing-by-digest-reference">The rebaser accepts a -previous-image flag to allow rebasing by digest reference</h3>
+<p>Previously, when rebasing an image, the rebased image would always be saved to the same tag as the original image.
+This prevented rebasing by digest, among other use cases.</p>
+<p>In Platform 0.11, the original image may be specified separately from the destination image with the <code>previous-image</code> flag, as in the following:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/cnb/lifecycle/rebaser -previous-image some-original-image some-destination-image
+</span></span></code></pre></div><p>As before, additional tags for the destination image can also be provided:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/cnb/lifecycle/rebaser -previous-image some-original-image -tag some-additional-tag:latest some-destination-image
+</span></span></code></pre></div><p>To use this feature, platforms can provide the new <code>-previous-image</code> flag to the <code>rebaser</code>.</p>
+<h2 id="builder-author">Builder Author</h2>
+<h3 id="platforms-can-specify-build-time-environment-variables">Platforms can specify build time environment variables</h3>
+<p>Builders can include a <code>/cnb/build-config/env/</code> directory to define environment variables for buildpacks.</p>
+<p>As an example, file <code>/cnb/build-config/env/SOME_VAR</code> with contents <code>some-val</code> will become <code>SOME_VAR=some-val</code> in the buildpack environment.</p>
+<p>Files in the <code>/cnb/build-config/env/</code> directory can use suffixes to control the behavior when another entity defines the same variable -
+e.g., if <code>/cnb/build-config/env/SOME_VAR.override</code> has contents <code>some-builder-val</code> and <code>&lt;platform&gt;/env/SOME_VAR</code> has contents <code>some-user-val</code>,
+the buildpack environment will contain <code>SOME_VAR=some-builder-val</code>.
+This is similar to the <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#environment-variable-modification-rules">environment modification rules for buildpacks</a>,
+except that the default behavior when no file suffix is provided is <code>default</code>.</p>
+<p>The order of application for env directories is:</p>
+<ul>
+<li>Buildpack: <code>&lt;layers&gt;/&lt;buildpack-id&gt;/&lt;layer&gt;/&lt;env&gt;/</code></li>
+<li>User: <code>&lt;platform&gt;/env/</code> - overrides buildpack values</li>
+<li>Builder: <code>/cnb/build-config/env/</code></li>
+</ul>
+<p>For additional information, see the <a href="https://github.com/buildpacks/spec/blob/main/platform.md#buildpack-environment">buildpack environment</a> section in the Platform spec.</p>
+<p>To use this feature, builder authors should include a <code>/cnb/build-config/env/</code> directory with the desired configuration.</p>
 
         
 
@@ -765,12 +769,12 @@ ERROR: failed to build: executing lifecycle: failed with status code: 51
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BDetecting&#43;your&#43;application%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fbuildpack-author-guide%2Fcreate-buildpack%2Fdetection%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BPlatform&#43;API&#43;0.10&#43;-%26gt%3B&#43;0.11%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Freference%2Fspec%2Fmigration%2Fplatform-api-0.10-0.11%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/buildpack-author-guide/create-buildpack/detection.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/reference/spec/migration/platform-api-0.10-0.11.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   

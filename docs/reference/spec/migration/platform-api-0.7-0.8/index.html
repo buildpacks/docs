@@ -656,6 +656,12 @@
 <li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.9-0.10/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/buildpack-api-0.9-0.10/">Buildpack API 0.9 -&gt; 0.10</a>
 </li>
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.10-0.11/" class="dd-item depth-3">
+  <a href="/docs/reference/spec/migration/platform-api-0.10-0.11/">Platform API 0.10 -&gt; 0.11</a>
+</li>
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.11-0.12/" class="dd-item depth-3">
+  <a href="/docs/reference/spec/migration/platform-api-0.11-0.12/">Platform API 0.11 -&gt; 0.12</a>
+</li>
 <li data-nav-id="/docs/reference/spec/migration/platform-api-0.3-0.4/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/platform-api-0.3-0.4/">Platform API 0.3 -&gt; 0.4</a>
 </li>
@@ -715,7 +721,7 @@
         </div>
 
         <p>This guide is most relevant to platform operators.</p>
-<p>See the <a href="https://github.com/buildpacks/spec/releases/tag/platform%2Fv0.8">spec release</a> for platform API 0.8 for the full list of changes and further details.</p>
+<p>See the <a href="https://github.com/buildpacks/spec/releases/tag/platform%2Fv0.8">spec release</a> for Platform API 0.8 for the full list of changes and further details.</p>
 <h2 id="platform-operator">Platform Operator</h2>
 <h3 id="new-standardized-sbom-format">New standardized SBOM format</h3>
 <p>Buildpacks implementing Buildpack API 0.7+ may output write Software Bill of Materials (SBOM) files describing build- or run-time dependencies. These files must use the <code>application/vnd.cyclonedx+json</code>, <code>application/spdx+json</code>, or <code>application/vnd.syft+json</code> media types (a buildpack may output SBOM files in multiple formats). Files may be written to the following locations:</p>

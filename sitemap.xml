@@ -296,6 +296,10 @@
   </url><url>
     <loc>https://buildpacks.io/docs/reference/spec/platform-api/</loc>
   </url><url>
+    <loc>https://buildpacks.io/docs/reference/spec/migration/platform-api-0.10-0.11/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/reference/spec/migration/platform-api-0.11-0.12/</loc>
+  </url><url>
     <loc>https://buildpacks.io/docs/reference/spec/migration/platform-api-0.3-0.4/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/reference/spec/migration/platform-api-0.4-0.5/</loc>

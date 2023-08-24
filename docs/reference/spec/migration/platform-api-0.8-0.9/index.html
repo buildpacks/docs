@@ -656,6 +656,12 @@
 <li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.9-0.10/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/buildpack-api-0.9-0.10/">Buildpack API 0.9 -&gt; 0.10</a>
 </li>
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.10-0.11/" class="dd-item depth-3">
+  <a href="/docs/reference/spec/migration/platform-api-0.10-0.11/">Platform API 0.10 -&gt; 0.11</a>
+</li>
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.11-0.12/" class="dd-item depth-3">
+  <a href="/docs/reference/spec/migration/platform-api-0.11-0.12/">Platform API 0.11 -&gt; 0.12</a>
+</li>
 <li data-nav-id="/docs/reference/spec/migration/platform-api-0.3-0.4/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/platform-api-0.3-0.4/">Platform API 0.3 -&gt; 0.4</a>
 </li>
@@ -715,7 +721,7 @@
         </div>
 
         <p>This guide is most relevant to platform operators.</p>
-<p>See the <a href="https://github.com/buildpacks/spec/releases/tag/platform%2Fv0.9">spec release</a> for platform API 0.9 for the full list of changes and further details.</p>
+<p>See the <a href="https://github.com/buildpacks/spec/releases/tag/platform%2Fv0.9">spec release</a> for Platform API 0.9 for the full list of changes and further details.</p>
 <h2 id="platform-operator">Platform Operator</h2>
 <h3 id="legacy-bom-information-removed-from-iobuildpacksbuildmetadata-label">Legacy BOM information removed from <code>io.buildpacks.build.metadata</code> label</h3>
 <p>Legacy BOM information is removed from the <code>io.buildpacks.build.metadata</code> label and <code>&lt;layers&gt;/config/metadata.toml</code>. Buildpacks may still output BOM information in the legacy format, and it can now be found in <code>&lt;layers&gt;/sbom/launch/sbom.legacy.json</code> (for runtime dependencies) or <code>&lt;layers&gt;/sbom/build/sbom.legacy.json</code> (for build time dependencies). Note that <code>&lt;layers&gt;/sbom/build/sbom.legacy.json</code> is not exported in the application image, and must be copied from the build container before it exits.</p>

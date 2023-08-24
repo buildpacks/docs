@@ -656,6 +656,12 @@
 <li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.9-0.10/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/buildpack-api-0.9-0.10/">Buildpack API 0.9 -&gt; 0.10</a>
 </li>
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.10-0.11/" class="dd-item depth-3">
+  <a href="/docs/reference/spec/migration/platform-api-0.10-0.11/">Platform API 0.10 -&gt; 0.11</a>
+</li>
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.11-0.12/" class="dd-item depth-3">
+  <a href="/docs/reference/spec/migration/platform-api-0.11-0.12/">Platform API 0.11 -&gt; 0.12</a>
+</li>
 <li data-nav-id="/docs/reference/spec/migration/platform-api-0.3-0.4/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/platform-api-0.3-0.4/">Platform API 0.3 -&gt; 0.4</a>
 </li>
@@ -722,8 +728,8 @@
 <p>Buildpack processes can still use a shell! However, the <code>command</code> must now explicitly begin with <code>/bin/sh</code> (or <code>cmd.exe</code> on Windows).</p>
 <h3 id="overridable-process-arguments">Overridable process arguments</h3>
 <p>Hand-in-hand with shell removal is the introduction of overridable process arguments.</p>
-<p>In <code>launch.toml</code>, <code>command</code> is now a list. The first element in <code>command</code> is the command, and all following entries are arguments that are always provided to the process, regardless of how the application is started. The <code>args</code> list now designates arguments that can be overridden by the end user - if supported by the platform (platform API version 0.10 and above). For further details, see the platform <a href="/docs/reference/spec/migration/platform-api-0.9-0.10">migration guide</a>.</p>
-<p>For older platforms (platform API version 0.9 and below), arguments in <code>args</code> will be appended to arguments in <code>command</code>, negating the new functionality (but preserving compatibility).</p>
+<p>In <code>launch.toml</code>, <code>command</code> is now a list. The first element in <code>command</code> is the command, and all following entries are arguments that are always provided to the process, regardless of how the application is started. The <code>args</code> list now designates arguments that can be overridden by the end user - if supported by the platform (Platform API version 0.10 and above). For further details, see the platform <a href="/docs/reference/spec/migration/platform-api-0.9-0.10">migration guide</a>.</p>
+<p>For older platforms (Platform API version 0.9 and below), arguments in <code>args</code> will be appended to arguments in <code>command</code>, negating the new functionality (but preserving compatibility).</p>
 <h3 id="image-extensions-are-supported-experimental">Image extensions are supported (experimental)</h3>
 <p>Platform 0.10 introduces image extensions as experimental components for customizing build and run-time base images (see <a href="/docs/features/dockerfiles">here</a> for more information).</p>
 <p>For more information, see <a href="/docs/extension-guide/create-extension">authoring an image extension</a>.</p>

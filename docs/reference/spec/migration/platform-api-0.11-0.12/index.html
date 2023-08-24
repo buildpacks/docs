@@ -8,9 +8,8 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Next, you will want to actually detect that the app you are building is a Ruby app. In order to do this, you will need to check for a Gemfile.
-Replace exit 1 in the detect script with the following…"/>
-<link rel="canonical" content="https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/detection/">
+
+<link rel="canonical" content="https://buildpacks.io/docs/reference/spec/migration/platform-api-0.11-0.12/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
 
@@ -18,13 +17,12 @@ Replace exit 1 in the detect script with the following…"/>
 
 
 
-<meta property="og:title" content="Detecting your application · Cloud Native Buildpacks">
+<meta property="og:title" content="Platform API 0.11 -&gt; 0.12 · Cloud Native Buildpacks">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/detection/">
+<meta property="og:url" content="https://buildpacks.io/docs/reference/spec/migration/platform-api-0.11-0.12/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-<meta property="og:description" content="Next, you will want to actually detect that the app you are building is a Ruby app. In order to do this, you will need to check for a Gemfile.
-Replace exit 1 in the detect script with the following…">
+
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -35,7 +33,7 @@ Replace exit 1 in the detect script with the following…">
 
 
 
-<meta property="twitter:title" content="Detecting your application · Cloud Native Buildpacks">
+<meta property="twitter:title" content="Platform API 0.11 -&gt; 0.12 · Cloud Native Buildpacks">
 <meta property="twitter:card" content="summary">
 <meta property="twitter:image" content="https://buildpacks.io/images/buildpacks-social-card-square.jpg">
 <meta property="twitter:image:alt" content="Buildpacks project logo">
@@ -98,7 +96,7 @@ Replace exit 1 in the detect script with the following…">
     gtag('config', 'G-CJLSR4FQXL');
   </script>
 
-  <title>Detecting your application · Cloud Native Buildpacks</title>
+  <title>Platform API 0.11 -&gt; 0.12 · Cloud Native Buildpacks</title>
 </head>
 
 <body>
@@ -305,37 +303,37 @@ Replace exit 1 in the detect script with the following…">
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/buildpack-author-guide/" class="dd-item depth-0 parent haschildren">
+<li data-nav-id="/docs/buildpack-author-guide/" class="dd-item depth-0 haschildren">
   <a href="/docs/buildpack-author-guide/">Buildpack Author Guide</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/buildpack-author-guide/create-buildpack/" class="dd-item depth-1 parent haschildren">
+<li data-nav-id="/docs/buildpack-author-guide/create-buildpack/" class="dd-item depth-1 haschildren">
   <a href="/docs/buildpack-author-guide/create-buildpack/">Create a buildpack</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/buildpack-author-guide/create-buildpack/setup-local-environment/" class="dd-item depth-2">
+<li data-nav-id="/docs/buildpack-author-guide/create-buildpack/setup-local-environment/" class="dd-item depth-2 collapse">
   <a href="/docs/buildpack-author-guide/create-buildpack/setup-local-environment/">Set up your local environment</a>
 </li>
-<li data-nav-id="/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb/" class="dd-item depth-2">
+<li data-nav-id="/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb/" class="dd-item depth-2 collapse">
   <a href="/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb/">Building blocks of a Cloud Native Buildpack</a>
 </li>
-<li data-nav-id="/docs/buildpack-author-guide/create-buildpack/detection/" class="dd-item depth-2 active">
+<li data-nav-id="/docs/buildpack-author-guide/create-buildpack/detection/" class="dd-item depth-2 collapse">
   <a href="/docs/buildpack-author-guide/create-buildpack/detection/">Detecting your application</a>
 </li>
-<li data-nav-id="/docs/buildpack-author-guide/create-buildpack/build-app/" class="dd-item depth-2">
+<li data-nav-id="/docs/buildpack-author-guide/create-buildpack/build-app/" class="dd-item depth-2 collapse">
   <a href="/docs/buildpack-author-guide/create-buildpack/build-app/">Building your application</a>
 </li>
-<li data-nav-id="/docs/buildpack-author-guide/create-buildpack/make-app-runnable/" class="dd-item depth-2">
+<li data-nav-id="/docs/buildpack-author-guide/create-buildpack/make-app-runnable/" class="dd-item depth-2 collapse">
   <a href="/docs/buildpack-author-guide/create-buildpack/make-app-runnable/">Make your application runnable</a>
 </li>
-<li data-nav-id="/docs/buildpack-author-guide/create-buildpack/specify-multiple-process-types/" class="dd-item depth-2">
+<li data-nav-id="/docs/buildpack-author-guide/create-buildpack/specify-multiple-process-types/" class="dd-item depth-2 collapse">
   <a href="/docs/buildpack-author-guide/create-buildpack/specify-multiple-process-types/">Specify multiple process types</a>
 </li>
-<li data-nav-id="/docs/buildpack-author-guide/create-buildpack/caching/" class="dd-item depth-2">
+<li data-nav-id="/docs/buildpack-author-guide/create-buildpack/caching/" class="dd-item depth-2 collapse">
   <a href="/docs/buildpack-author-guide/create-buildpack/caching/">Improving performance with caching</a>
 </li>
-<li data-nav-id="/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable/" class="dd-item depth-2">
+<li data-nav-id="/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable/" class="dd-item depth-2 collapse">
   <a href="/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable/">Making your buildpack configurable</a>
 </li>
-<li data-nav-id="/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials/" class="dd-item depth-2">
+<li data-nav-id="/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials/" class="dd-item depth-2 collapse">
   <a href="/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials/">Adding Bill-of-Materials</a>
 </li>
   </ul>
@@ -611,10 +609,10 @@ Replace exit 1 in the detect script with the following…">
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/reference/" class="dd-item depth-0 haschildren">
+<li data-nav-id="/docs/reference/" class="dd-item depth-0 parent haschildren">
   <a href="/docs/reference/">Reference</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/reference/config/" class="dd-item depth-1 collapse haschildren">
+<li data-nav-id="/docs/reference/config/" class="dd-item depth-1 haschildren">
   <a href="/docs/reference/config/">Configuration</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/reference/config/builder-config/" class="dd-item depth-2 collapse">
@@ -628,7 +626,7 @@ Replace exit 1 in the detect script with the following…">
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/reference/spec/" class="dd-item depth-1 collapse haschildren">
+<li data-nav-id="/docs/reference/spec/" class="dd-item depth-1 parent haschildren">
   <a href="/docs/reference/spec/">Specification</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/reference/spec/buildpack-api/" class="dd-item depth-2">
@@ -637,52 +635,52 @@ Replace exit 1 in the detect script with the following…">
 <li data-nav-id="/docs/reference/spec/distribution-api/" class="dd-item depth-2">
   <a href="/docs/reference/spec/distribution-api/">Distribution API</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/" class="dd-item depth-2 haschildren">
+<li data-nav-id="/docs/reference/spec/migration/" class="dd-item depth-2 parent haschildren">
   <a href="/docs/reference/spec/migration/">Migration</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.4-0.5/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.4-0.5/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/buildpack-api-0.4-0.5/">Buildpack API 0.4 -&gt; 0.5</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.5-0.6/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.5-0.6/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/buildpack-api-0.5-0.6/">Buildpack API 0.5 -&gt; 0.6</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.6-0.7/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.6-0.7/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/buildpack-api-0.6-0.7/">Buildpack API 0.6 -&gt; 0.7</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.7-0.8/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.7-0.8/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/buildpack-api-0.7-0.8/">Buildpack API 0.7 -&gt; 0.8</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.8-0.9/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.8-0.9/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/buildpack-api-0.8-0.9/">Buildpack API 0.8 -&gt; 0.9</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.9-0.10/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.9-0.10/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/buildpack-api-0.9-0.10/">Buildpack API 0.9 -&gt; 0.10</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.10-0.11/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.10-0.11/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/platform-api-0.10-0.11/">Platform API 0.10 -&gt; 0.11</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.11-0.12/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.11-0.12/" class="dd-item depth-3 active">
   <a href="/docs/reference/spec/migration/platform-api-0.11-0.12/">Platform API 0.11 -&gt; 0.12</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.3-0.4/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.3-0.4/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/platform-api-0.3-0.4/">Platform API 0.3 -&gt; 0.4</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.4-0.5/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.4-0.5/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/platform-api-0.4-0.5/">Platform API 0.4 -&gt; 0.5</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.5-0.6/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.5-0.6/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/platform-api-0.5-0.6/">Platform API 0.5 -&gt; 0.6</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.6-0.7/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.6-0.7/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/platform-api-0.6-0.7/">Platform API 0.6 -&gt; 0.7</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.7-0.8/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.7-0.8/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/platform-api-0.7-0.8/">Platform API 0.7 -&gt; 0.8</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.8-0.9/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.8-0.9/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/platform-api-0.8-0.9/">Platform API 0.8 -&gt; 0.9</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.9-0.10/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.9-0.10/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/platform-api-0.9-0.10/">Platform API 0.9 -&gt; 0.10</a>
 </li>
   </ul>
@@ -706,12 +704,12 @@ Replace exit 1 in the detect script with the following…">
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BDetecting&#43;your&#43;application%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fbuildpack-author-guide%2Fcreate-buildpack%2Fdetection%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BPlatform&#43;API&#43;0.11&#43;-%26gt%3B&#43;0.12%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Freference%2Fspec%2Fmigration%2Fplatform-api-0.11-0.12%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/buildpack-author-guide/create-buildpack/detection.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/reference/spec/migration/platform-api-0.11-0.12.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
@@ -719,43 +717,136 @@ Replace exit 1 in the detect script with the following…">
 
 
         <div class="heading">
-          <h1 class="title">Detecting your application</h1>
+          <h1 class="title">Platform API 0.11 -&gt; 0.12</h1>
         </div>
 
-        <!-- test:suite=create-buildpack;weight=3 -->
-<p>Next, you will want to actually detect that the app you are building is a Ruby app. In order to do this, you will need to check for a <code>Gemfile</code>.</p>
-<p>Replace <code>exit 1</code> in the <code>detect</code> script with the following check:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[[</span> ! -f Gemfile <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
-</span></span><span class="line"><span class="cl">   <span class="nb">exit</span> <span class="m">100</span>
-</span></span><span class="line"><span class="cl"><span class="k">fi</span>
-</span></span></code></pre></div><p>Your <code>ruby-buildpack/bin/detect</code><!--+"{{open}}"+--> script should look like this:</p>
-<!-- test:file=ruby-buildpack/bin/detect -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="nb">set</span> -eo pipefail
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[[</span> ! -f Gemfile <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
-</span></span><span class="line"><span class="cl">   <span class="nb">exit</span> <span class="m">100</span>
-</span></span><span class="line"><span class="cl"><span class="k">fi</span>
-</span></span></code></pre></div><p>Next, rebuild your app with the updated buildpack:</p>
-<!-- test:exec;exit-code=-1 -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
-</span></span></code></pre></div><!--+- "{{execute}}"+-->
-<p>You should see the following output:</p>
-<pre tabindex="0"><code>Previous image with name &#34;test-ruby-app&#34; not found
-===&gt; DETECTING
-examples/ruby 0.0.1
-===&gt; RESTORING
-===&gt; BUILDING
----&gt; Ruby Buildpack
-ERROR: failed to build: exit status 1
-ERROR: failed to build: executing lifecycle: failed with status code: 51
-</code></pre><p>Notice that <code>detect</code> now passes because there is a valid <code>Gemfile</code> in the Ruby app at <code>ruby-sample-app</code>, but now <code>build</code> fails because it is currently written to error out.</p>
-<p>You will also notice that <code>RESTORING</code> now appears in the build output. This step is part of the buildpack lifecycle that looks to see if any previous image builds have layers that the buildpack can re-use. We will get into this topic in more detail later.</p>
-<!--+if false+-->
-<hr>
-<p><a href="/docs/buildpack-author-guide/create-buildpack/build-app" class="button bg-pink">Next Step</a></p>
-<!--+end+-->
-
+        <p>This guide is most relevant to platform operators, base image authors, and builder authors.</p>
+<p>See the <a href="https://github.com/buildpacks/spec/releases/tag/platform%2Fv0.12">spec release</a> for Platform API 0.12 for the full list of changes and further details.</p>
+<h2 id="platform-operator">Platform Operator</h2>
+<h3 id="stacks-are-deprecated">Stacks are deprecated</h3>
+<p>In Platform 0.12, the concepts of stacks and mixins are removed
+in favor of existing constructs in the container image ecosystem such as operating system name, operating system distribution, and architecture.</p>
+<h4 id="during-build">During build</h4>
+<p>The <code>-stack</code> flag is removed from the <code>analyzer</code> and <code>exporter</code> and replaced with a <code>-run</code> flag
+that indicates the location of a <code>run.toml</code> file with schema:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">images</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">image</span> <span class="p">=</span> <span class="s2">&#34;&lt;image&gt;&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">mirrors</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;&lt;mirror&gt;&#34;</span><span class="p">,</span> <span class="s2">&#34;&lt;mirror&gt;&#34;</span><span class="p">]</span>
+</span></span></code></pre></div><p>This file will be created automatically at <code>/cnb/run.toml</code> during <code>pack builder create</code> if the <code>pack</code> version is at least <code>0.30.0</code> (see below).</p>
+<p>For each image in <code>[[images]]</code>, <code>image</code> is a tag reference to a run image and <code>mirrors</code> contains tag references to its mirrors.
+Note that whereas <code>stack.toml</code> (removed in this API version) only contained a single run image with mirrors, <code>run.toml</code> contains a list of images.
+This is because of image extensions and the possibility of run image switching, introduced in Platform 0.10.
+For platforms that do not use image extensions, only a single run image with mirrors is needed in <code>run.toml</code>.</p>
+<h4 id="after-build">After build</h4>
+<p>The <code>stack</code> key in the <code>io.buildpacks.lifecycle.metadata</code> is removed.
+To find a tag reference to the run image and mirrors information,
+platforms should read the newly added <code>runImage.image</code> and <code>runImage.mirrors</code> in <code>io.buildpacks.lifecycle.metadata</code>.</p>
+<h4 id="during-rebase">During rebase</h4>
+<p>Additional validations were added to the <code>rebaser</code> along with a <code>-force</code> flag to force rebase when validations are not satisfied.</p>
+<p>If <code>-force</code> is not provided,</p>
+<ul>
+<li>The following values in the image config for the new run image must match the original image config:
+<ul>
+<li><code>os</code></li>
+<li><code>architecture</code></li>
+<li><code>variant</code> (if specified)</li>
+<li><code>io.buildpacks.base.distro.name</code> label (if specified)</li>
+<li><code>io.buildpacks.base.distro.version</code> label (if specified)</li>
+</ul>
+</li>
+<li>If <code>-run-image</code> is provided it must be found in <code>io.buildpacks.lifecycle.metadata</code> in either <code>runImage.image</code> or <code>runImage.mirrors</code></li>
+<li><code>io.buildpacks.rebasable</code> must be <code>true</code> (see image extensions below)</li>
+</ul>
+<h3 id="run-image-extensions-is-supported-experimental">Run image extensions is supported (experimental)</h3>
+<p>In Platform 0.12, extensions can be used to extend not only build-time base images, but runtime base images as well.</p>
+<h4 id="during-build-1">During build</h4>
+<p>To use the feature, platforms should:</p>
+<ul>
+<li>Invoke <code>analyzer</code> as usual for Platform 0.12</li>
+<li>Invoke <code>detector</code> with the <code>-run</code> flag, to specify the location of a <code>run.toml</code> file containing run image information
+<ul>
+<li>When extensions switch the run image, this is used to log a warning if the new run image is not a known run image</li>
+</ul>
+</li>
+<li>Invoke <code>restorer</code> with the <code>-dameon</code> flag (newly added in this Platform API version) if the export target is a daemon
+<ul>
+<li>When extensions switch the run image, the <code>restorer</code> must re-read target data from the new run image in order to provide this information to buildpacks; if <code>-daemon</code> is provided the <code>restorer</code> will look for the run image in a daemon instead of a registry</li>
+<li>When extensions extend the run image, the <code>-daemon</code> flag has no effect as the <code>restorer</code> must be able to pull the run image manifest from a registry</li>
+</ul>
+</li>
+<li>Invoke <code>extender</code> as usual to extend the builder image (see <a href="/docs/reference/spec/migration/platform-api-0.9-0.10/index.html">migration guide</a> for Platform 0.10)</li>
+<li>Inspect the contents of <code>analyzed.toml</code> - if <code>run-image.extend</code> is <code>true</code> we must run the <code>extender</code> on the run image</li>
+<li>Using the <strong>run image</strong> as the basis for the container, invoke <code>extender</code> with flags <code>-kind run</code> and <code>-extended &lt;extended dir&gt;</code>
+<ul>
+<li><code>&lt;extended dir&gt;</code> is the directory where layers created from the application of each <code>run.Dockerfile</code> to the run image will be saved for use by the <code>exporter</code>; it defaults to <code>&lt;layers&gt;/extended</code></li>
+<li>Run image extension may be done in parallel with builder image extension</li>
+</ul>
+</li>
+<li>Invoke <code>exporter</code> with the <code>-extended</code> flag</li>
+</ul>
+<h4 id="after-build-1">After build</h4>
+<p>Note that unlike buildpack-provided layers, layers from extensions may NOT be safe to rebase.
+The <code>io.buildpacks.rebasable</code> label on the exported application image will be <code>false</code> if rebase is unsafe.
+The <code>-force</code> flag must be provided to the <code>rebaser</code> in order to rebase images with unsafe extension layers,
+and should be used with great care.</p>
+<h3 id="the-exporter-no-longer-deletes-cache-images">The <code>exporter</code> no longer deletes cache images</h3>
+<p>The <code>exporter</code> will no longer delete the previous version of the cache image before saving the new version -
+which could lead to untagged blobs in the registry.</p>
+<p>Platforms should ensure that any untagged blobs are cleaned periodically if their registry does not already support such pruning.</p>
+<h3 id="oci-layout-is-a-supported-export-format-experimental">OCI layout is a supported export format (experimental)</h3>
+<p>Platform 0.12 adds a new capability to <a href="https://github.com/buildpacks/rfcs/blob/main/text/0119-export-to-oci.md">export application images on disk in OCI layout format</a>.</p>
+<h4 id="before-build">Before build</h4>
+<p>To use the feature, platforms must prepare a <a href="https://github.com/buildpacks/rfcs/blob/main/text/0119-export-to-oci.md#how-it-works">layout directory</a> containing input images (<code>&lt;run-image&gt;</code> or <code>&lt;previous-image&gt;</code> if available) in OCI layout format,
+following the <a href="https://github.com/buildpacks/spec/blob/platform/v0.12/platform.md#map-an-image-reference-to-a-path-in-the-layout-directory">rules</a> to convert the image reference to a path.</p>
+<h4 id="during-build-2">During build</h4>
+<p>The feature is enabled by providing a <code>-layout</code> flag or by setting the <code>CNB_USE_LAYOUT</code> environment variable to <code>true</code> for the following lifecycle phases:</p>
+<ul>
+<li><a href="https://buildpacks.io/docs/concepts/components/lifecycle/analyze/">Analyze</a></li>
+<li><a href="https://buildpacks.io/docs/concepts/components/lifecycle/restore/">Restore</a></li>
+<li><a href="https://buildpacks.io/docs/concepts/components/lifecycle/export/">Export</a></li>
+<li><a href="https://buildpacks.io/docs/concepts/components/lifecycle/create/">Create</a></li>
+</ul>
+<p>Additionally, the path to the layout directory must be specified, either by providing a <code>-layout-dir</code> flag or by setting the <code>CNB_LAYOUT_DIR</code> environment variable.</p>
+<p><strong>Note</strong>: <a href="https://buildpacks.io/docs/concepts/components/lifecycle/rebase/">Rebasing</a> an image exported to OCI layout format
+and extending OCI layout base images with Dockerfiles are currently not supported.</p>
+<h2 id="base-image-author">Base Image Author</h2>
+<h3 id="stacks-are-deprecated-1">Stacks are deprecated</h3>
+<p>When creating build-time or runtime base images, base image authors should set <code>io.buildpacks.base.distro.name</code> and <code>io.buildpacks.base.distro.version</code> labels
+containing the values specified in <code>/etc/os-release</code> (<code>$ID</code> and <code>$VERSION_ID</code>).
+This information - along with operating system, architecture, and architecture variant from the OCI image config,
+will be exposed to buildpacks through <code>$CNB_TARGET_*</code> environment variables.</p>
+<p>Additionally, authors may set an <code>io.buildpacks.base.id</code> label on runtime base images to uniquely identify the image &ldquo;flavor&rdquo; - see the <a href="https://github.com/buildpacks/spec/blob/main/platform.md#target-data">Platform spec</a> for further information and requirements.</p>
+<p>To allow newer builders to run on older platforms, base image authors should continue to set any <code>io.buildpacks.stack.*</code> labels that are still relevant.
+Note that &ldquo;information only&rdquo; labels such as <code>io.buildpacks.stack.maintainer</code> have new equivalents in <code>io.buildpacks.base.maintainer</code>,
+and it is recommended to set both sets of labels for the time being.</p>
+<p>To maintain compatibility with older buildpacks, build-time base images should continue to set <code>$CNB_STACK_ID</code> in the build environment.</p>
+<h2 id="builder-author">Builder Author</h2>
+<h3 id="stacks-are-deprecated-2">Stacks are deprecated</h3>
+<p>With the removal of stacks, there is also a new way to reference build-time and runtime base images in <code>builder.toml</code>.
+Builder authors should ensure their <code>pack</code> version is at least <code>0.30.0</code> in order to create builders that will work with newer platforms.</p>
+<p>The new <code>builder.toml</code> schema is:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">run</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">run</span><span class="p">.</span><span class="nx">images</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">image</span> <span class="p">=</span> <span class="s2">&#34;cnbs/some-run-image&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">mirrors</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;mirror1&#34;</span><span class="p">,</span> <span class="s2">&#34;mirror2&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">build</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">image</span> <span class="p">=</span> <span class="s2">&#34;cnbs/some-build-image&#34;</span>
+</span></span></code></pre></div><p>Run image information will be translated to <code>run.toml</code> in the builder with schema:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">images</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">image</span> <span class="p">=</span> <span class="s2">&#34;cnbs/some-run-image&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">mirrors</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;mirror1&#34;</span><span class="p">,</span> <span class="s2">&#34;mirror2&#34;</span><span class="p">]</span>
+</span></span></code></pre></div><p>Run image information will also be translated to <code>stack.toml</code> (for compatibility with older platforms) in the builder with schema:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">run-image</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">image</span> <span class="p">=</span> <span class="s2">&#34;cnbs/some-run-image&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">mirrors</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;mirror1&#34;</span><span class="p">,</span> <span class="s2">&#34;mirror2&#34;</span><span class="p">]</span>
+</span></span></code></pre></div><p>The old <code>builder.toml</code> schema is still valid:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">stack</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;some.stack.id&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">run-image</span> <span class="p">=</span> <span class="s2">&#34;cnbs/some-run-image&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">run-image-mirrors</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;mirror1&#34;</span><span class="p">,</span> <span class="s2">&#34;mirror2&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">build-image</span> <span class="p">=</span> <span class="s2">&#34;cnbs/some-build-image&#34;</span>
+</span></span></code></pre></div><p>If the old <code>builder.toml</code> schema is used, run image information will be translated to the same <code>run.toml</code> and <code>stack.toml</code> file formats as above.</p>
+<p>It is possible to define both the new and the old schema within <code>builder.toml</code>, but they must be consistent or <code>pack builder create</code> will fail.</p>
 
         
 
@@ -765,12 +856,12 @@ ERROR: failed to build: executing lifecycle: failed with status code: 51
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BDetecting&#43;your&#43;application%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fbuildpack-author-guide%2Fcreate-buildpack%2Fdetection%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BPlatform&#43;API&#43;0.11&#43;-%26gt%3B&#43;0.12%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Freference%2Fspec%2Fmigration%2Fplatform-api-0.11-0.12%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/buildpack-author-guide/create-buildpack/detection.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/reference/spec/migration/platform-api-0.11-0.12.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
