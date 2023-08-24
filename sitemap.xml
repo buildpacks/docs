@@ -168,6 +168,8 @@
   </url><url>
     <loc>https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.8-0.9/</loc>
   </url><url>
+    <loc>https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.9-0.10/</loc>
+  </url><url>
     <loc>https://buildpacks.io/categories/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/tools/circleci/</loc>

@@ -8,8 +8,8 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Specifying an Image Extension at Build Time No builder can be truly omniscient, and whoever did yours surely was no exception! You need to add a little extra spice to the mix with this late-breaking…"/>
-<link rel="canonical" content="https://buildpacks.io/docs/extension-guide/consume-extension/from-cli/">
+
+<link rel="canonical" content="https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.9-0.10/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
 
@@ -17,12 +17,12 @@
 
 
 
-<meta property="og:title" content="Specifying an Image Extension at Build Time · Cloud Native Buildpacks">
+<meta property="og:title" content="Buildpack API 0.9 -&gt; 0.10 · Cloud Native Buildpacks">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://buildpacks.io/docs/extension-guide/consume-extension/from-cli/">
+<meta property="og:url" content="https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.9-0.10/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-<meta property="og:description" content="Specifying an Image Extension at Build Time No builder can be truly omniscient, and whoever did yours surely was no exception! You need to add a little extra spice to the mix with this late-breaking…">
+
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -33,7 +33,7 @@
 
 
 
-<meta property="twitter:title" content="Specifying an Image Extension at Build Time · Cloud Native Buildpacks">
+<meta property="twitter:title" content="Buildpack API 0.9 -&gt; 0.10 · Cloud Native Buildpacks">
 <meta property="twitter:card" content="summary">
 <meta property="twitter:image" content="https://buildpacks.io/images/buildpacks-social-card-square.jpg">
 <meta property="twitter:image:alt" content="Buildpacks project logo">
@@ -96,7 +96,7 @@
     gtag('config', 'G-CJLSR4FQXL');
   </script>
 
-  <title>Specifying an Image Extension at Build Time · Cloud Native Buildpacks</title>
+  <title>Buildpack API 0.9 -&gt; 0.10 · Cloud Native Buildpacks</title>
 </head>
 
 <body>
@@ -355,16 +355,16 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/extension-guide/" class="dd-item depth-0 parent haschildren">
+<li data-nav-id="/docs/extension-guide/" class="dd-item depth-0 haschildren">
   <a href="/docs/extension-guide/">Extension Guide</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/extension-guide/consume-extension/" class="dd-item depth-1 parent haschildren">
+<li data-nav-id="/docs/extension-guide/consume-extension/" class="dd-item depth-1 haschildren">
   <a href="/docs/extension-guide/consume-extension/">Consume an extension</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/extension-guide/consume-extension/from-cli/" class="dd-item depth-2 active">
+<li data-nav-id="/docs/extension-guide/consume-extension/from-cli/" class="dd-item depth-2 collapse">
   <a href="/docs/extension-guide/consume-extension/from-cli/">Specifying an Image Extension at Build Time</a>
 </li>
-<li data-nav-id="/docs/extension-guide/consume-extension/in-builder/" class="dd-item depth-2">
+<li data-nav-id="/docs/extension-guide/consume-extension/in-builder/" class="dd-item depth-2 collapse">
   <a href="/docs/extension-guide/consume-extension/in-builder/">Specifying an Image Extension in the Builder</a>
 </li>
   </ul>
@@ -609,10 +609,10 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/reference/" class="dd-item depth-0 haschildren">
+<li data-nav-id="/docs/reference/" class="dd-item depth-0 parent haschildren">
   <a href="/docs/reference/">Reference</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/reference/config/" class="dd-item depth-1 collapse haschildren">
+<li data-nav-id="/docs/reference/config/" class="dd-item depth-1 haschildren">
   <a href="/docs/reference/config/">Configuration</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/reference/config/builder-config/" class="dd-item depth-2 collapse">
@@ -626,7 +626,7 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/reference/spec/" class="dd-item depth-1 collapse haschildren">
+<li data-nav-id="/docs/reference/spec/" class="dd-item depth-1 parent haschildren">
   <a href="/docs/reference/spec/">Specification</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/reference/spec/buildpack-api/" class="dd-item depth-2">
@@ -635,46 +635,46 @@
 <li data-nav-id="/docs/reference/spec/distribution-api/" class="dd-item depth-2">
   <a href="/docs/reference/spec/distribution-api/">Distribution API</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/" class="dd-item depth-2 haschildren">
+<li data-nav-id="/docs/reference/spec/migration/" class="dd-item depth-2 parent haschildren">
   <a href="/docs/reference/spec/migration/">Migration</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.4-0.5/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.4-0.5/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/buildpack-api-0.4-0.5/">Buildpack API 0.4 -&gt; 0.5</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.5-0.6/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.5-0.6/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/buildpack-api-0.5-0.6/">Buildpack API 0.5 -&gt; 0.6</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.6-0.7/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.6-0.7/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/buildpack-api-0.6-0.7/">Buildpack API 0.6 -&gt; 0.7</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.7-0.8/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.7-0.8/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/buildpack-api-0.7-0.8/">Buildpack API 0.7 -&gt; 0.8</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.8-0.9/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.8-0.9/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/buildpack-api-0.8-0.9/">Buildpack API 0.8 -&gt; 0.9</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.9-0.10/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.9-0.10/" class="dd-item depth-3 active">
   <a href="/docs/reference/spec/migration/buildpack-api-0.9-0.10/">Buildpack API 0.9 -&gt; 0.10</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.3-0.4/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.3-0.4/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/platform-api-0.3-0.4/">Platform API 0.3 -&gt; 0.4</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.4-0.5/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.4-0.5/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/platform-api-0.4-0.5/">Platform API 0.4 -&gt; 0.5</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.5-0.6/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.5-0.6/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/platform-api-0.5-0.6/">Platform API 0.5 -&gt; 0.6</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.6-0.7/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.6-0.7/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/platform-api-0.6-0.7/">Platform API 0.6 -&gt; 0.7</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.7-0.8/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.7-0.8/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/platform-api-0.7-0.8/">Platform API 0.7 -&gt; 0.8</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.8-0.9/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.8-0.9/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/platform-api-0.8-0.9/">Platform API 0.8 -&gt; 0.9</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.9-0.10/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.9-0.10/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/platform-api-0.9-0.10/">Platform API 0.9 -&gt; 0.10</a>
 </li>
   </ul>
@@ -698,12 +698,12 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BSpecifying&#43;an&#43;Image&#43;Extension&#43;at&#43;Build&#43;Time%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fextension-guide%2Fconsume-extension%2Ffrom-cli%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BBuildpack&#43;API&#43;0.9&#43;-%26gt%3B&#43;0.10%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Freference%2Fspec%2Fmigration%2Fbuildpack-api-0.9-0.10%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/extension-guide/consume-extension/from-cli.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/reference/spec/migration/buildpack-api-0.9-0.10.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
@@ -711,14 +711,63 @@
 
 
         <div class="heading">
-          <h1 class="title">Specifying an Image Extension at Build Time</h1>
+          <h1 class="title">Buildpack API 0.9 -&gt; 0.10</h1>
         </div>
 
-        <!-- test:suite=dockerfiles;weight=5 -->
-<h3 id="specifying-an-image-extension-at-build-time">Specifying an Image Extension at Build Time</h3>
-<p>No builder can be truly omniscient, and whoever did yours surely was no exception! You need to add a little extra spice to the mix with this late-breaking extension, by doing something like:</p>
-<p><code>pack build [...] --extension=foo [...]</code></p>
-
+        <p>This guide is most relevant to buildpack authors.</p>
+<p>See the <a href="https://github.com/buildpacks/spec/releases/tag/buildpack%2Fv0.10">spec release</a> for Buildpack API 0.10 for the full list of changes and further details.</p>
+<h3 id="stacks-are-deprecated">Stacks are deprecated</h3>
+<p>In Buildpack 0.10, the concepts of stacks and mixins are removed
+in favor of existing constructs in the container image ecosystem such as operating system name, operating system distribution, and architecture.</p>
+<h4 id="before-build">Before build</h4>
+<p><code>builder.toml</code> contains a new table for buildpacks to express the os/arch combinations that they are compatible with:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">targets</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">os</span> <span class="p">=</span> <span class="s2">&#34;&lt;OS name&gt;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">arch</span> <span class="p">=</span> <span class="s2">&#34;&lt;architecture&gt;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">variant</span> <span class="p">=</span> <span class="s2">&#34;&lt;architecture variant&gt;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">targets</span><span class="p">.</span><span class="nx">distros</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;&lt;OS distribution name&gt;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;&lt;OS distribution version&gt;&#34;</span>
+</span></span></code></pre></div><p>All fields are optional and any missing field is assumed to &ldquo;match any&rdquo;.</p>
+<p>This information will be used by the lifecycle to skip running detect on any buildpack that is not compatible with the current os/arch.</p>
+<p>Note that the <code>[[stacks]]</code> table is still supported and buildpack authors are encouraged to continue to provide this information for the time being
+in order to maintain compatibility with older platforms.</p>
+<h4 id="during-build">During build</h4>
+<p>The lifecycle will provide the following environment variables during <code>detect</code> and <code>build</code> to describe the target os/arch:</p>
+<table>
+<thead>
+<tr>
+<th>Env Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CNB_TARGET_OS</code></td>
+<td>Target OS</td>
+</tr>
+<tr>
+<td><code>CNB_TARGET_ARCH</code></td>
+<td>Target architecture</td>
+</tr>
+<tr>
+<td><code>CNB_TARGET_ARCH_VARIANT</code></td>
+<td>Target architecture variant (optional)</td>
+</tr>
+<tr>
+<td><code>CNB_TARGET_DISTRO_NAME</code></td>
+<td>Target OS distribution name (optional)</td>
+</tr>
+<tr>
+<td><code>CNB_TARGET_DISTRO_VERISON</code></td>
+<td>Target OS distribution version (optional)</td>
+</tr>
+</tbody>
+</table>
+<p>Buildpacks can use this information to modify their behavior depending on the target.</p>
+<h3 id="run-image-extensions-is-supported-experimental">Run image extensions is supported (experimental)</h3>
+<p>In Platform 0.12, extensions can be used to extend not only build-time base images, but runtime base images as well.</p>
+<p>For more information, see <a href="/docs/extension-guide/create-extension">authoring an image extension</a>.</p>
 
         
 
@@ -728,12 +777,12 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BSpecifying&#43;an&#43;Image&#43;Extension&#43;at&#43;Build&#43;Time%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fextension-guide%2Fconsume-extension%2Ffrom-cli%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BBuildpack&#43;API&#43;0.9&#43;-%26gt%3B&#43;0.10%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Freference%2Fspec%2Fmigration%2Fbuildpack-api-0.9-0.10%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/extension-guide/consume-extension/from-cli.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/reference/spec/migration/buildpack-api-0.9-0.10.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   

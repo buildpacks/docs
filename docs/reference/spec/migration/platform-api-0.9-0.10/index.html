@@ -653,6 +653,9 @@
 <li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.8-0.9/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/buildpack-api-0.8-0.9/">Buildpack API 0.8 -&gt; 0.9</a>
 </li>
+<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.9-0.10/" class="dd-item depth-3">
+  <a href="/docs/reference/spec/migration/buildpack-api-0.9-0.10/">Buildpack API 0.9 -&gt; 0.10</a>
+</li>
 <li data-nav-id="/docs/reference/spec/migration/platform-api-0.3-0.4/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/platform-api-0.3-0.4/">Platform API 0.3 -&gt; 0.4</a>
 </li>
@@ -715,9 +718,9 @@
 <p>See the <a href="https://github.com/buildpacks/spec/releases/tag/platform%2Fv0.10">spec release</a> for platform API 0.10 for the full list of changes and further details.</p>
 <h2 id="platform-operator">Platform Operator</h2>
 <h3 id="the-launcher-supports-overridable-process-arguments">The <code>launcher</code> supports overridable process arguments</h3>
-<p>The way user-provided arguments are handled by the launcher depends on the buildpack API of the buildpack that created the process definition.</p>
+<p>The way user-provided arguments are handled by the launcher depends on the Buildpack API of the buildpack that created the process definition.</p>
 <h4 id="newer-buildpacks">Newer buildpacks</h4>
-<p>Process types contributed by newer buildpacks (buildpack API 0.9 and above) may have overridable process arguments. Looking at metadata.toml:</p>
+<p>Process types contributed by newer buildpacks (Buildpack API 0.9 and above) may have overridable process arguments. Looking at metadata.toml:</p>
 <pre tabindex="0"><code>[[processes]]
 type = &#34;from-newer-buildpack&#34;
 command = [&#34;some-command&#34;, &#34;always-1&#34;, &#34;always-2&#34;]
@@ -728,7 +731,7 @@ args = [&#34;override-1&#34;, &#34;override-2&#34;]
 <pre tabindex="0"><code>docker run --entrypoint from-newer-buildpack my-image user-1 user-2
 </code></pre><p>will result in the following command invocation: <code>some-command always-1 always-2 user-1 user-2</code>.</p>
 <h4 id="older-buildpacks">Older buildpacks</h4>
-<p>Process types contributed by older buildpacks (buildpack API 0.8 and below) do not have overridable process arguments. Looking at metadata.toml:</p>
+<p>Process types contributed by older buildpacks (Buildpack API 0.8 and below) do not have overridable process arguments. Looking at metadata.toml:</p>
 <pre tabindex="0"><code>[[processes]]
 type = &#34;from-older-buildpack&#34;
 command = [&#34;some-command&#34;]

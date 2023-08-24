@@ -653,6 +653,9 @@
 <li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.8-0.9/" class="dd-item depth-3">
   <a href="/docs/reference/spec/migration/buildpack-api-0.8-0.9/">Buildpack API 0.8 -&gt; 0.9</a>
 </li>
+<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.9-0.10/" class="dd-item depth-3">
+  <a href="/docs/reference/spec/migration/buildpack-api-0.9-0.10/">Buildpack API 0.9 -&gt; 0.10</a>
+</li>
 <li data-nav-id="/docs/reference/spec/migration/platform-api-0.3-0.4/" class="dd-item depth-3 active">
   <a href="/docs/reference/spec/migration/platform-api-0.3-0.4/">Platform API 0.3 -&gt; 0.4</a>
 </li>
@@ -728,7 +731,7 @@ When building, platforms can optionally specify the location of the report, or s
 <h3 id="removal-of-top-level-version-from-bom">Removal of top-level <code>version</code> from <code>BOM</code></h3>
 <p>When interpreting the Bill-of-Materials (BOM), <code>version</code> <a href="https://github.com/buildpacks/spec/pull/117">will no longer be found at the top level</a>.
 The lifecycle will convert any <code>version</code> provided by buildpacks to <code>metadata.version</code>.
-Related: as of buildpack API 0.3, <code>version</code> is <a href="https://github.com/buildpacks/spec/pull/97">deprecated</a> as a top-level key in the build plan.</p>
+Related: as of Buildpack API 0.3, <code>version</code> is <a href="https://github.com/buildpacks/spec/pull/97">deprecated</a> as a top-level key in the build plan.</p>
 <h3 id="new-exit-code-definition">New exit code definition</h3>
 <p>The lifecycle now defines <a href="https://github.com/buildpacks/spec/pull/115">specific error codes</a> to signal the lifecycle phase where the error occurred, and for API incompatibilities.
 When building, the new error codes can be interpreted according to the new definition.

@@ -36,7 +36,7 @@ build cat $PWD/samples/buildpacks/hello-extensions/bin/build The buildpack tries
       
       <guid>https://buildpacks.io/docs/extension-guide/create-extension/building-blocks-extension/</guid>
       <description>Examine vim extension tree $PWD/samples/extensions/vim You should see something akin to the following:
-. ├── bin │ ├── detect &amp;lt;- similar to a buildpack ./bin/detect │ ├── generate &amp;lt;- similar to a buildpack ./bin/build ├── extension.toml &amp;lt;- similar to a buildpack buildpack.toml The extension.toml describes the extension, containing information such as its name, ID, and version, as well as the buildpack API that it implements. Though extensions are not buildpacks, they are expected to conform to the buildpack API except where noted.</description>
+. ├── bin │ ├── detect &amp;lt;- similar to a buildpack ./bin/detect │ ├── generate &amp;lt;- similar to a buildpack ./bin/build ├── extension.toml &amp;lt;- similar to a buildpack buildpack.toml The extension.toml describes the extension, containing information such as its name, ID, and version, as well as the Buildpack API that it implements. Though extensions are not buildpacks, they are expected to conform to the Buildpack API except where noted.</description>
     </item>
     
     <item>

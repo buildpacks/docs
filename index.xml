@@ -422,7 +422,7 @@ build cat $PWD/samples/buildpacks/hello-extensions/bin/build The buildpack tries
       
       <guid>https://buildpacks.io/docs/extension-guide/create-extension/building-blocks-extension/</guid>
       <description>Examine vim extension tree $PWD/samples/extensions/vim You should see something akin to the following:
-. ├── bin │ ├── detect &amp;lt;- similar to a buildpack ./bin/detect │ ├── generate &amp;lt;- similar to a buildpack ./bin/build ├── extension.toml &amp;lt;- similar to a buildpack buildpack.toml The extension.toml describes the extension, containing information such as its name, ID, and version, as well as the buildpack API that it implements. Though extensions are not buildpacks, they are expected to conform to the buildpack API except where noted.</description>
+. ├── bin │ ├── detect &amp;lt;- similar to a buildpack ./bin/detect │ ├── generate &amp;lt;- similar to a buildpack ./bin/build ├── extension.toml &amp;lt;- similar to a buildpack buildpack.toml The extension.toml describes the extension, containing information such as its name, ID, and version, as well as the Buildpack API that it implements. Though extensions are not buildpacks, they are expected to conform to the Buildpack API except where noted.</description>
     </item>
     
     <item>
@@ -616,6 +616,15 @@ This API will be used by buildpack authors.&lt;/p&gt;</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.8-0.9/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Buildpack API 0.9 -&gt; 0.10</title>
+      <link>https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.9-0.10/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.9-0.10/</guid>
       <description></description>
     </item>
     
