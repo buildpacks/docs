@@ -20,9 +20,9 @@ Buildpack processes can still use a shell! However, the `command` must now expli
 
 Hand-in-hand with shell removal is the introduction of overridable process arguments.
 
-In `launch.toml`, `command` is now a list. The first element in `command` is the command, and all following entries are arguments that are always provided to the process, regardless of how the application is started. The `args` list now designates arguments that can be overridden by the end user - if supported by the platform (platform API version 0.10 and above). For further details, see the platform [migration guide](/docs/reference/spec/migration/platform-api-0.9-0.10).
+In `launch.toml`, `command` is now a list. The first element in `command` is the command, and all following entries are arguments that are always provided to the process, regardless of how the application is started. The `args` list now designates arguments that can be overridden by the end user - if supported by the platform (Platform API version 0.10 and above). For further details, see the platform [migration guide](/docs/reference/spec/migration/platform-api-0.9-0.10).
 
-For older platforms (platform API version 0.9 and below), arguments in `args` will be appended to arguments in `command`, negating the new functionality (but preserving compatibility).
+For older platforms (Platform API version 0.9 and below), arguments in `args` will be appended to arguments in `command`, negating the new functionality (but preserving compatibility).
 
 ### Image extensions are supported (experimental)
 
