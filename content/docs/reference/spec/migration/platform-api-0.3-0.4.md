@@ -30,7 +30,7 @@ When building, platforms can optionally specify the location of the report, or s
 
 When interpreting the Bill-of-Materials (BOM), `version` [will no longer be found at the top level](https://github.com/buildpacks/spec/pull/117).
 The lifecycle will convert any `version` provided by buildpacks to `metadata.version`.
-Related: as of buildpack API 0.3, `version` is [deprecated](https://github.com/buildpacks/spec/pull/97) as a top-level key in the build plan.
+Related: as of Buildpack API 0.3, `version` is [deprecated](https://github.com/buildpacks/spec/pull/97) as a top-level key in the build plan.
 
 ### New exit code definition
 

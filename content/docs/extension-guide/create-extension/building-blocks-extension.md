@@ -26,7 +26,7 @@ You should see something akin to the following:
 ```
 
 * The `extension.toml` describes the extension, containing information such as its name, ID, and version, as well as the
-  buildpack API that it implements. Though extensions are not buildpacks, they are expected to conform to the buildpack
+  Buildpack API that it implements. Though extensions are not buildpacks, they are expected to conform to the Buildpack
   API except where noted. Consult the [spec](https://github.com/buildpacks/spec/blob/main/image_extension.md)
   for further details.
 * `./bin/detect` is invoked during the `detect` phase. It analyzes application source code to determine if the extension

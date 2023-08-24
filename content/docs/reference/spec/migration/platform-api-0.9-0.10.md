@@ -12,11 +12,11 @@ See the [spec release](https://github.com/buildpacks/spec/releases/tag/platform%
 
 ### The `launcher` supports overridable process arguments
 
-The way user-provided arguments are handled by the launcher depends on the buildpack API of the buildpack that created the process definition.
+The way user-provided arguments are handled by the launcher depends on the Buildpack API of the buildpack that created the process definition.
 
 #### Newer buildpacks
 
-Process types contributed by newer buildpacks (buildpack API 0.9 and above) may have overridable process arguments. Looking at metadata.toml:
+Process types contributed by newer buildpacks (Buildpack API 0.9 and above) may have overridable process arguments. Looking at metadata.toml:
 ```
 [[processes]]
 type = "from-newer-buildpack"
@@ -40,7 +40,7 @@ will result in the following command invocation: `some-command always-1 always-2
 
 #### Older buildpacks
 
-Process types contributed by older buildpacks (buildpack API 0.8 and below) do not have overridable process arguments. Looking at metadata.toml:
+Process types contributed by older buildpacks (Buildpack API 0.8 and below) do not have overridable process arguments. Looking at metadata.toml:
 ```
 [[processes]]
 type = "from-older-buildpack"
