@@ -789,10 +789,6 @@ platforms should read the newly added <code>runImage.image</code> and <code>runI
 The <code>io.buildpacks.rebasable</code> label on the exported application image will be <code>false</code> if rebase is unsafe.
 The <code>-force</code> flag must be provided to the <code>rebaser</code> in order to rebase images with unsafe extension layers,
 and should be used with great care.</p>
-<h3 id="the-exporter-no-longer-deletes-cache-images">The <code>exporter</code> no longer deletes cache images</h3>
-<p>The <code>exporter</code> will no longer delete the previous version of the cache image before saving the new version -
-which could lead to untagged blobs in the registry.</p>
-<p>Platforms should ensure that any untagged blobs are cleaned periodically if their registry does not already support such pruning.</p>
 <h3 id="oci-layout-is-a-supported-export-format-experimental">OCI layout is a supported export format (experimental)</h3>
 <p>Platform 0.12 adds a new capability to <a href="https://github.com/buildpacks/rfcs/blob/main/text/0119-export-to-oci.md">export application images on disk in OCI layout format</a>.</p>
 <h4 id="before-build">Before build</h4>
