@@ -6,7 +6,7 @@ title="Buildpack API 0.5 -> 0.6"
 
 This guide is most relevant to buildpack authors.
 
-See the [spec release](https://github.com/buildpacks/spec/releases/tag/buildpack%2Fv0.6) for buildpack API 0.6 for the full list of changes and further details.
+See the [spec release](https://github.com/buildpacks/spec/releases/tag/buildpack%2Fv0.6) for Buildpack API 0.6 for the full list of changes and further details.
 
 ### Opt-in layer caching and launch.toml format changes
 
