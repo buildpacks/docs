@@ -6,7 +6,7 @@ title="Platform API 0.4 -> 0.5"
 
 This guide is most relevant to platform operators and stack authors.
 
-See the [spec release](https://github.com/buildpacks/spec/releases/tag/platform%2Fv0.5) for platform API 0.5 for the full list of changes and further details.
+See the [spec release](https://github.com/buildpacks/spec/releases/tag/platform%2Fv0.5) for Platform API 0.5 for the full list of changes and further details.
 
 ## Platform Operator
 

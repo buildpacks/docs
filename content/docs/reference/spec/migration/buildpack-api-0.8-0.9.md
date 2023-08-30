@@ -6,7 +6,7 @@ title="Buildpack API 0.8 -> 0.9"
 
 This guide is most relevant to buildpack authors.
 
-See the [spec release](https://github.com/buildpacks/spec/releases/tag/buildpack%2Fv0.9) for buildpack API 0.9 for the full list of changes and further details.
+See the [spec release](https://github.com/buildpacks/spec/releases/tag/buildpack%2Fv0.9) for Buildpack API 0.9 for the full list of changes and further details.
 
 ### Shell removal
 
@@ -20,9 +20,9 @@ Buildpack processes can still use a shell! However, the `command` must now expli
 
 Hand-in-hand with shell removal is the introduction of overridable process arguments.
 
-In `launch.toml`, `command` is now a list. The first element in `command` is the command, and all following entries are arguments that are always provided to the process, regardless of how the application is started. The `args` list now designates arguments that can be overridden by the end user - if supported by the platform (platform API version 0.10 and above). For further details, see the platform [migration guide](/docs/reference/spec/migration/platform-api-0.9-0.10).
+In `launch.toml`, `command` is now a list. The first element in `command` is the command, and all following entries are arguments that are always provided to the process, regardless of how the application is started. The `args` list now designates arguments that can be overridden by the end user - if supported by the platform (Platform API version 0.10 and above). For further details, see the platform [migration guide](/docs/reference/spec/migration/platform-api-0.9-0.10).
 
-For older platforms (platform API version 0.9 and below), arguments in `args` will be appended to arguments in `command`, negating the new functionality (but preserving compatibility).
+For older platforms (Platform API version 0.9 and below), arguments in `args` will be appended to arguments in `command`, negating the new functionality (but preserving compatibility).
 
 ### Image extensions are supported (experimental)
 

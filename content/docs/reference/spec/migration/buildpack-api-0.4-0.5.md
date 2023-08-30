@@ -6,7 +6,7 @@ title="Buildpack API 0.4 -> 0.5"
 
 This guide is most relevant to buildpack authors. 
 
-See the [spec release](https://github.com/buildpacks/spec/releases/tag/buildpack%2Fv0.5) for buildpack API 0.5 for the full list of changes and further details.
+See the [spec release](https://github.com/buildpacks/spec/releases/tag/buildpack%2Fv0.5) for Buildpack API 0.5 for the full list of changes and further details.
 
 ### Stack ID
 The buildpack may now indicate compatibility with any stack by specifying the special value `*`.
