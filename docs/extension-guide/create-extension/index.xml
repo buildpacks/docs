@@ -73,5 +73,14 @@ generate cat $PWD/samples/extensions/cowsay/bin/generate The extension generates
 Configure the hello-extensions buildpack to require cowsay Set the BP_REQUIRES build-time environment variable to configure the hello-extensions buildpack to require both vim and curl (review the .</description>
     </item>
     
+    <item>
+      <title>The finer points of image extensions</title>
+      <link>https://buildpacks.io/docs/extension-guide/create-extension/advanced-extensions/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://buildpacks.io/docs/extension-guide/create-extension/advanced-extensions/</guid>
+      <description>Guidance for extension authors During detect Expressing provided dependencies through the build plan The build plan is a mechanism for inter-buildpack communication. Through the build plan, buildpacks may express the dependencies they require, as well as those they provide. The lifecycle uses information from the build plan to determine whether a group of buildpacks is compatible - that is, whether for every buildpack in the group, its required dependencies are provided by a buildpack that comes before it.</description>
+    </item>
+    
   </channel>
 </rss>

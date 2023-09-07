@@ -148,6 +148,8 @@
   </url><url>
     <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/specify-multiple-process-types/</loc>
   </url><url>
+    <loc>https://buildpacks.io/docs/extension-guide/create-extension/advanced-extensions/</loc>
+  </url><url>
     <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/caching/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable/</loc>

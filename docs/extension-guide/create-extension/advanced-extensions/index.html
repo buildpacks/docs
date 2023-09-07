@@ -8,8 +8,8 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<link rel="canonical" content="https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.4-0.5/">
+<meta name="description" content="Guidance for extension authors During detect Expressing provided dependencies through the build plan The build plan is a mechanism for inter-buildpack communication. Through the build plan,…"/>
+<link rel="canonical" content="https://buildpacks.io/docs/extension-guide/create-extension/advanced-extensions/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
 
@@ -17,12 +17,12 @@
 
 
 
-<meta property="og:title" content="Buildpack API 0.4 -&gt; 0.5 · Cloud Native Buildpacks">
+<meta property="og:title" content="The finer points of image extensions · Cloud Native Buildpacks">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.4-0.5/">
+<meta property="og:url" content="https://buildpacks.io/docs/extension-guide/create-extension/advanced-extensions/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-
+<meta property="og:description" content="Guidance for extension authors During detect Expressing provided dependencies through the build plan The build plan is a mechanism for inter-buildpack communication. Through the build plan,…">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -33,7 +33,7 @@
 
 
 
-<meta property="twitter:title" content="Buildpack API 0.4 -&gt; 0.5 · Cloud Native Buildpacks">
+<meta property="twitter:title" content="The finer points of image extensions · Cloud Native Buildpacks">
 <meta property="twitter:card" content="summary">
 <meta property="twitter:image" content="https://buildpacks.io/images/buildpacks-social-card-square.jpg">
 <meta property="twitter:image:alt" content="Buildpacks project logo">
@@ -96,7 +96,7 @@
     gtag('config', 'G-CJLSR4FQXL');
   </script>
 
-  <title>Buildpack API 0.4 -&gt; 0.5 · Cloud Native Buildpacks</title>
+  <title>The finer points of image extensions · Cloud Native Buildpacks</title>
 </head>
 
 <body>
@@ -355,7 +355,7 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/extension-guide/" class="dd-item depth-0 haschildren">
+<li data-nav-id="/docs/extension-guide/" class="dd-item depth-0 parent haschildren">
   <a href="/docs/extension-guide/">Extension Guide</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/extension-guide/consume-extension/" class="dd-item depth-1 haschildren">
@@ -369,28 +369,28 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/extension-guide/create-extension/" class="dd-item depth-1 haschildren">
+<li data-nav-id="/docs/extension-guide/create-extension/" class="dd-item depth-1 parent haschildren">
   <a href="/docs/extension-guide/create-extension/">Create an extension</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/extension-guide/create-extension/setup-local-environment/" class="dd-item depth-2 collapse">
+<li data-nav-id="/docs/extension-guide/create-extension/setup-local-environment/" class="dd-item depth-2">
   <a href="/docs/extension-guide/create-extension/setup-local-environment/">Set up your local environment</a>
 </li>
-<li data-nav-id="/docs/extension-guide/create-extension/why-dockerfiles/" class="dd-item depth-2 collapse">
+<li data-nav-id="/docs/extension-guide/create-extension/why-dockerfiles/" class="dd-item depth-2">
   <a href="/docs/extension-guide/create-extension/why-dockerfiles/">Why Dockerfiles</a>
 </li>
-<li data-nav-id="/docs/extension-guide/create-extension/building-blocks-extension/" class="dd-item depth-2 collapse">
+<li data-nav-id="/docs/extension-guide/create-extension/building-blocks-extension/" class="dd-item depth-2">
   <a href="/docs/extension-guide/create-extension/building-blocks-extension/">Building blocks of a CNB Image Extension</a>
 </li>
-<li data-nav-id="/docs/extension-guide/create-extension/build-dockerfile/" class="dd-item depth-2 collapse">
+<li data-nav-id="/docs/extension-guide/create-extension/build-dockerfile/" class="dd-item depth-2">
   <a href="/docs/extension-guide/create-extension/build-dockerfile/">Generating a build.Dockerfile</a>
 </li>
-<li data-nav-id="/docs/extension-guide/create-extension/run-dockerfile-switch/" class="dd-item depth-2 collapse">
+<li data-nav-id="/docs/extension-guide/create-extension/run-dockerfile-switch/" class="dd-item depth-2">
   <a href="/docs/extension-guide/create-extension/run-dockerfile-switch/">Generating a run.Dockerfile that switches the runtime base image</a>
 </li>
-<li data-nav-id="/docs/extension-guide/create-extension/run-dockerfile-extend/" class="dd-item depth-2 collapse">
+<li data-nav-id="/docs/extension-guide/create-extension/run-dockerfile-extend/" class="dd-item depth-2">
   <a href="/docs/extension-guide/create-extension/run-dockerfile-extend/">Generating a run.Dockerfile that extends the runtime base image</a>
 </li>
-<li data-nav-id="/docs/extension-guide/create-extension/advanced-extensions/" class="dd-item depth-2 collapse">
+<li data-nav-id="/docs/extension-guide/create-extension/advanced-extensions/" class="dd-item depth-2 active">
   <a href="/docs/extension-guide/create-extension/advanced-extensions/">The finer points of image extensions</a>
 </li>
   </ul>
@@ -612,10 +612,10 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/reference/" class="dd-item depth-0 parent haschildren">
+<li data-nav-id="/docs/reference/" class="dd-item depth-0 haschildren">
   <a href="/docs/reference/">Reference</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/reference/config/" class="dd-item depth-1 haschildren">
+<li data-nav-id="/docs/reference/config/" class="dd-item depth-1 collapse haschildren">
   <a href="/docs/reference/config/">Configuration</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/reference/config/builder-config/" class="dd-item depth-2 collapse">
@@ -629,7 +629,7 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/reference/spec/" class="dd-item depth-1 parent haschildren">
+<li data-nav-id="/docs/reference/spec/" class="dd-item depth-1 collapse haschildren">
   <a href="/docs/reference/spec/">Specification</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/reference/spec/buildpack-api/" class="dd-item depth-2">
@@ -638,52 +638,52 @@
 <li data-nav-id="/docs/reference/spec/distribution-api/" class="dd-item depth-2">
   <a href="/docs/reference/spec/distribution-api/">Distribution API</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/" class="dd-item depth-2 parent haschildren">
+<li data-nav-id="/docs/reference/spec/migration/" class="dd-item depth-2 haschildren">
   <a href="/docs/reference/spec/migration/">Migration</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.4-0.5/" class="dd-item depth-3 active">
+<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.4-0.5/" class="dd-item depth-3 collapse">
   <a href="/docs/reference/spec/migration/buildpack-api-0.4-0.5/">Buildpack API 0.4 -&gt; 0.5</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.5-0.6/" class="dd-item depth-3">
+<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.5-0.6/" class="dd-item depth-3 collapse">
   <a href="/docs/reference/spec/migration/buildpack-api-0.5-0.6/">Buildpack API 0.5 -&gt; 0.6</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.6-0.7/" class="dd-item depth-3">
+<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.6-0.7/" class="dd-item depth-3 collapse">
   <a href="/docs/reference/spec/migration/buildpack-api-0.6-0.7/">Buildpack API 0.6 -&gt; 0.7</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.7-0.8/" class="dd-item depth-3">
+<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.7-0.8/" class="dd-item depth-3 collapse">
   <a href="/docs/reference/spec/migration/buildpack-api-0.7-0.8/">Buildpack API 0.7 -&gt; 0.8</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.8-0.9/" class="dd-item depth-3">
+<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.8-0.9/" class="dd-item depth-3 collapse">
   <a href="/docs/reference/spec/migration/buildpack-api-0.8-0.9/">Buildpack API 0.8 -&gt; 0.9</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.9-0.10/" class="dd-item depth-3">
+<li data-nav-id="/docs/reference/spec/migration/buildpack-api-0.9-0.10/" class="dd-item depth-3 collapse">
   <a href="/docs/reference/spec/migration/buildpack-api-0.9-0.10/">Buildpack API 0.9 -&gt; 0.10</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.10-0.11/" class="dd-item depth-3">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.10-0.11/" class="dd-item depth-3 collapse">
   <a href="/docs/reference/spec/migration/platform-api-0.10-0.11/">Platform API 0.10 -&gt; 0.11</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.11-0.12/" class="dd-item depth-3">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.11-0.12/" class="dd-item depth-3 collapse">
   <a href="/docs/reference/spec/migration/platform-api-0.11-0.12/">Platform API 0.11 -&gt; 0.12</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.3-0.4/" class="dd-item depth-3">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.3-0.4/" class="dd-item depth-3 collapse">
   <a href="/docs/reference/spec/migration/platform-api-0.3-0.4/">Platform API 0.3 -&gt; 0.4</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.4-0.5/" class="dd-item depth-3">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.4-0.5/" class="dd-item depth-3 collapse">
   <a href="/docs/reference/spec/migration/platform-api-0.4-0.5/">Platform API 0.4 -&gt; 0.5</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.5-0.6/" class="dd-item depth-3">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.5-0.6/" class="dd-item depth-3 collapse">
   <a href="/docs/reference/spec/migration/platform-api-0.5-0.6/">Platform API 0.5 -&gt; 0.6</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.6-0.7/" class="dd-item depth-3">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.6-0.7/" class="dd-item depth-3 collapse">
   <a href="/docs/reference/spec/migration/platform-api-0.6-0.7/">Platform API 0.6 -&gt; 0.7</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.7-0.8/" class="dd-item depth-3">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.7-0.8/" class="dd-item depth-3 collapse">
   <a href="/docs/reference/spec/migration/platform-api-0.7-0.8/">Platform API 0.7 -&gt; 0.8</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.8-0.9/" class="dd-item depth-3">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.8-0.9/" class="dd-item depth-3 collapse">
   <a href="/docs/reference/spec/migration/platform-api-0.8-0.9/">Platform API 0.8 -&gt; 0.9</a>
 </li>
-<li data-nav-id="/docs/reference/spec/migration/platform-api-0.9-0.10/" class="dd-item depth-3">
+<li data-nav-id="/docs/reference/spec/migration/platform-api-0.9-0.10/" class="dd-item depth-3 collapse">
   <a href="/docs/reference/spec/migration/platform-api-0.9-0.10/">Platform API 0.9 -&gt; 0.10</a>
 </li>
   </ul>
@@ -707,12 +707,12 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BBuildpack&#43;API&#43;0.4&#43;-%26gt%3B&#43;0.5%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Freference%2Fspec%2Fmigration%2Fbuildpack-api-0.4-0.5%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BThe&#43;finer&#43;points&#43;of&#43;image&#43;extensions%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fextension-guide%2Fcreate-extension%2Fadvanced-extensions%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/reference/spec/migration/buildpack-api-0.4-0.5.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/extension-guide/create-extension/advanced-extensions.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
@@ -720,27 +720,111 @@
 
 
         <div class="heading">
-          <h1 class="title">Buildpack API 0.4 -&gt; 0.5</h1>
+          <h1 class="title">The finer points of image extensions</h1>
         </div>
 
-        <p>This guide is most relevant to buildpack authors.</p>
-<p>See the <a href="https://github.com/buildpacks/spec/releases/tag/buildpack%2Fv0.5">spec release</a> for Buildpack API 0.5 for the full list of changes and further details.</p>
-<h3 id="stack-id">Stack ID</h3>
-<p>The buildpack may now indicate compatibility with any stack by specifying the special value <code>*</code>.</p>
-<h3 id="character-restrictions-for-process-types">Character restrictions for process types</h3>
-<p>For each process in <code>launch.toml</code>, <code>type</code> is now restricted to only contain numbers, letters, and the characters <code>.</code>, <code>_</code>, and <code>-</code>, so symlinks on both Linux and windows filesystems can be created.</p>
-<h3 id="override-env-vars">Override env vars</h3>
-<p>Override is now the default behavior for env files without a suffix.
-It means that for the <code>/env/</code>, <code>/env.build/</code>, and <code>/env.launch/</code> directories, the default, suffix-less behavior will be <code>VAR.override</code> instead of <code>VAR.append</code>+<code>VAR.delim=:</code>.</p>
-<h3 id="decouple-builpack-plan-and-bom">Decouple Builpack Plan and BOM</h3>
-<p>The Buildpack Plan and Bill-Of-Materials are now decoupled.
-<code>&lt;plan&gt;</code> that is provided to <code>/bin/build</code> and contains the Buildpack Plan entries for the buildpack, is now read-only.
-There are new <code>[[bom]]</code> sections in <code>&lt;layers&gt;/launch.toml</code> and <code>&lt;layers&gt;/build.toml</code> for runtime and build-time Bill-of-Materials entries respectively.
-There is a new <code>[[entries]]</code> section in <code>&lt;layers&gt;/build.toml</code> for Buildpack Plan entries that should be passed to subsequent buildpacks that may provide the dependencies.</p>
-<h3 id="execd">exec.d</h3>
-<p>The launch process now supports <code>exec.d</code> executables. Unlike <code>profile.d</code> scripts, which must be text files containing Bash 3+ scripts, the <code>exec.d</code> scripts do not depend on a shell but can still modify the environment of the app process.
-Lifecycle will execute each file in each <code>&lt;layers&gt;/&lt;layer&gt;/exec.d</code> directory and each file in each <code>&lt;layers&gt;/&lt;layer&gt;/exec.d/&lt;process&gt;</code> directory.
-The output of the script may contain any number of top-level key/value pairs.</p>
+        <h1 id="guidance-for-extension-authors">Guidance for extension authors</h1>
+<h2 id="during-detect">During detect</h2>
+<h3 id="expressing-provided-dependencies-through-the-build-plan">Expressing provided dependencies through the build plan</h3>
+<p>The <a href="/docs/reference/spec/buildpack-api#build-plan">build plan</a> is a mechanism for inter-buildpack communication.
+Through the build plan, buildpacks may express the dependencies they require, as well as those they provide.
+The lifecycle uses information from the build plan to determine whether a group of buildpacks is compatible - that is, whether for every buildpack in the group, its required dependencies are provided by a buildpack that comes before it.</p>
+<p>Extensions can use the build plan too - but they are only allowed to provide dependencies, they cannot require any.
+Note that because there is a separate order for extensions that is prepended to each buildpack group during the <code>detect</code> phase,
+all extension &ldquo;provides&rdquo; come before all buildpack &ldquo;requires&rdquo; in the build plan.</p>
+<p>During the <code>detect</code> phase, the lifecycle sets a <code>CNB_OUTPUT_DIR</code> environment variable when executing each <code>./bin/detect</code>.
+If using a build plan, extensions should write the plan to <code>$CNB_OUTPUT_DIR/plan.toml</code>.</p>
+<h2 id="during-generate">During generate</h2>
+<h3 id="configuring-build-args">Configuring build args</h3>
+<p>During the <code>generate</code> phase, extensions may output (in addition to Dockerfiles) an <code>extend-config.toml</code>
+containing build-time arguments for Dockerfiles.
+(Not to be confused with the <code>build</code> phase, &ldquo;build&rdquo; here refers to the application of Dockerfiles to a base image,
+similar to a <code>docker build</code>).</p>
+<p>Arguments may be configured for builder image extension or runtime base image extension or both,
+according to the schema defined in the <a href="https://github.com/buildpacks/spec/blob/main/image_extension.md#extend-configtoml-toml">spec</a>.</p>
+<p>During the <code>generate</code> phase, the lifecycle sets a <code>CNB_OUTPUT_DIR</code> environment variable when executing each <code>./bin/generate</code>.
+If using an <code>extend-config.toml</code>, extensions should write the config to <code>$CNB_OUTPUT_DIR/extend-config.toml</code>.</p>
+<h3 id="invalidating-the-build-cache-with-the-uuid-build-arg">Invalidating the build cache with the UUID build arg</h3>
+<p>Whenever possible, the application of Dockerfiles to a base image will use a caching mechanism
+similar to that of a <code>docker build</code>.
+The lifecycle, for example, uses <a href="https://github.com/GoogleContainerTools/kaniko"><code>kaniko</code></a> to implement the <code>extender</code>.</p>
+<p>However, there may be times when caching is not desired - for example, when fetching the &ldquo;latest&rdquo; available version of a package.
+In such cases, Dockerfiles can use the <code>build_id</code> build argument to invalidate the cache for all instructions that follow.</p>
+<p>As an example:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">RUN <span class="nb">echo</span> <span class="s2">&#34;this instruction may be found in the cache&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">ARG <span class="nv">build_id</span><span class="o">=</span><span class="m">0</span>
+</span></span><span class="line"><span class="cl">RUN <span class="nb">echo</span> <span class="si">${</span><span class="nv">build_id</span><span class="si">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">RUN <span class="nb">echo</span> <span class="s2">&#34;this instruction should never be found in the cache, as the value above will change&#34;</span>
+</span></span></code></pre></div><p>Note that <code>build_id</code> is defaulted to <code>0</code> as a best practice.</p>
+<h3 id="re-setting-the-usergroup-with-build-args">Re-setting the user/group with build args</h3>
+<p>Dockerfiles from image extensions may contain <code>USER root</code> instructions in order to perform actions that would not be possible
+when running as a non-root user.</p>
+<p>However, for security reasons, the final user after all Dockerfiles have been applied should <em>not</em> be root.
+To reset the user to its original value (before the application of the current Dockerfile),
+Dockerfiles should make use of <code>user_id</code> and <code>group_id</code> build arguments, as seen below:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ARG <span class="nv">user_id</span><span class="o">=</span><span class="m">1000</span>
+</span></span><span class="line"><span class="cl">ARG <span class="nv">group_id</span><span class="o">=</span><span class="m">1000</span>
+</span></span><span class="line"><span class="cl">USER <span class="si">${</span><span class="nv">user_id</span><span class="si">}</span>:<span class="si">${</span><span class="nv">group_id</span><span class="si">}</span>
+</span></span></code></pre></div><h3 id="making-rebasable-changes">Making &lsquo;rebasable&rsquo; changes</h3>
+<p>Image layers generated from extensions are &ldquo;above the rebasable seam&rdquo; - that is,
+after swapping the runtime image to an updated version through a <code>rebase</code> operation,
+the extension layers will be persisted in the rebased application image.</p>
+<p>Unlike buildpack layers, extension layers are <em>not</em> always safe to rebase.
+Extension layers <em>may</em> be safe to rebase if:</p>
+<ul>
+<li>the changes they introduce are purely additive (no modification of pre-existing files from the base image), or</li>
+<li>any modified pre-existing files are safe to exclude from rebase (the file from the extension layer will override any updated version of the file from the new runtime base image)</li>
+</ul>
+<p>By default, the lifecycle will assume that any extension layers are <em>not</em> rebasable.
+To indicate otherwise, <code>run.Dockerfile</code>s should include:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">LABEL io.buildpacks.rebasable<span class="o">=</span><span class="nb">true</span>
+</span></span></code></pre></div><p>If all <code>run.Dockerfile</code>s set this label to <code>true</code>, the application image will contain the label <code>io.buildpacks.rebasable=true</code>.
+Otherwise, the application image will contain the label <code>io.buildpacks.rebasable=false</code>.
+<code>pack rebase</code> requires a <code>--force</code> flag if the application image contains <code>io.buildpacks.rebasable=false</code>.</p>
+<p>Extension authors should take great care (and perform testing) to ensure that any layers marked as rebasable are in fact rebasable.</p>
+<h2 id="in-general">In general</h2>
+<h3 id="choosing-an-extension-id">Choosing an extension ID</h3>
+<p>Extension IDs must be globally unique to extensions, but extensions and buildpacks can share the same ID.</p>
+<h3 id="expressing-information-in-extensiontoml">Expressing information in extension.toml</h3>
+<p>Just like <code>buildpack.toml</code>, an <code>extension.toml</code> can contain additional metadata to describe its behavior.
+See the <a href="https://github.com/buildpacks/spec/blob/main/image_extension.md#extensiontoml-toml">spec</a> for more information.</p>
+<h3 id="pre-populating-output">Pre-populating output</h3>
+<p>The root directory for a typical extension might look like the following:</p>
+<pre tabindex="0"><code>.
+├── bin
+│   ├── detect
+│   ├── generate
+├── extension.toml
+</code></pre><p>But it could also look like any of the following:</p>
+<h4 id="bindetect-is-optional">./bin/detect is optional!</h4>
+<p>If <code>./bin/detect</code> is missing,
+the extension is assumed to pass detection and
+the lifecycle will interpret the contents of <code>./detect</code> as the contents of <code>$CNB_OUTPUT_DIR</code>.</p>
+<pre tabindex="0"><code>.
+├── bin
+│   ├── generate
+├── detect
+│   ├── plan.toml
+├── extension.toml
+</code></pre><h4 id="bingenerate-is-optional">./bin/generate is optional!</h4>
+<p>If <code>./bin/generate</code> is missing,
+the lifecycle will interpret the contents of <code>./generate</code> as the contents of <code>$CNB_OUTPUT_DIR</code>.</p>
+<pre tabindex="0"><code>├── bin
+│   ├── detect
+├── generate
+│   ├── build.Dockerfile
+│   ├── run.Dockerfile
+├── extension.toml
+</code></pre><h4 id="its-all-optional">It&rsquo;s all optional!</h4>
+<pre tabindex="0"><code>├── detect
+│   ├── plan.toml
+├── generate
+│   ├── build.Dockerfile
+│   ├── run.Dockerfile
+├── extension.toml
+</code></pre>
 
         
 
@@ -750,12 +834,12 @@ The output of the script may contain any number of top-level key/value pairs.</p
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BBuildpack&#43;API&#43;0.4&#43;-%26gt%3B&#43;0.5%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Freference%2Fspec%2Fmigration%2Fbuildpack-api-0.4-0.5%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BThe&#43;finer&#43;points&#43;of&#43;image&#43;extensions%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Fextension-guide%2Fcreate-extension%2Fadvanced-extensions%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/reference/spec/migration/buildpack-api-0.4-0.5.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/extension-guide/create-extension/advanced-extensions.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
