@@ -40,6 +40,7 @@ You should see something akin to the following:
     for further details.
 
 We'll take a closer look at the executables for the `vim` extension in the next step.
+For guidance around writing extensions and more advanced use cases, see [here](/docs/extension-guide/create-extension/advanced-extensions).
 
 <!--+ if false+-->
 ---
