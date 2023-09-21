@@ -28,8 +28,8 @@ This command will create `ruby-buildpack` directory which contains `buildpack.to
 ### Additional Parameters
 - `-a, --api` Buildpack API compatibility of the generated buildpack
 - `-h, --help` Help for 'new'
-- `--path` the location on the filesystem to generate the artifacts.
-- `--stacks` Stack(s) this buildpack will be compatible with. Repeat for each stack in order, or supply once by comma-separated list
+- `--path` the location on the filesystem to generate the artifacts
+- `--stacks` Stacks (deprecated) the buildpack will work with
 - `-V, --version` the version of the buildpack in buildpack.toml
 
 
@@ -48,13 +48,19 @@ api = "0.8"
   id = "examples/ruby"
   version = "0.0.1"
 
-# Stacks that the buildpack will work with
+# Targets the buildpack will work with
+[[targets]]
+os = "linux"
+
+# Stacks (deprecated) the buildpack will work with
 [[stacks]]
   id = "io.buildpacks.samples.stacks.jammy"
 
 ```
 
-You will notice two specific fields in the file: `buildpack.id` and `stack.id`. The buildpack ID is the way you will reference the buildpack when you create buildpack groups, builders, etc. The stack ID is the root file system in which the buildpack will be run. This example can be run on one of two different stacks, both based upon Ubuntu Bionic.
+The buildpack ID is the way you will reference the buildpack when you create buildpack groups, builders, etc.
+[Targets](/docs/concepts/components/targets/) identifies the kind of build and run base images the buildpack will work with.
+The stack ID (deprecated) uniquely identifies a build and run image configuration the buildpack will work with. This example can be run on Ubuntu Jammy.
 
 ### `detect` and `build`
 

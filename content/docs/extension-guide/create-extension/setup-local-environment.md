@@ -55,7 +55,7 @@ cd <your preferred workspace directory>
 pack version
 ```
 
-The version should be at least `0.30.0`
+The version should be at least `0.31.0-rc.1`
 
 ### Update pack configuration
 

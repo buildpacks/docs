@@ -83,7 +83,7 @@ You should see:
 ERROR: failed to launch: path lookup: exec: "curl": executable file not found in $PATH
 ```
 
-What happened: our builder uses run image `cnbs/sample-stack-run:alpine`, which does not have `curl` installed, so our
+What happened: our builder uses run image `cnbs/sample-base-run:alpine`, which does not have `curl` installed, so our
   process failed to launch.
 
 Let's take a look at how the `samples/curl` extension fixes the error by switching the run image to another image...
