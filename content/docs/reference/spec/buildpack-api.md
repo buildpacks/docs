@@ -191,6 +191,9 @@ The schema is as follows:
 
 - **`targets`** _(list, optional)_\
   A list of targets supported by the buildpack.
+  When no targets are specified, the `os`/`arch` will be inferred from the contents of the `./bin` directory
+  (`./bin/build` implies `linux`/`amd64` and `./bin/build.bat` implies `windows`/`amd64`).
+  For each target, all fields are optional (though at least one should be provided).
   _Cannot be used in conjunction with `order` list._
 
   - **`os`** _(string, optional)_\
