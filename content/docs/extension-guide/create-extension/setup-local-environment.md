@@ -72,10 +72,7 @@ We unset any custom lifecycle image that may have been provided to ensure that t
 
 <!-- test:exec -->
 ```bash
-git clone https://github.com/buildpacks/samples.git && \
-  cd samples && \
-  git fetch --all && \
-  git checkout fix/curl
+git clone https://github.com/buildpacks/samples.git
 ```
 
 <!--+ if false +-->
