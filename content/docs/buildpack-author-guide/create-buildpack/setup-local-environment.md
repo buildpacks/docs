@@ -8,7 +8,7 @@ weight=401
 <!-- test:setup:exec;exit-code=-1 -->
 <!--
 ```bash
-docker rmi test-ruby-app
+docker rmi test-node-js-app
 pack config trusted-builders add cnbs/sample-builder:jammy
 ```
 -->
@@ -16,7 +16,7 @@ pack config trusted-builders add cnbs/sample-builder:jammy
 <!-- test:teardown:exec -->
 <!--
 ```bash
-docker rmi test-ruby-app
+docker rmi test-node-js-app
 ```
 -->
 
@@ -24,34 +24,37 @@ First, we'll create a sample Ruby app that you can use when developing your buil
 
 <!-- test:exec -->
 ```bash
-mkdir ruby-sample-app
+mkdir node-js-sample-app
 ```
 <!--+- "{{execute}}"+-->
 
-Create a file in the current directory called `ruby-sample-app/app.rb`<!--+"{{open}}"+--> with the following contents:
+Create a file in the current directory called `node-js-sample-app/app.js`<!--+"{{open}}"+--> with the following contents:
 
-<!-- test:file=ruby-sample-app/app.rb -->
-```ruby
-require 'sinatra'
-
-set :bind, '0.0.0.0'
-set :port, 8080
-
-get '/' do
-  'Hello World!'
-end
+<!-- test:file=node-js-sample-app/app.js -->
+```javascript
+const http = require('http');
+ 
+const hostname = '0.0.0.0';
+const port = 8080;
+ 
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Hello World!');
+});
+ 
+server.listen(port, hostname, () => {
+  console.log(`Server running at http://${hostname}:${port}/`);
+});
 ```
 
-Then, create a file called `ruby-sample-app/Gemfile`<!--+"{{open}}"+--> with the following contents:
+We also create a `package.json` file with the following contents:
 
-<!-- test:file=ruby-sample-app/Gemfile -->
-```ruby
-source 'http://rubygems.org'
-
-git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
-
-gem 'sinatra'
-gem 'webrick'
+<!-- test:file=node-js-sample-app/package.json -->
+```javascript
+{
+  name = "example-application"
+}
 ```
 
 Finally, make sure your local Docker daemon is running by executing:

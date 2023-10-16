@@ -5,20 +5,20 @@ weight=408
 
 <!-- test:suite=create-buildpack;weight=8 -->
 
-It's likely that not all Ruby apps will want to use the same version of Ruby. Let's make the Ruby version configurable.
+It's likely that not all NodeJS apps will want to use the same version of NodeJS. Let's make the NodeJS version configurable.
 
-## Select Ruby version
+## Select NodeJS version
 
-We'll allow buildpack users to define the desired Ruby version via a `.ruby-version` file in their app. We'll first update the `detect` script to check for this file. We will then record the dependency we can `provide` (Ruby), as well as the specific dependency the application will `require`, in the `Build Plan`, a document the lifecycle uses to determine if the buildpack will provide everything the application needs.
+We'll allow buildpack users to define the desired NodeJS version via a `.node-js-version` file in their app. We'll first update the `detect` script to check for this file. We will then record the dependency we can `provide` (NodeJS), as well as the specific dependency the application will `require`, in the `Build Plan`, a document the lifecycle uses to determine if the buildpack will provide everything the application needs.
 
-Update `ruby-buildpack/bin/detect` to look like this:
+Update `node-js-buildpack/bin/detect` to look like this:
 
-<!-- test:file=ruby-buildpack/bin/detect -->
+<!-- test:file=node-js-buildpack/bin/detect -->
 ```bash
 #!/usr/bin/env bash
 set -eo pipefail
 
-if [[ ! -f Gemfile ]]; then
+if [[ ! -f package.json ]]; then
    exit 100
 fi
 
@@ -26,25 +26,25 @@ fi
 plan=$2
 version=3.1.3
 
-if [[ -f .ruby-version ]]; then
-    version=$(cat .ruby-version | tr -d '[:space:]')
+if [[ -f .node-js-version ]]; then
+    version=$(cat .node-js-version | tr -d '[:space:]')
 fi
 
-echo "provides = [{ name = \"ruby\" }]" > "$plan"
-echo "requires = [{ name = \"ruby\", metadata = { version = \"$version\" } }]" >> "$plan"
+echo "provides = [{ name = \"node-js\" }]" > "$plan"
+echo "requires = [{ name = \"node-js\", metadata = { version = \"$version\" } }]" >> "$plan"
 # ======= /ADDED =======
 ```
 
-Then you will need to update your `build` script to look for the recorded Ruby version in the build plan:
+Then you will need to update your `build` script to look for the recorded NodeJS version in the build plan:
 
-Your `ruby-buildpack/bin/build` script should look like the following:
+Your `node-js-buildpack/bin/build` script should look like the following:
 
-<!-- test:file=ruby-buildpack/bin/build -->
+<!-- test:file=node-js-buildpack/bin/build -->
 ```bash
 #!/usr/bin/env bash
 set -eo pipefail
 
-echo "---> Ruby Buildpack"
+echo "---> NodeJS Buildpack"
 
 # ======= MODIFIED =======
 # 1. GET ARGS
@@ -52,32 +52,32 @@ layersdir=$1
 plan=$3
 
 # 2. CREATE THE LAYER DIRECTORY
-rubylayer="$layersdir"/ruby
-mkdir -p "$rubylayer"
+node_js_layer="${layersdir}"/node-js
+mkdir -p "${node_js_layer}"
 
 # ======= MODIFIED =======
-# 3. DOWNLOAD RUBY
-ruby_version=$(cat "$plan" | yj -t | jq -r '.entries[] | select(.name == "ruby") | .metadata.version')
-echo "---> Downloading and extracting Ruby $ruby_version"
-ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-22/ruby-$ruby_version.tgz
-wget -q -O - "$ruby_url" | tar -xzf - -C "$rubylayer"
+# 3. DOWNLOAD node-js
+node_js_version=$(cat "$plan" | yj -t | jq -r '.entries[] | select(.name == "node-js") | .metadata.version')
+echo "---> Downloading and extracting NodeJS $node_js_version"
+node_js_url=https://nodejs.org/dist/v${node_js_version}/node-v${node_js_version}-linux-x64.tar.xz
+wget -q -O - "$node_js_url" | tar -xJf - -C "${node_js_layer}"
 
-# 4. MAKE RUBY AVAILABLE DURING LAUNCH
-echo -e '[types]\nlaunch = true' > "$layersdir/ruby.toml"
+# 4. MAKE node-js AVAILABLE DURING LAUNCH
+echo -e '[types]\nlaunch = true' > "${layersdir}/node-js.toml"
 
-# 5. MAKE RUBY AVAILABLE TO THIS SCRIPT
-export PATH="$rubylayer"/bin:$PATH
-export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}"$rubylayer/lib"
+# 5. MAKE node-js AVAILABLE TO THIS SCRIPT
+export PATH="${node_js_layer}"/bin:$PATH
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}"${node_js_layer}/lib"
 
 # 6. INSTALL GEMS
-# Compares previous Gemfile.lock checksum to the current Gemfile.lock
-bundlerlayer="$layersdir/bundler"
-local_bundler_checksum=$((sha256sum Gemfile.lock || echo 'DOES_NOT_EXIST') | cut -d ' ' -f 1)
-remote_bundler_checksum=$(cat "$layersdir/bundler.toml" | yj -t | jq -r .metadata.checksum 2>/dev/null || echo 'DOES_NOT_EXIST')
+# Compares previous package.json.lock checksum to the current package.json.lock
+bundlerlayer="${layersdir}/bundler"
+local_bundler_checksum=$((sha256sum package.json.lock || echo 'DOES_NOT_EXIST') | cut -d ' ' -f 1)
+remote_bundler_checksum=$(cat "${layersdir}/bundler.toml" | yj -t | jq -r .metadata.checksum 2>/dev/null || echo 'DOES_NOT_EXIST')
 # Always set the types table so that we re-use the appropriate layers
-echo -e '[types]\ncache = true\nlaunch = true' >> "$layersdir/bundler.toml"
+echo -e '[types]\ncache = true\nlaunch = true' >> "${layersdir}/bundler.toml"
 
-if [[ -f Gemfile.lock && $local_bundler_checksum == $remote_bundler_checksum ]] ; then
+if [[ -f package.json.lock && $local_bundler_checksum == $remote_bundler_checksum ]] ; then
     # Determine if no gem dependencies have changed, so it can reuse existing gems without running bundle install
     echo "---> Reusing gems"
     bundle config --local path "$bundlerlayer" >/dev/null
@@ -86,7 +86,7 @@ else
     # Determine if there has been a gem dependency change and install new gems to the bundler layer; re-using existing and un-changed gems
     echo "---> Installing gems"
     mkdir -p "$bundlerlayer"
-    cat >> "$layersdir/bundler.toml" << EOL
+    cat >> "${layersdir}/bundler.toml" << EOL
 [metadata]
 checksum = "$local_bundler_checksum"
 EOL
@@ -95,43 +95,43 @@ EOL
 fi
 
 # 7. SET DEFAULT START COMMAND
-cat > "$layersdir/launch.toml" << EOL
+cat > "${layersdir}/launch.toml" << EOL
 # our web process
 [[processes]]
 type = "web"
-command = "bundle exec ruby app.rb"
+command = "node app.js"
 default = true
 
-# our worker process
+# our debug process
 [[processes]]
-type = "worker"
-command = "bundle exec ruby worker.rb"
+type = "debug"
+command = "node --inspect app.js"
 EOL
 ```
 
-Finally, create a file `ruby-sample-app/.ruby-version` with the following contents:
+Finally, create a file `node-js-sample-app/.node-js-version` with the following contents:
 
-<!-- test:file=ruby-sample-app/.ruby-version -->
+<!-- test:file=node-js-sample-app/.node-js-version -->
 ```
-3.1.0
+18.18.1
 ```
 
 Now when you run:
 
 <!-- test:exec -->
 ```bash
-pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
+pack build test-node-js-app --path ./node-js-sample-app --buildpack ./node-js-buildpack
 ```
 <!--+- "{{execute}}"+-->
 
-You will notice that version of Ruby specified in the app's `.ruby-version` file is downloaded.
+You will notice that version of NodeJS specified in the app's `.node-js-version` file is downloaded.
 
 <!-- test:assert=contains;ignore-lines=... -->
 ```text
 ===> BUILDING
 ...
----> Ruby Buildpack
----> Downloading and extracting Ruby 3.1.0
+---> NodeJS Buildpack
+---> Downloading and extracting NodeJS 18.18.1
 ```
 
 Next, let's see how buildpacks can store information about the dependencies provided in the output app image for introspection.

@@ -7,59 +7,55 @@ weight=405
 
 To make your app runnable, a default start command must be set. You'll need to add the following to the end of your `build` script:
 
-<!-- file=ruby-buildpack/bin/build data-target=append -->
+<!-- file=node-js-buildpack/bin/build data-target=append -->
 ```bash
 # ...
 
 # Set default start command
-cat > "$layersdir/launch.toml" << EOL
+cat > "${layersdir}/launch.toml" << EOL
 [[processes]]
 type = "web"
-command = "bundle exec ruby app.rb"
+command = "node app.js"
 default = true
 EOL
 
 # ...
 ```
 
-Your full `ruby-buildpack/bin/build`<!--+"{{open}}"+--> script should now look like the following:
+Your full `node-js-buildpack/bin/build`<!--+"{{open}}"+--> script should now look like the following:
 
-<!-- test:file=ruby-buildpack/bin/build -->
+<!-- test:file=node-js-buildpack/bin/build -->
 ```bash
 #!/usr/bin/env bash
 set -eo pipefail
 
-echo "---> Ruby Buildpack"
+echo "---> NodeJS Buildpack"
 
 # 1. GET ARGS
 layersdir=$1
 
 # 2. CREATE THE LAYER DIRECTORY
-rubylayer="$layersdir"/ruby
-mkdir -p "$rubylayer"
+node_js_layer="${layersdir}"/node-js
+mkdir -p "${node_js_layer}"
 
-# 3. DOWNLOAD RUBY
-echo "---> Downloading and extracting Ruby"
-ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-22/ruby-3.1.3.tgz
-wget -q -O - "$ruby_url" | tar -xzf - -C "$rubylayer"
+# 3. DOWNLOAD node-js
+echo "---> Downloading and extracting NodeJS"
+node_js_url=https://nodejs.org/dist/v18.18.1/node-v18.18.1-linux-x64.tar.xz
+wget -q -O - "$node_js_url" | tar -xJf - -C "${node_js_layer}"
 
-# 4. MAKE RUBY AVAILABLE DURING LAUNCH
-echo -e '[types]\nlaunch = true' > "$layersdir/ruby.toml"
+# 4. MAKE node-js AVAILABLE DURING LAUNCH
+echo -e '[types]\nlaunch = true' > "${layersdir}/node-js.toml"
 
-# 5. MAKE RUBY AVAILABLE TO THIS SCRIPT
-export PATH="$rubylayer"/bin:$PATH
-export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}"$rubylayer/lib"
-
-# 6. INSTALL GEMS
-echo "---> Installing gems"
-bundle install
+# 5. MAKE node-js AVAILABLE TO THIS SCRIPT
+export PATH="${node_js_layer}"/bin:$PATH
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}"${node_js_layer}/lib"
 
 # ========== ADDED ===========
-# 7. SET DEFAULT START COMMAND
-cat > "$layersdir/launch.toml" << EOL
+# 6. SET DEFAULT START COMMAND
+cat > "${layersdir}/launch.toml" << EOL
 [[processes]]
 type = "web"
-command = "bundle exec ruby app.rb"
+command = "node app.js"
 default = true
 EOL
 ```
@@ -68,24 +64,21 @@ Then rebuild your app using the updated buildpack:
 
 <!-- test:exec -->
 ```bash
-pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
+pack build test-node-js-app --path ./node-js-sample-app --buildpack ./node-js-buildpack
 ```
 <!--+- "{{execute}}"+-->
 
-You should then be able to run your new Ruby app:
+You should then be able to run your new NodeJS app:
 
 ```bash
-docker run --rm -p 8080:8080 test-ruby-app
+docker run --rm -p 8080:8080 test-node-js-app
 ```
 <!--+- "{{execute}}"+-->
 
 and see the server log output:
 
 ```text
-[2019-04-02 18:04:48] INFO  WEBrick 1.4.2
-[2019-04-02 18:04:48] INFO  ruby 2.5.1 (2018-03-29) [x86_64-linux]
-== Sinatra (v2.0.5) has taken the stage on 8080 for development with backup from WEBrick
-[2019-04-02 18:04:48] INFO  WEBrick::HTTPServer#start: pid=1 port=8080
+Server running at http://0.0.0.0:8080/
 ```
 
 Test it out by navigating to [localhost:8080](http://localhost:8080) in your favorite browser!

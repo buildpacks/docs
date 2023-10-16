@@ -5,67 +5,56 @@ weight=406
 
 <!-- test:suite=create-buildpack;weight=6 -->
 
-One of the benefits of buildpacks is that they are multi-process - an image can have multiple entrypoints for each operational mode. Let's see how this works. We will extend our app to have a worker process.
+One of the benefits of buildpacks is that they are multi-process - an image can have multiple entrypoints for each operational mode. Let's see how this works. We will extend our app to have an entrypoint that allows a debugger to attach to it.
 
-Let's create a worker file, `ruby-sample-app/worker.rb`<!--+"{{open}}"+-->, with the following contents:
-
-<!-- test:file=ruby-sample-app/worker.rb -->
-```ruby
-for i in 0..5
-    puts "Running a worker task..."
-end
-```
-
-After building our app, we could run the resulting image with the `web` process (currently the default) or our new worker process.
-
-To enable running the worker process, we'll need to have our buildpack define a "process type" for the worker.  Modify the section where processes are defined to:
+To enable running the debug process, we'll need to have our buildpack define a "process type" for the worker.  Modify the section where processes are defined to:
 
 ```bash
 # ...
 
-cat > "$layersdir/launch.toml" << EOL
+cat > "${layersdir}/launch.toml" << EOL
 # our web process
 [[processes]]
 type = "web"
-command = "bundle exec ruby app.rb"
+command = "node app.js"
 default = true
 
-# our worker process
+# our debug process
 [[processes]]
-type = "worker"
-command = "bundle exec ruby worker.rb"
+type = "debug"
+command = "node --inspect app.js"
 EOL
 
 # ...
 ```
 
-Your full `ruby-buildpack/bin/build`<!--+"{{open}}"+--> script should now look like the following:
+Your full `node-js-buildpack/bin/build`<!--+"{{open}}"+--> script should now look like the following:
 
-<!-- test:file=ruby-buildpack/bin/build -->
+<!-- test:file=node-js-buildpack/bin/build -->
 ```bash
 #!/usr/bin/env bash
 set -eo pipefail
 
-echo "---> Ruby Buildpack"
+echo "---> NodeJS Buildpack"
 
 # 1. GET ARGS
 layersdir=$1
 
 # 2. CREATE THE LAYER DIRECTORY
-rubylayer="$layersdir"/ruby
-mkdir -p "$rubylayer"
+node_js_layer="${layersdir}"/node-js
+mkdir -p "${node_js_layer}"
 
-# 3. DOWNLOAD RUBY
-echo "---> Downloading and extracting Ruby"
-ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-22/ruby-3.1.3.tgz
-wget -q -O - "$ruby_url" | tar -xzf - -C "$rubylayer"
+# 3. DOWNLOAD node-js
+echo "---> Downloading and extracting NodeJS"
+node_js_url=https://nodejs.org/dist/v18.18.1/node-v18.18.1-linux-x64.tar.xz
+wget -q -O - "$node_js_url" | tar -xJf - -C "${node_js_layer}"
 
-# 4. MAKE RUBY AVAILABLE DURING LAUNCH
-echo -e '[types]\nlaunch = true' > "$layersdir/ruby.toml"
+# 4. MAKE node-js AVAILABLE DURING LAUNCH
+echo -e '[types]\nlaunch = true' > "${layersdir}/node-js.toml"
 
-# 5. MAKE RUBY AVAILABLE TO THIS SCRIPT
-export PATH="$rubylayer"/bin:$PATH
-export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}"$rubylayer/lib"
+# 5. MAKE node-js AVAILABLE TO THIS SCRIPT
+export PATH="${node_js_layer}"/bin:$PATH
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}"${node_js_layer}/lib"
 
 # 6. INSTALL GEMS
 echo "---> Installing gems"
@@ -73,17 +62,17 @@ bundle install
 
 # ========== MODIFIED ===========
 # 7. SET DEFAULT START COMMAND
-cat > "$layersdir/launch.toml" << EOL
+cat > "${layersdir}/launch.toml" << EOL
 # our web process
 [[processes]]
 type = "web"
-command = "bundle exec ruby app.rb"
+command = "node app.js"
 default = true
 
-# our worker process
+# our debug process
 [[processes]]
-type = "worker"
-command = "bundle exec ruby worker.rb"
+type = "debug"
+command = "node --inspect app.js"
 EOL
 ```
 
@@ -91,15 +80,15 @@ Now if you rebuild your app using the updated buildpack:
 
 <!-- test:exec -->
 ```bash
-pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
+pack build test-node-js-app --path ./node-js-sample-app --buildpack ./node-js-buildpack
 ```
 <!--+- "{{execute}}"+-->
 
-You should then be able to run your new Ruby worker process:
+You should then be able to run your new NodeJS debug process:
 
 <!-- test:exec -->
 ```bash
-docker run --rm --entrypoint worker test-ruby-app
+docker run --rm --entrypoint worker test-node-js-app
 ```
 <!--+- "{{execute}}"+-->
 
@@ -107,12 +96,7 @@ and see the worker log output:
 
 <!-- test:assert=contains -->
 ```text
-Running a worker task...
-Running a worker task...
-Running a worker task...
-Running a worker task...
-Running a worker task...
-Running a worker task...
+Debugger listening on ws://127.0.0.1:9229/
 ```
 
 Next, we'll look at how to improve our buildpack by leveraging cache.
