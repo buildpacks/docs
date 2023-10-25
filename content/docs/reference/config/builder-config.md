@@ -73,6 +73,15 @@ A [builder][builder] configuration schema is as follows:
     > at the time of `pack`'s release. In other words, for a particular version of `pack`, this default
     > will not change despite new lifecycle versions being released.
 
+- #### `build.env` _(optional)_
+  The [[build.env]] is used to override platform environment variables at build-time. use Env `CNB_BUILD_CONFIG_DIR` to override when building image from cli to change default(`/cnb/build-config`) directory of these build-time environment variables stored
+
+  - **`name`** _(string, required)_\
+    The Name/Key of the Environment Variable. If Platform Environment Variable key/name is specified, then it is overridden at build-time else it will create a build-time environment variable with the given `name` that is not defined(key/name doesn't exists) at runtime of the container
+
+  - **`value`** _(string, required)_\
+    The value of the given name/key of the Environment Variable overriden to
+
 ### Supported archives
 
 Currently, when specifying a URI to a buildpack or lifecycle, only `tar` or `tgz` archive types are supported.
