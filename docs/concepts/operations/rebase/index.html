@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Rebase allows app developers or operators to rapidly update an app image when its stack&amp;rsquo;s run image has changed."/>
+<meta name="description" content="Rebase allows app developers or operators to rapidly update an app image when its run image has changed."/>
 <link rel="canonical" content="https://buildpacks.io/docs/concepts/operations/rebase/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
@@ -22,7 +22,7 @@
 <meta property="og:url" content="https://buildpacks.io/docs/concepts/operations/rebase/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-<meta property="og:description" content="Rebase allows app developers or operators to rapidly update an app image when its stack&amp;rsquo;s run image has changed.">
+<meta property="og:description" content="Rebase allows app developers or operators to rapidly update an app image when its run image has changed.">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -181,11 +181,17 @@
 <li data-nav-id="/docs/concepts/components/" class="dd-item depth-1 haschildren">
   <a href="/docs/concepts/components/">Components</a>
   <ul class="ml-2">
+<li data-nav-id="/docs/concepts/components/base-images/build/" class="dd-item depth-2">
+  <a href="/docs/concepts/components/base-images/build/">Build image</a>
+</li>
 <li data-nav-id="/docs/concepts/components/builder/" class="dd-item depth-2">
   <a href="/docs/concepts/components/builder/">Builder</a>
 </li>
 <li data-nav-id="/docs/concepts/components/buildpack/" class="dd-item depth-2">
   <a href="/docs/concepts/components/buildpack/">Buildpack</a>
+</li>
+<li data-nav-id="/docs/concepts/components/base-images/run/" class="dd-item depth-2">
+  <a href="/docs/concepts/components/base-images/run/">Run image</a>
 </li>
 <li data-nav-id="/docs/concepts/components/buildpack-group/" class="dd-item depth-2">
   <a href="/docs/concepts/components/buildpack-group/">Buildpack Group</a>
@@ -224,6 +230,9 @@
 </li>
 <li data-nav-id="/docs/concepts/components/stack/" class="dd-item depth-2">
   <a href="/docs/concepts/components/stack/">Stack</a>
+</li>
+<li data-nav-id="/docs/concepts/components/targets/" class="dd-item depth-2">
+  <a href="/docs/concepts/components/targets/">Targets</a>
 </li>
   </ul>
 </li>
@@ -402,6 +411,12 @@
   <ul class="ml-2">
 <li data-nav-id="/docs/operator-guide/create-a-builder/" class="dd-item depth-1">
   <a href="/docs/operator-guide/create-a-builder/">Create a builder</a>
+</li>
+<li data-nav-id="/docs/operator-guide/create-build-base/" class="dd-item depth-1">
+  <a href="/docs/operator-guide/create-build-base/">Create a build base image</a>
+</li>
+<li data-nav-id="/docs/operator-guide/create-run-base/" class="dd-item depth-1">
+  <a href="/docs/operator-guide/create-run-base/">Create a run base image</a>
 </li>
 <li data-nav-id="/docs/operator-guide/create-a-stack/" class="dd-item depth-1">
   <a href="/docs/operator-guide/create-a-stack/">Create a stack</a>
@@ -724,15 +739,15 @@
         </div>
 
         <h3 id="rebasing-explained">Rebasing explained</h3>
-<p>Rebase allows app developers or operators to rapidly update an app image when its stack&#39;s run image has changed. By using image layer rebasing, this command avoids the need to fully rebuild the app.</p>
+<p>Rebase allows app developers or operators to rapidly update an app image when its run image has changed. By using image layer rebasing, this command avoids the need to fully rebuild the app.</p>
 <p><img src="/docs/concepts/operations/rebase.svg" alt="rebase diagram"></p>
 <p>At its core, image rebasing is a simple process. By inspecting an app image, <code>rebase</code> can determine whether or not a
 newer version of the app&rsquo;s base image exists (either locally or in a registry). If so, <code>rebase</code> updates the app image&rsquo;s
 layer metadata to reference the newer base image version.</p>
 <h3 id="example-rebasing-an-app-image">Example: Rebasing an app image</h3>
-<p>Consider an app image <code>my-app:my-tag</code> that was originally built using the default builder. That builder&rsquo;s stack has a
-run image called <code>pack/run</code>. Running the following will update the base of <code>my-app:my-tag</code> with the latest version of
-<code>pack/run</code>.</p>
+<p>Consider an app image <code>my-app:my-tag</code> that was originally built using the default builder.
+That builder has a reference to a run image called <code>pack/run</code>.
+Running the following will update the base of <code>my-app:my-tag</code> with the latest version of <code>pack/run</code>.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ pack rebase my-app:my-tag
 </span></span></code></pre></div><blockquote>
 <p><strong>TIP:</strong> <code>pack rebase</code> has a <code>--publish</code> flag that can be used to publish the updated app image directly to a registry.

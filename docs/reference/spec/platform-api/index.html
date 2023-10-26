@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="This specification defines the interface between the buildpack execution environment, referred to as the lifecycle, and a platform that supports it. This API is used by platform implementors.
+<meta name="description" content="The Platform specification defines the interface between the CNB lifecycle and a platform that runs it.
 "/>
 <link rel="canonical" content="https://buildpacks.io/docs/reference/spec/platform-api/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
@@ -23,7 +23,7 @@
 <meta property="og:url" content="https://buildpacks.io/docs/reference/spec/platform-api/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-<meta property="og:description" content="This specification defines the interface between the buildpack execution environment, referred to as the lifecycle, and a platform that supports it. This API is used by platform implementors.
+<meta property="og:description" content="The Platform specification defines the interface between the CNB lifecycle and a platform that runs it.
 ">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
@@ -183,11 +183,17 @@
 <li data-nav-id="/docs/concepts/components/" class="dd-item depth-1 collapse haschildren">
   <a href="/docs/concepts/components/">Components</a>
   <ul class="ml-2">
+<li data-nav-id="/docs/concepts/components/base-images/build/" class="dd-item depth-2">
+  <a href="/docs/concepts/components/base-images/build/">Build image</a>
+</li>
 <li data-nav-id="/docs/concepts/components/builder/" class="dd-item depth-2">
   <a href="/docs/concepts/components/builder/">Builder</a>
 </li>
 <li data-nav-id="/docs/concepts/components/buildpack/" class="dd-item depth-2">
   <a href="/docs/concepts/components/buildpack/">Buildpack</a>
+</li>
+<li data-nav-id="/docs/concepts/components/base-images/run/" class="dd-item depth-2">
+  <a href="/docs/concepts/components/base-images/run/">Run image</a>
 </li>
 <li data-nav-id="/docs/concepts/components/buildpack-group/" class="dd-item depth-2">
   <a href="/docs/concepts/components/buildpack-group/">Buildpack Group</a>
@@ -226,6 +232,9 @@
 </li>
 <li data-nav-id="/docs/concepts/components/stack/" class="dd-item depth-2">
   <a href="/docs/concepts/components/stack/">Stack</a>
+</li>
+<li data-nav-id="/docs/concepts/components/targets/" class="dd-item depth-2">
+  <a href="/docs/concepts/components/targets/">Targets</a>
 </li>
   </ul>
 </li>
@@ -404,6 +413,12 @@
   <ul class="ml-2">
 <li data-nav-id="/docs/operator-guide/create-a-builder/" class="dd-item depth-1">
   <a href="/docs/operator-guide/create-a-builder/">Create a builder</a>
+</li>
+<li data-nav-id="/docs/operator-guide/create-build-base/" class="dd-item depth-1">
+  <a href="/docs/operator-guide/create-build-base/">Create a build base image</a>
+</li>
+<li data-nav-id="/docs/operator-guide/create-run-base/" class="dd-item depth-1">
+  <a href="/docs/operator-guide/create-run-base/">Create a run base image</a>
 </li>
 <li data-nav-id="/docs/operator-guide/create-a-stack/" class="dd-item depth-1">
   <a href="/docs/operator-guide/create-a-stack/">Create a stack</a>
@@ -725,14 +740,7 @@
           <h1 class="title">Platform API</h1>
         </div>
 
-        <p>This specification defines the interface between the buildpack execution environment,
-referred to as the <em>lifecycle</em>, and a platform that supports it.
-This API is used by platform implementors.</p>
-<h2 id="stacks">Stacks</h2>
-<p>A stack defines two OCI images: a <em>build</em> image and a <em>run</em> image. The build image
-is used to run the buildpack lifecycle, and the run image is the base image the
-final exported image will be built upon.</p>
-<p>For more information see <a href="/docs/concepts/components/stack">Working with stacks</a>.</p>
+        <p>The Platform specification defines the interface between the CNB <a href="/docs/concepts/components/lifecycle/">lifecycle</a> and a <a href="/docs/concepts/components/platform/">platform</a> that runs it.</p>
 <h2 id="buildpacks">Buildpacks</h2>
 <p>Buildpacks are stored on the filesystem as unarchived files such that:</p>
 <ul>
@@ -741,6 +749,9 @@ final exported image will be built upon.</p>
 </ul>
 <h2 id="users">Users</h2>
 <p>For security reasons, images built with platforms, such as <code>pack</code>, build and run as non-root users.</p>
+<h2 id="stacks-deprecated">Stacks (deprecated)</h2>
+<p>A stack (deprecated) is the grouping together of the build and run base images, represented by a unique ID.</p>
+<p>The build image is used to run the buildpack lifecycle, and the run image is the base image for the application image.</p>
 <h2 id="further-reading">Further Reading</h2>
 <p>You can read the complete <a href="https://github.com/buildpacks/spec/blob/main/platform.md">Platform API specification on Github</a>.</p>
 

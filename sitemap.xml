@@ -8,6 +8,8 @@
   </url><url>
     <loc>https://buildpacks.io/docs/app-developer-guide/build-an-app/</loc>
   </url><url>
+    <loc>https://buildpacks.io/docs/concepts/components/base-images/build/</loc>
+  </url><url>
     <loc>https://buildpacks.io/docs/concepts/components/builder/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/concepts/components/</loc>
@@ -36,7 +38,7 @@
   </url><url>
     <loc>https://buildpacks.io/docs/tools/pack/concepts/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/operator-guide/create-a-stack/</loc>
+    <loc>https://buildpacks.io/docs/operator-guide/create-build-base/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/concepts/components/lifecycle/detect/</loc>
   </url><url>
@@ -44,9 +46,13 @@
   </url><url>
     <loc>https://buildpacks.io/docs/concepts/operations/rebase/</loc>
   </url><url>
+    <loc>https://buildpacks.io/docs/concepts/components/base-images/run/</loc>
+  </url><url>
     <loc>https://buildpacks.io/docs/concepts/components/buildpack-group/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/concepts/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/operator-guide/create-run-base/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/app-developer-guide/environment-variables/</loc>
   </url><url>
@@ -72,6 +78,8 @@
   </url><url>
     <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/</loc>
   </url><url>
+    <loc>https://buildpacks.io/docs/operator-guide/create-a-stack/</loc>
+  </url><url>
     <loc>https://buildpacks.io/docs/extension-guide/create-extension/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/extension-guide/</loc>
@@ -81,6 +89,8 @@
     <loc>https://buildpacks.io/docs/app-developer-guide/specify-buildpacks/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/concepts/components/stack/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/concepts/components/targets/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/concepts/components/lifecycle/export/</loc>
   </url><url>

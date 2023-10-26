@@ -181,11 +181,17 @@
 <li data-nav-id="/docs/concepts/components/" class="dd-item depth-1 active haschildren">
   <a href="/docs/concepts/components/">Components</a>
   <ul class="ml-2">
+<li data-nav-id="/docs/concepts/components/base-images/build/" class="dd-item depth-2">
+  <a href="/docs/concepts/components/base-images/build/">Build image</a>
+</li>
 <li data-nav-id="/docs/concepts/components/builder/" class="dd-item depth-2">
   <a href="/docs/concepts/components/builder/">Builder</a>
 </li>
 <li data-nav-id="/docs/concepts/components/buildpack/" class="dd-item depth-2">
   <a href="/docs/concepts/components/buildpack/">Buildpack</a>
+</li>
+<li data-nav-id="/docs/concepts/components/base-images/run/" class="dd-item depth-2">
+  <a href="/docs/concepts/components/base-images/run/">Run image</a>
 </li>
 <li data-nav-id="/docs/concepts/components/buildpack-group/" class="dd-item depth-2">
   <a href="/docs/concepts/components/buildpack-group/">Buildpack Group</a>
@@ -224,6 +230,9 @@
 </li>
 <li data-nav-id="/docs/concepts/components/stack/" class="dd-item depth-2">
   <a href="/docs/concepts/components/stack/">Stack</a>
+</li>
+<li data-nav-id="/docs/concepts/components/targets/" class="dd-item depth-2">
+  <a href="/docs/concepts/components/targets/">Targets</a>
 </li>
   </ul>
 </li>
@@ -402,6 +411,12 @@
   <ul class="ml-2">
 <li data-nav-id="/docs/operator-guide/create-a-builder/" class="dd-item depth-1">
   <a href="/docs/operator-guide/create-a-builder/">Create a builder</a>
+</li>
+<li data-nav-id="/docs/operator-guide/create-build-base/" class="dd-item depth-1">
+  <a href="/docs/operator-guide/create-build-base/">Create a build base image</a>
+</li>
+<li data-nav-id="/docs/operator-guide/create-run-base/" class="dd-item depth-1">
+  <a href="/docs/operator-guide/create-run-base/">Create a run base image</a>
 </li>
 <li data-nav-id="/docs/operator-guide/create-a-stack/" class="dd-item depth-1">
   <a href="/docs/operator-guide/create-a-stack/">Create a stack</a>
@@ -728,6 +743,14 @@
         
       
         
+          <h2><a href="https://buildpacks.io/docs/concepts/components/base-images/build/" class="">Build image</a></h2>
+          <p class="m-1">What is a build image? The build image provides the base image from which the build environment is constructed. The build environment is the containerized environment in which the [lifecycle][lifecycle] (and thereby [buildpacks][buildpack]) are executed.</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/concepts/components/base-images/build/">Learn more →</a>
+            </div>
+        
           <h2><a href="https://buildpacks.io/docs/concepts/components/builder/" class="">Builder</a></h2>
           <p class="m-1">A builder is an image that contains all the components necessary to execute a build. A builder image is created by taking a build image and adding a lifecycle, buildpacks, and files that configure aspects of the build including the buildpack detection order and the location(s) of the run image</p>
 
@@ -742,6 +765,15 @@
           
             <div class="text-md-right">
               <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/concepts/components/buildpack/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/concepts/components/base-images/run/" class="">Run image</a></h2>
+          <p class="m-1">What is a run image? The run image provides the base image for application images. The lifecycle requires a reference to a run image and (where necessary) possible run image mirrors in order to construct the application image.
+Run image mirrors Run image mirrors provide alternate locations for run images, for use during build or rebase. When running build with a builder containing run image mirrors, pack will select a run image whose registry location matches that of the specified app image (if no registry host is specified in the image name, DockerHub is assumed).</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/concepts/components/base-images/run/">Learn more →</a>
             </div>
         
           <h2><a href="https://buildpacks.io/docs/concepts/components/lifecycle/" class="">Lifecycle</a></h2>
@@ -769,15 +801,31 @@
             </div>
         
           <h2><a href="https://buildpacks.io/docs/concepts/components/stack/" class="">Stack</a></h2>
-          <p class="m-1"><p>A stack is composed of two images that are intended to work together:</p>
-<ol>
-<li>The <strong>build image</strong> of a stack provides the base image from which the build environment is constructed. The build environment is the containerized environment in which the <a href="/docs/concepts/components/lifecycle/">lifecycle</a> (and thereby <a href="/docs/concepts/components/buildpack/">buildpacks</a>) are executed.</li>
-<li>The <strong>run image</strong> of a stack provides the base image from which application images are built.</li>
-</ol></p>
+          <p class="m-1"><p>A stack (deprecated) is the grouping together of the build and run base images, represented by a unique ID.</p>
+<p>As of Platform API 0.12 and Buildpack API 0.10, stacks are deprecated in favor of existing constructs in the container image ecosystem such as operating system name, operating system distribution, and architecture.</p>
+<p>For more information, see</p>
+<ul>
+<li>Platform API 0.12 <a href="/docs/reference/spec/migration/platform-api-0.11-0.12/">migration guide</a></li>
+<li>Buildpack API 0.10 <a href="/docs/reference/spec/migration/buildpack-api-0.9-0.10/">migration guide</a></li>
+<li><a href="/docs/concepts/components/base-images/build/">Build image</a> concept</li>
+<li><a href="/docs/concepts/components/base-images/run/">Run image</a> concept</li>
+<li><a href="/docs/concepts/components/targets/">Target data</a></li>
+</ul>
+<p>For older API versions, see below on using stacks.</p></p>
 
           
             <div class="text-md-right">
               <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/concepts/components/stack/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/concepts/components/targets/" class="">Targets</a></h2>
+          <p class="m-1">The concept of “targets” is used to identify compatibility between buildpacks and base images.
+Target data includes:
+Operating system name (e.g., “linux”) Architecture (e.g., “amd64”, “arm64”) Architecture variant Operating system distribution name (e.g., “ubuntu”, “alpine”) Operating system distribution version (e.g., “22.04”, “3.18.3”) For Linux-based images, operating system distribution name and version should be the values in /etc/os-release ($ID and $VERSION_ID). For Windows-based images, operating system distribution name is blank, and version should be the value of os.</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/concepts/components/targets/">Learn more →</a>
             </div>
 
         <hr>

@@ -181,11 +181,17 @@
 <li data-nav-id="/docs/concepts/components/" class="dd-item depth-1 collapse haschildren">
   <a href="/docs/concepts/components/">Components</a>
   <ul class="ml-2">
+<li data-nav-id="/docs/concepts/components/base-images/build/" class="dd-item depth-2">
+  <a href="/docs/concepts/components/base-images/build/">Build image</a>
+</li>
 <li data-nav-id="/docs/concepts/components/builder/" class="dd-item depth-2">
   <a href="/docs/concepts/components/builder/">Builder</a>
 </li>
 <li data-nav-id="/docs/concepts/components/buildpack/" class="dd-item depth-2">
   <a href="/docs/concepts/components/buildpack/">Buildpack</a>
+</li>
+<li data-nav-id="/docs/concepts/components/base-images/run/" class="dd-item depth-2">
+  <a href="/docs/concepts/components/base-images/run/">Run image</a>
 </li>
 <li data-nav-id="/docs/concepts/components/buildpack-group/" class="dd-item depth-2">
   <a href="/docs/concepts/components/buildpack-group/">Buildpack Group</a>
@@ -224,6 +230,9 @@
 </li>
 <li data-nav-id="/docs/concepts/components/stack/" class="dd-item depth-2">
   <a href="/docs/concepts/components/stack/">Stack</a>
+</li>
+<li data-nav-id="/docs/concepts/components/targets/" class="dd-item depth-2">
+  <a href="/docs/concepts/components/targets/">Targets</a>
 </li>
   </ul>
 </li>
@@ -402,6 +411,12 @@
   <ul class="ml-2">
 <li data-nav-id="/docs/operator-guide/create-a-builder/" class="dd-item depth-1">
   <a href="/docs/operator-guide/create-a-builder/">Create a builder</a>
+</li>
+<li data-nav-id="/docs/operator-guide/create-build-base/" class="dd-item depth-1">
+  <a href="/docs/operator-guide/create-build-base/">Create a build base image</a>
+</li>
+<li data-nav-id="/docs/operator-guide/create-run-base/" class="dd-item depth-1">
+  <a href="/docs/operator-guide/create-run-base/">Create a run base image</a>
 </li>
 <li data-nav-id="/docs/operator-guide/create-a-stack/" class="dd-item depth-1">
   <a href="/docs/operator-guide/create-a-stack/">Create a stack</a>
@@ -738,9 +753,9 @@
                                      Repeat for each buildpack in order, or supply once by comma-separated list
   -r, --buildpack-registry string    Buildpack Registry by name
       --cache cache                  Cache options used to define cache techniques for build process.
-                                     - Cache as bind: type=&lt;build/launch&gt;;format=bind;source=&lt;path to directory&gt;;
-                                     - Cache as image: type=&lt;build/launch&gt;;format=image;name=&lt;registry image name&gt;;
-                                     - Cache as volume: type=&lt;build/launch&gt;;format=volume;[name=&lt;volume name&gt;;]
+                                     - Cache as bind: &#39;type=&lt;build/launch&gt;;format=bind;source=&lt;path to directory&gt;&#39;
+                                     - Cache as image (requires --publish): &#39;type=&lt;build/launch&gt;;format=image;name=&lt;registry image name&gt;&#39;
+                                     - Cache as volume: &#39;type=&lt;build/launch&gt;;format=volume;[name=&lt;volume name&gt;]&#39;
                                          - If no name is provided, a random name will be generated.
                                       (default type=build;format=volume;type=launch;format=volume;)
       --cache-image string           Cache build layers in remote registry. Requires --publish

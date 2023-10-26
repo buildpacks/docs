@@ -181,11 +181,17 @@
 <li data-nav-id="/docs/concepts/components/" class="dd-item depth-1 collapse haschildren">
   <a href="/docs/concepts/components/">Components</a>
   <ul class="ml-2">
+<li data-nav-id="/docs/concepts/components/base-images/build/" class="dd-item depth-2">
+  <a href="/docs/concepts/components/base-images/build/">Build image</a>
+</li>
 <li data-nav-id="/docs/concepts/components/builder/" class="dd-item depth-2">
   <a href="/docs/concepts/components/builder/">Builder</a>
 </li>
 <li data-nav-id="/docs/concepts/components/buildpack/" class="dd-item depth-2">
   <a href="/docs/concepts/components/buildpack/">Buildpack</a>
+</li>
+<li data-nav-id="/docs/concepts/components/base-images/run/" class="dd-item depth-2">
+  <a href="/docs/concepts/components/base-images/run/">Run image</a>
 </li>
 <li data-nav-id="/docs/concepts/components/buildpack-group/" class="dd-item depth-2">
   <a href="/docs/concepts/components/buildpack-group/">Buildpack Group</a>
@@ -224,6 +230,9 @@
 </li>
 <li data-nav-id="/docs/concepts/components/stack/" class="dd-item depth-2">
   <a href="/docs/concepts/components/stack/">Stack</a>
+</li>
+<li data-nav-id="/docs/concepts/components/targets/" class="dd-item depth-2">
+  <a href="/docs/concepts/components/targets/">Targets</a>
 </li>
   </ul>
 </li>
@@ -402,6 +411,12 @@
   <ul class="ml-2">
 <li data-nav-id="/docs/operator-guide/create-a-builder/" class="dd-item depth-1">
   <a href="/docs/operator-guide/create-a-builder/">Create a builder</a>
+</li>
+<li data-nav-id="/docs/operator-guide/create-build-base/" class="dd-item depth-1">
+  <a href="/docs/operator-guide/create-build-base/">Create a build base image</a>
+</li>
+<li data-nav-id="/docs/operator-guide/create-run-base/" class="dd-item depth-1">
+  <a href="/docs/operator-guide/create-run-base/">Create a run base image</a>
 </li>
 <li data-nav-id="/docs/operator-guide/create-a-stack/" class="dd-item depth-1">
   <a href="/docs/operator-guide/create-a-stack/">Create a stack</a>
@@ -736,8 +751,34 @@
               <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/operator-guide/create-a-builder/">Learn more →</a>
             </div>
         
+          <h2><a href="https://buildpacks.io/docs/operator-guide/create-build-base/" class="">Create a build base image</a></h2>
+          <p class="m-1"><p>Define a build base image for your CNB build We need a Dockerfile similar to the following:</p>
+<h1 id="define-the-base-image-from-ubuntujammy--install-packages-that-we-want-to-make-available-at-build-time-run-apt-get-update-ampamp--apt-get-install--y-xz-utils-ca-certificates-ampamp--rm--rf-varlibaptlists---set-required-cnb-user-information-arg-cnb_uid1000-arg-cnb_gid1000-env-cnb_user_idcnb_uid-env-cnb_group_idcnb_gid--create-user-and-group-run-groupadd-cnb---gid-cnb_group_id-ampamp--useradd---uid-cnb_user_id---gid-cnb_group_id--m--s-binbash-cnb---set-user-and-group-user-cnb_user_idcnb_group_id--set-required-cnb-target-information-label-io">Define the base image FROM ubuntu:jammy # Install packages that we want to make available at build time RUN apt-get update &amp;&amp; \ apt-get install -y xz-utils ca-certificates &amp;&amp; \ rm -rf /var/lib/apt/lists/* \ # Set required CNB user information ARG cnb_uid=1000 ARG cnb_gid=1000 ENV CNB_USER_ID=${cnb_uid} ENV CNB_GROUP_ID=${cnb_gid} # Create user and group RUN groupadd cnb &ndash;gid ${CNB_GROUP_ID} &amp;&amp; \ useradd &ndash;uid ${CNB_USER_ID} &ndash;gid ${CNB_GROUP_ID} -m -s /bin/bash cnb \ # Set user and group USER ${CNB_USER_ID}:${CNB_GROUP_ID} # Set required CNB target information LABEL io.</h1>
+</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/operator-guide/create-build-base/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/operator-guide/create-run-base/" class="">Create a run base image</a></h2>
+          <p class="m-1"><p>Define a run base image for your CNB build We need a Dockerfile similar to the following:</p>
+<h1 id="define-the-base-image-from-ubuntujammy--install-packages-that-we-want-to-make-available-at-run-time-run-apt-get-update-ampamp--apt-get-install--y-xz-utils-ca-certificates-ampamp--rm--rf-varlibaptlists---create-user-and-group-arg-cnb_uid1000-arg-cnb_gid1000-run-groupadd-cnb---gid-cnb_gid-ampamp--useradd---uid-cnb_uid---gid-cnb_gid--m--s-binbash-cnb---set-user-and-group-user-cnb_uidcnb_gid--set-required-cnb-target-information-label-io">Define the base image FROM ubuntu:jammy # Install packages that we want to make available at run time RUN apt-get update &amp;&amp; \ apt-get install -y xz-utils ca-certificates &amp;&amp; \ rm -rf /var/lib/apt/lists/* \ # Create user and group ARG cnb_uid=1000 ARG cnb_gid=1000 RUN groupadd cnb &ndash;gid ${cnb_gid} &amp;&amp; \ useradd &ndash;uid ${cnb_uid} &ndash;gid ${cnb_gid} -m -s /bin/bash cnb \ # Set user and group USER ${cnb_uid}:${cnb_gid} # Set required CNB target information LABEL io.</h1>
+</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/operator-guide/create-run-base/">Learn more →</a>
+            </div>
+        
           <h2><a href="https://buildpacks.io/docs/operator-guide/create-a-stack/" class="">Create a stack</a></h2>
-          <p class="m-1">Creating a custom <a href="/docs/concepts/components/stack/">stack</a> allows you to configure the base images for the build-time environment for your <a href="/docs/concepts/components/builder/">builder</a> and the run-time for your application.</p>
+          <p class="m-1"><p><strong>Note</strong>: As of Platform API 0.12 and Buildpack API 0.10, stacks are deprecated in favor of existing constructs in the container image ecosystem such as operating system name, operating system distribution, and architecture.</p>
+<p>You can still configure the build and run base images for your CNB build.
+To find out how, see <a href="/docs/operator-guide/create-build-base/">create a build base image</a> and <a href="/docs/operator-guide/create-run-base/">create a run base image</a>.</p>
+<p>A stack is the grouping together of the build and run base images, represented by a unique ID.
+A stack ID identifies the configuration for the build and run base images, and it used to determined compatibility with available buildpacks, and rebasability when updated run images are available.
+If you&rsquo;re on an older Platform API version, you may still need to create a custom stack.
+To find out how, read on&hellip;</p></p>
 
           
             <div class="text-md-right">

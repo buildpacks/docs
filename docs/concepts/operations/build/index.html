@@ -181,11 +181,17 @@
 <li data-nav-id="/docs/concepts/components/" class="dd-item depth-1 haschildren">
   <a href="/docs/concepts/components/">Components</a>
   <ul class="ml-2">
+<li data-nav-id="/docs/concepts/components/base-images/build/" class="dd-item depth-2">
+  <a href="/docs/concepts/components/base-images/build/">Build image</a>
+</li>
 <li data-nav-id="/docs/concepts/components/builder/" class="dd-item depth-2">
   <a href="/docs/concepts/components/builder/">Builder</a>
 </li>
 <li data-nav-id="/docs/concepts/components/buildpack/" class="dd-item depth-2">
   <a href="/docs/concepts/components/buildpack/">Buildpack</a>
+</li>
+<li data-nav-id="/docs/concepts/components/base-images/run/" class="dd-item depth-2">
+  <a href="/docs/concepts/components/base-images/run/">Run image</a>
 </li>
 <li data-nav-id="/docs/concepts/components/buildpack-group/" class="dd-item depth-2">
   <a href="/docs/concepts/components/buildpack-group/">Buildpack Group</a>
@@ -224,6 +230,9 @@
 </li>
 <li data-nav-id="/docs/concepts/components/stack/" class="dd-item depth-2">
   <a href="/docs/concepts/components/stack/">Stack</a>
+</li>
+<li data-nav-id="/docs/concepts/components/targets/" class="dd-item depth-2">
+  <a href="/docs/concepts/components/targets/">Targets</a>
 </li>
   </ul>
 </li>
@@ -402,6 +411,12 @@
   <ul class="ml-2">
 <li data-nav-id="/docs/operator-guide/create-a-builder/" class="dd-item depth-1">
   <a href="/docs/operator-guide/create-a-builder/">Create a builder</a>
+</li>
+<li data-nav-id="/docs/operator-guide/create-build-base/" class="dd-item depth-1">
+  <a href="/docs/operator-guide/create-build-base/">Create a build base image</a>
+</li>
+<li data-nav-id="/docs/operator-guide/create-run-base/" class="dd-item depth-1">
+  <a href="/docs/operator-guide/create-run-base/">Create a run base image</a>
 </li>
 <li data-nav-id="/docs/operator-guide/create-a-stack/" class="dd-item depth-1">
   <a href="/docs/operator-guide/create-a-stack/">Create a stack</a>
@@ -725,17 +740,12 @@
 
         <h2 id="building-explained">Building explained</h2>
 <p><img src="/docs/concepts/operations/build.svg" alt="build diagram"></p>
-<p>Build is the process of executing one or more buildpacks against the app’s source code to produce a runnable OCI image. Each buildpack inspects the
-source code and provides relevant dependencies. An image is then generated from the app&rsquo;s source code and these
-dependencies.</p>
-<p>Buildpacks are compatible with one or more <a href="/docs/concepts/components/stack">stacks</a>. A stack designates a <strong>build image</strong>
-and a <strong>run image</strong>. During the build process, a stack&rsquo;s build image becomes the environment in which buildpacks are
-executed, and its run image becomes the base for the final app image. For more information on working with stacks, see
-the <a href="/docs/concepts/components/stack">Working with stacks</a> section.</p>
-<p>Buildpacks can be bundled together with a specific stack&rsquo;s build image, resulting in a
-<a href="/docs/concepts/components/builder">builder</a> image (note the &ldquo;er&rdquo; ending). Builders provide the most
-convenient way to distribute buildpacks for a given stack. For more information on working with builders, see the
-<a href="/docs/concepts/components/builder">Working with builders using <code>builder create</code></a> section.</p>
+<p>Build is the process of executing one or more buildpacks against the app’s source code to produce a runnable OCI image. Each buildpack inspects the source code and provides relevant dependencies.
+An image is then generated from the app&rsquo;s source code and these dependencies.</p>
+<p>During the build process, the <a href="/docs/concepts/components/base-images/build/">build image</a> becomes the environment in which buildpacks are executed,
+and the <a href="/docs/concepts/components/base-images/run/">run image</a> becomes the base for the final app image.</p>
+<p>Buildpacks can be bundled together with a specific build image, resulting in a <a href="/docs/concepts/components/builder">builder</a> image.
+Builders provide a convenient way to distribute buildpacks.</p>
 
 
         

@@ -183,11 +183,17 @@ The process types that are…">
 <li data-nav-id="/docs/concepts/components/" class="dd-item depth-1 collapse haschildren">
   <a href="/docs/concepts/components/">Components</a>
   <ul class="ml-2">
+<li data-nav-id="/docs/concepts/components/base-images/build/" class="dd-item depth-2">
+  <a href="/docs/concepts/components/base-images/build/">Build image</a>
+</li>
 <li data-nav-id="/docs/concepts/components/builder/" class="dd-item depth-2">
   <a href="/docs/concepts/components/builder/">Builder</a>
 </li>
 <li data-nav-id="/docs/concepts/components/buildpack/" class="dd-item depth-2">
   <a href="/docs/concepts/components/buildpack/">Buildpack</a>
+</li>
+<li data-nav-id="/docs/concepts/components/base-images/run/" class="dd-item depth-2">
+  <a href="/docs/concepts/components/base-images/run/">Run image</a>
 </li>
 <li data-nav-id="/docs/concepts/components/buildpack-group/" class="dd-item depth-2">
   <a href="/docs/concepts/components/buildpack-group/">Buildpack Group</a>
@@ -226,6 +232,9 @@ The process types that are…">
 </li>
 <li data-nav-id="/docs/concepts/components/stack/" class="dd-item depth-2">
   <a href="/docs/concepts/components/stack/">Stack</a>
+</li>
+<li data-nav-id="/docs/concepts/components/targets/" class="dd-item depth-2">
+  <a href="/docs/concepts/components/targets/">Targets</a>
 </li>
   </ul>
 </li>
@@ -404,6 +413,12 @@ The process types that are…">
   <ul class="ml-2">
 <li data-nav-id="/docs/operator-guide/create-a-builder/" class="dd-item depth-1">
   <a href="/docs/operator-guide/create-a-builder/">Create a builder</a>
+</li>
+<li data-nav-id="/docs/operator-guide/create-build-base/" class="dd-item depth-1">
+  <a href="/docs/operator-guide/create-build-base/">Create a build base image</a>
+</li>
+<li data-nav-id="/docs/operator-guide/create-run-base/" class="dd-item depth-1">
+  <a href="/docs/operator-guide/create-run-base/">Create a run base image</a>
 </li>
 <li data-nav-id="/docs/operator-guide/create-a-stack/" class="dd-item depth-1">
   <a href="/docs/operator-guide/create-a-stack/">Create a stack</a>
@@ -741,7 +756,7 @@ The process types that are…">
 <p>You should see the following:</p>
 <!-- test:assert=contains;ignore-lines=... -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Run Images:
-</span></span><span class="line"><span class="cl">  cnbs/sample-stack-run:jammy
+</span></span><span class="line"><span class="cl">  cnbs/sample-base-run:jammy
 </span></span><span class="line"><span class="cl">...
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">Buildpacks:
@@ -765,9 +780,13 @@ The process types that are…">
 </span></span><span class="line"><span class="cl">  <span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;0.0.1&#34;</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">sbom-formats</span> <span class="p">=</span> <span class="p">[</span> <span class="s2">&#34;application/vnd.cyclonedx+json&#34;</span> <span class="p">]</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c"># Stacks that the buildpack will work with</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Targets the buildpack will work with</span>
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">targets</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">os</span> <span class="p">=</span> <span class="s2">&#34;linux&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Stacks (deprecated) the buildpack will work with</span>
 </span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">stacks</span><span class="p">]]</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;io.buildpacks.samples.stacks.jammy&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;*&#34;</span>
 </span></span></code></pre></div><p>Then, in our buildpack implementation we will generate the necessary SBOM metadata:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># ...</span>
 </span></span><span class="line"><span class="cl">

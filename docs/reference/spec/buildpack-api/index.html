@@ -183,11 +183,17 @@
 <li data-nav-id="/docs/concepts/components/" class="dd-item depth-1 collapse haschildren">
   <a href="/docs/concepts/components/">Components</a>
   <ul class="ml-2">
+<li data-nav-id="/docs/concepts/components/base-images/build/" class="dd-item depth-2">
+  <a href="/docs/concepts/components/base-images/build/">Build image</a>
+</li>
 <li data-nav-id="/docs/concepts/components/builder/" class="dd-item depth-2">
   <a href="/docs/concepts/components/builder/">Builder</a>
 </li>
 <li data-nav-id="/docs/concepts/components/buildpack/" class="dd-item depth-2">
   <a href="/docs/concepts/components/buildpack/">Buildpack</a>
+</li>
+<li data-nav-id="/docs/concepts/components/base-images/run/" class="dd-item depth-2">
+  <a href="/docs/concepts/components/base-images/run/">Run image</a>
 </li>
 <li data-nav-id="/docs/concepts/components/buildpack-group/" class="dd-item depth-2">
   <a href="/docs/concepts/components/buildpack-group/">Buildpack Group</a>
@@ -226,6 +232,9 @@
 </li>
 <li data-nav-id="/docs/concepts/components/stack/" class="dd-item depth-2">
   <a href="/docs/concepts/components/stack/">Stack</a>
+</li>
+<li data-nav-id="/docs/concepts/components/targets/" class="dd-item depth-2">
+  <a href="/docs/concepts/components/targets/">Targets</a>
 </li>
   </ul>
 </li>
@@ -404,6 +413,12 @@
   <ul class="ml-2">
 <li data-nav-id="/docs/operator-guide/create-a-builder/" class="dd-item depth-1">
   <a href="/docs/operator-guide/create-a-builder/">Create a builder</a>
+</li>
+<li data-nav-id="/docs/operator-guide/create-build-base/" class="dd-item depth-1">
+  <a href="/docs/operator-guide/create-build-base/">Create a build base image</a>
+</li>
+<li data-nav-id="/docs/operator-guide/create-run-base/" class="dd-item depth-1">
+  <a href="/docs/operator-guide/create-run-base/">Create a run base image</a>
 </li>
 <li data-nav-id="/docs/operator-guide/create-a-stack/" class="dd-item depth-1">
   <a href="/docs/operator-guide/create-a-stack/">Create a stack</a>
@@ -816,6 +831,11 @@ echo &#34;launch = true&#34; &gt; &#34;$PIP_LAYER.toml&#34;
 id = &#34;example.com/python&#34;
 version = &#34;1.0&#34;
 
+# Targets the buildpack will work with
+[[targets]]
+os = &#34;linux&#34;
+
+# Stacks (deprecated) the buildpack will work with
 [[stacks]]
 id = &#34;io.buildpacks.stacks.jammy&#34;
 </code></pre><h3 id="schema">Schema</h3>
@@ -883,9 +903,45 @@ A URL or path to the license.</p>
 </ul>
 </li>
 <li>
-<p><strong><code>stacks</code></strong> <em>(list, optional)</em><br>
+<p><strong><code>targets</code></strong> <em>(list, optional)</em><br>
+A list of targets supported by the buildpack.
+When no targets are specified, the <code>os</code>/<code>arch</code> will be inferred from the contents of the <code>./bin</code> directory
+(<code>./bin/build</code> implies <code>linux</code>/<code>amd64</code> and <code>./bin/build.bat</code> implies <code>windows</code>/<code>amd64</code>).
+For each target, all fields are optional (though at least one should be provided).
+<em>Cannot be used in conjunction with <code>order</code> list.</em></p>
+<ul>
+<li>
+<p><strong><code>os</code></strong> <em>(string, optional)</em><br>
+The supported operating system name.</p>
+</li>
+<li>
+<p><strong><code>arch</code></strong> <em>(string, optional)</em><br>
+The supported architecture.</p>
+</li>
+<li>
+<p><strong><code>variant</code></strong> <em>(string, optional)</em><br>
+The supported architecture variant.</p>
+</li>
+<li>
+<p><strong><code>targets.distros</code></strong> <em>(optional)</em><br>
+A list of supported distributions for the given operating system, architecture, and architecture variant.</p>
+<ul>
+<li>
+<p><strong><code>name</code></strong> <em>(string, optional)</em><br>
+The supported operating system distribution name.</p>
+</li>
+<li>
+<p><strong><code>version</code></strong> <em>(string, optional)</em><br>
+The supported operating system distribution version.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong><code>stacks</code></strong> <em>(list, deprecated, optional)</em><br>
 A list of stacks supported by the buildpack.
-<em>If omitted, <code>order</code> list must be present. Cannot be used in conjunction with <code>order</code> list.</em></p>
+<em>Cannot be used in conjunction with <code>order</code> list.</em></p>
 <ul>
 <li>
 <p><strong><code>id</code></strong> <em>(string, required)</em><br>
@@ -900,8 +956,8 @@ A list of mixins required on the stack images.</p>
 <li>
 <p><strong><code>order</code></strong> <em>(list, optional)</em><br>
 A list of buildpack groups for the purpose of creating a <a href="/docs/concepts/components/buildpack/#meta-buildpack">meta-buildpack</a>. This list determines the
-order in which groups of buildpacks will be tested during detection. <em>If omitted, <code>stacks</code> list must be present.
-Cannot be used in conjunction with <code>stacks</code> list.</em></p>
+order in which groups of buildpacks will be tested during detection. <em>If omitted, <code>targets</code> or <code>stacks</code> list must be present.
+Cannot be used in conjunction with <code>targets</code> or <code>stacks</code> list.</em></p>
 <ul>
 <li>
 <p><strong><code>group</code></strong> <em>(list, required)</em><br>
@@ -918,7 +974,7 @@ The version of the buildpack being referred to.</p>
 </li>
 <li>
 <p><strong><code>optional</code></strong> <em>(boolean, optional, default: <code>false</code>)</em><br>
-Whether or not this buildpack is optional during detection.</p>
+Whether this buildpack is optional during detection.</p>
 </li>
 </ul>
 </li>

@@ -8,8 +8,8 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="What is a stack? A stack is composed of two images that are intended to work together:
-The build image of a stack provides the base image from which the build environment is constructed. The build…"/>
+<meta name="description" content="What is a stack? A stack (deprecated) is the grouping together of the build and run base images, represented by a unique ID.
+As of Platform API 0.12 and Buildpack API 0.10, stacks are deprecated in…"/>
 <link rel="canonical" content="https://buildpacks.io/docs/concepts/components/stack/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
@@ -23,8 +23,8 @@ The build image of a stack provides the base image from which the build environm
 <meta property="og:url" content="https://buildpacks.io/docs/concepts/components/stack/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-<meta property="og:description" content="What is a stack? A stack is composed of two images that are intended to work together:
-The build image of a stack provides the base image from which the build environment is constructed. The build…">
+<meta property="og:description" content="What is a stack? A stack (deprecated) is the grouping together of the build and run base images, represented by a unique ID.
+As of Platform API 0.12 and Buildpack API 0.10, stacks are deprecated in…">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -183,11 +183,17 @@ The build image of a stack provides the base image from which the build environm
 <li data-nav-id="/docs/concepts/components/" class="dd-item depth-1 parent haschildren">
   <a href="/docs/concepts/components/">Components</a>
   <ul class="ml-2">
+<li data-nav-id="/docs/concepts/components/base-images/build/" class="dd-item depth-2">
+  <a href="/docs/concepts/components/base-images/build/">Build image</a>
+</li>
 <li data-nav-id="/docs/concepts/components/builder/" class="dd-item depth-2">
   <a href="/docs/concepts/components/builder/">Builder</a>
 </li>
 <li data-nav-id="/docs/concepts/components/buildpack/" class="dd-item depth-2">
   <a href="/docs/concepts/components/buildpack/">Buildpack</a>
+</li>
+<li data-nav-id="/docs/concepts/components/base-images/run/" class="dd-item depth-2">
+  <a href="/docs/concepts/components/base-images/run/">Run image</a>
 </li>
 <li data-nav-id="/docs/concepts/components/buildpack-group/" class="dd-item depth-2">
   <a href="/docs/concepts/components/buildpack-group/">Buildpack Group</a>
@@ -226,6 +232,9 @@ The build image of a stack provides the base image from which the build environm
 </li>
 <li data-nav-id="/docs/concepts/components/stack/" class="dd-item depth-2 active">
   <a href="/docs/concepts/components/stack/">Stack</a>
+</li>
+<li data-nav-id="/docs/concepts/components/targets/" class="dd-item depth-2">
+  <a href="/docs/concepts/components/targets/">Targets</a>
 </li>
   </ul>
 </li>
@@ -404,6 +413,12 @@ The build image of a stack provides the base image from which the build environm
   <ul class="ml-2">
 <li data-nav-id="/docs/operator-guide/create-a-builder/" class="dd-item depth-1">
   <a href="/docs/operator-guide/create-a-builder/">Create a builder</a>
+</li>
+<li data-nav-id="/docs/operator-guide/create-build-base/" class="dd-item depth-1">
+  <a href="/docs/operator-guide/create-build-base/">Create a build base image</a>
+</li>
+<li data-nav-id="/docs/operator-guide/create-run-base/" class="dd-item depth-1">
+  <a href="/docs/operator-guide/create-run-base/">Create a run base image</a>
 </li>
 <li data-nav-id="/docs/operator-guide/create-a-stack/" class="dd-item depth-1">
   <a href="/docs/operator-guide/create-a-stack/">Create a stack</a>
@@ -726,16 +741,22 @@ The build image of a stack provides the base image from which the build environm
         </div>
 
         <h2 id="what-is-a-stack">What is a stack?</h2>
-<p>A stack is composed of two images that are intended to work together:</p>
-<ol>
-<li>The <strong>build image</strong> of a stack provides the base image from which the build environment is constructed. The build environment is the containerized environment in which the <a href="/docs/concepts/components/lifecycle/">lifecycle</a> (and thereby <a href="/docs/concepts/components/buildpack/">buildpacks</a>) are executed.</li>
-<li>The <strong>run image</strong> of a stack provides the base image from which application images are built.</li>
-</ol>
+<p>A stack (deprecated) is the grouping together of the build and run base images, represented by a unique ID.</p>
+<p>As of Platform API 0.12 and Buildpack API 0.10, stacks are deprecated in favor of existing constructs in the container image ecosystem such as operating system name, operating system distribution, and architecture.</p>
+<p>For more information, see</p>
+<ul>
+<li>Platform API 0.12 <a href="/docs/reference/spec/migration/platform-api-0.11-0.12/">migration guide</a></li>
+<li>Buildpack API 0.10 <a href="/docs/reference/spec/migration/buildpack-api-0.9-0.10/">migration guide</a></li>
+<li><a href="/docs/concepts/components/base-images/build/">Build image</a> concept</li>
+<li><a href="/docs/concepts/components/base-images/run/">Run image</a> concept</li>
+<li><a href="/docs/concepts/components/targets/">Target data</a></li>
+</ul>
+<p>For older API versions, see below on using stacks.</p>
+<h2 id="using-stacks">Using stacks</h2>
 <blockquote>
 <p>If you&rsquo;re using the <code>pack</code> CLI, running <code>pack stack suggest</code> will display a list of recommended
 stacks that can be used when running <code>pack builder create</code>, along with each stack&rsquo;s associated build and run images.</p>
 </blockquote>
-<h2 id="using-stacks">Using stacks</h2>
 <p>Stacks are used by <a href="/docs/concepts/components/builder/">builders</a> and are configured through a builder&rsquo;s
 <a href="/docs/reference/config/builder-config/">configuration file</a>:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">buildpacks</span><span class="p">]]</span>
@@ -751,28 +772,6 @@ stacks that can be used when running <code>pack builder create</code>, along wit
 </span></span><span class="line"><span class="cl">  <span class="nx">run-image-mirrors</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;gcr.io/example/run&#34;</span><span class="p">,</span> <span class="s2">&#34;registry.example.com/example/run&#34;</span><span class="p">]</span>
 </span></span></code></pre></div><p>By providing the required <code>[stack]</code> section, a builder author can configure a stack&rsquo;s ID, build image, and run image
 (including any mirrors).</p>
-<h3 id="run-image-mirrors">Run image mirrors</h3>
-<p>Run image mirrors provide alternate locations for run images, for use during <code>build</code> (or <code>rebase</code>).
-When running <code>build</code> with a builder containing run image mirrors, <code>pack</code> will select a run image
-whose registry location matches that of the specified app image (if no registry host is specified in the image name,
-DockerHub is assumed). This is useful when publishing the resulting app image (via the <code>--publish</code> flag or via
-<code>docker push</code>), as the app&rsquo;s base image (i.e. run image) will be located on the same registry as the app image itself,
-reducing the amount of data transfer required to push the app image.</p>
-<p>In the following example, assuming a builder configured with the example TOML above, the selected run image will be
-<code>registry.example.com/example/run</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ pack build registry.example.com/example/app
-</span></span></code></pre></div><p>while naming the app without a registry specified, <code>example/app</code>, will cause <code>example/run</code> to be selected as the app&rsquo;s
-run image.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ pack build example/app
-</span></span></code></pre></div><blockquote>
-<p>For local development, it&rsquo;s often helpful to override the run image mirrors in a builder. For this, the
-<code>pack config run-image-mirrors</code> command can be used. This command does not modify the builder, and instead configures the
-user&rsquo;s local machine.</p>
-<p>To see what run images are configured for a builder, the
-<code>inspect-builder</code> command can be used. <code>inspect-builder</code> will output built-in and locally-configured run images for
-a given builder, among other useful information. The order of the run images in the output denotes the order in
-which they will be matched during <code>build</code>.</p>
-</blockquote>
 <h2 id="resources">Resources</h2>
 <p>To learn how to create your own stack, see our <a href="/docs/operator-guide/">Operator&rsquo;s Guide</a>.</p>
 

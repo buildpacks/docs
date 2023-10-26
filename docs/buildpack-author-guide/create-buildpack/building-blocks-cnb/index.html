@@ -185,11 +185,17 @@ Using the Pack CLI The buildpack new &amp;lt;id&amp;gt; command will create a di
 <li data-nav-id="/docs/concepts/components/" class="dd-item depth-1 collapse haschildren">
   <a href="/docs/concepts/components/">Components</a>
   <ul class="ml-2">
+<li data-nav-id="/docs/concepts/components/base-images/build/" class="dd-item depth-2">
+  <a href="/docs/concepts/components/base-images/build/">Build image</a>
+</li>
 <li data-nav-id="/docs/concepts/components/builder/" class="dd-item depth-2">
   <a href="/docs/concepts/components/builder/">Builder</a>
 </li>
 <li data-nav-id="/docs/concepts/components/buildpack/" class="dd-item depth-2">
   <a href="/docs/concepts/components/buildpack/">Buildpack</a>
+</li>
+<li data-nav-id="/docs/concepts/components/base-images/run/" class="dd-item depth-2">
+  <a href="/docs/concepts/components/base-images/run/">Run image</a>
 </li>
 <li data-nav-id="/docs/concepts/components/buildpack-group/" class="dd-item depth-2">
   <a href="/docs/concepts/components/buildpack-group/">Buildpack Group</a>
@@ -228,6 +234,9 @@ Using the Pack CLI The buildpack new &amp;lt;id&amp;gt; command will create a di
 </li>
 <li data-nav-id="/docs/concepts/components/stack/" class="dd-item depth-2">
   <a href="/docs/concepts/components/stack/">Stack</a>
+</li>
+<li data-nav-id="/docs/concepts/components/targets/" class="dd-item depth-2">
+  <a href="/docs/concepts/components/targets/">Targets</a>
 </li>
   </ul>
 </li>
@@ -406,6 +415,12 @@ Using the Pack CLI The buildpack new &amp;lt;id&amp;gt; command will create a di
   <ul class="ml-2">
 <li data-nav-id="/docs/operator-guide/create-a-builder/" class="dd-item depth-1">
   <a href="/docs/operator-guide/create-a-builder/">Create a builder</a>
+</li>
+<li data-nav-id="/docs/operator-guide/create-build-base/" class="dd-item depth-1">
+  <a href="/docs/operator-guide/create-build-base/">Create a build base image</a>
+</li>
+<li data-nav-id="/docs/operator-guide/create-run-base/" class="dd-item depth-1">
+  <a href="/docs/operator-guide/create-run-base/">Create a run base image</a>
 </li>
 <li data-nav-id="/docs/operator-guide/create-a-stack/" class="dd-item depth-1">
   <a href="/docs/operator-guide/create-a-stack/">Create a stack</a>
@@ -745,8 +760,8 @@ Using the Pack CLI The buildpack new &amp;lt;id&amp;gt; command will create a di
 <ul>
 <li><code>-a, --api</code> Buildpack API compatibility of the generated buildpack</li>
 <li><code>-h, --help</code> Help for &rsquo;new'</li>
-<li><code>--path</code> the location on the filesystem to generate the artifacts.</li>
-<li><code>--stacks</code> Stack(s) this buildpack will be compatible with. Repeat for each stack in order, or supply once by comma-separated list</li>
+<li><code>--path</code> the location on the filesystem to generate the artifacts</li>
+<li><code>--stacks</code> Stacks (deprecated) the buildpack will work with</li>
 <li><code>-V, --version</code> the version of the buildpack in buildpack.toml</li>
 </ul>
 <h3 id="buildpacktoml">buildpack.toml</h3>
@@ -760,10 +775,16 @@ Using the Pack CLI The buildpack new &amp;lt;id&amp;gt; command will create a di
 </span></span><span class="line"><span class="cl">  <span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;examples/ruby&#34;</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;0.0.1&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c"># Stacks that the buildpack will work with</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Targets the buildpack will work with</span>
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">targets</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">os</span> <span class="p">=</span> <span class="s2">&#34;linux&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Stacks (deprecated) the buildpack will work with</span>
 </span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">stacks</span><span class="p">]]</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;io.buildpacks.samples.stacks.jammy&#34;</span>
-</span></span></code></pre></div><p>You will notice two specific fields in the file: <code>buildpack.id</code> and <code>stack.id</code>. The buildpack ID is the way you will reference the buildpack when you create buildpack groups, builders, etc. The stack ID is the root file system in which the buildpack will be run. This example can be run on one of two different stacks, both based upon Ubuntu Bionic.</p>
+</span></span></code></pre></div><p>The buildpack ID is the way you will reference the buildpack when you create buildpack groups, builders, etc.
+<a href="/docs/concepts/components/targets/">Targets</a> identifies the kind of build and run base images the buildpack will work with.
+The stack ID (deprecated) uniquely identifies a build and run image configuration the buildpack will work with. This example can be run on Ubuntu Jammy.</p>
 <h3 id="detect-and-build"><code>detect</code> and <code>build</code></h3>
 <p>Next, we will cover the <code>detect</code> and <code>build</code> scripts. These files are created in <code>bin</code> directory in your buildpack directory.</p>
 <p>Now update your <code>ruby-buildpack/bin/detect</code><!--+"{{open}}"+--> file and copy in the following contents:</p>

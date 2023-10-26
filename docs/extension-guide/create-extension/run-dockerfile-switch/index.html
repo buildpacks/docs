@@ -181,11 +181,17 @@
 <li data-nav-id="/docs/concepts/components/" class="dd-item depth-1 collapse haschildren">
   <a href="/docs/concepts/components/">Components</a>
   <ul class="ml-2">
+<li data-nav-id="/docs/concepts/components/base-images/build/" class="dd-item depth-2">
+  <a href="/docs/concepts/components/base-images/build/">Build image</a>
+</li>
 <li data-nav-id="/docs/concepts/components/builder/" class="dd-item depth-2">
   <a href="/docs/concepts/components/builder/">Builder</a>
 </li>
 <li data-nav-id="/docs/concepts/components/buildpack/" class="dd-item depth-2">
   <a href="/docs/concepts/components/buildpack/">Buildpack</a>
+</li>
+<li data-nav-id="/docs/concepts/components/base-images/run/" class="dd-item depth-2">
+  <a href="/docs/concepts/components/base-images/run/">Run image</a>
 </li>
 <li data-nav-id="/docs/concepts/components/buildpack-group/" class="dd-item depth-2">
   <a href="/docs/concepts/components/buildpack-group/">Buildpack Group</a>
@@ -224,6 +230,9 @@
 </li>
 <li data-nav-id="/docs/concepts/components/stack/" class="dd-item depth-2">
   <a href="/docs/concepts/components/stack/">Stack</a>
+</li>
+<li data-nav-id="/docs/concepts/components/targets/" class="dd-item depth-2">
+  <a href="/docs/concepts/components/targets/">Targets</a>
 </li>
   </ul>
 </li>
@@ -402,6 +411,12 @@
   <ul class="ml-2">
 <li data-nav-id="/docs/operator-guide/create-a-builder/" class="dd-item depth-1">
   <a href="/docs/operator-guide/create-a-builder/">Create a builder</a>
+</li>
+<li data-nav-id="/docs/operator-guide/create-build-base/" class="dd-item depth-1">
+  <a href="/docs/operator-guide/create-build-base/">Create a build base image</a>
+</li>
+<li data-nav-id="/docs/operator-guide/create-run-base/" class="dd-item depth-1">
+  <a href="/docs/operator-guide/create-run-base/">Create a run base image</a>
 </li>
 <li data-nav-id="/docs/operator-guide/create-a-stack/" class="dd-item depth-1">
   <a href="/docs/operator-guide/create-a-stack/">Create a stack</a>
@@ -738,13 +753,13 @@ can be used to switch the run image to that most appropriate for the current app
 </span></span></code></pre></div><p>The extension generates a <code>run.Dockerfile</code> that switches the run image to reference <code>localhost:5000/run-image-curl</code>.</p>
 <h3 id="build-a-run-image-for-curl-extension-to-use">Build a run image for <code>curl</code> extension to use</h3>
 <!-- test:exec -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat <span class="nv">$PWD</span>/samples/stacks/alpine/run/curl.Dockerfile
-</span></span></code></pre></div><p>This is a simple Dockerfile that creates a CNB run image from the <code>curl</code> base image by adding the required CNB user configuration and <code>io.buildpacks.stack.id</code> label.</p>
-<p>The Dockerfile could come from anywhere, but we include it in the <code>stacks</code> directory for convenience.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat <span class="nv">$PWD</span>/samples/base-images/alpine/run/curl.Dockerfile
+</span></span></code></pre></div><p>This is a simple Dockerfile that creates a CNB run image from the <code>curl</code> base image by adding the required CNB user configuration and labels.</p>
+<p>The Dockerfile could come from anywhere, but we include it in the <code>base-images</code> directory for convenience.</p>
 <p>Build the run image:</p>
 <!-- test:exec -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker build <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --file <span class="nv">$PWD</span>/samples/stacks/alpine/run/curl.Dockerfile <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --file <span class="nv">$PWD</span>/samples/base-images/alpine/run/curl.Dockerfile <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  --tag localhost:5000/run-image-curl .
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">docker push localhost:5000/run-image-curl
