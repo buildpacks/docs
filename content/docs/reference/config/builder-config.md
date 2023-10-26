@@ -74,13 +74,21 @@ A [builder][builder] configuration schema is as follows:
     > will not change despite new lifecycle versions being released.
 
 - #### `build.env` _(optional)_
-  The [[build.env]] is used to override platform environment variables at build-time. use Env `CNB_BUILD_CONFIG_DIR` to override when building image from cli to change default(`/cnb/build-config`) directory of these build-time environment variables stored
+  The [[[build.env]]](https://github.com/buildpacks/spec/blob/main/buildpack.md#environment-variable-modification-rules) is used to specify [operator-defined](https://github.com/buildpacks/spec/blob/main/platform.md#operator-defined-variables) build-time environment variables for buildpacks. Set `CNB_BUILD_CONFIG_DIR` in pack's environment to override the default directory (`/cnb/build-config/env`) where environment variable files are stored within the builder.
 
   - **`name`** _(string, required)_\
-    The Name/Key of the Environment Variable. If Platform Environment Variable key/name is specified, then it is overridden at build-time else it will create a build-time environment variable with the given `name` that is not defined(key/name doesn't exists) at runtime of the container
+    The name/key of the environment variable. If a platform environment variable with the given key/name exists, it will be overridden at build time. Otherwise, a new build-time environment variable with the given name will be created.
 
   - **`value`** _(string, required)_\
-    The value of the given name/key of the Environment Variable overriden to
+    The value of the specified environment variable, depends on the `suffix`.
+
+  - **`suffix`** _(string, optional)_\
+    The type of action performed on platform environment variables, one of [`default`](https://github.com/buildpacks/spec/blob/main/buildpack.md#default), [`override`](https://github.com/buildpacks/spec/blob/main/buildpack.md#override), [`append`](https://github.com/buildpacks/spec/blob/main/buildpack.md#append), or [`prepend`](https://github.com/buildpacks/spec/blob/main/buildpack.md#prepend). Defaults to `default` if this field is omited.
+
+  - **`delim`** _(string, optional)_\
+    The delimiter used to concatenate two or more values for the given `name`.
+
+  > The `delim` is required when `suffix` is one of `append` or `prepend`. 
 
 ### Supported archives
 
