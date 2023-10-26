@@ -77,13 +77,13 @@ A [builder][builder] configuration schema is as follows:
   The [[[build.env]]](https://github.com/buildpacks/spec/blob/main/buildpack.md#environment-variable-modification-rules) is used to specify [operator-defined](https://github.com/buildpacks/spec/blob/main/platform.md#operator-defined-variables) build-time environment variables for buildpacks. Set `CNB_BUILD_CONFIG_DIR` in pack's environment to override the default directory (`/cnb/build-config/env`) where environment variable files are stored within the builder.
 
   - **`name`** _(string, required)_\
-    The name/key of the environment variable. If a platform environment variable with the given key/name exists, it will be overridden at build time. Otherwise, a new build-time environment variable with the given name will be created.
+    The name/key of the environment variable.
 
   - **`value`** _(string, required)_\
-    The value of the specified environment variable, depends on the `suffix`.
+    The value of the environment variable.
 
   - **`suffix`** _(string, optional)_\
-    The type of action performed on platform environment variables, one of [`default`](https://github.com/buildpacks/spec/blob/main/buildpack.md#default), [`override`](https://github.com/buildpacks/spec/blob/main/buildpack.md#override), [`append`](https://github.com/buildpacks/spec/blob/main/buildpack.md#append), or [`prepend`](https://github.com/buildpacks/spec/blob/main/buildpack.md#prepend). Defaults to `default` if this field is omited.
+    The type of action used to modify the environment variable when end-users or buildpacks define the same name/key, one of [`default`](https://github.com/buildpacks/spec/blob/main/buildpack.md#default), [`override`](https://github.com/buildpacks/spec/blob/main/buildpack.md#override), [`append`](https://github.com/buildpacks/spec/blob/main/buildpack.md#append), or [`prepend`](https://github.com/buildpacks/spec/blob/main/buildpack.md#prepend). Defaults to `default` if this field is omitted. Operator-defined environment variables take precedence over end-user or buildpack-defined environment variables.
 
   - **`delim`** _(string, optional)_\
     The delimiter used to concatenate two or more values for the given `name`.
