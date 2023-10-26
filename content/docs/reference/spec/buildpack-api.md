@@ -134,6 +134,11 @@ api = "0.8"
 id = "example.com/python"
 version = "1.0"
 
+# Targets the buildpack will work with
+[[targets]]
+os = "linux"
+
+# Stacks (deprecated) the buildpack will work with
 [[stacks]]
 id = "io.buildpacks.stacks.jammy"
 ```
@@ -184,9 +189,34 @@ The schema is as follows:
         - **`uri`** _(string, optional)_\
         A URL or path to the license.
 
-- **`stacks`** _(list, optional)_\
+- **`targets`** _(list, optional)_\
+  A list of targets supported by the buildpack.
+  When no targets are specified, the `os`/`arch` will be inferred from the contents of the `./bin` directory
+  (`./bin/build` implies `linux`/`amd64` and `./bin/build.bat` implies `windows`/`amd64`).
+  For each target, all fields are optional (though at least one should be provided).
+  _Cannot be used in conjunction with `order` list._
+
+  - **`os`** _(string, optional)_\
+    The supported operating system name.
+
+  - **`arch`** _(string, optional)_\
+    The supported architecture.
+
+  - **`variant`** _(string, optional)_\
+    The supported architecture variant.
+
+  - **`targets.distros`** _(optional)_\
+    A list of supported distributions for the given operating system, architecture, and architecture variant.
+
+    - **`name`** _(string, optional)_\
+      The supported operating system distribution name.
+
+    - **`version`** _(string, optional)_\
+      The supported operating system distribution version.
+
+- **`stacks`** _(list, deprecated, optional)_\
     A list of stacks supported by the buildpack.
-    _If omitted, `order` list must be present. Cannot be used in conjunction with `order` list._
+    _Cannot be used in conjunction with `order` list._
 
     - **`id`** _(string, required)_\
     The id of the supported stack.
@@ -196,8 +226,8 @@ The schema is as follows:
 
 - **`order`** _(list, optional)_\
   A list of buildpack groups for the purpose of creating a [meta-buildpack][meta-buildpack]. This list determines the
-  order in which groups of buildpacks will be tested during detection. _If omitted, `stacks` list must be present.
-  Cannot be used in conjunction with `stacks` list._
+  order in which groups of buildpacks will be tested during detection. _If omitted, `targets` or `stacks` list must be present.
+  Cannot be used in conjunction with `targets` or `stacks` list._
 
     - **`group`** _(list, required)_\
     A list of buildpack references.
@@ -210,7 +240,7 @@ The schema is as follows:
           The version of the buildpack being referred to.
 
         - **`optional`** _(boolean, optional, default: `false`)_\
-          Whether or not this buildpack is optional during detection.
+          Whether this buildpack is optional during detection.
 
 - **`metadata`** _(any, optional)_\
     Arbitrary data for buildpack.

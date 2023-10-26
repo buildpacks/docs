@@ -3,9 +3,9 @@ module github.com/buildpacks/docs/tools
 go 1.20
 
 require (
-	github.com/buildpacks/pack v0.29.0
+	github.com/buildpacks/pack v0.30.0
 	github.com/gohugoio/hugo v0.100.2
-	github.com/spf13/cobra v1.6.1
+	github.com/spf13/cobra v1.7.0
 )
 
 require (

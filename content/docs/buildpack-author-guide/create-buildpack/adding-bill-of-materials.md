@@ -25,7 +25,7 @@ You should see the following:
 <!-- test:assert=contains;ignore-lines=... -->
 ```text
 Run Images:
-  cnbs/sample-stack-run:jammy
+  cnbs/sample-base-run:jammy
 ...
 
 Buildpacks:
@@ -55,9 +55,13 @@ api = "0.8"
   version = "0.0.1"
   sbom-formats = [ "application/vnd.cyclonedx+json" ]
 
-# Stacks that the buildpack will work with
+# Targets the buildpack will work with
+[[targets]]
+os = "linux"
+
+# Stacks (deprecated) the buildpack will work with
 [[stacks]]
-  id = "io.buildpacks.samples.stacks.jammy"
+  id = "*"
 ```
 
 Then, in our buildpack implementation we will generate the necessary SBOM metadata:
