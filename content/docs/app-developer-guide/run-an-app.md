@@ -48,7 +48,7 @@ Base Image:
   Top Layer: sha256:700c764e7c5d5c75e6a0fc7d272b7e1c70ab327c03fbdf4abd9313e5ec3217f7
 
 Run Images:
-  cnbs/sample-stack-run:alpine
+  cnbs/sample-base-run:alpine
 
 Rebasable: true
 

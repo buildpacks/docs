@@ -1,7 +1,7 @@
 +++
 title="Rebase"
 weight=2
-summary="Rebase allows app developers or operators to rapidly update an app image when its stack's run image has changed."
+summary="Rebase allows app developers or operators to rapidly update an app image when its run image has changed."
 aliases=[
     "/docs/using-pack/update-app-rebase/"
 ]
@@ -19,9 +19,9 @@ layer metadata to reference the newer base image version.
 
 ### Example: Rebasing an app image
 
-Consider an app image `my-app:my-tag` that was originally built using the default builder. That builder's stack has a
-run image called `pack/run`. Running the following will update the base of `my-app:my-tag` with the latest version of
-`pack/run`.
+Consider an app image `my-app:my-tag` that was originally built using the default builder.
+That builder has a reference to a run image called `pack/run`.
+Running the following will update the base of `my-app:my-tag` with the latest version of `pack/run`.
 
 ```bash
 $ pack rebase my-app:my-tag
