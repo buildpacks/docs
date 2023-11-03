@@ -5,51 +5,42 @@
     <link>https://buildpacks.io/docs/buildpack-author-guide/</link>
     <description>Recent content in Buildpack Author Guide on Cloud Native Buildpacks</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://buildpacks.io/docs/buildpack-author-guide/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <atom:link href="https://buildpacks.io/docs/buildpack-author-guide/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Package a buildpack</title>
       <link>https://buildpacks.io/docs/buildpack-author-guide/package-a-buildpack/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://buildpacks.io/docs/buildpack-author-guide/package-a-buildpack/</guid>
       <description>Learn how to package your buildpack for distribution using standard OCI registries.</description>
     </item>
-    
     <item>
       <title>Publish a buildpack</title>
       <link>https://buildpacks.io/docs/buildpack-author-guide/publish-a-buildpack/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://buildpacks.io/docs/buildpack-author-guide/publish-a-buildpack/</guid>
       <description>Learn how to publish your buildpack to the Buildpack Registry.</description>
     </item>
-    
     <item>
       <title>Publishing with Github Actions</title>
       <link>https://buildpacks.io/docs/buildpack-author-guide/publishing-with-github-actions/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://buildpacks.io/docs/buildpack-author-guide/publishing-with-github-actions/</guid>
       <description>Learn how to automatically publish your buildpack to the Buildpack Registry from a Github Action.</description>
     </item>
-    
     <item>
       <title>Layer Types</title>
       <link>https://buildpacks.io/docs/buildpack-author-guide/caching-strategies/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://buildpacks.io/docs/buildpack-author-guide/caching-strategies/</guid>
       <description>Learn strategies for caching layers.</description>
     </item>
-    
     <item>
       <title>Overview of Buildpacks Phases</title>
       <link>https://buildpacks.io/docs/buildpack-author-guide/build-phases-overview/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://buildpacks.io/docs/buildpack-author-guide/build-phases-overview/</guid>
       <description>We work through a full example of building a &amp;ldquo;hello world&amp;rdquo; NodeJs web application. In the example we run pack on the NodeJS application to produce an application image. We assume that we have a NodeJS buildpack, registry.fake/buildpacks/nodejs:latest, that is decomposed into buildpacks that help with the build. We expand each of the buildpacks phases to explain the process. Throughout the example we take a production-level view of their operation. For example, our assumed NodeJS buildpack will be described to create different build, cache and launch layers in a manner similar to how a real NodeJS buildpack would operate.</description>
     </item>
-    
   </channel>
 </rss>

@@ -5,82 +5,69 @@
     <link>https://buildpacks.io/docs/extension-guide/create-extension/</link>
     <description>Recent content in Create an extension on Cloud Native Buildpacks</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://buildpacks.io/docs/extension-guide/create-extension/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <atom:link href="https://buildpacks.io/docs/extension-guide/create-extension/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Set up your local environment</title>
       <link>https://buildpacks.io/docs/extension-guide/create-extension/setup-local-environment/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://buildpacks.io/docs/extension-guide/create-extension/setup-local-environment/</guid>
       <description>Let&amp;rsquo;s walk through a build that uses extensions, step by step. We will see an image extension that installs curl on the builder image, and switches the run image to an image that has curl installed.
 Ensure Docker is running docker version If you see output similar to the following, you&amp;rsquo;re good to go! Otherwise, start Docker and check again.
 Client: Docker Engine - Community Version: 20.10.9 API version: 1.</description>
     </item>
-    
     <item>
       <title>Why Dockerfiles</title>
       <link>https://buildpacks.io/docs/extension-guide/create-extension/why-dockerfiles/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://buildpacks.io/docs/extension-guide/create-extension/why-dockerfiles/</guid>
       <description>Let&amp;rsquo;s see a build that requires base image extension in order to succeed.
 Examine hello-extensions buildpack detect cat $PWD/samples/buildpacks/hello-extensions/bin/detect The buildpack opts-out of the build (exits with non-zero code) unless the BP_EXT_DEMO environment variable is set.
 If the BP_EXT_DEMO environment variable is set, the buildpack detects (exits with code 0), but doesn&amp;rsquo;t require any dependencies through a build plan unless the BP_REQUIRES environment variable is set.
 build cat $PWD/samples/buildpacks/hello-extensions/bin/build The buildpack tries to use vim at build-time, and defines a launch process called curl that runs curl --version at runtime.</description>
     </item>
-    
     <item>
       <title>Building blocks of a CNB Image Extension</title>
       <link>https://buildpacks.io/docs/extension-guide/create-extension/building-blocks-extension/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://buildpacks.io/docs/extension-guide/create-extension/building-blocks-extension/</guid>
       <description>Examine vim extension tree $PWD/samples/extensions/vim You should see something akin to the following:
 . ├── bin │ ├── detect &amp;lt;- similar to a buildpack ./bin/detect │ ├── generate &amp;lt;- similar to a buildpack ./bin/build ├── extension.toml &amp;lt;- similar to a buildpack buildpack.toml The extension.toml describes the extension, containing information such as its name, ID, and version, as well as the Buildpack API that it implements. Though extensions are not buildpacks, they are expected to conform to the Buildpack API except where noted.</description>
     </item>
-    
     <item>
       <title>Generating a build.Dockerfile</title>
       <link>https://buildpacks.io/docs/extension-guide/create-extension/build-dockerfile/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://buildpacks.io/docs/extension-guide/create-extension/build-dockerfile/</guid>
       <description>Builder images can be kept lean if image extensions are used to dynamically install the needed dependencies for the current application.
 Examine vim extension detect cat $PWD/samples/extensions/vim/bin/detect The extension always detects (because its exit code is 0) and provides a dependency called vim by writing to the build plan.
 generate cat $PWD/samples/extensions/vim/bin/generate The extension generates a build.Dockerfile that installs vim on the builder image.
 Configure the hello-extensions buildpack to require vim Set the BP_REQUIRES build-time environment variable to configure the hello-extensions buildpack to require vim (review the .</description>
     </item>
-    
     <item>
       <title>Generating a run.Dockerfile that switches the runtime base image</title>
       <link>https://buildpacks.io/docs/extension-guide/create-extension/run-dockerfile-switch/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://buildpacks.io/docs/extension-guide/create-extension/run-dockerfile-switch/</guid>
       <description>Platforms can have several run images available, each tailored to a specific language family - thus limiting the number of installed dependencies for each image to the minimum necessary to support the targeted language. Image extensions can be used to switch the run image to that most appropriate for the current application.
 Examine curl extension detect cat $PWD/samples/extensions/curl/bin/detect The extension always detects (because its exit code is 0) and provides a dependency called curl.</description>
     </item>
-    
     <item>
       <title>Generating a run.Dockerfile that extends the runtime base image</title>
       <link>https://buildpacks.io/docs/extension-guide/create-extension/run-dockerfile-extend/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://buildpacks.io/docs/extension-guide/create-extension/run-dockerfile-extend/</guid>
       <description>Run images can be kept lean if image extensions are used to dynamically install the needed dependencies for the current application.
 Examine cowsay extension detect cat $PWD/samples/extensions/cowsay/bin/detect The extension always detects (because its exit code is 0) and provides a dependency called cowsay.
 generate cat $PWD/samples/extensions/cowsay/bin/generate The extension generates a run.Dockerfile that installs cowsay on the current run image.
 Configure the hello-extensions buildpack to require cowsay Set the BP_REQUIRES build-time environment variable to configure the hello-extensions buildpack to require both vim and curl (review the .</description>
     </item>
-    
     <item>
       <title>The finer points of image extensions</title>
       <link>https://buildpacks.io/docs/extension-guide/create-extension/advanced-extensions/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://buildpacks.io/docs/extension-guide/create-extension/advanced-extensions/</guid>
       <description>Guidance for extension authors During detect Expressing provided dependencies through the build plan The build plan is a mechanism for inter-buildpack communication. Through the build plan, buildpacks may express the dependencies they require, as well as those they provide. The lifecycle uses information from the build plan to determine whether a group of buildpacks is compatible - that is, whether for every buildpack in the group, its required dependencies are provided by a buildpack that comes before it.</description>
     </item>
-    
   </channel>
 </rss>

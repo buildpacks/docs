@@ -5,17 +5,16 @@
     <link>https://buildpacks.io/docs/</link>
     <description>Recent content in Getting Started on Cloud Native Buildpacks</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://buildpacks.io/docs/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <atom:link href="https://buildpacks.io/docs/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>An App&#39;s Brief Journey from Source to Image</title>
       <link>https://buildpacks.io/docs/app-journey/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://buildpacks.io/docs/app-journey/</guid>
       <description>Pack for the journey In this tutorial, we&amp;rsquo;ll explain how to use pack and buildpacks to create a runnable app image from source code.
 In order to run the build process in an isolated fashion, pack uses Docker. That means you&amp;rsquo;ll need to make sure you have both docker and pack installed:
 Install Docker Install pack NOTE: pack is only one implementation of the Cloud Native Buildpacks Platform Specification. Additionally, not all Cloud Native Buildpacks Platforms require Docker.</description>
     </item>
-    
   </channel>
 </rss>

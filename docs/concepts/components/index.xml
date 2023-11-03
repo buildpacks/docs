@@ -5,69 +5,57 @@
     <link>https://buildpacks.io/docs/concepts/components/</link>
     <description>Recent content in Components on Cloud Native Buildpacks</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://buildpacks.io/docs/concepts/components/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <atom:link href="https://buildpacks.io/docs/concepts/components/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Build image</title>
       <link>https://buildpacks.io/docs/concepts/components/base-images/build/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://buildpacks.io/docs/concepts/components/base-images/build/</guid>
       <description>What is a build image? The build image provides the base image from which the build environment is constructed. The build environment is the containerized environment in which the [lifecycle][lifecycle] (and thereby [buildpacks][buildpack]) are executed.</description>
     </item>
-    
     <item>
       <title>Builder</title>
       <link>https://buildpacks.io/docs/concepts/components/builder/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://buildpacks.io/docs/concepts/components/builder/</guid>
       <description>A builder is an image that contains all the components necessary to execute a build. A builder image is created by taking a build image and adding a lifecycle, buildpacks, and files that configure aspects of the build including the buildpack detection order and the location(s) of the run image</description>
     </item>
-    
     <item>
       <title>Buildpack</title>
       <link>https://buildpacks.io/docs/concepts/components/buildpack/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://buildpacks.io/docs/concepts/components/buildpack/</guid>
       <description>&lt;h2 id=&#34;what-is-a-buildpack&#34;&gt;What is a buildpack?&lt;/h2&gt;
 &lt;p&gt;A buildpack is a set of executables that inspects your app source code and creates a plan to build and run your application.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Run image</title>
       <link>https://buildpacks.io/docs/concepts/components/base-images/run/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://buildpacks.io/docs/concepts/components/base-images/run/</guid>
       <description>What is a run image? The run image provides the base image for application images. The lifecycle requires a reference to a run image and (where necessary) possible run image mirrors in order to construct the application image.
 Run image mirrors Run image mirrors provide alternate locations for run images, for use during build or rebase. When running build with a builder containing run image mirrors, pack will select a run image whose registry location matches that of the specified app image (if no registry host is specified in the image name, DockerHub is assumed).</description>
     </item>
-    
     <item>
       <title>Buildpack Group</title>
       <link>https://buildpacks.io/docs/concepts/components/buildpack-group/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://buildpacks.io/docs/concepts/components/buildpack-group/</guid>
       <description>A buildpack group is a list of specific buildpacks composed together in an order such that the list is suitable for building an application. Because buildpacks are modular and reusable, a buildpack group is what allows you to connect multiple modular buildpacks together.</description>
     </item>
-    
     <item>
       <title>Platform</title>
       <link>https://buildpacks.io/docs/concepts/components/platform/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://buildpacks.io/docs/concepts/components/platform/</guid>
       <description>&lt;h2 id=&#34;what-is-a-platform&#34;&gt;What is a Platform?&lt;/h2&gt;
 &lt;p&gt;A &lt;code&gt;platform&lt;/code&gt; uses a &lt;a href=&#34;https://buildpacks.io/docs/concepts/components/lifecycle/&#34;&gt;lifecycle&lt;/a&gt;, &lt;a href=&#34;https://buildpacks.io/docs/concepts/components/buildpack/&#34;&gt;buildpacks&lt;/a&gt; (packaged in a &lt;a href=&#34;https://buildpacks.io/docs/concepts/components/builder/&#34;&gt;builder&lt;/a&gt;), and application source code to produce an OCI image.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Stack</title>
       <link>https://buildpacks.io/docs/concepts/components/stack/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://buildpacks.io/docs/concepts/components/stack/</guid>
       <description>&lt;h2 id=&#34;what-is-a-stack&#34;&gt;What is a stack?&lt;/h2&gt;
 &lt;p&gt;A stack (deprecated) is the grouping together of the build and run base images, represented by a unique ID.&lt;/p&gt;
@@ -82,17 +70,14 @@ Run image mirrors Run image mirrors provide alternate locations for run images, 
 &lt;/ul&gt;
 &lt;p&gt;For older API versions, see below on using stacks.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Targets</title>
       <link>https://buildpacks.io/docs/concepts/components/targets/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://buildpacks.io/docs/concepts/components/targets/</guid>
       <description>The concept of &amp;ldquo;targets&amp;rdquo; is used to identify compatibility between buildpacks and base images.
 Target data includes:
 Operating system name (e.g., &amp;ldquo;linux&amp;rdquo;) Architecture (e.g., &amp;ldquo;amd64&amp;rdquo;, &amp;ldquo;arm64&amp;rdquo;) Architecture variant Operating system distribution name (e.g., &amp;ldquo;ubuntu&amp;rdquo;, &amp;ldquo;alpine&amp;rdquo;) Operating system distribution version (e.g., &amp;ldquo;22.04&amp;rdquo;, &amp;ldquo;3.18.3&amp;rdquo;) For Linux-based images, operating system distribution name and version should be the values in /etc/os-release ($ID and $VERSION_ID). For Windows-based images, operating system distribution name is blank, and version should be the value of os.</description>
     </item>
-    
   </channel>
 </rss>

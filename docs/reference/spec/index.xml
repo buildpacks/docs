@@ -5,34 +5,29 @@
     <link>https://buildpacks.io/docs/reference/spec/</link>
     <description>Recent content in Specification on Cloud Native Buildpacks</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://buildpacks.io/docs/reference/spec/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <atom:link href="https://buildpacks.io/docs/reference/spec/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Buildpack API</title>
       <link>https://buildpacks.io/docs/reference/spec/buildpack-api/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://buildpacks.io/docs/reference/spec/buildpack-api/</guid>
       <description>&lt;p&gt;This specification defines the interface between a buildpack and the environment that runs it.
 This API will be used by buildpack authors.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Distribution API</title>
       <link>https://buildpacks.io/docs/reference/spec/distribution-api/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://buildpacks.io/docs/reference/spec/distribution-api/</guid>
       <description>&lt;p&gt;This specification defines the artifact format, delivery mechanism, and order resolution process for buildpacks.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Platform API</title>
       <link>https://buildpacks.io/docs/reference/spec/platform-api/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://buildpacks.io/docs/reference/spec/platform-api/</guid>
       <description>&lt;p&gt;The Platform specification defines the interface between the CNB &lt;a href=&#34;https://buildpacks.io/docs/concepts/components/lifecycle/&#34;&gt;lifecycle&lt;/a&gt; and a &lt;a href=&#34;https://buildpacks.io/docs/concepts/components/platform/&#34;&gt;platform&lt;/a&gt; that runs it.&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

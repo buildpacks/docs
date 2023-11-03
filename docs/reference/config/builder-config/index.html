@@ -868,6 +868,31 @@ will not change despite new lifecycle versions being released.</p>
 </li>
 </ul>
 </li>
+<li>
+<h4 id="buildenv-_optional_"><code>build.env</code> <em>(optional)</em></h4>
+<p>The <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#environment-variable-modification-rules">[[build.env]]</a> is used to specify <a href="https://github.com/buildpacks/spec/blob/main/platform.md#operator-defined-variables">operator-defined</a> build-time environment variables for buildpacks. Set <code>CNB_BUILD_CONFIG_DIR</code> in pack&rsquo;s environment to override the default directory (<code>/cnb/build-config/env</code>) where environment variable files are stored within the builder.</p>
+<ul>
+<li>
+<p><strong><code>name</code></strong> <em>(string, required)</em><br>
+The name/key of the environment variable.</p>
+</li>
+<li>
+<p><strong><code>value</code></strong> <em>(string, required)</em><br>
+The value of the environment variable.</p>
+</li>
+<li>
+<p><strong><code>suffix</code></strong> <em>(string, optional)</em><br>
+The type of action used to modify the environment variable when end-users or buildpacks define the same name/key, one of <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#default"><code>default</code></a>, <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#override"><code>override</code></a>, <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#append"><code>append</code></a>, or <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#prepend"><code>prepend</code></a>. Defaults to <code>default</code> if this field is omitted. Operator-defined environment variables take precedence over end-user or buildpack-defined environment variables.</p>
+</li>
+<li>
+<p><strong><code>delim</code></strong> <em>(string, optional)</em><br>
+The delimiter used to concatenate two or more values for the given <code>name</code>.</p>
+</li>
+</ul>
+<blockquote>
+<p>The <code>delim</code> is required when <code>suffix</code> is one of <code>append</code> or <code>prepend</code>.</p>
+</blockquote>
+</li>
 </ul>
 <h3 id="supported-archives">Supported archives</h3>
 <p>Currently, when specifying a URI to a buildpack or lifecycle, only <code>tar</code> or <code>tgz</code> archive types are supported.</p>

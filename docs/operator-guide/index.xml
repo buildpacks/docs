@@ -5,41 +5,35 @@
     <link>https://buildpacks.io/docs/operator-guide/</link>
     <description>Recent content in Operator Guide on Cloud Native Buildpacks</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="https://buildpacks.io/docs/operator-guide/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <atom:link href="https://buildpacks.io/docs/operator-guide/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Create a builder</title>
       <link>https://buildpacks.io/docs/operator-guide/create-a-builder/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://buildpacks.io/docs/operator-guide/create-a-builder/</guid>
       <description>&lt;p&gt;Creating a custom &lt;a href=&#34;https://buildpacks.io/docs/concepts/components/builder/&#34;&gt;builder&lt;/a&gt; allows you to control what buildpacks are used and what image apps are based on.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Create a build base image</title>
       <link>https://buildpacks.io/docs/operator-guide/create-build-base/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://buildpacks.io/docs/operator-guide/create-build-base/</guid>
       <description>Define a build base image for your CNB build We need a Dockerfile similar to the following:
 # Define the base image FROM ubuntu:jammy # Install packages that we want to make available at build time RUN apt-get update &amp;amp;&amp;amp; \ apt-get install -y xz-utils ca-certificates &amp;amp;&amp;amp; \ rm -rf /var/lib/apt/lists/* \ # Set required CNB user information ARG cnb_uid=1000 ARG cnb_gid=1000 ENV CNB_USER_ID=${cnb_uid} ENV CNB_GROUP_ID=${cnb_gid} # Create user and group RUN groupadd cnb --gid ${CNB_GROUP_ID} &amp;amp;&amp;amp; \ useradd --uid ${CNB_USER_ID} --gid ${CNB_GROUP_ID} -m -s /bin/bash cnb \ # Set user and group USER ${CNB_USER_ID}:${CNB_GROUP_ID} # Set required CNB target information LABEL io.</description>
     </item>
-    
     <item>
       <title>Create a run base image</title>
       <link>https://buildpacks.io/docs/operator-guide/create-run-base/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://buildpacks.io/docs/operator-guide/create-run-base/</guid>
       <description>Define a run base image for your CNB build We need a Dockerfile similar to the following:
 # Define the base image FROM ubuntu:jammy # Install packages that we want to make available at run time RUN apt-get update &amp;amp;&amp;amp; \ apt-get install -y xz-utils ca-certificates &amp;amp;&amp;amp; \ rm -rf /var/lib/apt/lists/* \ # Create user and group ARG cnb_uid=1000 ARG cnb_gid=1000 RUN groupadd cnb --gid ${cnb_gid} &amp;amp;&amp;amp; \ useradd --uid ${cnb_uid} --gid ${cnb_gid} -m -s /bin/bash cnb \ # Set user and group USER ${cnb_uid}:${cnb_gid} # Set required CNB target information LABEL io.</description>
     </item>
-    
     <item>
       <title>Create a stack</title>
       <link>https://buildpacks.io/docs/operator-guide/create-a-stack/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
       <guid>https://buildpacks.io/docs/operator-guide/create-a-stack/</guid>
       <description>&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: As of Platform API 0.12 and Buildpack API 0.10, stacks are deprecated in favor of existing constructs in the container image ecosystem such as operating system name, operating system distribution, and architecture.&lt;/p&gt;
 &lt;p&gt;You can still configure the build and run base images for your CNB build.
@@ -49,6 +43,5 @@ A stack ID identifies the configuration for the build and run base images, and i
 If you&amp;rsquo;re on an older Platform API version, you may still need to create a custom stack.
 To find out how, read on&amp;hellip;&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>
