@@ -43,9 +43,13 @@ const server = http.createServer((req, res) => {
   res.end('Hello World!');
 });
  
-server.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
-});
+// For demo purposes we do not actually start the server.  This
+// allows us pretend to start the server and check if the output
+// message is correct.
+//server.listen(port, hostname, () => {
+//  console.log(`Server running at http://${hostname}:${port}/`);
+//});
+console.log(`Server running at http://${hostname}:${port}/`)
 ```
 
 We also create a `package.json` file with the following contents:

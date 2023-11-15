@@ -41,17 +41,13 @@ mkdir -p "${node_js_layer}"
 # 3. DOWNLOAD node-js
 echo "---> Downloading and extracting NodeJS"
 node_js_url=https://nodejs.org/dist/v18.18.1/node-v18.18.1-linux-x64.tar.xz
-wget -q -O - "$node_js_url" | tar -xJf - -C "${node_js_layer}"
+wget -q -O - "$node_js_url" | tar -xJf - --strip-components 1 -C "${node_js_layer}"
 
 # 4. MAKE node-js AVAILABLE DURING LAUNCH
 echo -e '[types]\nlaunch = true' > "${layersdir}/node-js.toml"
 
-# 5. MAKE node-js AVAILABLE TO THIS SCRIPT
-export PATH="${node_js_layer}"/bin:$PATH
-export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}"${node_js_layer}/lib"
-
 # ========== ADDED ===========
-# 6. SET DEFAULT START COMMAND
+# 5. SET DEFAULT START COMMAND
 cat > "${layersdir}/launch.toml" << EOL
 [[processes]]
 type = "web"

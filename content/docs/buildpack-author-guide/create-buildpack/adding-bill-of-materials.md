@@ -78,7 +78,7 @@ cat >> "${layersdir}/node-js.sbom.cdx.json" << EOL
     {
       "type": "library",
       "name": "node-js",
-      "version": "$node-js_version"
+      "version": "${node_js_version}"
     }
   ]
 }
@@ -88,7 +88,7 @@ EOL
 We can also add an SBOM entry for each dependency listed in `package.json`.  Here we use `jq` to add a new record to the `components` array in `bundler.sbom.cdx.json`:
 
 ```bash
-cnode-jsbom="${layersdir}/node-js.sbom.cdx.json"
+node-jsbom="${layersdir}/node-js.sbom.cdx.json"
 cat >> ${node-jsbom} << EOL
 {
   "bomFormat": "CycloneDX",
@@ -98,22 +98,11 @@ cat >> ${node-jsbom} << EOL
     {
       "type": "library",
       "name": "node-js",
-      "version": "$node-js_version"
+      "version": "${node_js_version}"
     }
   ]
 }
 EOL
-if [[ -f package.json ]] ; then
-  for gem in $(gem dep -q | grep ^Gem | sed 's/^Gem //')
-  do
-    version=${gem##*-}
-    name=${gem%-${version}}
-    DEP=$(jq --arg name "${name}" --arg version "${version}" \
-      '.components[.components| length] |= . + {"type": "library", "name": $name, "version": $version}' \
-      "${node-jsbom}")
-    echo ${DEP} > "${node-jsbom}"
-  done
-fi
 ```
 
 Your `node-js-buildpack/bin/build`<!--+"{{open}}"+--> script should look like the following:
@@ -125,30 +114,38 @@ set -eo pipefail
 
 echo "---> NodeJS Buildpack"
 
+# ======= MODIFIED =======
 # 1. GET ARGS
 layersdir=$1
 plan=$3
 
 # 2. CREATE THE LAYER DIRECTORY
-node-js_layer="${layersdir}"/node-js
-mkdir -p "${node-js_layer}"
+node_js_layer="${layersdir}"/node-js
+mkdir -p "${node_js_layer}"
 
+# ======= MODIFIED =======
 # 3. DOWNLOAD node-js
-node-js_version=$(cat "$plan" | yj -t | jq -r '.entries[] | select(.name == "node-js") | .metadata.version')
-echo "---> Downloading and extracting NodeJS"
-node-js_url=https://nodejs.org/dist/v18.18.1/node-v18.18.1-linux-x64.tar.xz
-wget -q -O - "$node-js_url" | tar -xxf - -C "${node-js_layer}"
+node_js_version=$(cat "$plan" | yj -t | jq -r '.entries[] | select(.name == "node-js") | .metadata.version') || "18.18.1"
+node_js_url=https://nodejs.org/dist/v18.18.1/node-v${node_js_version}-linux-x64.tar.xz
+remote_nodejs_version=$(cat "${layersdir}/node-js.toml" 2> /dev/null | yj -t | jq -r .metadata.nodejs-version 2>/dev/null || echo 'NOT FOUND')
+if [[ "${node_js_url}" != *"${remote_nodejs_version}"* ]] ; then
+    echo "-----> Downloading and extracting NodeJS"
+    node_js_url=https://nodejs.org/dist/v18.18.1/node-v18.18.1-linux-x64.tar.xz
+    wget -q -O - "${node_js_url}" | tar -xJf - --strip-components 1 -C "${node_js_layer}"
+    cat >> "${layersdir}/node-js.toml" << EOL
+[metadata]
+nodejs-version = "${node_js_version}"
+EOL
+else
+    echo "-----> Reusing NodeJS"
+fi
 
-# 4. MAKE node-js AVAILABLE DURING LAUNCH
-echo -e '[types]\nlaunch = true' > "${layersdir}/node-js.toml"
+# 4. MAKE node-js AVAILABLE DURING LAUNCH and CACHE the LAYER
+echo -e '[types]\ncache = true\nlaunch = true' > "${layersdir}/node-js.toml"
 
-# 5. MAKE node-js AVAILABLE TO THIS SCRIPT
-export PATH="${node-js_layer}"/bin:$PATH
-export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}"${node-js_layer}/lib"
-
-# 6. SET DEFAULT START COMMAND
+# ========== ADDED ===========
+# 5. SET DEFAULT START COMMAND
 cat > "${layersdir}/launch.toml" << EOL
-# our web process
 [[processes]]
 type = "web"
 command = "node app.js"
@@ -156,7 +153,7 @@ default = true
 EOL
 
 # ========== ADDED ===========
-# 7. ADD A SBOM
+# 6. ADD A SBOM
 node-jsbom="${layersdir}/node-js.sbom.cdx.json"
 cat >> ${node-jsbom} << EOL
 {
@@ -167,7 +164,7 @@ cat >> ${node-jsbom} << EOL
     {
       "type": "library",
       "name": "node-js",
-      "version": "$node-js_version"
+      "version": "${node_js_version}"
     }
   ]
 }
@@ -197,7 +194,7 @@ The SBOM information is now downloaded to the local file system:
 cat layers/sbom/launch/examples_node-js/node-js/sbom.cdx.json | jq -M
 ```
 
-You should find that the included `node-js` version is `3.1.0` as expected.
+You should find that the included `node-js` version is `18.18.1` as expected.
 
 <!-- test:assert=contains;ignore-lines=... -->
 ```text
@@ -209,7 +206,7 @@ You should find that the included `node-js` version is `3.1.0` as expected.
     {
       "type": "library",
       "name": "node-js",
-      "version": "3.1.0"
+      "version": "18.18.1"
     },
 ...
   ]

@@ -57,55 +57,31 @@ mkdir -p "${node_js_layer}"
 
 # ======= MODIFIED =======
 # 3. DOWNLOAD node-js
-node_js_version=$(cat "$plan" | yj -t | jq -r '.entries[] | select(.name == "node-js") | .metadata.version')
-echo "---> Downloading and extracting NodeJS $node_js_version"
-node_js_url=https://nodejs.org/dist/v${node_js_version}/node-v${node_js_version}-linux-x64.tar.xz
-wget -q -O - "$node_js_url" | tar -xJf - -C "${node_js_layer}"
-
-# 4. MAKE node-js AVAILABLE DURING LAUNCH
-echo -e '[types]\nlaunch = true' > "${layersdir}/node-js.toml"
-
-# 5. MAKE node-js AVAILABLE TO THIS SCRIPT
-export PATH="${node_js_layer}"/bin:$PATH
-export LD_LIBRARY_PATH=${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}"${node_js_layer}/lib"
-
-# 6. INSTALL GEMS
-# Compares previous package.json.lock checksum to the current package.json.lock
-bundlerlayer="${layersdir}/bundler"
-local_bundler_checksum=$((sha256sum package.json.lock || echo 'DOES_NOT_EXIST') | cut -d ' ' -f 1)
-remote_bundler_checksum=$(cat "${layersdir}/bundler.toml" | yj -t | jq -r .metadata.checksum 2>/dev/null || echo 'DOES_NOT_EXIST')
-# Always set the types table so that we re-use the appropriate layers
-echo -e '[types]\ncache = true\nlaunch = true' >> "${layersdir}/bundler.toml"
-
-if [[ -f package.json.lock && $local_bundler_checksum == $remote_bundler_checksum ]] ; then
-    # Determine if no gem dependencies have changed, so it can reuse existing gems without running bundle install
-    echo "---> Reusing gems"
-    bundle config --local path "$bundlerlayer" >/dev/null
-    bundle config --local bin "$bundlerlayer/bin" >/dev/null
-else
-    # Determine if there has been a gem dependency change and install new gems to the bundler layer; re-using existing and un-changed gems
-    echo "---> Installing gems"
-    mkdir -p "$bundlerlayer"
-    cat >> "${layersdir}/bundler.toml" << EOL
+node_js_version=$(cat "$plan" | yj -t | jq -r '.entries[] | select(.name == "node-js") | .metadata.version') || "18.18.1"
+node_js_url=https://nodejs.org/dist/v18.18.1/node-v${node_js_version}-linux-x64.tar.xz
+remote_nodejs_version=$(cat "${layersdir}/node-js.toml" 2> /dev/null | yj -t | jq -r .metadata.nodejs-version 2>/dev/null || echo 'NOT FOUND')
+if [[ "${node_js_url}" != *"${remote_nodejs_version}"* ]] ; then
+    echo "-----> Downloading and extracting NodeJS"
+    node_js_url=https://nodejs.org/dist/v18.18.1/node-v18.18.1-linux-x64.tar.xz
+    wget -q -O - "${node_js_url}" | tar -xJf - --strip-components 1 -C "${node_js_layer}"
+    cat >> "${layersdir}/node-js.toml" << EOL
 [metadata]
-checksum = "$local_bundler_checksum"
+nodejs-version = "${node_js_version}"
 EOL
-    bundle config set --local path "$bundlerlayer" && bundle install && bundle binstubs --all --path "$bundlerlayer/bin"
-
+else
+    echo "-----> Reusing NodeJS"
 fi
 
-# 7. SET DEFAULT START COMMAND
+# 4. MAKE node-js AVAILABLE DURING LAUNCH and CACHE the LAYER
+echo -e '[types]\ncache = true\nlaunch = true' > "${layersdir}/node-js.toml"
+
+# ========== ADDED ===========
+# 5. SET DEFAULT START COMMAND
 cat > "${layersdir}/launch.toml" << EOL
-# our web process
 [[processes]]
 type = "web"
 command = "node app.js"
 default = true
-
-# our debug process
-[[processes]]
-type = "debug"
-command = "node --inspect app.js"
 EOL
 ```
 
