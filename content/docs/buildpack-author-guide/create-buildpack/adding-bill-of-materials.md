@@ -15,14 +15,11 @@ One of the benefits of buildpacks is they can also populate the app image with m
 
 You can find some of this information using `pack` via its `inspect-image` command.  The bill-of-materials information will be available using `pack sbom download`.
 
-<!-- test:exec -->
 ```bash
 pack inspect-image test-node-js-app
 ```
-<!--+- "{{execute}}"+-->
 You should see the following:
 
-<!-- test:assert=contains;ignore-lines=... -->
 ```text
 Run Images:
   cnbs/sample-base-run:jammy
@@ -123,29 +120,29 @@ plan=$3
 node_js_layer="${layersdir}"/node-js
 mkdir -p "${node_js_layer}"
 
-# ======= MODIFIED =======
 # 3. DOWNLOAD node-js
-node_js_version=$(cat "$plan" | yj -t | jq -r '.entries[] | select(.name == "node-js") | .metadata.version') || "18.18.1"
-node_js_url=https://nodejs.org/dist/v18.18.1/node-v${node_js_version}-linux-x64.tar.xz
-remote_nodejs_version=$(cat "${layersdir}/node-js.toml" 2> /dev/null | yj -t | jq -r .metadata.nodejs-version 2>/dev/null || echo 'NOT FOUND')
+default_node_js_version="18.18.1"
+node_js_version=$(cat "$plan" | yj -t | jq -r '.entries[] | select(.name == "node-js") | .metadata.version' || echo ${default_node_js_version})
+node_js_url=https://nodejs.org/dist/v${node_js_version}/node-v${node_js_version}-linux-x64.tar.xz
+remote_nodejs_version=$(cat "${layersdir}/node-js.toml" 2> /dev/null | yj -t | jq -r .metadata.nodejs_version 2>/dev/null || echo 'NOT FOUND')
 if [[ "${node_js_url}" != *"${remote_nodejs_version}"* ]] ; then
     echo "-----> Downloading and extracting NodeJS"
-    node_js_url=https://nodejs.org/dist/v18.18.1/node-v18.18.1-linux-x64.tar.xz
     wget -q -O - "${node_js_url}" | tar -xJf - --strip-components 1 -C "${node_js_layer}"
-    cat >> "${layersdir}/node-js.toml" << EOL
-[metadata]
-nodejs-version = "${node_js_version}"
-EOL
 else
     echo "-----> Reusing NodeJS"
 fi
 
 # 4. MAKE node-js AVAILABLE DURING LAUNCH and CACHE the LAYER
-echo -e '[types]\ncache = true\nlaunch = true' > "${layersdir}/node-js.toml"
+    cat > "${layersdir}/node-js.toml" << EOL
+[types]
+cache = true
+launch = true
+[metadata]
+nodejs_version = "${node_js_version}"
+EOL
 
-# ========== ADDED ===========
 # 5. SET DEFAULT START COMMAND
-cat > "${layersdir}/launch.toml" << EOL
+cat >> "${layersdir}/launch.toml" << EOL
 [[processes]]
 type = "web"
 command = "node app.js"
@@ -154,8 +151,8 @@ EOL
 
 # ========== ADDED ===========
 # 6. ADD A SBOM
-node-jsbom="${layersdir}/node-js.sbom.cdx.json"
-cat >> ${node-jsbom} << EOL
+node_jsbom="${layersdir}/node-js.sbom.cdx.json"
+cat >> ${node_jsbom} << EOL
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.4",
@@ -196,7 +193,6 @@ cat layers/sbom/launch/examples_node-js/node-js/sbom.cdx.json | jq -M
 
 You should find that the included `node-js` version is `18.18.1` as expected.
 
-<!-- test:assert=contains;ignore-lines=... -->
 ```text
 {
   "bomFormat": "CycloneDX",
@@ -207,7 +203,7 @@ You should find that the included `node-js` version is `18.18.1` as expected.
       "type": "library",
       "name": "node-js",
       "version": "18.18.1"
-    },
+    }
 ...
   ]
 }

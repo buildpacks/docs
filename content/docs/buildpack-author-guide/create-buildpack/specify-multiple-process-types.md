@@ -50,7 +50,10 @@ node_js_url=https://nodejs.org/dist/v18.18.1/node-v18.18.1-linux-x64.tar.xz
 wget -q -O - "$node_js_url" | tar -xJf - --strip-components 1 -C "${node_js_layer}"
 
 # 4. MAKE node-js AVAILABLE DURING LAUNCH
-echo -e '[types]\nlaunch = true' > "${layersdir}/node-js.toml"
+    cat > "${layersdir}/node-js.toml" << EOL
+[types]
+launch = true
+EOL
 
 # ========== MODIFIED ===========
 # 5. SET DEFAULT START COMMAND

@@ -81,7 +81,7 @@ Reusing layer 'examples/node-js:node-js'
 
 ## Caching dependencies
 
-Now, let's implement the caching logic.  We need to record the version of the NodeJS runtime that is used in a build.  On subsequent builds, the caching logic will detect the current requested NodeJS version and restore the previous layer from the cache if the current requested NodeJS version matches the previous NodeJS runtime version.
+Now, let's implement the caching logic.  We need to record the version of the NodeJS runtime that is used in a build.  On subsequent builds, the caching logic will detect if the NodeJS version is the same as the version in the cached layer.  We restore the previous layer from the cache if the current requested NodeJS version matches the previous NodeJS runtime version.
 
 <!-- test:file=node-js-buildpack/bin/build -->
 ```
@@ -97,27 +97,30 @@ layersdir=$1
 node_js_layer="${layersdir}"/node-js
 mkdir -p "${node_js_layer}"
 
+# ======= MODIFIED =======
 # 3. DOWNLOAD node-js
-node_js_url=https://nodejs.org/dist/v18.18.1/node-v18.18.1-linux-x64.tar.xz
-remote_nodejs_version=$(cat "${layersdir}/node-js.toml" 2> /dev/null | yj -t | jq -r .metadata.nodejs-version 2>/dev/null || echo 'NOT FOUND')
-if [[ "${node_js_url}" != *"${remote_nodejs_version}"* ]] ; then
+node_js_version="18.18.1"
+node_js_url=https://nodejs.org/dist/v${node_js_version}/node-v${node_js_version}-linux-x64.tar.xz
+cached_nodejs_version=$(cat "${layersdir}/node-js.toml" 2> /dev/null | yj -t | jq -r .metadata.nodejs_version 2>/dev/null || echo 'NOT FOUND')
+if [[ "${node_js_url}" != *"${cached_nodejs_version}"* ]] ; then
     echo "-----> Downloading and extracting NodeJS"
-    node_js_url=https://nodejs.org/dist/v18.18.1/node-v18.18.1-linux-x64.tar.xz
     wget -q -O - "${node_js_url}" | tar -xJf - --strip-components 1 -C "${node_js_layer}"
-    cat >> "${layersdir}/node-js.toml" << EOL
-[metadata]
-nodejs-version = "18.18.1"
-EOL
 else
     echo "-----> Reusing NodeJS"
 fi
 
+# ======= MODIFIED =======
 # 4. MAKE node-js AVAILABLE DURING LAUNCH and CACHE the LAYER
-echo -e '[types]\ncache = true\nlaunch = true' > "${layersdir}/node-js.toml"
+    cat > "${layersdir}/node-js.toml" << EOL
+[types]
+cache = true
+launch = true
+[metadata]
+nodejs_version = "${node_js_version}"
+EOL
 
-# ========== ADDED ===========
 # 5. SET DEFAULT START COMMAND
-cat > "${layersdir}/launch.toml" << EOL
+cat >> "${layersdir}/launch.toml" << EOL
 [[processes]]
 type = "web"
 command = "node app.js"
@@ -125,10 +128,11 @@ default = true
 EOL
 ```
 
-Now when you build your app:
+Now when you build your app, the second call will reuse the layer:
 
 <!-- test:exec -->
 ```text
+pack build test-node-js-app --path ./node-js-sample-app --buildpack ./node-js-buildpack
 pack build test-node-js-app --path ./node-js-sample-app --buildpack ./node-js-buildpack
 ```
 <!--+- "{{execute}}"+-->
@@ -140,7 +144,7 @@ you will see the new caching logic at work during the `BUILDING` phase:
 ===> BUILDING
 ...
 ---> NodeJS Buildpack
----> Reusing node-js
+-----> Reusing NodeJS
 ```
 
 Next, let's see how buildpack users may be able to provide configuration to the buildpack.

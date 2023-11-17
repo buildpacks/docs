@@ -57,27 +57,29 @@ mkdir -p "${node_js_layer}"
 
 # ======= MODIFIED =======
 # 3. DOWNLOAD node-js
-node_js_version=$(cat "$plan" | yj -t | jq -r '.entries[] | select(.name == "node-js") | .metadata.version') || "18.18.1"
-node_js_url=https://nodejs.org/dist/v18.18.1/node-v${node_js_version}-linux-x64.tar.xz
-remote_nodejs_version=$(cat "${layersdir}/node-js.toml" 2> /dev/null | yj -t | jq -r .metadata.nodejs-version 2>/dev/null || echo 'NOT FOUND')
+default_node_js_version="18.18.1"
+node_js_version=$(cat "$plan" | yj -t | jq -r '.entries[] | select(.name == "node-js") | .metadata.version' || echo ${default_node_js_version})
+node_js_url=https://nodejs.org/dist/v${node_js_version}/node-v${node_js_version}-linux-x64.tar.xz
+remote_nodejs_version=$(cat "${layersdir}/node-js.toml" 2> /dev/null | yj -t | jq -r .metadata.nodejs_version 2>/dev/null || echo 'NOT FOUND')
 if [[ "${node_js_url}" != *"${remote_nodejs_version}"* ]] ; then
-    echo "-----> Downloading and extracting NodeJS"
-    node_js_url=https://nodejs.org/dist/v18.18.1/node-v18.18.1-linux-x64.tar.xz
+    echo "-----> Downloading and extracting NodeJS" ${node_js_version}
     wget -q -O - "${node_js_url}" | tar -xJf - --strip-components 1 -C "${node_js_layer}"
-    cat >> "${layersdir}/node-js.toml" << EOL
-[metadata]
-nodejs-version = "${node_js_version}"
-EOL
 else
     echo "-----> Reusing NodeJS"
 fi
 
 # 4. MAKE node-js AVAILABLE DURING LAUNCH and CACHE the LAYER
-echo -e '[types]\ncache = true\nlaunch = true' > "${layersdir}/node-js.toml"
+    cat > "${layersdir}/node-js.toml" << EOL
+[types]
+cache = true
+launch = true
+[metadata]
+nodejs_version = "${node_js_version}"
+EOL
 
 # ========== ADDED ===========
 # 5. SET DEFAULT START COMMAND
-cat > "${layersdir}/launch.toml" << EOL
+cat >> "${layersdir}/launch.toml" << EOL
 [[processes]]
 type = "web"
 command = "node app.js"
@@ -92,11 +94,11 @@ Finally, create a file `node-js-sample-app/.node-js-version` with the following 
 18.18.1
 ```
 
-Now when you run:
+In the following `pack` invocation we choose to `--clear-cache` so that we explicitly do not re-use cached layers.  This helps us demonstrate that the NodeJS runtime layer does not get restored from a cache.
 
 <!-- test:exec -->
 ```bash
-pack build test-node-js-app --path ./node-js-sample-app --buildpack ./node-js-buildpack
+pack build test-node-js-app --clear-cache --path ./node-js-sample-app --buildpack ./node-js-buildpack
 ```
 <!--+- "{{execute}}"+-->
 
@@ -107,7 +109,7 @@ You will notice that version of NodeJS specified in the app's `.node-js-version`
 ===> BUILDING
 ...
 ---> NodeJS Buildpack
----> Downloading and extracting NodeJS 18.18.1
+-----> Downloading and extracting NodeJS 18.18.1
 ```
 
 Next, let's see how buildpacks can store information about the dependencies provided in the output app image for introspection.
