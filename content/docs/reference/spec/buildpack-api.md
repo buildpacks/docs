@@ -128,7 +128,7 @@ A buildpack must contain a `buildpack.toml` file in its root directory.
 ### Example
 
 ```
-api = "0.8"
+api = "0.10"
 
 [buildpack]
 id = "example.com/python"
@@ -146,7 +146,7 @@ id = "io.buildpacks.stacks.jammy"
 ### Schema
 
 The schema is as follows:
-- **`api`** _(string, required, current: `0.8`)_\
+- **`api`** _(string, required, current: `0.10`)_\
     The Buildpack API version the buildpack adheres to. Used to ensure [compatibility](#api-compatibility) against
     the [lifecycle][lifecycle].
 
