@@ -36,19 +36,19 @@ The extension generates a `run.Dockerfile` that switches the run image to refere
 
 <!-- test:exec -->
 ```bash
-cat $PWD/samples/stacks/alpine/run/curl.Dockerfile
+cat $PWD/samples/base-images/alpine/run/curl.Dockerfile
 ```
 
-This is a simple Dockerfile that creates a CNB run image from the `curl` base image by adding the required CNB user configuration and `io.buildpacks.stack.id` label.
+This is a simple Dockerfile that creates a CNB run image from the `curl` base image by adding the required CNB user configuration and labels.
 
-The Dockerfile could come from anywhere, but we include it in the `stacks` directory for convenience.
+The Dockerfile could come from anywhere, but we include it in the `base-images` directory for convenience.
 
 Build the run image:
 
 <!-- test:exec -->
 ```bash
 docker build \
-  --file $PWD/samples/stacks/alpine/run/curl.Dockerfile \
+  --file $PWD/samples/base-images/alpine/run/curl.Dockerfile \
   --tag localhost:5000/run-image-curl .
 
 docker push localhost:5000/run-image-curl

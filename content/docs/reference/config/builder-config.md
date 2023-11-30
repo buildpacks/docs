@@ -7,8 +7,8 @@ aliases=["/docs/reference/builder-config/"]
 A [builder][builder] configuration schema is as follows:
 
 - #### `description` _(string, optional)_
-  A human-readable description of the builder, to be shown in `inspect-builder` output
-  (run `pack inspect-builder -h` for more information).
+  A human-readable description of the builder, to be shown in `builder inspect` output
+  (run `pack builder inspect -h` for more information).
 
 - #### `buildpacks` _(list, optional)_
   A list of buildpacks, each with the following fields:
@@ -42,11 +42,33 @@ A [builder][builder] configuration schema is as follows:
           occurs in either the top-level `buildpacks` list or those buildpacks' dependencies.
 
         - **`optional`** _(boolean, optional, default: `false`)_\
-          Whether or not this buildpack is optional during detection.
+          Whether this buildpack is optional during detection.
 
-- #### `stack` _(required)_
-  The stack to use for the builder. See [Working with stacks](/docs/concepts/components/stack) for more information about this field. It
-  contains the following fields:
+- #### `build` _(required)_
+  Build-time information. It contains the following field:
+
+  - **`image`** _(required, string)_\
+    Image to use as the build-time base
+
+- #### `run` _(required)_
+  Run-time information. It contains the following:
+
+  - **`run.images`** _(list, required)_\
+    A set of run image references. By default, the first run image specified will be used.
+    Image extensions (experimental) may be used to switch the run image dynamically at build-time.
+    Each run image reference has the following:
+
+      - **`image`** _(string, required)_\
+       Image to use as the run-time base
+
+      - **`mirrors`** _(list, optional)_\
+        [Mirrors](/docs/concepts/components/base-images/run#run-image-mirrors) for the provided image
+
+- #### `stack` _(optional, deprecated)_
+  The stack to use for the builder. See [stack](/docs/concepts/components/stack) concept information for more details.
+  This field should be specified if it is necessary to maintain compatibility with older platforms.
+  If specified, the information in this field must be consistent with the `build` and `run` fields (see above).
+  It contains the following:
 
   - **`id`** _(required, string)_\
     Identifier for the stack
@@ -58,7 +80,7 @@ A [builder][builder] configuration schema is as follows:
     Run image for the stack
 
   - **`run-image-mirrors`** _(optional, string list)_
-    [Run image mirrors](/docs/concepts/components/stack#run-image-mirrors) for the stack
+    [Run image mirrors](/docs/concepts/components/base-images/run#run-image-mirrors) for the stack
 
 - #### `lifecycle` _(optional)_
   The [lifecycle][lifecycle] to embed into the builder. It must contain **at most one** the following fields:
@@ -72,6 +94,23 @@ A [builder][builder] configuration schema is as follows:
     > If `version` and `uri` are both omitted, `lifecycle` defaults to the version that was last released
     > at the time of `pack`'s release. In other words, for a particular version of `pack`, this default
     > will not change despite new lifecycle versions being released.
+
+- #### `build.env` _(optional)_
+  The [[[build.env]]](https://github.com/buildpacks/spec/blob/main/buildpack.md#environment-variable-modification-rules) is used to specify [operator-defined](https://github.com/buildpacks/spec/blob/main/platform.md#operator-defined-variables) build-time environment variables for buildpacks. Set `CNB_BUILD_CONFIG_DIR` in pack's environment to override the default directory (`/cnb/build-config/env`) where environment variable files are stored within the builder.
+
+  - **`name`** _(string, required)_\
+    The name/key of the environment variable.
+
+  - **`value`** _(string, required)_\
+    The value of the environment variable.
+
+  - **`suffix`** _(string, optional)_\
+    The type of action used to modify the environment variable when end-users or buildpacks define the same name/key, one of [`default`](https://github.com/buildpacks/spec/blob/main/buildpack.md#default), [`override`](https://github.com/buildpacks/spec/blob/main/buildpack.md#override), [`append`](https://github.com/buildpacks/spec/blob/main/buildpack.md#append), or [`prepend`](https://github.com/buildpacks/spec/blob/main/buildpack.md#prepend). Defaults to `default` if this field is omitted. Operator-defined environment variables take precedence over end-user or buildpack-defined environment variables.
+
+  - **`delim`** _(string, optional)_\
+    The delimiter used to concatenate two or more values for the given `name`.
+
+  > The `delim` is required when `suffix` is one of `append` or `prepend`. 
 
 ### Supported archives
 
