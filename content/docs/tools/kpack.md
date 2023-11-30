@@ -2,7 +2,7 @@
 title="kpack"
 +++
 
-[kpack][kpack] is a Kubernetes native platform maintained by [VMware][vmware] under the [VMware Tanzu project][vmware-tanzu] that utilizes unprivileged Kubernetes primitives to provide builds of OCI images as a platform implementation of Cloud Native Buildpacks (CNB).
+[kpack][kpack] is a Kubernetes native platform, belonging to the [Buildpacks Community](https://github.com/buildpacks-community) organization. It utilizes unprivileged Kubernetes primitives to provide builds of OCI images as a platform implementation of Cloud Native Buildpacks (CNB).
 <!--more-->
 
 ## Use 
@@ -35,9 +35,12 @@ kpack is also accompanied by a handy CLI utility called [kpack CLI][cli] that le
 - [kpack GitHub repository][kpack]
 - [kpack CLI Github repository][cli]
 - [kpack tutorial][tutorial]
+- [kpack Donation announcement] [announcement]
 
 [vmware]: https://www.vmware.com/company.html
 [vmware-tanzu]: https://tanzu.vmware.com/build-service
 [kpack]: https://github.com/pivotal/kpack
 [tutorial]: https://github.com/pivotal/kpack/blob/master/docs/tutorial.md
 [cli]: https://github.com/vmware-tanzu/kpack-cli/blob/master/docs/kp.md
+[buildpacks]: https://buildpacks.io
+[announcement]: https://medium.com/buildpacks/kpack-joins-the-buildpacks-community-organization-223e59bda951
