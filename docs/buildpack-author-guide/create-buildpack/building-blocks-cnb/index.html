@@ -749,13 +749,13 @@ Using the Pack CLI The buildpack new &amp;lt;id&amp;gt; command will create a di
 <p>The <code>buildpack new &lt;id&gt;</code> command will create a directory named for the buildpack ID.</p>
 <p>Example:</p>
 <!-- test:exec -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack buildpack new examples/ruby <span class="se">\
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack buildpack new examples/node-js <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>    --api 0.8 <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --path ruby-buildpack <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --path node-js-buildpack <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>    --version 0.0.1 <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>    --stacks io.buildpacks.samples.stacks.jammy
 </span></span></code></pre></div><!--+- "{{execute}}"+-->
-<p>This command will create <code>ruby-buildpack</code> directory which contains <code>buildpack.toml</code>, <code>bin/build</code>,  <code>bin/detect</code> files.</p>
+<p>This command will create <code>node-js-buildpack</code> directory which contains <code>buildpack.toml</code>, <code>bin/build</code>,  <code>bin/detect</code> files.</p>
 <h3 id="additional-parameters">Additional Parameters</h3>
 <ul>
 <li><code>-a, --api</code> Buildpack API compatibility of the generated buildpack</li>
@@ -765,14 +765,14 @@ Using the Pack CLI The buildpack new &amp;lt;id&amp;gt; command will create a di
 <li><code>-V, --version</code> the version of the buildpack in buildpack.toml</li>
 </ul>
 <h3 id="buildpacktoml">buildpack.toml</h3>
-<p>You will have <code>ruby-buildpack/buildpack.toml</code><!--+"{{open}}"+--> in your buildpack directory to describe our buildpack.</p>
-<!-- test:file=ruby-buildpack/buildpack.toml -->
+<p>You will have <code>node-js-buildpack/buildpack.toml</code><!--+"{{open}}"+--> in your buildpack directory to describe our buildpack.</p>
+<!-- test:file=node-js-buildpack/buildpack.toml -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="c"># Buildpack API version</span>
 </span></span><span class="line"><span class="cl"><span class="nx">api</span> <span class="p">=</span> <span class="s2">&#34;0.8&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c"># Buildpack ID and metadata</span>
 </span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">buildpack</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;examples/ruby&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;examples/node-js&#34;</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;0.0.1&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c"># Targets the buildpack will work with</span>
@@ -787,18 +787,18 @@ Using the Pack CLI The buildpack new &amp;lt;id&amp;gt; command will create a di
 The stack ID (deprecated) uniquely identifies a build and run image configuration the buildpack will work with. This example can be run on Ubuntu Jammy.</p>
 <h3 id="detect-and-build"><code>detect</code> and <code>build</code></h3>
 <p>Next, we will cover the <code>detect</code> and <code>build</code> scripts. These files are created in <code>bin</code> directory in your buildpack directory.</p>
-<p>Now update your <code>ruby-buildpack/bin/detect</code><!--+"{{open}}"+--> file and copy in the following contents:</p>
-<!-- test:file=ruby-buildpack/bin/detect -->
+<p>Now update your <code>node-js-buildpack/bin/detect</code><!--+"{{open}}"+--> file and copy in the following contents:</p>
+<!-- test:file=node-js-buildpack/bin/detect -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
 </span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="nb">set</span> -eo pipefail
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">exit</span> <span class="m">1</span>
-</span></span></code></pre></div><p>Also update your <code>ruby-buildpack/bin/build</code><!--+"{{open}}"+--> file and copy in the following contents:</p>
-<!-- test:file=ruby-buildpack/bin/build -->
+</span></span></code></pre></div><p>Also update your <code>node-js-buildpack/bin/build</code><!--+"{{open}}"+--> file and copy in the following contents:</p>
+<!-- test:file=node-js-buildpack/bin/build -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
 </span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="nb">set</span> -eo pipefail
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;---&gt; Ruby Buildpack&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;---&gt; NodeJS Buildpack&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nb">exit</span> <span class="m">1</span>
 </span></span></code></pre></div><p>These two files are executable <code>detect</code> and <code>build</code> scripts. You are now able to use this buildpack.</p>
 <h3 id="using-your-buildpack-with-pack">Using your buildpack with <code>pack</code></h3>
@@ -813,14 +813,14 @@ The stack ID (deprecated) uniquely identifies a build and run image configuratio
 </span></span></code></pre></div><!--+- "{{execute}}"+-->
 <p>Then run the following <code>pack</code> command:</p>
 <!-- test:exec;exit-code=1 -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack build test-node-js-app --path ./node-js-sample-app --buildpack ./node-js-buildpack
 </span></span></code></pre></div><!--+- "{{execute}}"+-->
 <p>The <code>pack build</code> command takes in your Ruby sample app as the <code>--path</code> argument and your buildpack as the <code>--buildpack</code> argument.</p>
 <p>After running the command, you should see that it failed to detect, as the <code>detect</code> script is currently written to simply error out.</p>
 <!-- test:assert=contains;ignore-lines=... -->
 <pre tabindex="0"><code>===&gt; DETECTING
 ...
-err:  examples/ruby@0.0.1 (1)
+err:  examples/node-js@0.0.1 (1)
 ...
 ERROR: No buildpack groups passed detection.
 ERROR: failed to detect: buildpack(s) failed with err

@@ -8,8 +8,8 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="We can improve performance by caching dependencies between builds, only re-downloading when necessary. To begin, let&amp;rsquo;s create a cacheable bundler layer.
-Creating the bundler layer To do this,…"/>
+<meta name="description" content="We can improve performance by caching the runtime between builds, only re-downloading when necessary. To begin, let&amp;rsquo;s cache the runtime layer.
+Cache the runtime layer To do this, replace the…"/>
 <link rel="canonical" content="https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/caching/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
@@ -23,8 +23,8 @@ Creating the bundler layer To do this,…"/>
 <meta property="og:url" content="https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/caching/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-<meta property="og:description" content="We can improve performance by caching dependencies between builds, only re-downloading when necessary. To begin, let&amp;rsquo;s create a cacheable bundler layer.
-Creating the bundler layer To do this,…">
+<meta property="og:description" content="We can improve performance by caching the runtime between builds, only re-downloading when necessary. To begin, let&amp;rsquo;s cache the runtime layer.
+Cache the runtime layer To do this, replace the…">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -741,225 +741,113 @@ Creating the bundler layer To do this,…">
         </div>
 
         <!-- test:suite=create-buildpack;weight=7 -->
-<p>We can improve performance by caching dependencies between builds, only re-downloading when necessary. To begin, let&rsquo;s create a cacheable <code>bundler</code> layer.</p>
-<h2 id="creating-the-bundler-layer">Creating the <code>bundler</code> layer</h2>
+<p>We can improve performance by caching the runtime between builds, only re-downloading when necessary. To begin, let&rsquo;s cache the runtime layer.</p>
+<h2 id="cache-the-runtime-layer">Cache the runtime layer</h2>
 <p>To do this, replace the following lines in the <code>build</code> script:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing gems&#34;</span>
-</span></span><span class="line"><span class="cl">bundle install
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 4. MAKE node-js AVAILABLE DURING LAUNCH</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> -e <span class="s1">&#39;[types]\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="si">${</span><span class="nv">layersdir</span><span class="si">}</span><span class="s2">/node-js.toml&#34;</span>
 </span></span></code></pre></div><p>with the following:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing gems&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">bundlerlayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler&#34;</span>
-</span></span><span class="line"><span class="cl">mkdir -p <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nb">echo</span> -e <span class="s1">&#39;[types]\ncache = true\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler.toml&#34;</span>
-</span></span><span class="line"><span class="cl">bundle config <span class="nb">set</span> --local path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> <span class="o">&amp;&amp;</span> bundle install <span class="o">&amp;&amp;</span> bundle binstubs --all --path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span>
-</span></span></code></pre></div><p>Your full <code>ruby-buildpack/bin/build</code><!--+"{{open}}"+--> script should now look like the following:</p>
-<!-- test:file=ruby-buildpack/bin/build -->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 4. MAKE node-js AVAILABLE DURING LAUNCH and CACHE it</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> -e <span class="s1">&#39;[types]\ncache = true\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="si">${</span><span class="nv">layersdir</span><span class="si">}</span><span class="s2">/node-js.toml&#34;</span>
+</span></span></code></pre></div><p>Your full <code>node-js-buildpack/bin/build</code><!--+"{{open}}"+--> script should now look like the following:</p>
+<!-- test:file=node-js-buildpack/bin/build -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
 </span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="nb">set</span> -eo pipefail
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;---&gt; Ruby Buildpack&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;---&gt; NodeJS Buildpack&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 1. GET ARGS</span>
 </span></span><span class="line"><span class="cl"><span class="nv">layersdir</span><span class="o">=</span><span class="nv">$1</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 2. CREATE THE LAYER DIRECTORY</span>
-</span></span><span class="line"><span class="cl"><span class="nv">rubylayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">&#34;</span>/ruby
-</span></span><span class="line"><span class="cl">mkdir -p <span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">node_js_layer</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">layersdir</span><span class="si">}</span><span class="s2">&#34;</span>/node-js
+</span></span><span class="line"><span class="cl">mkdir -p <span class="s2">&#34;</span><span class="si">${</span><span class="nv">node_js_layer</span><span class="si">}</span><span class="s2">&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 3. DOWNLOAD RUBY</span>
-</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;---&gt; Downloading and extracting Ruby&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">ruby_url</span><span class="o">=</span>https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-22/ruby-3.1.3.tgz
-</span></span><span class="line"><span class="cl">wget -q -O - <span class="s2">&#34;</span><span class="nv">$ruby_url</span><span class="s2">&#34;</span> <span class="p">|</span> tar -xzf - -C <span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 3. DOWNLOAD NodeJS</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;---&gt; Downloading and extracting NodeJS&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">node_js_url</span><span class="o">=</span>https://nodejs.org/dist/v18.18.1/node-v18.18.1-linux-x64.tar.xz
+</span></span><span class="line"><span class="cl">wget -q -O - <span class="s2">&#34;</span><span class="nv">$node_js_url</span><span class="s2">&#34;</span> <span class="p">|</span> tar -xJf - --strip-components <span class="m">1</span> -C <span class="s2">&#34;</span><span class="si">${</span><span class="nv">node_js_layer</span><span class="si">}</span><span class="s2">&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 4. MAKE RUBY AVAILABLE DURING LAUNCH</span>
-</span></span><span class="line"><span class="cl"><span class="nb">echo</span> -e <span class="s1">&#39;[types]\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/ruby.toml&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 4. MAKE NodeJS AVAILABLE DURING LAUNCH and CACHE the LAYER</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ========== MODIFIED ===========</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> -e <span class="s1">&#39;[types]\ncache = true\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="si">${</span><span class="nv">layersdir</span><span class="si">}</span><span class="s2">/node-js.toml&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 5. MAKE RUBY AVAILABLE TO THIS SCRIPT</span>
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>/bin:<span class="nv">$PATH</span>
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="p">:+</span><span class="si">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="si">}</span><span class="p">:</span><span class="si">}</span><span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">/lib&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># ======= MODIFIED =======</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 6. INSTALL GEMS</span>
-</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing gems&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">bundlerlayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler&#34;</span>
-</span></span><span class="line"><span class="cl">mkdir -p <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nb">echo</span> -e <span class="s1">&#39;[types]\ncache = true\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler.toml&#34;</span>
-</span></span><span class="line"><span class="cl">bundle config <span class="nb">set</span> --local path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> <span class="o">&amp;&amp;</span> bundle install <span class="o">&amp;&amp;</span> bundle binstubs --all --path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 7. SET DEFAULT START COMMAND</span>
-</span></span><span class="line"><span class="cl">cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt; EOL
+</span></span><span class="line"><span class="cl"><span class="c1"># 5. SET DEFAULT START COMMAND</span>
+</span></span><span class="line"><span class="cl">cat &gt; <span class="s2">&#34;</span><span class="si">${</span><span class="nv">layersdir</span><span class="si">}</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt; EOL
 </span></span></span><span class="line"><span class="cl"><span class="s"># our web process
 </span></span></span><span class="line"><span class="cl"><span class="s">[[processes]]
 </span></span></span><span class="line"><span class="cl"><span class="s">type = &#34;web&#34;
-</span></span></span><span class="line"><span class="cl"><span class="s">command = &#34;bundle exec ruby app.rb&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">command = &#34;node app.js&#34;
 </span></span></span><span class="line"><span class="cl"><span class="s">default = true
 </span></span></span><span class="line"><span class="cl"><span class="s">
-</span></span></span><span class="line"><span class="cl"><span class="s"># our worker process
+</span></span></span><span class="line"><span class="cl"><span class="s"># our debug process
 </span></span></span><span class="line"><span class="cl"><span class="s">[[processes]]
-</span></span></span><span class="line"><span class="cl"><span class="s">type = &#34;worker&#34;
-</span></span></span><span class="line"><span class="cl"><span class="s">command = &#34;bundle exec ruby worker.rb&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">type = &#34;debug&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">command = &#34;node --inspect app.js&#34;
 </span></span></span><span class="line"><span class="cl"><span class="s">EOL</span>
-</span></span></code></pre></div><p>Now when we run:</p>
+</span></span></code></pre></div><p>Now when we build the image twice we should see the <code>node-js</code> layer is reused on the second build:</p>
 <!-- test:exec -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack build test-node-js-app --path ./node-js-sample-app --buildpack ./node-js-buildpack
+</span></span><span class="line"><span class="cl">pack build test-node-js-app --path ./node-js-sample-app --buildpack ./node-js-buildpack
 </span></span></code></pre></div><!--+- "{{execute}}"+-->
 <p>You will see something similar to the following during the <code>EXPORTING</code> phase:</p>
 <!-- test:assert=contains -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Adding layer &#39;examples/ruby:bundler&#39;
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Reusing layer &#39;examples/node-js:node-js&#39;
 </span></span></code></pre></div><h2 id="caching-dependencies">Caching dependencies</h2>
-<p>Now, let&rsquo;s implement the caching logic. We&rsquo;ll first need to create a <code>ruby-sample-app/Gemfile.lock</code><!--+"{{open}}"+--> file with the contents given below:</p>
-<blockquote>
-<p>Typically you would run <code>bundle install</code> locally to generate this file, but for the sake
-of simplicity we&rsquo;ll create <code>ruby-sample-app/Gemfile.lock</code> manually.</p>
-</blockquote>
-<!-- test:file=ruby-sample-app/Gemfile.lock -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">GEM
-</span></span><span class="line"><span class="cl">  remote: https://rubygems.org/
-</span></span><span class="line"><span class="cl">  specs:
-</span></span><span class="line"><span class="cl">    mustermann (1.0.3)
-</span></span><span class="line"><span class="cl">    rack (2.0.7)
-</span></span><span class="line"><span class="cl">    rack-protection (2.0.7)
-</span></span><span class="line"><span class="cl">      rack
-</span></span><span class="line"><span class="cl">    sinatra (2.0.7)
-</span></span><span class="line"><span class="cl">      mustermann (~&gt; 1.0)
-</span></span><span class="line"><span class="cl">      rack (~&gt; 2.0)
-</span></span><span class="line"><span class="cl">      rack-protection (= 2.0.7)
-</span></span><span class="line"><span class="cl">      tilt (~&gt; 2.0)
-</span></span><span class="line"><span class="cl">    tilt (2.0.9)
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">PLATFORMS
-</span></span><span class="line"><span class="cl">  ruby
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">DEPENDENCIES
-</span></span><span class="line"><span class="cl">  sinatra
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">BUNDLED WITH
-</span></span><span class="line"><span class="cl">   2.0.2
-</span></span></code></pre></div><p>Replace the gem installation logic from the previous step:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># ...</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing gems&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">bundlerlayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler&#34;</span>
-</span></span><span class="line"><span class="cl">mkdir -p <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nb">echo</span> -e <span class="s1">&#39;[types]\ncache = true\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler.toml&#34;</span>
-</span></span><span class="line"><span class="cl">bundle config <span class="nb">set</span> --local path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> <span class="o">&amp;&amp;</span> bundle install <span class="o">&amp;&amp;</span> bundle binstubs --all --path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># ...</span>
-</span></span></code></pre></div><p>with the new logic below that checks to see if any gems have been changed. This simply creates a checksum for the previous <code>Gemfile.lock</code> and compares it to the checksum of the current <code>Gemfile.lock</code>. If they are the same, the gems are reused. If they are not, the new gems are installed.</p>
-<p>We&rsquo;ll now write additional metadata to our <code>bundler.toml</code> of the form <code>cache = true</code> and <code>launch = true</code>. This directs the lifecycle to cache our gems and provide them when launching our application. With <code>cache = true</code> the lifecycle can keep existing gems around so that build times are fast, even with minor <code>Gemfile.lock</code> changes.</p>
-<p>Note that there may be times when you would want to clean the cached layer from the previous build, in which case you should always ensure to remove the contents of the layer before proceeding with the build. In the case below this can be done using a simple <code>rm -rf &quot;$bundlerlayer&quot;/*</code> after the <code>mkdir -p &quot;$bundlerlayer&quot;</code> command.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Compares previous Gemfile.lock checksum to the current Gemfile.lock</span>
-</span></span><span class="line"><span class="cl"><span class="nv">bundlerlayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">local_bundler_checksum</span><span class="o">=</span><span class="k">$((</span>sha256sum Gemfile.lock <span class="o">||</span> <span class="nb">echo</span> <span class="s1">&#39;DOES_NOT_EXIST&#39;</span><span class="o">)</span> <span class="o">|</span> cut <span class="o">-</span>d <span class="s1">&#39; &#39;</span> <span class="o">-</span>f <span class="m">1</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="nv">remote_bundler_checksum</span><span class="o">=</span><span class="k">$(</span>cat <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler.toml&#34;</span> <span class="p">|</span> yj -t <span class="p">|</span> jq -r .metadata.checksum 2&gt;/dev/null <span class="o">||</span> <span class="nb">echo</span> <span class="s1">&#39;DOES_NOT_EXIST&#39;</span><span class="k">)</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Always set the types table so that we re-use the appropriate layers</span>
-</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="o">-</span>e <span class="s1">&#39;[types]\ncache = true\nlaunch = true&#39;</span> &gt;&gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler.toml&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[[</span> <span class="o">-</span>f Gemfile.lock <span class="o">&amp;&amp;</span> <span class="nv">$local_bundler_checksum</span> <span class="o">==</span> <span class="nv">$remote_bundler_checksum</span> <span class="o">]]</span> <span class="p">;</span> <span class="k">then</span>
-</span></span><span class="line"><span class="cl">    <span class="c1"># Determine if no gem dependencies have changed, so it can reuse existing gems without running bundle install</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;---&gt; Reusing gems&#34;</span>
-</span></span><span class="line"><span class="cl">    bundle config <span class="o">--</span><span class="nb">local</span> path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> &gt;/dev/null
-</span></span><span class="line"><span class="cl">    bundle config <span class="o">--</span><span class="nb">local</span> bin <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span> &gt;/dev/null
-</span></span><span class="line"><span class="cl"><span class="k">else</span>
-</span></span><span class="line"><span class="cl">    <span class="c1"># Determine if there has been a gem dependency change and install new gems to the bundler layer; re-using existing and un-changed gems</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing gems&#34;</span>
-</span></span><span class="line"><span class="cl">    mkdir <span class="o">-</span>p <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl">    cat &gt;&gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler.toml&#34;</span> <span class="s">&lt;&lt; EOL
-</span></span></span><span class="line"><span class="cl"><span class="s">[metadata]
-</span></span></span><span class="line"><span class="cl"><span class="s">checksum = &#34;$local_bundler_checksum&#34;
-</span></span></span><span class="line"><span class="cl"><span class="s">EOL</span>
-</span></span><span class="line"><span class="cl">    bundle config <span class="nb">set</span> <span class="o">--</span><span class="nb">local</span> path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> <span class="o">&amp;&amp;</span> bundle install <span class="o">&amp;&amp;</span> bundle binstubs <span class="o">--</span>all <span class="o">--</span>path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">fi</span>
-</span></span></code></pre></div><p>Your full <code>ruby-buildpack/bin/build</code><!--+"{{open}}"+--> script will now look like this:</p>
-<!-- test:file=ruby-buildpack/bin/build -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="nb">set</span> -eo pipefail
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;---&gt; Ruby Buildpack&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 1. GET ARGS</span>
-</span></span><span class="line"><span class="cl"><span class="nv">layersdir</span><span class="o">=</span><span class="nv">$1</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 2. CREATE THE LAYER DIRECTORY</span>
-</span></span><span class="line"><span class="cl"><span class="nv">rubylayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">&#34;</span>/ruby
-</span></span><span class="line"><span class="cl">mkdir -p <span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 3. DOWNLOAD RUBY</span>
-</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;---&gt; Downloading and extracting Ruby&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">ruby_url</span><span class="o">=</span>https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-22/ruby-3.1.3.tgz
-</span></span><span class="line"><span class="cl">wget -q -O - <span class="s2">&#34;</span><span class="nv">$ruby_url</span><span class="s2">&#34;</span> <span class="p">|</span> tar -xzf - -C <span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 4. MAKE RUBY AVAILABLE DURING LAUNCH</span>
-</span></span><span class="line"><span class="cl"><span class="nb">echo</span> -e <span class="s1">&#39;[types]\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/ruby.toml&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 5. MAKE RUBY AVAILABLE TO THIS SCRIPT</span>
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>/bin:<span class="nv">$PATH</span>
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="p">:+</span><span class="si">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="si">}</span><span class="p">:</span><span class="si">}</span><span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">/lib&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># ======= MODIFIED =======</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 6. INSTALL GEMS</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># Compares previous Gemfile.lock checksum to the current Gemfile.lock</span>
-</span></span><span class="line"><span class="cl"><span class="nv">bundlerlayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">local_bundler_checksum</span><span class="o">=</span><span class="k">$((</span>sha256sum Gemfile.lock <span class="o">||</span> <span class="nb">echo</span> <span class="s1">&#39;DOES_NOT_EXIST&#39;</span><span class="o">)</span> <span class="o">|</span> cut <span class="o">-</span>d <span class="s1">&#39; &#39;</span> <span class="o">-</span>f <span class="m">1</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="nv">remote_bundler_checksum</span><span class="o">=</span><span class="k">$(</span>cat <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler.toml&#34;</span> <span class="p">|</span> yj -t <span class="p">|</span> jq -r .metadata.checksum 2&gt;/dev/null <span class="o">||</span> <span class="nb">echo</span> <span class="s1">&#39;DOES_NOT_EXIST&#39;</span><span class="k">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># Always set the types table so that we re-use the appropriate layers</span>
-</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="o">-</span>e <span class="s1">&#39;[types]\ncache = true\nlaunch = true&#39;</span> &gt;&gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler.toml&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[[</span> <span class="o">-</span>f Gemfile.lock <span class="o">&amp;&amp;</span> <span class="nv">$local_bundler_checksum</span> <span class="o">==</span> <span class="nv">$remote_bundler_checksum</span> <span class="o">]]</span> <span class="p">;</span> <span class="k">then</span>
-</span></span><span class="line"><span class="cl">    <span class="c1"># Determine if no gem dependencies have changed, so it can reuse existing gems without running bundle install</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;---&gt; Reusing gems&#34;</span>
-</span></span><span class="line"><span class="cl">    bundle config <span class="o">--</span><span class="nb">local</span> path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> &gt;/dev/null
-</span></span><span class="line"><span class="cl">    bundle config <span class="o">--</span><span class="nb">local</span> bin <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span> &gt;/dev/null
-</span></span><span class="line"><span class="cl"><span class="k">else</span>
-</span></span><span class="line"><span class="cl">    <span class="c1"># Determine if there has been a gem dependency change and install new gems to the bundler layer; re-using existing and un-changed gems</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing gems&#34;</span>
-</span></span><span class="line"><span class="cl">    mkdir <span class="o">-</span>p <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl">    cat &gt;&gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler.toml&#34;</span> <span class="s">&lt;&lt; EOL
-</span></span></span><span class="line"><span class="cl"><span class="s">[metadata]
-</span></span></span><span class="line"><span class="cl"><span class="s">checksum = &#34;$local_bundler_checksum&#34;
-</span></span></span><span class="line"><span class="cl"><span class="s">EOL</span>
-</span></span><span class="line"><span class="cl">    bundle config <span class="nb">set</span> <span class="o">--</span><span class="nb">local</span> path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> <span class="o">&amp;&amp;</span> bundle install <span class="o">&amp;&amp;</span> bundle binstubs <span class="o">--</span>all <span class="o">--</span>path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">fi</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 7. SET DEFAULT START COMMAND</span>
-</span></span><span class="line"><span class="cl">cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt; EOL
-</span></span></span><span class="line"><span class="cl"><span class="s"># our web process
-</span></span></span><span class="line"><span class="cl"><span class="s">[[processes]]
-</span></span></span><span class="line"><span class="cl"><span class="s">type = &#34;web&#34;
-</span></span></span><span class="line"><span class="cl"><span class="s">command = &#34;bundle exec ruby app.rb&#34;
-</span></span></span><span class="line"><span class="cl"><span class="s">default = true
-</span></span></span><span class="line"><span class="cl"><span class="s">
-</span></span></span><span class="line"><span class="cl"><span class="s"># our worker process
-</span></span></span><span class="line"><span class="cl"><span class="s">[[processes]]
-</span></span></span><span class="line"><span class="cl"><span class="s">type = &#34;worker&#34;
-</span></span></span><span class="line"><span class="cl"><span class="s">command = &#34;bundle exec ruby worker.rb&#34;
-</span></span></span><span class="line"><span class="cl"><span class="s">EOL</span>
-</span></span></code></pre></div><p>Now when you build your app:</p>
+<p>Now, let&rsquo;s implement the caching logic.  We need to record the version of the NodeJS runtime that is used in a build.  On subsequent builds, the caching logic will detect if the NodeJS version is the same as the version in the cached layer.  We restore the previous layer from the cache if the current requested NodeJS version matches the previous NodeJS runtime version.</p>
+<!-- test:file=node-js-buildpack/bin/build -->
+<pre tabindex="0"><code>#!/usr/bin/env bash
+set -eo pipefail
+
+echo &#34;---&gt; NodeJS Buildpack&#34;
+
+# 1. GET ARGS
+layersdir=$1
+
+# 2. CREATE THE LAYER DIRECTORY
+node_js_layer=&#34;${layersdir}&#34;/node-js
+mkdir -p &#34;${node_js_layer}&#34;
+
+# ======= MODIFIED =======
+# 3. DOWNLOAD node-js
+node_js_version=&#34;18.18.1&#34;
+node_js_url=https://nodejs.org/dist/v${node_js_version}/node-v${node_js_version}-linux-x64.tar.xz
+cached_nodejs_version=$(cat &#34;${layersdir}/node-js.toml&#34; 2&gt; /dev/null | yj -t | jq -r .metadata.nodejs_version 2&gt;/dev/null || echo &#39;NOT FOUND&#39;)
+if [[ &#34;${node_js_url}&#34; != *&#34;${cached_nodejs_version}&#34;* ]] ; then
+    echo &#34;-----&gt; Downloading and extracting NodeJS&#34;
+    wget -q -O - &#34;${node_js_url}&#34; | tar -xJf - --strip-components 1 -C &#34;${node_js_layer}&#34;
+else
+    echo &#34;-----&gt; Reusing NodeJS&#34;
+fi
+
+# ======= MODIFIED =======
+# 4. MAKE node-js AVAILABLE DURING LAUNCH and CACHE the LAYER
+    cat &gt; &#34;${layersdir}/node-js.toml&#34; &lt;&lt; EOL
+[types]
+cache = true
+launch = true
+[metadata]
+nodejs_version = &#34;${node_js_version}&#34;
+EOL
+
+# 5. SET DEFAULT START COMMAND
+cat &gt;&gt; &#34;${layersdir}/launch.toml&#34; &lt;&lt; EOL
+[[processes]]
+type = &#34;web&#34;
+command = &#34;node app.js&#34;
+default = true
+EOL
+</code></pre><p>Now when you build your app, the second call will reuse the layer:</p>
 <!-- test:exec -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
-</span></span></code></pre></div><!--+- "{{execute}}"+-->
-<p>it will download the gems:</p>
-<!-- test:assert=contains;ignore-lines=... -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">===&gt; BUILDING
-</span></span><span class="line"><span class="cl">...
-</span></span><span class="line"><span class="cl">---&gt; Ruby Buildpack
-</span></span><span class="line"><span class="cl">---&gt; Downloading and extracting Ruby
-</span></span><span class="line"><span class="cl">---&gt; Installing gems
-</span></span></code></pre></div><p>If you build the app again:</p>
-<!-- test:exec -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">pack build test-node-js-app --path ./node-js-sample-app --buildpack ./node-js-buildpack
+</span></span><span class="line"><span class="cl">pack build test-node-js-app --path ./node-js-sample-app --buildpack ./node-js-buildpack
 </span></span></code></pre></div><!--+- "{{execute}}"+-->
 <p>you will see the new caching logic at work during the <code>BUILDING</code> phase:</p>
 <!-- test:assert=contains;ignore-lines=... -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">===&gt; BUILDING
 </span></span><span class="line"><span class="cl">...
-</span></span><span class="line"><span class="cl">---&gt; Ruby Buildpack
-</span></span><span class="line"><span class="cl">---&gt; Downloading and extracting Ruby
-</span></span><span class="line"><span class="cl">---&gt; Reusing gems
+</span></span><span class="line"><span class="cl">---&gt; NodeJS Buildpack
+</span></span><span class="line"><span class="cl">-----&gt; Reusing NodeJS
 </span></span></code></pre></div><p>Next, let&rsquo;s see how buildpack users may be able to provide configuration to the buildpack.</p>
 <!--+if false+-->
 <hr>

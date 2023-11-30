@@ -750,33 +750,29 @@ The process types that are…">
 <li>And more&hellip;!</li>
 </ul>
 <p>You can find some of this information using <code>pack</code> via its <code>inspect-image</code> command.  The bill-of-materials information will be available using <code>pack sbom download</code>.</p>
-<!-- test:exec -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack inspect-image test-ruby-app
-</span></span></code></pre></div><!--+- "{{execute}}"+-->
-<p>You should see the following:</p>
-<!-- test:assert=contains;ignore-lines=... -->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack inspect-image test-node-js-app
+</span></span></code></pre></div><p>You should see the following:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Run Images:
 </span></span><span class="line"><span class="cl">  cnbs/sample-base-run:jammy
 </span></span><span class="line"><span class="cl">...
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">Buildpacks:
 </span></span><span class="line"><span class="cl">  ID                   VERSION        HOMEPAGE
-</span></span><span class="line"><span class="cl">  examples/ruby        0.0.1          -
+</span></span><span class="line"><span class="cl">  examples/node-js        0.0.1          -
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">Processes:
 </span></span><span class="line"><span class="cl">  TYPE                 SHELL        COMMAND                           ARGS        WORK DIR
-</span></span><span class="line"><span class="cl">  web (default)        bash         bundle exec ruby app.rb                       /workspace
-</span></span><span class="line"><span class="cl">  worker               bash         bundle exec ruby worker.rb                    /workspace
-</span></span></code></pre></div><p>Apart from the above standard metadata, buildpacks can also populate information about the dependencies they have provided in form of a <code>Bill-of-Materials</code>. Let&rsquo;s see how we can use this to populate information about the version of <code>ruby</code> that was installed in the output app image.</p>
-<p>To add the <code>ruby</code> version to the output of <code>pack download sbom</code>, we will have to provide a <a href="https://en.wikipedia.org/wiki/Software_bill_of_materials">Software <code>Bill-of-Materials</code></a> (<code>SBOM</code>) containing this information. There are three &ldquo;standard&rdquo; ways to report SBOM data.  You&rsquo;ll need to choose to use one of <a href="https://cyclonedx.org/">CycloneDX</a>, <a href="https://spdx.dev/">SPDX</a> or <a href="https://github.com/anchore/syft">Syft</a> update the <code>ruby.sbom.&lt;ext&gt;</code> (where <code>&lt;ext&gt;</code> is the extension appropriate for your SBOM standard, one of <code>cdx.json</code>, <code>spdx.json</code> or <code>syft.json</code>) at the end of your <code>build</code> script.  Discussion of which SBOM format to choose is outside the scope of this tutorial, but we will note that the SBOM format you choose to use is likely to be the output format of any SBOM scanner (eg: <a href="https://github.com/anchore/syft"><code>syft cli</code></a>) you might choose to use.  In this example we will use the CycloneDX json format.</p>
+</span></span><span class="line"><span class="cl">  web (default)        bash         node-js app.js                                   /workspace
+</span></span></code></pre></div><p>Apart from the above standard metadata, buildpacks can also populate information about the dependencies they have provided in form of a <code>Bill-of-Materials</code>. Let&rsquo;s see how we can use this to populate information about the version of <code>node-js</code> that was installed in the output app image.</p>
+<p>To add the <code>node-js</code> version to the output of <code>pack download sbom</code>, we will have to provide a <a href="https://en.wikipedia.org/wiki/Software_bill_of_materials">Software <code>Bill-of-Materials</code></a> (<code>SBOM</code>) containing this information. There are three &ldquo;standard&rdquo; ways to report SBOM data.  You&rsquo;ll need to choose to use one of <a href="https://cyclonedx.org/">CycloneDX</a>, <a href="https://spdx.dev/">SPDX</a> or <a href="https://github.com/anchore/syft">Syft</a> update the <code>node-js.sbom.&lt;ext&gt;</code> (where <code>&lt;ext&gt;</code> is the extension appropriate for your SBOM standard, one of <code>cdx.json</code>, <code>spdx.json</code> or <code>syft.json</code>) at the end of your <code>build</code> script.  Discussion of which SBOM format to choose is outside the scope of this tutorial, but we will note that the SBOM format you choose to use is likely to be the output format of any SBOM scanner (eg: <a href="https://github.com/anchore/syft"><code>syft cli</code></a>) you might choose to use.  In this example we will use the CycloneDX json format.</p>
 <p>First, annotate the <code>buildpack.toml</code> to specify that it emits CycloneDX:</p>
-<!-- test:file=ruby-buildpack/buildpack.toml -->
+<!-- test:file=node-js-buildpack/buildpack.toml -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="c"># Buildpack API version</span>
 </span></span><span class="line"><span class="cl"><span class="nx">api</span> <span class="p">=</span> <span class="s2">&#34;0.8&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c"># Buildpack ID and metadata</span>
 </span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">buildpack</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;examples/ruby&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;examples/node-js&#34;</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;0.0.1&#34;</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">sbom-formats</span> <span class="p">=</span> <span class="p">[</span> <span class="s2">&#34;application/vnd.cyclonedx+json&#34;</span> <span class="p">]</span>
 </span></span><span class="line"><span class="cl">
@@ -790,8 +786,8 @@ The process types that are…">
 </span></span></code></pre></div><p>Then, in our buildpack implementation we will generate the necessary SBOM metadata:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># ...</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># Append a Bill-of-Materials containing metadata about the provided ruby version</span>
-</span></span><span class="line"><span class="cl">cat &gt;&gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/ruby.sbom.cdx.json&#34;</span> <span class="s">&lt;&lt; EOL
+</span></span><span class="line"><span class="cl"><span class="c1"># Append a Bill-of-Materials containing metadata about the provided node-js version</span>
+</span></span><span class="line"><span class="cl">cat &gt;&gt; <span class="s2">&#34;</span><span class="si">${</span><span class="nv">layersdir</span><span class="si">}</span><span class="s2">/node-js.sbom.cdx.json&#34;</span> <span class="s">&lt;&lt; EOL
 </span></span></span><span class="line"><span class="cl"><span class="s">{
 </span></span></span><span class="line"><span class="cl"><span class="s">  &#34;bomFormat&#34;: &#34;CycloneDX&#34;,
 </span></span></span><span class="line"><span class="cl"><span class="s">  &#34;specVersion&#34;: &#34;1.4&#34;,
@@ -799,15 +795,15 @@ The process types that are…">
 </span></span></span><span class="line"><span class="cl"><span class="s">  &#34;components&#34;: [
 </span></span></span><span class="line"><span class="cl"><span class="s">    {
 </span></span></span><span class="line"><span class="cl"><span class="s">      &#34;type&#34;: &#34;library&#34;,
-</span></span></span><span class="line"><span class="cl"><span class="s">      &#34;name&#34;: &#34;ruby&#34;,
-</span></span></span><span class="line"><span class="cl"><span class="s">      &#34;version&#34;: &#34;$ruby_version&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">      &#34;name&#34;: &#34;node-js&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s">      &#34;version&#34;: &#34;${node_js_version}&#34;
 </span></span></span><span class="line"><span class="cl"><span class="s">    }
 </span></span></span><span class="line"><span class="cl"><span class="s">  ]
 </span></span></span><span class="line"><span class="cl"><span class="s">}
 </span></span></span><span class="line"><span class="cl"><span class="s">EOL</span>
-</span></span></code></pre></div><p>We can also add an SBOM entry for each dependency listed in <code>Gemfile.lock</code>.  Here we use <code>jq</code> to add a new record to the <code>components</code> array in <code>bundler.sbom.cdx.json</code>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nv">crubybom</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">layersdir</span><span class="si">}</span><span class="s2">/ruby.sbom.cdx.json&#34;</span>
-</span></span><span class="line"><span class="cl">cat &gt;&gt; <span class="si">${</span><span class="nv">rubybom</span><span class="si">}</span> <span class="s">&lt;&lt; EOL
+</span></span></code></pre></div><p>We can also add an SBOM entry for each dependency listed in <code>package.json</code>.  Here we use <code>jq</code> to add a new record to the <code>components</code> array in <code>bundler.sbom.cdx.json</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">node-jsbom<span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">layersdir</span><span class="si">}</span><span class="s2">/node-js.sbom.cdx.json&#34;</span>
+</span></span><span class="line"><span class="cl">cat &gt;&gt; <span class="si">${</span><span class="nv">node</span><span class="p">-jsbom</span><span class="si">}</span> <span class="s">&lt;&lt; EOL
 </span></span></span><span class="line"><span class="cl"><span class="s">{
 </span></span></span><span class="line"><span class="cl"><span class="s">  &#34;bomFormat&#34;: &#34;CycloneDX&#34;,
 </span></span></span><span class="line"><span class="cl"><span class="s">  &#34;specVersion&#34;: &#34;1.4&#34;,
@@ -815,94 +811,61 @@ The process types that are…">
 </span></span></span><span class="line"><span class="cl"><span class="s">  &#34;components&#34;: [
 </span></span></span><span class="line"><span class="cl"><span class="s">    {
 </span></span></span><span class="line"><span class="cl"><span class="s">      &#34;type&#34;: &#34;library&#34;,
-</span></span></span><span class="line"><span class="cl"><span class="s">      &#34;name&#34;: &#34;ruby&#34;,
-</span></span></span><span class="line"><span class="cl"><span class="s">      &#34;version&#34;: &#34;$ruby_version&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">      &#34;name&#34;: &#34;node-js&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s">      &#34;version&#34;: &#34;${node_js_version}&#34;
 </span></span></span><span class="line"><span class="cl"><span class="s">    }
 </span></span></span><span class="line"><span class="cl"><span class="s">  ]
 </span></span></span><span class="line"><span class="cl"><span class="s">}
 </span></span></span><span class="line"><span class="cl"><span class="s">EOL</span>
-</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[[</span> -f Gemfile.lock <span class="o">]]</span> <span class="p">;</span> <span class="k">then</span>
-</span></span><span class="line"><span class="cl">  <span class="k">for</span> gem in <span class="k">$(</span>gem dep -q <span class="p">|</span> grep ^Gem <span class="p">|</span> sed <span class="s1">&#39;s/^Gem //&#39;</span><span class="k">)</span>
-</span></span><span class="line"><span class="cl">  <span class="k">do</span>
-</span></span><span class="line"><span class="cl">    <span class="nv">version</span><span class="o">=</span><span class="si">${</span><span class="nv">gem</span><span class="p">##*-</span><span class="si">}</span>
-</span></span><span class="line"><span class="cl">    <span class="nv">name</span><span class="o">=</span><span class="si">${</span><span class="nv">gem</span><span class="p">%-</span><span class="si">${</span><span class="nv">version</span><span class="si">}}</span>
-</span></span><span class="line"><span class="cl">    <span class="nv">DEP</span><span class="o">=</span><span class="k">$(</span>jq --arg name <span class="s2">&#34;</span><span class="si">${</span><span class="nv">name</span><span class="si">}</span><span class="s2">&#34;</span> --arg version <span class="s2">&#34;</span><span class="si">${</span><span class="nv">version</span><span class="si">}</span><span class="s2">&#34;</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>      <span class="s1">&#39;.components[.components| length] |= . + {&#34;type&#34;: &#34;library&#34;, &#34;name&#34;: $name, &#34;version&#34;: $version}&#39;</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>      <span class="s2">&#34;</span><span class="si">${</span><span class="nv">rubybom</span><span class="si">}</span><span class="s2">&#34;</span><span class="k">)</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="si">${</span><span class="nv">DEP</span><span class="si">}</span> &gt; <span class="s2">&#34;</span><span class="si">${</span><span class="nv">rubybom</span><span class="si">}</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl">  <span class="k">done</span>
-</span></span><span class="line"><span class="cl"><span class="k">fi</span>
-</span></span></code></pre></div><p>Your <code>ruby-buildpack/bin/build</code><!--+"{{open}}"+--> script should look like the following:</p>
-<!-- test:file=ruby-buildpack/bin/build -->
+</span></span></code></pre></div><p>Your <code>node-js-buildpack/bin/build</code><!--+"{{open}}"+--> script should look like the following:</p>
+<!-- test:file=node-js-buildpack/bin/build -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
 </span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="nb">set</span> -eo pipefail
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;---&gt; Ruby Buildpack&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;---&gt; NodeJS Buildpack&#34;</span>
 </span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ======= MODIFIED =======</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 1. GET ARGS</span>
 </span></span><span class="line"><span class="cl"><span class="nv">layersdir</span><span class="o">=</span><span class="nv">$1</span>
 </span></span><span class="line"><span class="cl"><span class="nv">plan</span><span class="o">=</span><span class="nv">$3</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 2. CREATE THE LAYER DIRECTORY</span>
-</span></span><span class="line"><span class="cl"><span class="nv">rubylayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">&#34;</span>/ruby
-</span></span><span class="line"><span class="cl">mkdir -p <span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">node_js_layer</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">layersdir</span><span class="si">}</span><span class="s2">&#34;</span>/node-js
+</span></span><span class="line"><span class="cl">mkdir -p <span class="s2">&#34;</span><span class="si">${</span><span class="nv">node_js_layer</span><span class="si">}</span><span class="s2">&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 3. DOWNLOAD RUBY</span>
-</span></span><span class="line"><span class="cl"><span class="nv">ruby_version</span><span class="o">=</span><span class="k">$(</span>cat <span class="s2">&#34;</span><span class="nv">$plan</span><span class="s2">&#34;</span> <span class="p">|</span> yj -t <span class="p">|</span> jq -r <span class="s1">&#39;.entries[] | select(.name == &#34;ruby&#34;) | .metadata.version&#39;</span><span class="k">)</span>
-</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;---&gt; Downloading and extracting Ruby </span><span class="nv">$ruby_version</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">ruby_url</span><span class="o">=</span>https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-22/ruby-<span class="nv">$ruby_version</span>.tgz
-</span></span><span class="line"><span class="cl">wget -q -O - <span class="s2">&#34;</span><span class="nv">$ruby_url</span><span class="s2">&#34;</span> <span class="p">|</span> tar -xzf - -C <span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 4. MAKE RUBY AVAILABLE DURING LAUNCH</span>
-</span></span><span class="line"><span class="cl"><span class="nb">echo</span> -e <span class="s1">&#39;[types]\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/ruby.toml&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 5. MAKE RUBY AVAILABLE TO THIS SCRIPT</span>
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">&#34;</span>/bin:<span class="nv">$PATH</span>
-</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">LD_LIBRARY_PATH</span><span class="o">=</span><span class="si">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="p">:+</span><span class="si">${</span><span class="nv">LD_LIBRARY_PATH</span><span class="si">}</span><span class="p">:</span><span class="si">}</span><span class="s2">&#34;</span><span class="nv">$rubylayer</span><span class="s2">/lib&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 6. INSTALL GEMS</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># Compares previous Gemfile.lock checksum to the current Gemfile.lock</span>
-</span></span><span class="line"><span class="cl"><span class="nv">bundlerlayer</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">local_bundler_checksum</span><span class="o">=</span><span class="k">$((</span>sha256sum Gemfile.lock <span class="o">||</span> <span class="nb">echo</span> <span class="s1">&#39;DOES_NOT_EXIST&#39;</span><span class="o">)</span> <span class="o">|</span> cut <span class="o">-</span>d <span class="s1">&#39; &#39;</span> <span class="o">-</span>f <span class="m">1</span><span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="nv">remote_bundler_checksum</span><span class="o">=</span><span class="k">$(</span>cat <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler.toml&#34;</span> <span class="p">|</span> yj -t <span class="p">|</span> jq -r .metadata.checksum 2&gt;/dev/null <span class="o">||</span> <span class="nb">echo</span> <span class="s1">&#39;DOES_NOT_EXIST&#39;</span><span class="k">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># Always set the types table so that we re-use the appropriate layers</span>
-</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="o">-</span>e <span class="s1">&#39;[types]\ncache = true\nlaunch = true&#39;</span> &gt;&gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler.toml&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[[</span> <span class="o">-</span>f Gemfile.lock <span class="o">&amp;&amp;</span> <span class="nv">$local_bundler_checksum</span> <span class="o">==</span> <span class="nv">$remote_bundler_checksum</span> <span class="o">]]</span> <span class="p">;</span> <span class="k">then</span>
-</span></span><span class="line"><span class="cl">    <span class="c1"># Determine if no gem dependencies have changed, so it can reuse existing gems without running bundle install</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;---&gt; Reusing gems&#34;</span>
-</span></span><span class="line"><span class="cl">    bundle config <span class="o">--</span><span class="nb">local</span> path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> &gt;/dev/null
-</span></span><span class="line"><span class="cl">    bundle config <span class="o">--</span><span class="nb">local</span> bin <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span> &gt;/dev/null
+</span></span><span class="line"><span class="cl"><span class="c1"># 3. DOWNLOAD node-js</span>
+</span></span><span class="line"><span class="cl"><span class="nv">default_node_js_version</span><span class="o">=</span><span class="s2">&#34;18.18.1&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">node_js_version</span><span class="o">=</span><span class="k">$(</span>cat <span class="s2">&#34;</span><span class="nv">$plan</span><span class="s2">&#34;</span> <span class="p">|</span> yj -t <span class="p">|</span> jq -r <span class="s1">&#39;.entries[] | select(.name == &#34;node-js&#34;) | .metadata.version&#39;</span> <span class="o">||</span> <span class="nb">echo</span> <span class="si">${</span><span class="nv">default_node_js_version</span><span class="si">}</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">node_js_url</span><span class="o">=</span>https://nodejs.org/dist/v<span class="si">${</span><span class="nv">node_js_version</span><span class="si">}</span>/node-v<span class="si">${</span><span class="nv">node_js_version</span><span class="si">}</span>-linux-x64.tar.xz
+</span></span><span class="line"><span class="cl"><span class="nv">remote_nodejs_version</span><span class="o">=</span><span class="k">$(</span>cat <span class="s2">&#34;</span><span class="si">${</span><span class="nv">layersdir</span><span class="si">}</span><span class="s2">/node-js.toml&#34;</span> 2&gt; /dev/null <span class="p">|</span> yj -t <span class="p">|</span> jq -r .metadata.nodejs_version 2&gt;/dev/null <span class="o">||</span> <span class="nb">echo</span> <span class="s1">&#39;NOT FOUND&#39;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[[</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">node_js_url</span><span class="si">}</span><span class="s2">&#34;</span> !<span class="o">=</span> *<span class="s2">&#34;</span><span class="si">${</span><span class="nv">remote_nodejs_version</span><span class="si">}</span><span class="s2">&#34;</span>* <span class="o">]]</span> <span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;-----&gt; Downloading and extracting NodeJS&#34;</span>
+</span></span><span class="line"><span class="cl">    wget -q -O - <span class="s2">&#34;</span><span class="si">${</span><span class="nv">node_js_url</span><span class="si">}</span><span class="s2">&#34;</span> <span class="p">|</span> tar -xJf - --strip-components <span class="m">1</span> -C <span class="s2">&#34;</span><span class="si">${</span><span class="nv">node_js_layer</span><span class="si">}</span><span class="s2">&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="k">else</span>
-</span></span><span class="line"><span class="cl">    <span class="c1"># Determine if there has been a gem dependency change and install new gems to the bundler layer; re-using existing and un-changed gems</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;---&gt; Installing gems&#34;</span>
-</span></span><span class="line"><span class="cl">    mkdir <span class="o">-</span>p <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl">    cat &gt;&gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/bundler.toml&#34;</span> <span class="s">&lt;&lt; EOL
-</span></span></span><span class="line"><span class="cl"><span class="s">[metadata]
-</span></span></span><span class="line"><span class="cl"><span class="s">checksum = &#34;$local_bundler_checksum&#34;
-</span></span></span><span class="line"><span class="cl"><span class="s">EOL</span>
-</span></span><span class="line"><span class="cl">    bundle config <span class="nb">set</span> <span class="o">--</span><span class="nb">local</span> path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">&#34;</span> <span class="o">&amp;&amp;</span> bundle install <span class="o">&amp;&amp;</span> bundle binstubs <span class="o">--</span>all <span class="o">--</span>path <span class="s2">&#34;</span><span class="nv">$bundlerlayer</span><span class="s2">/bin&#34;</span>
-</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;-----&gt; Reusing NodeJS&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="k">fi</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 7. SET DEFAULT START COMMAND</span>
-</span></span><span class="line"><span class="cl">cat &gt; <span class="s2">&#34;</span><span class="nv">$layersdir</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt; EOL
-</span></span></span><span class="line"><span class="cl"><span class="s"># our web process
+</span></span><span class="line"><span class="cl"><span class="c1"># 4. MAKE node-js AVAILABLE DURING LAUNCH and CACHE the LAYER</span>
+</span></span><span class="line"><span class="cl">    cat &gt; <span class="s2">&#34;</span><span class="si">${</span><span class="nv">layersdir</span><span class="si">}</span><span class="s2">/node-js.toml&#34;</span> <span class="s">&lt;&lt; EOL
+</span></span></span><span class="line"><span class="cl"><span class="s">[types]
+</span></span></span><span class="line"><span class="cl"><span class="s">cache = true
+</span></span></span><span class="line"><span class="cl"><span class="s">launch = true
+</span></span></span><span class="line"><span class="cl"><span class="s">[metadata]
+</span></span></span><span class="line"><span class="cl"><span class="s">nodejs_version = &#34;${node_js_version}&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">EOL</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 5. SET DEFAULT START COMMAND</span>
+</span></span><span class="line"><span class="cl">cat &gt;&gt; <span class="s2">&#34;</span><span class="si">${</span><span class="nv">layersdir</span><span class="si">}</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt; EOL
 </span></span></span><span class="line"><span class="cl"><span class="s">[[processes]]
 </span></span></span><span class="line"><span class="cl"><span class="s">type = &#34;web&#34;
-</span></span></span><span class="line"><span class="cl"><span class="s">command = &#34;bundle exec ruby app.rb&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">command = &#34;node app.js&#34;
 </span></span></span><span class="line"><span class="cl"><span class="s">default = true
-</span></span></span><span class="line"><span class="cl"><span class="s">
-</span></span></span><span class="line"><span class="cl"><span class="s"># our worker process
-</span></span></span><span class="line"><span class="cl"><span class="s">[[processes]]
-</span></span></span><span class="line"><span class="cl"><span class="s">type = &#34;worker&#34;
-</span></span></span><span class="line"><span class="cl"><span class="s">command = &#34;bundle exec ruby worker.rb&#34;
 </span></span></span><span class="line"><span class="cl"><span class="s">EOL</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># ========== ADDED ===========</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 8. ADD A SBOM</span>
-</span></span><span class="line"><span class="cl"><span class="nv">rubybom</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">layersdir</span><span class="si">}</span><span class="s2">/ruby.sbom.cdx.json&#34;</span>
-</span></span><span class="line"><span class="cl">cat &gt;&gt; <span class="si">${</span><span class="nv">rubybom</span><span class="si">}</span> <span class="s">&lt;&lt; EOL
+</span></span><span class="line"><span class="cl"><span class="c1"># 6. ADD A SBOM</span>
+</span></span><span class="line"><span class="cl"><span class="nv">node_jsbom</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">layersdir</span><span class="si">}</span><span class="s2">/node-js.sbom.cdx.json&#34;</span>
+</span></span><span class="line"><span class="cl">cat &gt;&gt; <span class="si">${</span><span class="nv">node_jsbom</span><span class="si">}</span> <span class="s">&lt;&lt; EOL
 </span></span></span><span class="line"><span class="cl"><span class="s">{
 </span></span></span><span class="line"><span class="cl"><span class="s">  &#34;bomFormat&#34;: &#34;CycloneDX&#34;,
 </span></span></span><span class="line"><span class="cl"><span class="s">  &#34;specVersion&#34;: &#34;1.4&#34;,
@@ -910,36 +873,24 @@ The process types that are…">
 </span></span></span><span class="line"><span class="cl"><span class="s">  &#34;components&#34;: [
 </span></span></span><span class="line"><span class="cl"><span class="s">    {
 </span></span></span><span class="line"><span class="cl"><span class="s">      &#34;type&#34;: &#34;library&#34;,
-</span></span></span><span class="line"><span class="cl"><span class="s">      &#34;name&#34;: &#34;ruby&#34;,
-</span></span></span><span class="line"><span class="cl"><span class="s">      &#34;version&#34;: &#34;$ruby_version&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">      &#34;name&#34;: &#34;node-js&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s">      &#34;version&#34;: &#34;${node_js_version}&#34;
 </span></span></span><span class="line"><span class="cl"><span class="s">    }
 </span></span></span><span class="line"><span class="cl"><span class="s">  ]
 </span></span></span><span class="line"><span class="cl"><span class="s">}
 </span></span></span><span class="line"><span class="cl"><span class="s">EOL</span>
-</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[[</span> <span class="o">-</span>f Gemfile.lock <span class="o">]]</span> <span class="p">;</span> <span class="k">then</span>
-</span></span><span class="line"><span class="cl">  <span class="k">for</span> gem in <span class="k">$(</span>gem dep -q <span class="p">|</span> grep ^Gem <span class="p">|</span> sed <span class="s1">&#39;s/^Gem //&#39;</span><span class="k">)</span>
-</span></span><span class="line"><span class="cl">  <span class="k">do</span>
-</span></span><span class="line"><span class="cl">    <span class="nv">version</span><span class="o">=</span><span class="si">${</span><span class="nv">gem</span><span class="p">##*-</span><span class="si">}</span>
-</span></span><span class="line"><span class="cl">    <span class="nv">name</span><span class="o">=</span><span class="si">${</span><span class="nv">gem</span><span class="p">%-</span><span class="si">${</span><span class="nv">version</span><span class="si">}}</span>
-</span></span><span class="line"><span class="cl">    <span class="nv">DEP</span><span class="o">=</span><span class="k">$(</span>jq --arg name <span class="s2">&#34;</span><span class="si">${</span><span class="nv">name</span><span class="si">}</span><span class="s2">&#34;</span> --arg version <span class="s2">&#34;</span><span class="si">${</span><span class="nv">version</span><span class="si">}</span><span class="s2">&#34;</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>      <span class="s1">&#39;.components[.components| length] |= . + {&#34;type&#34;: &#34;library&#34;, &#34;name&#34;: $name, &#34;version&#34;: $version}&#39;</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>      <span class="s2">&#34;</span><span class="si">${</span><span class="nv">rubybom</span><span class="si">}</span><span class="s2">&#34;</span><span class="k">)</span>
-</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="si">${</span><span class="nv">DEP</span><span class="si">}</span> &gt; <span class="s2">&#34;</span><span class="si">${</span><span class="nv">rubybom</span><span class="si">}</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl">  <span class="k">done</span>
-</span></span><span class="line"><span class="cl"><span class="k">fi</span>
 </span></span></code></pre></div><p>Then rebuild your app using the updated buildpack:</p>
 <!-- test:exec -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack build test-node-js-app --path ./node-js-sample-app --buildpack ./node-js-buildpack
 </span></span></code></pre></div><!--+- "{{execute}}"+-->
 <p>Viewing your bill-of-materials requires extracting (or <code>download</code>ing) the bill-of-materials from your local image.  This command can take some time to return.</p>
 <!-- test:exec -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack sbom download test-ruby-app
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack sbom download test-node-js-app
 </span></span></code></pre></div><!--+- "{{execute}}"+-->
 <p>The SBOM information is now downloaded to the local file system:</p>
 <!-- test:exec -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat layers/sbom/launch/examples_ruby/ruby/sbom.cdx.json <span class="p">|</span> jq -M
-</span></span></code></pre></div><p>You should find that the included <code>ruby</code> version is <code>3.1.0</code> as expected.</p>
-<!-- test:assert=contains;ignore-lines=... -->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat layers/sbom/launch/examples_node-js/node-js/sbom.cdx.json <span class="p">|</span> jq -M
+</span></span></code></pre></div><p>You should find that the included <code>node-js</code> version is <code>18.18.1</code> as expected.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">{
 </span></span><span class="line"><span class="cl">  &#34;bomFormat&#34;: &#34;CycloneDX&#34;,
 </span></span><span class="line"><span class="cl">  &#34;specVersion&#34;: &#34;1.4&#34;,
@@ -947,9 +898,9 @@ The process types that are…">
 </span></span><span class="line"><span class="cl">  &#34;components&#34;: [
 </span></span><span class="line"><span class="cl">    {
 </span></span><span class="line"><span class="cl">      &#34;type&#34;: &#34;library&#34;,
-</span></span><span class="line"><span class="cl">      &#34;name&#34;: &#34;ruby&#34;,
-</span></span><span class="line"><span class="cl">      &#34;version&#34;: &#34;3.1.0&#34;
-</span></span><span class="line"><span class="cl">    },
+</span></span><span class="line"><span class="cl">      &#34;name&#34;: &#34;node-js&#34;,
+</span></span><span class="line"><span class="cl">      &#34;version&#34;: &#34;18.18.1&#34;
+</span></span><span class="line"><span class="cl">    }
 </span></span><span class="line"><span class="cl">...
 </span></span><span class="line"><span class="cl">  ]
 </span></span><span class="line"><span class="cl">}
@@ -957,7 +908,7 @@ The process types that are…">
 <h2 id="going-further">Going further</h2>
 <p>Now that you&rsquo;ve finished your buildpack, how about extending it? Try:</p>
 <ul>
-<li>Caching the downloaded Ruby version</li>
+<li>Caching the downloaded NodeJS version</li>
 <li><a href="/docs/buildpack-author-guide/package-a-buildpack/">Packaging your buildpack for distribution</a></li>
 </ul>
 
