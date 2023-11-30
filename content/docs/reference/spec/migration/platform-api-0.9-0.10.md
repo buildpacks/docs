@@ -38,6 +38,18 @@ docker run --entrypoint from-newer-buildpack my-image user-1 user-2
 
 will result in the following command invocation: `some-command always-1 always-2 user-1 user-2`.
 
+#### Implications of upgrading
+
+For processes from newer buildpacks, upgrading the platform (without changing anything else) will change the command invocation for end-users.
+
+As an example, the following on Platform API version 0.9:
+
+```
+docker run --entrypoint from-newer-buildpack my-image user-1 user-2
+```
+
+will result in the following command invocation: `some-command always-1 always-2 override-1 override-2 user-1 user-2`, where overridable arguments are treated like regular arguments, and user-provided arguments are always appended. Upgrading the platform will cause `override-1` and `override-2` to be dropped, as shown above.
+
 #### Older buildpacks
 
 Process types contributed by older buildpacks (Buildpack API 0.8 and below) do not have overridable process arguments. Looking at metadata.toml:
@@ -51,7 +63,7 @@ args = ["always-1", "always-2"]
 The `command` list will never have more than one element. `always-1` and `always-2` are arguments that are always provided to `some-command`. If no user-provided arguments are specified when the application image is launched, `always-1` and `always-2` will be provided only. If user-provided arguments are specified, these will be **appended** to the `args` list. Example:
 
 ```
-docker run --entrypoint from-newer-buildpack my-image
+docker run --entrypoint from-older-buildpack my-image
 ```
 
 will result in the following command invocation: `some-command always-1 always-2`. However:
@@ -61,6 +73,10 @@ docker run --entrypoint from-older-buildpack my-image user-1 user-2
 ```
 
 will result in the following command invocation: `some-command always-1 always-2 user-1 user-2`.
+
+#### Implications of upgrading
+
+For processes from older buildpacks, upgrading the platform will not change the command invocation.
 
 ### Image extensions are supported (experimental)
 
