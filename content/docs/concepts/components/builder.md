@@ -18,8 +18,9 @@ aliases=[
 A builder consists of the following components:
 
 * [Buildpacks][buildpack]
-* [Lifecycle][lifecycle]   
-* [Stack's][stack] build image   
+* A [lifecycle][lifecycle]
+* A [build image](/docs/concepts/components/base-images/build/)
+* A reference to a [run image](/docs/concepts/components/base-images/run/)
 
 ### Resources
 
@@ -29,4 +30,3 @@ To learn how to create your own builder, see our [Operator's Guide][operator-gui
 [operator-guide]: /docs/operator-guide/
 [buildpack]: /docs/concepts/components/buildpack/
 [lifecycle]: /docs/concepts/components/lifecycle/
-[stack]: /docs/concepts/components/stack/

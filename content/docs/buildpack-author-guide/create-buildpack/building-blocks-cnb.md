@@ -16,54 +16,59 @@ The `buildpack new <id>` command will create a directory named for the buildpack
 Example:
 <!-- test:exec -->
 ```bash
-pack buildpack new examples/ruby \
+pack buildpack new examples/node-js \
     --api 0.8 \
-    --path ruby-buildpack \
+    --path node-js-buildpack \
     --version 0.0.1 \
     --stacks io.buildpacks.samples.stacks.jammy
 ```
 <!--+- "{{execute}}"+-->
-This command will create `ruby-buildpack` directory which contains `buildpack.toml`, `bin/build`,  `bin/detect` files.
+This command will create `node-js-buildpack` directory which contains `buildpack.toml`, `bin/build`,  `bin/detect` files.
 
 ### Additional Parameters
 - `-a, --api` Buildpack API compatibility of the generated buildpack
 - `-h, --help` Help for 'new'
-- `--path` the location on the filesystem to generate the artifacts.
-- `--stacks` Stack(s) this buildpack will be compatible with. Repeat for each stack in order, or supply once by comma-separated list
+- `--path` the location on the filesystem to generate the artifacts
+- `--stacks` Stacks (deprecated) the buildpack will work with
 - `-V, --version` the version of the buildpack in buildpack.toml
-
 
 
 ### buildpack.toml
 
-You will have `ruby-buildpack/buildpack.toml`<!--+"{{open}}"+--> in your buildpack directory to describe our buildpack.
+You will have `node-js-buildpack/buildpack.toml`<!--+"{{open}}"+--> in your buildpack directory to describe our buildpack.
 
-<!-- test:file=ruby-buildpack/buildpack.toml -->
+<!-- test:file=node-js-buildpack/buildpack.toml -->
 ```toml
 # Buildpack API version
 api = "0.8"
 
 # Buildpack ID and metadata
 [buildpack]
-  id = "examples/ruby"
+  id = "examples/node-js"
   version = "0.0.1"
 
-# Stacks that the buildpack will work with
+# Targets the buildpack will work with
+[[targets]]
+os = "linux"
+
+# Stacks (deprecated) the buildpack will work with
 [[stacks]]
   id = "io.buildpacks.samples.stacks.jammy"
 
 ```
 
-You will notice two specific fields in the file: `buildpack.id` and `stack.id`. The buildpack ID is the way you will reference the buildpack when you create buildpack groups, builders, etc. The stack ID is the root file system in which the buildpack will be run. This example can be run on one of two different stacks, both based upon Ubuntu Bionic.
+The buildpack ID is the way you will reference the buildpack when you create buildpack groups, builders, etc.
+[Targets](/docs/concepts/components/targets/) identifies the kind of build and run base images the buildpack will work with.
+The stack ID (deprecated) uniquely identifies a build and run image configuration the buildpack will work with. This example can be run on Ubuntu Jammy.
 
 ### `detect` and `build`
 
 Next, we will cover the `detect` and `build` scripts. These files are created in `bin` directory in your buildpack directory.
 
 
-Now update your `ruby-buildpack/bin/detect`<!--+"{{open}}"+--> file and copy in the following contents:
+Now update your `node-js-buildpack/bin/detect`<!--+"{{open}}"+--> file and copy in the following contents:
 
-<!-- test:file=ruby-buildpack/bin/detect -->
+<!-- test:file=node-js-buildpack/bin/detect -->
 ```bash
 #!/usr/bin/env bash
 set -eo pipefail
@@ -71,14 +76,14 @@ set -eo pipefail
 exit 1
 ```
 
-Also update your `ruby-buildpack/bin/build`<!--+"{{open}}"+--> file and copy in the following contents:
+Also update your `node-js-buildpack/bin/build`<!--+"{{open}}"+--> file and copy in the following contents:
 
-<!-- test:file=ruby-buildpack/bin/build -->
+<!-- test:file=node-js-buildpack/bin/build -->
 ```bash
 #!/usr/bin/env bash
 set -eo pipefail
 
-echo "---> Ruby Buildpack"
+echo "---> NodeJS Buildpack"
 exit 1
 ```
 
@@ -108,7 +113,7 @@ Then run the following `pack` command:
 
 <!-- test:exec;exit-code=1 -->
 ```bash
-pack build test-ruby-app --path ./ruby-sample-app --buildpack ./ruby-buildpack
+pack build test-node-js-app --path ./node-js-sample-app --buildpack ./node-js-buildpack
 ```
 <!--+- "{{execute}}"+-->
 
@@ -120,7 +125,7 @@ After running the command, you should see that it failed to detect, as the `dete
 ```
 ===> DETECTING
 ...
-err:  examples/ruby@0.0.1 (1)
+err:  examples/node-js@0.0.1 (1)
 ...
 ERROR: No buildpack groups passed detection.
 ERROR: failed to detect: buildpack(s) failed with err

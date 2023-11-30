@@ -20,7 +20,7 @@ You should see the following:
 <!-- test:assert=contains;ignore-lines=... -->
 ```text
 Run Images:
-  cnbs/sample-stack-run:jammy
+  cnbs/sample-base-run:jammy
 ...
 
 Buildpacks:
@@ -50,12 +50,16 @@ api = "0.8"
   version = "0.0.1"
   sbom-formats = [ "application/vnd.cyclonedx+json" ]
 
-# Stacks that the buildpack will work with
+# Targets the buildpack will work with
+[[targets]]
+os = "linux"
+
+# Stacks (deprecated) the buildpack will work with
 [[stacks]]
   id = "io.buildpacks.samples.stacks.jammy"
 </pre>
 
-Then, in our buildpack implemetnation we will generate the necessary SBOM metadata:
+Then, in our buildpack implementation we will generate the necessary SBOM metadata:
 
 ```bash
 # ...
@@ -129,7 +133,7 @@ mkdir -p "$rubylayer"
 ruby_version=$(cat "$plan" | yj -t | jq -r '.entries[] | select(.name == "ruby") | .metadata.version')
 echo "---> Downloading and extracting Ruby $ruby_version"
 ruby_url=https://s3-external-1.amazonaws.com/heroku-buildpack-ruby/heroku-22/ruby-$ruby_version.tgz
-wget -q -O - "$ruby_url" | tar -xzf - -C "$rubylayer"
+wget -q -O - "$ruby_url" | tar -xJf - -C "$rubylayer"
 
 # 4. MAKE RUBY AVAILABLE DURING LAUNCH
 echo -e '[types]\nlaunch = true' > "$layersdir/ruby.toml"

@@ -49,13 +49,20 @@ uri = "docker://cnbs/sample-package:hello-universe"
     id = "samples/hello-processes"
     version = "0.0.1"
 
-# Stack that will be used by the builder
+# Base images used to create the builder
+[build]
+image = "cnbs/sample-base-build:jammy"
+[run]
+[[run.images]]
+image = "cnbs/sample-base-run:jammy"
+
+# Stack (deprecated) used to create the builder
 [stack]
 id = "io.buildpacks.samples.stacks.jammy"
 # This image is used at runtime
-run-image = "cnbs/sample-stack-run:jammy"
+run-image = "cnbs/sample-base-run:jammy"
 # This image is used at build-time
-build-image = "cnbs/sample-stack-build:jammy"
+build-image = "cnbs/sample-base-build:jammy"
 ```
 
 ### 2. Create builder
@@ -97,10 +104,7 @@ For additional sample builders and buildpacks, check out our [samples][samples] 
 
 You can also check out our reference of the builder config [here][builder-config].
 
-If you would like to customize the stack used by your builder, check out our [Create a stack][create-a-stack] tutorial.
-
 [build]: /docs/concepts/operations/build/
 [builder]: /docs/concepts/components/builder/
 [builder-config]: /docs/reference/builder-config/
-[create-a-stack]: /docs/operator-guide/create-a-stack
 [samples]: https://github.com/buildpacks/samples
