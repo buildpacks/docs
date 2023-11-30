@@ -754,6 +754,11 @@ args = [&#34;override-1&#34;, &#34;override-2&#34;]
 </code></pre><p>will result in the following command invocation: <code>some-command always-1 always-2 override-1 override-2</code>. However:</p>
 <pre tabindex="0"><code>docker run --entrypoint from-newer-buildpack my-image user-1 user-2
 </code></pre><p>will result in the following command invocation: <code>some-command always-1 always-2 user-1 user-2</code>.</p>
+<h4 id="implications-of-upgrading">Implications of upgrading</h4>
+<p>For processes from newer buildpacks, upgrading the platform (without changing anything else) will change the command invocation for end-users.</p>
+<p>As an example, the following on Platform API version 0.9:</p>
+<pre tabindex="0"><code>docker run --entrypoint from-newer-buildpack my-image user-1 user-2
+</code></pre><p>will result in the following command invocation: <code>some-command always-1 always-2 override-1 override-2 user-1 user-2</code>, where overridable arguments are treated like regular arguments, and user-provided arguments are always appended. Upgrading the platform will cause <code>override-1</code> and <code>override-2</code> to be dropped, as shown above.</p>
 <h4 id="older-buildpacks">Older buildpacks</h4>
 <p>Process types contributed by older buildpacks (Buildpack API 0.8 and below) do not have overridable process arguments. Looking at metadata.toml:</p>
 <pre tabindex="0"><code>[[processes]]
@@ -761,10 +766,12 @@ type = &#34;from-older-buildpack&#34;
 command = [&#34;some-command&#34;]
 args = [&#34;always-1&#34;, &#34;always-2&#34;]
 </code></pre><p>The <code>command</code> list will never have more than one element. <code>always-1</code> and <code>always-2</code> are arguments that are always provided to <code>some-command</code>. If no user-provided arguments are specified when the application image is launched, <code>always-1</code> and <code>always-2</code> will be provided only. If user-provided arguments are specified, these will be <strong>appended</strong> to the <code>args</code> list. Example:</p>
-<pre tabindex="0"><code>docker run --entrypoint from-newer-buildpack my-image
+<pre tabindex="0"><code>docker run --entrypoint from-older-buildpack my-image
 </code></pre><p>will result in the following command invocation: <code>some-command always-1 always-2</code>. However:</p>
 <pre tabindex="0"><code>docker run --entrypoint from-older-buildpack my-image user-1 user-2
 </code></pre><p>will result in the following command invocation: <code>some-command always-1 always-2 user-1 user-2</code>.</p>
+<h4 id="implications-of-upgrading-1">Implications of upgrading</h4>
+<p>For processes from older buildpacks, upgrading the platform will not change the command invocation.</p>
 <h3 id="image-extensions-are-supported-experimental">Image extensions are supported (experimental)</h3>
 <p>Platform 0.10 introduces image extensions as experimental components for customizing build and run-time base images (see <a href="/docs/features/dockerfiles">here</a> for more information). Image extensions output Dockerfiles which are applied by the lifecycle using [kaniko][https://github.com/GoogleContainerTools/kaniko], a tool for building container images in Kubernetes, as a library.</p>
 <p>Note: image extensions are not supported for Windows container images.</p>

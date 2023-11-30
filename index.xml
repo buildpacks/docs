@@ -593,7 +593,7 @@ build applications prior to deploying them.&lt;/p&gt;</description>
       <link>https://buildpacks.io/docs/tools/kpack/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/tools/kpack/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/pivotal/kpack&#34;&gt;kpack&lt;/a&gt; is a Kubernetes native platform maintained by &lt;a href=&#34;https://www.vmware.com/company.html&#34;&gt;VMware&lt;/a&gt; under the &lt;a href=&#34;https://tanzu.vmware.com/build-service&#34;&gt;VMware Tanzu project&lt;/a&gt; that utilizes unprivileged Kubernetes primitives to provide builds of OCI images as a platform implementation of Cloud Native Buildpacks (CNB).&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/pivotal/kpack&#34;&gt;kpack&lt;/a&gt; is a Kubernetes native platform, belonging to the &lt;a href=&#34;https://github.com/buildpacks-community&#34;&gt;Buildpacks Community&lt;/a&gt; organization. It utilizes unprivileged Kubernetes primitives to provide builds of OCI images as a platform implementation of Cloud Native Buildpacks (CNB).&lt;/p&gt;</description>
     </item>
     <item>
       <title>pack</title>
