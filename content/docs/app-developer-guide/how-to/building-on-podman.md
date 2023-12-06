@@ -1,6 +1,6 @@
 +++
-title="Building on Podman"
-weight=99
+title="(Advanced) Building on Podman"
+weight=20
 summary="Use podman as an alternative to Docker with Cloud Native Buildpacks."
 aliases=[
     "/docs/using-pack/building-app/"

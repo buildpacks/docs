@@ -1,6 +1,6 @@
 +++
 title="Environment variables"
-weight=3
+weight=2
 summary="Environment variables are a common way to configure various buildpacks at build-time."
 +++
 <!--+- `

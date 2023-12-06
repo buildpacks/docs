@@ -1,6 +1,6 @@
 +++
-title="Build a Windows app"
-weight=2
+title="(Advanced) Build a Windows app"
+weight=20
 summary="The basics of taking your Windows app from source code to runnable image."
 +++
 

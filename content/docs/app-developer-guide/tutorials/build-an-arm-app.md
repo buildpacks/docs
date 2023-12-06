@@ -1,6 +1,6 @@
 +++
-title="Build an ARM app"
-weight=2
+title="(Advanced) Build an ARM app"
+weight=20
 summary="The basics of taking your app from source code to runnable ARM image."
 +++
 

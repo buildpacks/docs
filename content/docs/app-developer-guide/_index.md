@@ -1,6 +1,6 @@
 +++
-title="App Developer Guide"
-weight=4
+title="For App Developers"
+weight=1
 include_summaries=true
 expand=true
 +++
