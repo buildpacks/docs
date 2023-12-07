@@ -749,16 +749,14 @@ Create a layer for the…">
 <p>By doing this, you&rsquo;ll learn how to create arbitrary layers with your buildpack, and how to read the contents of the app in order to perform actions like downloading dependencies.</p>
 <p>Let&rsquo;s begin by changing the <code>node-js-buildpack/bin/build</code><!--+"{{open}}"+--> so that it creates a layer for NodeJS.</p>
 <h3 id="creating-a-layer">Creating a Layer</h3>
-<p>A Buildpack layer is represented by a directory inside the <a href="/docs/reference/spec/buildpack-api/#layers">layers directory</a> provided to our buildpack by the Buildpack execution environment.  As defined by the buildpack specification, the layers directory is always passed to the <code>build</code> script as the first positional parameter. To create a new layer directory representing the NodeJS runtime, change the <code>build</code> script to look like this:</p>
+<p>A Buildpack layer is represented by a directory inside the <a href="/docs/reference/spec/buildpack-api/#layers">layers directory</a> provided to our buildpack by the Buildpack execution environment.  As defined by the buildpack specification, the layers directory is always passed to the <code>build</code> script as the first positional parameter. To create a new layer directory representing the NodeJS runtime, change the <code>build</code> script to look like the following.  The variable <code>CNB_LAYERS_DIR</code> is provided to the build script as defined by the <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#positional-arguments-to-detect-and-build-executables">buildpacks specification</a>.</p>
 <!-- file=node-js-buildpack/bin/build -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
 </span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="nb">set</span> -eo pipefail
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;---&gt; NodeJS Buildpack&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nv">layersdir</span><span class="o">=</span><span class="nv">$1</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nv">node_js_layer</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">layersdir</span><span class="si">}</span><span class="s2">&#34;</span>/node-js
+</span></span><span class="line"><span class="cl"><span class="nv">node_js_layer</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">CNB_LAYERS_DIR</span><span class="si">}</span><span class="s2">&#34;</span>/node-js
 </span></span><span class="line"><span class="cl">mkdir -p <span class="s2">&#34;</span><span class="si">${</span><span class="nv">node_js_layer</span><span class="si">}</span><span class="s2">&#34;</span>
 </span></span></code></pre></div><p>The <code>node_js_layer</code> directory is a sub-directory of the directory provided as the first positional argument to the build script (the <a href="/docs/reference/spec/buildpack-api/#layers">layers directory</a>), and this is where we&rsquo;ll store the NodeJS runtime.</p>
 <p>Next, we&rsquo;ll download the NodeJS runtime and install it into the layer directory. Add the following code to the end of the <code>build</code> script:</p>
@@ -769,7 +767,7 @@ Create a layer for the…">
 </span></span></code></pre></div><p>This code uses the <code>wget</code> tool to download the NodeJS binaries from the given URL, and extracts it to the <code>node_js_layer</code> directory.  We use <code>tar</code> to extract the NodeJS distribution into the <code>node_js_layer</code>.  During the extraction we remove the top level directory (i.e. <code>--strip-components 1</code>).  This means that we will end up with <code>${node_js_layer}/bin</code> and <code>${node_js_layer}/lib</code>.  When starting the container the layers <code>bin</code> will automatically be added to the runtime <code>${PATH}</code>.</p>
 <p>The last step in creating a layer is writing a TOML file that contains metadata about the layer. The TOML file&rsquo;s name must match the name of the layer (in this example it&rsquo;s <code>node-js.toml</code>). Without this file, the Buildpack lifecycle will ignore the layer directory. For the NodeJS layer, we need to ensure it is available in the launch image by setting the <code>launch</code> key to <code>true</code>. Add the following code to the build script:</p>
 <!-- file=node-js-buildpack/bin/build data-target=append -->
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">echo</span> -e <span class="s1">&#39;[types]\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="si">${</span><span class="nv">layersdir</span><span class="si">}</span><span class="s2">/node-js.toml&#34;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">echo</span> -e <span class="s1">&#39;[types]\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="si">${</span><span class="nv">CNB_LAYERS_DIR</span><span class="si">}</span><span class="s2">/node-js.toml&#34;</span>
 </span></span></code></pre></div><p>Now the Buildpack is ready to test.</p>
 <h3 id="running-the-build">Running the Build</h3>
 <p>Your complete <code>node-js-buildpack/bin/build</code><!--+"{{open}}"+--> script should look like this:</p>
@@ -779,20 +777,17 @@ Create a layer for the…">
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;---&gt; NodeJS Buildpack&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 1. GET ARGS</span>
-</span></span><span class="line"><span class="cl"><span class="nv">layersdir</span><span class="o">=</span><span class="nv">$1</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 2. CREATE THE LAYER DIRECTORY</span>
-</span></span><span class="line"><span class="cl"><span class="nv">node_js_layer</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">layersdir</span><span class="si">}</span><span class="s2">&#34;</span>/node-js
+</span></span><span class="line"><span class="cl"><span class="c1"># 1. CREATE THE LAYER DIRECTORY</span>
+</span></span><span class="line"><span class="cl"><span class="nv">node_js_layer</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">CNB_LAYERS_DIR</span><span class="si">}</span><span class="s2">&#34;</span>/node-js
 </span></span><span class="line"><span class="cl">mkdir -p <span class="s2">&#34;</span><span class="si">${</span><span class="nv">node_js_layer</span><span class="si">}</span><span class="s2">&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 3. DOWNLOAD node-js</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 2. DOWNLOAD node-js</span>
 </span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;---&gt; Downloading and extracting NodeJS&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">node_js_url</span><span class="o">=</span>https://nodejs.org/dist/v18.18.1/node-v18.18.1-linux-x64.tar.xz
 </span></span><span class="line"><span class="cl">wget -q -O - <span class="s2">&#34;</span><span class="si">${</span><span class="nv">node_js_url</span><span class="si">}</span><span class="s2">&#34;</span> <span class="p">|</span> tar -xJf - --strip-components <span class="m">1</span> -C <span class="s2">&#34;</span><span class="si">${</span><span class="nv">node_js_layer</span><span class="si">}</span><span class="s2">&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 4. MAKE node-js AVAILABLE DURING LAUNCH</span>
-</span></span><span class="line"><span class="cl"><span class="nb">echo</span> -e <span class="s1">&#39;[types]\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="si">${</span><span class="nv">layersdir</span><span class="si">}</span><span class="s2">/node-js.toml&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 3. MAKE node-js AVAILABLE DURING LAUNCH</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> -e <span class="s1">&#39;[types]\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="si">${</span><span class="nv">CNB_LAYERS_DIR</span><span class="si">}</span><span class="s2">/node-js.toml&#34;</span>
 </span></span></code></pre></div><p>Build your app again:</p>
 <!-- test:exec -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack build test-node-js-app --path ./node-js-sample-app --buildpack ./node-js-buildpack

@@ -743,7 +743,7 @@
 <p>To enable running the debug process, we&rsquo;ll need to have our buildpack define a &ldquo;process type&rdquo; for the worker.  Modify the section where processes are defined to:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># ...</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">cat &gt; <span class="s2">&#34;</span><span class="si">${</span><span class="nv">layersdir</span><span class="si">}</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt; EOL
+</span></span><span class="line"><span class="cl">cat &gt; <span class="s2">&#34;</span><span class="si">${</span><span class="nv">CNB_LAYERS_DIR</span><span class="si">}</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt; EOL
 </span></span></span><span class="line"><span class="cl"><span class="s"># our web process
 </span></span></span><span class="line"><span class="cl"><span class="s">[[processes]]
 </span></span></span><span class="line"><span class="cl"><span class="s">type = &#34;web&#34;
@@ -752,7 +752,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="s">
 </span></span></span><span class="line"><span class="cl"><span class="s"># our debug process
 </span></span></span><span class="line"><span class="cl"><span class="s">[[processes]]
-</span></span></span><span class="line"><span class="cl"><span class="s">type = &#34;debug&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">type = &#34;worker&#34;
 </span></span></span><span class="line"><span class="cl"><span class="s">command = &#34;node --inspect app.js&#34;
 </span></span></span><span class="line"><span class="cl"><span class="s">EOL</span>
 </span></span><span class="line"><span class="cl">
@@ -764,27 +764,24 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;---&gt; NodeJS Buildpack&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 1. GET ARGS</span>
-</span></span><span class="line"><span class="cl"><span class="nv">layersdir</span><span class="o">=</span><span class="nv">$1</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 2. CREATE THE LAYER DIRECTORY</span>
-</span></span><span class="line"><span class="cl"><span class="nv">node_js_layer</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">layersdir</span><span class="si">}</span><span class="s2">&#34;</span>/node-js
+</span></span><span class="line"><span class="cl"><span class="c1"># 1. CREATE THE LAYER DIRECTORY</span>
+</span></span><span class="line"><span class="cl"><span class="nv">node_js_layer</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">CNB_LAYERS_DIR</span><span class="si">}</span><span class="s2">&#34;</span>/node-js
 </span></span><span class="line"><span class="cl">mkdir -p <span class="s2">&#34;</span><span class="si">${</span><span class="nv">node_js_layer</span><span class="si">}</span><span class="s2">&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 3. DOWNLOAD node-js</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 2. DOWNLOAD node-js</span>
 </span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;---&gt; Downloading and extracting NodeJS&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">node_js_url</span><span class="o">=</span>https://nodejs.org/dist/v18.18.1/node-v18.18.1-linux-x64.tar.xz
 </span></span><span class="line"><span class="cl">wget -q -O - <span class="s2">&#34;</span><span class="nv">$node_js_url</span><span class="s2">&#34;</span> <span class="p">|</span> tar -xJf - --strip-components <span class="m">1</span> -C <span class="s2">&#34;</span><span class="si">${</span><span class="nv">node_js_layer</span><span class="si">}</span><span class="s2">&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 4. MAKE node-js AVAILABLE DURING LAUNCH</span>
-</span></span><span class="line"><span class="cl">    cat &gt; <span class="s2">&#34;</span><span class="si">${</span><span class="nv">layersdir</span><span class="si">}</span><span class="s2">/node-js.toml&#34;</span> <span class="s">&lt;&lt; EOL
+</span></span><span class="line"><span class="cl"><span class="c1"># 3. MAKE node-js AVAILABLE DURING LAUNCH</span>
+</span></span><span class="line"><span class="cl">    cat &gt; <span class="s2">&#34;</span><span class="si">${</span><span class="nv">CNB_LAYERS_DIR</span><span class="si">}</span><span class="s2">/node-js.toml&#34;</span> <span class="s">&lt;&lt; EOL
 </span></span></span><span class="line"><span class="cl"><span class="s">[types]
 </span></span></span><span class="line"><span class="cl"><span class="s">launch = true
 </span></span></span><span class="line"><span class="cl"><span class="s">EOL</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># ========== MODIFIED ===========</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 5. SET DEFAULT START COMMAND</span>
-</span></span><span class="line"><span class="cl">cat &gt; <span class="s2">&#34;</span><span class="si">${</span><span class="nv">layersdir</span><span class="si">}</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt; EOL
+</span></span><span class="line"><span class="cl"><span class="c1"># 4. SET DEFAULT START COMMAND</span>
+</span></span><span class="line"><span class="cl">cat &gt; <span class="s2">&#34;</span><span class="si">${</span><span class="nv">CNB_LAYERS_DIR</span><span class="si">}</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt; EOL
 </span></span></span><span class="line"><span class="cl"><span class="s"># our web process
 </span></span></span><span class="line"><span class="cl"><span class="s">[[processes]]
 </span></span></span><span class="line"><span class="cl"><span class="s">type = &#34;web&#34;

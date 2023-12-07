@@ -12,7 +12,7 @@
       <link>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/setup-local-environment/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/setup-local-environment/</guid>
-      <description>First, we&amp;rsquo;ll create a sample Ruby app that you can use when developing your buildpack:&#xA;mkdir node-js-sample-app Create a file in the current directory called node-js-sample-app/app.js with the following contents:&#xA;const http = require(&amp;#39;http&amp;#39;); const hostname = &amp;#39;0.0.0.0&amp;#39;; const port = 8080; const server = http.createServer((req, res) =&amp;gt; { res.statusCode = 200; res.setHeader(&amp;#39;Content-Type&amp;#39;, &amp;#39;text/plain&amp;#39;); res.end(&amp;#39;Hello World!&amp;#39;); }); // For demo purposes we do not actually start the server. This // allows us pretend to start the server and check if the output // message is correct.</description>
+      <description>First, we&amp;rsquo;ll create a sample nodeJS app that you can use when developing your buildpack:&#xA;mkdir node-js-sample-app Create a file in the current directory called node-js-sample-app/app.js with the following contents:&#xA;const http = require(&amp;#39;http&amp;#39;); const hostname = &amp;#39;0.0.0.0&amp;#39;; const port = 8080; const server = http.createServer((req, res) =&amp;gt; { res.statusCode = 200; res.setHeader(&amp;#39;Content-Type&amp;#39;, &amp;#39;text/plain&amp;#39;); res.end(&amp;#39;Hello World!&amp;#39;); }); // For demo purposes we do not actually start the server. This // allows us pretend to start the server and check if the output // message is correct.</description>
     </item>
     <item>
       <title>Building blocks of a Cloud Native Buildpack</title>
@@ -40,7 +40,7 @@
       <link>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/make-app-runnable/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/make-app-runnable/</guid>
-      <description>To make your app runnable, a default start command must be set. You&amp;rsquo;ll need to add the following to the end of your build script:&#xA;# ... # Set default start command cat &amp;gt; &amp;#34;${layersdir}/launch.toml&amp;#34; &amp;lt;&amp;lt; EOL [[processes]] type = &amp;#34;web&amp;#34; command = &amp;#34;node app.js&amp;#34; default = true EOL # ... Your full node-js-buildpack/bin/build script should now look like the following:&#xA;#!/usr/bin/env bash set -eo pipefail echo &amp;#34;---&amp;gt; NodeJS Buildpack&amp;#34; # 1.</description>
+      <description>To make your app runnable, a default start command must be set. You&amp;rsquo;ll need to add the following to the end of your build script:&#xA;# ... # Set default start command cat &amp;gt; &amp;#34;${CNB_LAYERS_DIR}/launch.toml&amp;#34; &amp;lt;&amp;lt; EOL [[processes]] type = &amp;#34;web&amp;#34; command = &amp;#34;node app.js&amp;#34; default = true EOL # ... Your full node-js-buildpack/bin/build script should now look like the following:&#xA;#!/usr/bin/env bash set -eo pipefail echo &amp;#34;---&amp;gt; NodeJS Buildpack&amp;#34; # 1.</description>
     </item>
     <item>
       <title>Specify multiple process types</title>
@@ -54,7 +54,7 @@
       <link>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/caching/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/caching/</guid>
-      <description>We can improve performance by caching the runtime between builds, only re-downloading when necessary. To begin, let&amp;rsquo;s cache the runtime layer.&#xA;Cache the runtime layer To do this, replace the following lines in the build script:&#xA;# 4. MAKE node-js AVAILABLE DURING LAUNCH echo -e &amp;#39;[types]\nlaunch = true&amp;#39; &amp;gt; &amp;#34;${layersdir}/node-js.toml&amp;#34; with the following:&#xA;# 4. MAKE node-js AVAILABLE DURING LAUNCH and CACHE it echo -e &amp;#39;[types]\ncache = true\nlaunch = true&amp;#39; &amp;gt; &amp;#34;${layersdir}/node-js.</description>
+      <description>We can improve performance by caching the runtime between builds, only re-downloading when necessary. To begin, let&amp;rsquo;s cache the runtime layer.&#xA;Cache the runtime layer To do this, replace the following lines in the build script:&#xA;# 4. MAKE node-js AVAILABLE DURING LAUNCH echo -e &amp;#39;[types]\nlaunch = true&amp;#39; &amp;gt; &amp;#34;${CNB_LAYERS_DIR}/node-js.toml&amp;#34; with the following:&#xA;# 4. MAKE node-js AVAILABLE DURING LAUNCH and CACHE it echo -e &amp;#39;[types]\ncache = true\nlaunch = true&amp;#39; &amp;gt; &amp;#34;${CNB_LAYERS_DIR}/node-js.</description>
     </item>
     <item>
       <title>Making your buildpack configurable</title>

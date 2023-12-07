@@ -745,10 +745,10 @@ Cache the runtime layer To do this, replace the…">
 <h2 id="cache-the-runtime-layer">Cache the runtime layer</h2>
 <p>To do this, replace the following lines in the <code>build</code> script:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 4. MAKE node-js AVAILABLE DURING LAUNCH</span>
-</span></span><span class="line"><span class="cl"><span class="nb">echo</span> -e <span class="s1">&#39;[types]\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="si">${</span><span class="nv">layersdir</span><span class="si">}</span><span class="s2">/node-js.toml&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> -e <span class="s1">&#39;[types]\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="si">${</span><span class="nv">CNB_LAYERS_DIR</span><span class="si">}</span><span class="s2">/node-js.toml&#34;</span>
 </span></span></code></pre></div><p>with the following:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 4. MAKE node-js AVAILABLE DURING LAUNCH and CACHE it</span>
-</span></span><span class="line"><span class="cl"><span class="nb">echo</span> -e <span class="s1">&#39;[types]\ncache = true\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="si">${</span><span class="nv">layersdir</span><span class="si">}</span><span class="s2">/node-js.toml&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> -e <span class="s1">&#39;[types]\ncache = true\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="si">${</span><span class="nv">CNB_LAYERS_DIR</span><span class="si">}</span><span class="s2">/node-js.toml&#34;</span>
 </span></span></code></pre></div><p>Your full <code>node-js-buildpack/bin/build</code><!--+"{{open}}"+--> script should now look like the following:</p>
 <!-- test:file=node-js-buildpack/bin/build -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
@@ -756,24 +756,25 @@ Cache the runtime layer To do this, replace the…">
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;---&gt; NodeJS Buildpack&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 1. GET ARGS</span>
-</span></span><span class="line"><span class="cl"><span class="nv">layersdir</span><span class="o">=</span><span class="nv">$1</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 2. CREATE THE LAYER DIRECTORY</span>
-</span></span><span class="line"><span class="cl"><span class="nv">node_js_layer</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">layersdir</span><span class="si">}</span><span class="s2">&#34;</span>/node-js
+</span></span><span class="line"><span class="cl"><span class="c1"># 1. CREATE THE LAYER DIRECTORY</span>
+</span></span><span class="line"><span class="cl"><span class="nv">node_js_layer</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">CNB_LAYERS_DIR</span><span class="si">}</span><span class="s2">&#34;</span>/node-js
 </span></span><span class="line"><span class="cl">mkdir -p <span class="s2">&#34;</span><span class="si">${</span><span class="nv">node_js_layer</span><span class="si">}</span><span class="s2">&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 3. DOWNLOAD NodeJS</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 2. DOWNLOAD NodeJS</span>
 </span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;---&gt; Downloading and extracting NodeJS&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">node_js_url</span><span class="o">=</span>https://nodejs.org/dist/v18.18.1/node-v18.18.1-linux-x64.tar.xz
 </span></span><span class="line"><span class="cl">wget -q -O - <span class="s2">&#34;</span><span class="nv">$node_js_url</span><span class="s2">&#34;</span> <span class="p">|</span> tar -xJf - --strip-components <span class="m">1</span> -C <span class="s2">&#34;</span><span class="si">${</span><span class="nv">node_js_layer</span><span class="si">}</span><span class="s2">&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 4. MAKE NodeJS AVAILABLE DURING LAUNCH and CACHE the LAYER</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 3. MAKE NodeJS AVAILABLE DURING LAUNCH and CACHE the LAYER</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># ========== MODIFIED ===========</span>
-</span></span><span class="line"><span class="cl"><span class="nb">echo</span> -e <span class="s1">&#39;[types]\ncache = true\nlaunch = true&#39;</span> &gt; <span class="s2">&#34;</span><span class="si">${</span><span class="nv">layersdir</span><span class="si">}</span><span class="s2">/node-js.toml&#34;</span>
+</span></span><span class="line"><span class="cl"> cat &gt; <span class="s2">&#34;</span><span class="si">${</span><span class="nv">CNB_LAYERS_DIR</span><span class="si">}</span><span class="s2">/node-js.toml&#34;</span> <span class="s">&lt;&lt; EOL
+</span></span></span><span class="line"><span class="cl"><span class="s">[types]
+</span></span></span><span class="line"><span class="cl"><span class="s">cache = true
+</span></span></span><span class="line"><span class="cl"><span class="s">launch = true
+</span></span></span><span class="line"><span class="cl"><span class="s">EOL</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 5. SET DEFAULT START COMMAND</span>
-</span></span><span class="line"><span class="cl">cat &gt; <span class="s2">&#34;</span><span class="si">${</span><span class="nv">layersdir</span><span class="si">}</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt; EOL
+</span></span><span class="line"><span class="cl"><span class="c1"># 4. SET DEFAULT START COMMAND</span>
+</span></span><span class="line"><span class="cl">cat &gt; <span class="s2">&#34;</span><span class="si">${</span><span class="nv">CNB_LAYERS_DIR</span><span class="si">}</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt; EOL
 </span></span></span><span class="line"><span class="cl"><span class="s"># our web process
 </span></span></span><span class="line"><span class="cl"><span class="s">[[processes]]
 </span></span></span><span class="line"><span class="cl"><span class="s">type = &#34;web&#34;
@@ -801,18 +802,15 @@ set -eo pipefail
 
 echo &#34;---&gt; NodeJS Buildpack&#34;
 
-# 1. GET ARGS
-layersdir=$1
-
-# 2. CREATE THE LAYER DIRECTORY
-node_js_layer=&#34;${layersdir}&#34;/node-js
+# 1. CREATE THE LAYER DIRECTORY
+node_js_layer=&#34;${CNB_LAYERS_DIR}&#34;/node-js
 mkdir -p &#34;${node_js_layer}&#34;
 
 # ======= MODIFIED =======
-# 3. DOWNLOAD node-js
+# 2. DOWNLOAD node-js
 node_js_version=&#34;18.18.1&#34;
 node_js_url=https://nodejs.org/dist/v${node_js_version}/node-v${node_js_version}-linux-x64.tar.xz
-cached_nodejs_version=$(cat &#34;${layersdir}/node-js.toml&#34; 2&gt; /dev/null | yj -t | jq -r .metadata.nodejs_version 2&gt;/dev/null || echo &#39;NOT FOUND&#39;)
+cached_nodejs_version=$(cat &#34;${CNB_LAYERS_DIR}/node-js.toml&#34; 2&gt; /dev/null | yj -t | jq -r .metadata.nodejs_version 2&gt;/dev/null || echo &#39;NOT FOUND&#39;)
 if [[ &#34;${node_js_url}&#34; != *&#34;${cached_nodejs_version}&#34;* ]] ; then
     echo &#34;-----&gt; Downloading and extracting NodeJS&#34;
     wget -q -O - &#34;${node_js_url}&#34; | tar -xJf - --strip-components 1 -C &#34;${node_js_layer}&#34;
@@ -821,8 +819,8 @@ else
 fi
 
 # ======= MODIFIED =======
-# 4. MAKE node-js AVAILABLE DURING LAUNCH and CACHE the LAYER
-    cat &gt; &#34;${layersdir}/node-js.toml&#34; &lt;&lt; EOL
+# 3. MAKE node-js AVAILABLE DURING LAUNCH and CACHE the LAYER
+    cat &gt; &#34;${CNB_LAYERS_DIR}/node-js.toml&#34; &lt;&lt; EOL
 [types]
 cache = true
 launch = true
@@ -830,8 +828,8 @@ launch = true
 nodejs_version = &#34;${node_js_version}&#34;
 EOL
 
-# 5. SET DEFAULT START COMMAND
-cat &gt;&gt; &#34;${layersdir}/launch.toml&#34; &lt;&lt; EOL
+# 4. SET DEFAULT START COMMAND
+cat &gt;&gt; &#34;${CNB_LAYERS_DIR}/launch.toml&#34; &lt;&lt; EOL
 [[processes]]
 type = &#34;web&#34;
 command = &#34;node app.js&#34;
