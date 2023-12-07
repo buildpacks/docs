@@ -16,7 +16,7 @@ Let's begin by changing the `node-js-buildpack/bin/build`<!--+"{{open}}"+--> so 
 
 ### Creating a Layer
 
-A Buildpack layer is represented by a directory inside the [layers directory][layers-dir] provided to our buildpack by the Buildpack execution environment.  As defined by the buildpack specification, the layers directory is always passed to the `build` script as the first positional parameter. To create a new layer directory representing the NodeJS runtime, change the `build` script to look like this:
+A Buildpack layer is represented by a directory inside the [layers directory][layers-dir] provided to our buildpack by the Buildpack execution environment.  As defined by the buildpack specification, the layers directory is always passed to the `build` script as the first positional parameter. To create a new layer directory representing the NodeJS runtime, change the `build` script to look like the following.  The variable `CNB_LAYERS_DIR` is provided to the build script as defined by the [buildpacks specification](https://github.com/buildpacks/spec/blob/main/buildpack.md#positional-arguments-to-detect-and-build-executables).
 
 <!-- file=node-js-buildpack/bin/build -->
 ```bash
@@ -25,9 +25,7 @@ set -eo pipefail
 
 echo "---> NodeJS Buildpack"
 
-layersdir=$1
-
-node_js_layer="${layersdir}"/node-js
+node_js_layer="${CNB_LAYERS_DIR}"/node-js
 mkdir -p "${node_js_layer}"
 ```
 
@@ -48,7 +46,7 @@ The last step in creating a layer is writing a TOML file that contains metadata 
 
 <!-- file=node-js-buildpack/bin/build data-target=append -->
 ```bash
-echo -e '[types]\nlaunch = true' > "${layersdir}/node-js.toml"
+echo -e '[types]\nlaunch = true' > "${CNB_LAYERS_DIR}/node-js.toml"
 ```
 
 Now the Buildpack is ready to test.
@@ -64,20 +62,17 @@ set -eo pipefail
 
 echo "---> NodeJS Buildpack"
 
-# 1. GET ARGS
-layersdir=$1
-
-# 2. CREATE THE LAYER DIRECTORY
-node_js_layer="${layersdir}"/node-js
+# 1. CREATE THE LAYER DIRECTORY
+node_js_layer="${CNB_LAYERS_DIR}"/node-js
 mkdir -p "${node_js_layer}"
 
-# 3. DOWNLOAD node-js
+# 2. DOWNLOAD node-js
 echo "---> Downloading and extracting NodeJS"
 node_js_url=https://nodejs.org/dist/v18.18.1/node-v18.18.1-linux-x64.tar.xz
 wget -q -O - "${node_js_url}" | tar -xJf - --strip-components 1 -C "${node_js_layer}"
 
-# 4. MAKE node-js AVAILABLE DURING LAUNCH
-echo -e '[types]\nlaunch = true' > "${layersdir}/node-js.toml"
+# 3. MAKE node-js AVAILABLE DURING LAUNCH
+echo -e '[types]\nlaunch = true' > "${CNB_LAYERS_DIR}/node-js.toml"
 ```
 
 Build your app again:

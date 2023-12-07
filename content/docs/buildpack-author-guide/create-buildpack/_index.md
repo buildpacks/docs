@@ -17,7 +17,7 @@ Before we get started, make sure you've got the following installed:
 ## Overview
 <!--+end+-->
 
-This is a step-by-step tutorial for creating a Ruby Cloud Native Buildpack.
+This is a step-by-step tutorial for creating a nodeJS Cloud Native Buildpack.
 
 - [Set up your local environment](/docs/buildpack-author-guide/create-buildpack/setup-local-environment)
 - [Building blocks of a Cloud Native Buildpack](/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb)
