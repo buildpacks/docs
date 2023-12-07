@@ -68,9 +68,7 @@
       <link>https://buildpacks.io/docs/app-journey/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/app-journey/</guid>
-      <description>Pack for the journey In this tutorial, we&amp;rsquo;ll explain how to use pack and buildpacks to create a runnable app image from source code.
-In order to run the build process in an isolated fashion, pack uses Docker. That means you&amp;rsquo;ll need to make sure you have both docker and pack installed:
-Install Docker Install pack NOTE: pack is only one implementation of the Cloud Native Buildpacks Platform Specification. Additionally, not all Cloud Native Buildpacks Platforms require Docker.</description>
+      <description>Pack for the journey In this tutorial, we&amp;rsquo;ll explain how to use pack and buildpacks to create a runnable app image from source code.&#xA;In order to run the build process in an isolated fashion, pack uses Docker. That means you&amp;rsquo;ll need to make sure you have both docker and pack installed:&#xA;Install Docker Install pack NOTE: pack is only one implementation of the Cloud Native Buildpacks Platform Specification. Additionally, not all Cloud Native Buildpacks Platforms require Docker.</description>
     </item>
     <item>
       <title>Build a Windows app</title>
@@ -91,8 +89,7 @@ Install Docker Install pack NOTE: pack is only one implementation of the Cloud N
       <link>https://buildpacks.io/docs/concepts/components/buildpack/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/concepts/components/buildpack/</guid>
-      <description>&lt;h2 id=&#34;what-is-a-buildpack&#34;&gt;What is a buildpack?&lt;/h2&gt;
-&lt;p&gt;A buildpack is a set of executables that inspects your app source code and creates a plan to build and run your application.&lt;/p&gt;</description>
+      <description>&lt;h2 id=&#34;what-is-a-buildpack&#34;&gt;What is a buildpack?&lt;/h2&gt;&#xA;&lt;p&gt;A buildpack is a set of executables that inspects your app source code and creates a plan to build and run your application.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Community</title>
@@ -106,8 +103,7 @@ Install Docker Install pack NOTE: pack is only one implementation of the Cloud N
       <link>https://buildpacks.io/docs/operator-guide/create-build-base/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/operator-guide/create-build-base/</guid>
-      <description>Define a build base image for your CNB build We need a Dockerfile similar to the following:
-# Define the base image FROM ubuntu:jammy # Install packages that we want to make available at build time RUN apt-get update &amp;amp;&amp;amp; \ apt-get install -y xz-utils ca-certificates &amp;amp;&amp;amp; \ rm -rf /var/lib/apt/lists/* \ # Set required CNB user information ARG cnb_uid=1000 ARG cnb_gid=1000 ENV CNB_USER_ID=${cnb_uid} ENV CNB_GROUP_ID=${cnb_gid} # Create user and group RUN groupadd cnb --gid ${CNB_GROUP_ID} &amp;amp;&amp;amp; \ useradd --uid ${CNB_USER_ID} --gid ${CNB_GROUP_ID} -m -s /bin/bash cnb \ # Set user and group USER ${CNB_USER_ID}:${CNB_GROUP_ID} # Set required CNB target information LABEL io.</description>
+      <description>Define a build base image for your CNB build We need a Dockerfile similar to the following:&#xA;# Define the base image FROM ubuntu:jammy # Install packages that we want to make available at build time RUN apt-get update &amp;amp;&amp;amp; \ apt-get install -y xz-utils ca-certificates &amp;amp;&amp;amp; \ rm -rf /var/lib/apt/lists/* \ # Set required CNB user information ARG cnb_uid=1000 ARG cnb_gid=1000 ENV CNB_USER_ID=${cnb_uid} ENV CNB_GROUP_ID=${cnb_gid} # Create user and group RUN groupadd cnb --gid ${CNB_GROUP_ID} &amp;amp;&amp;amp; \ useradd --uid ${CNB_USER_ID} --gid ${CNB_GROUP_ID} -m -s /bin/bash cnb \ # Set user and group USER ${CNB_USER_ID}:${CNB_GROUP_ID} # Set required CNB target information LABEL io.</description>
     </item>
     <item>
       <title>Detect</title>
@@ -128,8 +124,7 @@ Install Docker Install pack NOTE: pack is only one implementation of the Cloud N
       <link>https://buildpacks.io/docs/concepts/components/base-images/run/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/concepts/components/base-images/run/</guid>
-      <description>What is a run image? The run image provides the base image for application images. The lifecycle requires a reference to a run image and (where necessary) possible run image mirrors in order to construct the application image.
-Run image mirrors Run image mirrors provide alternate locations for run images, for use during build or rebase. When running build with a builder containing run image mirrors, pack will select a run image whose registry location matches that of the specified app image (if no registry host is specified in the image name, DockerHub is assumed).</description>
+      <description>What is a run image? The run image provides the base image for application images. The lifecycle requires a reference to a run image and (where necessary) possible run image mirrors in order to construct the application image.&#xA;Run image mirrors Run image mirrors provide alternate locations for run images, for use during build or rebase. When running build with a builder containing run image mirrors, pack will select a run image whose registry location matches that of the specified app image (if no registry host is specified in the image name, DockerHub is assumed).</description>
     </item>
     <item>
       <title>Buildpack Group</title>
@@ -143,8 +138,7 @@ Run image mirrors Run image mirrors provide alternate locations for run images, 
       <link>https://buildpacks.io/docs/operator-guide/create-run-base/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/operator-guide/create-run-base/</guid>
-      <description>Define a run base image for your CNB build We need a Dockerfile similar to the following:
-# Define the base image FROM ubuntu:jammy # Install packages that we want to make available at run time RUN apt-get update &amp;amp;&amp;amp; \ apt-get install -y xz-utils ca-certificates &amp;amp;&amp;amp; \ rm -rf /var/lib/apt/lists/* \ # Create user and group ARG cnb_uid=1000 ARG cnb_gid=1000 RUN groupadd cnb --gid ${cnb_gid} &amp;amp;&amp;amp; \ useradd --uid ${cnb_uid} --gid ${cnb_gid} -m -s /bin/bash cnb \ # Set user and group USER ${cnb_uid}:${cnb_gid} # Set required CNB target information LABEL io.</description>
+      <description>Define a run base image for your CNB build We need a Dockerfile similar to the following:&#xA;# Define the base image FROM ubuntu:jammy # Install packages that we want to make available at run time RUN apt-get update &amp;amp;&amp;amp; \ apt-get install -y xz-utils ca-certificates &amp;amp;&amp;amp; \ rm -rf /var/lib/apt/lists/* \ # Create user and group ARG cnb_uid=1000 ARG cnb_gid=1000 RUN groupadd cnb --gid ${cnb_gid} &amp;amp;&amp;amp; \ useradd --uid ${cnb_uid} --gid ${cnb_gid} -m -s /bin/bash cnb \ # Set user and group USER ${cnb_uid}:${cnb_gid} # Set required CNB target information LABEL io.</description>
     </item>
     <item>
       <title>Environment variables</title>
@@ -165,8 +159,7 @@ Run image mirrors Run image mirrors provide alternate locations for run images, 
       <link>https://buildpacks.io/docs/concepts/components/platform/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/concepts/components/platform/</guid>
-      <description>&lt;h2 id=&#34;what-is-a-platform&#34;&gt;What is a Platform?&lt;/h2&gt;
-&lt;p&gt;A &lt;code&gt;platform&lt;/code&gt; uses a &lt;a href=&#34;https://buildpacks.io/docs/concepts/components/lifecycle/&#34;&gt;lifecycle&lt;/a&gt;, &lt;a href=&#34;https://buildpacks.io/docs/concepts/components/buildpack/&#34;&gt;buildpacks&lt;/a&gt; (packaged in a &lt;a href=&#34;https://buildpacks.io/docs/concepts/components/builder/&#34;&gt;builder&lt;/a&gt;), and application source code to produce an OCI image.&lt;/p&gt;</description>
+      <description>&lt;h2 id=&#34;what-is-a-platform&#34;&gt;What is a Platform?&lt;/h2&gt;&#xA;&lt;p&gt;A &lt;code&gt;platform&lt;/code&gt; uses a &lt;a href=&#34;https://buildpacks.io/docs/concepts/components/lifecycle/&#34;&gt;lifecycle&lt;/a&gt;, &lt;a href=&#34;https://buildpacks.io/docs/concepts/components/buildpack/&#34;&gt;buildpacks&lt;/a&gt; (packaged in a &lt;a href=&#34;https://buildpacks.io/docs/concepts/components/builder/&#34;&gt;builder&lt;/a&gt;), and application source code to produce an OCI image.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Restore</title>
@@ -194,13 +187,7 @@ Run image mirrors Run image mirrors provide alternate locations for run images, 
       <link>https://buildpacks.io/docs/operator-guide/create-a-stack/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/operator-guide/create-a-stack/</guid>
-      <description>&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: As of Platform API 0.12 and Buildpack API 0.10, stacks are deprecated in favor of existing constructs in the container image ecosystem such as operating system name, operating system distribution, and architecture.&lt;/p&gt;
-&lt;p&gt;You can still configure the build and run base images for your CNB build.
-To find out how, see &lt;a href=&#34;https://buildpacks.io/docs/operator-guide/create-build-base/&#34;&gt;create a build base image&lt;/a&gt; and &lt;a href=&#34;https://buildpacks.io/docs/operator-guide/create-run-base/&#34;&gt;create a run base image&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;A stack is the grouping together of the build and run base images, represented by a unique ID.
-A stack ID identifies the configuration for the build and run base images, and it used to determined compatibility with available buildpacks, and rebasability when updated run images are available.
-If you&amp;rsquo;re on an older Platform API version, you may still need to create a custom stack.
-To find out how, read on&amp;hellip;&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: As of Platform API 0.12 and Buildpack API 0.10, stacks are deprecated in favor of existing constructs in the container image ecosystem such as operating system name, operating system distribution, and architecture.&lt;/p&gt;&#xA;&lt;p&gt;You can still configure the build and run base images for your CNB build.&#xA;To find out how, see &lt;a href=&#34;https://buildpacks.io/docs/operator-guide/create-build-base/&#34;&gt;create a build base image&lt;/a&gt; and &lt;a href=&#34;https://buildpacks.io/docs/operator-guide/create-run-base/&#34;&gt;create a run base image&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;A stack is the grouping together of the build and run base images, represented by a unique ID.&#xA;A stack ID identifies the configuration for the build and run base images, and it used to determined compatibility with available buildpacks, and rebasability when updated run images are available.&#xA;If you&amp;rsquo;re on an older Platform API version, you may still need to create a custom stack.&#xA;To find out how, read on&amp;hellip;&lt;/p&gt;</description>
     </item>
     <item>
       <title>Mounting Volumes</title>
@@ -221,27 +208,14 @@ To find out how, read on&amp;hellip;&lt;/p&gt;</description>
       <link>https://buildpacks.io/docs/concepts/components/stack/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/concepts/components/stack/</guid>
-      <description>&lt;h2 id=&#34;what-is-a-stack&#34;&gt;What is a stack?&lt;/h2&gt;
-&lt;p&gt;A stack (deprecated) is the grouping together of the build and run base images, represented by a unique ID.&lt;/p&gt;
-&lt;p&gt;As of Platform API 0.12 and Buildpack API 0.10, stacks are deprecated in favor of existing constructs in the container image ecosystem such as operating system name, operating system distribution, and architecture.&lt;/p&gt;
-&lt;p&gt;For more information, see&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Platform API 0.12 &lt;a href=&#34;https://buildpacks.io/docs/reference/spec/migration/platform-api-0.11-0.12/&#34;&gt;migration guide&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Buildpack API 0.10 &lt;a href=&#34;https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.9-0.10/&#34;&gt;migration guide&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://buildpacks.io/docs/concepts/components/base-images/build/&#34;&gt;Build image&lt;/a&gt; concept&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://buildpacks.io/docs/concepts/components/base-images/run/&#34;&gt;Run image&lt;/a&gt; concept&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://buildpacks.io/docs/concepts/components/targets/&#34;&gt;Target data&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;For older API versions, see below on using stacks.&lt;/p&gt;</description>
+      <description>&lt;h2 id=&#34;what-is-a-stack&#34;&gt;What is a stack?&lt;/h2&gt;&#xA;&lt;p&gt;A stack (deprecated) is the grouping together of the build and run base images, represented by a unique ID.&lt;/p&gt;&#xA;&lt;p&gt;As of Platform API 0.12 and Buildpack API 0.10, stacks are deprecated in favor of existing constructs in the container image ecosystem such as operating system name, operating system distribution, and architecture.&lt;/p&gt;&#xA;&lt;p&gt;For more information, see&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Platform API 0.12 &lt;a href=&#34;https://buildpacks.io/docs/reference/spec/migration/platform-api-0.11-0.12/&#34;&gt;migration guide&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;Buildpack API 0.10 &lt;a href=&#34;https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.9-0.10/&#34;&gt;migration guide&lt;/a&gt;&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://buildpacks.io/docs/concepts/components/base-images/build/&#34;&gt;Build image&lt;/a&gt; concept&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://buildpacks.io/docs/concepts/components/base-images/run/&#34;&gt;Run image&lt;/a&gt; concept&lt;/li&gt;&#xA;&lt;li&gt;&lt;a href=&#34;https://buildpacks.io/docs/concepts/components/targets/&#34;&gt;Target data&lt;/a&gt;&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;For older API versions, see below on using stacks.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Targets</title>
       <link>https://buildpacks.io/docs/concepts/components/targets/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/concepts/components/targets/</guid>
-      <description>The concept of &amp;ldquo;targets&amp;rdquo; is used to identify compatibility between buildpacks and base images.
-Target data includes:
-Operating system name (e.g., &amp;ldquo;linux&amp;rdquo;) Architecture (e.g., &amp;ldquo;amd64&amp;rdquo;, &amp;ldquo;arm64&amp;rdquo;) Architecture variant Operating system distribution name (e.g., &amp;ldquo;ubuntu&amp;rdquo;, &amp;ldquo;alpine&amp;rdquo;) Operating system distribution version (e.g., &amp;ldquo;22.04&amp;rdquo;, &amp;ldquo;3.18.3&amp;rdquo;) For Linux-based images, operating system distribution name and version should be the values in /etc/os-release ($ID and $VERSION_ID). For Windows-based images, operating system distribution name is blank, and version should be the value of os.</description>
+      <description>The concept of &amp;ldquo;targets&amp;rdquo; is used to identify compatibility between buildpacks and base images.&#xA;Target data includes:&#xA;Operating system name (e.g., &amp;ldquo;linux&amp;rdquo;) Architecture (e.g., &amp;ldquo;amd64&amp;rdquo;, &amp;ldquo;arm64&amp;rdquo;) Architecture variant Operating system distribution name (e.g., &amp;ldquo;ubuntu&amp;rdquo;, &amp;ldquo;alpine&amp;rdquo;) Operating system distribution version (e.g., &amp;ldquo;22.04&amp;rdquo;, &amp;ldquo;3.18.3&amp;rdquo;) For Linux-based images, operating system distribution name and version should be the values in /etc/os-release ($ID and $VERSION_ID). For Windows-based images, operating system distribution name is blank, and version should be the value of os.</description>
     </item>
     <item>
       <title>Export</title>
@@ -346,127 +320,98 @@ Operating system name (e.g., &amp;ldquo;linux&amp;rdquo;) Architecture (e.g., &a
       <link>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/setup-local-environment/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/setup-local-environment/</guid>
-      <description>First, we&amp;rsquo;ll create a sample Ruby app that you can use when developing your buildpack:
-mkdir node-js-sample-app Create a file in the current directory called node-js-sample-app/app.js with the following contents:
-const http = require(&amp;#39;http&amp;#39;); const hostname = &amp;#39;0.0.0.0&amp;#39;; const port = 8080; const server = http.createServer((req, res) =&amp;gt; { res.statusCode = 200; res.setHeader(&amp;#39;Content-Type&amp;#39;, &amp;#39;text/plain&amp;#39;); res.end(&amp;#39;Hello World!&amp;#39;); }); // For demo purposes we do not actually start the server. This // allows us pretend to start the server and check if the output // message is correct.</description>
+      <description>First, we&amp;rsquo;ll create a sample Ruby app that you can use when developing your buildpack:&#xA;mkdir node-js-sample-app Create a file in the current directory called node-js-sample-app/app.js with the following contents:&#xA;const http = require(&amp;#39;http&amp;#39;); const hostname = &amp;#39;0.0.0.0&amp;#39;; const port = 8080; const server = http.createServer((req, res) =&amp;gt; { res.statusCode = 200; res.setHeader(&amp;#39;Content-Type&amp;#39;, &amp;#39;text/plain&amp;#39;); res.end(&amp;#39;Hello World!&amp;#39;); }); // For demo purposes we do not actually start the server. This // allows us pretend to start the server and check if the output // message is correct.</description>
     </item>
     <item>
       <title>Set up your local environment</title>
       <link>https://buildpacks.io/docs/extension-guide/create-extension/setup-local-environment/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/extension-guide/create-extension/setup-local-environment/</guid>
-      <description>Let&amp;rsquo;s walk through a build that uses extensions, step by step. We will see an image extension that installs curl on the builder image, and switches the run image to an image that has curl installed.
-Ensure Docker is running docker version If you see output similar to the following, you&amp;rsquo;re good to go! Otherwise, start Docker and check again.
-Client: Docker Engine - Community Version: 20.10.9 API version: 1.</description>
+      <description>Let&amp;rsquo;s walk through a build that uses extensions, step by step. We will see an image extension that installs curl on the builder image, and switches the run image to an image that has curl installed.&#xA;Ensure Docker is running docker version If you see output similar to the following, you&amp;rsquo;re good to go! Otherwise, start Docker and check again.&#xA;Client: Docker Engine - Community Version: 20.10.9 API version: 1.</description>
     </item>
     <item>
       <title>Building blocks of a Cloud Native Buildpack</title>
       <link>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb/</guid>
-      <description>Now we will set up the buildpack scaffolding.
-Let&amp;rsquo;s create the directory where your buildpack will live:
-Using the Pack CLI The buildpack new &amp;lt;id&amp;gt; command will create a directory named for the buildpack ID.
-Example:
-pack buildpack new examples/node-js \ --api 0.8 \ --path node-js-buildpack \ --version 0.0.1 \ --stacks io.buildpacks.samples.stacks.jammy This command will create node-js-buildpack directory which contains buildpack.toml, bin/build, bin/detect files.
-Additional Parameters -a, --api Buildpack API compatibility of the generated buildpack -h, --help Help for &amp;rsquo;new&#39; --path the location on the filesystem to generate the artifacts --stacks Stacks (deprecated) the buildpack will work with -V, --version the version of the buildpack in buildpack.</description>
+      <description>Now we will set up the buildpack scaffolding.&#xA;Let&amp;rsquo;s create the directory where your buildpack will live:&#xA;Using the Pack CLI The buildpack new &amp;lt;id&amp;gt; command will create a directory named for the buildpack ID.&#xA;Example:&#xA;pack buildpack new examples/node-js \ --api 0.8 \ --path node-js-buildpack \ --version 0.0.1 \ --stacks io.buildpacks.samples.stacks.jammy This command will create node-js-buildpack directory which contains buildpack.toml, bin/build, bin/detect files.&#xA;Additional Parameters -a, --api Buildpack API compatibility of the generated buildpack -h, --help Help for &amp;rsquo;new&#39; --path the location on the filesystem to generate the artifacts --stacks Stacks (deprecated) the buildpack will work with -V, --version the version of the buildpack in buildpack.</description>
     </item>
     <item>
       <title>Why Dockerfiles</title>
       <link>https://buildpacks.io/docs/extension-guide/create-extension/why-dockerfiles/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/extension-guide/create-extension/why-dockerfiles/</guid>
-      <description>Let&amp;rsquo;s see a build that requires base image extension in order to succeed.
-Examine hello-extensions buildpack detect cat $PWD/samples/buildpacks/hello-extensions/bin/detect The buildpack opts-out of the build (exits with non-zero code) unless the BP_EXT_DEMO environment variable is set.
-If the BP_EXT_DEMO environment variable is set, the buildpack detects (exits with code 0), but doesn&amp;rsquo;t require any dependencies through a build plan unless the BP_REQUIRES environment variable is set.
-build cat $PWD/samples/buildpacks/hello-extensions/bin/build The buildpack tries to use vim at build-time, and defines a launch process called curl that runs curl --version at runtime.</description>
+      <description>Let&amp;rsquo;s see a build that requires base image extension in order to succeed.&#xA;Examine hello-extensions buildpack detect cat $PWD/samples/buildpacks/hello-extensions/bin/detect The buildpack opts-out of the build (exits with non-zero code) unless the BP_EXT_DEMO environment variable is set.&#xA;If the BP_EXT_DEMO environment variable is set, the buildpack detects (exits with code 0), but doesn&amp;rsquo;t require any dependencies through a build plan unless the BP_REQUIRES environment variable is set.&#xA;build cat $PWD/samples/buildpacks/hello-extensions/bin/build The buildpack tries to use vim at build-time, and defines a launch process called curl that runs curl --version at runtime.</description>
     </item>
     <item>
       <title>Building blocks of a CNB Image Extension</title>
       <link>https://buildpacks.io/docs/extension-guide/create-extension/building-blocks-extension/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/extension-guide/create-extension/building-blocks-extension/</guid>
-      <description>Examine vim extension tree $PWD/samples/extensions/vim You should see something akin to the following:
-. ├── bin │ ├── detect &amp;lt;- similar to a buildpack ./bin/detect │ ├── generate &amp;lt;- similar to a buildpack ./bin/build ├── extension.toml &amp;lt;- similar to a buildpack buildpack.toml The extension.toml describes the extension, containing information such as its name, ID, and version, as well as the Buildpack API that it implements. Though extensions are not buildpacks, they are expected to conform to the Buildpack API except where noted.</description>
+      <description>Examine vim extension tree $PWD/samples/extensions/vim You should see something akin to the following:&#xA;. ├── bin │ ├── detect &amp;lt;- similar to a buildpack ./bin/detect │ ├── generate &amp;lt;- similar to a buildpack ./bin/build ├── extension.toml &amp;lt;- similar to a buildpack buildpack.toml The extension.toml describes the extension, containing information such as its name, ID, and version, as well as the Buildpack API that it implements. Though extensions are not buildpacks, they are expected to conform to the Buildpack API except where noted.</description>
     </item>
     <item>
       <title>Detecting your application</title>
       <link>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/detection/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/detection/</guid>
-      <description>Next, you will want to actually detect that the app you are building is a node-js app. In order to do this, you will need to check for a package.json.
-Replace exit 1 in the detect script with the following check:
-if [[ ! -f package.json ]]; then exit 100 fi Your node-js-buildpack/bin/detect script should look like this:
-#!/usr/bin/env bash set -eo pipefail if [[ ! -f package.json ]]; then exit 100 fi Next, rebuild your app with the updated buildpack:</description>
+      <description>Next, you will want to actually detect that the app you are building is a node-js app. In order to do this, you will need to check for a package.json.&#xA;Replace exit 1 in the detect script with the following check:&#xA;if [[ ! -f package.json ]]; then exit 100 fi Your node-js-buildpack/bin/detect script should look like this:&#xA;#!/usr/bin/env bash set -eo pipefail if [[ ! -f package.json ]]; then exit 100 fi Next, rebuild your app with the updated buildpack:</description>
     </item>
     <item>
       <title>Building your application</title>
       <link>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/build-app/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/build-app/</guid>
-      <description>Now we&amp;rsquo;ll change the build step you created to install application dependencies. This will require updates to the build script such that it performs the following steps:
-Create a layer for the NodeJS runtime Download the NodeJS runtime and installs it to the layer By doing this, you&amp;rsquo;ll learn how to create arbitrary layers with your buildpack, and how to read the contents of the app in order to perform actions like downloading dependencies.</description>
+      <description>Now we&amp;rsquo;ll change the build step you created to install application dependencies. This will require updates to the build script such that it performs the following steps:&#xA;Create a layer for the NodeJS runtime Download the NodeJS runtime and installs it to the layer By doing this, you&amp;rsquo;ll learn how to create arbitrary layers with your buildpack, and how to read the contents of the app in order to perform actions like downloading dependencies.</description>
     </item>
     <item>
       <title>Generating a build.Dockerfile</title>
       <link>https://buildpacks.io/docs/extension-guide/create-extension/build-dockerfile/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/extension-guide/create-extension/build-dockerfile/</guid>
-      <description>Builder images can be kept lean if image extensions are used to dynamically install the needed dependencies for the current application.
-Examine vim extension detect cat $PWD/samples/extensions/vim/bin/detect The extension always detects (because its exit code is 0) and provides a dependency called vim by writing to the build plan.
-generate cat $PWD/samples/extensions/vim/bin/generate The extension generates a build.Dockerfile that installs vim on the builder image.
-Configure the hello-extensions buildpack to require vim Set the BP_REQUIRES build-time environment variable to configure the hello-extensions buildpack to require vim (review the .</description>
+      <description>Builder images can be kept lean if image extensions are used to dynamically install the needed dependencies for the current application.&#xA;Examine vim extension detect cat $PWD/samples/extensions/vim/bin/detect The extension always detects (because its exit code is 0) and provides a dependency called vim by writing to the build plan.&#xA;generate cat $PWD/samples/extensions/vim/bin/generate The extension generates a build.Dockerfile that installs vim on the builder image.&#xA;Configure the hello-extensions buildpack to require vim Set the BP_REQUIRES build-time environment variable to configure the hello-extensions buildpack to require vim (review the .</description>
     </item>
     <item>
       <title>Generating a run.Dockerfile that switches the runtime base image</title>
       <link>https://buildpacks.io/docs/extension-guide/create-extension/run-dockerfile-switch/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/extension-guide/create-extension/run-dockerfile-switch/</guid>
-      <description>Platforms can have several run images available, each tailored to a specific language family - thus limiting the number of installed dependencies for each image to the minimum necessary to support the targeted language. Image extensions can be used to switch the run image to that most appropriate for the current application.
-Examine curl extension detect cat $PWD/samples/extensions/curl/bin/detect The extension always detects (because its exit code is 0) and provides a dependency called curl.</description>
+      <description>Platforms can have several run images available, each tailored to a specific language family - thus limiting the number of installed dependencies for each image to the minimum necessary to support the targeted language. Image extensions can be used to switch the run image to that most appropriate for the current application.&#xA;Examine curl extension detect cat $PWD/samples/extensions/curl/bin/detect The extension always detects (because its exit code is 0) and provides a dependency called curl.</description>
     </item>
     <item>
       <title>Make your application runnable</title>
       <link>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/make-app-runnable/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/make-app-runnable/</guid>
-      <description>To make your app runnable, a default start command must be set. You&amp;rsquo;ll need to add the following to the end of your build script:
-# ... # Set default start command cat &amp;gt; &amp;#34;${layersdir}/launch.toml&amp;#34; &amp;lt;&amp;lt; EOL [[processes]] type = &amp;#34;web&amp;#34; command = &amp;#34;node app.js&amp;#34; default = true EOL # ... Your full node-js-buildpack/bin/build script should now look like the following:
-#!/usr/bin/env bash set -eo pipefail echo &amp;#34;---&amp;gt; NodeJS Buildpack&amp;#34; # 1.</description>
+      <description>To make your app runnable, a default start command must be set. You&amp;rsquo;ll need to add the following to the end of your build script:&#xA;# ... # Set default start command cat &amp;gt; &amp;#34;${layersdir}/launch.toml&amp;#34; &amp;lt;&amp;lt; EOL [[processes]] type = &amp;#34;web&amp;#34; command = &amp;#34;node app.js&amp;#34; default = true EOL # ... Your full node-js-buildpack/bin/build script should now look like the following:&#xA;#!/usr/bin/env bash set -eo pipefail echo &amp;#34;---&amp;gt; NodeJS Buildpack&amp;#34; # 1.</description>
     </item>
     <item>
       <title>Specifying an Image Extension at Build Time</title>
       <link>https://buildpacks.io/docs/extension-guide/consume-extension/from-cli/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/extension-guide/consume-extension/from-cli/</guid>
-      <description>Specifying an Image Extension at Build Time No builder can be truly omniscient, and whoever did yours surely was no exception! You need to add a little extra spice to the mix with this late-breaking extension, by doing something like:
-pack build [...] --extension=foo [...]</description>
+      <description>Specifying an Image Extension at Build Time No builder can be truly omniscient, and whoever did yours surely was no exception! You need to add a little extra spice to the mix with this late-breaking extension, by doing something like:&#xA;pack build [...] --extension=foo [...]</description>
     </item>
     <item>
       <title>Specifying an Image Extension in the Builder</title>
       <link>https://buildpacks.io/docs/extension-guide/consume-extension/in-builder/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/extension-guide/consume-extension/in-builder/</guid>
-      <description> Specifying an Image Extension in the Builder You&amp;rsquo;re pretty sharp, and you know what your buildpack users will need. That&amp;rsquo;s why you&amp;rsquo;re going to add something similar to the following lines directly to builder.toml:
-[[order-extensions]] [[order-extensions.group]] id = &amp;#34;foo&amp;#34; version = &amp;#34;0.0.1&amp;#34; [[extensions]] id = &amp;#34;foo&amp;#34; version = &amp;#34;0.0.1&amp;#34; uri = &amp;#34;/local/path/to/extension/foo&amp;#34; # can be relative or absolute </description>
+      <description> Specifying an Image Extension in the Builder You&amp;rsquo;re pretty sharp, and you know what your buildpack users will need. That&amp;rsquo;s why you&amp;rsquo;re going to add something similar to the following lines directly to builder.toml:&#xA;[[order-extensions]] [[order-extensions.group]] id = &amp;#34;foo&amp;#34; version = &amp;#34;0.0.1&amp;#34; [[extensions]] id = &amp;#34;foo&amp;#34; version = &amp;#34;0.0.1&amp;#34; uri = &amp;#34;/local/path/to/extension/foo&amp;#34; # can be relative or absolute </description>
     </item>
     <item>
       <title>Generating a run.Dockerfile that extends the runtime base image</title>
       <link>https://buildpacks.io/docs/extension-guide/create-extension/run-dockerfile-extend/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/extension-guide/create-extension/run-dockerfile-extend/</guid>
-      <description>Run images can be kept lean if image extensions are used to dynamically install the needed dependencies for the current application.
-Examine cowsay extension detect cat $PWD/samples/extensions/cowsay/bin/detect The extension always detects (because its exit code is 0) and provides a dependency called cowsay.
-generate cat $PWD/samples/extensions/cowsay/bin/generate The extension generates a run.Dockerfile that installs cowsay on the current run image.
-Configure the hello-extensions buildpack to require cowsay Set the BP_REQUIRES build-time environment variable to configure the hello-extensions buildpack to require both vim and curl (review the .</description>
+      <description>Run images can be kept lean if image extensions are used to dynamically install the needed dependencies for the current application.&#xA;Examine cowsay extension detect cat $PWD/samples/extensions/cowsay/bin/detect The extension always detects (because its exit code is 0) and provides a dependency called cowsay.&#xA;generate cat $PWD/samples/extensions/cowsay/bin/generate The extension generates a run.Dockerfile that installs cowsay on the current run image.&#xA;Configure the hello-extensions buildpack to require cowsay Set the BP_REQUIRES build-time environment variable to configure the hello-extensions buildpack to require both vim and curl (review the .</description>
     </item>
     <item>
       <title>Specify multiple process types</title>
       <link>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/specify-multiple-process-types/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/specify-multiple-process-types/</guid>
-      <description>One of the benefits of buildpacks is that they are multi-process - an image can have multiple entrypoints for each operational mode. Let&amp;rsquo;s see how this works. We will extend our app to have an entrypoint that allows a debugger to attach to it.
-To enable running the debug process, we&amp;rsquo;ll need to have our buildpack define a &amp;ldquo;process type&amp;rdquo; for the worker. Modify the section where processes are defined to:</description>
+      <description>One of the benefits of buildpacks is that they are multi-process - an image can have multiple entrypoints for each operational mode. Let&amp;rsquo;s see how this works. We will extend our app to have an entrypoint that allows a debugger to attach to it.&#xA;To enable running the debug process, we&amp;rsquo;ll need to have our buildpack define a &amp;ldquo;process type&amp;rdquo; for the worker. Modify the section where processes are defined to:</description>
     </item>
     <item>
       <title>The finer points of image extensions</title>
@@ -480,26 +425,21 @@ To enable running the debug process, we&amp;rsquo;ll need to have our buildpack 
       <link>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/caching/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/caching/</guid>
-      <description>We can improve performance by caching the runtime between builds, only re-downloading when necessary. To begin, let&amp;rsquo;s cache the runtime layer.
-Cache the runtime layer To do this, replace the following lines in the build script:
-# 4. MAKE node-js AVAILABLE DURING LAUNCH echo -e &amp;#39;[types]\nlaunch = true&amp;#39; &amp;gt; &amp;#34;${layersdir}/node-js.toml&amp;#34; with the following:
-# 4. MAKE node-js AVAILABLE DURING LAUNCH and CACHE it echo -e &amp;#39;[types]\ncache = true\nlaunch = true&amp;#39; &amp;gt; &amp;#34;${layersdir}/node-js.</description>
+      <description>We can improve performance by caching the runtime between builds, only re-downloading when necessary. To begin, let&amp;rsquo;s cache the runtime layer.&#xA;Cache the runtime layer To do this, replace the following lines in the build script:&#xA;# 4. MAKE node-js AVAILABLE DURING LAUNCH echo -e &amp;#39;[types]\nlaunch = true&amp;#39; &amp;gt; &amp;#34;${layersdir}/node-js.toml&amp;#34; with the following:&#xA;# 4. MAKE node-js AVAILABLE DURING LAUNCH and CACHE it echo -e &amp;#39;[types]\ncache = true\nlaunch = true&amp;#39; &amp;gt; &amp;#34;${layersdir}/node-js.</description>
     </item>
     <item>
       <title>Making your buildpack configurable</title>
       <link>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable/</guid>
-      <description>It&amp;rsquo;s likely that not all NodeJS apps will want to use the same version of NodeJS. Let&amp;rsquo;s make the NodeJS version configurable.
-Select NodeJS version We&amp;rsquo;ll allow buildpack users to define the desired NodeJS version via a .node-js-version file in their app. We&amp;rsquo;ll first update the detect script to check for this file. We will then record the dependency we can provide (NodeJS), as well as the specific dependency the application will require, in the Build Plan, a document the lifecycle uses to determine if the buildpack will provide everything the application needs.</description>
+      <description>It&amp;rsquo;s likely that not all NodeJS apps will want to use the same version of NodeJS. Let&amp;rsquo;s make the NodeJS version configurable.&#xA;Select NodeJS version We&amp;rsquo;ll allow buildpack users to define the desired NodeJS version via a .node-js-version file in their app. We&amp;rsquo;ll first update the detect script to check for this file. We will then record the dependency we can provide (NodeJS), as well as the specific dependency the application will require, in the Build Plan, a document the lifecycle uses to determine if the buildpack will provide everything the application needs.</description>
     </item>
     <item>
       <title>Adding Bill-of-Materials</title>
       <link>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials/</guid>
-      <description>One of the benefits of buildpacks is they can also populate the app image with metadata from the build process, allowing you to audit the app image for information like:
-The process types that are available and the commands associated with them The run-image the app image was based on The buildpacks were used to create the app image Whether the run-image can be rebased with a new version through the Rebasable label or not And more&amp;hellip;!</description>
+      <description>One of the benefits of buildpacks is they can also populate the app image with metadata from the build process, allowing you to audit the app image for information like:&#xA;The process types that are available and the commands associated with them The run-image the app image was based on The buildpacks were used to create the app image Whether the run-image can be rebased with a new version through the Rebasable label or not And more&amp;hellip;!</description>
     </item>
     <item>
       <title>builder.toml</title>
@@ -513,8 +453,7 @@ The process types that are available and the commands associated with them The r
       <link>https://buildpacks.io/docs/reference/spec/buildpack-api/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/reference/spec/buildpack-api/</guid>
-      <description>&lt;p&gt;This specification defines the interface between a buildpack and the environment that runs it.
-This API will be used by buildpack authors.&lt;/p&gt;</description>
+      <description>&lt;p&gt;This specification defines the interface between a buildpack and the environment that runs it.&#xA;This API will be used by buildpack authors.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Buildpack API 0.4 -&gt; 0.5</title>
@@ -563,8 +502,7 @@ This API will be used by buildpack authors.&lt;/p&gt;</description>
       <link>https://buildpacks.io/docs/tools/circleci/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/tools/circleci/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://circleci.com/&#34;&gt;CircleCI&lt;/a&gt; is a continuous integration and delivery platform. The CNB project maintains an integration, called an &lt;a href=&#34;https://circleci.com/orbs/&#34;&gt;orb&lt;/a&gt;,
-which allows users to run &lt;a href=&#34;https://buildpacks.io/docs/install-pack&#34;&gt;pack&lt;/a&gt; commands inside their pipelines.&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://circleci.com/&#34;&gt;CircleCI&lt;/a&gt; is a continuous integration and delivery platform. The CNB project maintains an integration, called an &lt;a href=&#34;https://circleci.com/orbs/&#34;&gt;orb&lt;/a&gt;,&#xA;which allows users to run &lt;a href=&#34;https://buildpacks.io/docs/install-pack&#34;&gt;pack&lt;/a&gt; commands inside their pipelines.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Distribution API</title>
@@ -585,8 +523,7 @@ which allows users to run &lt;a href=&#34;https://buildpacks.io/docs/install-pac
       <link>https://buildpacks.io/docs/tools/gitlab/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/tools/gitlab/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://about.gitlab.com/&#34;&gt;Gitlab&lt;/a&gt; is a web based DevOps platform. It uses &lt;a href=&#34;https://buildpacks.io/docs/install-pack&#34;&gt;&lt;code&gt;pack&lt;/code&gt;&lt;/a&gt; as part of the &lt;a href=&#34;https://docs.gitlab.com/ee/topics/autodevops/&#34;&gt;Auto DevOps&lt;/a&gt; feature, to
-build applications prior to deploying them.&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://about.gitlab.com/&#34;&gt;Gitlab&lt;/a&gt; is a web based DevOps platform. It uses &lt;a href=&#34;https://buildpacks.io/docs/install-pack&#34;&gt;&lt;code&gt;pack&lt;/code&gt;&lt;/a&gt; as part of the &lt;a href=&#34;https://docs.gitlab.com/ee/topics/autodevops/&#34;&gt;Auto DevOps&lt;/a&gt; feature, to&#xA;build applications prior to deploying them.&lt;/p&gt;</description>
     </item>
     <item>
       <title>kpack</title>
@@ -1048,8 +985,7 @@ build applications prior to deploying them.&lt;/p&gt;</description>
       <link>https://buildpacks.io/docs/features/reproducibility/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/features/reproducibility/</guid>
-      <description>&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
-&lt;p&gt;The Cloud Native Buildpacks project aims to create &amp;ldquo;Reproducible Builds&amp;rdquo; of container images. For image creation commands (&lt;code&gt;builder create&lt;/code&gt;, &lt;code&gt;buildpack package&lt;/code&gt;, &lt;code&gt;build&lt;/code&gt;) &lt;code&gt;pack&lt;/code&gt; creates container images in a reproducible fashion. &amp;ldquo;Reproducible&amp;rdquo; is hard to define but we&amp;rsquo;ll do so by example and with a few caveats:&lt;/p&gt;</description>
+      <description>&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;&#xA;&lt;p&gt;The Cloud Native Buildpacks project aims to create &amp;ldquo;Reproducible Builds&amp;rdquo; of container images. For image creation commands (&lt;code&gt;builder create&lt;/code&gt;, &lt;code&gt;buildpack package&lt;/code&gt;, &lt;code&gt;build&lt;/code&gt;) &lt;code&gt;pack&lt;/code&gt; creates container images in a reproducible fashion. &amp;ldquo;Reproducible&amp;rdquo; is hard to define but we&amp;rsquo;ll do so by example and with a few caveats:&lt;/p&gt;</description>
     </item>
     <item>
       <title>Software Bill of Materials</title>
@@ -1063,8 +999,7 @@ build applications prior to deploying them.&lt;/p&gt;</description>
       <link>https://buildpacks.io/docs/tools/tekton/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/tools/tekton/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://tekton.dev/&#34;&gt;Tekton&lt;/a&gt; is an open-source CI/CD system platform implementation running on k8s. There are two Tekton &lt;code&gt;tasks&lt;/code&gt;
-maintained by the CNB project, both of which use the &lt;a href=&#34;https://buildpacks.io/docs/concepts/components/lifecycle&#34;&gt;lifecycle&lt;/a&gt; directly (i.e. they do not use &lt;code&gt;pack&lt;/code&gt;).&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://tekton.dev/&#34;&gt;Tekton&lt;/a&gt; is an open-source CI/CD system platform implementation running on k8s. There are two Tekton &lt;code&gt;tasks&lt;/code&gt;&#xA;maintained by the CNB project, both of which use the &lt;a href=&#34;https://buildpacks.io/docs/concepts/components/lifecycle&#34;&gt;lifecycle&lt;/a&gt; directly (i.e. they do not use &lt;code&gt;pack&lt;/code&gt;).&lt;/p&gt;</description>
     </item>
     <item>
       <title>Trusted Builders</title>

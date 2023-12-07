@@ -825,7 +825,7 @@ echo &#34;launch = true&#34; &gt; &#34;$PIP_LAYER.toml&#34;
 </code></pre><h2 id="buildpacktoml"><code>buildpack.toml</code></h2>
 <p>A buildpack must contain a <code>buildpack.toml</code> file in its root directory.</p>
 <h3 id="example-2">Example</h3>
-<pre tabindex="0"><code>api = &#34;0.8&#34;
+<pre tabindex="0"><code>api = &#34;0.10&#34;
 
 [buildpack]
 id = &#34;example.com/python&#34;
@@ -842,7 +842,7 @@ id = &#34;io.buildpacks.stacks.jammy&#34;
 <p>The schema is as follows:</p>
 <ul>
 <li>
-<p><strong><code>api</code></strong> <em>(string, required, current: <code>0.8</code>)</em><br>
+<p><strong><code>api</code></strong> <em>(string, required, current: <code>0.10</code>)</em><br>
 The Buildpack API version the buildpack adheres to. Used to ensure <a href="#api-compatibility">compatibility</a> against
 the <a href="/docs/concepts/components/lifecycle/">lifecycle</a>.</p>
 <blockquote>

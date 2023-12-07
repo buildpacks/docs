@@ -12,8 +12,7 @@
       <link>https://buildpacks.io/docs/reference/spec/buildpack-api/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/reference/spec/buildpack-api/</guid>
-      <description>&lt;p&gt;This specification defines the interface between a buildpack and the environment that runs it.
-This API will be used by buildpack authors.&lt;/p&gt;</description>
+      <description>&lt;p&gt;This specification defines the interface between a buildpack and the environment that runs it.&#xA;This API will be used by buildpack authors.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Distribution API</title>
