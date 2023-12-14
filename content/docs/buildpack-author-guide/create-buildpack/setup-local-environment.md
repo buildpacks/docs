@@ -20,7 +20,7 @@ docker rmi test-node-js-app
 ```
 -->
 
-First, we'll create a sample Ruby app that you can use when developing your buildpack:
+First, we'll create a sample nodeJS app that you can use when developing your buildpack:
 
 <!-- test:exec -->
 ```bash

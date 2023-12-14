@@ -13,14 +13,14 @@ To do this, replace the following lines in the `build` script:
 
 ```bash
 # 4. MAKE node-js AVAILABLE DURING LAUNCH
-echo -e '[types]\nlaunch = true' > "${layersdir}/node-js.toml"
+echo -e '[types]\nlaunch = true' > "${CNB_LAYERS_DIR}/node-js.toml"
 ```
 
 with the following:
 
 ```bash
 # 4. MAKE node-js AVAILABLE DURING LAUNCH and CACHE it
-echo -e '[types]\ncache = true\nlaunch = true' > "${layersdir}/node-js.toml"
+echo -e '[types]\ncache = true\nlaunch = true' > "${CNB_LAYERS_DIR}/node-js.toml"
 ```
 
 Your full `node-js-buildpack/bin/build`<!--+"{{open}}"+--> script should now look like the following:
@@ -32,24 +32,25 @@ set -eo pipefail
 
 echo "---> NodeJS Buildpack"
 
-# 1. GET ARGS
-layersdir=$1
-
-# 2. CREATE THE LAYER DIRECTORY
-node_js_layer="${layersdir}"/node-js
+# 1. CREATE THE LAYER DIRECTORY
+node_js_layer="${CNB_LAYERS_DIR}"/node-js
 mkdir -p "${node_js_layer}"
 
-# 3. DOWNLOAD NodeJS
+# 2. DOWNLOAD NodeJS
 echo "---> Downloading and extracting NodeJS"
 node_js_url=https://nodejs.org/dist/v18.18.1/node-v18.18.1-linux-x64.tar.xz
 wget -q -O - "$node_js_url" | tar -xJf - --strip-components 1 -C "${node_js_layer}"
 
-# 4. MAKE NodeJS AVAILABLE DURING LAUNCH and CACHE the LAYER
+# 3. MAKE NodeJS AVAILABLE DURING LAUNCH and CACHE the LAYER
 # ========== MODIFIED ===========
-echo -e '[types]\ncache = true\nlaunch = true' > "${layersdir}/node-js.toml"
+ cat > "${CNB_LAYERS_DIR}/node-js.toml" << EOL
+[types]
+cache = true
+launch = true
+EOL
 
-# 5. SET DEFAULT START COMMAND
-cat > "${layersdir}/launch.toml" << EOL
+# 4. SET DEFAULT START COMMAND
+cat > "${CNB_LAYERS_DIR}/launch.toml" << EOL
 # our web process
 [[processes]]
 type = "web"
@@ -90,18 +91,15 @@ set -eo pipefail
 
 echo "---> NodeJS Buildpack"
 
-# 1. GET ARGS
-layersdir=$1
-
-# 2. CREATE THE LAYER DIRECTORY
-node_js_layer="${layersdir}"/node-js
+# 1. CREATE THE LAYER DIRECTORY
+node_js_layer="${CNB_LAYERS_DIR}"/node-js
 mkdir -p "${node_js_layer}"
 
 # ======= MODIFIED =======
-# 3. DOWNLOAD node-js
+# 2. DOWNLOAD node-js
 node_js_version="18.18.1"
 node_js_url=https://nodejs.org/dist/v${node_js_version}/node-v${node_js_version}-linux-x64.tar.xz
-cached_nodejs_version=$(cat "${layersdir}/node-js.toml" 2> /dev/null | yj -t | jq -r .metadata.nodejs_version 2>/dev/null || echo 'NOT FOUND')
+cached_nodejs_version=$(cat "${CNB_LAYERS_DIR}/node-js.toml" 2> /dev/null | yj -t | jq -r .metadata.nodejs_version 2>/dev/null || echo 'NOT FOUND')
 if [[ "${node_js_url}" != *"${cached_nodejs_version}"* ]] ; then
     echo "-----> Downloading and extracting NodeJS"
     wget -q -O - "${node_js_url}" | tar -xJf - --strip-components 1 -C "${node_js_layer}"
@@ -110,8 +108,8 @@ else
 fi
 
 # ======= MODIFIED =======
-# 4. MAKE node-js AVAILABLE DURING LAUNCH and CACHE the LAYER
-    cat > "${layersdir}/node-js.toml" << EOL
+# 3. MAKE node-js AVAILABLE DURING LAUNCH and CACHE the LAYER
+    cat > "${CNB_LAYERS_DIR}/node-js.toml" << EOL
 [types]
 cache = true
 launch = true
@@ -119,8 +117,8 @@ launch = true
 nodejs_version = "${node_js_version}"
 EOL
 
-# 5. SET DEFAULT START COMMAND
-cat >> "${layersdir}/launch.toml" << EOL
+# 4. SET DEFAULT START COMMAND
+cat >> "${CNB_LAYERS_DIR}/launch.toml" << EOL
 [[processes]]
 type = "web"
 command = "node app.js"

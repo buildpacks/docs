@@ -12,7 +12,7 @@ To enable running the debug process, we'll need to have our buildpack define a "
 ```bash
 # ...
 
-cat > "${layersdir}/launch.toml" << EOL
+cat > "${CNB_LAYERS_DIR}/launch.toml" << EOL
 # our web process
 [[processes]]
 type = "web"
@@ -21,7 +21,7 @@ default = true
 
 # our debug process
 [[processes]]
-type = "debug"
+type = "worker"
 command = "node --inspect app.js"
 EOL
 
@@ -37,27 +37,24 @@ set -eo pipefail
 
 echo "---> NodeJS Buildpack"
 
-# 1. GET ARGS
-layersdir=$1
-
-# 2. CREATE THE LAYER DIRECTORY
-node_js_layer="${layersdir}"/node-js
+# 1. CREATE THE LAYER DIRECTORY
+node_js_layer="${CNB_LAYERS_DIR}"/node-js
 mkdir -p "${node_js_layer}"
 
-# 3. DOWNLOAD node-js
+# 2. DOWNLOAD node-js
 echo "---> Downloading and extracting NodeJS"
 node_js_url=https://nodejs.org/dist/v18.18.1/node-v18.18.1-linux-x64.tar.xz
 wget -q -O - "$node_js_url" | tar -xJf - --strip-components 1 -C "${node_js_layer}"
 
-# 4. MAKE node-js AVAILABLE DURING LAUNCH
-    cat > "${layersdir}/node-js.toml" << EOL
+# 3. MAKE node-js AVAILABLE DURING LAUNCH
+    cat > "${CNB_LAYERS_DIR}/node-js.toml" << EOL
 [types]
 launch = true
 EOL
 
 # ========== MODIFIED ===========
-# 5. SET DEFAULT START COMMAND
-cat > "${layersdir}/launch.toml" << EOL
+# 4. SET DEFAULT START COMMAND
+cat > "${CNB_LAYERS_DIR}/launch.toml" << EOL
 # our web process
 [[processes]]
 type = "web"

@@ -66,7 +66,7 @@ Then, in our buildpack implementation we will generate the necessary SBOM metada
 # ...
 
 # Append a Bill-of-Materials containing metadata about the provided node-js version
-cat >> "${layersdir}/node-js.sbom.cdx.json" << EOL
+cat >> "${CNB_LAYERS_DIR}/node-js.sbom.cdx.json" << EOL
 {
   "bomFormat": "CycloneDX",
   "specVersion": "1.4",
@@ -85,7 +85,7 @@ EOL
 We can also add an SBOM entry for each dependency listed in `package.json`.  Here we use `jq` to add a new record to the `components` array in `bundler.sbom.cdx.json`:
 
 ```bash
-node-jsbom="${layersdir}/node-js.sbom.cdx.json"
+node-jsbom="${CNB_LAYERS_DIR}/node-js.sbom.cdx.json"
 cat >> ${node-jsbom} << EOL
 {
   "bomFormat": "CycloneDX",
@@ -113,18 +113,17 @@ echo "---> NodeJS Buildpack"
 
 # ======= MODIFIED =======
 # 1. GET ARGS
-layersdir=$1
-plan=$3
+plan=${CNB_BP_PLAN_PATH}
 
 # 2. CREATE THE LAYER DIRECTORY
-node_js_layer="${layersdir}"/node-js
+node_js_layer="${CNB_LAYERS_DIR}"/node-js
 mkdir -p "${node_js_layer}"
 
 # 3. DOWNLOAD node-js
 default_node_js_version="18.18.1"
 node_js_version=$(cat "$plan" | yj -t | jq -r '.entries[] | select(.name == "node-js") | .metadata.version' || echo ${default_node_js_version})
 node_js_url=https://nodejs.org/dist/v${node_js_version}/node-v${node_js_version}-linux-x64.tar.xz
-remote_nodejs_version=$(cat "${layersdir}/node-js.toml" 2> /dev/null | yj -t | jq -r .metadata.nodejs_version 2>/dev/null || echo 'NOT FOUND')
+remote_nodejs_version=$(cat "${CNB_LAYERS_DIR}/node-js.toml" 2> /dev/null | yj -t | jq -r .metadata.nodejs_version 2>/dev/null || echo 'NOT FOUND')
 if [[ "${node_js_url}" != *"${remote_nodejs_version}"* ]] ; then
     echo "-----> Downloading and extracting NodeJS"
     wget -q -O - "${node_js_url}" | tar -xJf - --strip-components 1 -C "${node_js_layer}"
@@ -133,7 +132,7 @@ else
 fi
 
 # 4. MAKE node-js AVAILABLE DURING LAUNCH and CACHE the LAYER
-    cat > "${layersdir}/node-js.toml" << EOL
+    cat > "${CNB_LAYERS_DIR}/node-js.toml" << EOL
 [types]
 cache = true
 launch = true
@@ -142,7 +141,7 @@ nodejs_version = "${node_js_version}"
 EOL
 
 # 5. SET DEFAULT START COMMAND
-cat >> "${layersdir}/launch.toml" << EOL
+cat >> "${CNB_LAYERS_DIR}/launch.toml" << EOL
 [[processes]]
 type = "web"
 command = "node app.js"
@@ -151,7 +150,7 @@ EOL
 
 # ========== ADDED ===========
 # 6. ADD A SBOM
-node_jsbom="${layersdir}/node-js.sbom.cdx.json"
+node_jsbom="${CNB_LAYERS_DIR}/node-js.sbom.cdx.json"
 cat >> ${node_jsbom} << EOL
 {
   "bomFormat": "CycloneDX",
