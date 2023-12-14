@@ -43,7 +43,7 @@ First, annotate the `buildpack.toml` to specify that it emits CycloneDX:
 <!-- test:file=node-js-buildpack/buildpack.toml -->
 ```toml
 # Buildpack API version
-api = "0.8"
+api = "0.10"
 
 # Buildpack ID and metadata
 [buildpack]
