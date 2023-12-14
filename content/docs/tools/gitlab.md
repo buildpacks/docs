@@ -26,5 +26,5 @@ variables:
 [pack]: /docs/install-pack
 [about-gitlab]: https://about.gitlab.com/
 [devops]: https://docs.gitlab.com/ee/topics/autodevops/
-[devops-guide]: https://docs.gitlab.com/ee/topics/autodevops/quick_start_guide.html
-[use-cnbs]: https://docs.gitlab.com/ee/topics/autodevops/stages.html#auto-build-using-cloud-native-buildpacks-beta
+[devops-guide]: https://docs.gitlab.com/ee/topics/autodevops/#get-started-with-auto-devops
+[use-cnbs]: https://docs.gitlab.com/ee/topics/autodevops/stages.html#auto-build-using-cloud-native-buildpacks
