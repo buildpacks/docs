@@ -81,7 +81,7 @@ EOL
 cat >> "${CNB_LAYERS_DIR}/launch.toml" << EOL
 [[processes]]
 type = "web"
-command = "node app.js"
+command = ["node", "app.js"]
 default = true
 EOL
 ```

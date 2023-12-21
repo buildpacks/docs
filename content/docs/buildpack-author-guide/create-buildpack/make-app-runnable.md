@@ -15,7 +15,7 @@ To make your app runnable, a default start command must be set. You'll need to a
 cat > "${CNB_LAYERS_DIR}/launch.toml" << EOL
 [[processes]]
 type = "web"
-command = "node app.js"
+command = ["node", "app.js"]
 default = true
 EOL
 
@@ -48,7 +48,7 @@ echo -e '[types]\nlaunch = true' > "${CNB_LAYERS_DIR}/node-js.toml"
 cat > "${CNB_LAYERS_DIR}/launch.toml" << EOL
 [[processes]]
 type = "web"
-command = "node app.js"
+command = ["node", "app.js"]
 default = true
 EOL
 ```
