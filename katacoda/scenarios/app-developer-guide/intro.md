@@ -1,1 +1,0 @@
-In this scenario you will learn how to create a container image from your application source code using [`pack`](https://buildpacks.io/docs/app-developer-guide/build-an-app/) and `Cloud native buildpacks`.
