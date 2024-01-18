@@ -17,7 +17,7 @@ Example:
 <!-- test:exec -->
 ```bash
 pack buildpack new examples/node-js \
-    --api 0.8 \
+    --api 0.10 \
     --path node-js-buildpack \
     --version 0.0.1 \
     --stacks io.buildpacks.samples.stacks.jammy
@@ -40,7 +40,7 @@ You will have `node-js-buildpack/buildpack.toml`<!--+"{{open}}"+--> in your buil
 <!-- test:file=node-js-buildpack/buildpack.toml -->
 ```toml
 # Buildpack API version
-api = "0.8"
+api = "0.10"
 
 # Buildpack ID and metadata
 [buildpack]

@@ -43,7 +43,7 @@ First, annotate the `buildpack.toml` to specify that it emits CycloneDX:
 <!-- test:file=node-js-buildpack/buildpack.toml -->
 ```toml
 # Buildpack API version
-api = "0.8"
+api = "0.10"
 
 # Buildpack ID and metadata
 [buildpack]
@@ -144,7 +144,7 @@ EOL
 cat >> "${CNB_LAYERS_DIR}/launch.toml" << EOL
 [[processes]]
 type = "web"
-command = "node app.js"
+command = ["node", "app.js"]
 default = true
 EOL
 
