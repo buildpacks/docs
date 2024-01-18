@@ -23,7 +23,7 @@ The order group containing `yarn` logic has higher precedence in the `nodejs` bu
 
 ## Running `pack`
 
-Our example NodeJS application is a "hello world" REST-like API.  Any request to the `/` URL results in the response `{"message", "Hello world"}`.  Our application contains the two source files
+Our example NodeJS application is a "hello world" REST-like API.  Any request to the `/` URL results in the response `{"message": "Hello world"}`.  Our application contains the two source files
 
 ```command
 $ tree .

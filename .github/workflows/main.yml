@@ -18,7 +18,7 @@ jobs:
       - name: Git Checkout
         uses: actions/checkout@v4
       - name: Setup Go environment
-        uses: actions/setup-go@v4
+        uses: actions/setup-go@v5
         with:
           go-version: '1.x'
       - name: Install Dependencies
@@ -39,7 +39,7 @@ jobs:
         run: |
           make check-links
       - name: Upload public folder
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
