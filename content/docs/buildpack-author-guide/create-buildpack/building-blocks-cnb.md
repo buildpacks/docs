@@ -91,7 +91,7 @@ These two files are executable `detect` and `build` scripts. You are now able to
 
 ### Using your buildpack with `pack`
 
-In order to test your buildpack, you will need to run the buildpack against your sample Ruby app using the `pack` CLI.
+In order to test your buildpack, you will need to run the buildpack against your sample Node.js app using the `pack` CLI.
 
 Set your default [builder][builder] by running the following:
 
