@@ -5,8 +5,6 @@ include_summaries=true
 expand=true
 +++
 
-{{< katacoda-button href="https://katacoda.com/buildpacks/scenarios/app-developer-guide" color="green" >}} Learn on Katacoda {{</>}}
-
 ## Prerequisites
 
 A lot of the examples used within this guide will require the following: 
