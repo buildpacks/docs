@@ -17,7 +17,7 @@ Example:
 <!-- test:exec -->
 ```bash
 pack buildpack new examples/node-js \
-    --api 0.8 \
+    --api 0.10 \
     --path node-js-buildpack \
     --version 0.0.1 \
     --stacks io.buildpacks.samples.stacks.jammy
@@ -40,7 +40,7 @@ You will have `node-js-buildpack/buildpack.toml`<!--+"{{open}}"+--> in your buil
 <!-- test:file=node-js-buildpack/buildpack.toml -->
 ```toml
 # Buildpack API version
-api = "0.8"
+api = "0.10"
 
 # Buildpack ID and metadata
 [buildpack]
@@ -91,7 +91,7 @@ These two files are executable `detect` and `build` scripts. You are now able to
 
 ### Using your buildpack with `pack`
 
-In order to test your buildpack, you will need to run the buildpack against your sample Ruby app using the `pack` CLI.
+In order to test your buildpack, you will need to run the buildpack against your sample Node.js app using the `pack` CLI.
 
 Set your default [builder][builder] by running the following:
 
@@ -117,7 +117,7 @@ pack build test-node-js-app --path ./node-js-sample-app --buildpack ./node-js-bu
 ```
 <!--+- "{{execute}}"+-->
 
-The `pack build` command takes in your Ruby sample app as the `--path` argument and your buildpack as the `--buildpack` argument.
+The `pack build` command takes in your Node.js sample app as the `--path` argument and your buildpack as the `--buildpack` argument.
 
 After running the command, you should see that it failed to detect, as the `detect` script is currently written to simply error out.
 

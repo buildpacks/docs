@@ -16,13 +16,13 @@ cat > "${CNB_LAYERS_DIR}/launch.toml" << EOL
 # our web process
 [[processes]]
 type = "web"
-command = "node app.js"
+command = ["node", "app.js"]
 default = true
 
 # our debug process
 [[processes]]
 type = "worker"
-command = "node --inspect app.js"
+command = ["node", "--inspect", "app.js"]
 EOL
 
 # ...
@@ -58,13 +58,13 @@ cat > "${CNB_LAYERS_DIR}/launch.toml" << EOL
 # our web process
 [[processes]]
 type = "web"
-command = "node app.js"
+command = ["node", "app.js"]
 default = true
 
 # our debug process
 [[processes]]
 type = "debug"
-command = "node --inspect app.js"
+command = ["node", "--inspect", "app.js"]
 EOL
 ```
 

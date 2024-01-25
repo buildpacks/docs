@@ -62,12 +62,6 @@ docker run --rm -p 8080:8080 sample-app
 The app should now be running and accessible via [localhost:8080](http://localhost:8080).
 <!--+end+-->
 
-<!--+ `
-Now open your favorite browser and point it to port "8080" of your host and take a minute to enjoy the view.
-
-On Katacoda you can do this by [clicking here](https://[[HOST_SUBDOMAIN]]-8080-[[KATACODA_HOST]].environments.katacoda.com)
-` +-->
-
 ## What about ARM apps?
 
 Linux ARM image builds are now supported!

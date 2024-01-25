@@ -170,22 +170,8 @@ tools-tidy:
 	cd tools; go mod tidy
 
 .PHONY: prepare-for-pr
-prepare-for-pr: check-links test tools-tidy katacoda
+prepare-for-pr: check-links test tools-tidy
 	@echo "========"
 	@echo "It looks good! :)"
 	@echo "Make sure to commit all changes!"
 	@echo "========"
-
-.PHONY: katacoda
-katacoda:
-	@echo "========"
-	@echo "Generating Katacoda docs..."
-	@go run katacoda/main.go
-	@echo "All done!"
-	@echo "========"
-
-.PHONY: check-katacoda
-check-katacoda: katacoda
-	@echo "Checking if Katacoda docs are up-to-date..."
-	@git diff --quiet HEAD -- katacoda/scenarios || ( echo "Katacoda docs are not up-to-date! Please run 'make katacoda' and commit the katacoda/scenarios folder" && exit 1)
-	@echo "All katacoda docs are up-to-date"
