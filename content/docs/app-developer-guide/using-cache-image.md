@@ -23,7 +23,9 @@ The `--cache-image` flag must be specified in conjunction with the `--publish` f
 
 ### Examples
 For the following examples we will use:
- - A local [Docker v2 registry running on port `5000`](https://docs.docker.com/registry/deploying/#run-a-local-registry)
+
+We should start a local instance of the Docker v2 registry in order to build the application image and the cache image
+ - A local [Docker v2 registry running on port `5000`](https://distribution.github.io/distribution/#run-a-local-registry)
  - Our [samples][samples] repo
 
 > **NOTE:**  If we wish to publish to an external registry like `Dockerhub` we will first need to authenticate with `docker` to allow us to push images. We can do this via `docker login`
