@@ -1,9 +1,9 @@
 +++
-title="The finer points of image extensions"
-weight=406
+title="Guidance for extension authors"
+weight=1
 +++
 
-# Guidance for extension authors
+<!--more-->
 
 ## During detect
 
