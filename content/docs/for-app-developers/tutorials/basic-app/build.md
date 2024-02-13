@@ -1,5 +1,5 @@
 +++
-title="Build an app"
+title="Build the app"
 weight=1
 summary="The basics of taking your app from source code to runnable image."
 aliases=[
@@ -84,7 +84,7 @@ Windows image builds are now supported!
 Check out the [Windows build guide](https://buildpacks.io/docs/for-app-developers/how-to/configure-build-environment/build-for-windows/).
 ` +-->
 
-[build]: /docs/concepts/operations/build
-[builder]: /docs/concepts/components/builder
-[buildpack]: /docs/concepts/components/buildpack
+[build]: /docs/for-app-developers/concepts/buildpacks-operations/build
+[builder]: /docs/for-platform-operators/concepts/builder
+[buildpack]: /docs/for-platform-operators/concepts/buildpack
 [samples]: https://github.com/buildpacks/samples

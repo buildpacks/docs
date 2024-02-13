@@ -31,4 +31,4 @@ Lifecycle exit codes are condensed to be within 0-255 so that they are understan
 
 The report.toml output by the exporter will now include the image manifest size in bytes. Note that this only applies to published images, as images exported to a docker daemon will not have a manifest.
 
-[lifecycle]: /docs/concepts/components/lifecycle/
+[lifecycle]: /docs/for-platform-operators/concepts/lifecycle/

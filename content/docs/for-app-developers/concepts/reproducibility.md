@@ -1,6 +1,6 @@
 +++
 title="Build reproducibility"
-weight=2
+weight=3
 +++
 
 Given the same inputs, two builds should produce the same outputs.

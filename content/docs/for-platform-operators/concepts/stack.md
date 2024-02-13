@@ -15,9 +15,9 @@ As of Platform API 0.12 and Buildpack API 0.10, stacks are deprecated in favor o
 For more information, see
 * Platform API 0.12 [migration guide](/docs/for-platform-operators/how-to/migrate/platform-api-0.11-0.12/)
 * Buildpack API 0.10 [migration guide](/docs/for-buildpack-authors/how-to/migrate/buildpack-api-0.9-0.10/)
-* [Build image](/docs/concepts/components/base-images/build/) concept
-* [Run image](/docs/concepts/components/base-images/run/) concept
-* [Target data](/docs/concepts/components/targets/)
+* [Build image](/docs/for-platform-operators/concepts/base-images/build/) concept
+* [Run image](/docs/for-platform-operators/concepts/base-images/run/) concept
+* [Target data](/docs/for-platform-operators/concepts/targets/)
 
 For older API versions, see below on using stacks.
 
@@ -53,6 +53,6 @@ By providing the required `[stack]` section, a builder author can configure a st
 To learn how to create your own stack, see our [Operator's Guide][operator-guide].
 
 [operator-guide]: /docs/for-platform-operators/
-[builder]: /docs/concepts/components/builder/
-[buildpack]: /docs/concepts/components/buildpack/
-[lifecycle]: /docs/concepts/components/lifecycle/
+[builder]: /docs/for-platform-operators/concepts/builder/
+[buildpack]: /docs/for-platform-operators/concepts/buildpack/
+[lifecycle]: /docs/for-platform-operators/concepts/lifecycle/

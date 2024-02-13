@@ -135,4 +135,4 @@ For more detail, you can check out the `project.toml` [specification][spec]
 [spec]: https://github.com/buildpacks/spec/blob/main/extensions/project-descriptor.md
 [supported-archives]: /docs/reference/builder-config#supported-archives
 [api-compat]: /docs/reference/buildpack-api#api-compatibility
-[lifecycle]: /docs/concepts/components/lifecycle/
+[lifecycle]: /docs/for-platform-operators/concepts/lifecycle/

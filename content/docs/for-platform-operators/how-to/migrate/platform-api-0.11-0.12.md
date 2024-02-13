@@ -94,14 +94,14 @@ following the [rules](https://github.com/buildpacks/spec/blob/platform/v0.12/pla
 
 The feature is enabled by providing a `-layout` flag or by setting the `CNB_USE_LAYOUT` environment variable to `true` for the following lifecycle phases:
 
-- [Analyze](https://buildpacks.io/docs/concepts/components/lifecycle/analyze/)
-- [Restore](https://buildpacks.io/docs/concepts/components/lifecycle/restore/)
-- [Export](https://buildpacks.io/docs/concepts/components/lifecycle/export/)
-- [Create](https://buildpacks.io/docs/concepts/components/lifecycle/create/)
+- [Analyze](https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/analyze/)
+- [Restore](https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/restore/)
+- [Export](https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/export/)
+- [Create](https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/create/)
 
 Additionally, the path to the layout directory must be specified, either by providing a `-layout-dir` flag or by setting the `CNB_LAYOUT_DIR` environment variable.
 
-**Note**: [Rebasing](https://buildpacks.io/docs/concepts/components/lifecycle/rebase/) an image exported to OCI layout format
+**Note**: [Rebasing](https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/rebase/) an image exported to OCI layout format
 and extending OCI layout base images with Dockerfiles are currently not supported.
 
 ## Base Image Author

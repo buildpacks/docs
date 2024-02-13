@@ -142,5 +142,5 @@ type = "image"
   url = "https://github.com/example/repo"
 ```
 
-[lifecycle]: /docs/concepts/components/lifecycle/
+[lifecycle]: /docs/for-platform-operators/concepts/lifecycle/
 [project-metadata]: https://github.com/buildpacks/spec/blob/platform/0.7/platform.md#project-metadatatoml-toml

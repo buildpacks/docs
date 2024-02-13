@@ -51,7 +51,7 @@ You should consult the documentation for your buildpacks to determine what is su
 
 Finally, we need to label the image with operating system distribution information for platforms and the lifecycle to use.
 
-To determine which values to provide, see [targets](/docs/concepts/components/targets/) concept information.
+To determine which values to provide, see [targets](/docs/for-platform-operators/concepts/targets/) concept information.
 
 ## Build the run base image
 

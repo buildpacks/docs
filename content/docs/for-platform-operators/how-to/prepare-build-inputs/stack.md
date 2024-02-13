@@ -121,6 +121,6 @@ mixins = ["build:git", "run:imagemagick", "wget"]
 For technical details on stacks, see the stack sections in the [Platform](https://github.com/buildpacks/spec/blob/main/platform.md#iobuildpacksstack-labels)
 and [Buildpack](https://github.com/buildpacks/spec/blob/main/buildpack.md#buildpacktoml-toml-stacks-array) specifications.
 
-[stack]: /docs/concepts/components/stack/
-[builder]: /docs/concepts/components/builder/
+[stack]: /docs/for-platform-operators/concepts/stack/
+[builder]: /docs/for-platform-operators/concepts/builder/
 [samples]: https://github.com/buildpacks/samples

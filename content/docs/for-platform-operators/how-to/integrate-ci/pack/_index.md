@@ -76,7 +76,7 @@ go get -u github.com/buildpacks/pack
 - [Docs](https://pkg.go.dev/github.com/buildpacks/pack)
 - [Source](https://github.com/buildpacks/pack/)
 
-[build]: /docs/concepts/operations/build/
-[rebase]: /docs/concepts/operations/rebase/
-[components]: /docs/concepts/components/
+[build]: /docs/for-app-developers/concepts/buildpacks-operations/build/
+[rebase]: /docs/for-app-developers/concepts/buildpacks-operations/rebase/
+[components]: /docs/for-platform-operators/concepts/
 [github-releases]: https://github.com/buildpacks/pack/releases

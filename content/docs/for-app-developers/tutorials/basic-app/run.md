@@ -1,6 +1,6 @@
 +++
-title="Specify launch process"
-weight=5
+title="Run the app"
+weight=2
 summary="Learn how to specify the launch process for an app."
 +++
 

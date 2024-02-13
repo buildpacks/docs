@@ -1,23 +1,23 @@
 +++
-title="Concepts"
-weight=3
+title="Buildpacks basics"
+weight=1
 expand=false
 +++
 
-<p class="lead">
-Buildpacks allow you to convert your source code into a secure, efficient, production ready container image.
-</p>
+Learn how buildpacks convert your application source code into a secure, efficient, production-ready container image.
+
+<!--more-->
 
 ## What are buildpacks?
 
-![buildpacks](/docs/concepts/what.svg)
+![buildpacks](/docs/for-app-developers/concepts/buildpacks-basics/what.svg)
 
-**[Buildpacks](/docs/concepts/components/buildpack) provide framework and runtime support for applications.** Buildpacks examine your apps to determine all the dependencies it needs and configure them appropriately to run on any cloud.
+**[Buildpacks](/docs/for-platform-operators/concepts/buildpack) provide framework and runtime support for applications.** Buildpacks examine your apps to determine all the dependencies it needs and configure them appropriately to run on any cloud.
 
 
 ## How do they work?
 
-![how](/docs/concepts/how.svg)
+![how](/docs/for-app-developers/concepts/buildpacks-basics/how.svg)
 
 **Each buildpack comprises of two phases -**
 
@@ -45,12 +45,12 @@ For example:
 
 ## What is a builder?
 
-![builder](/docs/concepts/builder.svg)
+![builder](/docs/for-app-developers/concepts/buildpacks-basics/builder.svg)
 
-[`Builders`](/docs/concepts/components/builder) are an ordered combination of [`buildpacks`](/docs/concepts/components/buildpack) with a base `build image`, a lifecycle, and reference to a `run image`.
+[`Builders`](/docs/for-platform-operators/concepts/builder) are an ordered combination of [`buildpacks`](/docs/for-platform-operators/concepts/buildpack) with a base `build image`, a lifecycle, and reference to a `run image`.
 They take in your `app` source code and build the output `app image`. The `build image` provides the base environment for the `builder` (for eg. an Ubuntu Bionic OS image with build tooling) and a `run image` provides the base environment for the `app image` during runtime.
 
-Under the hood a builder uses the [`lifecycle`](/docs/concepts/components/lifecycle) to run the `detect` phase for all the `buildpacks` it contains in order and then proceeds to run the `build` phase of all the `buildpacks` that passed detection.
+Under the hood a builder uses the [`lifecycle`](/docs/for-platform-operators/concepts/lifecycle) to run the `detect` phase for all the `buildpacks` it contains in order and then proceeds to run the `build` phase of all the `buildpacks` that passed detection.
 
 This allows us to have a **single** `builder` that can detect and build various kinds of applications automatically.
 

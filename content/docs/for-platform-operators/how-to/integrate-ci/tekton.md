@@ -250,7 +250,7 @@ Some general resources for Tekton are:
 - [Tekton Authorization Documentation][tekton-auth]
 
 [tekton]: https://tekton.dev/
-[lifecycle]: /docs/concepts/components/lifecycle
+[lifecycle]: /docs/for-platform-operators/concepts/lifecycle
 [buildpacks-task]: https://github.com/tektoncd/catalog/tree/master/task/buildpacks
 [buildpacks-phases]: https://github.com/tektoncd/catalog/tree/master/task/buildpacks-phases
 [tekton-setup]: https://tekton.dev/docs/getting-started/

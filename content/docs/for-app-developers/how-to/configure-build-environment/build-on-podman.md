@@ -64,7 +64,7 @@ Where:
 podman images
 ```
 
-[builder]: https://buildpacks.io/docs/concepts/components/builder/
+[builder]: https://buildpacks.io/docs/for-platform-operators/concepts/builder/
 
 ---
 

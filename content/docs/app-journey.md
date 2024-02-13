@@ -101,7 +101,7 @@ Windows image builds are now supported!
 
 <a href="/docs/for-app-developers/how-to/configure-build-environment/build-for-windows" class="button bg-blue">Windows build guide</a>
 
-[builder]: /docs/concepts/components/builder/
-[buildpack]: /docs/concepts/components/buildpack/
+[builder]: /docs/for-platform-operators/concepts/builder/
+[buildpack]: /docs/for-platform-operators/concepts/buildpack/
 [samples-java-maven]: https://github.com/buildpacks/samples/tree/main/apps/java-maven
 [pack-docs]: /docs/tools/pack/

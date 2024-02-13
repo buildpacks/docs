@@ -130,9 +130,9 @@ curl http://10.0.0.1:8080
 [docker-env-vars]: https://docs.docker.com/engine/reference/commandline/cli/#environment-variables
 [docker-hosts]: #understanding-docker-hosts
 [build-linux]: /docs/for-app-developers/tutorials/basic-app
-[build]: /docs/concepts/operations/build
-[builder]: /docs/concepts/components/builder
-[buildpack]: /docs/concepts/components/buildpack
+[build]: /docs/for-app-developers/concepts/buildpacks-operations/build
+[builder]: /docs/for-platform-operators/concepts/builder
+[buildpack]: /docs/for-platform-operators/concepts/buildpack
 [samples]: https://github.com/buildpacks/samples
 [docker-general-settings]: https://docs.docker.com/docker-for-windows/#general
 [windows-openssh-server]: https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse

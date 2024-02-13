@@ -23,9 +23,9 @@ The platform [specification][spec] details what a platform does, and how it inte
 
 For the latest version of the Platform API, see [releases][releases] on the spec repo.
 
-[builder]: /docs/concepts/components/builder/
-[buildpack]: /docs/concepts/components/buildpack/
-[lifecycle]: /docs/concepts/components/lifecycle/
+[builder]: /docs/for-platform-operators/concepts/builder/
+[buildpack]: /docs/for-platform-operators/concepts/buildpack/
+[lifecycle]: /docs/for-platform-operators/concepts/lifecycle/
 [spec]: https://github.com/buildpacks/spec/blob/main/platform.md
 [pack]: https://github.com/buildpacks/pack
 [buildpacks-tekton]: https://github.com/tektoncd/catalog/tree/master/task/buildpacks

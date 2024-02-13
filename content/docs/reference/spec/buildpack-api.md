@@ -392,6 +392,6 @@ For example,
 
 You can read the complete [Buildpack API specification on Github](https://github.com/buildpacks/spec/blob/main/buildpack.md).
 
-[buildpack]: /docs/concepts/components/buildpack/
-[lifecycle]: /docs/concepts/components/lifecycle/
-[meta-buildpack]: /docs/concepts/components/buildpack/#meta-buildpack
+[buildpack]: /docs/for-platform-operators/concepts/buildpack/
+[lifecycle]: /docs/for-platform-operators/concepts/lifecycle/
+[meta-buildpack]: /docs/for-platform-operators/concepts/buildpack/#meta-buildpack

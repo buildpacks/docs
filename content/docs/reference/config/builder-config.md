@@ -62,10 +62,10 @@ A [builder][builder] configuration schema is as follows:
        Image to use as the run-time base
 
       - **`mirrors`** _(list, optional)_\
-        [Mirrors](/docs/concepts/components/base-images/run#run-image-mirrors) for the provided image
+        [Mirrors](/docs/for-platform-operators/concepts/base-images/run#run-image-mirrors) for the provided image
 
 - #### `stack` _(optional, deprecated)_
-  The stack to use for the builder. See [stack](/docs/concepts/components/stack) concept information for more details.
+  The stack to use for the builder. See [stack](/docs/for-platform-operators/concepts/stack) concept information for more details.
   This field should be specified if it is necessary to maintain compatibility with older platforms.
   If specified, the information in this field must be consistent with the `build` and `run` fields (see above).
   It contains the following:
@@ -80,7 +80,7 @@ A [builder][builder] configuration schema is as follows:
     Run image for the stack
 
   - **`run-image-mirrors`** _(optional, string list)_
-    [Run image mirrors](/docs/concepts/components/base-images/run#run-image-mirrors) for the stack
+    [Run image mirrors](/docs/for-platform-operators/concepts/base-images/run#run-image-mirrors) for the stack
 
 - #### `lifecycle` _(optional)_
   The [lifecycle][lifecycle] to embed into the builder. It must contain **at most one** the following fields:
@@ -116,5 +116,5 @@ A [builder][builder] configuration schema is as follows:
 
 Currently, when specifying a URI to a buildpack or lifecycle, only `tar` or `tgz` archive types are supported.
 
-[builder]: /docs/concepts/components/builder
-[lifecycle]: /docs/concepts/components/lifecycle
+[builder]: /docs/for-platform-operators/concepts/builder
+[lifecycle]: /docs/for-platform-operators/concepts/lifecycle

@@ -1,6 +1,5 @@
 +++
-title="Operations"
+title="Buildpacks operations"
 weight=2
 include_summaries=true
-expand=true
 +++

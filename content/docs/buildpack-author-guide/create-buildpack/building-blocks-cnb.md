@@ -58,7 +58,7 @@ os = "linux"
 ```
 
 The buildpack ID is the way you will reference the buildpack when you create buildpack groups, builders, etc.
-[Targets](/docs/concepts/components/targets/) identifies the kind of build and run base images the buildpack will work with.
+[Targets](/docs/for-platform-operators/concepts/targets/) identifies the kind of build and run base images the buildpack will work with.
 The stack ID (deprecated) uniquely identifies a build and run image configuration the buildpack will work with. This example can be run on Ubuntu Jammy.
 
 ### `detect` and `build`
@@ -136,5 +136,5 @@ ERROR: failed to detect: buildpack(s) failed with err
 
 <a href="/docs/buildpack-author-guide/create-buildpack/detection" class="button bg-pink">Next Step</a>
 
-[builder]: /docs/concepts/components/builder
+[builder]: /docs/for-platform-operators/concepts/builder
 <!--+ end +-->

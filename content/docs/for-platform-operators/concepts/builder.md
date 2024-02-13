@@ -11,7 +11,7 @@ aliases=[
 
 {{< param "summary" >}}
 
-![create-builder diagram](/docs/concepts/components/create-builder.svg)
+![create-builder diagram](/docs/for-platform-operators/concepts/create-builder.svg)
 
 ## Anatomy of a builder
 
@@ -19,8 +19,8 @@ A builder consists of the following components:
 
 * [Buildpacks][buildpack]
 * A [lifecycle][lifecycle]
-* A [build image](/docs/concepts/components/base-images/build/)
-* A reference to a [run image](/docs/concepts/components/base-images/run/)
+* A [build image](/docs/for-platform-operators/concepts/base-images/build/)
+* A reference to a [run image](/docs/for-platform-operators/concepts/base-images/run/)
 
 ### Resources
 
@@ -28,5 +28,5 @@ To learn how to create your own builder, see our [Operator's Guide][operator-gui
 
 [builder-config]: /docs/reference/builder-config/
 [operator-guide]: /docs/for-platform-operators/
-[buildpack]: /docs/concepts/components/buildpack/
-[lifecycle]: /docs/concepts/components/lifecycle/
+[buildpack]: /docs/for-platform-operators/concepts/buildpack/
+[lifecycle]: /docs/for-platform-operators/concepts/lifecycle/
