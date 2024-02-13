@@ -62,7 +62,7 @@ An image extension could be defined with the following directory:
   outputs either or both of `build.Dockerfile` or `run.Dockerfile` for extending the builder or run image.
 
 For more information and to see a build in action,
-see [authoring an image extension](/docs/for-buildpack-authors/tutorials/write-basic-extension).
+see [authoring an image extension](/docs/for-buildpack-authors/tutorials/basic-extension).
 
 ## A platform's perspective
 

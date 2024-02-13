@@ -45,5 +45,5 @@ For guidance around writing extensions and more advanced use cases, see [here](/
 <!--+ if false+-->
 ---
 
-<a href="/docs/for-buildpack-authors/tutorials/write-basic-extension/build-dockerfile" class="button bg-pink">Next Step</a>
+<a href="/docs/for-buildpack-authors/tutorials/basic-extension/build-dockerfile" class="button bg-pink">Next Step</a>
 <!--+ end +-->

@@ -39,7 +39,7 @@ to save images requires by `pack build` command in OCI layout format.
 
 ### 2. Build the app
 
-Please first follow the steps to [build an app](/docs/for-app-developers/tutorials/build-basic-app), once you have successfully built an application you can export the sample application to disk in OCI layout format. 
+Please first follow the steps to [build an app](/docs/for-app-developers/tutorials/basic-app), once you have successfully built an application you can export the sample application to disk in OCI layout format. 
 
 The OCI layout feature must be enabled using the convention `oci:<path/to/save/image>` in the `<image-name>` parameter when invoking `pack build`.
 

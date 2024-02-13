@@ -53,4 +53,4 @@ Buildpacks can use this information to modify their behavior depending on the ta
 
 In Platform 0.12, extensions can be used to extend not only build-time base images, but runtime base images as well.
 
-For more information, see [authoring an image extension](/docs/for-buildpack-authors/tutorials/write-basic-extension).
+For more information, see [authoring an image extension](/docs/for-buildpack-authors/tutorials/basic-extension).

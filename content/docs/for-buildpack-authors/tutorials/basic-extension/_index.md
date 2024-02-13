@@ -11,4 +11,4 @@ This is a step-by-step tutorial for creating and using image extensions, which a
 
 <!--more-->
 
-<a href="/docs/for-buildpack-authors/tutorials/write-basic-extension/setup-local-environment" class="button bg-pink">Start Tutorial</a>
+<a href="/docs/for-buildpack-authors/tutorials/basic-extension/setup-local-environment" class="button bg-pink">Start Tutorial</a>

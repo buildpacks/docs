@@ -30,4 +30,4 @@ $ pack rebase my-app:my-tag
 > **TIP:** `pack rebase` has a `--publish` flag that can be used to publish the updated app image directly to a registry. 
 > Using `--publish` is optimal when using a registry in comparison to the docker daemon.
 
-[build]: /docs/for-app-developers/tutorials/build-basic-app/
+[build]: /docs/for-app-developers/tutorials/basic-app/

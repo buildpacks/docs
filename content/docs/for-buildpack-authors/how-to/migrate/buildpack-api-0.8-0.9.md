@@ -31,4 +31,4 @@ For older platforms (Platform API version 0.9 and below), arguments in `command`
 
 Platform 0.10 introduces image extensions as experimental components for customizing build and run-time base images (see [here](/docs/for-platform-operators/concepts/dockerfiles) for more information).
 
-For more information, see our tutorial on [authoring an image extension](/docs/for-buildpack-authors/tutorials/write-basic-extension).
+For more information, see our tutorial on [authoring an image extension](/docs/for-buildpack-authors/tutorials/basic-extension).
