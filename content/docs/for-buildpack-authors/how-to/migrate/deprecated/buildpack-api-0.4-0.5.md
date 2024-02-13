@@ -1,5 +1,6 @@
 +++
 title="Buildpack API 0.4 -> 0.5"
+weight=1
 +++
 
 <!--more-->
