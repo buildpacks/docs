@@ -62,7 +62,7 @@ An image extension could be defined with the following directory:
   outputs either or both of `build.Dockerfile` or `run.Dockerfile` for extending the builder or run image.
 
 For more information and to see a build in action,
-see [authoring an image extension](/docs/extension-guide/create-extension).
+see [authoring an image extension](/docs/for-buildpack-authors/tutorials/write-basic-extension).
 
 ## A platform's perspective
 
@@ -93,7 +93,7 @@ The ordering of lifecycle phases looks like the following:
 * `build`
 * `export`
 
-For more information, consult the [migration guide](/docs/reference/spec/migration/platform-api-0.9-0.10).
+For more information, consult the [migration guide](/docs/for-platform-operators/how-to/migrate/platform-api-0.9-0.10).
 
 #### Platform support for Dockerfiles
 

@@ -13,8 +13,8 @@ A stack (deprecated) is the grouping together of the build and run base images, 
 As of Platform API 0.12 and Buildpack API 0.10, stacks are deprecated in favor of existing constructs in the container image ecosystem such as operating system name, operating system distribution, and architecture.
 
 For more information, see
-* Platform API 0.12 [migration guide](/docs/reference/spec/migration/platform-api-0.11-0.12/)
-* Buildpack API 0.10 [migration guide](/docs/reference/spec/migration/buildpack-api-0.9-0.10/)
+* Platform API 0.12 [migration guide](/docs/for-platform-operators/how-to/migrate/platform-api-0.11-0.12/)
+* Buildpack API 0.10 [migration guide](/docs/for-buildpack-authors/how-to/migrate/buildpack-api-0.9-0.10/)
 * [Build image](/docs/concepts/components/base-images/build/) concept
 * [Run image](/docs/concepts/components/base-images/run/) concept
 * [Target data](/docs/concepts/components/targets/)

@@ -45,5 +45,5 @@ Learn more about buildpacks by referring to the [Buildpack API][buildpack-api].
 
 [buildpack-api]: /docs/reference/buildpack-api
 [buildpack-group]: /docs/concepts/components/buildpack-group/
-[package-a-buildpack]: /docs/buildpack-author-guide/package-a-buildpack/
+[package-a-buildpack]: /docs/for-buildpack-authors/how-to/distribute-buildpacks/package-buildpack/
 [platform]: /docs/concepts/components/platform

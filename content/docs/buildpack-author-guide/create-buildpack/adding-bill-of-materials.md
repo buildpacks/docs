@@ -217,4 +217,4 @@ Now that you've finished your buildpack, how about extending it? Try:
 - Caching the downloaded NodeJS version
 - [Packaging your buildpack for distribution][package-a-buildpack]
 
-[package-a-buildpack]: /docs/buildpack-author-guide/package-a-buildpack/
+[package-a-buildpack]: /docs/for-buildpack-authors/how-to/distribute-buildpacks/package-buildpack/

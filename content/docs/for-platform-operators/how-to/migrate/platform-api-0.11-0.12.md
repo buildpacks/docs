@@ -67,7 +67,7 @@ To use the feature, platforms should:
 * Invoke `restorer` with the `-dameon` flag (newly added in this Platform API version) if the export target is a daemon
   * When extensions switch the run image, the `restorer` must re-read target data from the new run image in order to provide this information to buildpacks; if `-daemon` is provided the `restorer` will look for the run image in a daemon instead of a registry
   * When extensions extend the run image, the `-daemon` flag has no effect as the `restorer` must be able to pull the run image manifest from a registry
-* Invoke `extender` as usual to extend the builder image (see [migration guide](/docs/reference/spec/migration/platform-api-0.9-0.10/index.html) for Platform 0.10)
+* Invoke `extender` as usual to extend the builder image (see [migration guide](/docs/for-platform-operators/how-to/migrate/platform-api-0.9-0.10/index.html) for Platform 0.10)
 * Inspect the contents of `analyzed.toml` - if `run-image.extend` is `true` we must run the `extender` on the run image
 * Using the **run image** as the basis for the container, invoke `extender` with flags `-kind run` and `-extended <extended dir>`
   * `<extended dir>` is the directory where layers created from the application of each `run.Dockerfile` to the run image will be saved for use by the `exporter`; it defaults to `<layers>/extended`

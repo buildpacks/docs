@@ -39,4 +39,4 @@ Click _Submit new issue_, and your request will be processed within seconds. If 
 >
 > If you try to publish a buildpack with a namespace that's already in use, the request will fail and the GitHub issue will be closed. You can add or change namespace owners by submitting a Pull Request to the [buildpacks/registry-namespaces](https://github.com/buildpacks/registry-namespaces/).
 
-[package]: /docs/buildpack-author-guide/package-a-buildpack/
+[package]: /docs/for-buildpack-authors/how-to/distribute-buildpacks/package-buildpack

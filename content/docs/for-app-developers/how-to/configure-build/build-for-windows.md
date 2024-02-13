@@ -129,7 +129,7 @@ curl http://10.0.0.1:8080
 [container-mode]: https://docs.docker.com/desktop/faqs/windowsfaqs/#how-do-i-switch-between-windows-and-linux-containers
 [docker-env-vars]: https://docs.docker.com/engine/reference/commandline/cli/#environment-variables
 [docker-hosts]: #understanding-docker-hosts
-[build-linux]: /docs/app-developer-guide/build-an-app
+[build-linux]: /docs/for-app-developers/tutorials/build-basic-app
 [build]: /docs/concepts/operations/build
 [builder]: /docs/concepts/components/builder
 [buildpack]: /docs/concepts/components/buildpack

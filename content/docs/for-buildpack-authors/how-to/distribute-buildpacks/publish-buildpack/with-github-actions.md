@@ -85,7 +85,7 @@ It is possible to perform these same step on any automated CI platform, but the 
 
 You may store your buildpack image in any standard OCI registry, such as [Docker Hub][docker-hub], [Google Container Registry][gcr], or [GitHub Container Registry][ghcr]. However, [GitHub Packages][github-packages] are not supported as they provide a non-standard implementation of the OCI Registry specification.
 
-[package]: /docs/buildpack-author-guide/package-a-buildpack/
+[package]: /docs/for-buildpack-authors/how-to/distribute-buildpacks/package-buildpack
 [github-actions]: https://github.com/buildpacks/github-actions
 [docker-hub]: https://hub.docker.com/
 [gcr]: https://cloud.google.com/container-registry/

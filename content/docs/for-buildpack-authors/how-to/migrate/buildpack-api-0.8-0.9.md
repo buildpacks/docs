@@ -21,12 +21,14 @@ Buildpack processes can still use a shell! However, the `command` must now expli
 
 Hand-in-hand with shell removal is the introduction of overridable process arguments.
 
-In `launch.toml`, `command` is now a list. The first element in `command` is the command, and all following entries are arguments that are always provided to the process, regardless of how the application is started. The `args` list now designates arguments that can be overridden by the end user - if supported by the platform (Platform API version 0.10 and above). For further details, see the platform [migration guide](/docs/reference/spec/migration/platform-api-0.9-0.10).
+In `launch.toml`, `command` is now a list. The first element in `command` is the command, and all following entries are arguments that are always provided to the process, regardless of how the application is started. The `args` list now designates arguments that can be overridden by the end user - if supported by the platform (Platform API version 0.10 and above).
+
+For further details, see the platform [migration guide](/docs/for-platform-operators/how-to/migrate/platform-api-0.9-0.10).
 
 For older platforms (Platform API version 0.9 and below), arguments in `command` will be prepended to arguments in `args`, negating the new functionality (but preserving compatibility).
 
 ### Image extensions are supported (experimental)
 
-Platform 0.10 introduces image extensions as experimental components for customizing build and run-time base images (see [here](/docs/features/dockerfiles) for more information).
+Platform 0.10 introduces image extensions as experimental components for customizing build and run-time base images (see [here](/docs/for-platform-operators/concepts/dockerfiles) for more information).
 
-For more information, see [authoring an image extension](/docs/extension-guide/create-extension).
+For more information, see our tutorial on [authoring an image extension](/docs/for-buildpack-authors/tutorials/write-basic-extension).

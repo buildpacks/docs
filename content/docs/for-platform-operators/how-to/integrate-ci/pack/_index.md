@@ -58,7 +58,7 @@ To configure your `zsh` shell to load completions for each session, add the foll
 
 ### References
 
-- [Docs](/docs/tools/pack/cli/pack/)
+- [Docs](/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack/)
 - [Source](https://github.com/buildpacks/pack/)
 
 ---

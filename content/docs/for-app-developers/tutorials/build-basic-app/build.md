@@ -67,21 +67,21 @@ The app should now be running and accessible via [localhost:8080](http://localho
 Linux ARM image builds are now supported!
 
 <!--+- if false+-->
-<a href="/docs/app-developer-guide/build-an-arm-app" class="button bg-blue">Linux ARM build guide</a>
+<a href="/docs/for-app-developers/how-to/configure-build/build-for-arm" class="button bg-blue">Linux ARM build guide</a>
 <!--+end+-->
 
 <!--+ `
-Check out the [Linux ARM build guide](https://buildpacks.io//docs/app-developer-guide/build-an-arm-app).
+Check out the [Linux ARM build guide](https://buildpacks.io//docs/for-app-developers/how-to/configure-build/build-for-arm).
 ` +-->
 ## What about Windows apps?
 
 Windows image builds are now supported!
 
 <!--+- if false+-->
-<a href="/docs/app-developer-guide/build-a-windows-app" class="button bg-blue">Windows build guide</a>
+<a href="/docs/for-app-developers/how-to/configure-build/build-for-windows" class="button bg-blue">Windows build guide</a>
 <!--+end+-->
 <!--+ `
-Check out the [Windows build guide](https://buildpacks.io/docs/app-developer-guide/build-a-windows-app/).
+Check out the [Windows build guide](https://buildpacks.io/docs/for-app-developers/how-to/configure-build/build-for-windows/).
 ` +-->
 
 [build]: /docs/concepts/operations/build

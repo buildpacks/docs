@@ -23,17 +23,17 @@ Learn the [concepts](/docs/concepts) of Cloud Native Buildpacks.
 
 Set of guides tailored to specific personas:
 
-*  [App Developers](/docs/app-developer-guide/)
-*  [Buildpack Authors](/docs/buildpack-author-guide/)
+*  [App Developers](/docs/for-app-developers/)
+*  [Buildpack Authors](/docs/for-buildpack-authors/)
 *  [Operators](/docs/for-platform-operators/)
 
-## [Tools](/docs/tools/)
+## [Tools](/docs/for-platform-operators/)
 
-* **[CircleCI](/docs/tools/circleci)** - {{< summary "/docs/tools/circleci" >}}
-* **[GitLab](/docs/tools/gitlab)** - {{< summary "/docs/tools/gitlab" >}}
-* **[kpack](/docs/tools/kpack)** - {{< summary "/docs/tools/kpack" >}}
-* **[Pack](/docs/tools/pack)** - {{< summary "/docs/tools/pack" >}}
-* **[Tekton](/docs/tools/tekton)** - {{< summary "/docs/tools/tekton" >}}
+* **[CircleCI](/docs/for-platform-operators/how-to/integrate-ci/circleci)** - {{< summary "/docs/for-platform-operators/how-to/integrate-ci/circleci" >}}
+* **[GitLab](/docs/for-platform-operators/how-to/integrate-ci/gitlab)** - {{< summary "/docs/for-platform-operators/how-to/integrate-ci/gitlab" >}}
+* **[kpack](/docs/for-platform-operators/how-to/integrate-ci/kpack)** - {{< summary "/docs/for-platform-operators/how-to/integrate-ci/kpack" >}}
+* **[Pack](/docs/for-platform-operators/how-to/integrate-ci/pack)** - {{< summary "/docs/for-platform-operators/how-to/integrate-ci/pack" >}}
+* **[Tekton](/docs/for-platform-operators/how-to/integrate-ci/tekton)** - {{< summary "/docs/for-platform-operators/how-to/integrate-ci/tekton" >}}
 
 ## [Reference](/docs/reference/)
 

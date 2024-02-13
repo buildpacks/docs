@@ -21,4 +21,4 @@ For more information, please see [this migration guide][platform-api-06-07-migra
 | `1-10`, `13-19` | Generic lifecycle errors
 | `30-39`         | Analysis-specific lifecycle errors
 
-[platform-api-06-07-migration]: https://buildpacks.io/docs/reference/spec/migration/platform-api-0.6-0.7/
+[platform-api-06-07-migration]: https://buildpacks.io/docs/for-platform-operators/how-to/migrate/platform-api-0.6-0.7/
