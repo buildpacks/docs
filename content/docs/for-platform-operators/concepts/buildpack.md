@@ -44,6 +44,6 @@ Buildpacks can be [packaged][package-a-buildpack] as OCI images on an image regi
 Learn more about buildpacks by referring to the [Buildpack API][buildpack-api]. 
 
 [buildpack-api]: /docs/reference/buildpack-api
-[buildpack-group]: /docs/for-platform-operators/concepts/buildpack-group/
+[buildpack-group]: /docs/for-buildpack-authors/concepts/buildpack-group/
 [package-a-buildpack]: /docs/for-buildpack-authors/how-to/distribute-buildpacks/package-buildpack/
-[platform]: /docs/for-platform-operators/concepts/platform
+[platform]: /docs/for-app-developers/concepts/platform

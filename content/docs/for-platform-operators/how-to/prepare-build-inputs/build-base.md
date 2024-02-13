@@ -60,7 +60,7 @@ The given user **MUST NOT** be a root user, and must have a writeable home direc
 
 Finally, we need to label the image with operating system distribution information for platforms and the lifecycle to use.
 
-To determine which values to provide, see [targets](/docs/for-platform-operators/concepts/targets/) concept information.
+To determine which values to provide, see [targets](/docs/for-buildpack-authors/concepts/targets/) concept information.
 
 ## Build the build base image
 
