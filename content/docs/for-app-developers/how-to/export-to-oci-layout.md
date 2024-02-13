@@ -1,7 +1,7 @@
 +++
 title="Export to OCI layout format"
-weight=3
-summary="Learn how to export your application image to disk in OCI layout format"
+weight=201
+summary="Export your application image to disk in OCI layout format."
 +++
 
 <div class="quote mb-4">

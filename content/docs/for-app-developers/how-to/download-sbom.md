@@ -1,6 +1,7 @@
 +++
-title="Software Bill of Materials"
-summary="A `Software Bill-of-Materials` (`SBoM`) gives you a layer-by-layer view of what's inside your container in a variety of formats."
+title="Download a Software Bill-of-Materials (SBOM)"
+summary="An SBOM can give you a layer-by-layer view of what's inside your application image."
+weight=1
 +++
 
 ## Summary
