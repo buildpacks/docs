@@ -1,7 +1,7 @@
 +++
-title="Using Inline Buildpacks"
-weight=7
-summary="Learn how to create an ephemeral buildpack to customize your build."
+title="Use an inline buildpack"
+weight=5
+summary="Customize your build with a bit of shell script."
 +++
 
 You can supplement your app's build process with custom scripts by creating an _inline buildpack_. An inline buildpack is an ephemeral buildpack that's defined in your [project descriptor][project-toml] (i.e. `project.toml`). You can include a script to run as part of the build without setting up all the files and directories that are required for a complete buildpack.

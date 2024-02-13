@@ -1,7 +1,7 @@
 +++
-title="Using project.toml"
-weight=6
-summary="Learn how to use a project.toml file to simplify configuring pack."
+title="Use project.toml"
+weight=4
+summary="Simplify your `pack` configuration."
 +++
 
 A `project descriptor` (alternatively referred to as a `project.toml` file) allows users to detail configuration for a

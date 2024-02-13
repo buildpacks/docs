@@ -1,8 +1,9 @@
 +++
-title="Specify buildpacks"
-weight=4
-summary="Learn how to specify exactly what buildpacks are used during the build process."
+title="Specify buildpacks or extensions at build time"
+weight=1
+summary="No builder author can be truly omniscient, and whoever created yours surely was no exception!"
 +++
+
 <!--+- `
 # Specify buildpacks
 `+-->
@@ -10,7 +11,7 @@ summary="Learn how to specify exactly what buildpacks are used during the build 
 You may specify exactly what buildpacks are used during the build process by referencing them with a URI in any of the following formats.
 
 | Type                  | Format                                       |
-| --------------------- | -------------------------------------------- |
+|-----------------------|----------------------------------------------|
 | Relative              | `<path>`                                     |
 | Filesystem            | `file://[<host>]/<path>`                     |
 | URL                   | `http[s]://<host>/<path>`                    |
@@ -50,7 +51,11 @@ pack build sample-java-maven-app \
 > - `--buildpack` multiple times, or
 > - a comma-separated list to `--buildpack` (without spaces)
 
+Similarly, it is possible to provide extensions at build time:
 
+```bash
+pack build [...] --extension=foo [...]`
+```
 
 ## Using a Project Descriptor
 
