@@ -1,7 +1,7 @@
 +++
-title="Source Metadata"
+title="Declare source metadata"
 weight=1
-summary="Conventions for declaring app source information in the app image."
+summary="Conventions for declaring information about application source code, to be included in the application image."
 tags=["spec:platform/0.6", "spec:project-descriptor/0.2"]
 +++
 
