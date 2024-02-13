@@ -1,5 +1,6 @@
 +++
 title="Platform API 0.3 -> 0.4"
+weight=1
 +++
 
 <!--more-->
