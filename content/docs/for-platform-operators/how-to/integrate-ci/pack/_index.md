@@ -3,7 +3,7 @@ title="Pack"
 include_summaries=false
 expand=false
 aliases=["/docs/install-pack/", "/docs/tools/pack/cli/install/"]
-weight=100
+weight=1
 +++
 
 Pack is a tool maintained by the Cloud Native Buildpacks project to support the use of buildpacks. 

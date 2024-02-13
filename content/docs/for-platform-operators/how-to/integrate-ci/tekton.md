@@ -1,5 +1,6 @@
 +++
 title="Tekton"
+weight=6
 +++
 
 [Tekton][tekton] is an open-source CI/CD system platform implementation running on k8s. There are two Tekton `tasks`

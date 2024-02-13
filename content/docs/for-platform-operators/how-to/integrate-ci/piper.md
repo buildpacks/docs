@@ -1,5 +1,6 @@
 +++
 title='Project "Piper"'
+weight=5
 +++
 
 [Project "Piper"][piper] (maintained by [SAP][sap]) is a set of ready-made Continuous Delivery pipelines for direct use in your project. It now also implements the CNB Platform spec as a step and makes it available in your Jenkins pipeline.
