@@ -1,7 +1,7 @@
 +++
-title="Layer Types"
-weight=6
-summary="Learn strategies for caching layers."
+title="Caching strategies"
+weight=1
+summary="Learn strategies for caching layers at build-time for future re-use."
 +++
 
 # Layers

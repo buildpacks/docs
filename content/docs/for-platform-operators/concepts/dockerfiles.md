@@ -1,7 +1,10 @@
 +++
 title="Dockerfiles"
-summary="Dockerfiles can be used to extend base images for buildpacks builds."
 +++
+
+Dockerfiles can be used to extend base images for buildpacks builds.
+
+<!--more-->
 
 ## Why Dockerfiles?
 

@@ -1,9 +1,15 @@
 +++
-title="Overview of Buildpacks Phases"
-weight=15
+title="Lifecycle phases"
+weight=2
 +++
 
-We work through a full example of building a "hello world" NodeJs web application.  In the example we run `pack` on the NodeJS application to produce an application image.  We assume that we have a NodeJS buildpack, `registry.fake/buildpacks/nodejs:latest`, that is decomposed into buildpacks that help with the build.  We expand each of the buildpacks phases to explain the process.  Throughout the example we take a production-level view of their operation.  For example, our assumed NodeJS buildpack will be described to create different build, cache and launch layers in a manner similar to how a real NodeJS buildpack would operate.
+There are five phases to a buildpacks build.
+
+<!--more-->
+
+We work through a full example of building a "hello world" NodeJs web application.  
+
+In the example we run `pack` on the NodeJS application to produce an application image.  We assume that we have a NodeJS buildpack, `registry.fake/buildpacks/nodejs:latest`, that is decomposed into buildpacks that help with the build.  We expand each of the buildpacks phases to explain the process.  Throughout the example we take a production-level view of their operation.  For example, our assumed NodeJS buildpack will be described to create different build, cache and launch layers in a manner similar to how a real NodeJS buildpack would operate.
 
 ## NodeJS buildpack
 
