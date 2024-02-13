@@ -1,8 +1,9 @@
 +++
-title="Export to OCI layout format"
-weight=201
-summary="Export your application image to disk in OCI layout format."
+title="Export to OCI layout format on disk"
+weight=3
 +++
+
+<!--more-->
 
 <div class="quote mb-4">
     The OCI Image Layout is the directory structure for OCI content-addressable blobs and location-addressable references.

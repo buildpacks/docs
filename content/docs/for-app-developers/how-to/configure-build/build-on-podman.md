@@ -1,10 +1,7 @@
 +++
-title="Building on Podman"
-weight=99
-summary="Use podman as an alternative to Docker with Cloud Native Buildpacks."
-aliases=[
-    "/docs/using-pack/building-app/"
-]
+title="Build on Podman"
+weight=5
+summary="Use Podman as an alternative to Docker to create the containerized build environment."
 +++
 
 ### What is Podman?

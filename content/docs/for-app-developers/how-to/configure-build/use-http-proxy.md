@@ -1,7 +1,7 @@
 +++
-title="Using Buildpacks with a Proxy"
-weight=8
-summary="Learn how to use buildpacks behind a HTTP proxy."
+title="Use an HTTP proxy"
+weight=4
+summary="Useful for university or corporate environments."
 +++
 
 Many university or corporate environments use a proxy to access HTTP and HTTPS resources on the web.  Proxies introduce two constraints on buildpack built applications:

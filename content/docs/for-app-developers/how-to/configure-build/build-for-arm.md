@@ -1,10 +1,13 @@
 +++
-title="Build an ARM app"
-weight=2
-summary="The basics of taking your app from source code to runnable ARM image."
+title="Build for ARM architecture"
+weight=1
 +++
 
-As of today, there are no known released CNB builder images that support building ARM application images. Users can create their own ARM64 builder image by following [this guide][this guide].
+<!--more-->
+
+As of today, there are no known released CNB builder images that support building ARM application images. 
+
+Users can create their own ARM64 builder image by following [this guide][this guide].
 
 In the following tutorial, we will be performing a build "manually", in that we will be performing a build by invoking the lifecycle directly.
 

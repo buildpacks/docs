@@ -1,8 +1,9 @@
 +++
-title="Build a Windows app"
+title="Build for Windows containers"
 weight=2
-summary="The basics of taking your Windows app from source code to runnable image."
 +++
+
+<!--more-->
 
 > **EXPERIMENTAL** Windows support is experimental!
 >
