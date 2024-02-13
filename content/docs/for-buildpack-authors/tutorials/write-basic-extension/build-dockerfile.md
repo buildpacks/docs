@@ -1,6 +1,6 @@
 +++
-title="Generating a build.Dockerfile"
-weight=404
+title="Extending the build-time base image with a build.Dockerfile"
+weight=4
 aliases = [
   "/docs/extension-author-guide/create-extension/build-dockerfile/",
   ]
@@ -91,4 +91,4 @@ Let's take a look at how the `samples/curl` extension fixes the error by switchi
 <!--+ if false+-->
 ---
 
-<a href="/docs/extension-guide/create-extension/run-dockerfile-switch" class="button bg-pink">Next Step</a>
+<a href="/docs/for-buildpack-authors/tutorials/write-basic-extension/run-dockerfile-switch" class="button bg-pink">Next Step</a>

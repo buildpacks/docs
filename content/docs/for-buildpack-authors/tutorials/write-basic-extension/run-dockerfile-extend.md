@@ -1,6 +1,6 @@
 +++
-title="Generating a run.Dockerfile that extends the runtime base image"
-weight=406
+title="Extending the runtime base image with a run.Dockerfile"
+weight=6
 +++
 
 <!-- test:suite=dockerfiles;weight=6 -->

@@ -1,6 +1,6 @@
 +++
-title="Generating a run.Dockerfile that switches the runtime base image"
-weight=405
+title="Switching the runtime base image with a run.Dockerfile"
+weight=5
 aliases = [
   "/docs/extension-author-guide/run-dockerfile/"
   ]
@@ -145,5 +145,5 @@ Luckily, we can also use image extensions to dynamically install runtime depende
 <!--+ if false+-->
 ---
 
-<a href="/docs/extension-guide/create-extension/run-dockerfile-extend" class="button bg-pink">Next Step</a>
+<a href="/docs/for-buildpack-authors/tutorials/write-basic-extension/run-dockerfile-extend" class="button bg-pink">Next Step</a>
 <!--+ end +-->

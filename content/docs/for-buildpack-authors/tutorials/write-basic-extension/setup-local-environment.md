@@ -1,15 +1,22 @@
 +++
 title="Set up your local environment"
-weight=401
+weight=1
 aliases = [
   "/docs/extension-author-guide/create-extension/setup-local-environment/",
   ]
 +++
 
-<!-- test:suite=dockerfiles;weight=1 -->
-
 Let's walk through a build that uses extensions, step by step. We will see an image extension that installs `curl` on
 the builder image, and switches the run image to an image that has `curl` installed.
+
+### Check system requirements
+
+Before we get started, make sure you've got the following installed:
+
+{{< download-button href="https://store.docker.com/search?type=edition&offering=community" color="blue" >}} Install Docker {{</>}}
+{{< download-button href="/docs/install-pack" color="pink" >}} Install pack {{</>}}
+
+<!-- test:suite=dockerfiles;weight=1 -->
 
 ### Ensure Docker is running
 
@@ -78,5 +85,5 @@ git clone https://github.com/buildpacks/samples.git
 <!--+ if false +-->
 ---
 
-<a href="/docs/extension-guide/create-extension/why-dockerfiles" class="button bg-pink">Next Step</a>
+<a href="/docs/for-buildpack-authors/tutorials/write-basic-extension/why-dockerfiles" class="button bg-pink">Next Step</a>
 <!--+ end+-->

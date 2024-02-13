@@ -1,6 +1,6 @@
 +++
-title="Why Dockerfiles"
-weight=402
+title="Why this feature?"
+weight=2
 aliases = [
   "/docs/extension-author-guide/create-extension/why-dockerfiles/",
   ]
@@ -105,5 +105,5 @@ Let's take a look at how the `samples/vim` extension installs `vim` on the build
 <!--+ if false+-->
 ---
 
-<a href="/docs/extension-guide/create-extension/building-blocks-extension" class="button bg-pink">Next Step</a>
+<a href="/docs/for-buildpack-authors/tutorials/write-basic-extension/building-blocks-extension" class="button bg-pink">Next Step</a>
 <!--+ end +-->
