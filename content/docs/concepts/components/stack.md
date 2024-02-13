@@ -52,7 +52,7 @@ By providing the required `[stack]` section, a builder author can configure a st
 
 To learn how to create your own stack, see our [Operator's Guide][operator-guide].
 
-[operator-guide]: /docs/operator-guide/
+[operator-guide]: /docs/for-platform-operators/
 [builder]: /docs/concepts/components/builder/
 [buildpack]: /docs/concepts/components/buildpack/
 [lifecycle]: /docs/concepts/components/lifecycle/

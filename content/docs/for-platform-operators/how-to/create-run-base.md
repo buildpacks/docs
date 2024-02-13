@@ -3,6 +3,8 @@ title="Create a run base image"
 weight=3
 +++
 
+<!--more-->
+
 ## Define a run base image for your CNB build
 
 We need a Dockerfile similar to the following:

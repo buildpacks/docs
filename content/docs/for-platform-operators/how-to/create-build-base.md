@@ -3,6 +3,8 @@ title="Create a build base image"
 weight=2
 +++
 
+<!--more-->
+
 ## Define a build base image for your CNB build
 
 We need a Dockerfile similar to the following:

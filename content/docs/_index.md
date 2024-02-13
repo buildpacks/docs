@@ -25,7 +25,7 @@ Set of guides tailored to specific personas:
 
 *  [App Developers](/docs/app-developer-guide/)
 *  [Buildpack Authors](/docs/buildpack-author-guide/)
-*  [Operators](/docs/operator-guide/)
+*  [Operators](/docs/for-platform-operators/)
 
 ## [Tools](/docs/tools/)
 

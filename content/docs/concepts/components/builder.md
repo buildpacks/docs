@@ -27,6 +27,6 @@ A builder consists of the following components:
 To learn how to create your own builder, see our [Operator's Guide][operator-guide].
 
 [builder-config]: /docs/reference/builder-config/
-[operator-guide]: /docs/operator-guide/
+[operator-guide]: /docs/for-platform-operators/
 [buildpack]: /docs/concepts/components/buildpack/
 [lifecycle]: /docs/concepts/components/lifecycle/

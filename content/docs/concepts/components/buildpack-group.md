@@ -50,6 +50,6 @@ The [Operator's Guide][operator-guide] has more information on creating builders
 
 [buildpack-group]: /docs/reference/config/builder-config/#order-_list-required_
 [order-resolution]: https://github.com/buildpacks/spec/blob/main/buildpack.md#order-resolution
-[operator-guide]: /docs/operator-guide/
+[operator-guide]: /docs/for-platform-operators/
 [builder]: /docs/concepts/components/builder/
 [meta-buildpack]: /docs/concepts/components/buildpack/#meta-buildpack

@@ -3,7 +3,8 @@ title="Create a builder"
 weight=1
 +++
 
-Creating a custom [builder][builder] allows you to control what buildpacks are used and what image apps are based on.
+A [builder][builder] is an OCI image with all the inputs needed for a buildpacks build, including 
+the build-time base image, a reference to a runtime base image, a lifecycle, and a set of buildpacks.
 
 <!--more-->
 
