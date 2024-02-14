@@ -105,7 +105,7 @@ For additional sample builders and buildpacks, check out our [samples][samples] 
 
 You can also check out our reference of the builder config [here][builder-config].
 
-[build]: /docs/for-app-developers/concepts/buildpacks-operations/build/
+[build]: /docs/for-app-developers/concepts/build/
 [builder]: /docs/for-platform-operators/concepts/builder/
 [builder-config]: /docs/reference/builder-config/
 [samples]: https://github.com/buildpacks/samples

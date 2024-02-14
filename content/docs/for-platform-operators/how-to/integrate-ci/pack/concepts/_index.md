@@ -1,7 +1,7 @@
 +++
 title="Concepts"
 include_summaries=true
-expand=false
+
 weight=2
 +++
 

@@ -1,14 +1,14 @@
 +++
 title="Stack"
-weight=4
+weight=99
 aliases=[
     "/docs/using-pack/stacks/"
 ]
 +++
 
-## What is a stack?
-
 A stack (deprecated) is the grouping together of the build and run base images, represented by a unique ID.
+
+<!--more-->
 
 As of Platform API 0.12 and Buildpack API 0.10, stacks are deprecated in favor of existing constructs in the container image ecosystem such as operating system name, operating system distribution, and architecture.
 

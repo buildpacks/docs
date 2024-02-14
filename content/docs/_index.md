@@ -17,7 +17,7 @@ summary="Get started with Cloud Native Buildpacks."
 
 ## Going deeper
 
-See how-to guides, concepts, and advanced tutorials tailored to specific personas:
+See how-to guides, concepts, and tutorials tailored to specific personas:
 
 *  [App Developers](/docs/for-app-developers/)
 *  [Buildpack Authors](/docs/for-buildpack-authors/)

@@ -1,6 +1,6 @@
 +++
-title="Build reproducibility"
-weight=3
+title="What is build reproducibility?"
+weight=6
 +++
 
 Given the same inputs, two builds should produce the same outputs.
@@ -14,8 +14,6 @@ The Cloud Native Buildpacks project aims to create "Reproducible Builds" of cont
 For image creation commands (`builder create`, `buildpack package`, `build`) `pack` creates container images in a reproducible fashion.
 
 "Reproducible" is hard to define, but we'll do so by example and with a few caveats:
-
-<!--more-->
 
 ## Examples
 ---

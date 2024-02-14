@@ -3,9 +3,10 @@ title="Run image"
 weight=2
 +++
 
-## What is a run image?
-
 The **run image** provides the base image for application images.
+
+<!--more-->
+
 The lifecycle requires a reference to a run image and (where necessary) possible run image mirrors in order to construct the application image.
 
 ### Run image mirrors

@@ -1,7 +1,7 @@
 +++
 title="Pack"
 include_summaries=false
-expand=false
+
 aliases=["/docs/install-pack/", "/docs/tools/pack/cli/install/"]
 weight=1
 +++
@@ -76,7 +76,7 @@ go get -u github.com/buildpacks/pack
 - [Docs](https://pkg.go.dev/github.com/buildpacks/pack)
 - [Source](https://github.com/buildpacks/pack/)
 
-[build]: /docs/for-app-developers/concepts/buildpacks-operations/build/
-[rebase]: /docs/for-app-developers/concepts/buildpacks-operations/rebase/
+[build]: /docs/for-app-developers/concepts/build/
+[rebase]: /docs/for-app-developers/concepts/rebase/
 [components]: /docs/for-platform-operators/concepts/
 [github-releases]: https://github.com/buildpacks/pack/releases
