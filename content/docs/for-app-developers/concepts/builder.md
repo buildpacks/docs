@@ -3,7 +3,7 @@ title="What is a builder?"
 weight=2
 +++
 
-A `builder` is an OCI image containing
+A `builder` is an [OCI image](https://github.com/opencontainers/image-spec) containing
 an ordered combination of [buildpacks][buildpack] and
 a [build-time base image], a [lifecycle] binary, and a reference to a [runtime base image].
 

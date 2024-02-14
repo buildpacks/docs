@@ -54,6 +54,6 @@ EOF
 ### Further Reading
 For more about project descriptors, look at the [schema][descriptor-schema], as well as the [specification][spec].
 
-[project-toml]: /docs/for-app-developers/how-to/build-inputs/project-toml/
+[project-toml]: /docs/for-app-developers/how-to/build-inputs/use-project-toml/
 [descriptor-schema]: /docs/reference/project-descriptor/
 [spec]: https://github.com/buildpacks/spec/blob/main/extensions/project-descriptor.md

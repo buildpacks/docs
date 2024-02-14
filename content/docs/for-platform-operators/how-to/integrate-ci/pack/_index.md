@@ -1,7 +1,5 @@
 +++
 title="Pack"
-include_summaries=false
-
 aliases=["/docs/install-pack/", "/docs/tools/pack/cli/install/"]
 weight=1
 +++
