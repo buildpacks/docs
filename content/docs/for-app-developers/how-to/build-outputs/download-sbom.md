@@ -1,7 +1,7 @@
 +++
 title="Download a Software Bill-of-Materials (SBOM)"
 summary="An SBOM can give you a layer-by-layer view of what's inside your application image."
-weight=1
+weight=2
 +++
 
 ## Summary

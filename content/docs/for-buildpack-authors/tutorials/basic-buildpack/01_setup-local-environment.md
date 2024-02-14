@@ -1,6 +1,6 @@
 +++
 title="Set up your local environment"
-weight=401
+weight=1
 +++
 
 <!-- test:suite=create-buildpack;weight=1 -->

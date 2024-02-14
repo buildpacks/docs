@@ -118,3 +118,11 @@ Next, let's see how buildpacks can store information about the dependencies prov
 
 <a href="/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials" class="button bg-pink">Next Step</a>
 <!--+end+-->
+
+## Going further
+
+Now that you've finished your buildpack, how about extending it? Try:
+
+- [Packaging your buildpack for distribution][package-a-buildpack]
+
+[package-a-buildpack]: /docs/for-buildpack-authors/how-to/distribute-buildpacks/package-buildpack/

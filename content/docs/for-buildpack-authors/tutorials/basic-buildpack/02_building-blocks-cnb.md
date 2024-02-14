@@ -1,6 +1,6 @@
 +++
 title="Building blocks of a Cloud Native Buildpack"
-weight=402
+weight=2
 +++
 
 <!-- test:suite=create-buildpack;weight=2 -->
