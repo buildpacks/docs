@@ -1,11 +1,12 @@
 +++
 title="Detect"
 weight=2
-summary="Finds an ordered group of buildpacks to use during the build phase."
 +++
 
-{{< param "summary" >}}\
-\
+The `detector` finds an ordered group of buildpacks to use during the build phase.
+
+<!--more-->
+
 Detection is the first phase of the Lifecycle. It’s done by the `detector`.
 In this phase, the detector looks for an ordered group of buildpacks that will be used during the build phase.
 The detector is invoked in the build environment without any required arguments and it cannot run with root privileges.

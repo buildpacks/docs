@@ -1,10 +1,11 @@
 +++
 title="Publish a buildpack"
 weight=5
-summary="Learn how to publish your buildpack to the Buildpack Registry."
 +++
 
-{{< param "summary" >}}
+Learn how to publish your buildpack to the Buildpack Registry.
+
+<!--more-->
 
 ### 0. Packaging your buildpack
 

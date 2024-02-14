@@ -1,10 +1,8 @@
 +++
-title="Package a buildpack"
+title="Package a buildpack or extension"
 weight=5
-summary="Learn how to package your buildpack for distribution using standard OCI registries."
+summary="Learn how to package your buildpack or extension for distribution."
 +++
-
-{{< param "summary" >}}
 
 ### 0. Grab the sample repo
 
