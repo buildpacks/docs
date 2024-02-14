@@ -35,11 +35,3 @@ layers
               │   └── sbom.syft.json
               └── sbom.syft.json
 ```
-
-## Adding Bill of Materials
-
-[`pack`](https://github.com/buildpacks/pack), [`kpack`](https://github.com/pivotal/kpack) and [tekton](https://tekton.dev/) users will find that images created using these tools contain an SBoM.
-
-Developers writing a new buildpack or updating an existing buildpack should use the [Adding bill of materials][adding-bill-of-materials] tutorial to incorporate a `Bill-of-Materials` in their buildpack.
-
-[adding-bill-of-materials]: /docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials/

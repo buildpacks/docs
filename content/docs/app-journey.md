@@ -99,7 +99,7 @@ deploying your new image to your favorite cloud!
 
 Windows image builds are now supported!
 
-<a href="/docs/for-app-developers/how-to/configure-build-environment/build-for-windows" class="button bg-blue">Windows build guide</a>
+<a href="/docs/for-app-developers/how-to/special-cases/build-for-windows" class="button bg-blue">Windows build guide</a>
 
 [builder]: /docs/for-platform-operators/concepts/builder/
 [buildpack]: /docs/for-platform-operators/concepts/buildpack/

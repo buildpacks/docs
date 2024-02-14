@@ -150,5 +150,5 @@ Next, let's see how buildpack users may be able to provide configuration to the 
 <!--+if false+-->
 ---
 
-<a href="/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable" class="button bg-pink">Next Step</a>
+<a href="/docs/for-buildpack-authors/tutorials/basic-buildpack/07_make-buildpack-configurable" class="button bg-pink">Next Step</a>
 <!--+end+-->

@@ -111,14 +111,6 @@ You will notice that version of NodeJS specified in the app's `.node-js-version`
 -----> Downloading and extracting NodeJS 18.18.1
 ```
 
-Next, let's see how buildpacks can store information about the dependencies provided in the output app image for introspection.
-
-<!--+if false+-->
----
-
-<a href="/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials" class="button bg-pink">Next Step</a>
-<!--+end+-->
-
 ## Going further
 
 Now that you've finished your buildpack, how about extending it? Try:

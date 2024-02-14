@@ -96,5 +96,5 @@ Server: Docker Engine - Community
 <!--+ if false +-->
 ---
 
-<a href="/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb" class="button bg-pink">Next Step</a>
+<a href="/docs/for-buildpack-authors/tutorials/basic-buildpack/02_building-blocks-cnb" class="button bg-pink">Next Step</a>
 <!--+ end+-->

@@ -134,7 +134,7 @@ ERROR: failed to detect: buildpack(s) failed with err
 <!--+ if false+-->
 ---
 
-<a href="/docs/buildpack-author-guide/create-buildpack/detection" class="button bg-pink">Next Step</a>
+<a href="/docs/for-buildpack-authors/tutorials/basic-buildpack/03_detection" class="button bg-pink">Next Step</a>
 
 [builder]: /docs/for-platform-operators/concepts/builder
 <!--+ end +-->

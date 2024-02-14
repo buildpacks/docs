@@ -18,18 +18,16 @@ Before we get started, make sure you've got the following installed:
 
 This is a step-by-step tutorial for creating a nodeJS Cloud Native Buildpack.
 
-- [Set up your local environment](/docs/buildpack-author-guide/create-buildpack/setup-local-environment)
-- [Building blocks of a Cloud Native Buildpack](/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb)
-- [Detecting your application](/docs/buildpack-author-guide/create-buildpack/detection)
-- [Building your application](/docs/buildpack-author-guide/create-buildpack/build-app)
-- [Making your application runnable](/docs/buildpack-author-guide/create-buildpack/make-app-runnable)
-- [Specifying multiple process types](/docs/buildpack-author-guide/create-buildpack/specify-multiple-process-types)
-- [Improving performance with caching](/docs/buildpack-author-guide/create-buildpack/caching)
-- [Making your buildpack configurable](/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable)
-- [Adding a Bill-of-Materials](/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials)
+- [Set up your local environment](/docs/for-buildpack-authors/tutorials/basic-buildpack/01_setup-local-environment)
+- [Building blocks of a Cloud Native Buildpack](/docs/for-buildpack-authors/tutorials/basic-buildpack/02_building-blocks-cnb)
+- [Detecting your application](/docs/for-buildpack-authors/tutorials/basic-buildpack/03_detection)
+- [Building your application](/docs/for-buildpack-authors/tutorials/basic-buildpack/04_build-app)
+- [Making your application runnable](/docs/for-buildpack-authors/tutorials/basic-buildpack/05_make-app-runnable)
+- [Improving performance with caching](/docs/for-buildpack-authors/tutorials/basic-buildpack/06_caching)
+- [Making your buildpack configurable](/docs/for-buildpack-authors/tutorials/basic-buildpack/07_make-buildpack-configurable)
 
 <!--+if false+-->
 ---
 
-<a href="/docs/buildpack-author-guide/create-buildpack/setup-local-environment" class="button bg-pink">Start Tutorial</a>
+<a href="/docs/for-buildpack-authors/tutorials/basic-buildpack/01_setup-local-environment" class="button bg-pink">Start Tutorial</a>
 <!--+end+-->

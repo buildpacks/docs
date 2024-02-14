@@ -105,5 +105,5 @@ Let's take a look at how the `samples/vim` extension installs `vim` on the build
 <!--+ if false+-->
 ---
 
-<a href="/docs/for-buildpack-authors/tutorials/basic-extension/building-blocks-extension" class="button bg-pink">Next Step</a>
+<a href="/docs/for-buildpack-authors/tutorials/basic-extension/03_building-blocks-extension" class="button bg-pink">Next Step</a>
 <!--+ end +-->

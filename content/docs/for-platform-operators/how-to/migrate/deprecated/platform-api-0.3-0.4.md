@@ -11,13 +11,13 @@ See the [spec release](https://github.com/buildpacks/spec/releases/tag/platform%
 
 ### Windows support
 
-Windows image builds are now supported! See the [Windows build guide](/docs/for-app-developers/how-to/configure-build-environment/build-for-windows)
+Windows image builds are now supported! See the [Windows build guide](/docs/for-app-developers/how-to/special-cases/build-for-windows)
 for more details.
 
 ### Multicall launcher
 
 When running the exported application image, it is now possible to provide arguments to pre-defined process types. 
-The new flow is described [here](/docs/for-app-developers/tutorials/basic-app/run/#run-a-multi-process-app).
+The new flow is described [here](/docs/for-app-developers/how-to/build-outputs/specify-launch-process/#run-a-multi-process-app).
 As part of these changes, the exporter will not set, and the launcher no longer accepts, the `CNB_PROCESS_TYPE` variable.
 See the associated [RFC](https://github.com/buildpacks/rfcs/blob/main/text/0045-launcher-arguments.md) and [spec PR](https://github.com/buildpacks/spec/pull/118)
 for more details.

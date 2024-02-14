@@ -85,5 +85,5 @@ git clone https://github.com/buildpacks/samples.git
 <!--+ if false +-->
 ---
 
-<a href="/docs/for-buildpack-authors/tutorials/basic-extension/why-dockerfiles" class="button bg-pink">Next Step</a>
+<a href="/docs/for-buildpack-authors/tutorials/basic-extension/02_why-dockerfiles" class="button bg-pink">Next Step</a>
 <!--+ end+-->

@@ -81,5 +81,5 @@ We can add multiple process types to a single app. We'll do that in the next sec
 <!--+if false+-->
 ---
 
-<a href="/docs/buildpack-author-guide/create-buildpack/specify-multiple-process-types" class="button bg-pink">Next Step</a>
+<a href="/docs/for-buildpack-authors/tutorials/basic-buildpack/06_caching" class="button bg-pink">Next Step</a>
 <!--+end+-->

@@ -13,7 +13,7 @@ summary="Get started with Cloud Native Buildpacks."
 ## Tutorials
 
 * [An App’s Brief Journey from Source to Image](/docs/app-journey/) - An easy-to-follow introduction to Cloud Native Buildpacks using `pack`, a command line tool for Cloud Native Buildpacks.
-* [Creating a Cloud Native Buildpack](/docs/buildpack-author-guide/create-buildpack) - Tutorial walking through the creation of a simple Ruby buildpack.
+* [Creating a Cloud Native Buildpack](/docs/for-buildpack-authors/tutorials/basic-buildpack) - Tutorial walking through the creation of a simple Ruby buildpack.
 
 ## Going deeper
 

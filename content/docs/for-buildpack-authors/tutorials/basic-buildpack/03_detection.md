@@ -55,5 +55,5 @@ You will also notice that `RESTORING` now appears in the build output. This step
 <!--+if false+-->
 ---
 
-<a href="/docs/buildpack-author-guide/create-buildpack/build-app" class="button bg-pink">Next Step</a>
+<a href="/docs/for-buildpack-authors/tutorials/basic-buildpack/04_build-app" class="button bg-pink">Next Step</a>
 <!--+end+-->

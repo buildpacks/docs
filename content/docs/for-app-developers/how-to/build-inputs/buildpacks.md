@@ -110,5 +110,5 @@ A buildpack located in a CNB Registry
 <small><sup>†</sup> Directory buildpacks are not currently supported on Windows.</small><br />
 <small><sup>‡</sup> Version may be omitted if there is only one buildpack in the builder matching the `id`.</small>
 
-[project-toml]: /docs/for-app-developers/how-to/configure-build-inputs/project-toml/
+[project-toml]: /docs/for-app-developers/how-to/build-inputs/project-toml/
 [samples]: https://github.com/buildpacks/samples
