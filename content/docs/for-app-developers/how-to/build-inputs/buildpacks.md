@@ -4,10 +4,6 @@ weight=1
 summary="No builder author can be truly omniscient, and whoever created yours surely was no exception!"
 +++
 
-<!--+- `
-# Specify buildpacks
-`+-->
-
 You may specify exactly what buildpacks are used during the build process by referencing them with a URI in any of the following formats.
 
 | Type                  | Format                                       |
@@ -21,7 +17,8 @@ You may specify exactly what buildpacks are used during the build process by ref
 
 ##### Fallback Behavior
 
-When a string does not include a scheme prefix (ex. `docker://`) and also does not match a path on the filesystem, a platform may attempt to resolve it to a URI in the following order:
+When a string does not include a scheme prefix (ex. `docker://`) and also does not match a path on the filesystem,
+a platform may attempt to resolve it to a URI in the following order:
 - If it matches a buildpack ID in the builder, it will be treated as a `urn:cnb:builder` URI
 - If it looks like a Docker ref, it will be treated as a `docker://` URI
 - If it looks like a Buildpack Registry ID, it will be treated as a `urn:cnb:registry` URI

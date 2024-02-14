@@ -1,10 +1,13 @@
 +++
 title="Inspect your application image"
-weight=1
+weight=2
 +++
 
-One of the benefits of buildpacks is they can also populate the app image with metadata from the build process,
-allowing you to audit the app image for information like:
+Buildpacks-built images contain metadata that allow you to audit both the image itself and the build process.
+
+<!--more-->
+
+Information includes:
 * The process types that are available and the commands associated with them
 * The run-image the app image was based on
 * The buildpacks were used to create the app image
@@ -30,4 +33,6 @@ Processes:
   web (default)        bash         node-js app.js                                   /workspace
 ```
 
-Apart from the above standard metadata, buildpacks can also populate information about the dependencies they have provided in form of a `Software Bill-of-Materials` or `SBOM`.
+Apart from the above standard metadata, buildpacks can also populate information about the dependencies they have provided in form of a `Software Bill-of-Materials` or [SBOM].
+
+[SBOM]: /docs/for-app-developers/how-to/build-outputs/download-sbom

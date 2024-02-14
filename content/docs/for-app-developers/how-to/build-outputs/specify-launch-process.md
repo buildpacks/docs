@@ -1,14 +1,10 @@
 +++
-title="Run the app"
-weight=2
+title="Run the application"
+weight=1
 summary="Learn how to specify the launch process for an app."
 +++
 
-<!--+- `
-# Specify launch process
-
-Learn how to specify the launch process for an app.
-`+-->
+Buildpacks-built images can contain multiple process types.
 
 ### Build a multi-process app
 

@@ -1,14 +1,13 @@
 +++
-title="Configure build-time environment variables"
+title="Customize buildpack behavior with build-time environment variables"
 weight=2
-summary="Customize buildpack behavior through the build-time environment."
 +++
-<!--+- `
-# Environment variables
-`+-->
+
 Environment variables are a common way to configure various buildpacks at build-time.
 
-Below are a few ways you can do so. All of them will use our [samples][samples] repo for simplicity.
+<!--more-->
+
+Below are a few ways you can do so. All of them will use our [samples] repo for simplicity.
 
 ### Using CLI arguments (`--env`)
 

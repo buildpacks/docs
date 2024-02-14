@@ -3,11 +3,8 @@ title="Use a cache image"
 weight=6
 summary="Share layers between builds with a cache image."
 +++
-<!--+- `
-# Cache Images
-`+-->
 
-Cache Images are a way to preserve build optimizing layers across different host machines. 
+Cache images are a way to preserve build-optimizing layers across different host machines. 
 These images can improve performance when using `pack` in ephemeral environments such as CI/CD pipelines.
 
 ## Using Cache Images (`--cache-image`)
