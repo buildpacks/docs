@@ -3,8 +3,9 @@ title="Gitlab Auto DevOps"
 weight=4
 +++
 
-[Gitlab][about-gitlab] is a web based DevOps platform. It uses [`pack`][pack] as part of the [Auto DevOps][devops] feature, to
-build applications prior to deploying them.
+[Gitlab][about-gitlab] is a web-based DevOps platform. The [Auto DevOps][devops] feature uses [`pack`][pack]
+to build applications prior to deploying them.
+
 <!--more-->
 
 ## Use

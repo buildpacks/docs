@@ -1,7 +1,9 @@
 +++
 title="Create a build base image"
-weight=2
+weight=1
 +++
+
+The build-time base image provides the OS-level dependencies for buildpacks at build-time.
 
 <!--more-->
 

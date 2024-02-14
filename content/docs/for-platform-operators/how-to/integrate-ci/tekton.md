@@ -3,8 +3,10 @@ title="Tekton"
 weight=6
 +++
 
-[Tekton][tekton] is an open-source CI/CD system platform implementation running on k8s. There are two Tekton `tasks`
-maintained by the CNB project, both of which use the [lifecycle][lifecycle] directly (i.e. they do not use `pack`).
+[Tekton][tekton] is an open-source CI/CD system running on k8s.
+
+The CNB project has created two reference "tasks" for performing buildpacks builds,
+both of which use the [lifecycle][lifecycle] directly (i.e. they do not use `pack`).
 
 <!--more-->
 

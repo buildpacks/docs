@@ -3,7 +3,9 @@ title="CircleCI"
 weight=3
 +++
 
-[CircleCI][circleci] is a continuous integration and delivery platform. The CNB project maintains an integration, called an [orb](https://circleci.com/orbs/), 
+[CircleCI][circleci] is a continuous integration and delivery platform.
+
+The CNB project maintains an integration, called an [orb](https://circleci.com/orbs/), 
 which allows users to run [pack][pack] commands inside their pipelines.
 
 <!--more-->

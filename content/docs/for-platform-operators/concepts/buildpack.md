@@ -1,11 +1,9 @@
 +++
-title="Buildpack"
-weight=2
+title="What is a buildpack?"
+weight=1
 +++
 
-## What is a buildpack?
-
-A buildpack is a set of executables that inspects your app source code and creates a plan to build and run your application.
+A `buildpack` is software that examines your source code and determines the best way to build it.
 
 <!--more-->
 

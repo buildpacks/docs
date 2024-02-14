@@ -1,8 +1,9 @@
 +++
-title="Dockerfiles"
+title="What are image extensions?"
+weight=99
 +++
 
-Dockerfiles can be used to extend base images for buildpacks builds.
+Image extensions generate Dockerfiles that can be used to extend base images for buildpacks builds.
 
 <!--more-->
 

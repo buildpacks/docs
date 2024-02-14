@@ -3,6 +3,8 @@ title="Specify an image extension in a builder"
 weight=101
 +++
 
+If you are using extensions, here is how to include them in a builder.
+
 <!--more-->
 
 You're pretty sharp, and you know what your buildpack users will need.

@@ -6,7 +6,8 @@ aliases=["/docs/install-pack/", "/docs/tools/pack/cli/install/"]
 weight=1
 +++
 
-Pack is a tool maintained by the Cloud Native Buildpacks project to support the use of buildpacks. 
+Pack is a CLI tool maintained by the CNB project to support the use of buildpacks.
+
 <!--more-->
 
 It enables the following functionality:

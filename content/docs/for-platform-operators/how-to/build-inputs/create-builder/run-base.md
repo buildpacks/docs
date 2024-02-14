@@ -1,7 +1,9 @@
 +++
 title="Create a run base image"
-weight=3
+weight=2
 +++
+
+The runtime base image provides the OS-level dependencies for applications at runtime.
 
 <!--more-->
 

@@ -3,7 +3,10 @@ title="kpack"
 weight=2
 +++
 
-[kpack][kpack] is a Kubernetes native platform, belonging to the [Buildpacks Community](https://github.com/buildpacks-community) organization. It utilizes unprivileged Kubernetes primitives to provide builds of OCI images as a platform implementation of Cloud Native Buildpacks (CNB).
+[kpack][kpack] is a Kubernetes-native platform that uses unprivileged Kubernetes primitives to perform buildpacks builds and keep application images up-to-date.
+
+[kpack][kpack] is part of the [Buildpacks Community](https://github.com/buildpacks-community) organization.
+
 <!--more-->
 
 ## Use 

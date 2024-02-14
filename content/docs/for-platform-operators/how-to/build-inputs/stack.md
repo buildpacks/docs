@@ -1,16 +1,17 @@
 +++
-title="Create a stack"
-weight=4
+title="Create a stack (deprecated)"
+weight=99
 +++
+
+A stack is the grouping together of the build and run base images, represented by a unique ID.
 
 <!--more-->
 
 **Note**: As of Platform API 0.12 and Buildpack API 0.10, stacks are deprecated in favor of existing constructs in the container image ecosystem such as operating system name, operating system distribution, and architecture.
 
 You can still configure the build and run base images for your CNB build.
-To find out how, see [create a build base image](/docs/for-platform-operators/how-to/prepare-build-inputs/build-base/) and [create a run base image](/docs/for-platform-operators/how-to/prepare-build-inputs/run-base/).
+To find out how, see [create a build base image](/docs/for-platform-operators/how-to/build-inputs/create-builder/build-base/) and [create a run base image](/docs/for-platform-operators/how-to/build-inputs/create-builder/run-base/).
 
-A stack is the grouping together of the build and run base images, represented by a unique ID.
 A stack ID identifies the configuration for the build and run base images, and it used to determined compatibility with available buildpacks, and rebasability when updated run images are available.
 If you're on an older Platform API version, you may still need to create a custom stack.
 To find out how, read on...
@@ -26,7 +27,7 @@ Before we get started, make sure you've got the following installed:
 ## Creating a custom stack
 
 We will create a sample stack based on `Ubuntu Jammy Jellyfish`. To create a custom stack, we need to create customized build and run images.
-To find out how, see [create a build base image](/docs/for-platform-operators/how-to/prepare-build-inputs/build-base/) and [create a run base image](/docs/for-platform-operators/how-to/prepare-build-inputs/run-base/), then come back here.
+To find out how, see [create a build base image](/docs/for-platform-operators/how-to/build-inputs/create-builder/build-base/) and [create a run base image](/docs/for-platform-operators/how-to/build-inputs/create-builder/run-base/), then come back here.
 
 ## Choose your stack ID
 

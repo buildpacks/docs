@@ -1,15 +1,16 @@
 +++
-title="Builder"
-weight=1
-summary="A builder is an image that contains all the components necessary to execute a build. A builder image is created by taking a build image and adding a lifecycle, buildpacks, and files that configure aspects of the build including the buildpack detection order and the location(s) of the run image"
+title="What is a builder?"
+weight=2
 aliases=[
     "/docs/using-pack/working-with-builders/"
 ]
 +++
 
-## What is a builder?
+A `builder` is an OCI image containing
+an ordered combination of [buildpacks][buildpack] and
+a build-time base image, a [lifecycle] binary, and a reference to a runtime base image.
 
-{{< param "summary" >}}
+<!--more-->
 
 ![create-builder diagram](/docs/for-platform-operators/concepts/create-builder.svg)
 
@@ -27,6 +28,6 @@ A builder consists of the following components:
 To learn how to create your own builder, see our [Operator's Guide][operator-guide].
 
 [builder-config]: /docs/reference/builder-config/
-[operator-guide]: /docs/for-platform-operators/
 [buildpack]: /docs/for-platform-operators/concepts/buildpack/
 [lifecycle]: /docs/for-platform-operators/concepts/lifecycle/
+[operator-guide]: /docs/for-platform-operators/

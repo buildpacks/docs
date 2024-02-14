@@ -1,13 +1,14 @@
 +++
 title="Declare source metadata"
 weight=3
-summary="Conventions for declaring information about application source code, to be included in the application image."
+summary="Declare information about application source code, to be included as metadata in the application image."
 tags=["spec:platform/0.6", "spec:project-descriptor/0.2"]
 +++
 
 ## Summary
 
-The following are conventions for declaring different type of source inputs. This information is provided to the [lifecycle][lifecycle] using [project-metadata.toml][project-metadata].
+The following are conventions for declaring different type of source inputs.
+This information is provided to the [lifecycle][lifecycle] using [project-metadata.toml][project-metadata].
 
 ## Sources
 
