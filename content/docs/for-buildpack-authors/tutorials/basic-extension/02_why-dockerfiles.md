@@ -6,6 +6,8 @@ aliases = [
   ]
 +++
 
+<!--more-->
+
 <!-- test:suite=dockerfiles;weight=2 -->
 
 Let's see a build that requires base image extension in order to succeed.

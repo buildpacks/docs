@@ -1,7 +1,14 @@
 +++
-title="Set up your local environment"
+title="Setting up your local environment"
 weight=1
 +++
+
+### Check system requirements
+
+Before we get started, make sure you've got the following installed:
+
+{{< download-button href="https://store.docker.com/search?type=edition&offering=community" color="blue" >}} Install Docker {{</>}}
+{{< download-button href="/docs/install-pack" color="pink" >}} Install pack {{</>}}
 
 <!-- test:suite=create-buildpack;weight=1 -->
 

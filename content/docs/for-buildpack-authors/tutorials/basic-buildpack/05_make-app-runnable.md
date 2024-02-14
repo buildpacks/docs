@@ -1,6 +1,6 @@
 +++
-title="Make your application runnable"
-weight=405
+title="Making your application runnable"
+weight=5
 +++
 
 <!-- test:suite=create-buildpack;weight=5 -->

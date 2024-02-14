@@ -1,6 +1,6 @@
 +++
 title="Improving performance with caching"
-weight=407
+weight=6
 +++
 
 <!-- test:suite=create-buildpack;weight=7 -->

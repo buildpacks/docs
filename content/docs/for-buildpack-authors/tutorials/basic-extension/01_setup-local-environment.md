@@ -1,10 +1,12 @@
 +++
-title="Set up your local environment"
+title="Setting up your local environment"
 weight=1
 aliases = [
   "/docs/extension-author-guide/create-extension/setup-local-environment/",
   ]
 +++
+
+<!--more-->
 
 Let's walk through a build that uses extensions, step by step. We will see an image extension that installs `curl` on
 the builder image, and switches the run image to an image that has `curl` installed.

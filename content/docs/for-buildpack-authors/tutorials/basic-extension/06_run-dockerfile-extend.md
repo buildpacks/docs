@@ -3,6 +3,8 @@ title="Extending the runtime base image with a run.Dockerfile"
 weight=6
 +++
 
+<!--more-->
+
 <!-- test:suite=dockerfiles;weight=6 -->
 
 Run images can be kept lean if image extensions are used to dynamically install the needed dependencies

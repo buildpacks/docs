@@ -6,6 +6,8 @@ aliases = [
   ]
 +++
 
+<!--more-->
+
 <!-- test:suite=dockerfiles;weight=3 -->
 
 ### Examine `vim` extension

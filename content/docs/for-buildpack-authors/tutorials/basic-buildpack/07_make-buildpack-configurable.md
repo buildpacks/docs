@@ -1,6 +1,6 @@
 +++
 title="Making your buildpack configurable"
-weight=408
+weight=7
 +++
 
 <!-- test:suite=create-buildpack;weight=8 -->

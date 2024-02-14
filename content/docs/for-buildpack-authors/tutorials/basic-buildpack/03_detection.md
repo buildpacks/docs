@@ -1,6 +1,6 @@
 +++
 title="Detecting your application"
-weight=403
+weight=3
 +++
 
 <!-- test:suite=create-buildpack;weight=3 -->

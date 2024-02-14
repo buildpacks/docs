@@ -1,5 +1,5 @@
 +++
-title="Building blocks of a Cloud Native Buildpack"
+title="The building blocks of a Cloud Native Buildpack"
 weight=2
 +++
 

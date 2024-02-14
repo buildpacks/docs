@@ -1,6 +1,6 @@
 +++
 title="Building your application"
-weight=404
+weight=4
 +++
 
 <!-- test:suite=create-buildpack;weight=4 -->

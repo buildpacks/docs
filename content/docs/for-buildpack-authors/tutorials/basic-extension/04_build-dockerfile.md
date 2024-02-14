@@ -6,6 +6,8 @@ aliases = [
   ]
 +++
 
+<!--more-->
+
 <!-- test:suite=dockerfiles;weight=4 -->
 
 Builder images can be kept lean if image extensions are used to dynamically install the needed dependencies

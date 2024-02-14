@@ -6,6 +6,8 @@ aliases = [
   ]
 +++
 
+<!--more-->
+
 <!-- test:suite=dockerfiles;weight=5 -->
 
 Platforms can have several run images available, each tailored to a specific language family - thus limiting the number
