@@ -1,10 +1,12 @@
 +++
-title="Adding Bill-of-Materials"
+title="Provide a Software Bill-of-Materials"
 weight=409
 +++
 
 Buildpacks can provide a [Software `Bill-of-Materials`](https://en.wikipedia.org/wiki/Software_bill_of_materials) (SBOM)
 to describe the dependencies that they provide.
+
+<!--more-->
 
 There are three supported ways to report SBOM data.
 You'll need to choose to use one or more of [CycloneDX](https://cyclonedx.org/), [SPDX](https://spdx.dev/) or [Syft](https://github.com/anchore/syft).

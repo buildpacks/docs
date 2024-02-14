@@ -3,6 +3,9 @@ title="Guidance for extension authors"
 weight=1
 +++
 
+If you haven't already, check out our [tutorial](/docs/for-buildpack-authors/tutorials/basic-extension) on extensions,
+then come here for the finer points.
+
 <!--more-->
 
 ## During detect

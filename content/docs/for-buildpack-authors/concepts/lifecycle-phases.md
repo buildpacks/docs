@@ -1,11 +1,13 @@
 +++
-title="Lifecycle phases"
-weight=2
+title="What is the lifecycle?"
+weight=1
 +++
 
-There are five phases to a buildpacks build.
+The lifecycle is a binary responsible for orchestrating buildpacks.
 
 <!--more-->
+
+There are five phases to a buildpacks build.
 
 We work through a full example of building a "hello world" NodeJs web application.  
 

@@ -1,12 +1,13 @@
 +++
-title="Buildpack Group"
-weight=3
-summary="A buildpack group is a list of specific buildpacks composed together in an order such that the list is suitable for building an application. Because buildpacks are modular and reusable, a buildpack group is what allows you to connect multiple modular buildpacks together."
+title="What is a buildpack group?"
+weight=2
 +++
 
-## What is a buildpack group?
+A buildpack group is a list of individual buildpacks that are designged to work together to build an application.
 
-{{< param "summary" >}}
+<!--more-->
+
+Buildpack groups allow you to connect multiple modular buildpacks together, making buildpacks modular and re-usable.
 
 For example, you might have a buildpack that installs Java and a buildpack that uses Maven to build your application. These two buildpacks can be combined into a group to implement higher-level functionality, specifically that the first one will install Java and the second will use Java to run Maven, which is a Java build tool.
 

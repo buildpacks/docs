@@ -1,9 +1,11 @@
 +++
-title="Targets"
-weight=4
+title="What are targets?"
+weight=3
 +++
 
-The concept of "targets" is used to identify compatibility between buildpacks and base images.
+The concept of `targets` is used to identify compatibility between buildpacks and base images.
+
+<!--more-->
 
 Target data includes:
 * Operating system name (e.g., "linux")

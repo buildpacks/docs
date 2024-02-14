@@ -5,6 +5,8 @@ weight=406
 
 One of the benefits of buildpacks is that they are multi-process - an image can have multiple entrypoints for each operational mode.
 
+<!--more-->
+
 Let's see how this works. We will specify a process type that allows a debugger to attach to our application.
 
 To enable running the debug process, we'll need to have our buildpack define a "process type" for the worker.

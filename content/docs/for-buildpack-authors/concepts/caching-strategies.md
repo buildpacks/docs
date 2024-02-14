@@ -1,6 +1,6 @@
 +++
-title="Caching strategies"
-weight=1
+title="What caching strategies are available to buildpacks?"
+weight=4
 summary="Learn strategies for caching layers at build-time for future re-use."
 +++
 
