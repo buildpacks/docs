@@ -1,6 +1,6 @@
 +++
-title="Specify multiple process types"
-weight=406
+title="Specify process types"
+weight=1
 +++
 
 One of the benefits of buildpacks is that they are multi-process - an image can have multiple entrypoints for each operational mode.
