@@ -24,7 +24,7 @@ default = true
 
 # our debug process
 [[processes]]
-type = "worker"
+type = "debug"
 command = ["node", "--inspect", "app.js"]
 EOL
 
