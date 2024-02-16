@@ -56,11 +56,6 @@ cat > "${CNB_LAYERS_DIR}/launch.toml" << EOL
 type = "web"
 command = ["node", "app.js"]
 default = true
-
-# our debug process
-[[processes]]
-type = "debug"
-command = ["node", "--inspect", "app.js"]
 EOL
 ```
 
