@@ -2,7 +2,8 @@
 +++
 title="Build on Podman"
 aliases=[
-  "/docs/app-developer-guide/building-on-podman"
+  "/docs/app-developer-guide/building-on-podman",
+  "/docs/using-pack/building-app/"
 ]
 weight=5
 summary="Use Podman as an alternative to Docker to create the containerized build environment."
