@@ -1,5 +1,9 @@
+
 +++
 title="Export to OCI layout format on disk"
+aliases=[
+  "/docs/features/experimental/export-to-oci-layout"
+]
 weight=3
 +++
 

@@ -1,5 +1,9 @@
+
 +++
 title="Run image"
+aliases=[
+  "/docs/concepts/components/base-images/run"
+]
 weight=2
 +++
 

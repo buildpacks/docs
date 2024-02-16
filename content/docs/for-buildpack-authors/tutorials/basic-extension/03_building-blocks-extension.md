@@ -1,9 +1,11 @@
+
 +++
 title="The building blocks of a CNB image extension"
+aliases=[
+  "/docs/extension-author-guide/building-blocks-extension/",
+  "/docs/extension-guide/create-extension/building-blocks-extension"
+]
 weight=3
-aliases = [
-  "/docs/extension-author-guide/building-blocks-extension/"
-  ]
 +++
 
 <!--more-->

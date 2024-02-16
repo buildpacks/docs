@@ -1,9 +1,11 @@
+
 +++
 title="Extending the build-time base image with a build.Dockerfile"
-weight=4
-aliases = [
+aliases=[
   "/docs/extension-author-guide/create-extension/build-dockerfile/",
-  ]
+  "/docs/extension-guide/create-extension/build-dockerfile"
+]
+weight=4
 +++
 
 <!--more-->

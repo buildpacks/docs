@@ -1,5 +1,9 @@
+
 +++
 title="Run the application"
+aliases=[
+  "/docs/app-developer-guide/run-an-app"
+]
 weight=1
 summary="Learn how to specify the launch process for an app."
 +++

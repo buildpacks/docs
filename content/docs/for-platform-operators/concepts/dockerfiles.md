@@ -1,5 +1,9 @@
+
 +++
 title="What are image extensions?"
+aliases=[
+  "/docs/features/dockerfiles"
+]
 weight=99
 +++
 

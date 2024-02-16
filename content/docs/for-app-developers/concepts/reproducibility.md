@@ -1,5 +1,9 @@
+
 +++
 title="What is build reproducibility?"
+aliases=[
+  "/docs/features/reproducibility"
+]
 weight=6
 +++
 

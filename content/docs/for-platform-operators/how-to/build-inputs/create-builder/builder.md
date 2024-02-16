@@ -1,5 +1,9 @@
+
 +++
 title="Putting it all together"
+aliases=[
+  "/docs/operator-guide/create-a-builder"
+]
 weight=3
 +++
 

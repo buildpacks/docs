@@ -1,5 +1,9 @@
+
 +++
 title="Build your very first application with buildpacks"
+aliases=[
+  "/docs/app-developer-guide/build-an-app"
+]
 weight=1
 +++
 

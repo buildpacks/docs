@@ -1,5 +1,9 @@
+
 +++
 title="Improving performance with caching"
+aliases=[
+  "/docs/buildpack-author-guide/create-buildpack/caching"
+]
 weight=6
 +++
 

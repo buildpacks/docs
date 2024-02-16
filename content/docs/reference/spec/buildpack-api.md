@@ -1,6 +1,8 @@
 +++
 title="Buildpack API"
-aliases=["/docs/reference/buildpack-api/"]
+aliases=[
+  "/docs/reference/buildpack-api/"
+]
 +++
 
 This specification defines the interface between a buildpack and the environment that runs it.

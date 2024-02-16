@@ -1,5 +1,9 @@
+
 +++
 title='Project "Piper"'
+aliases=[
+  "/docs/tools/piper"
+]
 weight=5
 +++
 

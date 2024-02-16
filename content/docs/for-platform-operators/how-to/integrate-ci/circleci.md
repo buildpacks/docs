@@ -1,5 +1,9 @@
+
 +++
 title="CircleCI"
+aliases=[
+  "/docs/tools/circleci"
+]
 weight=3
 +++
 

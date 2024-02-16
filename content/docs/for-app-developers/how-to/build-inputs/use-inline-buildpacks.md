@@ -1,5 +1,9 @@
+
 +++
 title="Use an inline buildpack"
+aliases=[
+  "/docs/app-developer-guide/using-inline-buildpacks"
+]
 weight=5
 summary="Customize your build with a bit of shell script."
 +++

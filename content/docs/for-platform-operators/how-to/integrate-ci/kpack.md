@@ -1,5 +1,9 @@
+
 +++
 title="kpack"
+aliases=[
+  "/docs/tools/kpack"
+]
 weight=2
 +++
 

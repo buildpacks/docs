@@ -1,5 +1,9 @@
+
 +++
 title="What are targets?"
+aliases=[
+  "/docs/concepts/components/targets"
+]
 weight=3
 +++
 

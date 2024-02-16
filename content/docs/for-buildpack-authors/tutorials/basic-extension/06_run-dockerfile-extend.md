@@ -1,5 +1,9 @@
+
 +++
 title="Extending the runtime base image with a run.Dockerfile"
+aliases=[
+  "/docs/extension-guide/create-extension/run-dockerfile-extend"
+]
 weight=6
 +++
 

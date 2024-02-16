@@ -1,5 +1,9 @@
+
 +++
 title="Publishing with Github Actions"
+aliases=[
+  "/docs/buildpack-author-guide/publishing-with-github-actions"
+]
 weight=5
 summary="Learn how to automatically publish your buildpack to the Buildpack Registry from a Github Action."
 +++

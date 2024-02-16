@@ -1,5 +1,9 @@
+
 +++
 title="Specify buildpacks or extensions at build time"
+aliases=[
+  "/docs/app-developer-guide/specify-buildpacks"
+]
 weight=1
 summary="No builder author can be truly omniscient, and whoever created yours surely was no exception!"
 +++

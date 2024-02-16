@@ -1,5 +1,9 @@
+
 +++
 title="Setting up your local environment"
+aliases=[
+  "/docs/buildpack-author-guide/create-buildpack/setup-local-environment"
+]
 weight=1
 +++
 

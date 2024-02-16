@@ -1,5 +1,9 @@
+
 +++
 title="Create a build base image"
+aliases=[
+  "/docs/operator-guide/create-build-base"
+]
 weight=1
 +++
 

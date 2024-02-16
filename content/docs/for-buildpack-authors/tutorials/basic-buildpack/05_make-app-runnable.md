@@ -1,5 +1,9 @@
+
 +++
 title="Making your application runnable"
+aliases=[
+  "/docs/buildpack-author-guide/create-buildpack/make-app-runnable"
+]
 weight=5
 +++
 

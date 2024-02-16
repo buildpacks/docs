@@ -1,5 +1,9 @@
+
 +++
 title="What is a buildpack group?"
+aliases=[
+  "/docs/concepts/components/buildpack-group"
+]
 weight=2
 +++
 

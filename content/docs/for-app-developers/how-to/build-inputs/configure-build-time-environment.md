@@ -1,5 +1,9 @@
+
 +++
 title="Customize buildpack behavior with build-time environment variables"
+aliases=[
+  "/docs/app-developer-guide/environment-variables"
+]
 weight=2
 +++
 

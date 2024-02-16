@@ -1,5 +1,9 @@
+
 +++
 title="Building your application"
+aliases=[
+  "/docs/buildpack-author-guide/create-buildpack/build-app"
+]
 weight=4
 +++
 

@@ -1,9 +1,11 @@
+
 +++
 title="Stack"
-weight=99
 aliases=[
-    "/docs/using-pack/stacks/"
+  "/docs/concepts/components/stack",
+  "/docs/using-pack/stacks/"
 ]
+weight=99
 +++
 
 A stack (deprecated) is the grouping together of the build and run base images, represented by a unique ID.

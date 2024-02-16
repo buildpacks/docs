@@ -1,5 +1,9 @@
+
 +++
 title="Export"
+aliases=[
+  "/docs/concepts/components/lifecycle/export"
+]
 weight=5
 +++
 

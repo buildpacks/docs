@@ -1,9 +1,11 @@
+
 +++
 title="Setting up your local environment"
-weight=1
-aliases = [
+aliases=[
   "/docs/extension-author-guide/create-extension/setup-local-environment/",
-  ]
+  "/docs/extension-guide/create-extension/setup-local-environment"
+]
+weight=1
 +++
 
 <!--more-->

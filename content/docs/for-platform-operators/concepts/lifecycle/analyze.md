@@ -1,5 +1,9 @@
+
 +++
 title="Analyze"
+aliases=[
+  "/docs/concepts/components/lifecycle/analyze"
+]
 weight=1
 +++
 

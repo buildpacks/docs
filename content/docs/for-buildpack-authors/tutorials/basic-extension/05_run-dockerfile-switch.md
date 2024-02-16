@@ -1,9 +1,11 @@
+
 +++
 title="Switching the runtime base image with a run.Dockerfile"
+aliases=[
+  "/docs/extension-author-guide/run-dockerfile/",
+  "/docs/extension-guide/create-extension/run-dockerfile-switch"
+]
 weight=5
-aliases = [
-  "/docs/extension-author-guide/run-dockerfile/"
-  ]
 +++
 
 <!--more-->

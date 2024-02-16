@@ -1,5 +1,9 @@
+
 +++
 title="Use an HTTP proxy"
+aliases=[
+  "/docs/app-developer-guide/using-http-proxy"
+]
 weight=4
 summary="Useful for university or corporate environments."
 +++

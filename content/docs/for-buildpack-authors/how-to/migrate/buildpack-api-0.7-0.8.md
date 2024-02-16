@@ -1,5 +1,9 @@
+
 +++
 title="Buildpack API 0.7 -> 0.8"
+aliases=[
+  "/docs/reference/spec/migration/buildpack-api-0.7-0.8"
+]
 weight=4
 +++
 

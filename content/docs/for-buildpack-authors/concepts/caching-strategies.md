@@ -1,5 +1,9 @@
+
 +++
 title="What caching strategies are available to buildpacks?"
+aliases=[
+  "/docs/buildpack-author-guide/caching-strategies"
+]
 weight=4
 summary="Learn strategies for caching layers at build-time for future re-use."
 +++

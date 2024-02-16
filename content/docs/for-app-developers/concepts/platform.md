@@ -1,5 +1,9 @@
+
 +++
 title="What is a platform?"
+aliases=[
+  "/docs/concepts/components/platform"
+]
 weight=4
 +++
 

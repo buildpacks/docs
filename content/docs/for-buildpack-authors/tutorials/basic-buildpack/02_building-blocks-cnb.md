@@ -1,5 +1,9 @@
+
 +++
 title="The building blocks of a Cloud Native Buildpack"
+aliases=[
+  "/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb"
+]
 weight=2
 +++
 

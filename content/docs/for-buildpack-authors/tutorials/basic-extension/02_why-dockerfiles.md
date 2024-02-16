@@ -1,9 +1,11 @@
+
 +++
 title="Why this feature?"
-weight=2
-aliases = [
+aliases=[
   "/docs/extension-author-guide/create-extension/why-dockerfiles/",
-  ]
+  "/docs/extension-guide/create-extension/why-dockerfiles"
+]
+weight=2
 +++
 
 <!--more-->

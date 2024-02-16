@@ -1,5 +1,9 @@
+
 +++
 title="Guidance for extension authors"
+aliases=[
+  "/docs/extension-guide/create-extension/advanced-extensions"
+]
 weight=1
 +++
 

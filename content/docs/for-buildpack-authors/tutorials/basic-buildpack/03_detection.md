@@ -1,5 +1,9 @@
+
 +++
 title="Detecting your application"
+aliases=[
+  "/docs/buildpack-author-guide/create-buildpack/detection"
+]
 weight=3
 +++
 

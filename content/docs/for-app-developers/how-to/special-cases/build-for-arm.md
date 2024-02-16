@@ -1,5 +1,9 @@
+
 +++
 title="Build for ARM architecture"
+aliases=[
+  "/docs/app-developer-guide/build-an-arm-app"
+]
 weight=1
 +++
 

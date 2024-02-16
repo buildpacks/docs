@@ -1,5 +1,9 @@
+
 +++
 title="Declare source metadata"
+aliases=[
+  "/docs/platform-guide/conventions/source-metadata"
+]
 weight=3
 summary="Declare information about application source code, to be included as metadata in the application image."
 tags=["spec:platform/0.6", "spec:project-descriptor/0.2"]

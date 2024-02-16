@@ -1,5 +1,9 @@
+
 +++
 title="Download a Software Bill-of-Materials (SBOM)"
+aliases=[
+  "/docs/features/bill-of-materials"
+]
 summary="An SBOM can give you a layer-by-layer view of what's inside your application image."
 weight=3
 +++

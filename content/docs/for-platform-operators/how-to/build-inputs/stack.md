@@ -1,5 +1,9 @@
+
 +++
 title="Create a stack (deprecated)"
+aliases=[
+  "/docs/operator-guide/create-a-stack"
+]
 weight=99
 +++
 

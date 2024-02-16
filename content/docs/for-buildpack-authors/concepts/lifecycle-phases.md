@@ -1,5 +1,9 @@
+
 +++
 title="What is the lifecycle?"
+aliases=[
+  "/docs/buildpack-author-guide/build-phases-overview"
+]
 weight=1
 +++
 

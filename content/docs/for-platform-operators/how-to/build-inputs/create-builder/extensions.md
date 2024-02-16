@@ -1,5 +1,9 @@
+
 +++
 title="Specify an image extension in a builder"
+aliases=[
+  "/docs/extension-guide/consume-extension/in-builder"
+]
 weight=101
 +++
 

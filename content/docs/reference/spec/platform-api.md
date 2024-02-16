@@ -1,6 +1,8 @@
 +++
 title="Platform API"
-aliases=["/docs/reference/platform-api/"]
+aliases=[
+  "/docs/reference/platform-api/"
+]
 +++
 
 The Platform specification defines the interface between the CNB [lifecycle](/docs/for-platform-operators/concepts/lifecycle/) and a [platform](/docs/for-app-developers/concepts/platform/) that runs it.

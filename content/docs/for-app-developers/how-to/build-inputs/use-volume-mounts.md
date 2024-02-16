@@ -1,5 +1,9 @@
+
 +++
 title="Mount volumes at build-time"
+aliases=[
+  "/docs/app-developer-guide/mounting-volumes"
+]
 weight=3
 summary="Supply and persist data from build containers with arbitrary volume mounts."
 +++

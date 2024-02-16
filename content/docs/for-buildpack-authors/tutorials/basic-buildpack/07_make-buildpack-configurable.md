@@ -1,5 +1,9 @@
+
 +++
 title="Making your buildpack configurable"
+aliases=[
+  "/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable"
+]
 weight=7
 +++
 

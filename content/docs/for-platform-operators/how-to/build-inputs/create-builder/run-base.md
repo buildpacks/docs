@@ -1,5 +1,9 @@
+
 +++
 title="Create a run base image"
+aliases=[
+  "/docs/operator-guide/create-run-base"
+]
 weight=2
 +++
 

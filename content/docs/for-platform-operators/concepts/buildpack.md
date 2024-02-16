@@ -1,5 +1,9 @@
+
 +++
 title="What is a buildpack?"
+aliases=[
+  "/docs/concepts/components/buildpack"
+]
 weight=1
 +++
 

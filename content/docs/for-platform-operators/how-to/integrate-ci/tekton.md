@@ -1,5 +1,9 @@
+
 +++
 title="Tekton"
+aliases=[
+  "/docs/tools/tekton"
+]
 weight=6
 +++
 

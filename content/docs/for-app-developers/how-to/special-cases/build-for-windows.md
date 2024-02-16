@@ -1,5 +1,9 @@
+
 +++
 title="Build for Windows containers"
+aliases=[
+  "/docs/app-developer-guide/build-a-windows-app"
+]
 weight=2
 +++
 

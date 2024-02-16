@@ -1,9 +1,11 @@
+
 +++
 title="What happens during rebase?"
-weight=4
 aliases=[
-    "/docs/using-pack/update-app-rebase/"
+  "/docs/concepts/operations/rebase",
+  "/docs/using-pack/update-app-rebase/"
 ]
+weight=4
 +++
 
 `Rebase` allows app developers or operators to rapidly update an app image when its [runtime base image] has changed.

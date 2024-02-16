@@ -1,5 +1,9 @@
+
 +++
 title="Use project.toml"
+aliases=[
+  "/docs/app-developer-guide/using-project-descriptor"
+]
 weight=4
 summary="Simplify your `pack` configuration."
 +++

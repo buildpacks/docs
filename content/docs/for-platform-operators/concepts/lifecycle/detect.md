@@ -1,5 +1,9 @@
+
 +++
 title="Detect"
+aliases=[
+  "/docs/concepts/components/lifecycle/detect"
+]
 weight=2
 +++
 

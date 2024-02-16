@@ -1,5 +1,9 @@
+
 +++
 title="Platform API 0.5 -> 0.6"
+aliases=[
+  "/docs/reference/spec/migration/platform-api-0.5-0.6"
+]
 weight=3
 +++
 

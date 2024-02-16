@@ -1,7 +1,9 @@
 +++
 title="project.toml"
 summary="Schema of the project descriptor file."
-aliases=["/docs/reference/project-descriptor/"]
+aliases=[
+  "/docs/reference/project-descriptor/"
+]
 +++
 
 A project descriptor allows users to detail configuration for apps, services, functions and buildpacks. It should, by

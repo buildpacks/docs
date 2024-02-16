@@ -1,5 +1,9 @@
+
 +++
 title="Gitlab Auto DevOps"
+aliases=[
+  "/docs/tools/gitlab"
+]
 weight=4
 +++
 

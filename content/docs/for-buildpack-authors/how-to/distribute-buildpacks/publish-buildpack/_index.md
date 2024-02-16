@@ -1,5 +1,9 @@
+
 +++
 title="Publish a buildpack"
+aliases=[
+  "/docs/buildpack-author-guide/publish-a-buildpack"
+]
 weight=5
 +++
 

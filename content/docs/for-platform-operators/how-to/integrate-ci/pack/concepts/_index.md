@@ -1,5 +1,9 @@
+
 +++
 title="Concepts"
+aliases=[
+  "/docs/tools/pack/concepts/_index"
+]
 include_summaries=true
 
 weight=2

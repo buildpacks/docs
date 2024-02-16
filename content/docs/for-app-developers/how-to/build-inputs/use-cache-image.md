@@ -1,5 +1,9 @@
+
 +++
 title="Use a cache image"
+aliases=[
+  "/docs/app-developer-guide/using-cache-image"
+]
 weight=6
 summary="Share layers between builds with a cache image."
 +++

@@ -1,5 +1,9 @@
+
 +++
 title="Trusted Builders"
+aliases=[
+  "/docs/tools/pack/concepts/trusted_builders"
+]
 +++
 
 From version [0.11.0](https://github.com/buildpacks/pack/releases/tag/v0.11.0) onward, `pack` can be used to identify builders that should be considered trusted. `pack build` will operate slightly differently under the hood based on whether it considers the specified builder to be trusted.

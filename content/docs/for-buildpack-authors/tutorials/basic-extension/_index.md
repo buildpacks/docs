@@ -3,7 +3,7 @@ title="Write a basic extension"
 weight=2
 aliases = [
   "/docs/extension-author-guide/create-extension"
-  ]
+]
 +++
 
 This is a step-by-step tutorial for creating and using image extensions, which allow for customization of the build-time and runtime base images using Dockerfiles.
