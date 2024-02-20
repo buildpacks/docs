@@ -1,7 +1,9 @@
 +++
 title="package.toml"
 summary="Schema of the buildpack package config file."
-aliases=["/docs/reference/package-config/"]
+aliases=[
+  "/docs/reference/package-config/",
+]
 +++
 
 A [buildpackage][package] configuration schema is as follows:
@@ -29,6 +31,6 @@ A [buildpackage][package] configuration schema is as follows:
 
 You can view [sample buildpackages](https://github.com/buildpacks/samples/tree/main/packages) on Github.
 
-[package]: /docs/concepts/components/buildpack#distribution
+[package]: /docs/for-platform-operators/concepts/buildpack#distribution
 [supported-archives]: /docs/reference/builder-config#supported-archives
 [order-group]: /docs/reference/spec/buildpack-api/#schema

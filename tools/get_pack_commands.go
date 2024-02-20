@@ -15,7 +15,7 @@ import (
 )
 
 const (
-	cliDir     = "/docs/tools/pack/cli/"
+	cliDir     = "/docs/for-platform-operators/how-to/integrate-ci/pack/cli/"
 	outputPath = "../content" + cliDir
 	indexFile  = `_index.md`
 

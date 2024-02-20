@@ -108,9 +108,9 @@ install-ugo:
 .PHONY: pack-docs-update
 pack-docs-update: upgrade-pack
 	@echo "> Updating Pack CLI Documentation"
-	@echo "> SHA of contents (before update):" `find ./content/docs/tools/pack -type f -print0 | xargs -0 sha1sum | sha1sum | cut -d' ' -f1`
+	@echo "> SHA of contents (before update):" `find ./content/docs/for-platform-operators/how-to/integrate-ci/pack -type f -print0 | xargs -0 sha1sum | sha1sum | cut -d' ' -f1`
 	cd tools; go run -mod=mod get_pack_commands.go
-	@echo "> SHA of contents (after update):" `find ./content/docs/tools/pack -type f -print0 | xargs -0 sha1sum | sha1sum | cut -d' ' -f1`
+	@echo "> SHA of contents (after update):" `find ./content/docs/for-platform-operators/how-to/integrate-ci/pack -type f -print0 | xargs -0 sha1sum | sha1sum | cut -d' ' -f1`
 
 .PHONY: pack-version
 pack-version: export PACK_VERSION:=$(PACK_VERSION)
