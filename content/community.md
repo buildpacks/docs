@@ -35,7 +35,7 @@ If you didn't find anything you'd like to improve while going through the tutori
 [talks]: /docs/#talks
 [tutorials]: /docs/#tutorials
 [spec]: /docs/reference/spec/
-[platforms]: /docs/concepts/components/platform/
+[platforms]: /docs/for-app-developers/concepts/platform/
 [pack]: https://github.com/buildpacks/pack
 [lifecycle]: https://github.com/buildpacks/lifecycle
 [docs]: https://github.com/buildpacks/docs

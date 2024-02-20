@@ -17,7 +17,7 @@ $RECYCLE.BIN/
 *.iml
 
 # Generated files
-content/docs/tools/pack/cli/pack*
+content/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack*
 
 # Hugo
 .hugo_build.lock
