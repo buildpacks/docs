@@ -13,27 +13,23 @@ summary="Get started with Cloud Native Buildpacks."
 ## Tutorials
 
 * [An App’s Brief Journey from Source to Image](/docs/app-journey/) - An easy-to-follow introduction to Cloud Native Buildpacks using `pack`, a command line tool for Cloud Native Buildpacks.
-* [Creating a Cloud Native Buildpack](/docs/buildpack-author-guide/create-buildpack) - Tutorial walking through the creation of a simple Ruby buildpack.
+* [Creating a Cloud Native Buildpack](/docs/for-buildpack-authors/tutorials/basic-buildpack) - Tutorial walking through the creation of a simple Ruby buildpack.
 
-## [Concepts](/docs/concepts)
+## Going deeper
 
-Learn the [concepts](/docs/concepts) of Cloud Native Buildpacks.
+See how-to guides, concepts, and tutorials tailored to specific personas:
 
-## Guides
+*  [App Developers](/docs/for-app-developers/)
+*  [Buildpack Authors](/docs/for-buildpack-authors/)
+*  [Operators](/docs/for-platform-operators/)
 
-Set of guides tailored to specific personas:
+## [Tools](/docs/for-platform-operators/)
 
-*  [App Developers](/docs/app-developer-guide/)
-*  [Buildpack Authors](/docs/buildpack-author-guide/)
-*  [Operators](/docs/operator-guide/)
-
-## [Tools](/docs/tools/)
-
-* **[CircleCI](/docs/tools/circleci)** - {{< summary "/docs/tools/circleci" >}}
-* **[GitLab](/docs/tools/gitlab)** - {{< summary "/docs/tools/gitlab" >}}
-* **[kpack](/docs/tools/kpack)** - {{< summary "/docs/tools/kpack" >}}
-* **[Pack](/docs/tools/pack)** - {{< summary "/docs/tools/pack" >}}
-* **[Tekton](/docs/tools/tekton)** - {{< summary "/docs/tools/tekton" >}}
+* **[CircleCI](/docs/for-platform-operators/how-to/integrate-ci/circleci)** - {{< summary "/docs/for-platform-operators/how-to/integrate-ci/circleci" >}}
+* **[GitLab](/docs/for-platform-operators/how-to/integrate-ci/gitlab)** - {{< summary "/docs/for-platform-operators/how-to/integrate-ci/gitlab" >}}
+* **[kpack](/docs/for-platform-operators/how-to/integrate-ci/kpack)** - {{< summary "/docs/for-platform-operators/how-to/integrate-ci/kpack" >}}
+* **[Pack](/docs/for-platform-operators/how-to/integrate-ci/pack)** - {{< summary "/docs/for-platform-operators/how-to/integrate-ci/pack" >}}
+* **[Tekton](/docs/for-platform-operators/how-to/integrate-ci/tekton)** - {{< summary "/docs/for-platform-operators/how-to/integrate-ci/tekton" >}}
 
 ## [Reference](/docs/reference/)
 

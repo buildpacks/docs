@@ -1,6 +1,8 @@
 +++
 title="Distribution API"
-aliases=["/docs/reference/distribution-api/"]
+aliases=[
+  "/docs/reference/distribution-api/"
+]
 +++
 
 This specification defines the artifact format, delivery mechanism, and order resolution process for buildpacks.
