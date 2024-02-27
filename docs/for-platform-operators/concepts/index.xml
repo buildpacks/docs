@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Concepts on Cloud Native Buildpacks</title>
+    <link>https://buildpacks.io/docs/for-platform-operators/concepts/</link>
+    <description>Recent content in Concepts on Cloud Native Buildpacks</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="https://buildpacks.io/docs/for-platform-operators/concepts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>What is a buildpack?</title>
+      <link>https://buildpacks.io/docs/for-platform-operators/concepts/buildpack/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-platform-operators/concepts/buildpack/</guid>
+      <description>&lt;p&gt;A &lt;code&gt;buildpack&lt;/code&gt; is software that examines your source code and determines the best way to build it.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>What is a builder?</title>
+      <link>https://buildpacks.io/docs/for-platform-operators/concepts/builder/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-platform-operators/concepts/builder/</guid>
+      <description>&lt;p&gt;A &lt;code&gt;builder&lt;/code&gt; is an OCI image containing&#xA;an ordered combination of &lt;a href=&#34;https://buildpacks.io/docs/for-platform-operators/concepts/buildpack/&#34;&gt;buildpacks&lt;/a&gt; and&#xA;a build-time base image, a &lt;a href=&#34;https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/&#34;&gt;lifecycle&lt;/a&gt; binary, and a reference to a runtime base image.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>What are image extensions?</title>
+      <link>https://buildpacks.io/docs/for-platform-operators/concepts/dockerfiles/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-platform-operators/concepts/dockerfiles/</guid>
+      <description>&lt;p&gt;Image extensions generate Dockerfiles that can be used to extend base images for buildpacks builds.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

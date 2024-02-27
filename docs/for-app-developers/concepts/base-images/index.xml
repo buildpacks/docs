@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>What are base images? on Cloud Native Buildpacks</title>
+    <link>https://buildpacks.io/docs/for-app-developers/concepts/base-images/</link>
+    <description>Recent content in What are base images? on Cloud Native Buildpacks</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="https://buildpacks.io/docs/for-app-developers/concepts/base-images/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Build image</title>
+      <link>https://buildpacks.io/docs/for-app-developers/concepts/base-images/build/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-app-developers/concepts/base-images/build/</guid>
+      <description>&lt;p&gt;The &lt;strong&gt;build image&lt;/strong&gt; provides the base image from which the build environment is constructed.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Run image</title>
+      <link>https://buildpacks.io/docs/for-app-developers/concepts/base-images/run/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-app-developers/concepts/base-images/run/</guid>
+      <description>&lt;p&gt;The &lt;strong&gt;run image&lt;/strong&gt; provides the base image for application images.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Stack</title>
+      <link>https://buildpacks.io/docs/for-app-developers/concepts/base-images/stack/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-app-developers/concepts/base-images/stack/</guid>
+      <description>&lt;p&gt;A stack (deprecated) is the grouping together of the build and run base images, represented by a unique ID.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

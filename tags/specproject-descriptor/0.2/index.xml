@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>spec:project-descriptor/0.2 on Cloud Native Buildpacks</title>
+    <title>Spec:project-Descriptor/0.2 on Cloud Native Buildpacks</title>
     <link>https://buildpacks.io/tags/specproject-descriptor/0.2/</link>
-    <description>Recent content in spec:project-descriptor/0.2 on Cloud Native Buildpacks</description>
+    <description>Recent content in Spec:project-Descriptor/0.2 on Cloud Native Buildpacks</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <atom:link href="https://buildpacks.io/tags/specproject-descriptor/0.2/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Source Metadata</title>
-      <link>https://buildpacks.io/docs/platform-guide/conventions/source-metadata/</link>
+      <title>Declare source metadata</title>
+      <link>https://buildpacks.io/docs/for-platform-operators/how-to/build-inputs/declare-source-metadata/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://buildpacks.io/docs/platform-guide/conventions/source-metadata/</guid>
-      <description>Conventions for declaring app source information in the app image.</description>
+      <guid>https://buildpacks.io/docs/for-platform-operators/how-to/build-inputs/declare-source-metadata/</guid>
+      <description>Declare information about application source code, to be included as metadata in the application image.</description>
     </item>
   </channel>
 </rss>

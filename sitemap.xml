@@ -2,191 +2,281 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://buildpacks.io/docs/concepts/components/lifecycle/analyze/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/analyze/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/concepts/operations/build/</loc>
+    <loc>https://buildpacks.io/docs/for-app-developers/how-to/special-cases/build-for-arm/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/app-developer-guide/build-an-app/</loc>
+    <loc>https://buildpacks.io/docs/for-app-developers/concepts/base-images/build/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/concepts/components/base-images/build/</loc>
+    <loc>https://buildpacks.io/docs/for-app-developers/tutorials/basic-app/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/concepts/components/builder/</loc>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/how-to/migrate/deprecated/buildpack-api-0.4-0.5/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/concepts/components/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/concepts/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/platform-guide/conventions/</loc>
+    <loc>https://buildpacks.io/docs/for-app-developers/how-to/build-inputs/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/operator-guide/create-a-builder/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/build-inputs/create-builder/build-base/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/features/experimental/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/build-inputs/create-builder/</loc>
   </url><url>
     <loc>https://buildpacks.io/features/</loc>
   </url><url>
+    <loc>https://buildpacks.io/docs/for-app-developers/</loc>
+  </url><url>
     <loc>https://buildpacks.io/docs/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/platform-guide/conventions/source-metadata/</loc>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-extensions/guidance/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-platform-operators/tutorials/lifecycle/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/migrate/deprecated/platform-api-0.3-0.4/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/migrate/platform-api-0.7-0.8/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-app-developers/how-to/build-outputs/specify-launch-process/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-buildpack/01_setup-local-environment/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-extension/01_setup-local-environment/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-app-developers/how-to/build-inputs/specify-buildpacks/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/specify-launch-processes/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-app-developers/tutorials/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/tutorials/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-platform-operators/tutorials/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-app-developers/concepts/buildpack/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-platform-operators/concepts/buildpack/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/concepts/lifecycle-phases/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-buildpack/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/app-journey/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/app-developer-guide/build-a-windows-app/</loc>
+    <loc>https://buildpacks.io/docs/for-app-developers/how-to/special-cases/build-for-windows/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/app-developer-guide/build-an-arm-app/</loc>
-  </url><url>
-    <loc>https://buildpacks.io/docs/concepts/components/buildpack/</loc>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/how-to/migrate/deprecated/buildpack-api-0.5-0.6/</loc>
   </url><url>
     <loc>https://buildpacks.io/community/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/concepts/</loc>
+    <loc>https://buildpacks.io/docs/for-app-developers/concepts/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/operator-guide/create-build-base/</loc>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/concepts/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/concepts/components/lifecycle/detect/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/concepts/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/concepts/operations/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/build-inputs/create-builder/run-base/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/concepts/operations/rebase/</loc>
+    <loc>https://buildpacks.io/docs/for-app-developers/how-to/build-inputs/configure-build-time-environment/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/concepts/components/base-images/run/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/detect/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/concepts/components/buildpack-group/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/concepts/</loc>
+    <loc>https://buildpacks.io/docs/for-app-developers/how-to/build-outputs/inspect-app/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/operator-guide/create-run-base/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/kpack/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/app-developer-guide/environment-variables/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/migrate/deprecated/platform-api-0.4-0.5/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/features/experimental/export-to-oci-layout/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/migrate/platform-api-0.8-0.9/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/features/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/build-inputs/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/concepts/components/lifecycle/</loc>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/add-sbom/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/concepts/components/platform/</loc>
+    <loc>https://buildpacks.io/docs/for-app-developers/concepts/base-images/run/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/concepts/components/lifecycle/restore/</loc>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-buildpack/02_building-blocks-cnb/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/app-developer-guide/</loc>
+    <loc>https://buildpacks.io/docs/for-app-developers/how-to/build-outputs/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/concepts/components/lifecycle/build/</loc>
+    <loc>https://buildpacks.io/docs/for-app-developers/concepts/builder/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/buildpack-author-guide/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/concepts/builder/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/app-developer-guide/using-cache-image/</loc>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/concepts/buildpack-group/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/extension-guide/consume-extension/</loc>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-extension/02_why-dockerfiles/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/</loc>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-extension/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/operator-guide/create-a-stack/</loc>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-extensions/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/extension-guide/create-extension/</loc>
+    <loc>https://buildpacks.io/docs/for-app-developers/how-to/special-cases/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/extension-guide/</loc>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/how-to/migrate/deprecated/buildpack-api-0.6-0.7/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/app-developer-guide/mounting-volumes/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/circleci/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/app-developer-guide/specify-buildpacks/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/build-inputs/declare-source-metadata/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/concepts/components/stack/</loc>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-buildpack/03_detection/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/concepts/components/targets/</loc>
+    <loc>https://buildpacks.io/docs/for-app-developers/how-to/build-outputs/download-sbom/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/concepts/components/lifecycle/export/</loc>
+    <loc>https://buildpacks.io/docs/for-app-developers/how-to/special-cases/export-to-oci-layout/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/operator-guide/</loc>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/buildpack-author-guide/package-a-buildpack/</loc>
+    <loc>https://buildpacks.io/docs/for-app-developers/how-to/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/buildpack-author-guide/publish-a-buildpack/</loc>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/how-to/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/buildpack-author-guide/publishing-with-github-actions/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/app-developer-guide/run-an-app/</loc>
+    <loc>https://buildpacks.io/docs/for-app-developers/how-to/build-inputs/use-volume-mounts/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/concepts/components/lifecycle/create/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/migrate/deprecated/platform-api-0.5-0.6/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/buildpack-author-guide/caching-strategies/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/migrate/platform-api-0.9-0.10/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/platform-guide/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/build-inputs/create-builder/builder/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/app-developer-guide/using-project-descriptor/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/restore/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/concepts/components/lifecycle/launch/</loc>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-extension/03_building-blocks-extension/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/app-developer-guide/using-inline-buildpacks/</loc>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/concepts/targets/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/concepts/components/lifecycle/rebase/</loc>
+    <loc>https://buildpacks.io/docs/for-app-developers/concepts/build/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/app-developer-guide/using-http-proxy/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/buildpack-author-guide/build-phases-overview/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/build/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/</loc>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-buildpack/04_build-app/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/app-developer-guide/building-on-podman/</loc>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/how-to/migrate/buildpack-api-0.7-0.8/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-extension/04_build-dockerfile/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/gitlab/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/migrate/platform-api-0.10-0.11/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/migrate/deprecated/platform-api-0.6-0.7/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-app-developers/how-to/special-cases/use-http-proxy/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-app-developers/how-to/build-inputs/use-project-toml/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/concepts/caching-strategies/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-app-developers/concepts/rebase/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-app-developers/concepts/platform/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-app-developers/how-to/special-cases/build-on-podman/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/how-to/migrate/buildpack-api-0.8-0.9/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/export/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-buildpack/05_make-app-runnable/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/how-to/distribute-buildpacks/package-buildpack/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/migrate/platform-api-0.11-0.12/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/piper/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/how-to/distribute-buildpacks/publish-buildpack/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/how-to/distribute-buildpacks/publish-buildpack/with-github-actions/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-extension/05_run-dockerfile-switch/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-app-developers/how-to/build-inputs/use-inline-buildpacks/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-app-developers/concepts/base-images/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/how-to/migrate/buildpack-api-0.9-0.10/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/create/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-extension/06_run-dockerfile-extend/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-buildpack/06_caching/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/tekton/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-app-developers/how-to/build-inputs/use-cache-image/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-app-developers/concepts/reproducibility/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/launch/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-buildpack/07_make-buildpack-configurable/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/rebase/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/add-labels/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/clear-env/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/build-inputs/stack/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/create-layer/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/create-slice-layers/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/how-to/migrate/deprecated/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/migrate/deprecated/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/how-to/migrate/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/migrate/</loc>
+  </url><url>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/re-use-layers/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/reference/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/</loc>
+    <loc>https://buildpacks.io/docs/for-app-developers/how-to/build-inputs/specify-default-launch-process/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/setup-local-environment/</loc>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/specify-env/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/extension-guide/create-extension/setup-local-environment/</loc>
+    <loc>https://buildpacks.io/docs/for-app-developers/concepts/base-images/stack/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/building-blocks-cnb/</loc>
+    <loc>https://buildpacks.io/docs/for-app-developers/how-to/build-outputs/understand-failures/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/extension-guide/create-extension/why-dockerfiles/</loc>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/use-exec.d/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/extension-guide/create-extension/building-blocks-extension/</loc>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/use-build-plan/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/detection/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/concepts/dockerfiles/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/build-app/</loc>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/concepts/layer/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/extension-guide/create-extension/build-dockerfile/</loc>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/concepts/package/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/extension-guide/create-extension/run-dockerfile-switch/</loc>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/concepts/component-buildpack/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/make-app-runnable/</loc>
+    <loc>https://buildpacks.io/docs/for-buildpack-authors/concepts/build-plan/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/extension-guide/consume-extension/from-cli/</loc>
-  </url><url>
-    <loc>https://buildpacks.io/docs/extension-guide/consume-extension/in-builder/</loc>
-  </url><url>
-    <loc>https://buildpacks.io/docs/extension-guide/create-extension/run-dockerfile-extend/</loc>
-  </url><url>
-    <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/specify-multiple-process-types/</loc>
-  </url><url>
-    <loc>https://buildpacks.io/docs/extension-guide/create-extension/advanced-extensions/</loc>
-  </url><url>
-    <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/caching/</loc>
-  </url><url>
-    <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/make-buildpack-configurable/</loc>
-  </url><url>
-    <loc>https://buildpacks.io/docs/buildpack-author-guide/create-buildpack/adding-bill-of-materials/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/build-inputs/create-builder/extensions/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/reference/config/builder-config/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/reference/spec/buildpack-api/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.4-0.5/</loc>
-  </url><url>
-    <loc>https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.5-0.6/</loc>
-  </url><url>
-    <loc>https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.6-0.7/</loc>
-  </url><url>
-    <loc>https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.7-0.8/</loc>
-  </url><url>
-    <loc>https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.8-0.9/</loc>
-  </url><url>
-    <loc>https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.9-0.10/</loc>
-  </url><url>
     <loc>https://buildpacks.io/categories/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/circleci/</loc>
-  </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/</loc>
   </url><url>
     <loc>https://buildpacks.io/</loc>
   </url><url>
@@ -194,145 +284,113 @@
   </url><url>
     <loc>https://buildpacks.io/docs/reference/spec/distribution-api/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/features/dockerfiles/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/gitlab/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_build/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/kpack/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_builder/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/reference/spec/migration/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_builder_create/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_builder_inspect/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_build/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_builder_suggest/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_builder/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_buildpack/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_builder_create/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_buildpack_inspect/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_builder_inspect/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_buildpack_new/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_builder_suggest/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_buildpack_package/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_buildpack/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_buildpack_pull/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_buildpack_inspect/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_buildpack_register/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_buildpack_new/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_buildpack_yank/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_buildpack_package/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_completion/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_buildpack_pull/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_buildpack_register/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_default-builder/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_buildpack_yank/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_experimental/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_completion/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_lifecycle-image/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_pull-policy/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_default-builder/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registries/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_experimental/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registries_add/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_lifecycle-image/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registries_default/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_pull-policy/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registries_list/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_registries/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registries_remove/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_registries_add/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registry-mirrors/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_registries_default/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registry-mirrors_add/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_registries_list/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registry-mirrors_list/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_registries_remove/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registry-mirrors_remove/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_registry-mirrors/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_run-image-mirrors/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_registry-mirrors_add/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_run-image-mirrors_add/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_registry-mirrors_list/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_run-image-mirrors_list/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_registry-mirrors_remove/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_run-image-mirrors_remove/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_run-image-mirrors/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_trusted-builders/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_run-image-mirrors_add/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_trusted-builders_add/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_run-image-mirrors_list/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_trusted-builders_list/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_run-image-mirrors_remove/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_trusted-builders_remove/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_trusted-builders/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_extension/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_trusted-builders_add/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_extension_inspect/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_trusted-builders_list/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_extension_new/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_config_trusted-builders_remove/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_extension_package/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_extension/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_extension_pull/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_extension_inspect/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_extension_register/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_extension_new/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_extension_yank/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_extension_package/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_inspect/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_extension_pull/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_rebase/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_extension_register/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_report/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_extension_yank/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_sbom/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_inspect/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_sbom_download/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_rebase/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_stack/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_report/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_stack_suggest/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_sbom/</loc>
-  </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_sbom_download/</loc>
-  </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_stack/</loc>
-  </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_stack_suggest/</loc>
-  </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/cli/pack_version/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_version/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/reference/config/package-config/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/reference/spec/platform-api/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/reference/spec/migration/platform-api-0.10-0.11/</loc>
-  </url><url>
-    <loc>https://buildpacks.io/docs/reference/spec/migration/platform-api-0.11-0.12/</loc>
-  </url><url>
-    <loc>https://buildpacks.io/docs/reference/spec/migration/platform-api-0.3-0.4/</loc>
-  </url><url>
-    <loc>https://buildpacks.io/docs/reference/spec/migration/platform-api-0.4-0.5/</loc>
-  </url><url>
-    <loc>https://buildpacks.io/docs/reference/spec/migration/platform-api-0.5-0.6/</loc>
-  </url><url>
-    <loc>https://buildpacks.io/docs/reference/spec/migration/platform-api-0.6-0.7/</loc>
-  </url><url>
-    <loc>https://buildpacks.io/docs/reference/spec/migration/platform-api-0.7-0.8/</loc>
-  </url><url>
-    <loc>https://buildpacks.io/docs/reference/spec/migration/platform-api-0.8-0.9/</loc>
-  </url><url>
-    <loc>https://buildpacks.io/docs/reference/spec/migration/platform-api-0.9-0.10/</loc>
-  </url><url>
-    <loc>https://buildpacks.io/docs/tools/piper/</loc>
-  </url><url>
     <loc>https://buildpacks.io/docs/reference/config/project-descriptor/</loc>
-  </url><url>
-    <loc>https://buildpacks.io/docs/features/reproducibility/</loc>
-  </url><url>
-    <loc>https://buildpacks.io/docs/features/bill-of-materials/</loc>
   </url><url>
     <loc>https://buildpacks.io/tags/specplatform/0.6/</loc>
   </url><url>
@@ -342,8 +400,6 @@
   </url><url>
     <loc>https://buildpacks.io/tags/</loc>
   </url><url>
-    <loc>https://buildpacks.io/docs/tools/tekton/</loc>
-  </url><url>
-    <loc>https://buildpacks.io/docs/tools/pack/concepts/trusted_builders/</loc>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/concepts/trusted_builders/</loc>
   </url>
 </urlset>

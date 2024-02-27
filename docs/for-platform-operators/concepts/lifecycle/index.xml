@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>What is the lifecycle? on Cloud Native Buildpacks</title>
+    <link>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/</link>
+    <description>Recent content in What is the lifecycle? on Cloud Native Buildpacks</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Analyze</title>
+      <link>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/analyze/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/analyze/</guid>
+      <description>&lt;p&gt;The &lt;code&gt;analyzer&lt;/code&gt; restores files that buildpacks may use to optimize the build and export phases.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Detect</title>
+      <link>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/detect/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/detect/</guid>
+      <description>&lt;p&gt;The &lt;code&gt;detector&lt;/code&gt; finds an ordered group of buildpacks to use during the build phase.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Restore</title>
+      <link>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/restore/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/restore/</guid>
+      <description>&lt;p&gt;The &lt;code&gt;restorer&lt;/code&gt; copies layers from the cache into the build container.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Build</title>
+      <link>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/build/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/build/</guid>
+      <description>&lt;p&gt;The &lt;code&gt;builder&lt;/code&gt; transforms application source code into runnable artifacts that can be packaged into a container.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Export</title>
+      <link>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/export/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/export/</guid>
+      <description>&lt;p&gt;The &lt;code&gt;exporter&lt;/code&gt; creates the final OCI image.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Create</title>
+      <link>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/create/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/create/</guid>
+      <description>&lt;p&gt;The &lt;code&gt;creator&lt;/code&gt; runs analyze, detect, restore, build, and export in a single command.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Launch</title>
+      <link>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/launch/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/launch/</guid>
+      <description>&lt;p&gt;The &lt;code&gt;launcher&lt;/code&gt; is the entrypoint for the final OCI image, responsible for launching application processes.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Rebase</title>
+      <link>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/rebase/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/rebase/</guid>
+      <description>&lt;p&gt;The &lt;code&gt;rebaser&lt;/code&gt; places application layers atop a new version of the runtime base image.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

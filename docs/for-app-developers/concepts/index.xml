@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Concepts on Cloud Native Buildpacks</title>
+    <link>https://buildpacks.io/docs/for-app-developers/concepts/</link>
+    <description>Recent content in Concepts on Cloud Native Buildpacks</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="https://buildpacks.io/docs/for-app-developers/concepts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>What is a buildpack?</title>
+      <link>https://buildpacks.io/docs/for-app-developers/concepts/buildpack/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-app-developers/concepts/buildpack/</guid>
+      <description>&lt;p&gt;A &lt;code&gt;buildpack&lt;/code&gt; is software that examines your source code and determines the best way to build it.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>What is a builder?</title>
+      <link>https://buildpacks.io/docs/for-app-developers/concepts/builder/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-app-developers/concepts/builder/</guid>
+      <description>&lt;p&gt;A &lt;code&gt;builder&lt;/code&gt; is an &lt;a href=&#34;https://github.com/opencontainers/image-spec&#34;&gt;OCI image&lt;/a&gt; containing&#xA;an ordered combination of &lt;a href=&#34;https://buildpacks.io/docs/for-app-developers/concepts/buildpack/&#34;&gt;buildpacks&lt;/a&gt; and&#xA;a &lt;a href=&#34;https://buildpacks.io/docs/for-app-developers/concepts/base-images/build/&#34;&gt;build-time base image&lt;/a&gt;, a &lt;a href=&#34;https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/&#34;&gt;lifecycle&lt;/a&gt; binary, and a reference to a &lt;a href=&#34;https://buildpacks.io/docs/for-app-developers/concepts/base-images/run/&#34;&gt;runtime base image&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>What happens during build?</title>
+      <link>https://buildpacks.io/docs/for-app-developers/concepts/build/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-app-developers/concepts/build/</guid>
+      <description>&lt;p&gt;&lt;code&gt;Build&lt;/code&gt; is the process of executing one or more &lt;a href=&#34;https://buildpacks.io/docs/for-app-developers/concepts/buildpack/&#34;&gt;buildpacks&lt;/a&gt; against an application&amp;rsquo;s source code to produce a runnable OCI image.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>What happens during rebase?</title>
+      <link>https://buildpacks.io/docs/for-app-developers/concepts/rebase/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-app-developers/concepts/rebase/</guid>
+      <description>&lt;p&gt;&lt;code&gt;Rebase&lt;/code&gt; allows app developers or operators to rapidly update an app image when its &lt;a href=&#34;https://buildpacks.io/docs/for-app-developers/concepts/base-images/run/&#34;&gt;runtime base image&lt;/a&gt; has changed.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>What is a platform?</title>
+      <link>https://buildpacks.io/docs/for-app-developers/concepts/platform/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-app-developers/concepts/platform/</guid>
+      <description>&lt;p&gt;A &lt;code&gt;platform&lt;/code&gt; orchestrates &lt;a href=&#34;https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/&#34;&gt;builds&lt;/a&gt; by invoking the &lt;a href=&#34;https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/&#34;&gt;lifecycle&lt;/a&gt; binary together with &lt;a href=&#34;https://buildpacks.io/docs/for-app-developers/concepts/buildpack/&#34;&gt;buildpacks&lt;/a&gt; and&#xA;application source code to produce a runnable OCI image.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>What is build reproducibility?</title>
+      <link>https://buildpacks.io/docs/for-app-developers/concepts/reproducibility/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-app-developers/concepts/reproducibility/</guid>
+      <description>&lt;p&gt;Given the same inputs, two builds should produce the same outputs.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

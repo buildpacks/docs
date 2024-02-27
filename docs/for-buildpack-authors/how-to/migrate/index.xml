@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Migrate on Cloud Native Buildpacks</title>
+    <link>https://buildpacks.io/docs/for-buildpack-authors/how-to/migrate/</link>
+    <description>Recent content in Migrate on Cloud Native Buildpacks</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="https://buildpacks.io/docs/for-buildpack-authors/how-to/migrate/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Buildpack API 0.7 -&gt; 0.8</title>
+      <link>https://buildpacks.io/docs/for-buildpack-authors/how-to/migrate/buildpack-api-0.7-0.8/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-buildpack-authors/how-to/migrate/buildpack-api-0.7-0.8/</guid>
+      <description>This guide is most relevant to buildpack authors.&#xA;See the spec release for Buildpack API 0.8 for the full list of changes and further details.&#xA;Process-Specific Working Directory Buildpacks may specify the working directory for a process by setting the working-dir field on the process in launch.toml.&#xA;Prior to this, all processes ran from the app directory (CNB_APP_DIR). Running a process from a different directory typically involved running a shell to execute a cd command and then start the process, like:</description>
+    </item>
+    <item>
+      <title>Buildpack API 0.8 -&gt; 0.9</title>
+      <link>https://buildpacks.io/docs/for-buildpack-authors/how-to/migrate/buildpack-api-0.8-0.9/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-buildpack-authors/how-to/migrate/buildpack-api-0.8-0.9/</guid>
+      <description>This guide is most relevant to buildpack authors.&#xA;See the spec release for Buildpack API 0.9 for the full list of changes and further details.&#xA;Shell removal Buildpack-defined processes may no longer implicitly rely on a shell (be non-direct).&#xA;In launch.toml, direct is removed as a key in the [[processes]] table, and all processes are inferred to be direct = true.&#xA;Buildpack processes can still use a shell! However, the command must now explicitly begin with /bin/sh (or cmd.</description>
+    </item>
+    <item>
+      <title>Buildpack API 0.9 -&gt; 0.10</title>
+      <link>https://buildpacks.io/docs/for-buildpack-authors/how-to/migrate/buildpack-api-0.9-0.10/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-buildpack-authors/how-to/migrate/buildpack-api-0.9-0.10/</guid>
+      <description>This guide is most relevant to buildpack authors.&#xA;See the spec release for Buildpack API 0.10 for the full list of changes and further details.&#xA;Stacks are deprecated In Buildpack 0.10, the concepts of stacks and mixins are removed in favor of existing constructs in the container image ecosystem such as operating system name, operating system distribution, and architecture.&#xA;Before build builder.toml contains a new table for buildpacks to express the os/arch combinations that they are compatible with:</description>
+    </item>
+  </channel>
+</rss>

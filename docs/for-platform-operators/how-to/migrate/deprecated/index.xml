@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Deprecated (unsupported) APIs on Cloud Native Buildpacks</title>
+    <link>https://buildpacks.io/docs/for-platform-operators/how-to/migrate/deprecated/</link>
+    <description>Recent content in Deprecated (unsupported) APIs on Cloud Native Buildpacks</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="https://buildpacks.io/docs/for-platform-operators/how-to/migrate/deprecated/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Platform API 0.3 -&gt; 0.4</title>
+      <link>https://buildpacks.io/docs/for-platform-operators/how-to/migrate/deprecated/platform-api-0.3-0.4/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-platform-operators/how-to/migrate/deprecated/platform-api-0.3-0.4/</guid>
+      <description>This guide is most relevant to platform operators.&#xA;See the spec release for Platform API 0.4 for the full list of changes and further details.&#xA;Windows support Windows image builds are now supported! See the Windows build guide for more details.&#xA;Multicall launcher When running the exported application image, it is now possible to provide arguments to pre-defined process types. The new flow is described here. As part of these changes, the exporter will not set, and the launcher no longer accepts, the CNB_PROCESS_TYPE variable.</description>
+    </item>
+    <item>
+      <title>Platform API 0.4 -&gt; 0.5</title>
+      <link>https://buildpacks.io/docs/for-platform-operators/how-to/migrate/deprecated/platform-api-0.4-0.5/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-platform-operators/how-to/migrate/deprecated/platform-api-0.4-0.5/</guid>
+      <description>This guide is most relevant to platform operators and stack authors.&#xA;See the spec release for Platform API 0.5 for the full list of changes and further details.&#xA;Platform Operator PATH must be set on stack images config.Env.PATH must be set for stack (build and run) images. Any Linux or Windows stack image missing a config.Env.PATH should cause the platform to fail with an error message.&#xA;Homepage in build metadata The exporter now adds buildpack homepage to the io.</description>
+    </item>
+    <item>
+      <title>Platform API 0.5 -&gt; 0.6</title>
+      <link>https://buildpacks.io/docs/for-platform-operators/how-to/migrate/deprecated/platform-api-0.5-0.6/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-platform-operators/how-to/migrate/deprecated/platform-api-0.5-0.6/</guid>
+      <description>This guide is most relevant to platform operators.&#xA;See the spec release for Platform API 0.6 for the full list of changes and further details.&#xA;Platform Operator Default process type not set if none is specified The exporter will no longer set the default process type if none is specified (even if there is only one process). Buildpacks implementing Buildpack API 0.6 or greater may set the default process type, or it may be specified by passing -process-type to the exporter.</description>
+    </item>
+    <item>
+      <title>Platform API 0.6 -&gt; 0.7</title>
+      <link>https://buildpacks.io/docs/for-platform-operators/how-to/migrate/deprecated/platform-api-0.6-0.7/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-platform-operators/how-to/migrate/deprecated/platform-api-0.6-0.7/</guid>
+      <description>This guide is most relevant to platform operators.&#xA;See the spec release for Platform API 0.7 for the full list of changes and further details.&#xA;Platform Operator Run the analyzer before the detector The order of the lifecycle phases has been changed starting from Platform API 0.7.&#xA;The order before Platform API 0.7 was: detect, analyze, restore, build, and export.&#xA;The order starting from Platform API 0.7 is: analyze, detect, restore, build, and export.</description>
+    </item>
+  </channel>
+</rss>

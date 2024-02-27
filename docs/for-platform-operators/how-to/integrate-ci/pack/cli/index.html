@@ -1,0 +1,1419 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  
+
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="This section describes the Pack Command Line Interface (CLI)."/>
+<link rel="canonical" content="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/">
+<link rel="icon" type="image/png" href="/images/favicon.png">
+
+
+
+
+
+
+<meta property="og:title" content="CLI Docs · Cloud Native Buildpacks">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Cloud Native Buildpacks">
+<meta property="og:description" content="This section describes the Pack Command Line Interface (CLI).">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
+<meta property="og:image:alt" content="Buildpacks project logo">
+<meta property="og:image:type" content="image/jpeg">
+
+
+
+
+
+
+<meta property="twitter:title" content="CLI Docs · Cloud Native Buildpacks">
+<meta property="twitter:card" content="summary">
+<meta property="twitter:image" content="https://buildpacks.io/images/buildpacks-social-card-square.jpg">
+<meta property="twitter:image:alt" content="Buildpacks project logo">
+<meta property="twitter:site" content="@buildpacks_io">
+<meta property="twitter:creator" content="@buildpacks_io">
+
+  <script
+    src="https://cdn.jsdelivr.net/combine/npm/axios@0.21.0,npm/jquery@3.5.1,npm/bootstrap@4.5.3,npm/fullcalendar@5.4.0,npm/jquery-replacetext@1.1.0/replacetext.min.js"></script>
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css"
+    crossorigin="anonymous">
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/combine/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css,npm/fullcalendar@5.4.0/main.min.css"
+    crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Fira+Mono|Source+Sans+Pro:400,400i,600" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://buildpacks.io/scss/site.css" integrity="" media="screen">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CJLSR4FQXL"></script>
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/asciinema-player/2.6.1/asciinema-player.min.css"
+    integrity="sha512-tv24MiwP+0CRCL80VsmJYPl/xDD2tdlDMz9fhNCIAQ6UPrj6Kh/57hOt9A4YnoNDKH5QDxJqGhtt9NPW2sgQeg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer">
+  <style type="text/css">
+    .asciinema-theme-asciinema .fg-15 {
+        color: #6a2929;
+    }
+    .asciinema-theme-asciinema .asciinema-terminal {
+        color: #888888;
+    }
+  </style>
+
+  <script>
+    $(function () {
+      $('h1[id], h2[id], h3[id], h4[id], h5[id]').not(':has(a)').each(function () {
+        this.innerHTML =
+          `<a href="#${this.id}" class="h-anchor">
+            ${this.innerHTML} <i class="fas fa-link icon" aria-label="Anchor"></i>
+          </a>`;
+      });
+
+      if ($('input#search').length > 0) {
+        docsearch({
+          apiKey: '5c00a51f166dab99e1cc6e0a9976e9f9',
+          indexName: 'buildpacks',
+          inputSelector: 'input#search',
+          debug: false
+        });
+      }
+    });
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-CJLSR4FQXL');
+  </script>
+
+  <title>CLI Docs · Cloud Native Buildpacks</title>
+</head>
+
+<body>
+  <header class="container px-0">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <a href="https://buildpacks.io/" class="logo navbar-brand"><img src="/images/buildpacks-logo.svg"
+        alt="Buildpacks Logo"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <ul class="navbar-nav">
+        
+        
+        
+        <li class="nav-item mr-lg-4 text-center text-lg-left ">
+          <a class="nav-link py-2 py-lg-0 px-1"  href="/features">
+            Features
+          </a>
+        </li>
+        
+        
+        <li class="nav-item mr-lg-4 text-center text-lg-left ">
+          <a class="nav-link py-2 py-lg-0 px-1"  href="/community">
+            Community
+          </a>
+        </li>
+        
+        
+        <li class="nav-item mr-lg-4 text-center text-lg-left ">
+          <a class="nav-link py-2 py-lg-0 px-1" target='_blank'  href="https://medium.com/buildpacks">
+            Blog
+          </a>
+        </li>
+        
+        
+        <li class="nav-item mr-lg-4 text-center text-lg-left ">
+          <a class="nav-link py-2 py-lg-0 px-1" target='_blank'  href="https://registry.buildpacks.io/">
+            Registry
+          </a>
+        </li>
+        
+        <li class="nav-item text-center d-lg-none">
+          <a class="nav-link py-2 px-1" href="/docs">Docs</a>
+        </li>
+        <li class="nav-item text-center d-lg-none">
+          <a class="nav-link py-2 px-1" target='_blank' rel="noopener noreferrer" href="https://github.com/buildpacks">GitHub</a>
+        </li>
+      </ul>
+
+      <a class="button-light mr-3 d-none d-lg-block" href="/docs"><i class="far fa-file-alt mr-2"></i>Docs</a>
+      <a class="github-button icon-button bg-blue button d-none d-lg-flex" href="https://github.com/buildpacks">GitHub</a>
+    </div>
+  </nav>
+</header>
+
+  
+
+<div class='docs'>
+  <div class="container">
+    <div class='row'>
+      <div class='col-md-3 docs-sidebar'>
+        <nav class='sidebar'>
+  <form class="pt-1 pb-3 pl-2 pr-3 border-bottom">
+    <input id="search" class="form-control" type="search" placeholder="Search..." aria-label="Search">
+  </form>
+  <ul>
+    <li data-nav-id="/docs/" class="dd-item depth-0">
+      <a href="/docs/">Getting Started</a>
+      <ul class="ml-2">
+        
+<li data-nav-id="/docs/app-journey/" class="dd-item depth-1 collapse">
+  <a href="/docs/app-journey/">An App&rsquo;s Brief Journey from Source to Image</a>
+</li>
+      </ul>
+    </li>
+<li data-nav-id="/docs/for-app-developers/" class="dd-item depth-0 haschildren">
+  <a href="/docs/for-app-developers/">For App Developers</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/for-app-developers/tutorials/" class="dd-item depth-1 haschildren">
+  <a href="/docs/for-app-developers/tutorials/">Tutorials</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/for-app-developers/tutorials/basic-app/" class="dd-item depth-2">
+  <a href="/docs/for-app-developers/tutorials/basic-app/">Build your very first application with buildpacks</a>
+</li>
+  </ul>
+</li>
+<li data-nav-id="/docs/for-app-developers/concepts/" class="dd-item depth-1 haschildren">
+  <a href="/docs/for-app-developers/concepts/">Concepts</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/for-app-developers/concepts/buildpack/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-app-developers/concepts/buildpack/">What is a buildpack?</a>
+</li>
+<li data-nav-id="/docs/for-app-developers/concepts/builder/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-app-developers/concepts/builder/">What is a builder?</a>
+</li>
+<li data-nav-id="/docs/for-app-developers/concepts/build/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-app-developers/concepts/build/">What happens during build?</a>
+</li>
+<li data-nav-id="/docs/for-app-developers/concepts/rebase/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-app-developers/concepts/rebase/">What happens during rebase?</a>
+</li>
+<li data-nav-id="/docs/for-app-developers/concepts/platform/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-app-developers/concepts/platform/">What is a platform?</a>
+</li>
+<li data-nav-id="/docs/for-app-developers/concepts/base-images/" class="dd-item depth-2 collapse haschildren">
+  <a href="/docs/for-app-developers/concepts/base-images/">What are base images?</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/for-app-developers/concepts/base-images/build/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-app-developers/concepts/base-images/build/">Build image</a>
+</li>
+<li data-nav-id="/docs/for-app-developers/concepts/base-images/run/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-app-developers/concepts/base-images/run/">Run image</a>
+</li>
+<li data-nav-id="/docs/for-app-developers/concepts/base-images/stack/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-app-developers/concepts/base-images/stack/">Stack</a>
+</li>
+  </ul>
+</li>
+<li data-nav-id="/docs/for-app-developers/concepts/reproducibility/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-app-developers/concepts/reproducibility/">What is build reproducibility?</a>
+</li>
+  </ul>
+</li>
+<li data-nav-id="/docs/for-app-developers/how-to/" class="dd-item depth-1 haschildren">
+  <a href="/docs/for-app-developers/how-to/">How To</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/for-app-developers/how-to/build-inputs/" class="dd-item depth-2 collapse haschildren">
+  <a href="/docs/for-app-developers/how-to/build-inputs/">Configure build inputs</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/for-app-developers/how-to/build-inputs/specify-buildpacks/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-app-developers/how-to/build-inputs/specify-buildpacks/">Specify buildpacks or extensions at build time</a>
+</li>
+<li data-nav-id="/docs/for-app-developers/how-to/build-inputs/configure-build-time-environment/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-app-developers/how-to/build-inputs/configure-build-time-environment/">Customize buildpack behavior with build-time environment variables</a>
+</li>
+<li data-nav-id="/docs/for-app-developers/how-to/build-inputs/use-volume-mounts/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-app-developers/how-to/build-inputs/use-volume-mounts/">Mount volumes at build-time</a>
+</li>
+<li data-nav-id="/docs/for-app-developers/how-to/build-inputs/use-project-toml/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-app-developers/how-to/build-inputs/use-project-toml/">Use project.toml</a>
+</li>
+<li data-nav-id="/docs/for-app-developers/how-to/build-inputs/use-inline-buildpacks/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-app-developers/how-to/build-inputs/use-inline-buildpacks/">Use an inline buildpack</a>
+</li>
+<li data-nav-id="/docs/for-app-developers/how-to/build-inputs/use-cache-image/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-app-developers/how-to/build-inputs/use-cache-image/">Use a cache image</a>
+</li>
+<li data-nav-id="/docs/for-app-developers/how-to/build-inputs/specify-default-launch-process/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-app-developers/how-to/build-inputs/specify-default-launch-process/">Specify the default launch process</a>
+</li>
+  </ul>
+</li>
+<li data-nav-id="/docs/for-app-developers/how-to/build-outputs/" class="dd-item depth-2 collapse haschildren">
+  <a href="/docs/for-app-developers/how-to/build-outputs/">Understand build outputs</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/for-app-developers/how-to/build-outputs/specify-launch-process/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-app-developers/how-to/build-outputs/specify-launch-process/">Run the application</a>
+</li>
+<li data-nav-id="/docs/for-app-developers/how-to/build-outputs/inspect-app/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-app-developers/how-to/build-outputs/inspect-app/">Inspect your application image</a>
+</li>
+<li data-nav-id="/docs/for-app-developers/how-to/build-outputs/download-sbom/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-app-developers/how-to/build-outputs/download-sbom/">Download a Software Bill-of-Materials (SBOM)</a>
+</li>
+<li data-nav-id="/docs/for-app-developers/how-to/build-outputs/understand-failures/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-app-developers/how-to/build-outputs/understand-failures/">Understand build failures</a>
+</li>
+  </ul>
+</li>
+<li data-nav-id="/docs/for-app-developers/how-to/special-cases/" class="dd-item depth-2 collapse haschildren">
+  <a href="/docs/for-app-developers/how-to/special-cases/">Build in custom environments</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/for-app-developers/how-to/special-cases/build-for-arm/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-app-developers/how-to/special-cases/build-for-arm/">Build for ARM architecture</a>
+</li>
+<li data-nav-id="/docs/for-app-developers/how-to/special-cases/build-for-windows/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-app-developers/how-to/special-cases/build-for-windows/">Build for Windows containers</a>
+</li>
+<li data-nav-id="/docs/for-app-developers/how-to/special-cases/export-to-oci-layout/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-app-developers/how-to/special-cases/export-to-oci-layout/">Export to OCI layout format on disk</a>
+</li>
+<li data-nav-id="/docs/for-app-developers/how-to/special-cases/use-http-proxy/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-app-developers/how-to/special-cases/use-http-proxy/">Use an HTTP proxy</a>
+</li>
+<li data-nav-id="/docs/for-app-developers/how-to/special-cases/build-on-podman/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-app-developers/how-to/special-cases/build-on-podman/">Build on Podman</a>
+</li>
+  </ul>
+</li>
+  </ul>
+</li>
+  </ul>
+</li>
+<li data-nav-id="/docs/for-platform-operators/" class="dd-item depth-0 parent haschildren">
+  <a href="/docs/for-platform-operators/">For Platform Operators</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/for-platform-operators/concepts/" class="dd-item depth-1 haschildren">
+  <a href="/docs/for-platform-operators/concepts/">Concepts</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/for-platform-operators/concepts/buildpack/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-platform-operators/concepts/buildpack/">What is a buildpack?</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/concepts/builder/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-platform-operators/concepts/builder/">What is a builder?</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/concepts/lifecycle/" class="dd-item depth-2 collapse haschildren">
+  <a href="/docs/for-platform-operators/concepts/lifecycle/">What is the lifecycle?</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/for-platform-operators/concepts/lifecycle/analyze/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-platform-operators/concepts/lifecycle/analyze/">Analyze</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/concepts/lifecycle/detect/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-platform-operators/concepts/lifecycle/detect/">Detect</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/concepts/lifecycle/restore/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-platform-operators/concepts/lifecycle/restore/">Restore</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/concepts/lifecycle/build/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-platform-operators/concepts/lifecycle/build/">Build</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/concepts/lifecycle/export/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-platform-operators/concepts/lifecycle/export/">Export</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/concepts/lifecycle/create/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-platform-operators/concepts/lifecycle/create/">Create</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/concepts/lifecycle/launch/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-platform-operators/concepts/lifecycle/launch/">Launch</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/concepts/lifecycle/rebase/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-platform-operators/concepts/lifecycle/rebase/">Rebase</a>
+</li>
+  </ul>
+</li>
+<li data-nav-id="/docs/for-platform-operators/concepts/dockerfiles/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-platform-operators/concepts/dockerfiles/">What are image extensions?</a>
+</li>
+  </ul>
+</li>
+<li data-nav-id="/docs/for-platform-operators/tutorials/" class="dd-item depth-1 haschildren">
+  <a href="/docs/for-platform-operators/tutorials/">Tutorials</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/for-platform-operators/tutorials/lifecycle/" class="dd-item depth-2">
+  <a href="/docs/for-platform-operators/tutorials/lifecycle/">Orchestrate a build with the CNB lifecycle</a>
+</li>
+  </ul>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/" class="dd-item depth-1 parent haschildren">
+  <a href="/docs/for-platform-operators/how-to/">How To</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/" class="dd-item depth-2 parent haschildren">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/">Integrate with your favorite CI tooling</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/" class="dd-item depth-3 parent haschildren">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/">Pack</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/concepts/" class="dd-item depth-4 haschildren">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/concepts/">Concepts</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/concepts/trusted_builders/" class="dd-item depth-5 collapse">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/concepts/trusted_builders/">Trusted Builders</a>
+</li>
+  </ul>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/" class="dd-item depth-4 active haschildren">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/">CLI Docs</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack/">pack</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_build/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_build/">pack build</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_builder/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_builder/">pack builder</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_builder_create/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_builder_create/">pack builder create</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_builder_inspect/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_builder_inspect/">pack builder inspect</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_builder_suggest/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_builder_suggest/">pack builder suggest</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_buildpack/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_buildpack/">pack buildpack</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_buildpack_inspect/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_buildpack_inspect/">pack buildpack inspect</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_buildpack_new/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_buildpack_new/">pack buildpack new</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_buildpack_package/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_buildpack_package/">pack buildpack package</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_buildpack_pull/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_buildpack_pull/">pack buildpack pull</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_buildpack_register/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_buildpack_register/">pack buildpack register</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_buildpack_yank/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_buildpack_yank/">pack buildpack yank</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_completion/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_completion/">pack completion</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config/">pack config</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_default-builder/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_default-builder/">pack config default-builder</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_experimental/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_experimental/">pack config experimental</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_lifecycle-image/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_lifecycle-image/">pack config lifecycle-image</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_pull-policy/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_pull-policy/">pack config pull-policy</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registries/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registries/">pack config registries</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registries_add/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registries_add/">pack config registries add</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registries_default/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registries_default/">pack config registries default</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registries_list/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registries_list/">pack config registries list</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registries_remove/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registries_remove/">pack config registries remove</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registry-mirrors/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registry-mirrors/">pack config registry-mirrors</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registry-mirrors_add/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registry-mirrors_add/">pack config registry-mirrors add</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registry-mirrors_list/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registry-mirrors_list/">pack config registry-mirrors list</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registry-mirrors_remove/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registry-mirrors_remove/">pack config registry-mirrors remove</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_run-image-mirrors/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_run-image-mirrors/">pack config run-image-mirrors</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_run-image-mirrors_add/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_run-image-mirrors_add/">pack config run-image-mirrors add</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_run-image-mirrors_list/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_run-image-mirrors_list/">pack config run-image-mirrors list</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_run-image-mirrors_remove/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_run-image-mirrors_remove/">pack config run-image-mirrors remove</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_trusted-builders/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_trusted-builders/">pack config trusted-builders</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_trusted-builders_add/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_trusted-builders_add/">pack config trusted-builders add</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_trusted-builders_list/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_trusted-builders_list/">pack config trusted-builders list</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_trusted-builders_remove/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_trusted-builders_remove/">pack config trusted-builders remove</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_extension/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_extension/">pack extension</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_extension_inspect/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_extension_inspect/">pack extension inspect</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_extension_new/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_extension_new/">pack extension new</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_extension_package/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_extension_package/">pack extension package</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_extension_pull/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_extension_pull/">pack extension pull</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_extension_register/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_extension_register/">pack extension register</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_extension_yank/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_extension_yank/">pack extension yank</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_inspect/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_inspect/">pack inspect</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_rebase/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_rebase/">pack rebase</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_report/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_report/">pack report</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_sbom/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_sbom/">pack sbom</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_sbom_download/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_sbom_download/">pack sbom download</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_stack/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_stack/">pack stack</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_stack_suggest/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_stack_suggest/">pack stack suggest</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_version/" class="dd-item depth-5">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_version/">pack version</a>
+</li>
+  </ul>
+</li>
+  </ul>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/kpack/" class="dd-item depth-3">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/kpack/">kpack</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/circleci/" class="dd-item depth-3">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/circleci/">CircleCI</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/gitlab/" class="dd-item depth-3">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/gitlab/">Gitlab Auto DevOps</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/piper/" class="dd-item depth-3">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/piper/">Project &ldquo;Piper&rdquo;</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/tekton/" class="dd-item depth-3">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/tekton/">Tekton</a>
+</li>
+  </ul>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/build-inputs/" class="dd-item depth-2 haschildren">
+  <a href="/docs/for-platform-operators/how-to/build-inputs/">Prepare build inputs</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/for-platform-operators/how-to/build-inputs/create-builder/" class="dd-item depth-3 collapse haschildren">
+  <a href="/docs/for-platform-operators/how-to/build-inputs/create-builder/">Create a builder</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/for-platform-operators/how-to/build-inputs/create-builder/build-base/" class="dd-item depth-4 collapse">
+  <a href="/docs/for-platform-operators/how-to/build-inputs/create-builder/build-base/">Create a build base image</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/build-inputs/create-builder/run-base/" class="dd-item depth-4 collapse">
+  <a href="/docs/for-platform-operators/how-to/build-inputs/create-builder/run-base/">Create a run base image</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/build-inputs/create-builder/builder/" class="dd-item depth-4 collapse">
+  <a href="/docs/for-platform-operators/how-to/build-inputs/create-builder/builder/">Putting it all together</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/build-inputs/create-builder/extensions/" class="dd-item depth-4 collapse">
+  <a href="/docs/for-platform-operators/how-to/build-inputs/create-builder/extensions/">Specify an image extension in a builder</a>
+</li>
+  </ul>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/build-inputs/declare-source-metadata/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-platform-operators/how-to/build-inputs/declare-source-metadata/">Declare source metadata</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/build-inputs/stack/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-platform-operators/how-to/build-inputs/stack/">Create a stack (deprecated)</a>
+</li>
+  </ul>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/migrate/" class="dd-item depth-2 haschildren">
+  <a href="/docs/for-platform-operators/how-to/migrate/">Migrate</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/for-platform-operators/how-to/migrate/platform-api-0.7-0.8/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-platform-operators/how-to/migrate/platform-api-0.7-0.8/">Platform API 0.7 -&gt; 0.8</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/migrate/platform-api-0.8-0.9/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-platform-operators/how-to/migrate/platform-api-0.8-0.9/">Platform API 0.8 -&gt; 0.9</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/migrate/platform-api-0.9-0.10/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-platform-operators/how-to/migrate/platform-api-0.9-0.10/">Platform API 0.9 -&gt; 0.10</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/migrate/platform-api-0.10-0.11/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-platform-operators/how-to/migrate/platform-api-0.10-0.11/">Platform API 0.10 -&gt; 0.11</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/migrate/platform-api-0.11-0.12/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-platform-operators/how-to/migrate/platform-api-0.11-0.12/">Platform API 0.11 -&gt; 0.12</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/migrate/deprecated/" class="dd-item depth-3 collapse haschildren">
+  <a href="/docs/for-platform-operators/how-to/migrate/deprecated/">Deprecated (unsupported) APIs</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/for-platform-operators/how-to/migrate/deprecated/platform-api-0.3-0.4/" class="dd-item depth-4 collapse">
+  <a href="/docs/for-platform-operators/how-to/migrate/deprecated/platform-api-0.3-0.4/">Platform API 0.3 -&gt; 0.4</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/migrate/deprecated/platform-api-0.4-0.5/" class="dd-item depth-4 collapse">
+  <a href="/docs/for-platform-operators/how-to/migrate/deprecated/platform-api-0.4-0.5/">Platform API 0.4 -&gt; 0.5</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/migrate/deprecated/platform-api-0.5-0.6/" class="dd-item depth-4 collapse">
+  <a href="/docs/for-platform-operators/how-to/migrate/deprecated/platform-api-0.5-0.6/">Platform API 0.5 -&gt; 0.6</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/migrate/deprecated/platform-api-0.6-0.7/" class="dd-item depth-4 collapse">
+  <a href="/docs/for-platform-operators/how-to/migrate/deprecated/platform-api-0.6-0.7/">Platform API 0.6 -&gt; 0.7</a>
+</li>
+  </ul>
+</li>
+  </ul>
+</li>
+  </ul>
+</li>
+  </ul>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/" class="dd-item depth-0 haschildren">
+  <a href="/docs/for-buildpack-authors/">For Buildpack Authors</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/for-buildpack-authors/tutorials/" class="dd-item depth-1 haschildren">
+  <a href="/docs/for-buildpack-authors/tutorials/">Tutorials</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/for-buildpack-authors/tutorials/basic-buildpack/" class="dd-item depth-2 haschildren">
+  <a href="/docs/for-buildpack-authors/tutorials/basic-buildpack/">Write a basic buildpack</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/for-buildpack-authors/tutorials/basic-buildpack/01_setup-local-environment/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-buildpack-authors/tutorials/basic-buildpack/01_setup-local-environment/">Setting up your local environment</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/tutorials/basic-buildpack/02_building-blocks-cnb/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-buildpack-authors/tutorials/basic-buildpack/02_building-blocks-cnb/">The building blocks of a Cloud Native Buildpack</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/tutorials/basic-buildpack/03_detection/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-buildpack-authors/tutorials/basic-buildpack/03_detection/">Detecting your application</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/tutorials/basic-buildpack/04_build-app/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-buildpack-authors/tutorials/basic-buildpack/04_build-app/">Building your application</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/tutorials/basic-buildpack/05_make-app-runnable/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-buildpack-authors/tutorials/basic-buildpack/05_make-app-runnable/">Making your application runnable</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/tutorials/basic-buildpack/06_caching/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-buildpack-authors/tutorials/basic-buildpack/06_caching/">Improving performance with caching</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/tutorials/basic-buildpack/07_make-buildpack-configurable/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-buildpack-authors/tutorials/basic-buildpack/07_make-buildpack-configurable/">Making your buildpack configurable</a>
+</li>
+  </ul>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/tutorials/basic-extension/" class="dd-item depth-2 haschildren">
+  <a href="/docs/for-buildpack-authors/tutorials/basic-extension/">Write a basic extension</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/for-buildpack-authors/tutorials/basic-extension/01_setup-local-environment/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-buildpack-authors/tutorials/basic-extension/01_setup-local-environment/">Setting up your local environment</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/tutorials/basic-extension/02_why-dockerfiles/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-buildpack-authors/tutorials/basic-extension/02_why-dockerfiles/">Why this feature?</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/tutorials/basic-extension/03_building-blocks-extension/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-buildpack-authors/tutorials/basic-extension/03_building-blocks-extension/">The building blocks of a CNB image extension</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/tutorials/basic-extension/04_build-dockerfile/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-buildpack-authors/tutorials/basic-extension/04_build-dockerfile/">Extending the build-time base image with a build.Dockerfile</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/tutorials/basic-extension/05_run-dockerfile-switch/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-buildpack-authors/tutorials/basic-extension/05_run-dockerfile-switch/">Switching the runtime base image with a run.Dockerfile</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/tutorials/basic-extension/06_run-dockerfile-extend/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-buildpack-authors/tutorials/basic-extension/06_run-dockerfile-extend/">Extending the runtime base image with a run.Dockerfile</a>
+</li>
+  </ul>
+</li>
+  </ul>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/concepts/" class="dd-item depth-1 haschildren">
+  <a href="/docs/for-buildpack-authors/concepts/">Concepts</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/for-buildpack-authors/concepts/lifecycle-phases/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-buildpack-authors/concepts/lifecycle-phases/">What is the lifecycle?</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/concepts/buildpack-group/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-buildpack-authors/concepts/buildpack-group/">What is a buildpack group?</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/concepts/targets/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-buildpack-authors/concepts/targets/">What are targets?</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/concepts/caching-strategies/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-buildpack-authors/concepts/caching-strategies/">What caching strategies are available to buildpacks?</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/concepts/layer/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-buildpack-authors/concepts/layer/">What is a buildpack dependency layer?</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/concepts/package/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-buildpack-authors/concepts/package/">What is a buildpack package?</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/concepts/component-buildpack/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-buildpack-authors/concepts/component-buildpack/">What is a component buildpack?</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/concepts/build-plan/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-buildpack-authors/concepts/build-plan/">What is the build plan?</a>
+</li>
+  </ul>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/how-to/" class="dd-item depth-1 haschildren">
+  <a href="/docs/for-buildpack-authors/how-to/">How To</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/" class="dd-item depth-2 collapse haschildren">
+  <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/">Write buildpacks</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/specify-launch-processes/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/specify-launch-processes/">Specify process types</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/add-sbom/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/add-sbom/">Provide a Software Bill-of-Materials</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/add-labels/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/add-labels/">Add labels to the application image</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/clear-env/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/clear-env/">Clear the buildpack environment</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/create-layer/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/create-layer/">Create dependency layers</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/create-slice-layers/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/create-slice-layers/">Create slice layers</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/re-use-layers/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/re-use-layers/">Re-use dependency layers</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/specify-env/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/specify-env/">Specify the environment</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/use-exec.d/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/use-exec.d/">Use exec.d binaries to configure the application at runtime</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/use-build-plan/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/use-build-plan/">Use the build plan</a>
+</li>
+  </ul>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/how-to/write-extensions/" class="dd-item depth-2 collapse haschildren">
+  <a href="/docs/for-buildpack-authors/how-to/write-extensions/">Write extensions</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/for-buildpack-authors/how-to/write-extensions/guidance/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-buildpack-authors/how-to/write-extensions/guidance/">Guidance for extension authors</a>
+</li>
+  </ul>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/how-to/distribute-buildpacks/package-buildpack/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-buildpack-authors/how-to/distribute-buildpacks/package-buildpack/">Package a buildpack or extension</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/how-to/distribute-buildpacks/publish-buildpack/" class="dd-item depth-2 collapse haschildren">
+  <a href="/docs/for-buildpack-authors/how-to/distribute-buildpacks/publish-buildpack/">Publish a buildpack</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/for-buildpack-authors/how-to/distribute-buildpacks/publish-buildpack/with-github-actions/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-buildpack-authors/how-to/distribute-buildpacks/publish-buildpack/with-github-actions/">Publishing with Github Actions</a>
+</li>
+  </ul>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/how-to/migrate/" class="dd-item depth-2 collapse haschildren">
+  <a href="/docs/for-buildpack-authors/how-to/migrate/">Migrate</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/for-buildpack-authors/how-to/migrate/buildpack-api-0.7-0.8/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-buildpack-authors/how-to/migrate/buildpack-api-0.7-0.8/">Buildpack API 0.7 -&gt; 0.8</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/how-to/migrate/buildpack-api-0.8-0.9/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-buildpack-authors/how-to/migrate/buildpack-api-0.8-0.9/">Buildpack API 0.8 -&gt; 0.9</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/how-to/migrate/buildpack-api-0.9-0.10/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-buildpack-authors/how-to/migrate/buildpack-api-0.9-0.10/">Buildpack API 0.9 -&gt; 0.10</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/how-to/migrate/deprecated/" class="dd-item depth-3 collapse haschildren">
+  <a href="/docs/for-buildpack-authors/how-to/migrate/deprecated/">Deprecated (unsupported) APIs</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/for-buildpack-authors/how-to/migrate/deprecated/buildpack-api-0.4-0.5/" class="dd-item depth-4 collapse">
+  <a href="/docs/for-buildpack-authors/how-to/migrate/deprecated/buildpack-api-0.4-0.5/">Buildpack API 0.4 -&gt; 0.5</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/how-to/migrate/deprecated/buildpack-api-0.5-0.6/" class="dd-item depth-4 collapse">
+  <a href="/docs/for-buildpack-authors/how-to/migrate/deprecated/buildpack-api-0.5-0.6/">Buildpack API 0.5 -&gt; 0.6</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/how-to/migrate/deprecated/buildpack-api-0.6-0.7/" class="dd-item depth-4 collapse">
+  <a href="/docs/for-buildpack-authors/how-to/migrate/deprecated/buildpack-api-0.6-0.7/">Buildpack API 0.6 -&gt; 0.7</a>
+</li>
+  </ul>
+</li>
+  </ul>
+</li>
+  </ul>
+</li>
+  </ul>
+</li>
+<li data-nav-id="/docs/reference/" class="dd-item depth-0 haschildren">
+  <a href="/docs/reference/">Reference</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/reference/config/" class="dd-item depth-1 collapse haschildren">
+  <a href="/docs/reference/config/">Configuration</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/reference/config/builder-config/" class="dd-item depth-2 collapse">
+  <a href="/docs/reference/config/builder-config/">builder.toml</a>
+</li>
+<li data-nav-id="/docs/reference/config/package-config/" class="dd-item depth-2 collapse">
+  <a href="/docs/reference/config/package-config/">package.toml</a>
+</li>
+<li data-nav-id="/docs/reference/config/project-descriptor/" class="dd-item depth-2 collapse">
+  <a href="/docs/reference/config/project-descriptor/">project.toml</a>
+</li>
+  </ul>
+</li>
+<li data-nav-id="/docs/reference/spec/" class="dd-item depth-1 collapse haschildren">
+  <a href="/docs/reference/spec/">Specification</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/reference/spec/buildpack-api/" class="dd-item depth-2">
+  <a href="/docs/reference/spec/buildpack-api/">Buildpack API</a>
+</li>
+<li data-nav-id="/docs/reference/spec/distribution-api/" class="dd-item depth-2">
+  <a href="/docs/reference/spec/distribution-api/">Distribution API</a>
+</li>
+<li data-nav-id="/docs/reference/spec/platform-api/" class="dd-item depth-2">
+  <a href="/docs/reference/spec/platform-api/">Platform API</a>
+</li>
+  </ul>
+</li>
+  </ul>
+</li>
+  </ul>
+  
+</nav>
+
+
+
+      </div>
+      <div class='col-md-9 docs-content'>
+        <div class="support-links text-right">
+  
+    
+    
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BCLI&#43;Docs%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ffor-platform-operators%2Fhow-to%2Fintegrate-ci%2Fpack%2Fcli%2F%29"
+       class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
+
+    
+    
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/for-platform-operators/how-to/integrate-ci/pack/cli/_index.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+       class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
+    
+  
+</div>
+
+
+        <div class="heading">
+          <h1 class="title">CLI Docs</h1>
+        </div>
+
+        <p>This section describes the Pack Command Line Interface (CLI).</p>
+
+
+        
+      
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack/" class="">pack</a></h2>
+          <p class="m-1">pack CLI for building apps using Cloud Native Buildpacks
+Options &ndash;force-color Force color output -h, &ndash;help Help for 'pack' &ndash;no-color Disable color output -q, &ndash;quiet Show less output &ndash;timestamps Enable timestamps in output -v, &ndash;verbose Show more output &ndash;version Show current 'pack' version SEE ALSO pack build	- Generate app image from source code pack builder	- Interact with builders pack buildpack	- Interact with buildpacks pack completion	- Outputs completion script location pack config	- Interact with your local pack config file pack extension	- Interact with extensions pack inspect	- Show information about a built app image pack rebase	- Rebase app image with latest run image pack report	- Display useful information for reporting an issue pack sbom	- Interact with SBoM pack stack	- (deprecated) Interact with stacks pack version	- Show current ‘pack’ version</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_build/" class="">pack build</a></h2>
+          <p class="m-1">pack build Generate app image from source code
+Synopsis Pack Build uses Cloud Native Buildpacks to create a runnable app image from source code.
+Pack Build requires an image name, which will be generated from the source code. Build defaults to the current directory, but you can use &ndash;path to specify another source code directory. Build requires a builder, which can either be provided directly to build using &ndash;builder, or can be set using the set-default-builder command.</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_build/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_builder/" class="">pack builder</a></h2>
+          <p class="m-1">pack builder Interact with builders
+Options -h, &ndash;help Help for 'builder' Options inherited from parent commands &ndash;force-color Force color output &ndash;no-color Disable color output -q, &ndash;quiet Show less output &ndash;timestamps Enable timestamps in output -v, &ndash;verbose Show more output SEE ALSO pack	- CLI for building apps using Cloud Native Buildpacks pack builder create	- Create builder image pack builder inspect	- Show information about a builder pack builder suggest	- List the recommended builders</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_builder/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_builder_create/" class="">pack builder create</a></h2>
+          <p class="m-1">pack builder create Create builder image
+Synopsis A builder is an image that bundles all the bits and information on how to build your apps, such as buildpacks, an implementation of the lifecycle, and a build-time environment that pack uses when executing the lifecycle. When building an app, you can use community builders; you can see our suggestions by running
+pack builders suggest Creating a custom builder allows you to control what buildpacks are used and what image apps are based on.</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_builder_create/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_builder_inspect/" class="">pack builder inspect</a></h2>
+          <p class="m-1">pack builder inspect Show information about a builder
+Synopsis Show information about the builder provided. If no argument is provided, it will inspect the default builder, if one has been set.
+pack builder inspect &lt;builder-image-name&gt; [flags] Examples pack builder inspect cnbs/sample-builder:bionic Options -d, &ndash;depth int Max depth to display for Detection Order. Omission of this flag or values &lt; 0 will display the entire tree. (default -1) -h, &ndash;help Help for 'inspect' -o, &ndash;output string Output format to display builder detail (json, yaml, toml, human-readable).</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_builder_inspect/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_builder_suggest/" class="">pack builder suggest</a></h2>
+          <p class="m-1">pack builder suggest List the recommended builders
+pack builder suggest [flags] Examples pack builder suggest Options -h, &ndash;help Help for 'suggest' Options inherited from parent commands &ndash;force-color Force color output &ndash;no-color Disable color output -q, &ndash;quiet Show less output &ndash;timestamps Enable timestamps in output -v, &ndash;verbose Show more output SEE ALSO pack builder	- Interact with builders</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_builder_suggest/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_buildpack/" class="">pack buildpack</a></h2>
+          <p class="m-1">pack buildpack Interact with buildpacks
+Options -h, &ndash;help Help for 'buildpack' Options inherited from parent commands &ndash;force-color Force color output &ndash;no-color Disable color output -q, &ndash;quiet Show less output &ndash;timestamps Enable timestamps in output -v, &ndash;verbose Show more output SEE ALSO pack	- CLI for building apps using Cloud Native Buildpacks pack buildpack inspect	- Show information about a buildpack pack buildpack new	- Creates basic scaffolding of a buildpack. pack buildpack package	- Package a buildpack in OCI format.</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_buildpack/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_buildpack_inspect/" class="">pack buildpack inspect</a></h2>
+          <p class="m-1">pack buildpack inspect Show information about a buildpack
+pack buildpack inspect &lt;image-name&gt; [flags] Examples pack buildpack inspect cnbs/sample-package:hello-universe Options -d, &ndash;depth int Max depth to display for Detection Order. Omission of this flag or values &lt; 0 will display the entire tree. (default -1) -h, &ndash;help Help for 'inspect' -r, &ndash;registry string buildpack registry that may be searched -v, &ndash;verbose show more output Options inherited from parent commands &ndash;force-color Force color output &ndash;no-color Disable color output -q, &ndash;quiet Show less output &ndash;timestamps Enable timestamps in output SEE ALSO pack buildpack	- Interact with buildpacks</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_buildpack_inspect/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_buildpack_new/" class="">pack buildpack new</a></h2>
+          <p class="m-1">pack buildpack new Creates basic scaffolding of a buildpack.
+Synopsis buildpack new generates the basic scaffolding of a buildpack repository. It creates a new directory name in the current directory (or at path, if passed as a flag), and initializes a buildpack.toml, and two executable bash scripts, bin/detect and bin/build.
+pack buildpack new &lt;id&gt; [flags] Examples pack buildpack new sample/my-buildpack Options -a, &ndash;api string Buildpack API compatibility of the generated buildpack (default &quot;0.</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_buildpack_new/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_buildpack_package/" class="">pack buildpack package</a></h2>
+          <p class="m-1">pack buildpack package Package a buildpack in OCI format.
+Synopsis buildpack package allows users to package (a) buildpack(s) into OCI format, which can then to be hosted in image repositories or persisted on disk as a ‘.cnb’ file. You can also package a number of buildpacks together, to enable easier distribution of a set of buildpacks. Packaged buildpacks can be used as inputs to pack build (using the &ndash;buildpack flag), and they can be included in the configs used in pack builder create and pack buildpack package.</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_buildpack_package/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_buildpack_pull/" class="">pack buildpack pull</a></h2>
+          <p class="m-1">pack buildpack pull Pull a buildpack from a registry and store it locally
+pack buildpack pull &lt;uri&gt; [flags] Examples pack buildpack pull <a href="mailto:example/my-buildpack@1.0.0">example/my-buildpack@1.0.0</a> Options -r, &ndash;buildpack-registry string Buildpack Registry name -h, &ndash;help Help for 'pull' Options inherited from parent commands &ndash;force-color Force color output &ndash;no-color Disable color output -q, &ndash;quiet Show less output &ndash;timestamps Enable timestamps in output -v, &ndash;verbose Show more output SEE ALSO pack buildpack	- Interact with buildpacks</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_buildpack_pull/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_buildpack_register/" class="">pack buildpack register</a></h2>
+          <p class="m-1">pack buildpack register Register a buildpack to a registry
+pack buildpack register &lt;image&gt; [flags] Examples pack buildpack register my-buildpack Options -r, &ndash;buildpack-registry string Buildpack Registry name -h, &ndash;help Help for 'register' Options inherited from parent commands &ndash;force-color Force color output &ndash;no-color Disable color output -q, &ndash;quiet Show less output &ndash;timestamps Enable timestamps in output -v, &ndash;verbose Show more output SEE ALSO pack buildpack	- Interact with buildpacks</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_buildpack_register/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_buildpack_yank/" class="">pack buildpack yank</a></h2>
+          <p class="m-1">pack buildpack yank Mark a buildpack on a Buildpack registry as unusable
+pack buildpack yank &lt;buildpack-id-and-version&gt; [flags] Examples pack yank <a href="mailto:my-buildpack@0.0.1">my-buildpack@0.0.1</a> Options -r, &ndash;buildpack-registry string Buildpack Registry name -h, &ndash;help Help for 'yank' -u, &ndash;undo undo previously yanked buildpack Options inherited from parent commands &ndash;force-color Force color output &ndash;no-color Disable color output -q, &ndash;quiet Show less output &ndash;timestamps Enable timestamps in output -v, &ndash;verbose Show more output SEE ALSO pack buildpack	- Interact with buildpacks</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_buildpack_yank/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_completion/" class="">pack completion</a></h2>
+          <p class="m-1">pack completion Outputs completion script location
+Synopsis Generates completion script and outputs its location.
+To configure your bash shell to load completions for each session, add the following to your ‘.bashrc’ or ‘.bash_profile’:
+. $(pack completion) To configure your fish shell to load completions for each session, add the following to your ‘~/.config/fish/config.fish’:
+source (pack completion &ndash;shell fish) To configure your powershell to load completions for each session, add the following to your ‘$Home[My ]Documents\PowerShell</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_completion/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config/" class="">pack config</a></h2>
+          <p class="m-1">pack config Interact with your local pack config file
+Options -h, &ndash;help Help for 'config' Options inherited from parent commands &ndash;force-color Force color output &ndash;no-color Disable color output -q, &ndash;quiet Show less output &ndash;timestamps Enable timestamps in output -v, &ndash;verbose Show more output SEE ALSO pack	- CLI for building apps using Cloud Native Buildpacks pack config default-builder	- List, set and unset the default builder used by other commands pack config experimental	- List and set the current ’experimental’ value from the config pack config lifecycle-image	- Configure a custom container image for the lifecycle pack config pull-policy	- List, set and unset the global pull policy used by other commands pack config registries	- List, add and remove registries pack config registry-mirrors	- List, add and remove OCI registry mirrors pack config run-image-mirrors	- List, add and remove run image mirrors pack config trusted-builders	- List, add and remove trusted builders</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_default-builder/" class="">pack config default-builder</a></h2>
+          <p class="m-1">pack config default-builder List, set and unset the default builder used by other commands
+Synopsis List, set, and unset the default builder used by other commands.
+To list your default builder, run pack config default-builder. To set your default builder, run pack config default-builder &lt;builder-name&gt;. To unset your default builder, run pack config default-builder &ndash;unset. For suggested builders, run pack builder suggest.
+pack config default-builder [flags] Examples pack config default-builder cnbs/sample-builder:bionic Options -h, &ndash;help Help for 'config default-builder' -u, &ndash;unset Unset the current default builder Options inherited from parent commands &ndash;force-color Force color output &ndash;no-color Disable color output -q, &ndash;quiet Show less output &ndash;timestamps Enable timestamps in output -v, &ndash;verbose Show more output SEE ALSO pack config	- Interact with your local pack config file</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_default-builder/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_experimental/" class="">pack config experimental</a></h2>
+          <p class="m-1">pack config experimental List and set the current ’experimental’ value from the config
+Synopsis Experimental features in pack are gated, and require you adding setting experimental=true to the Pack Config, either manually, or using this command.
+Running pack config experimental prints whether experimental features are currently enabled. Running pack config experimental &lt;true | false&gt; enables or disables experimental features. pack config experimental [&lt;true | false&gt;] [flags] Options -h, &ndash;help Help for 'experimental' Options inherited from parent commands &ndash;force-color Force color output &ndash;no-color Disable color output -q, &ndash;quiet Show less output &ndash;timestamps Enable timestamps in output -v, &ndash;verbose Show more output SEE ALSO pack config	- Interact with your local pack config file</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_experimental/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_lifecycle-image/" class="">pack config lifecycle-image</a></h2>
+          <p class="m-1">pack config lifecycle-image Configure a custom container image for the lifecycle
+Synopsis You can use this command to set a custom image to fetch the lifecycle from.This will be used for untrusted builders. If unset, defaults to: buildpacksio/lifecycleFor more on trusted builders, and when to trust or untrust a builder, check out our docs here: <a href="https://buildpacks.io/docs/tools/pack/concepts/trusted_builders/">https://buildpacks.io/docs/tools/pack/concepts/trusted_builders/</a>
+pack config lifecycle-image &lt;lifecycle-image&gt; [flags] Options -h, &ndash;help Help for 'lifecycle-image' -u, &ndash;unset Unset custom lifecycle image, and use the lifecycle images from [94mbuildpacksio/lifecycle[0m Options inherited from parent commands &ndash;force-color Force color output &ndash;no-color Disable color output -q, &ndash;quiet Show less output &ndash;timestamps Enable timestamps in output -v, &ndash;verbose Show more output SEE ALSO pack config	- Interact with your local pack config file</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_lifecycle-image/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_pull-policy/" class="">pack config pull-policy</a></h2>
+          <p class="m-1">pack config pull-policy List, set and unset the global pull policy used by other commands
+Synopsis You can use this command to list, set, and unset the default pull policy that will be used when working with containers:
+To list your pull policy, run pack config pull-policy. To set your pull policy, run pack config pull-policy &lt;always | if-not-present | never&gt;. To unset your pull policy, run pack config pull-policy &ndash;unset.</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_pull-policy/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registries/" class="">pack config registries</a></h2>
+          <p class="m-1">pack config registries List, add and remove registries
+Synopsis A Buildpack Registry is a (still experimental) place to publish, store, and discover buildpacks. You can use the attached commands to list, add, and remove registries from your config
+pack config registries [flags] Options -h, &ndash;help Help for 'registries' Options inherited from parent commands &ndash;force-color Force color output &ndash;no-color Disable color output -q, &ndash;quiet Show less output &ndash;timestamps Enable timestamps in output -v, &ndash;verbose Show more output SEE ALSO pack config	- Interact with your local pack config file pack config registries add	- Add a registries pack config registries default	- Set default registry pack config registries list	- List registries pack config registries remove	- Remove a registries</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registries/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registries_add/" class="">pack config registries add</a></h2>
+          <p class="m-1">pack config registries add Add a registries
+Synopsis A Buildpack Registry is a (still experimental) place to publish, store, and discover buildpacks. Users can add registries from the config by using registries remove, and publish/yank buildpacks from it, as well as use those buildpacks when building applications.
+pack config registries add [flags] Examples pack config registries add my-registry <a href="https://github.com/buildpacks/my-registry">https://github.com/buildpacks/my-registry</a> Options &ndash;default Set this buildpack registry as the default -h, &ndash;help help for add &ndash;type string Type of buildpack registry [git|github] (default &quot;github&quot;) Options inherited from parent commands &ndash;force-color Force color output &ndash;no-color Disable color output -q, &ndash;quiet Show less output &ndash;timestamps Enable timestamps in output -v, &ndash;verbose Show more output SEE ALSO pack config registries	- List, add and remove registries</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registries_add/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registries_default/" class="">pack config registries default</a></h2>
+          <p class="m-1">pack config registries default Set default registry
+Synopsis A Buildpack Registry is a (still experimental) place to publish, store, and discover buildpacks.
+You can use this command to list, set, and unset a default registry, which will be used when looking for buildpacks:* To list your default registry, run pack config registries default.
+To set your default registry, run pack config registries default &lt;registry-name&gt;. To unset your default registry, run pack config registries default &ndash;unset.</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registries_default/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registries_list/" class="">pack config registries list</a></h2>
+          <p class="m-1">pack config registries list List registries
+Synopsis A Buildpack Registry is a (still experimental) place to publish, store, and discover buildpacks. List Registries saved in the pack config.
+Show the registries that are either added by default or have been explicitly added by using pack config registries add
+pack config registries list [flags] Examples pack config registries list Options -h, &ndash;help help for list Options inherited from parent commands &ndash;force-color Force color output &ndash;no-color Disable color output -q, &ndash;quiet Show less output &ndash;timestamps Enable timestamps in output -v, &ndash;verbose Show more output SEE ALSO pack config registries	- List, add and remove registries</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registries_list/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registries_remove/" class="">pack config registries remove</a></h2>
+          <p class="m-1">pack config registries remove Remove a registries
+Synopsis A Buildpack Registry is a (still experimental) place to publish, store, and discover buildpacks. Users can remove registries from the config by using pack config registries remove &lt;registry&gt;
+pack config registries remove [flags] Examples pack config registries remove myregistry Options -h, &ndash;help help for remove Options inherited from parent commands &ndash;force-color Force color output &ndash;no-color Disable color output -q, &ndash;quiet Show less output &ndash;timestamps Enable timestamps in output -v, &ndash;verbose Show more output SEE ALSO pack config registries	- List, add and remove registries</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registries_remove/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registry-mirrors/" class="">pack config registry-mirrors</a></h2>
+          <p class="m-1">pack config registry-mirrors List, add and remove OCI registry mirrors
+pack config registry-mirrors [flags] Options -h, &ndash;help Help for 'run-image-mirrors' Options inherited from parent commands &ndash;force-color Force color output &ndash;no-color Disable color output -q, &ndash;quiet Show less output &ndash;timestamps Enable timestamps in output -v, &ndash;verbose Show more output SEE ALSO pack config	- Interact with your local pack config file pack config registry-mirrors add	- Add a mirror for a registry pack config registry-mirrors list	- List registry-mirrors pack config registry-mirrors remove	- Remove a mirror for a registry</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registry-mirrors/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registry-mirrors_add/" class="">pack config registry-mirrors add</a></h2>
+          <p class="m-1">pack config registry-mirrors add Add a mirror for a registry
+Synopsis Set mirror for a given registry.
+pack config registry-mirrors add &lt;registry&gt; [-m &lt;mirror&hellip;] [flags] Examples pack config registry-mirrors add index.docker.io &ndash;mirror 10.0.0.1 pack config registry-mirrors add '*' &ndash;mirror 10.0.0.1 Options -h, &ndash;help help for add -m, &ndash;mirror string Registry mirror Options inherited from parent commands &ndash;force-color Force color output &ndash;no-color Disable color output -q, &ndash;quiet Show less output &ndash;timestamps Enable timestamps in output -v, &ndash;verbose Show more output SEE ALSO pack config registry-mirrors	- List, add and remove OCI registry mirrors</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registry-mirrors_add/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registry-mirrors_list/" class="">pack config registry-mirrors list</a></h2>
+          <p class="m-1">pack config registry-mirrors list List registry-mirrors
+Synopsis List all registry mirrors.
+pack config registry-mirrors list [flags] Examples pack config registry-mirrors list Options -h, &ndash;help help for list Options inherited from parent commands &ndash;force-color Force color output &ndash;no-color Disable color output -q, &ndash;quiet Show less output &ndash;timestamps Enable timestamps in output -v, &ndash;verbose Show more output SEE ALSO pack config registry-mirrors	- List, add and remove OCI registry mirrors</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registry-mirrors_list/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registry-mirrors_remove/" class="">pack config registry-mirrors remove</a></h2>
+          <p class="m-1">pack config registry-mirrors remove Remove a mirror for a registry
+Synopsis Remove mirror for a given registry.
+pack config registry-mirrors remove &lt;registry&gt; [flags] Examples pack config registry-mirrors remove index.docker.io Options -h, &ndash;help help for remove Options inherited from parent commands &ndash;force-color Force color output &ndash;no-color Disable color output -q, &ndash;quiet Show less output &ndash;timestamps Enable timestamps in output -v, &ndash;verbose Show more output SEE ALSO pack config registry-mirrors	- List, add and remove OCI registry mirrors</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_registry-mirrors_remove/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_run-image-mirrors/" class="">pack config run-image-mirrors</a></h2>
+          <p class="m-1">pack config run-image-mirrors List, add and remove run image mirrors
+pack config run-image-mirrors [flags] Options -h, &ndash;help Help for 'run-image-mirrors' Options inherited from parent commands &ndash;force-color Force color output &ndash;no-color Disable color output -q, &ndash;quiet Show less output &ndash;timestamps Enable timestamps in output -v, &ndash;verbose Show more output SEE ALSO pack config	- Interact with your local pack config file pack config run-image-mirrors add	- Add a mirror for a run image pack config run-image-mirrors list	- List run-image-mirrors pack config run-image-mirrors remove	- Remove a mirror for a run image</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_run-image-mirrors/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_run-image-mirrors_add/" class="">pack config run-image-mirrors add</a></h2>
+          <p class="m-1">pack config run-image-mirrors add Add a mirror for a run image
+Synopsis Set mirrors to other repositories for a given run image
+pack config run-image-mirrors add &lt;image&gt; [-m &lt;mirror&hellip;] [flags] Examples pack config run-image-mirrors add cnbs/sample-stack-run:bionic &ndash;mirror index.docker.io/cnbs/sample-stack-run:bionic &ndash;mirror gcr.io/cnbs/sample-stack-run:bionic Options -h, &ndash;help help for add -m, &ndash;mirror strings Run image mirror Repeat for each mirror in order, or supply once by comma-separated list Options inherited from parent commands &ndash;force-color Force color output &ndash;no-color Disable color output -q, &ndash;quiet Show less output &ndash;timestamps Enable timestamps in output -v, &ndash;verbose Show more output SEE ALSO pack config run-image-mirrors	- List, add and remove run image mirrors</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_run-image-mirrors_add/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_run-image-mirrors_list/" class="">pack config run-image-mirrors list</a></h2>
+          <p class="m-1">pack config run-image-mirrors list List run-image-mirrors
+Synopsis List all run image mirrors. If a run image is provided, it will return
+pack config run-image-mirrors list [&lt;run-image&gt;] [flags] Examples pack config run-image-mirrors list Options -h, &ndash;help help for list Options inherited from parent commands &ndash;force-color Force color output &ndash;no-color Disable color output -q, &ndash;quiet Show less output &ndash;timestamps Enable timestamps in output -v, &ndash;verbose Show more output SEE ALSO pack config run-image-mirrors	- List, add and remove run image mirrors</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_run-image-mirrors_list/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_run-image-mirrors_remove/" class="">pack config run-image-mirrors remove</a></h2>
+          <p class="m-1">pack config run-image-mirrors remove Remove a mirror for a run image
+Synopsis Remove mirrors for a given run image. If specific mirrors are passed, they will be removed. If no mirrors are provided, all mirrors for the given run image will be removed from the config.
+pack config run-image-mirrors remove &lt;image&gt; [-m &lt;mirror&hellip;] [flags] Examples pack config run-image-mirrors remove cnbs/sample-stack-run:bionic Options -h, &ndash;help help for remove -m, &ndash;mirror strings Run image mirror Repeat for each mirror in order, or supply once by comma-separated list Options inherited from parent commands &ndash;force-color Force color output &ndash;no-color Disable color output -q, &ndash;quiet Show less output &ndash;timestamps Enable timestamps in output -v, &ndash;verbose Show more output SEE ALSO pack config run-image-mirrors	- List, add and remove run image mirrors</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_run-image-mirrors_remove/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_trusted-builders/" class="">pack config trusted-builders</a></h2>
+          <p class="m-1">pack config trusted-builders List, add and remove trusted builders
+Synopsis When pack considers a builder to be trusted, pack build operations will use a single lifecycle binary called the creator. This is more efficient than using an untrusted builder, where pack will execute five separate lifecycle binaries, each in its own container: analyze, detect, restore, build and export.
+For more on trusted builders, and when to trust or untrust a builder, check out our docs here: https://buildpacks.</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_trusted-builders/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_trusted-builders_add/" class="">pack config trusted-builders add</a></h2>
+          <p class="m-1">pack config trusted-builders add Add a trusted-builders
+Synopsis Trust builder.
+When building with this builder, all lifecycle phases will be run in a single container using the builder image.
+pack config trusted-builders add [flags] Examples pack config trusted-builders add cnbs/sample-stack-run:bionic Options -h, &ndash;help help for add Options inherited from parent commands &ndash;force-color Force color output &ndash;no-color Disable color output -q, &ndash;quiet Show less output &ndash;timestamps Enable timestamps in output -v, &ndash;verbose Show more output SEE ALSO pack config trusted-builders	- List, add and remove trusted builders</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_trusted-builders_add/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_trusted-builders_list/" class="">pack config trusted-builders list</a></h2>
+          <p class="m-1">pack config trusted-builders list List trusted-builders
+Synopsis List Trusted Builders.
+Show the builders that are either trusted by default or have been explicitly trusted locally using trusted-builder add
+pack config trusted-builders list [flags] Examples pack config trusted-builders list Options -h, &ndash;help help for list Options inherited from parent commands &ndash;force-color Force color output &ndash;no-color Disable color output -q, &ndash;quiet Show less output &ndash;timestamps Enable timestamps in output -v, &ndash;verbose Show more output SEE ALSO pack config trusted-builders	- List, add and remove trusted builders</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_trusted-builders_list/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_trusted-builders_remove/" class="">pack config trusted-builders remove</a></h2>
+          <p class="m-1">pack config trusted-builders remove Remove a trusted-builders
+Synopsis Stop trusting builder.
+When building with this builder, all lifecycle phases will be no longer be run in a single container using the builder image.
+pack config trusted-builders remove [flags] Examples pack config trusted-builders remove cnbs/sample-stack-run:bionic Options -h, &ndash;help help for remove Options inherited from parent commands &ndash;force-color Force color output &ndash;no-color Disable color output -q, &ndash;quiet Show less output &ndash;timestamps Enable timestamps in output -v, &ndash;verbose Show more output SEE ALSO pack config trusted-builders	- List, add and remove trusted builders</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_trusted-builders_remove/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_extension/" class="">pack extension</a></h2>
+          <p class="m-1">pack extension Interact with extensions
+Options -h, &ndash;help Help for 'extension' Options inherited from parent commands &ndash;force-color Force color output &ndash;no-color Disable color output -q, &ndash;quiet Show less output &ndash;timestamps Enable timestamps in output -v, &ndash;verbose Show more output SEE ALSO pack	- CLI for building apps using Cloud Native Buildpacks pack extension inspect	- Show information about an extension pack extension new	- Creates basic scaffolding of an extension pack extension package	- Package an extension in OCI format pack extension pull	- Pull an extension from a registry and store it locally pack extension register	- Register an extension to a registry pack extension yank	- Yank an extension from a registry</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_extension/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_extension_inspect/" class="">pack extension inspect</a></h2>
+          <p class="m-1">pack extension inspect Show information about an extension
+pack extension inspect &lt;extension-name&gt; [flags] Examples pack extension inspect &lt;example-extension&gt; Options -h, &ndash;help Help for 'inspect' Options inherited from parent commands &ndash;force-color Force color output &ndash;no-color Disable color output -q, &ndash;quiet Show less output &ndash;timestamps Enable timestamps in output -v, &ndash;verbose Show more output SEE ALSO pack extension	- Interact with extensions</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_extension_inspect/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_extension_new/" class="">pack extension new</a></h2>
+          <p class="m-1">pack extension new Creates basic scaffolding of an extension
+pack extension new &lt;id&gt; [flags] Examples pack extension new &lt;example-extension&gt; Options -h, &ndash;help Help for 'new' Options inherited from parent commands &ndash;force-color Force color output &ndash;no-color Disable color output -q, &ndash;quiet Show less output &ndash;timestamps Enable timestamps in output -v, &ndash;verbose Show more output SEE ALSO pack extension	- Interact with extensions</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_extension_new/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_extension_package/" class="">pack extension package</a></h2>
+          <p class="m-1">pack extension package Package an extension in OCI format
+pack extension package &lt;name&gt; &ndash;config &lt;config-path&gt; [flags] Options -c, &ndash;config string Path to package TOML config -f, &ndash;format string Format to save package as (&quot;image&quot; or &quot;file&quot;) -h, &ndash;help Help for 'package' &ndash;publish Publish the extension directly to the container registry specified in &lt;name&gt;, instead of the daemon (applies to &quot;&ndash;format=image&quot; only). &ndash;pull-policy string Pull policy to use. Accepted values are always, never, and if-not-present.</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_extension_package/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_extension_pull/" class="">pack extension pull</a></h2>
+          <p class="m-1">pack extension pull Pull an extension from a registry and store it locally
+pack extension pull &lt;uri&gt; [flags] Examples pack extension pull &lt;extension-example&gt; Options -h, &ndash;help Help for 'pull' Options inherited from parent commands &ndash;force-color Force color output &ndash;no-color Disable color output -q, &ndash;quiet Show less output &ndash;timestamps Enable timestamps in output -v, &ndash;verbose Show more output SEE ALSO pack extension	- Interact with extensions</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_extension_pull/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_extension_register/" class="">pack extension register</a></h2>
+          <p class="m-1">pack extension register Register an extension to a registry
+pack extension register &lt;image&gt; [flags] Examples pack extension register &lt;extension-example&gt; Options -h, &ndash;help Help for 'register' Options inherited from parent commands &ndash;force-color Force color output &ndash;no-color Disable color output -q, &ndash;quiet Show less output &ndash;timestamps Enable timestamps in output -v, &ndash;verbose Show more output SEE ALSO pack extension	- Interact with extensions</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_extension_register/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_extension_yank/" class="">pack extension yank</a></h2>
+          <p class="m-1">pack extension yank Yank an extension from a registry
+pack extension yank &lt;extension-id-and-version&gt; [flags] Examples pack yank &lt;extension-example&gt; Options -h, &ndash;help Help for 'yank' Options inherited from parent commands &ndash;force-color Force color output &ndash;no-color Disable color output -q, &ndash;quiet Show less output &ndash;timestamps Enable timestamps in output -v, &ndash;verbose Show more output SEE ALSO pack extension	- Interact with extensions</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_extension_yank/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_inspect/" class="">pack inspect</a></h2>
+          <p class="m-1">pack inspect Show information about a built app image
+pack inspect &lt;image-name&gt; [flags] Examples pack inspect buildpacksio/pack Options &ndash;bom print bill of materials -h, &ndash;help Help for 'inspect' -o, &ndash;output string Output format to display builder detail (json, yaml, toml, human-readable). Omission of this flag will display as human-readable. (default &quot;human-readable&quot;) Options inherited from parent commands &ndash;force-color Force color output &ndash;no-color Disable color output -q, &ndash;quiet Show less output &ndash;timestamps Enable timestamps in output -v, &ndash;verbose Show more output SEE ALSO pack	- CLI for building apps using Cloud Native Buildpacks</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_inspect/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_rebase/" class="">pack rebase</a></h2>
+          <p class="m-1">pack rebase Rebase app image with latest run image
+Synopsis Rebase allows you to quickly swap out the underlying OS layers (run image) of an app image generated by pack build with a newer version of the run image, without re-building the application.
+pack rebase &lt;image-name&gt; [flags] Examples pack rebase buildpacksio/pack Options &ndash;force Perform rebase operation without target validation (only available for API &gt;= 0.12) -h, &ndash;help Help for 'rebase' &ndash;publish Publish the rebased application image directly to the container registry specified in &lt;image-name&gt;, instead of the daemon.</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_rebase/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_report/" class="">pack report</a></h2>
+          <p class="m-1">pack report Display useful information for reporting an issue
+pack report [flags] Examples pack report Options -e, &ndash;explicit Print config without redacting information -h, &ndash;help Help for 'report' Options inherited from parent commands &ndash;force-color Force color output &ndash;no-color Disable color output -q, &ndash;quiet Show less output &ndash;timestamps Enable timestamps in output -v, &ndash;verbose Show more output SEE ALSO pack	- CLI for building apps using Cloud Native Buildpacks</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_report/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_sbom/" class="">pack sbom</a></h2>
+          <p class="m-1">pack sbom Interact with SBoM
+Options -h, &ndash;help Help for 'sbom' Options inherited from parent commands &ndash;force-color Force color output &ndash;no-color Disable color output -q, &ndash;quiet Show less output &ndash;timestamps Enable timestamps in output -v, &ndash;verbose Show more output SEE ALSO pack	- CLI for building apps using Cloud Native Buildpacks pack sbom download	- Download SBoM from specified image</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_sbom/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_sbom_download/" class="">pack sbom download</a></h2>
+          <p class="m-1">pack sbom download Download SBoM from specified image
+Synopsis Download layer containing structured Software Bill of Materials (SBoM) from specified image
+pack sbom download &lt;image-name&gt; [flags] Examples pack sbom download buildpacksio/pack Options -h, &ndash;help Help for 'download' -o, &ndash;output-dir string Path to export SBoM contents. It defaults export to the current working directory. (default &quot;.&quot;) &ndash;remote Download SBoM of image in remote registry (without pulling image) Options inherited from parent commands &ndash;force-color Force color output &ndash;no-color Disable color output -q, &ndash;quiet Show less output &ndash;timestamps Enable timestamps in output -v, &ndash;verbose Show more output SEE ALSO pack sbom	- Interact with SBoM</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_sbom_download/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_stack/" class="">pack stack</a></h2>
+          <p class="m-1">pack stack (deprecated) Interact with stacks
+Synopsis (Deprecated) Stacks are deprecated in favor of using BuildImages and RunImages directly, but will continue to be supported throughout all of 2023 and ‘24 if not longer. Please see our docs for more details- <a href="https://buildpacks.io/docs/concepts/components/stack">https://buildpacks.io/docs/concepts/components/stack</a>
+Options -h, &ndash;help help for stack Options inherited from parent commands &ndash;force-color Force color output &ndash;no-color Disable color output -q, &ndash;quiet Show less output &ndash;timestamps Enable timestamps in output -v, &ndash;verbose Show more output SEE ALSO pack	- CLI for building apps using Cloud Native Buildpacks pack stack suggest	- (deprecated) List the recommended stacks</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_stack/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_stack_suggest/" class="">pack stack suggest</a></h2>
+          <p class="m-1">pack stack suggest (deprecated) List the recommended stacks
+pack stack suggest [flags] Examples pack stack suggest Options -h, &ndash;help help for suggest Options inherited from parent commands &ndash;force-color Force color output &ndash;no-color Disable color output -q, &ndash;quiet Show less output &ndash;timestamps Enable timestamps in output -v, &ndash;verbose Show more output SEE ALSO pack stack	- (deprecated) Interact with stacks</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_stack_suggest/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_version/" class="">pack version</a></h2>
+          <p class="m-1">pack version Show current ‘pack’ version
+pack version [flags] Examples pack version Options -h, &ndash;help Help for 'version' Options inherited from parent commands &ndash;force-color Force color output &ndash;no-color Disable color output -q, &ndash;quiet Show less output &ndash;timestamps Enable timestamps in output -v, &ndash;verbose Show more output SEE ALSO pack	- CLI for building apps using Cloud Native Buildpacks</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_version/">Learn more →</a>
+            </div>
+
+        <hr>
+<div class='footline d-block'>
+  <div class="support-links text-right">
+  
+    
+    
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BCLI&#43;Docs%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ffor-platform-operators%2Fhow-to%2Fintegrate-ci%2Fpack%2Fcli%2F%29"
+       class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
+
+    
+    
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/for-platform-operators/how-to/integrate-ci/pack/cli/_index.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+       class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
+    
+  
+</div>
+
+</div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  <footer>
+  <div class="container footer">
+    <a href="https://www.cncf.io/" style="width: 50%;"><img src="/images/cncf-color.svg" class="footer-logo" alt="CNCF logo" ></a>
+    <p>We are a <a href="https://www.cncf.io/">Cloud Native Computing Foundation</a> incubating project.</p>
+  </div>
+  <div class="bg-blue">
+    <div class="container sub-footer">
+      <ul>
+        
+        <li><a target="_blank" rel="noopener noreferrer" href="https://buildpacks.devstats.cncf.io/d/8/dashboards?orgId=1&amp;refresh=15m">DevStats</a></li>
+        
+        <li><span>&bull;</span><a target="_blank" rel="noopener noreferrer" href="https://datastudio.google.com/reporting/4b23856c-6c24-44f5-86f2-333d0ad3f236">Analytics</a></li>
+        
+        <li><span>&bull;</span><a target="_blank" rel="noopener noreferrer" href="https://www.linuxfoundation.org/privacy/">Privacy Policy</a></li>
+        
+      </ul>
+
+      <ul>
+        
+        <li><a target="_blank" rel="noopener noreferrer" href="https://lists.cncf.io/g/cncf-buildpacks/join">Mailing List</a></li>
+        
+        <li><span>&bull;</span><a target="_blank" rel="noopener noreferrer" href="https://slack.cncf.io">Slack</a></li>
+        
+        <li><span>&bull;</span><a target="_blank" rel="noopener noreferrer" href="https://twitter.com/buildpacks_io">Twitter</a></li>
+        
+        <li><span>&bull;</span><a target="_blank" rel="noopener noreferrer" href="https://github.com/buildpacks">GitHub</a></li>
+        
+      </ul>
+    </div>
+    <div class="container sub-footer">
+      <ul>
+        <li><p>Copyright © 2022 The Linux Foundation ®. All rights reserved. The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation, please see our <a href="(https://www.linuxfoundation.org/trademark-usage">Trademark Usage page</a></p></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+
+    
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/asciinema-player/2.6.1/asciinema-player.min.js"></script>
+</body>
+
+</html>

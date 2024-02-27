@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Migrate on Cloud Native Buildpacks</title>
+    <link>https://buildpacks.io/docs/for-platform-operators/how-to/migrate/</link>
+    <description>Recent content in Migrate on Cloud Native Buildpacks</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="https://buildpacks.io/docs/for-platform-operators/how-to/migrate/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Platform API 0.7 -&gt; 0.8</title>
+      <link>https://buildpacks.io/docs/for-platform-operators/how-to/migrate/platform-api-0.7-0.8/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-platform-operators/how-to/migrate/platform-api-0.7-0.8/</guid>
+      <description>This guide is most relevant to platform operators.&#xA;See the spec release for Platform API 0.8 for the full list of changes and further details.&#xA;Platform Operator New standardized SBOM format Buildpacks implementing Buildpack API 0.7+ may output write Software Bill of Materials (SBOM) files describing build- or run-time dependencies. These files must use the application/vnd.cyclonedx+json, application/spdx+json, or application/vnd.syft+json media types (a buildpack may output SBOM files in multiple formats). Files may be written to the following locations:</description>
+    </item>
+    <item>
+      <title>Platform API 0.8 -&gt; 0.9</title>
+      <link>https://buildpacks.io/docs/for-platform-operators/how-to/migrate/platform-api-0.8-0.9/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-platform-operators/how-to/migrate/platform-api-0.8-0.9/</guid>
+      <description>This guide is most relevant to platform operators.&#xA;See the spec release for Platform API 0.9 for the full list of changes and further details.&#xA;Platform Operator Legacy BOM information removed from io.buildpacks.build.metadata label Legacy BOM information is removed from the io.buildpacks.build.metadata label and &amp;lt;layers&amp;gt;/config/metadata.toml. Buildpacks may still output BOM information in the legacy format, and it can now be found in &amp;lt;layers&amp;gt;/sbom/launch/sbom.legacy.json (for runtime dependencies) or &amp;lt;layers&amp;gt;/sbom/build/sbom.legacy.json (for build time dependencies).</description>
+    </item>
+    <item>
+      <title>Platform API 0.9 -&gt; 0.10</title>
+      <link>https://buildpacks.io/docs/for-platform-operators/how-to/migrate/platform-api-0.9-0.10/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-platform-operators/how-to/migrate/platform-api-0.9-0.10/</guid>
+      <description>This guide is most relevant to platform operators.&#xA;See the spec release for Platform API 0.10 for the full list of changes and further details.&#xA;Platform Operator The launcher supports overridable process arguments The way user-provided arguments are handled by the launcher depends on the Buildpack API of the buildpack that created the process definition.&#xA;Newer buildpacks Process types contributed by newer buildpacks (Buildpack API 0.9 and above) may have overridable process arguments.</description>
+    </item>
+    <item>
+      <title>Platform API 0.10 -&gt; 0.11</title>
+      <link>https://buildpacks.io/docs/for-platform-operators/how-to/migrate/platform-api-0.10-0.11/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-platform-operators/how-to/migrate/platform-api-0.10-0.11/</guid>
+      <description>This guide is most relevant to platform operators and builder authors.&#xA;See the spec release for Platform API 0.11 for the full list of changes and further details.&#xA;Platform Operator SBOM files for the launcher are included in the application image In Platform 0.11, the lifecycle ships with standardized SBOM files describing the lifecycle and launcher binaries (these are included in the tarball on the GitHub release page and within the image at index.</description>
+    </item>
+    <item>
+      <title>Platform API 0.11 -&gt; 0.12</title>
+      <link>https://buildpacks.io/docs/for-platform-operators/how-to/migrate/platform-api-0.11-0.12/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-platform-operators/how-to/migrate/platform-api-0.11-0.12/</guid>
+      <description>This guide is most relevant to platform operators, base image authors, and builder authors.&#xA;See the spec release for Platform API 0.12 for the full list of changes and further details.&#xA;Platform Operator Stacks are deprecated In Platform 0.12, the concepts of stacks and mixins are removed in favor of existing constructs in the container image ecosystem such as operating system name, operating system distribution, and architecture.&#xA;During build The -stack flag is removed from the analyzer and exporter and replaced with a -run flag that indicates the location of a run.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Create a builder on Cloud Native Buildpacks</title>
+    <link>https://buildpacks.io/docs/for-platform-operators/how-to/build-inputs/create-builder/</link>
+    <description>Recent content in Create a builder on Cloud Native Buildpacks</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="https://buildpacks.io/docs/for-platform-operators/how-to/build-inputs/create-builder/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Create a build base image</title>
+      <link>https://buildpacks.io/docs/for-platform-operators/how-to/build-inputs/create-builder/build-base/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-platform-operators/how-to/build-inputs/create-builder/build-base/</guid>
+      <description>&lt;p&gt;The build-time base image provides the OS-level dependencies for buildpacks at build-time.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Create a run base image</title>
+      <link>https://buildpacks.io/docs/for-platform-operators/how-to/build-inputs/create-builder/run-base/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-platform-operators/how-to/build-inputs/create-builder/run-base/</guid>
+      <description>&lt;p&gt;The runtime base image provides the OS-level dependencies for applications at runtime.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Putting it all together</title>
+      <link>https://buildpacks.io/docs/for-platform-operators/how-to/build-inputs/create-builder/builder/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-platform-operators/how-to/build-inputs/create-builder/builder/</guid>
+      <description>&lt;p&gt;After you have created a build-time base image and a runtime base image, you are ready to create your builder!&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Specify an image extension in a builder</title>
+      <link>https://buildpacks.io/docs/for-platform-operators/how-to/build-inputs/create-builder/extensions/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-platform-operators/how-to/build-inputs/create-builder/extensions/</guid>
+      <description>&lt;p&gt;If you are using extensions, here is how to include them in a builder.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
