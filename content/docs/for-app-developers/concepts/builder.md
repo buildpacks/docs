@@ -13,7 +13,7 @@ The [build-time base image] provides the base environment for the `builder`
 (e.g., an Ubuntu Jammy OS image with build tooling) and
 a [runtime base image] provides the base environment for the `app image` during runtime.
 
-![builder](/docs/for-app-developers/concepts/builder.svg)
+![builder](/images/builder.svg)
 
 Under the hood a builder uses the [lifecycle] to run the `detect` phase for all the `buildpacks` it contains, in order,
 and then proceeds to run the `build` phase for all the `buildpacks` that passed detection.

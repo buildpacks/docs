@@ -9,7 +9,7 @@ weight=3
 
 ## Building explained
 
-![build diagram](/docs/for-app-developers/concepts/build.svg)
+![build diagram](/images/build.svg)
 
 Each [buildpack] inspects the source code and provides relevant dependencies.
 An image is then generated from the app's source code and these dependencies.
