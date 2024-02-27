@@ -16,7 +16,7 @@ weight=4
 
 By using image layer rebasing, this command avoids the need to fully rebuild the app.
 
-![rebase diagram](/docs/for-app-developers/concepts/rebase.svg)
+![rebase diagram](/images/rebase.svg)
 
 At its core, image rebasing is a simple process. By inspecting an app image, `rebase` can determine whether or not a
 newer version of the app's base image exists (either locally or in a registry).
