@@ -111,3 +111,9 @@ featureKatacoda = false
 [[module.mounts]]
     source = 'content/docs/.concepts/extension.md'
     target = 'content/docs/for-platform-operators/concepts/extension.md'
+[[module.mounts]]
+    source = 'content/docs/.concepts/composite-buildpack.md'
+    target = 'content/docs/for-buildpack-authors/concepts/composite-buildpack.md'
+[[module.mounts]]
+    source = 'content/docs/.concepts/composite-buildpack.md'
+    target = 'content/docs/for-platform-operators/concepts/composite-buildpack.md'

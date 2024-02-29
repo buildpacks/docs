@@ -396,4 +396,4 @@ You can read the complete [Buildpack API specification on Github](https://github
 
 [buildpack]: /docs/for-platform-operators/concepts/buildpack/
 [lifecycle]: /docs/for-platform-operators/concepts/lifecycle/
-[meta-buildpack]: /docs/for-platform-operators/concepts/buildpack/#meta-buildpack
+[meta-buildpack]: /docs/for-platform-operators/concepts/composite-buildpack
