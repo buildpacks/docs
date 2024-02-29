@@ -7,11 +7,11 @@ A `buildpack` is software that examines your source code and determines the best
 
 <!--more-->
 
-![buildpacks](/docs/for-app-developers/concepts/what.svg)
+![buildpacks](/images/what.svg)
 
 ## How do they work?
 
-![how](/docs/for-app-developers/concepts/how.svg)
+![how](/images/how.svg)
 
 **Each buildpack has two phases**
 
