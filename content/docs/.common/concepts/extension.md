@@ -34,7 +34,7 @@ provide. By contrast, Dockerfiles are the most-used and best-understood mechanis
 installing OS-level dependencies for containers.
 
 The CNB Dockerfiles feature allows Dockerfiles to "provide" dependencies that buildpacks "require" through a
-shared [build plan](/docs/reference/spec/buildpack-api/#build-plan), by introducing the concept of image extensions.
+shared [build plan], by introducing the concept of image extensions.
 
 ## What do they look like?
 
@@ -67,7 +67,7 @@ The extension determines if it is needed or not.
 
 Like buildpacks, extensions participate in the `detect` phase - analyzing application source code to determine if they
 are needed. During `detect`, extensions can contribute to
-the [build plan](/docs/reference/spec/buildpack-api/#build-plan) - recording dependencies that they are able to "
+the [build plan] - recording dependencies that they are able to "
 provide" (though unlike buildpacks, they can't "require" anything).
 
 If the provided order contains extensions, the output of `detect` will be a group of image extensions and a group of
@@ -80,3 +80,5 @@ The extension outputs Dockerfiles that can be used to extend either or both of t
 
 For more information and to see a build in action,
 see [authoring an image extension](/docs/for-buildpack-authors/tutorials/basic-extension).
+
+[build plan]: /docs/for-buildpack-authors/how-to/write-buildpacks/use-build-plan

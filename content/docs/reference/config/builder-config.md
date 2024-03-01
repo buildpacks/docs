@@ -1,12 +1,16 @@
 +++
 title="builder.toml"
-summary="Schema of the builder config file."
 aliases=[
   "/docs/reference/builder-config/"
 ]
+weight=2
 +++
 
-A [builder][builder] configuration schema is as follows:
+The builder config file is used for creating [builders][builder].
+
+<!--more-->
+
+The schema is as follows:
 
 - #### `description` _(string, optional)_
   A human-readable description of the builder, to be shown in `builder inspect` output
@@ -26,7 +30,7 @@ A [builder][builder] configuration schema is as follows:
 
 - #### `order` _(list, required)_
   A list of buildpack groups. This list determines the order in which groups of buildpacks
-  will be tested during detection. Detection is a phase of the [lifecycle][lifecycle] where
+  will be tested during detection. Detection is a phase of the [lifecycle] where
   buildpacks are tested, one group at a time, for compatibility with the provided application source code. The first
   group whose non-optional buildpacks all pass detection will be the group selected for the remainder of the build. Each
   group currently contains a single required field:
@@ -85,7 +89,7 @@ A [builder][builder] configuration schema is as follows:
     [Run image mirrors](/docs/for-app-developers/concepts/base-images/run#run-image-mirrors) for the stack
 
 - #### `lifecycle` _(optional)_
-  The [lifecycle][lifecycle] to embed into the builder. It must contain **at most one** the following fields:
+  The [lifecycle] to embed into the builder. It must contain **at most one** the following fields:
 
   - **`version`** _(string, optional)_\
     The version of the lifecycle (semver format) to download. If specified, `uri` must not be provided.
