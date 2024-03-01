@@ -97,23 +97,23 @@ featureKatacoda = false
     source = 'content'
     target = 'content'
 [[module.mounts]]
-    source = 'content/docs/.concepts/buildpack.md'
+    source = 'content/docs/.common/concepts/buildpack.md'
     target = 'content/docs/for-app-developers/concepts/buildpack.md'
 [[module.mounts]]
-    source = 'content/docs/.concepts/buildpack.md'
+    source = 'content/docs/.common/concepts/buildpack.md'
     target = 'content/docs/for-buildpack-authors/concepts/buildpack.md'
 [[module.mounts]]
-    source = 'content/docs/.concepts/buildpack.md'
+    source = 'content/docs/.common/concepts/buildpack.md'
     target = 'content/docs/for-platform-operators/concepts/buildpack.md'
 [[module.mounts]]
-    source = 'content/docs/.concepts/extension.md'
+    source = 'content/docs/.common/concepts/extension.md'
     target = 'content/docs/for-buildpack-authors/concepts/extension.md'
 [[module.mounts]]
-    source = 'content/docs/.concepts/extension.md'
+    source = 'content/docs/.common/concepts/extension.md'
     target = 'content/docs/for-platform-operators/concepts/extension.md'
 [[module.mounts]]
-    source = 'content/docs/.concepts/composite-buildpack.md'
+    source = 'content/docs/.common/concepts/composite-buildpack.md'
     target = 'content/docs/for-buildpack-authors/concepts/composite-buildpack.md'
 [[module.mounts]]
-    source = 'content/docs/.concepts/composite-buildpack.md'
+    source = 'content/docs/.common/concepts/composite-buildpack.md'
     target = 'content/docs/for-platform-operators/concepts/composite-buildpack.md'
