@@ -14,7 +14,7 @@ There are three types of layers that can be contributed to an image
 
 * `build` layers -- the directory will be accessible by subsequent buildpacks,
 * `cache` layers -- the directory will be included in the cache,
-* `launch` layers -- the directory will be included in the run image as a single layer,
+* `launch` layers -- the directory will be included in the final app image as a single layer,
 
 In this section we look at caching each layer type.
 

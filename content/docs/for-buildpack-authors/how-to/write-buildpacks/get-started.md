@@ -1,6 +1,6 @@
 +++
 title="Get started"
-weight=0
+weight=1
 +++
 
 To write a buildpack, we follow the [Buildpack Specification](https://github.com/buildpacks/spec/blob/main/buildpack.md),

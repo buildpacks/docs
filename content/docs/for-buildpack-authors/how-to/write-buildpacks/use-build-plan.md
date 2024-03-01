@@ -1,6 +1,6 @@
 +++
 title="Use the build plan"
-weight=99
+weight=2
 +++
 
 The [Build Plan](https://github.com/buildpacks/spec/blob/main/buildpack.md#build-plan-toml) is a document that buildpacks can use to pass information between the `detect` and `build` phases, and between each other.
