@@ -85,7 +85,7 @@ For processes from older buildpacks, upgrading the platform will not change the 
 
 ### Image extensions are supported (experimental)
 
-Platform 0.10 introduces image extensions as experimental components for customizing build and run-time base images (see [here](/docs/for-platform-operators/concepts/dockerfiles) for more information). Image extensions output Dockerfiles which are applied by the lifecycle using [kaniko][https://github.com/GoogleContainerTools/kaniko], a tool for building container images in Kubernetes, as a library.
+Platform 0.10 introduces image extensions as experimental components for customizing build and run-time base images (see [here](/docs/for-platform-operators/concepts/extension) for more information). Image extensions output Dockerfiles which are applied by the lifecycle using [kaniko][https://github.com/GoogleContainerTools/kaniko], a tool for building container images in Kubernetes, as a library.
 
 Note: image extensions are not supported for Windows container images.
 

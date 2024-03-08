@@ -1,5 +1,5 @@
 +++
 title="Concepts"
-weight=1
+weight=2
 include_summaries=true
 +++

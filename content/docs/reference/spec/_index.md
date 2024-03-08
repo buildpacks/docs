@@ -4,11 +4,10 @@ include_summaries=true
 expand=true
 +++
 
-This section provides an overview of the Cloud Native Buildpack API specification.
+The Cloud Native Buildpacks specification defines the APIs that buildpacks, platforms, and the lifecycle must implement.
 
-Most buildpack users won't need this information unless they are writing a buildpack or
-a platform that supports buildpacks.
+Most buildpack users won't need this information unless they are writing a buildpack or a platform that supports buildpacks.
 
 <!--more-->
 
-The Cloud Native Buildpack API specification consists of the following parts:
+The specification consists of the following:

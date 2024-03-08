@@ -57,4 +57,4 @@ The [Operator's Guide][operator-guide] has more information on creating builders
 [order-resolution]: https://github.com/buildpacks/spec/blob/main/buildpack.md#order-resolution
 [operator-guide]: /docs/for-platform-operators/
 [builder]: /docs/for-platform-operators/concepts/builder/
-[meta-buildpack]: /docs/for-platform-operators/concepts/buildpack/#meta-buildpack
+[meta-buildpack]: /docs/for-platform-operators/concepts/composite-buildpack
