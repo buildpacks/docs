@@ -110,4 +110,4 @@ A new image named `test-node-js-app` was created in your Docker daemon with a la
 <a href="/docs/for-buildpack-authors/tutorials/basic-buildpack/05_make-app-runnable" class="button bg-pink">Next Step</a>
 <!--+end+-->
 
-[layers-dir]: /docs/reference/spec/buildpack-api/#layers
+[layers-dir]: /docs/for-buildpack-authors/how-to/write-buildpacks/create-layer

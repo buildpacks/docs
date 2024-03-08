@@ -11,36 +11,46 @@ The **run image** provides the base image for application images.
 
 <!--more-->
 
-The lifecycle requires a reference to a run image and (where necessary) possible run image mirrors in order to construct the application image.
+CNB tooling requires a reference to a run image and (where necessary) run image mirrors in order to construct the application image.
 
 ### Run image mirrors
 
-Run image mirrors provide alternate locations for run images, for use during `build` or `rebase`.
-When running `build` with a builder containing run image mirrors, `pack` will select a run image
-whose registry location matches that of the specified app image (if no registry host is specified in the image name,
-DockerHub is assumed). This is useful when publishing the resulting app image (via the `--publish` flag or via
-`docker push`), as the app's base image (i.e. run image) will be located on the same registry as the app image itself,
-reducing the amount of data transfer required to push the app image.
+Run image mirrors provide alternate locations for `run images`, for use during `build` or `rebase`.
 
-In the following example, assuming a builder configured with the example TOML above, the selected run image will be
-`registry.example.com/example/run`.
+When run image mirrors are defined, CNB tooling will try to find a run image that resides on the same registry as the application image,
+based on the image name provided.
+
+This is to reduce the amount of data transfer required to push the application image to a registry.
+
+#### Example - determining the registry
+
+If the application image name is:
+
+* `registry.example.com/example/app` - the registry is `registry.example.com`
+* `example/app` (registry omitted) - Docker Hub is assumed; the registry is `index.docker.io`
+
+#### Example - determining the run image mirror
+
+If your builder has a run image with mirrors defined as follows (see [how to create a builder](/docs/for-platform-operators/how-to/build-inputs/create-builder/builder) for more information):
+
+```toml
+[[run.images]]
+image = "example/run"
+mirrors = ["registry.example.com/example/run"]
+```
+
+Then if you run `pack build` as follows:
 
 ```bash
 $ pack build registry.example.com/example/app
 ```
 
-while naming the app without a registry specified, `example/app`, will cause `example/run` to be selected as the app's
-run image.
+the selected run image will be `registry.example.com/example/run`.
 
-```bash
-$ pack build example/app
-```
-
-> For local development, it's often helpful to override the run image mirrors in a builder. For this, the
-> `pack config run-image-mirrors` command can be used. This command does not modify the builder, and instead configures the
-> local environment.
+> For local development, it's often helpful to override the run image mirrors in a builder.
+> For this, the `pack config run-image-mirrors` command can be used.
+> This command does not modify the builder, and instead configures the local environment.
 >
-> To see what run images are configured for a builder, the
-> `builder inspect` command can be used. `builder inspect` will output built-in and locally-configured run images for
-> a given builder, along with other useful information. The order of the run images in the output denotes the order in
-> which they will be matched during `build`.
+> To see what run images are configured for a builder, `pack builder inspect` can be used.
+> `pack builder inspect` will output built-in and locally-configured run images for a given builder, along with other useful information.
+> The order of the run images in the output denotes the order in which they will be matched during `build`.
