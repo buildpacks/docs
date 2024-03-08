@@ -59,12 +59,14 @@ image = "cnbs/sample-base-build:jammy"
 [run]
 [[run.images]]
 image = "cnbs/sample-base-run:jammy"
+mirrors = ["other-registry.example.com/cnbs/sample-base-run:jammy"]
 
 # Stack (deprecated) used to create the builder
 [stack]
 id = "io.buildpacks.samples.stacks.jammy"
 # This image is used at runtime
 run-image = "cnbs/sample-base-run:jammy"
+run-image-mirrors = ["other-registry.example.com/cnbs/sample-base-run:jammy"]
 # This image is used at build-time
 build-image = "cnbs/sample-base-build:jammy"
 ```
