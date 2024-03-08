@@ -22,7 +22,7 @@ const (
 	gendocFrontmatterTemplate = `+++
 title="%s"
 no_edit="true"
-aliases=[ "/docs/tools/pack" ]
+aliases=[ "%s" ]
 +++
 <!--more-->
 `
@@ -32,7 +32,8 @@ var filePrepender = func(filename string) string {
 	name := filepath.Base(filename)
 	name = strings.Replace(name, ".md", "", -1)
 	presentationName := strings.Replace(name, "_", " ", -1)
-	return fmt.Sprintf(gendocFrontmatterTemplate, presentationName)
+	alias := fmt.Sprintf("/docs/tools/pack/cli/%s", name)
+	return fmt.Sprintf(gendocFrontmatterTemplate, presentationName, alias)
 }
 
 var linkHandler = func(name string) string {
