@@ -8,9 +8,9 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Image extensions generate Dockerfiles that can be used to extend base images for buildpacks builds.
+<meta name="description" content="An image extension is software that generates Dockerfiles that can be used to extend base images for buildpacks builds.
 "/>
-<link rel="canonical" content="https://buildpacks.io/docs/for-platform-operators/concepts/dockerfiles/">
+<link rel="canonical" content="https://buildpacks.io/docs/for-platform-operators/concepts/extension/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
 
@@ -18,12 +18,12 @@
 
 
 
-<meta property="og:title" content="What are image extensions? · Cloud Native Buildpacks">
+<meta property="og:title" content="What is an image extension? · Cloud Native Buildpacks">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://buildpacks.io/docs/for-platform-operators/concepts/dockerfiles/">
+<meta property="og:url" content="https://buildpacks.io/docs/for-platform-operators/concepts/extension/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-<meta property="og:description" content="Image extensions generate Dockerfiles that can be used to extend base images for buildpacks builds.
+<meta property="og:description" content="An image extension is software that generates Dockerfiles that can be used to extend base images for buildpacks builds.
 ">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
@@ -35,7 +35,7 @@
 
 
 
-<meta property="twitter:title" content="What are image extensions? · Cloud Native Buildpacks">
+<meta property="twitter:title" content="What is an image extension? · Cloud Native Buildpacks">
 <meta property="twitter:card" content="summary">
 <meta property="twitter:image" content="https://buildpacks.io/images/buildpacks-social-card-square.jpg">
 <meta property="twitter:image:alt" content="Buildpacks project logo">
@@ -98,7 +98,7 @@
     gtag('config', 'G-CJLSR4FQXL');
   </script>
 
-  <title>What are image extensions? · Cloud Native Buildpacks</title>
+  <title>What is an image extension? · Cloud Native Buildpacks</title>
 </head>
 
 <body>
@@ -301,6 +301,14 @@
 <li data-nav-id="/docs/for-platform-operators/" class="dd-item depth-0 parent haschildren">
   <a href="/docs/for-platform-operators/">For Platform Operators</a>
   <ul class="ml-2">
+<li data-nav-id="/docs/for-platform-operators/tutorials/" class="dd-item depth-1 haschildren">
+  <a href="/docs/for-platform-operators/tutorials/">Tutorials</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/for-platform-operators/tutorials/lifecycle/" class="dd-item depth-2">
+  <a href="/docs/for-platform-operators/tutorials/lifecycle/">Orchestrate a build with the CNB lifecycle</a>
+</li>
+  </ul>
+</li>
 <li data-nav-id="/docs/for-platform-operators/concepts/" class="dd-item depth-1 parent haschildren">
   <a href="/docs/for-platform-operators/concepts/">Concepts</a>
   <ul class="ml-2">
@@ -339,16 +347,11 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/for-platform-operators/concepts/dockerfiles/" class="dd-item depth-2 active">
-  <a href="/docs/for-platform-operators/concepts/dockerfiles/">What are image extensions?</a>
+<li data-nav-id="/docs/for-platform-operators/concepts/composite-buildpack/" class="dd-item depth-2">
+  <a href="/docs/for-platform-operators/concepts/composite-buildpack/">What is a composite buildpack?</a>
 </li>
-  </ul>
-</li>
-<li data-nav-id="/docs/for-platform-operators/tutorials/" class="dd-item depth-1 haschildren">
-  <a href="/docs/for-platform-operators/tutorials/">Tutorials</a>
-  <ul class="ml-2">
-<li data-nav-id="/docs/for-platform-operators/tutorials/lifecycle/" class="dd-item depth-2">
-  <a href="/docs/for-platform-operators/tutorials/lifecycle/">Orchestrate a build with the CNB lifecycle</a>
+<li data-nav-id="/docs/for-platform-operators/concepts/extension/" class="dd-item depth-2 active">
+  <a href="/docs/for-platform-operators/concepts/extension/">What is an image extension?</a>
 </li>
   </ul>
 </li>
@@ -675,6 +678,9 @@
 <li data-nav-id="/docs/for-buildpack-authors/concepts/" class="dd-item depth-1 haschildren">
   <a href="/docs/for-buildpack-authors/concepts/">Concepts</a>
   <ul class="ml-2">
+<li data-nav-id="/docs/for-buildpack-authors/concepts/buildpack/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-buildpack-authors/concepts/buildpack/">What is a buildpack?</a>
+</li>
 <li data-nav-id="/docs/for-buildpack-authors/concepts/lifecycle-phases/" class="dd-item depth-2 collapse">
   <a href="/docs/for-buildpack-authors/concepts/lifecycle-phases/">What is the lifecycle?</a>
 </li>
@@ -696,6 +702,12 @@
 <li data-nav-id="/docs/for-buildpack-authors/concepts/component-buildpack/" class="dd-item depth-2 collapse">
   <a href="/docs/for-buildpack-authors/concepts/component-buildpack/">What is a component buildpack?</a>
 </li>
+<li data-nav-id="/docs/for-buildpack-authors/concepts/composite-buildpack/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-buildpack-authors/concepts/composite-buildpack/">What is a composite buildpack?</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/concepts/extension/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-buildpack-authors/concepts/extension/">What is an image extension?</a>
+</li>
 <li data-nav-id="/docs/for-buildpack-authors/concepts/build-plan/" class="dd-item depth-2 collapse">
   <a href="/docs/for-buildpack-authors/concepts/build-plan/">What is the build plan?</a>
 </li>
@@ -707,6 +719,15 @@
 <li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/" class="dd-item depth-2 collapse haschildren">
   <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/">Write buildpacks</a>
   <ul class="ml-2">
+<li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/get-started/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/get-started/">Get started</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/use-build-plan/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/use-build-plan/">Use the build plan</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/create-layer/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/create-layer/">Create dependency layers</a>
+</li>
 <li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/specify-launch-processes/" class="dd-item depth-3 collapse">
   <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/specify-launch-processes/">Specify process types</a>
 </li>
@@ -719,9 +740,6 @@
 <li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/clear-env/" class="dd-item depth-3 collapse">
   <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/clear-env/">Clear the buildpack environment</a>
 </li>
-<li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/create-layer/" class="dd-item depth-3 collapse">
-  <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/create-layer/">Create dependency layers</a>
-</li>
 <li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/create-slice-layers/" class="dd-item depth-3 collapse">
   <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/create-slice-layers/">Create slice layers</a>
 </li>
@@ -733,9 +751,6 @@
 </li>
 <li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/use-exec.d/" class="dd-item depth-3 collapse">
   <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/use-exec.d/">Use exec.d binaries to configure the application at runtime</a>
-</li>
-<li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/use-build-plan/" class="dd-item depth-3 collapse">
-  <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/use-build-plan/">Use the build plan</a>
 </li>
   </ul>
 </li>
@@ -757,6 +772,9 @@
   <a href="/docs/for-buildpack-authors/how-to/distribute-buildpacks/publish-buildpack/with-github-actions/">Publishing with Github Actions</a>
 </li>
   </ul>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/how-to/distribute-buildpacks/craft-order/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-buildpack-authors/how-to/distribute-buildpacks/craft-order/">Craft a buildpack order</a>
 </li>
 <li data-nav-id="/docs/for-buildpack-authors/how-to/migrate/" class="dd-item depth-2 collapse haschildren">
   <a href="/docs/for-buildpack-authors/how-to/migrate/">Migrate</a>
@@ -796,14 +814,17 @@
 <li data-nav-id="/docs/reference/config/" class="dd-item depth-1 collapse haschildren">
   <a href="/docs/reference/config/">Configuration</a>
   <ul class="ml-2">
+<li data-nav-id="/docs/reference/config/project-descriptor/" class="dd-item depth-2 collapse">
+  <a href="/docs/reference/config/project-descriptor/">project.toml</a>
+</li>
 <li data-nav-id="/docs/reference/config/builder-config/" class="dd-item depth-2 collapse">
   <a href="/docs/reference/config/builder-config/">builder.toml</a>
 </li>
+<li data-nav-id="/docs/reference/config/buildpack-config/" class="dd-item depth-2 collapse">
+  <a href="/docs/reference/config/buildpack-config/">buildpack.toml</a>
+</li>
 <li data-nav-id="/docs/reference/config/package-config/" class="dd-item depth-2 collapse">
   <a href="/docs/reference/config/package-config/">package.toml</a>
-</li>
-<li data-nav-id="/docs/reference/config/project-descriptor/" class="dd-item depth-2 collapse">
-  <a href="/docs/reference/config/project-descriptor/">project.toml</a>
 </li>
   </ul>
 </li>
@@ -835,12 +856,12 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BWhat&#43;are&#43;image&#43;extensions%3F%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ffor-platform-operators%2Fconcepts%2Fdockerfiles%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BWhat&#43;is&#43;an&#43;image&#43;extension%3F%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ffor-platform-operators%2Fconcepts%2Fextension%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/for-platform-operators/concepts/dockerfiles.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/for-platform-operators/concepts/extension.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
@@ -848,11 +869,11 @@
 
 
         <div class="heading">
-          <h1 class="title">What are image extensions?</h1>
+          <h1 class="title">What is an image extension?</h1>
         </div>
 
-        <p>Image extensions generate Dockerfiles that can be used to extend base images for buildpacks builds.</p>
-<h2 id="why-dockerfiles">Why Dockerfiles?</h2>
+        <p>An <code>image extension</code> is software that generates Dockerfiles that can be used to extend base images for buildpacks builds.</p>
+<h2 id="why-image-extensions">Why image extensions?</h2>
 <p>Buildpacks can do a lot, but there are some things buildpacks can&rsquo;t do. They can&rsquo;t install operating system packages,
 for example. Why not?</p>
 <p>Buildpacks do not run as the <code>root</code> user and cannot make arbitrary changes to the filesystem. This enhances security,
@@ -861,24 +882,17 @@ must anticipate the OS-level dependencies that will be needed at build and run-t
 possible.</p>
 <p>This has been a longstanding source of <a href="https://github.com/buildpacks/rfcs/pull/173">discussion</a> within the CNB project:
 how can we preserve the benefits of buildpacks while enabling more powerful capabilities?</p>
-<h2 id="buildpacks-and-dockerfiles-can-work-together">Buildpacks and Dockerfiles can work together</h2>
+<h3 id="buildpacks-and-dockerfiles-can-work-together">Buildpacks and Dockerfiles can work together</h3>
 <p>Buildpacks are often presented as an alternative to Dockerfiles, but we think buildpacks and Dockerfiles can work
 together.</p>
 <p>Buildpacks are optimized for creating layers that are efficient and logically mapped to the dependencies that they
 provide. By contrast, Dockerfiles are the most-used and best-understood mechanism for constructing base images and
 installing OS-level dependencies for containers.</p>
 <p>The CNB Dockerfiles feature allows Dockerfiles to &ldquo;provide&rdquo; dependencies that buildpacks &ldquo;require&rdquo; through a
-shared <a href="/docs/reference/spec/buildpack-api/#build-plan">build plan</a>, by introducing the concept of image extensions.</p>
-<h2 id="what-are-image-extensions">What are image extensions?</h2>
+shared <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/use-build-plan">build plan</a>, by introducing the concept of image extensions.</p>
+<h2 id="what-do-they-look-like">What do they look like?</h2>
 <p>Image extensions are buildpack-like components that use a restricted <code>Dockerfile</code> syntax to expand base images. Their
 purpose is to generate Dockerfiles that can be used to extend the builder or run images prior to buildpacks builds.</p>
-<p>Like buildpacks, extensions participate in the <code>detect</code> phase - analyzing application source code to determine if they
-are needed. During <code>detect</code>, extensions can contribute to
-the <a href="/docs/reference/spec/buildpack-api/#build-plan">build plan</a> - recording dependencies that they are able to &quot;
-provide&quot; (though unlike buildpacks, they can&rsquo;t &ldquo;require&rdquo; anything).</p>
-<p>If the provided order contains extensions, the output of <code>detect</code> will be a group of image extensions and a group of
-buildpacks that together produce a valid build plan. Image extensions only generate Dockerfiles - they don&rsquo;t create
-layers or participate in the <code>build</code> phase.</p>
 <p>An image extension could be defined with the following directory:</p>
 <pre tabindex="0"><code>.
 ├── extension.toml &lt;- similar to a buildpack buildpack.toml
@@ -886,53 +900,27 @@ layers or participate in the <code>build</code> phase.</p>
 │   ├── detect     &lt;- similar to a buildpack ./bin/detect
 │   ├── generate   &lt;- similar to a buildpack ./bin/build
 </code></pre><ul>
-<li>The <code>extension.toml</code> describes the extension, containing information such as its name, ID, and version.</li>
-<li><code>./bin/detect</code> is invoked during the <code>detect</code> phase. It analyzes application source code to determine if the extension
+<li>The <code>extension.toml</code> provides metadata about the extension, containing information such as its name, ID, and version.</li>
+<li><code>./bin/detect</code> performs <a href="#detect">detect</a>. It analyzes application source code to determine if the extension
 is needed and contributes build plan entries.</li>
-<li><code>./bin/generate</code> is invoked during the <code>generate</code> phase (a new lifecycle phase that happens after <code>detect</code>). It
+<li><code>./bin/generate</code> performs <a href="#generate">generate</a> (a new lifecycle phase that happens after <code>detect</code>). It
 outputs either or both of <code>build.Dockerfile</code> or <code>run.Dockerfile</code> for extending the builder or run image.</li>
 </ul>
+<h2 id="how-do-they-work">How do they work?</h2>
+<p><strong>Each image extension has two jobs to do</strong></p>
+<h3 id="detect">Detect</h3>
+<p>The extension determines if it is needed or not.</p>
+<p>Like buildpacks, extensions participate in the <code>detect</code> phase - analyzing application source code to determine if they
+are needed. During <code>detect</code>, extensions can contribute to
+the <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/use-build-plan">build plan</a> - recording dependencies that they are able to &quot;
+provide&quot; (though unlike buildpacks, they can&rsquo;t &ldquo;require&rdquo; anything).</p>
+<p>If the provided order contains extensions, the output of <code>detect</code> will be a group of image extensions and a group of
+buildpacks that together produce a valid build plan. Image extensions only generate Dockerfiles - they don&rsquo;t create
+layers or participate in the <code>build</code> phase.</p>
+<h3 id="generate">Generate</h3>
+<p>The extension outputs Dockerfiles that can be used to extend either or both of the build-time base image and the runtime base image.</p>
 <p>For more information and to see a build in action,
 see <a href="/docs/for-buildpack-authors/tutorials/basic-extension">authoring an image extension</a>.</p>
-<h2 id="a-platforms-perspective">A platform&rsquo;s perspective</h2>
-<p>Platforms may wish to use image extensions if they wish to provide the flexibility of modifying base images dynamically
-at build time.</p>
-<h3 id="risks">Risks</h3>
-<p>Image extensions are considered experimental and susceptible to change in future API versions. However, image extension
-should be <strong>used with great care</strong>. Platform operators should be mindful that:</p>
-<ul>
-<li>Dockerfiles are very powerful - in fact, you can do anything with a Dockerfile! Introducing image extensions into your
-CNB builds can eliminate the security and compatibility guarantees that buildpacks provide.</li>
-<li>When Dockerfiles are used to switch the run image from that defined on the provided builder, the resulting run image
-may not have all the mixins required by buildpacks that detected. Platforms may wish to optionally re-validate mixins
-prior to <code>build</code> when using extensions.</li>
-</ul>
-<h3 id="putting-it-all-together">Putting it all together</h3>
-<p>The ordering of lifecycle phases looks like the following:</p>
-<ul>
-<li><code>analyze</code></li>
-<li><code>detect</code> - after standard detection, <code>detect</code> will also run extensions&rsquo; <code>./bin/generate</code>; output Dockerfiles are
-written to a volume</li>
-<li><code>restore</code></li>
-<li><code>extend</code> - applies one or more <code>build.Dockerfile</code>s to the builder image</li>
-<li><code>extend</code> - applies one or more <code>run.Dockerfile</code>s to the run image (could run in parallel with builder image extension)</li>
-<li><code>build</code></li>
-<li><code>export</code></li>
-</ul>
-<p>For more information, consult the <a href="/docs/for-platform-operators/how-to/migrate/platform-api-0.9-0.10">migration guide</a>.</p>
-<h4 id="platform-support-for-dockerfiles">Platform support for Dockerfiles</h4>
-<p>Supported:</p>
-<ul>
-<li><a href="https://github.com/buildpacks/pack">pack cli</a> (prefer version <code>0.30.0</code> and above)</li>
-</ul>
-<p>Needs support:</p>
-<ul>
-<li><a href="https://github.com/tektoncd/catalog/tree/main/task/buildpacks-phases/0.2">Tekton task</a> (<a href="https://github.com/tektoncd/catalog/issues/1096">GitHub issue</a>)</li>
-<li><a href="https://github.com/pivotal/kpack">kpack</a> (<a href="https://github.com/pivotal/kpack/issues/1047">GitHub issue</a>)</li>
-</ul>
-<p>Your feedback is appreciated! As the feature evolves, we want to hear from you - what&rsquo;s going well, what&rsquo;s challenging,
-and anything else you&rsquo;d like to see. Please reach out in <a href="https://cncf.slack.io">Slack</a> (#buildpacks channel)
-or <a href="https://github.com/buildpacks">GitHub</a>.</p>
 
         
 
@@ -942,12 +930,12 @@ or <a href="https://github.com/buildpacks">GitHub</a>.</p>
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BWhat&#43;are&#43;image&#43;extensions%3F%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ffor-platform-operators%2Fconcepts%2Fdockerfiles%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BWhat&#43;is&#43;an&#43;image&#43;extension%3F%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ffor-platform-operators%2Fconcepts%2Fextension%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/for-platform-operators/concepts/dockerfiles.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/for-platform-operators/concepts/extension.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   

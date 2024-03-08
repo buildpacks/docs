@@ -12,7 +12,7 @@
       <link>https://buildpacks.io/docs/for-platform-operators/concepts/buildpack/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-platform-operators/concepts/buildpack/</guid>
-      <description>&lt;p&gt;A &lt;code&gt;buildpack&lt;/code&gt; is software that examines your source code and determines the best way to build it.&lt;/p&gt;</description>
+      <description>&lt;p&gt;A &lt;code&gt;buildpack&lt;/code&gt; is software that transforms application source code into runnable artifacts&#xA;by analyzing the code and determining the best way to build it.&lt;/p&gt;</description>
     </item>
     <item>
       <title>What is a builder?</title>
@@ -22,11 +22,18 @@
       <description>&lt;p&gt;A &lt;code&gt;builder&lt;/code&gt; is an OCI image containing&#xA;an ordered combination of &lt;a href=&#34;https://buildpacks.io/docs/for-platform-operators/concepts/buildpack/&#34;&gt;buildpacks&lt;/a&gt; and&#xA;a build-time base image, a &lt;a href=&#34;https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/&#34;&gt;lifecycle&lt;/a&gt; binary, and a reference to a runtime base image.&lt;/p&gt;</description>
     </item>
     <item>
-      <title>What are image extensions?</title>
-      <link>https://buildpacks.io/docs/for-platform-operators/concepts/dockerfiles/</link>
+      <title>What is a composite buildpack?</title>
+      <link>https://buildpacks.io/docs/for-platform-operators/concepts/composite-buildpack/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://buildpacks.io/docs/for-platform-operators/concepts/dockerfiles/</guid>
-      <description>&lt;p&gt;Image extensions generate Dockerfiles that can be used to extend base images for buildpacks builds.&lt;/p&gt;</description>
+      <guid>https://buildpacks.io/docs/for-platform-operators/concepts/composite-buildpack/</guid>
+      <description>A composite buildpack, also sometimes called a &amp;ldquo;meta-buildpack&amp;rdquo;, is a buildpack that does not contain any ./bin/detect or ./bin/build binaries, but instead references other buildpacks in its buildpack.toml via the [[order]] array.&#xA;This is useful for composing more complex detection strategies.</description>
+    </item>
+    <item>
+      <title>What is an image extension?</title>
+      <link>https://buildpacks.io/docs/for-platform-operators/concepts/extension/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-platform-operators/concepts/extension/</guid>
+      <description>&lt;p&gt;An &lt;code&gt;image extension&lt;/code&gt; is software that generates Dockerfiles that can be used to extend base images for buildpacks builds.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

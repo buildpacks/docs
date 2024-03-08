@@ -8,8 +8,8 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="This section provides an overview of the Cloud Native Buildpack API specification.
-Most buildpack users won&amp;rsquo;t need this information unless they are writing a buildpack or a platform that…"/>
+<meta name="description" content="The Cloud Native Buildpacks specification defines the APIs that buildpacks, platforms, and the lifecycle must implement.
+Most buildpack users won&amp;rsquo;t need this information unless they are writing…"/>
 <link rel="canonical" content="https://buildpacks.io/docs/reference/spec/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
@@ -23,8 +23,8 @@ Most buildpack users won&amp;rsquo;t need this information unless they are writi
 <meta property="og:url" content="https://buildpacks.io/docs/reference/spec/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-<meta property="og:description" content="This section provides an overview of the Cloud Native Buildpack API specification.
-Most buildpack users won&amp;rsquo;t need this information unless they are writing a buildpack or a platform that…">
+<meta property="og:description" content="The Cloud Native Buildpacks specification defines the APIs that buildpacks, platforms, and the lifecycle must implement.
+Most buildpack users won&amp;rsquo;t need this information unless they are writing…">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -301,6 +301,14 @@ Most buildpack users won&amp;rsquo;t need this information unless they are writi
 <li data-nav-id="/docs/for-platform-operators/" class="dd-item depth-0 haschildren">
   <a href="/docs/for-platform-operators/">For Platform Operators</a>
   <ul class="ml-2">
+<li data-nav-id="/docs/for-platform-operators/tutorials/" class="dd-item depth-1 haschildren">
+  <a href="/docs/for-platform-operators/tutorials/">Tutorials</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/for-platform-operators/tutorials/lifecycle/" class="dd-item depth-2">
+  <a href="/docs/for-platform-operators/tutorials/lifecycle/">Orchestrate a build with the CNB lifecycle</a>
+</li>
+  </ul>
+</li>
 <li data-nav-id="/docs/for-platform-operators/concepts/" class="dd-item depth-1 haschildren">
   <a href="/docs/for-platform-operators/concepts/">Concepts</a>
   <ul class="ml-2">
@@ -339,16 +347,11 @@ Most buildpack users won&amp;rsquo;t need this information unless they are writi
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/for-platform-operators/concepts/dockerfiles/" class="dd-item depth-2 collapse">
-  <a href="/docs/for-platform-operators/concepts/dockerfiles/">What are image extensions?</a>
+<li data-nav-id="/docs/for-platform-operators/concepts/composite-buildpack/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-platform-operators/concepts/composite-buildpack/">What is a composite buildpack?</a>
 </li>
-  </ul>
-</li>
-<li data-nav-id="/docs/for-platform-operators/tutorials/" class="dd-item depth-1 haschildren">
-  <a href="/docs/for-platform-operators/tutorials/">Tutorials</a>
-  <ul class="ml-2">
-<li data-nav-id="/docs/for-platform-operators/tutorials/lifecycle/" class="dd-item depth-2">
-  <a href="/docs/for-platform-operators/tutorials/lifecycle/">Orchestrate a build with the CNB lifecycle</a>
+<li data-nav-id="/docs/for-platform-operators/concepts/extension/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-platform-operators/concepts/extension/">What is an image extension?</a>
 </li>
   </ul>
 </li>
@@ -675,6 +678,9 @@ Most buildpack users won&amp;rsquo;t need this information unless they are writi
 <li data-nav-id="/docs/for-buildpack-authors/concepts/" class="dd-item depth-1 haschildren">
   <a href="/docs/for-buildpack-authors/concepts/">Concepts</a>
   <ul class="ml-2">
+<li data-nav-id="/docs/for-buildpack-authors/concepts/buildpack/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-buildpack-authors/concepts/buildpack/">What is a buildpack?</a>
+</li>
 <li data-nav-id="/docs/for-buildpack-authors/concepts/lifecycle-phases/" class="dd-item depth-2 collapse">
   <a href="/docs/for-buildpack-authors/concepts/lifecycle-phases/">What is the lifecycle?</a>
 </li>
@@ -696,6 +702,12 @@ Most buildpack users won&amp;rsquo;t need this information unless they are writi
 <li data-nav-id="/docs/for-buildpack-authors/concepts/component-buildpack/" class="dd-item depth-2 collapse">
   <a href="/docs/for-buildpack-authors/concepts/component-buildpack/">What is a component buildpack?</a>
 </li>
+<li data-nav-id="/docs/for-buildpack-authors/concepts/composite-buildpack/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-buildpack-authors/concepts/composite-buildpack/">What is a composite buildpack?</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/concepts/extension/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-buildpack-authors/concepts/extension/">What is an image extension?</a>
+</li>
 <li data-nav-id="/docs/for-buildpack-authors/concepts/build-plan/" class="dd-item depth-2 collapse">
   <a href="/docs/for-buildpack-authors/concepts/build-plan/">What is the build plan?</a>
 </li>
@@ -707,6 +719,15 @@ Most buildpack users won&amp;rsquo;t need this information unless they are writi
 <li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/" class="dd-item depth-2 collapse haschildren">
   <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/">Write buildpacks</a>
   <ul class="ml-2">
+<li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/get-started/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/get-started/">Get started</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/use-build-plan/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/use-build-plan/">Use the build plan</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/create-layer/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/create-layer/">Create dependency layers</a>
+</li>
 <li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/specify-launch-processes/" class="dd-item depth-3 collapse">
   <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/specify-launch-processes/">Specify process types</a>
 </li>
@@ -719,9 +740,6 @@ Most buildpack users won&amp;rsquo;t need this information unless they are writi
 <li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/clear-env/" class="dd-item depth-3 collapse">
   <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/clear-env/">Clear the buildpack environment</a>
 </li>
-<li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/create-layer/" class="dd-item depth-3 collapse">
-  <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/create-layer/">Create dependency layers</a>
-</li>
 <li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/create-slice-layers/" class="dd-item depth-3 collapse">
   <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/create-slice-layers/">Create slice layers</a>
 </li>
@@ -733,9 +751,6 @@ Most buildpack users won&amp;rsquo;t need this information unless they are writi
 </li>
 <li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/use-exec.d/" class="dd-item depth-3 collapse">
   <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/use-exec.d/">Use exec.d binaries to configure the application at runtime</a>
-</li>
-<li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/use-build-plan/" class="dd-item depth-3 collapse">
-  <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/use-build-plan/">Use the build plan</a>
 </li>
   </ul>
 </li>
@@ -757,6 +772,9 @@ Most buildpack users won&amp;rsquo;t need this information unless they are writi
   <a href="/docs/for-buildpack-authors/how-to/distribute-buildpacks/publish-buildpack/with-github-actions/">Publishing with Github Actions</a>
 </li>
   </ul>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/how-to/distribute-buildpacks/craft-order/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-buildpack-authors/how-to/distribute-buildpacks/craft-order/">Craft a buildpack order</a>
 </li>
 <li data-nav-id="/docs/for-buildpack-authors/how-to/migrate/" class="dd-item depth-2 collapse haschildren">
   <a href="/docs/for-buildpack-authors/how-to/migrate/">Migrate</a>
@@ -796,14 +814,17 @@ Most buildpack users won&amp;rsquo;t need this information unless they are writi
 <li data-nav-id="/docs/reference/config/" class="dd-item depth-1 haschildren">
   <a href="/docs/reference/config/">Configuration</a>
   <ul class="ml-2">
+<li data-nav-id="/docs/reference/config/project-descriptor/" class="dd-item depth-2 collapse">
+  <a href="/docs/reference/config/project-descriptor/">project.toml</a>
+</li>
 <li data-nav-id="/docs/reference/config/builder-config/" class="dd-item depth-2 collapse">
   <a href="/docs/reference/config/builder-config/">builder.toml</a>
 </li>
+<li data-nav-id="/docs/reference/config/buildpack-config/" class="dd-item depth-2 collapse">
+  <a href="/docs/reference/config/buildpack-config/">buildpack.toml</a>
+</li>
 <li data-nav-id="/docs/reference/config/package-config/" class="dd-item depth-2 collapse">
   <a href="/docs/reference/config/package-config/">package.toml</a>
-</li>
-<li data-nav-id="/docs/reference/config/project-descriptor/" class="dd-item depth-2 collapse">
-  <a href="/docs/reference/config/project-descriptor/">project.toml</a>
 </li>
   </ul>
 </li>
@@ -851,17 +872,15 @@ Most buildpack users won&amp;rsquo;t need this information unless they are writi
           <h1 class="title">Specification</h1>
         </div>
 
-        <p>This section provides an overview of the Cloud Native Buildpack API specification.</p>
-<p>Most buildpack users won&rsquo;t need this information unless they are writing a buildpack or
-a platform that supports buildpacks.</p>
-<p>The Cloud Native Buildpack API specification consists of the following parts:</p>
+        <p>The Cloud Native Buildpacks specification defines the APIs that buildpacks, platforms, and the lifecycle must implement.</p>
+<p>Most buildpack users won&rsquo;t need this information unless they are writing a buildpack or a platform that supports buildpacks.</p>
+<p>The specification consists of the following:</p>
 
         
       
         
           <h2><a href="https://buildpacks.io/docs/reference/spec/buildpack-api/" class="">Buildpack API</a></h2>
-          <p class="m-1">This specification defines the interface between a buildpack and the environment that runs it.
-This API will be used by buildpack authors.</p>
+          <p class="m-1">The Buildpack API specifies the interface between a <a href="/docs/for-platform-operators/concepts/lifecycle/">lifecycle</a> program and one or more <a href="/docs/for-platform-operators/concepts/buildpack/">buildpacks</a>.</p>
 
           
             <div class="text-md-right">

@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="This specification defines the interface between a buildpack and the environment that runs it. This API will be used by buildpack authors.
+<meta name="description" content="The Buildpack API specifies the interface between a lifecycle program and one or more buildpacks.
 "/>
 <link rel="canonical" content="https://buildpacks.io/docs/reference/spec/buildpack-api/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
@@ -23,7 +23,7 @@
 <meta property="og:url" content="https://buildpacks.io/docs/reference/spec/buildpack-api/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-<meta property="og:description" content="This specification defines the interface between a buildpack and the environment that runs it. This API will be used by buildpack authors.
+<meta property="og:description" content="The Buildpack API specifies the interface between a lifecycle program and one or more buildpacks.
 ">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
@@ -301,6 +301,14 @@
 <li data-nav-id="/docs/for-platform-operators/" class="dd-item depth-0 haschildren">
   <a href="/docs/for-platform-operators/">For Platform Operators</a>
   <ul class="ml-2">
+<li data-nav-id="/docs/for-platform-operators/tutorials/" class="dd-item depth-1 haschildren">
+  <a href="/docs/for-platform-operators/tutorials/">Tutorials</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/for-platform-operators/tutorials/lifecycle/" class="dd-item depth-2">
+  <a href="/docs/for-platform-operators/tutorials/lifecycle/">Orchestrate a build with the CNB lifecycle</a>
+</li>
+  </ul>
+</li>
 <li data-nav-id="/docs/for-platform-operators/concepts/" class="dd-item depth-1 haschildren">
   <a href="/docs/for-platform-operators/concepts/">Concepts</a>
   <ul class="ml-2">
@@ -339,16 +347,11 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/for-platform-operators/concepts/dockerfiles/" class="dd-item depth-2 collapse">
-  <a href="/docs/for-platform-operators/concepts/dockerfiles/">What are image extensions?</a>
+<li data-nav-id="/docs/for-platform-operators/concepts/composite-buildpack/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-platform-operators/concepts/composite-buildpack/">What is a composite buildpack?</a>
 </li>
-  </ul>
-</li>
-<li data-nav-id="/docs/for-platform-operators/tutorials/" class="dd-item depth-1 haschildren">
-  <a href="/docs/for-platform-operators/tutorials/">Tutorials</a>
-  <ul class="ml-2">
-<li data-nav-id="/docs/for-platform-operators/tutorials/lifecycle/" class="dd-item depth-2">
-  <a href="/docs/for-platform-operators/tutorials/lifecycle/">Orchestrate a build with the CNB lifecycle</a>
+<li data-nav-id="/docs/for-platform-operators/concepts/extension/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-platform-operators/concepts/extension/">What is an image extension?</a>
 </li>
   </ul>
 </li>
@@ -675,6 +678,9 @@
 <li data-nav-id="/docs/for-buildpack-authors/concepts/" class="dd-item depth-1 haschildren">
   <a href="/docs/for-buildpack-authors/concepts/">Concepts</a>
   <ul class="ml-2">
+<li data-nav-id="/docs/for-buildpack-authors/concepts/buildpack/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-buildpack-authors/concepts/buildpack/">What is a buildpack?</a>
+</li>
 <li data-nav-id="/docs/for-buildpack-authors/concepts/lifecycle-phases/" class="dd-item depth-2 collapse">
   <a href="/docs/for-buildpack-authors/concepts/lifecycle-phases/">What is the lifecycle?</a>
 </li>
@@ -696,6 +702,12 @@
 <li data-nav-id="/docs/for-buildpack-authors/concepts/component-buildpack/" class="dd-item depth-2 collapse">
   <a href="/docs/for-buildpack-authors/concepts/component-buildpack/">What is a component buildpack?</a>
 </li>
+<li data-nav-id="/docs/for-buildpack-authors/concepts/composite-buildpack/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-buildpack-authors/concepts/composite-buildpack/">What is a composite buildpack?</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/concepts/extension/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-buildpack-authors/concepts/extension/">What is an image extension?</a>
+</li>
 <li data-nav-id="/docs/for-buildpack-authors/concepts/build-plan/" class="dd-item depth-2 collapse">
   <a href="/docs/for-buildpack-authors/concepts/build-plan/">What is the build plan?</a>
 </li>
@@ -707,6 +719,15 @@
 <li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/" class="dd-item depth-2 collapse haschildren">
   <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/">Write buildpacks</a>
   <ul class="ml-2">
+<li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/get-started/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/get-started/">Get started</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/use-build-plan/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/use-build-plan/">Use the build plan</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/create-layer/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/create-layer/">Create dependency layers</a>
+</li>
 <li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/specify-launch-processes/" class="dd-item depth-3 collapse">
   <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/specify-launch-processes/">Specify process types</a>
 </li>
@@ -719,9 +740,6 @@
 <li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/clear-env/" class="dd-item depth-3 collapse">
   <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/clear-env/">Clear the buildpack environment</a>
 </li>
-<li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/create-layer/" class="dd-item depth-3 collapse">
-  <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/create-layer/">Create dependency layers</a>
-</li>
 <li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/create-slice-layers/" class="dd-item depth-3 collapse">
   <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/create-slice-layers/">Create slice layers</a>
 </li>
@@ -733,9 +751,6 @@
 </li>
 <li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/use-exec.d/" class="dd-item depth-3 collapse">
   <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/use-exec.d/">Use exec.d binaries to configure the application at runtime</a>
-</li>
-<li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/use-build-plan/" class="dd-item depth-3 collapse">
-  <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/use-build-plan/">Use the build plan</a>
 </li>
   </ul>
 </li>
@@ -757,6 +772,9 @@
   <a href="/docs/for-buildpack-authors/how-to/distribute-buildpacks/publish-buildpack/with-github-actions/">Publishing with Github Actions</a>
 </li>
   </ul>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/how-to/distribute-buildpacks/craft-order/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-buildpack-authors/how-to/distribute-buildpacks/craft-order/">Craft a buildpack order</a>
 </li>
 <li data-nav-id="/docs/for-buildpack-authors/how-to/migrate/" class="dd-item depth-2 collapse haschildren">
   <a href="/docs/for-buildpack-authors/how-to/migrate/">Migrate</a>
@@ -796,14 +814,17 @@
 <li data-nav-id="/docs/reference/config/" class="dd-item depth-1 haschildren">
   <a href="/docs/reference/config/">Configuration</a>
   <ul class="ml-2">
+<li data-nav-id="/docs/reference/config/project-descriptor/" class="dd-item depth-2 collapse">
+  <a href="/docs/reference/config/project-descriptor/">project.toml</a>
+</li>
 <li data-nav-id="/docs/reference/config/builder-config/" class="dd-item depth-2 collapse">
   <a href="/docs/reference/config/builder-config/">builder.toml</a>
 </li>
+<li data-nav-id="/docs/reference/config/buildpack-config/" class="dd-item depth-2 collapse">
+  <a href="/docs/reference/config/buildpack-config/">buildpack.toml</a>
+</li>
 <li data-nav-id="/docs/reference/config/package-config/" class="dd-item depth-2 collapse">
   <a href="/docs/reference/config/package-config/">package.toml</a>
-</li>
-<li data-nav-id="/docs/reference/config/project-descriptor/" class="dd-item depth-2 collapse">
-  <a href="/docs/reference/config/project-descriptor/">project.toml</a>
 </li>
   </ul>
 </li>
@@ -851,424 +872,17 @@
           <h1 class="title">Buildpack API</h1>
         </div>
 
-        <p>This specification defines the interface between a buildpack and the environment that runs it.
-This API will be used by buildpack authors.</p>
-<p>A buildpack must contain three files:</p>
-<ul>
-<li><code>buildpack.toml</code></li>
-<li><code>bin/detect</code></li>
-<li><code>bin/build</code></li>
-</ul>
-<p>The two files in <code>bin/</code> must be executable. They can be shell scripts written in a language like Bash or they
-can be executables compiled from a language like Go.</p>
-<h2 id="bindetect"><code>bin/detect</code></h2>
-<h3 id="usage">Usage</h3>
-<pre tabindex="0"><code>bin/detect
-</code></pre><h3 id="summary">Summary</h3>
-<p>This entrypoint is used to determine if a buildpack should
-run against a given codebase. It will often check for the existence of a particular
-file or some configuration indicating what kind of application has been provided.
-Two environment variables identify important file system paths:</p>
-<ul>
-<li><code>CNB_PLATFORM_DIR</code> - a directory containing platform provided configuration, such as environment variables.</li>
-<li><code>CNB_BUILD_PLAN_PATH</code> - a path to a file containing the <a href="#build-plan">Build Plan</a>.</li>
-</ul>
-<p>In addition, the working directory is defined as the location of the codebase
-the buildpack will execute against.</p>
-<p>The executable must return an exit code of <code>0</code> if the codebase can be serviced by this buildpack, and <code>100</code> if it cannot.
-Other exit codes indicate an error during detection.</p>
-<h3 id="example">Example</h3>
-<p>This is a simple example of a buildpack that detects a Python application by
-checking for the presence of a <code>requirements.txt</code> file:</p>
-<pre tabindex="0"><code>#!/bin/sh
-
-if [ -f requirements.txt ]; then
-  echo &#34;Python Buildpack&#34;
-  exit 0
-else
-  exit 100
-fi
-</code></pre><h2 id="binbuild"><code>bin/build</code></h2>
-<h3 id="usage-1">Usage</h3>
-<pre tabindex="0"><code>bin/build
-</code></pre><p>This entrypoint transforms a codebase.
-It will often resolve dependencies, install binary packages, and compile code.
-Three environment variables identify important file system paths:</p>
-<ul>
-<li><code>CNB_LAYERS_DIR</code> - a directory that may contain subdirectories representing each layer created by the buildpack in the final image or build cache.</li>
-<li><code>CNB_PLATFORM_DIR</code> - a directory containing platform provided configuration, such as environment variables.</li>
-<li><code>CNB_BP_PLAN_PATH</code> - a path to a file containing the <a href="#build-plan">Build Plan</a>.</li>
-</ul>
-<p>In addition, the working directory is defined as the location of the codebase
-this buildpack will execute against.</p>
-<p>All changes to the codebase in the working directory will be included in the final
-image, along with any launch layers created in the <code>CNB_LAYERS_DIR</code>.</p>
-<h4 id="layers">Layers</h4>
-<p>Each directory created by the buildpack under the <code>CNB_LAYERS_DIR</code> can be used for any
-of the following purposes:</p>
-<ul>
-<li>Launch - the directory will be included in the run image as a single layer</li>
-<li>Cache - the directory will be included in the cache</li>
-<li>Build - the directory will be accessible by subsequent buildpacks</li>
-</ul>
-<p>A buildpack defines how a layer will by used by creating a <code>&lt;layer&gt;.toml</code> with
-a name matching the directory it describes in the <code>CNB_LAYERS_DIR</code>. For example, a
-buildpack might create a <code>$CNB_LAYERS_DIR/python</code> directory and a <code>$CNB_LAYERS_DIR/python.toml</code>
-with the following contents:</p>
-<pre tabindex="0"><code>launch = true
-cache = true
-build = true
-</code></pre><p>In this example, the <code>python</code> directory will be included in the run image,
-cached for future builds, and will be accessible to subsequent buildpacks.</p>
-<h3 id="example-1">Example</h3>
-<p>This is a simple example of a buildpack that runs Python&rsquo;s <code>pip</code> package manager
-to resolve dependencies:</p>
-<pre tabindex="0"><code>#!/bin/sh
-
-PIP_LAYER=&#34;$CNB_LAYERS_DIR/pip&#34;
-mkdir -p &#34;$PIP_LAYER/modules&#34; &#34;$PIP_LAYER/env&#34;
-
-pip install -r requirements.txt -t &#34;$PIP_LAYER/modules&#34; \
-  --install-option=&#34;--install-scripts=$PIP_LAYER/bin&#34; \
-  --exists-action=w --disable-pip-version-check --no-cache-dir
-
-echo &#34;launch = true&#34; &gt; &#34;$PIP_LAYER.toml&#34;
-</code></pre><h2 id="buildpacktoml"><code>buildpack.toml</code></h2>
-<p>A buildpack must contain a <code>buildpack.toml</code> file in its root directory.</p>
-<h3 id="example-2">Example</h3>
-<pre tabindex="0"><code>api = &#34;0.10&#34;
-
-[buildpack]
-id = &#34;example.com/python&#34;
-version = &#34;1.0&#34;
-
-# Targets the buildpack will work with
-[[targets]]
-os = &#34;linux&#34;
-
-# Stacks (deprecated) the buildpack will work with
-[[stacks]]
-id = &#34;io.buildpacks.stacks.jammy&#34;
-</code></pre><h3 id="schema">Schema</h3>
-<p>The schema is as follows:</p>
-<ul>
-<li>
-<p><strong><code>api</code></strong> <em>(string, required, current: <code>0.10</code>)</em><br>
-The Buildpack API version the buildpack adheres to. Used to ensure <a href="#api-compatibility">compatibility</a> against
-the <a href="/docs/for-platform-operators/concepts/lifecycle/">lifecycle</a>.</p>
-<blockquote>
-<p>Not to be confused with Cloud Foundry or Heroku buildpack versions. This version pertains to the interface
-between the <a href="/docs/for-platform-operators/concepts/buildpack/">buildpack</a> and the <a href="/docs/for-platform-operators/concepts/lifecycle/">lifecycle</a> of Cloud Native Buildpacks.</p>
-</blockquote>
-</li>
-<li>
-<p><strong><code>buildpack</code></strong> <em>(required)</em><br>
-Information about the buildpack.</p>
-<ul>
-<li>
-<p><strong><code>id</code></strong> <em>(string, required)</em><br>
-A globally unique identifier.</p>
-</li>
-<li>
-<p><strong><code>version</code></strong> <em>(string, required)</em><br>
-The version of the buildpack.</p>
-</li>
-<li>
-<p><strong><code>name</code></strong> <em>(string, required)</em><br>
-Human readable name.</p>
-</li>
-<li>
-<p><strong><code>clear-env</code></strong> <em>(boolean, optional, default: <code>false</code>)</em><br>
-Clears user-defined environment variables when <code>true</code> on executions of <code>bin/detect</code> and <code>bin/build</code>.</p>
-</li>
-<li>
-<p><strong><code>homepage</code></strong> <em>(string, optional)</em><br>
-Buildpack homepage.</p>
-</li>
-<li>
-<p><strong><code>description</code></strong> <em>(string, optional)</em><br>
-A short description of the buildpack.</p>
-</li>
-<li>
-<p><strong><code>keywords</code></strong> <em>(string(s), optional)</em><br>
-Keywords to help locate the buildpack. These can be useful if publishing to the <a href="https://registry.buildpacks.io/">Buildpack Registry</a>.</p>
-</li>
-<li>
-<p><strong><code>sbom-formats</code></strong> <em>(string(s), optional)</em><br>
-SBOM formats output by the buildpack. Supported values are the following media types: <code>application/vnd.cyclonedx+json</code>, <code>application/spdx+json</code>, and <code>application/vnd.syft+json</code>.</p>
-</li>
-<li>
-<p><strong><code>licenses</code></strong> <em>(list, optional)</em><br>
-A list of licenses pertaining to the buildpack.</p>
-<ul>
-<li>
-<p><strong><code>type</code></strong> <em>(string, optional)</em><br>
-The type of the license. This may use the <a href="https://spdx.org/spdx-specification-21-web-version">SPDX 2.1 license expression</a>, but it is not limited to identifiers in the <a href="https://spdx.org/licenses/">SPDX Licenses List</a>. If the buildpack is using a nonstandard license, then the <code>uri</code> key may be specified in lieu of or in addition to <code>type</code> to point to the license.</p>
-</li>
-<li>
-<p><strong><code>uri</code></strong> <em>(string, optional)</em><br>
-A URL or path to the license.</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p><strong><code>targets</code></strong> <em>(list, optional)</em><br>
-A list of targets supported by the buildpack.
-When no targets are specified, the <code>os</code>/<code>arch</code> will be inferred from the contents of the <code>./bin</code> directory
-(<code>./bin/build</code> implies <code>linux</code>/<code>amd64</code> and <code>./bin/build.bat</code> implies <code>windows</code>/<code>amd64</code>).
-For each target, all fields are optional (though at least one should be provided).
-<em>Cannot be used in conjunction with <code>order</code> list.</em></p>
-<ul>
-<li>
-<p><strong><code>os</code></strong> <em>(string, optional)</em><br>
-The supported operating system name.</p>
-</li>
-<li>
-<p><strong><code>arch</code></strong> <em>(string, optional)</em><br>
-The supported architecture.</p>
-</li>
-<li>
-<p><strong><code>variant</code></strong> <em>(string, optional)</em><br>
-The supported architecture variant.</p>
-</li>
-<li>
-<p><strong><code>targets.distros</code></strong> <em>(optional)</em><br>
-A list of supported distributions for the given operating system, architecture, and architecture variant.</p>
-<ul>
-<li>
-<p><strong><code>name</code></strong> <em>(string, optional)</em><br>
-The supported operating system distribution name.</p>
-</li>
-<li>
-<p><strong><code>version</code></strong> <em>(string, optional)</em><br>
-The supported operating system distribution version.</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p><strong><code>stacks</code></strong> <em>(list, deprecated, optional)</em><br>
-A list of stacks supported by the buildpack.
-<em>Cannot be used in conjunction with <code>order</code> list.</em></p>
-<ul>
-<li>
-<p><strong><code>id</code></strong> <em>(string, required)</em><br>
-The id of the supported stack.</p>
-</li>
-<li>
-<p><strong><code>mixins</code></strong> <em>(string list, required)</em><br>
-A list of mixins required on the stack images.</p>
-</li>
-</ul>
-</li>
-<li>
-<p><strong><code>order</code></strong> <em>(list, optional)</em><br>
-A list of buildpack groups for the purpose of creating a <a href="/docs/for-platform-operators/concepts/buildpack/#meta-buildpack">meta-buildpack</a>. This list determines the
-order in which groups of buildpacks will be tested during detection. <em>If omitted, <code>targets</code> or <code>stacks</code> list must be present.
-Cannot be used in conjunction with <code>targets</code> or <code>stacks</code> list.</em></p>
-<ul>
-<li>
-<p><strong><code>group</code></strong> <em>(list, required)</em><br>
-A list of buildpack references.</p>
-<ul>
-<li>
-<p><strong><code>id</code></strong> <em>(string, required)</em><br>
-The identifier of a buildpack being referred to.
-Buildpacks with the same ID may appear in multiple groups at once but never in the same group.</p>
-</li>
-<li>
-<p><strong><code>version</code></strong> <em>(string, required)</em><br>
-The version of the buildpack being referred to.</p>
-</li>
-<li>
-<p><strong><code>optional</code></strong> <em>(boolean, optional, default: <code>false</code>)</em><br>
-Whether this buildpack is optional during detection.</p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p><strong><code>metadata</code></strong> <em>(any, optional)</em><br>
-Arbitrary data for buildpack.</p>
-</li>
-</ul>
-<h2 id="build-plan">Build Plan</h2>
-<p>The <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#build-plan-toml">Build Plan</a> is a document the buildpacks can use to pass information between the <a href="#bindetect">detect</a> and <a href="#bindetect">build</a> phases. The build plan is passed (by the lifecycle) as a parameter to the <code>detect</code> and <code>build</code> binaries of the buildpack.</p>
-<ul>
-<li>During the <code>detect</code> phase, the buildpack(s) may write something it <code>requires</code> or <code>provides</code> (or both) into the Build Plan.</li>
-<li>During the <code>build</code> phase, the buildpack(s) may read the Buildpack Plan (a condensed version of the Build Plan, composed by the lifecycle) to determine what it should do, and refine the Buildpack Plan with more exact metadata (eg: what version dependency it requires).</li>
-</ul>
-<p>A buildpack can <code>require</code> or <code>provide</code> multiple dependencies, and even multiple groupings of dependencies (using <code>or</code> lists). Additionally, multiple buildpacks may <code>require</code> or <code>provide</code> the same dependency.</p>
-<p>The lifecycle uses the Build Plan as one element in deciding whether or not a particular list of buildpacks is appropriate, by seeing whether all dependencies required can be provided by that list.</p>
-<h3 id="example-3">Example</h3>
-<p>Let&rsquo;s walk through some possible cases a <code>node-engine</code> buildpack may consider:</p>
-<ol>
-<li>Nothing in the app explicitly calls out that it is needed</li>
-<li>It is explicitly referred to in some configuration file</li>
-</ol>
-<p>We will also consider what a <code>NPM</code> and a <code>JVM</code> buildpack may do.</p>
-<h4 id="1-no-explicit-request">1. No Explicit Request</h4>
-<p>A <code>node-engine</code> buildpack is always happy to <code>provide</code> the <code>node</code> dependency. The build plan it will write may look something like:</p>
-<pre tabindex="0"><code>[[provides]]
-name = &#34;node&#34;
-</code></pre><blockquote>
-<p><strong>NOTE:</strong> If this was the only buildpack running, this would fail the <code>detect</code> phase. In order to pass, every <code>provides</code> must be matched up with a <code>requires</code>, whether in the same buildpack or in another buildpack. See the <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#phase-1-detection">spec</a> for particulars on how ordering buildpacks can adjust detection results.</p>
-</blockquote>
-<h4 id="2-one-version-requested">2. One Version Requested</h4>
-<p>During the <code>detect</code> phase, the <code>node-engine</code> buildpack sees in one configuration file (e.g. a <code>.nvmrc</code> file in the app directory) that <code>node v10.x</code> is explicitly requested by the application. Seeing that, it may write the below text to the build plan:</p>
-<pre tabindex="0"><code>[[provides]]
-name = &#34;node&#34;
-
-[[requires]]
-name = &#34;node&#34;
-version = &#34;10.x&#34;
-
-[requires.metadata]
-version-source = &#34;.nvmrc&#34;
-</code></pre><p>As always, the buildpack <code>provides</code> <code>node</code>. In this particular case, a version of <code>node</code> (<code>10.x</code>) is being requested in a configuration file (<code>.nvmrc</code>). The buildpack chooses to add an additional piece of metadata (<code>version-source</code>), so that it can understand where that request came from.</p>
-<h4 id="npm-buildpack">NPM Buildpack</h4>
-<p><code>NPM</code> is the default package manager for <code>node</code>. A NPM Buildpack may ensure that all the packages for the application are present (by running <code>npm install</code>), and perhaps cache those packages as well, to optimize future builds.</p>
-<p>NPM is typically distributed together with node. As a result, a NPM buildpack may require <code>node</code>, but not want to <code>provide</code> it, trusting that the <code>node-engine</code> buildpack will be in charge of <code>providing</code> <code>node</code>.</p>
-<p>The NPM buildpack could write the following to the build plan, if the buildpack sees that <code>npm</code> is necessary (e.g., it sees a <code>package.json</code> file in the app directory):</p>
-<pre tabindex="0"><code>[[requires]]
-name = &#34;node&#34;
-</code></pre><p>If, looking in the <code>package.json</code> file, the NPM buildpack sees a specific version of <code>node</code> requested in the <a href="https://docs.npmjs.com/files/package.json#engines">engines</a> field (e.g. <code>14.1</code>), it may write the following to the build plan:</p>
-<pre tabindex="0"><code>[[requires]]
-name = &#34;node&#34;
-version = &#34;14.1&#34;
-
-[requires.metadata]
-version-source = &#34;package.json&#34;
-</code></pre><blockquote>
-<p><strong>NOTE:</strong> As above, if this was the only buildpack running, this would fail the <code>detect</code> phase. In order to pass, every <code>provides</code> must be matched up with a <code>requires</code>, whether in the same buildpack or in another buildpack. See the <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#phase-1-detection">spec</a> for particulars on how ordering buildpacks can adjust detection results.</p>
-</blockquote>
-<p>However, if the NPM Buildpack was run together with the Node Engine buildpack (which <code>provides</code> <code>node</code>), the lifecycle will see that all requirements are fulfilled, and select that group as the correct set of buildpacks.</p>
-<h4 id="possible-jvm-buildpack">Possible JVM Buildpack</h4>
-<p>Java is distributed in two formats - the <code>jdk</code> (Java Development Kit), which allows for compilation and running of Java programs, and the <code>jre</code> (Java Runtime Environment,  which allows for running compiled Java programs). A very naive implementation of the buildpack may have it write several <code>provides</code> options to the build plan, detailing everything that it can provide, while later buildpacks would figure out based on the application which options it requires, and would <code>require</code> those. In this particular case, we can use the <code>or</code> operator to present different possible build plans the buildpack can follow:</p>
-<pre tabindex="0"><code># option 1 (`jre` and `jdk`)
-[[provides]]
-name = &#34;jre&#34;
-
-[[provides]]
-name = &#34;jdk&#34;
-
-# option 2 (or just `jdk`)
-[[or]]
-[[or.provides]]
-name = &#34;jdk&#34;
-
-# option 3 (or just `jre`)
-[[or]]
-[[or.provides]]
-name = &#34;jre&#34;
-</code></pre><p>The buildpack gives three options to the lifecycle:</p>
-<ul>
-<li>It can provide a standalone <code>jre</code></li>
-<li>It can provide a standalone <code>jdk</code></li>
-<li>It can provide both the <code>jdk</code> and <code>jre</code></li>
-</ul>
-<p>As with the other buildpacks, this alone will not be sufficient for the lifecycle. However, other buildpacks that follow may <code>require</code> certain things. For example, another buildpack may look into the application and, seeing that it is a Java executable, <code>require</code> the <code>jre</code> in order to run it. When the lifecycle analyzes the results of the detect phase, it will see that there is a buildpack which provides <code>jre</code>, and a buildpack that requires <code>jre</code>, and will therefore conclude that those options represent a valid set of buildpacks.</p>
-<h3 id="schema-1">Schema</h3>
-<ul>
-<li>
-<p><strong><code>provides</code></strong> <em>(list, optional)</em><br>
-A list of dependencies which the buildpack provides.</p>
-<ul>
-<li><strong><code>name</code></strong> <em>(string, required)</em><br>
-The name of the provided dependency.</li>
-</ul>
-</li>
-<li>
-<p><strong><code>requires</code></strong> <em>(list, optional)</em><br>
-A list of dependencies which the buildpack requires.</p>
-<ul>
-<li>
-<p><strong><code>name</code></strong> <em>(string, required)</em><br>
-The name of the required dependency.</p>
-</li>
-<li>
-<p><strong><code>version</code></strong> <em>(string, optional)</em><br>
-The version of the dependency required.</p>
-</li>
-<li>
-<p><strong><code>metadata</code></strong> <em>(object, optional)</em><br>
-Any additional key-value metadata you wish to store.</p>
-</li>
-</ul>
-</li>
-<li>
-<p><strong><code>or</code></strong> <em>(array, optional)</em><br>
-A list of alternate requirements which the buildpack provides/requires. Each <code>or</code> array must contain a valid Build Plan (with <code>provides</code> and <code>requires</code>)</p>
-</li>
-</ul>
-<p>For more information, see the <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#buildpack-plan-toml">Build Plan</a> section of the spec.</p>
+        <p>The Buildpack API specifies the interface between a <a href="/docs/for-platform-operators/concepts/lifecycle/">lifecycle</a> program and one or more <a href="/docs/for-platform-operators/concepts/buildpack/">buildpacks</a>.</p>
 <h2 id="api-compatibility">API Compatibility</h2>
-<p><strong>Given</strong> the buildpack and lifecycle both declare a <strong>Buildpack API version</strong> in format:<br>
-<code>&lt;major&gt;.&lt;minor&gt;</code></p>
-<p><strong>Then</strong> a buildpack and a lifecycle are considered compatible if all the following conditions are true:</p>
-<ul>
-<li>If versions are pre-release, where <code>&lt;major&gt;</code> is <code>0</code>, then <code>&lt;minor&gt;</code>s must match.</li>
-<li>If versions are stable, where <code>&lt;major&gt;</code> is greater than <code>0</code>, then <code>&lt;minor&gt;</code> of the buildpack must be less than
-or equal to that of the lifecycle.</li>
-<li><code>&lt;major&gt;</code>s must always match.</li>
-</ul>
-<br />
-For example,
-<table>
-<thead>
-<tr>
-<th>Buildpack <em>implements</em> Buildpack API</th>
-<th>Lifecycle <em>implements</em> Buildpack API</th>
-<th>Compatible?</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>0.2</code></td>
-<td><code>0.2</code></td>
-<td><span class="text-success">yes</span></td>
-</tr>
-<tr>
-<td><code>1.1</code></td>
-<td><code>1.1</code></td>
-<td><span class="text-success">yes</span></td>
-</tr>
-<tr>
-<td><code>1.2</code></td>
-<td><code>1.3</code></td>
-<td><span class="text-success">yes</span></td>
-</tr>
-<tr>
-<td><code>0.2</code></td>
-<td><code>0.3</code></td>
-<td><span class="text-muted">no</span></td>
-</tr>
-<tr>
-<td><code>0.3</code></td>
-<td><code>0.2</code></td>
-<td><span class="text-muted">no</span></td>
-</tr>
-<tr>
-<td><code>1.3</code></td>
-<td><code>1.2</code></td>
-<td><span class="text-muted">no</span></td>
-</tr>
-<tr>
-<td><code>1.3</code></td>
-<td><code>2.3</code></td>
-<td><span class="text-muted">no</span></td>
-</tr>
-<tr>
-<td><code>2.3</code></td>
-<td><code>1.3</code></td>
-<td><span class="text-muted">no</span></td>
-</tr>
-</tbody>
-</table>
+<p>A <a href="/docs/for-platform-operators/concepts/buildpack/">buildpack</a> only ever implements one Buildpack API version at a time.
+The implemented Buildpack API version can be found in the <code>buildpack.toml</code> file in the buildpack&rsquo;s root directory,
+or in a label on a buildpack package.</p>
+<p>A <a href="/docs/for-platform-operators/concepts/lifecycle/">lifecycle</a> may (and usually does) support more than one Buildpack API version at a time.
+The supported Buildpack API version(s) can be found in the <code>lifecycle.toml</code> file in a lifecycle tarball,
+or in a label on the <a href="https://hub.docker.com/r/buildpacksio/lifecycle">lifecycle image</a>.</p>
+<p>A lifecycle &ldquo;supports&rdquo; a buildpack if they both declare support for the same Buildpack API version in format: <code>&lt;major&gt;.&lt;minor&gt;</code>.</p>
+<p>Two buildpacks of different Buildpack API versions can participate in the same build,
+provided they are both supported by the lifecycle.</p>
 <h2 id="further-reading">Further Reading</h2>
 <p>You can read the complete <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md">Buildpack API specification on Github</a>.</p>
 

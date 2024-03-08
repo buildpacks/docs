@@ -50,6 +50,13 @@
       <description>Cloud Native Buildpacks provide a unique solution to the image build process. See how it compares to the alternatives.</description>
     </item>
     <item>
+      <title>Get started</title>
+      <link>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/get-started/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/get-started/</guid>
+      <description>&lt;p&gt;To write a buildpack, we follow the &lt;a href=&#34;https://github.com/buildpacks/spec/blob/main/buildpack.md&#34;&gt;Buildpack Specification&lt;/a&gt;,&#xA;which defines the contract between buildpacks and the lifecycle.&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>Guidance for extension authors</title>
       <link>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-extensions/guidance/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -69,6 +76,13 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-platform-operators/how-to/migrate/platform-api-0.7-0.8/</guid>
       <description>This guide is most relevant to platform operators.&#xA;See the spec release for Platform API 0.8 for the full list of changes and further details.&#xA;Platform Operator New standardized SBOM format Buildpacks implementing Buildpack API 0.7+ may output write Software Bill of Materials (SBOM) files describing build- or run-time dependencies. These files must use the application/vnd.cyclonedx+json, application/spdx+json, or application/vnd.syft+json media types (a buildpack may output SBOM files in multiple formats). Files may be written to the following locations:</description>
+    </item>
+    <item>
+      <title>project.toml</title>
+      <link>https://buildpacks.io/docs/reference/config/project-descriptor/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/reference/config/project-descriptor/</guid>
+      <description>&lt;p&gt;The project descriptor file allows app developers to provide configuration for apps, services, functions and buildpacks.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Run the application</title>
@@ -99,25 +113,25 @@
       <description>No builder author can be truly omniscient, and whoever created yours surely was no exception!</description>
     </item>
     <item>
-      <title>Specify process types</title>
-      <link>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/specify-launch-processes/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/specify-launch-processes/</guid>
-      <description>&lt;p&gt;One of the benefits of buildpacks is that they are multi-process - an image can have multiple entrypoints for each operational mode.&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>What is a buildpack?</title>
       <link>https://buildpacks.io/docs/for-app-developers/concepts/buildpack/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-app-developers/concepts/buildpack/</guid>
-      <description>&lt;p&gt;A &lt;code&gt;buildpack&lt;/code&gt; is software that examines your source code and determines the best way to build it.&lt;/p&gt;</description>
+      <description>&lt;p&gt;A &lt;code&gt;buildpack&lt;/code&gt; is software that transforms application source code into runnable artifacts&#xA;by analyzing the code and determining the best way to build it.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>What is a buildpack?</title>
+      <link>https://buildpacks.io/docs/for-buildpack-authors/concepts/buildpack/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-buildpack-authors/concepts/buildpack/</guid>
+      <description>&lt;p&gt;A &lt;code&gt;buildpack&lt;/code&gt; is software that transforms application source code into runnable artifacts&#xA;by analyzing the code and determining the best way to build it.&lt;/p&gt;</description>
     </item>
     <item>
       <title>What is a buildpack?</title>
       <link>https://buildpacks.io/docs/for-platform-operators/concepts/buildpack/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-platform-operators/concepts/buildpack/</guid>
-      <description>&lt;p&gt;A &lt;code&gt;buildpack&lt;/code&gt; is software that examines your source code and determines the best way to build it.&lt;/p&gt;</description>
+      <description>&lt;p&gt;A &lt;code&gt;buildpack&lt;/code&gt; is software that transforms application source code into runnable artifacts&#xA;by analyzing the code and determining the best way to build it.&lt;/p&gt;</description>
     </item>
     <item>
       <title>What is the lifecycle?</title>
@@ -139,6 +153,13 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-app-developers/how-to/special-cases/build-for-windows/</guid>
       <description>EXPERIMENTAL Windows support is experimental!&#xA;Enable experimental mode by running: pack config experimental true&#xA;Before You Start Recommended reading Before trying out builds for Windows images, we recommend following the Linux image tutorial under Getting Started. Don&amp;rsquo;t worry, you can still run it on a Windows OS if you need to &amp;ndash; just make sure to enable Linux containers for Docker first.&#xA;When you&amp;rsquo;re done, head back here.&#xA;Enable Windows container mode In order to produce Windows container images, ensure Windows container mode is enabled in your Docker settings (available only in Docker for Windows).</description>
+    </item>
+    <item>
+      <title>builder.toml</title>
+      <link>https://buildpacks.io/docs/reference/config/builder-config/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/reference/config/builder-config/</guid>
+      <description>&lt;p&gt;The builder config file is used for creating &lt;a href=&#34;https://buildpacks.io/docs/for-platform-operators/concepts/builder&#34;&gt;builders&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Buildpack API 0.5 -&gt; 0.6</title>
@@ -204,13 +225,6 @@
       <description>This guide is most relevant to platform operators.&#xA;See the spec release for Platform API 0.9 for the full list of changes and further details.&#xA;Platform Operator Legacy BOM information removed from io.buildpacks.build.metadata label Legacy BOM information is removed from the io.buildpacks.build.metadata label and &amp;lt;layers&amp;gt;/config/metadata.toml. Buildpacks may still output BOM information in the legacy format, and it can now be found in &amp;lt;layers&amp;gt;/sbom/launch/sbom.legacy.json (for runtime dependencies) or &amp;lt;layers&amp;gt;/sbom/build/sbom.legacy.json (for build time dependencies).</description>
     </item>
     <item>
-      <title>Provide a Software Bill-of-Materials</title>
-      <link>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/add-sbom/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/add-sbom/</guid>
-      <description>&lt;p&gt;Buildpacks can provide a &lt;a href=&#34;https://en.wikipedia.org/wiki/Software_bill_of_materials&#34;&gt;Software &lt;code&gt;Bill-of-Materials&lt;/code&gt;&lt;/a&gt; (SBOM)&#xA;to describe the dependencies that they provide.&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>Run image</title>
       <link>https://buildpacks.io/docs/for-app-developers/concepts/base-images/run/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -223,6 +237,13 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-buildpack/02_building-blocks-cnb/</guid>
       <description>Now we will set up the buildpack scaffolding.&#xA;Let&amp;rsquo;s create the directory where your buildpack will live:&#xA;Using the Pack CLI The buildpack new &amp;lt;id&amp;gt; command will create a directory named for the buildpack ID.&#xA;Example:&#xA;pack buildpack new examples/node-js \ --api 0.10 \ --path node-js-buildpack \ --version 0.0.1 \ --stacks io.buildpacks.samples.stacks.jammy This command will create node-js-buildpack directory which contains buildpack.toml, bin/build, bin/detect files.&#xA;Additional Parameters -a, --api Buildpack API compatibility of the generated buildpack -h, --help Help for &amp;rsquo;new&#39; --path the location on the filesystem to generate the artifacts --stacks Stacks (deprecated) the buildpack will work with -V, --version the version of the buildpack in buildpack.</description>
+    </item>
+    <item>
+      <title>Use the build plan</title>
+      <link>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/use-build-plan/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/use-build-plan/</guid>
+      <description>&lt;p&gt;The &lt;a href=&#34;https://github.com/buildpacks/spec/blob/main/buildpack.md#build-plan-toml&#34;&gt;Build Plan&lt;/a&gt; is a document that buildpacks can use to pass information between the &lt;code&gt;detect&lt;/code&gt; and &lt;code&gt;build&lt;/code&gt; phases, and between each other.&#xA;The build plan is passed (by the lifecycle) as a parameter to the &lt;code&gt;detect&lt;/code&gt; and &lt;code&gt;build&lt;/code&gt; binaries of each buildpack.&lt;/p&gt;</description>
     </item>
     <item>
       <title>What is a builder?</title>
@@ -260,11 +281,25 @@
       <description>This guide is most relevant to buildpack authors.&#xA;See the spec release for Buildpack API 0.7 for the full list of changes and further details.&#xA;New standardized SBOM format Buildpacks may write Software Bill of Materials (SBOM) files describing build- or run-time dependencies. These files must use the application/vnd.cyclonedx+json, application/spdx+json, or application/vnd.syft+json media types (a buildpack may output SBOM files in multiple formats). Files may be written to the following locations:</description>
     </item>
     <item>
+      <title>buildpack.toml</title>
+      <link>https://buildpacks.io/docs/reference/config/buildpack-config/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/reference/config/buildpack-config/</guid>
+      <description>&lt;p&gt;The buildpack configuration file is a necessary component of a &lt;a href=&#34;https://buildpacks.io/docs/for-buildpack-authors/concepts/buildpack&#34;&gt;buildpack&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>CircleCI</title>
       <link>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/circleci/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/circleci/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://circleci.com/&#34;&gt;CircleCI&lt;/a&gt; is a continuous integration and delivery platform.&lt;/p&gt;&#xA;&lt;p&gt;The CNB project maintains an integration, called an &lt;a href=&#34;https://circleci.com/orbs/&#34;&gt;orb&lt;/a&gt;,&#xA;which allows users to run &lt;a href=&#34;https://buildpacks.io/docs/install-pack&#34;&gt;pack&lt;/a&gt; commands inside their pipelines.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Create dependency layers</title>
+      <link>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/create-layer/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/create-layer/</guid>
+      <description>&lt;p&gt;Each directory created by the buildpack under the &lt;code&gt;CNB_LAYERS_DIR&lt;/code&gt; can be used as a layer in the final app image or build cache.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Declare source metadata</title>
@@ -386,6 +421,20 @@
       <description>&lt;p&gt;&lt;a href=&#34;https://about.gitlab.com/&#34;&gt;Gitlab&lt;/a&gt; is a web-based DevOps platform. The &lt;a href=&#34;https://docs.gitlab.com/ee/topics/autodevops/&#34;&gt;Auto DevOps&lt;/a&gt; feature uses &lt;a href=&#34;https://buildpacks.io/docs/install-pack&#34;&gt;&lt;code&gt;pack&lt;/code&gt;&lt;/a&gt;&#xA;to build applications prior to deploying them.&lt;/p&gt;</description>
     </item>
     <item>
+      <title>Package a buildpack or extension</title>
+      <link>https://buildpacks.io/docs/for-buildpack-authors/how-to/distribute-buildpacks/package-buildpack/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-buildpack-authors/how-to/distribute-buildpacks/package-buildpack/</guid>
+      <description>Learn how to package your buildpack or extension for distribution.</description>
+    </item>
+    <item>
+      <title>package.toml</title>
+      <link>https://buildpacks.io/docs/reference/config/package-config/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/reference/config/package-config/</guid>
+      <description>&lt;p&gt;The package config file is used for packaging buildpacks for distribution as OCI images or tar files.&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>Platform API 0.10 -&gt; 0.11</title>
       <link>https://buildpacks.io/docs/for-platform-operators/how-to/migrate/platform-api-0.10-0.11/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -398,6 +447,13 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-platform-operators/how-to/migrate/deprecated/platform-api-0.6-0.7/</guid>
       <description>This guide is most relevant to platform operators.&#xA;See the spec release for Platform API 0.7 for the full list of changes and further details.&#xA;Platform Operator Run the analyzer before the detector The order of the lifecycle phases has been changed starting from Platform API 0.7.&#xA;The order before Platform API 0.7 was: detect, analyze, restore, build, and export.&#xA;The order starting from Platform API 0.7 is: analyze, detect, restore, build, and export.</description>
+    </item>
+    <item>
+      <title>Specify process types</title>
+      <link>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/specify-launch-processes/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/specify-launch-processes/</guid>
+      <description>&lt;p&gt;One of the benefits of buildpacks is that they are multi-process - an image can have multiple entrypoints for each operational mode.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Use an HTTP proxy</title>
@@ -463,13 +519,6 @@
       <description>To make your app runnable, a default start command must be set. You&amp;rsquo;ll need to add the following to the end of your build script:&#xA;# ... # Set default start command cat &amp;gt; &amp;#34;${CNB_LAYERS_DIR}/launch.toml&amp;#34; &amp;lt;&amp;lt; EOL [[processes]] type = &amp;#34;web&amp;#34; command = [&amp;#34;node&amp;#34;, &amp;#34;app.js&amp;#34;] default = true EOL # ... Your full node-js-buildpack/bin/build script should now look like the following:&#xA;#!/usr/bin/env bash set -eo pipefail echo &amp;#34;---&amp;gt; NodeJS Buildpack&amp;#34; # 1.</description>
     </item>
     <item>
-      <title>Package a buildpack or extension</title>
-      <link>https://buildpacks.io/docs/for-buildpack-authors/how-to/distribute-buildpacks/package-buildpack/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://buildpacks.io/docs/for-buildpack-authors/how-to/distribute-buildpacks/package-buildpack/</guid>
-      <description>Learn how to package your buildpack or extension for distribution.</description>
-    </item>
-    <item>
       <title>Platform API 0.11 -&gt; 0.12</title>
       <link>https://buildpacks.io/docs/for-platform-operators/how-to/migrate/platform-api-0.11-0.12/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -482,6 +531,13 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/piper/</guid>
       <description>&lt;p&gt;&lt;a href=&#34;https://www.project-piper.io/&#34;&gt;Project &amp;ldquo;Piper&amp;rdquo;&lt;/a&gt; is a set of ready-made continuous delivery pipelines for direct use in your project.&#xA;It now also implements the CNB Platform spec as a step and makes it available in your Jenkins pipeline.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://www.project-piper.io/&#34;&gt;Project &amp;ldquo;Piper&amp;rdquo;&lt;/a&gt; is maintained by &lt;a href=&#34;https://www.sap.com/&#34;&gt;SAP&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Provide a Software Bill-of-Materials</title>
+      <link>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/add-sbom/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/add-sbom/</guid>
+      <description>&lt;p&gt;Buildpacks can provide a &lt;a href=&#34;https://en.wikipedia.org/wiki/Software_bill_of_materials&#34;&gt;Software &lt;code&gt;Bill-of-Materials&lt;/code&gt;&lt;/a&gt; (SBOM)&#xA;to describe the dependencies that they provide.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Publishing with Github Actions</title>
@@ -596,18 +652,18 @@
       <description>This page is a stub! The CNB project is applying to Google Season of Docs to receive support for improving our documentation. Please check back soon.&#xA;If you are familiar with this content and would like to make a contribution, please feel free to open a PR :)</description>
     </item>
     <item>
+      <title>Craft a buildpack order</title>
+      <link>https://buildpacks.io/docs/for-buildpack-authors/how-to/distribute-buildpacks/craft-order/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-buildpack-authors/how-to/distribute-buildpacks/craft-order/</guid>
+      <description>This page is a stub! The CNB project is applying to Google Season of Docs to receive support for improving our documentation. Please check back soon.&#xA;If you are familiar with this content and would like to make a contribution, please feel free to open a PR :)</description>
+    </item>
+    <item>
       <title>Create a stack (deprecated)</title>
       <link>https://buildpacks.io/docs/for-platform-operators/how-to/build-inputs/stack/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-platform-operators/how-to/build-inputs/stack/</guid>
       <description>&lt;p&gt;A stack is the grouping together of the build and run base images, represented by a unique ID.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Create dependency layers</title>
-      <link>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/create-layer/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/create-layer/</guid>
-      <description>This page is a stub! The CNB project is applying to Google Season of Docs to receive support for improving our documentation. Please check back soon.&#xA;If you are familiar with this content and would like to make a contribution, please feel free to open a PR :)</description>
     </item>
     <item>
       <title>Create slice layers</title>
@@ -659,20 +715,6 @@
       <description>This page is a stub! The CNB project is applying to Google Season of Docs to receive support for improving our documentation. Please check back soon.&#xA;If you are familiar with this content and would like to make a contribution, please feel free to open a PR :)</description>
     </item>
     <item>
-      <title>Use the build plan</title>
-      <link>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/use-build-plan/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/use-build-plan/</guid>
-      <description>This page is a stub! The CNB project is applying to Google Season of Docs to receive support for improving our documentation. Please check back soon.&#xA;If you are familiar with this content and would like to make a contribution, please feel free to open a PR :)</description>
-    </item>
-    <item>
-      <title>What are image extensions?</title>
-      <link>https://buildpacks.io/docs/for-platform-operators/concepts/dockerfiles/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://buildpacks.io/docs/for-platform-operators/concepts/dockerfiles/</guid>
-      <description>&lt;p&gt;Image extensions generate Dockerfiles that can be used to extend base images for buildpacks builds.&lt;/p&gt;</description>
-    </item>
-    <item>
       <title>What is a buildpack dependency layer?</title>
       <link>https://buildpacks.io/docs/for-buildpack-authors/concepts/layer/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -694,6 +736,34 @@
       <description>This page is a stub! The CNB project is applying to Google Season of Docs to receive support for improving our documentation. Please check back soon.&#xA;If you are familiar with this content and would like to make a contribution, please feel free to open a PR :)</description>
     </item>
     <item>
+      <title>What is a composite buildpack?</title>
+      <link>https://buildpacks.io/docs/for-buildpack-authors/concepts/composite-buildpack/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-buildpack-authors/concepts/composite-buildpack/</guid>
+      <description>A composite buildpack, also sometimes called a &amp;ldquo;meta-buildpack&amp;rdquo;, is a buildpack that does not contain any ./bin/detect or ./bin/build binaries, but instead references other buildpacks in its buildpack.toml via the [[order]] array.&#xA;This is useful for composing more complex detection strategies.</description>
+    </item>
+    <item>
+      <title>What is a composite buildpack?</title>
+      <link>https://buildpacks.io/docs/for-platform-operators/concepts/composite-buildpack/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-platform-operators/concepts/composite-buildpack/</guid>
+      <description>A composite buildpack, also sometimes called a &amp;ldquo;meta-buildpack&amp;rdquo;, is a buildpack that does not contain any ./bin/detect or ./bin/build binaries, but instead references other buildpacks in its buildpack.toml via the [[order]] array.&#xA;This is useful for composing more complex detection strategies.</description>
+    </item>
+    <item>
+      <title>What is an image extension?</title>
+      <link>https://buildpacks.io/docs/for-buildpack-authors/concepts/extension/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-buildpack-authors/concepts/extension/</guid>
+      <description>&lt;p&gt;An &lt;code&gt;image extension&lt;/code&gt; is software that generates Dockerfiles that can be used to extend base images for buildpacks builds.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>What is an image extension?</title>
+      <link>https://buildpacks.io/docs/for-platform-operators/concepts/extension/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-platform-operators/concepts/extension/</guid>
+      <description>&lt;p&gt;An &lt;code&gt;image extension&lt;/code&gt; is software that generates Dockerfiles that can be used to extend base images for buildpacks builds.&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>What is the build plan?</title>
       <link>https://buildpacks.io/docs/for-buildpack-authors/concepts/build-plan/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -708,18 +778,11 @@
       <description>&lt;p&gt;If you are using extensions, here is how to include them in a builder.&lt;/p&gt;</description>
     </item>
     <item>
-      <title>builder.toml</title>
-      <link>https://buildpacks.io/docs/reference/config/builder-config/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://buildpacks.io/docs/reference/config/builder-config/</guid>
-      <description>Schema of the builder config file.</description>
-    </item>
-    <item>
       <title>Buildpack API</title>
       <link>https://buildpacks.io/docs/reference/spec/buildpack-api/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/reference/spec/buildpack-api/</guid>
-      <description>&lt;p&gt;This specification defines the interface between a buildpack and the environment that runs it.&#xA;This API will be used by buildpack authors.&lt;/p&gt;</description>
+      <description>&lt;p&gt;The Buildpack API specifies the interface between a &lt;a href=&#34;https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/&#34;&gt;lifecycle&lt;/a&gt; program and one or more &lt;a href=&#34;https://buildpacks.io/docs/for-platform-operators/concepts/buildpack/&#34;&gt;buildpacks&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Distribution API</title>
@@ -1086,25 +1149,11 @@
       <description>pack version Show current &amp;lsquo;pack&amp;rsquo; version&#xA;pack version [flags] Examples pack version Options -h, --help Help for &amp;#39;version&amp;#39; Options inherited from parent commands --force-color Force color output --no-color Disable color output -q, --quiet Show less output --timestamps Enable timestamps in output -v, --verbose Show more output SEE ALSO pack&#x9;- CLI for building apps using Cloud Native Buildpacks </description>
     </item>
     <item>
-      <title>package.toml</title>
-      <link>https://buildpacks.io/docs/reference/config/package-config/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://buildpacks.io/docs/reference/config/package-config/</guid>
-      <description>Schema of the buildpack package config file.</description>
-    </item>
-    <item>
       <title>Platform API</title>
       <link>https://buildpacks.io/docs/reference/spec/platform-api/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/reference/spec/platform-api/</guid>
       <description>&lt;p&gt;The Platform specification defines the interface between the CNB &lt;a href=&#34;https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/&#34;&gt;lifecycle&lt;/a&gt; and a &lt;a href=&#34;https://buildpacks.io/docs/for-app-developers/concepts/platform/&#34;&gt;platform&lt;/a&gt; that runs it.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>project.toml</title>
-      <link>https://buildpacks.io/docs/reference/config/project-descriptor/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://buildpacks.io/docs/reference/config/project-descriptor/</guid>
-      <description>Schema of the project descriptor file.</description>
     </item>
     <item>
       <title>Trusted Builders</title>

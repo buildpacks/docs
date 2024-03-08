@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="A buildpack is software that examines your source code and determines the best way to build it.
+<meta name="description" content="A buildpack is software that transforms application source code into runnable artifacts by analyzing the code and determining the best way to build it.
 "/>
 <link rel="canonical" content="https://buildpacks.io/docs/for-platform-operators/concepts/buildpack/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
@@ -23,7 +23,7 @@
 <meta property="og:url" content="https://buildpacks.io/docs/for-platform-operators/concepts/buildpack/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-<meta property="og:description" content="A buildpack is software that examines your source code and determines the best way to build it.
+<meta property="og:description" content="A buildpack is software that transforms application source code into runnable artifacts by analyzing the code and determining the best way to build it.
 ">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
@@ -301,6 +301,14 @@
 <li data-nav-id="/docs/for-platform-operators/" class="dd-item depth-0 parent haschildren">
   <a href="/docs/for-platform-operators/">For Platform Operators</a>
   <ul class="ml-2">
+<li data-nav-id="/docs/for-platform-operators/tutorials/" class="dd-item depth-1 haschildren">
+  <a href="/docs/for-platform-operators/tutorials/">Tutorials</a>
+  <ul class="ml-2">
+<li data-nav-id="/docs/for-platform-operators/tutorials/lifecycle/" class="dd-item depth-2">
+  <a href="/docs/for-platform-operators/tutorials/lifecycle/">Orchestrate a build with the CNB lifecycle</a>
+</li>
+  </ul>
+</li>
 <li data-nav-id="/docs/for-platform-operators/concepts/" class="dd-item depth-1 parent haschildren">
   <a href="/docs/for-platform-operators/concepts/">Concepts</a>
   <ul class="ml-2">
@@ -339,16 +347,11 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/for-platform-operators/concepts/dockerfiles/" class="dd-item depth-2">
-  <a href="/docs/for-platform-operators/concepts/dockerfiles/">What are image extensions?</a>
+<li data-nav-id="/docs/for-platform-operators/concepts/composite-buildpack/" class="dd-item depth-2">
+  <a href="/docs/for-platform-operators/concepts/composite-buildpack/">What is a composite buildpack?</a>
 </li>
-  </ul>
-</li>
-<li data-nav-id="/docs/for-platform-operators/tutorials/" class="dd-item depth-1 haschildren">
-  <a href="/docs/for-platform-operators/tutorials/">Tutorials</a>
-  <ul class="ml-2">
-<li data-nav-id="/docs/for-platform-operators/tutorials/lifecycle/" class="dd-item depth-2">
-  <a href="/docs/for-platform-operators/tutorials/lifecycle/">Orchestrate a build with the CNB lifecycle</a>
+<li data-nav-id="/docs/for-platform-operators/concepts/extension/" class="dd-item depth-2">
+  <a href="/docs/for-platform-operators/concepts/extension/">What is an image extension?</a>
 </li>
   </ul>
 </li>
@@ -675,6 +678,9 @@
 <li data-nav-id="/docs/for-buildpack-authors/concepts/" class="dd-item depth-1 haschildren">
   <a href="/docs/for-buildpack-authors/concepts/">Concepts</a>
   <ul class="ml-2">
+<li data-nav-id="/docs/for-buildpack-authors/concepts/buildpack/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-buildpack-authors/concepts/buildpack/">What is a buildpack?</a>
+</li>
 <li data-nav-id="/docs/for-buildpack-authors/concepts/lifecycle-phases/" class="dd-item depth-2 collapse">
   <a href="/docs/for-buildpack-authors/concepts/lifecycle-phases/">What is the lifecycle?</a>
 </li>
@@ -696,6 +702,12 @@
 <li data-nav-id="/docs/for-buildpack-authors/concepts/component-buildpack/" class="dd-item depth-2 collapse">
   <a href="/docs/for-buildpack-authors/concepts/component-buildpack/">What is a component buildpack?</a>
 </li>
+<li data-nav-id="/docs/for-buildpack-authors/concepts/composite-buildpack/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-buildpack-authors/concepts/composite-buildpack/">What is a composite buildpack?</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/concepts/extension/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-buildpack-authors/concepts/extension/">What is an image extension?</a>
+</li>
 <li data-nav-id="/docs/for-buildpack-authors/concepts/build-plan/" class="dd-item depth-2 collapse">
   <a href="/docs/for-buildpack-authors/concepts/build-plan/">What is the build plan?</a>
 </li>
@@ -707,6 +719,15 @@
 <li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/" class="dd-item depth-2 collapse haschildren">
   <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/">Write buildpacks</a>
   <ul class="ml-2">
+<li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/get-started/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/get-started/">Get started</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/use-build-plan/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/use-build-plan/">Use the build plan</a>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/create-layer/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/create-layer/">Create dependency layers</a>
+</li>
 <li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/specify-launch-processes/" class="dd-item depth-3 collapse">
   <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/specify-launch-processes/">Specify process types</a>
 </li>
@@ -719,9 +740,6 @@
 <li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/clear-env/" class="dd-item depth-3 collapse">
   <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/clear-env/">Clear the buildpack environment</a>
 </li>
-<li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/create-layer/" class="dd-item depth-3 collapse">
-  <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/create-layer/">Create dependency layers</a>
-</li>
 <li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/create-slice-layers/" class="dd-item depth-3 collapse">
   <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/create-slice-layers/">Create slice layers</a>
 </li>
@@ -733,9 +751,6 @@
 </li>
 <li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/use-exec.d/" class="dd-item depth-3 collapse">
   <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/use-exec.d/">Use exec.d binaries to configure the application at runtime</a>
-</li>
-<li data-nav-id="/docs/for-buildpack-authors/how-to/write-buildpacks/use-build-plan/" class="dd-item depth-3 collapse">
-  <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/use-build-plan/">Use the build plan</a>
 </li>
   </ul>
 </li>
@@ -757,6 +772,9 @@
   <a href="/docs/for-buildpack-authors/how-to/distribute-buildpacks/publish-buildpack/with-github-actions/">Publishing with Github Actions</a>
 </li>
   </ul>
+</li>
+<li data-nav-id="/docs/for-buildpack-authors/how-to/distribute-buildpacks/craft-order/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-buildpack-authors/how-to/distribute-buildpacks/craft-order/">Craft a buildpack order</a>
 </li>
 <li data-nav-id="/docs/for-buildpack-authors/how-to/migrate/" class="dd-item depth-2 collapse haschildren">
   <a href="/docs/for-buildpack-authors/how-to/migrate/">Migrate</a>
@@ -796,14 +814,17 @@
 <li data-nav-id="/docs/reference/config/" class="dd-item depth-1 collapse haschildren">
   <a href="/docs/reference/config/">Configuration</a>
   <ul class="ml-2">
+<li data-nav-id="/docs/reference/config/project-descriptor/" class="dd-item depth-2 collapse">
+  <a href="/docs/reference/config/project-descriptor/">project.toml</a>
+</li>
 <li data-nav-id="/docs/reference/config/builder-config/" class="dd-item depth-2 collapse">
   <a href="/docs/reference/config/builder-config/">builder.toml</a>
 </li>
+<li data-nav-id="/docs/reference/config/buildpack-config/" class="dd-item depth-2 collapse">
+  <a href="/docs/reference/config/buildpack-config/">buildpack.toml</a>
+</li>
 <li data-nav-id="/docs/reference/config/package-config/" class="dd-item depth-2 collapse">
   <a href="/docs/reference/config/package-config/">package.toml</a>
-</li>
-<li data-nav-id="/docs/reference/config/project-descriptor/" class="dd-item depth-2 collapse">
-  <a href="/docs/reference/config/project-descriptor/">project.toml</a>
 </li>
   </ul>
 </li>
@@ -851,28 +872,42 @@
           <h1 class="title">What is a buildpack?</h1>
         </div>
 
-        <p>A <code>buildpack</code> is software that examines your source code and determines the best way to build it.</p>
+        <p>A <code>buildpack</code> is software that transforms application source code into runnable artifacts
+by analyzing the code and determining the best way to build it.</p>
+<p><img src="/images/what.svg" alt="buildpacks"></p>
+<h2 id="why-buildpacks">Why buildpacks?</h2>
+<p>Buildpacks allow application developers to focus on what they do best - writing code, without having to worry about image security, optimizing container images, or container build strategy.</p>
+<p>How much time have you spent struggling to wrangle yet another Dockerfile? Copying and pasting random Dockerfile snippets into every project? Buildpacks can help! They are a better approach to building container images for applications.</p>
+<h2 id="what-do-they-look-like">What do they look like?</h2>
 <p>Typical buildpacks consist of at least three files:</p>
 <ul>
-<li><code>buildpack.toml</code> &ndash; provides metadata about your buildpack</li>
-<li><code>bin/detect</code> &ndash; determines whether buildpack should be applied</li>
-<li><code>bin/build</code> &ndash; executes build logic</li>
+<li><code>buildpack.toml</code> &ndash; provides metadata about the buildpack, containing information such as its name, ID, and version.</li>
+<li><code>bin/detect</code> &ndash; performs <a href="#detect">detect</a>.</li>
+<li><code>bin/build</code> &ndash; performs <a href="#build">build</a>.</li>
 </ul>
-<h4 id="meta-buildpack">Meta-buildpack</h4>
-<p>There is a different type of buildpack commonly referred to as a <strong>meta-buildpack</strong>. It contains only a
-<code>buildpack.toml</code> file with an <code>order</code> configuration that references other buildpacks. This is useful for
-composing more complex detection strategies.</p>
-<h2 id="buildpack-phases">Buildpack phases</h2>
-<p>There are two essential steps that allow buildpacks to create a runnable image.</p>
-<h4 id="detect">Detect</h4>
-<p>A <a href="/docs/for-app-developers/concepts/platform">platform</a> sequentially tests <a href="/docs/for-buildpack-authors/concepts/buildpack-group/">groups</a> of buildpacks against your app&rsquo;s source code. The first group that deems itself fit for your source code will become the selected set of buildpacks for your app.</p>
-<p>Detection criteria is specific to each  buildpack &ndash; for instance, an <strong>NPM buildpack</strong> might look for a <code>package.json</code>, and a <strong>Go buildpack</strong> might look for Go source files.</p>
-<h4 id="build">Build</h4>
-<p>During build the buildpacks contribute to the final application image. This contribution could be as simple as setting  some environment variables within the image, creating a layer containing a binary (e.g: node, python, or ruby), or adding app dependencies (e.g: running <code>npm install</code>, <code>pip install -r requirements.txt</code>, or <code>bundle install</code>).</p>
-<h2 id="distribution">Distribution</h2>
-<p>Buildpacks can be <a href="/docs/for-buildpack-authors/how-to/distribute-buildpacks/package-buildpack/">packaged</a> as OCI images on an image registry or Docker daemon. This includes meta-buildpacks.</p>
-<h2 id="reference">Reference</h2>
-<p>Learn more about buildpacks by referring to the <a href="/docs/reference/buildpack-api">Buildpack API</a>.</p>
+<h2 id="how-do-they-work">How do they work?</h2>
+<p><img src="/images/how.svg" alt="how"></p>
+<p><strong>Each buildpack has two jobs to do</strong></p>
+<h3 id="detect">Detect</h3>
+<p>The buildpack determines if it is needed or not.</p>
+<p>For example:</p>
+<ul>
+<li>A Python buildpack may look for a <code>requirements.txt</code> or a <code>setup.py</code> file.</li>
+<li>A Node buildpack may look for a <code>package-lock.json</code> file.</li>
+</ul>
+<h3 id="build">Build</h3>
+<p>The buildpack transforms application source code in some way, for example by</p>
+<ul>
+<li>Setting build-time and run-time environment variables.</li>
+<li>Downloading dependencies.</li>
+<li>Running source code compilation (if needed).</li>
+<li>Configuring the application entrypoint and any startup scripts.</li>
+</ul>
+<p>For example:</p>
+<ul>
+<li>A Python buildpack may run <code>pip install -r requirements.txt</code> if it detected a <code>requirements.txt</code> file.</li>
+<li>A Node buildpack may run <code>npm install</code> if it detected a <code>package-lock.json</code> file.</li>
+</ul>
 
         
 
