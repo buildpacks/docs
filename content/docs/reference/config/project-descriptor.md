@@ -1,18 +1,22 @@
 +++
 title="project.toml"
-summary="Schema of the project descriptor file."
 aliases=[
   "/docs/reference/project-descriptor/"
 ]
+weight=1
 +++
 
-A project descriptor allows users to detail configuration for apps, services, functions and buildpacks. It should, by
-default, be named `project.toml`, though users can name it differently, and pass the filename to `pack` by calling
+The project descriptor file allows app developers to provide configuration for apps, services, functions and buildpacks.
+
+<!--more-->
+
+It should, by default, be named `project.toml`, though users can name it differently, and pass the filename to `pack` by calling
+
 ```shell script
 $ pack build --descriptor <project-descriptor path>
 ```
 
-The schema for the `project descriptor` is:
+The schema is as follows:
 
 - #### `_` _(table, optional)_
   A configuration table for a project.

@@ -1,12 +1,16 @@
 +++
 title="package.toml"
-summary="Schema of the buildpack package config file."
 aliases=[
   "/docs/reference/package-config/",
 ]
+weight=4
 +++
 
-A [buildpackage][package] configuration schema is as follows:
+The package config file is used for packaging buildpacks for distribution as OCI images or tar files.
+
+<!--more-->
+
+The schema is as follows:
 
 - #### `buildpack` _(required)_
   The buildpack to package. It must contain the following field:
@@ -33,4 +37,4 @@ You can view [sample buildpackages](https://github.com/buildpacks/samples/tree/m
 
 [package]: /docs/for-platform-operators/concepts/buildpack#distribution
 [supported-archives]: /docs/reference/builder-config#supported-archives
-[order-group]: /docs/reference/spec/buildpack-api/#schema
+[order-group]: https://github.com/buildpacks/spec/blob/main/buildpack.md#order-resolution
