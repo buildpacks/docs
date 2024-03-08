@@ -3,7 +3,7 @@
 title="Pack"
 aliases=[
   "/docs/install-pack/",
-  "/docs/tools/pack/_index",
+  "/docs/tools/pack/",
   "/docs/tools/pack/cli/install/"
 ]
 weight=1
