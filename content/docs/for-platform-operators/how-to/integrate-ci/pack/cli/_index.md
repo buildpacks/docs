@@ -2,7 +2,7 @@
 +++
 title="CLI Docs"
 aliases=[
-  "/docs/tools/pack/cli/_index"
+  "/docs/tools/pack/cli/"
 ]
 include_summaries=true
 +++
