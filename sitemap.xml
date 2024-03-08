@@ -224,6 +224,8 @@
   </url><url>
     <loc>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/rebase/</loc>
   </url><url>
+    <loc>https://buildpacks.io/docs/for-app-developers/how-to/build-inputs/specify-export-target/</loc>
+  </url><url>
     <loc>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/add-labels/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/clear-env/</loc>
