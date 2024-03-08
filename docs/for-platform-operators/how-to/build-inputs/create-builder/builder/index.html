@@ -891,12 +891,14 @@
 </span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">run</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">run</span><span class="p">.</span><span class="nx">images</span><span class="p">]]</span>
 </span></span><span class="line"><span class="cl"><span class="nx">image</span> <span class="p">=</span> <span class="s2">&#34;cnbs/sample-base-run:jammy&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">mirrors</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;other-registry.example.com/cnbs/sample-base-run:jammy&#34;</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c"># Stack (deprecated) used to create the builder</span>
 </span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">stack</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl"><span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;io.buildpacks.samples.stacks.jammy&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="c"># This image is used at runtime</span>
 </span></span><span class="line"><span class="cl"><span class="nx">run-image</span> <span class="p">=</span> <span class="s2">&#34;cnbs/sample-base-run:jammy&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">run-image-mirrors</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;other-registry.example.com/cnbs/sample-base-run:jammy&#34;</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl"><span class="c"># This image is used at build-time</span>
 </span></span><span class="line"><span class="cl"><span class="nx">build-image</span> <span class="p">=</span> <span class="s2">&#34;cnbs/sample-base-build:jammy&#34;</span>
 </span></span></code></pre></div><h3 id="2-create-builder">2. Create builder</h3>

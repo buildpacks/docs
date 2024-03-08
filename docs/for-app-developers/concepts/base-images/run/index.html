@@ -852,28 +852,33 @@
         </div>
 
         <p>The <strong>run image</strong> provides the base image for application images.</p>
-<p>The lifecycle requires a reference to a run image and (where necessary) possible run image mirrors in order to construct the application image.</p>
+<p>CNB tooling requires a reference to a run image and (where necessary) run image mirrors in order to construct the application image.</p>
 <h3 id="run-image-mirrors">Run image mirrors</h3>
-<p>Run image mirrors provide alternate locations for run images, for use during <code>build</code> or <code>rebase</code>.
-When running <code>build</code> with a builder containing run image mirrors, <code>pack</code> will select a run image
-whose registry location matches that of the specified app image (if no registry host is specified in the image name,
-DockerHub is assumed). This is useful when publishing the resulting app image (via the <code>--publish</code> flag or via
-<code>docker push</code>), as the app&rsquo;s base image (i.e. run image) will be located on the same registry as the app image itself,
-reducing the amount of data transfer required to push the app image.</p>
-<p>In the following example, assuming a builder configured with the example TOML above, the selected run image will be
-<code>registry.example.com/example/run</code>.</p>
+<p>Run image mirrors provide alternate locations for <code>run images</code>, for use during <code>build</code> or <code>rebase</code>.</p>
+<p>When run image mirrors are defined, CNB tooling will try to find a run image that resides on the same registry as the application image,
+based on the image name provided.</p>
+<p>This is to reduce the amount of data transfer required to push the application image to a registry.</p>
+<h4 id="example---determining-the-registry">Example - determining the registry</h4>
+<p>If the application image name is:</p>
+<ul>
+<li><code>registry.example.com/example/app</code> - the registry is <code>registry.example.com</code></li>
+<li><code>example/app</code> (registry omitted) - Docker Hub is assumed; the registry is <code>index.docker.io</code></li>
+</ul>
+<h4 id="example---determining-the-run-image-mirror">Example - determining the run image mirror</h4>
+<p>If your builder has a run image with mirrors defined as follows (see <a href="/docs/for-platform-operators/how-to/build-inputs/create-builder/builder">how to create a builder</a> for more information):</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">run</span><span class="p">.</span><span class="nx">images</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">image</span> <span class="p">=</span> <span class="s2">&#34;example/run&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">mirrors</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;registry.example.com/example/run&#34;</span><span class="p">]</span>
+</span></span></code></pre></div><p>Then if you run <code>pack build</code> as follows:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ pack build registry.example.com/example/app
-</span></span></code></pre></div><p>while naming the app without a registry specified, <code>example/app</code>, will cause <code>example/run</code> to be selected as the app&rsquo;s
-run image.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ pack build example/app
-</span></span></code></pre></div><blockquote>
-<p>For local development, it&rsquo;s often helpful to override the run image mirrors in a builder. For this, the
-<code>pack config run-image-mirrors</code> command can be used. This command does not modify the builder, and instead configures the
-local environment.</p>
-<p>To see what run images are configured for a builder, the
-<code>builder inspect</code> command can be used. <code>builder inspect</code> will output built-in and locally-configured run images for
-a given builder, along with other useful information. The order of the run images in the output denotes the order in
-which they will be matched during <code>build</code>.</p>
+</span></span></code></pre></div><p>the selected run image will be <code>registry.example.com/example/run</code>.</p>
+<blockquote>
+<p>For local development, it&rsquo;s often helpful to override the run image mirrors in a builder.
+For this, the <code>pack config run-image-mirrors</code> command can be used.
+This command does not modify the builder, and instead configures the local environment.</p>
+<p>To see what run images are configured for a builder, <code>pack builder inspect</code> can be used.
+<code>pack builder inspect</code> will output built-in and locally-configured run images for a given builder, along with other useful information.
+The order of the run images in the output denotes the order in which they will be matched during <code>build</code>.</p>
 </blockquote>
 
         
