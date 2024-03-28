@@ -1,1 +1,0 @@
-../../for-platform-operators/concepts/dockerfiles.md

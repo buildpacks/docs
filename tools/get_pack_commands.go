@@ -22,6 +22,7 @@ const (
 	gendocFrontmatterTemplate = `+++
 title="%s"
 no_edit="true"
+aliases=[ "%s" ]
 +++
 <!--more-->
 `
@@ -30,7 +31,9 @@ no_edit="true"
 var filePrepender = func(filename string) string {
 	name := filepath.Base(filename)
 	name = strings.Replace(name, ".md", "", -1)
-	return fmt.Sprintf(gendocFrontmatterTemplate, strings.Replace(name, "_", " ", -1))
+	presentationName := strings.Replace(name, "_", " ", -1)
+	alias := fmt.Sprintf("/docs/tools/pack/cli/%s", name)
+	return fmt.Sprintf(gendocFrontmatterTemplate, presentationName, alias)
 }
 
 var linkHandler = func(name string) string {
@@ -52,7 +55,7 @@ func main() {
 	}
 
 	if _, err := os.Stat(filepath.Join(outputPath, indexFile)); os.IsNotExist(err) {
-		if err := ioutil.WriteFile(filepath.Join(outputPath, indexFile), []byte(filePrepender("Pack CLI")), os.ModePerm); err != nil {
+		if err := os.WriteFile(filepath.Join(outputPath, indexFile), []byte(filePrepender("Pack CLI")), os.ModePerm); err != nil {
 			log.Fatal(err)
 		}
 	}

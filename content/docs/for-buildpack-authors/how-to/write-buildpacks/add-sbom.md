@@ -1,6 +1,6 @@
 +++
 title="Provide a Software Bill-of-Materials"
-weight=2
+weight=5
 +++
 
 Buildpacks can provide a [Software `Bill-of-Materials`](https://en.wikipedia.org/wiki/Software_bill_of_materials) (SBOM)

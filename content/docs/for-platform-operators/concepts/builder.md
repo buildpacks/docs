@@ -12,7 +12,7 @@ a build-time base image, a [lifecycle] binary, and a reference to a runtime base
 
 <!--more-->
 
-![create-builder diagram](/docs/for-platform-operators/concepts/create-builder.svg)
+![create-builder diagram](/images/create-builder.svg)
 
 ## Anatomy of a builder
 

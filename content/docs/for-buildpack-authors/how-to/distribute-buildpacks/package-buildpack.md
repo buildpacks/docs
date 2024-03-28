@@ -4,7 +4,7 @@ title="Package a buildpack or extension"
 aliases=[
   "/docs/buildpack-author-guide/package-a-buildpack"
 ]
-weight=5
+weight=4
 summary="Learn how to package your buildpack or extension for distribution."
 +++
 

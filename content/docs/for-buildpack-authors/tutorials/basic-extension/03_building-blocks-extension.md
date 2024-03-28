@@ -34,7 +34,7 @@ You should see something akin to the following:
   API except where noted. Consult the [spec](https://github.com/buildpacks/spec/blob/main/image_extension.md)
   for further details.
 * `./bin/detect` is invoked during the `detect` phase. It analyzes application source code to determine if the extension
-  is needed and contributes [build plan](/docs/reference/spec/buildpack-api/#build-plan) entries (much like a
+  is needed and contributes [build plan] entries (much like a
   buildpack `./bin/detect`). Just like for buildpacks, a `./bin/detect` that exits with code `0` is considered to have
   passed detection, and fails otherwise.
 * `./bin/generate` is invoked during the `generate` phase (a new lifecycle phase that happens after `detect`). It
@@ -51,3 +51,5 @@ For guidance around writing extensions and more advanced use cases, see [here](/
 
 <a href="/docs/for-buildpack-authors/tutorials/basic-extension/04_build-dockerfile" class="button bg-pink">Next Step</a>
 <!--+ end +-->
+
+[build plan]: /docs/for-buildpack-authors/how-to/write-buildpacks/use-build-plan
