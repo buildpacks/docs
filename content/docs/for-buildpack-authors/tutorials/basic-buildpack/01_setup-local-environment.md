@@ -68,7 +68,7 @@ We also create a `package.json` file with the following contents:
 <!-- test:file=node-js-sample-app/package.json -->
 ```javascript
 {
-  name = "example-application"
+  "name": "example-application"
 }
 ```
 
