@@ -873,11 +873,11 @@
         </div>
 
         <p>Tell <code>pack</code> where you want your application image to be saved.</p>
-<p>By default, when you <code>pack build</code> an application, the image will be saved to a daemon, such as Docker or <a href="/docs/for-app-developers/how-to/special-cases/build-on-podman">Podman</a>,
+<p>By default, when you build an application with <code>pack build &lt;my-image&gt;</code>, the image will be saved to a daemon, such as Docker or <a href="/docs/for-app-developers/how-to/special-cases/build-on-podman">Podman</a>,
 and you can view the image using a command such as <code>docker image ls</code>.</p>
 <p>However, you could also choose to &ldquo;publish&rdquo; the application to an OCI registry, such as Docker Hub or Google Artifact Registry,
 or even to a local registry, by providing the <code>pack build --publish</code> flag.</p>
-<p>Or, you could save the image in OCI layout format on disk by providing the <code>--layout</code> flag.
+<p>Or, you could save the image in OCI layout format on disk by prefixing your image name with <code>oci:</code>, as in <code>pack build oci:&lt;my-image&gt;</code>.
 See <a href="/docs/for-app-developers/how-to/special-cases/export-to-oci-layout">here</a> for more information about working with layout images.</p>
 <h2 id="faq-what-am-i-using-the-daemon-for">FAQ: What am I using the daemon for?</h2>
 <p>Buildpacks always need to run in a containerized environment.
