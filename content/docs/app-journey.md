@@ -8,11 +8,12 @@ getting-started=true
 
 In this tutorial, we'll explain how to use `pack` and **buildpacks** to create a runnable app image from source code.
 
-In order to run the build process in an isolated fashion, `pack` uses **Docker**. That means you'll need to make sure you have both `docker` and `pack` installed:
-
-{{< download-button href="https://store.docker.com/search?type=edition&offering=community" color="blue" >}} Install Docker {{</>}}
+In order to run the build process in an isolated fashion, `pack` uses **Docker** or a Docker-compatible daemon to create the containers where buildpacks execute.
+That means you'll need to make sure you have both `pack` and a daemon installed:
 
 {{< download-button href="/docs/install-pack" color="pink" >}} Install pack {{</>}}
+
+{{< download-button href="https://store.docker.com/search?type=edition&offering=community" color="blue" >}} Install Docker {{</>}} or alternatively, see [this page](/docs/for-app-developers/how-to/special-cases/build-on-podman) about working with `podman`.
 
 > **NOTE:** `pack` is only one implementation of the [Cloud Native Buildpacks Platform Specification][cnb-platform-spec]. Additionally, not all Cloud Native Buildpacks Platforms require Docker.
 
