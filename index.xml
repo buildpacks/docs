@@ -145,14 +145,14 @@
       <link>https://buildpacks.io/docs/app-journey/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/app-journey/</guid>
-      <description>Pack for the journey In this tutorial, we&amp;rsquo;ll explain how to use pack and buildpacks to create a runnable app image from source code.&#xA;In order to run the build process in an isolated fashion, pack uses Docker. That means you&amp;rsquo;ll need to make sure you have both docker and pack installed:&#xA;Install Docker Install pack NOTE: pack is only one implementation of the Cloud Native Buildpacks Platform Specification. Additionally, not all Cloud Native Buildpacks Platforms require Docker.</description>
+      <description>Pack for the journey In this tutorial, we&amp;rsquo;ll explain how to use pack and buildpacks to create a runnable app image from source code.&#xA;In order to run the build process in an isolated fashion, pack uses Docker or a Docker-compatible daemon to create the containers where buildpacks execute. That means you&amp;rsquo;ll need to make sure you have both pack and a daemon installed:&#xA;Install pack Install Docker or alternatively, see this page about working with podman.</description>
     </item>
     <item>
       <title>Build for Windows containers</title>
       <link>https://buildpacks.io/docs/for-app-developers/how-to/special-cases/build-for-windows/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-app-developers/how-to/special-cases/build-for-windows/</guid>
-      <description>EXPERIMENTAL Windows support is experimental!&#xA;Enable experimental mode by running: pack config experimental true&#xA;Before You Start Recommended reading Before trying out builds for Windows images, we recommend following the Linux image tutorial under Getting Started. Don&amp;rsquo;t worry, you can still run it on a Windows OS if you need to &amp;ndash; just make sure to enable Linux containers for Docker first.&#xA;When you&amp;rsquo;re done, head back here.&#xA;Enable Windows container mode In order to produce Windows container images, ensure Windows container mode is enabled in your Docker settings (available only in Docker for Windows).</description>
+      <description>&lt;p&gt;You can use buildpacks to build container images that run Windows containers on Windows (WCOW).&lt;/p&gt;&#xA;&lt;p&gt;This page is not relevant if your host machine is Windows but you are running Linux containers on Windows (LCOW);&#xA;in this case, no special configuration is required.&lt;/p&gt;</description>
     </item>
     <item>
       <title>builder.toml</title>
@@ -327,7 +327,7 @@
       <link>https://buildpacks.io/docs/for-app-developers/how-to/special-cases/export-to-oci-layout/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-app-developers/how-to/special-cases/export-to-oci-layout/</guid>
-      <description>The OCI Image Layout is the directory structure for OCI content-addressable blobs and location-addressable references. See the specification. Exporting to OCI layout format is an experimental feature available on pack since version 0.30.0&#xA;1. Enable experimental feature Verify your pack version is equal or greater than 0.30.0&#xA;pack version Enable the experimental features on pack&#xA;pack config experimental true You can confirm everything is fine, checking the config.toml file in your PACK_HOME installation folder.</description>
+      <description>The OCI Image Layout is the directory structure for OCI content-addressable blobs and location-addressable references.</description>
     </item>
     <item>
       <title>Mount volumes at build-time</title>

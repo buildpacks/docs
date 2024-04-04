@@ -12,7 +12,7 @@
       <link>https://buildpacks.io/docs/app-journey/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/app-journey/</guid>
-      <description>Pack for the journey In this tutorial, we&amp;rsquo;ll explain how to use pack and buildpacks to create a runnable app image from source code.&#xA;In order to run the build process in an isolated fashion, pack uses Docker. That means you&amp;rsquo;ll need to make sure you have both docker and pack installed:&#xA;Install Docker Install pack NOTE: pack is only one implementation of the Cloud Native Buildpacks Platform Specification. Additionally, not all Cloud Native Buildpacks Platforms require Docker.</description>
+      <description>Pack for the journey In this tutorial, we&amp;rsquo;ll explain how to use pack and buildpacks to create a runnable app image from source code.&#xA;In order to run the build process in an isolated fashion, pack uses Docker or a Docker-compatible daemon to create the containers where buildpacks execute. That means you&amp;rsquo;ll need to make sure you have both pack and a daemon installed:&#xA;Install pack Install Docker or alternatively, see this page about working with podman.</description>
     </item>
   </channel>
 </rss>

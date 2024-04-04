@@ -874,9 +874,10 @@ In order to run the build process in an isolated fashion,…">
 
         <h2 id="pack-for-the-journey">Pack for the journey</h2>
 <p>In this tutorial, we&rsquo;ll explain how to use <code>pack</code> and <strong>buildpacks</strong> to create a runnable app image from source code.</p>
-<p>In order to run the build process in an isolated fashion, <code>pack</code> uses <strong>Docker</strong>. That means you&rsquo;ll need to make sure you have both <code>docker</code> and <code>pack</code> installed:</p>
-<a href='https://store.docker.com/search?type=edition&amp;offering=community' class='download-button button icon-button bg-blue'> Install Docker </a><br />
+<p>In order to run the build process in an isolated fashion, <code>pack</code> uses <strong>Docker</strong> or a Docker-compatible daemon to create the containers where buildpacks execute.
+That means you&rsquo;ll need to make sure you have both <code>pack</code> and a daemon installed:</p>
 <a href='/docs/install-pack' class='download-button button icon-button bg-pink'> Install pack </a><br />
+<p><a href='https://store.docker.com/search?type=edition&amp;offering=community' class='download-button button icon-button bg-blue'> Install Docker </a><br /> or alternatively, see <a href="/docs/for-app-developers/how-to/special-cases/build-on-podman">this page</a> about working with <code>podman</code>.</p>
 <blockquote>
 <p><strong>NOTE:</strong> <code>pack</code> is only one implementation of the <a href="https://github.com/buildpacks/spec/blob/main/platform.md">Cloud Native Buildpacks Platform Specification</a>. Additionally, not all Cloud Native Buildpacks Platforms require Docker.</p>
 </blockquote>
