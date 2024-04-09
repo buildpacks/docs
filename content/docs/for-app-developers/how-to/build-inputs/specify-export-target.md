@@ -7,13 +7,13 @@ Tell `pack` where you want your application image to be saved.
 
 <!--more-->
 
-By default, when you `pack build` an application, the image will be saved to a daemon, such as Docker or [Podman][podman],
+By default, when you build an application with `pack build <my-image>`, the image will be saved to a daemon, such as Docker or [Podman][podman],
 and you can view the image using a command such as `docker image ls`.
 
 However, you could also choose to "publish" the application to an OCI registry, such as Docker Hub or Google Artifact Registry,
 or even to a local registry, by providing the `pack build --publish` flag.
 
-Or, you could save the image in OCI layout format on disk by providing the `--layout` flag.
+Or, you could save the image in OCI layout format on disk by prefixing your image name with `oci:`, as in `pack build oci:<my-image>`.
 See [here][OCI layout] for more information about working with layout images.
 
 ## FAQ: What am I using the daemon for?
