@@ -2,6 +2,8 @@
 
 [![](https://github.com/buildpacks/docs/workflows/Deploy/badge.svg)](https://github.com/buildpacks/docs/actions)
 [![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/buildpacks/docs)
+[![X Buildpack ](https://img.shields.io/badge/X-Buildpack-black?logo=https://i.imgur.com/example.png)](https://twitter.com/buildpacks_io)
+[![Buildpack GitHub](https://img.shields.io/badge/Buildpack%20GitHub-black?logo=github&logoColor=white&labelColor=white)](https://github.com/buildpacks)
 
 ### Preview
 
