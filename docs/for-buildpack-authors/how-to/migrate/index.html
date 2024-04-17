@@ -876,10 +876,7 @@
       
         
           <h2><a href="https://buildpacks.io/docs/for-buildpack-authors/how-to/migrate/buildpack-api-0.7-0.8/" class="">Buildpack API 0.7 -&gt; 0.8</a></h2>
-          <p class="m-1">This guide is most relevant to buildpack authors.
-See the spec release for Buildpack API 0.8 for the full list of changes and further details.
-Process-Specific Working Directory Buildpacks may specify the working directory for a process by setting the working-dir field on the process in launch.toml.
-Prior to this, all processes ran from the app directory (CNB_APP_DIR). Running a process from a different directory typically involved running a shell to execute a cd command and then start the process, like:</p>
+          <p class="m-1"></p>
 
           
             <div class="text-md-right">
@@ -887,11 +884,7 @@ Prior to this, all processes ran from the app directory (CNB_APP_DIR). Running a
             </div>
         
           <h2><a href="https://buildpacks.io/docs/for-buildpack-authors/how-to/migrate/buildpack-api-0.8-0.9/" class="">Buildpack API 0.8 -&gt; 0.9</a></h2>
-          <p class="m-1">This guide is most relevant to buildpack authors.
-See the spec release for Buildpack API 0.9 for the full list of changes and further details.
-Shell removal Buildpack-defined processes may no longer implicitly rely on a shell (be non-direct).
-In launch.toml, direct is removed as a key in the [[processes]] table, and all processes are inferred to be direct = true.
-Buildpack processes can still use a shell! However, the command must now explicitly begin with /bin/sh (or cmd.</p>
+          <p class="m-1"></p>
 
           
             <div class="text-md-right">
@@ -899,10 +892,7 @@ Buildpack processes can still use a shell! However, the command must now explici
             </div>
         
           <h2><a href="https://buildpacks.io/docs/for-buildpack-authors/how-to/migrate/buildpack-api-0.9-0.10/" class="">Buildpack API 0.9 -&gt; 0.10</a></h2>
-          <p class="m-1">This guide is most relevant to buildpack authors.
-See the spec release for Buildpack API 0.10 for the full list of changes and further details.
-Stacks are deprecated In Buildpack 0.10, the concepts of stacks and mixins are removed in favor of existing constructs in the container image ecosystem such as operating system name, operating system distribution, and architecture.
-Before build builder.toml contains a new table for buildpacks to express the os/arch combinations that they are compatible with:</p>
+          <p class="m-1"></p>
 
           
             <div class="text-md-right">
@@ -972,8 +962,6 @@ Before build builder.toml contains a new table for buildpacks to express the os/
       <ul>
         
         <li><a target="_blank" rel="noopener noreferrer" href="https://buildpacks.devstats.cncf.io/d/8/dashboards?orgId=1&amp;refresh=15m">DevStats</a></li>
-        
-        <li><span>&bull;</span><a target="_blank" rel="noopener noreferrer" href="https://datastudio.google.com/reporting/4b23856c-6c24-44f5-86f2-333d0ad3f236">Analytics</a></li>
         
         <li><span>&bull;</span><a target="_blank" rel="noopener noreferrer" href="https://www.linuxfoundation.org/privacy/">Privacy Policy</a></li>
         

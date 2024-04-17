@@ -4,7 +4,7 @@
     <title>Write buildpacks on Cloud Native Buildpacks</title>
     <link>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/</link>
     <description>Recent content in Write buildpacks on Cloud Native Buildpacks</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo 0.125.0</generator>
     <language>en-us</language>
     <atom:link href="https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/index.xml" rel="self" type="application/rss+xml" />
     <item>
@@ -47,42 +47,42 @@
       <link>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/add-labels/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/add-labels/</guid>
-      <description>This page is a stub! The CNB project is applying to Google Season of Docs to receive support for improving our documentation. Please check back soon.&#xA;If you are familiar with this content and would like to make a contribution, please feel free to open a PR :)</description>
+      <description></description>
     </item>
     <item>
       <title>Clear the buildpack environment</title>
       <link>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/clear-env/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/clear-env/</guid>
-      <description>This page is a stub! The CNB project is applying to Google Season of Docs to receive support for improving our documentation. Please check back soon.&#xA;If you are familiar with this content and would like to make a contribution, please feel free to open a PR :)</description>
+      <description></description>
     </item>
     <item>
       <title>Create slice layers</title>
       <link>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/create-slice-layers/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/create-slice-layers/</guid>
-      <description>This page is a stub! The CNB project is applying to Google Season of Docs to receive support for improving our documentation. Please check back soon.&#xA;If you are familiar with this content and would like to make a contribution, please feel free to open a PR :)</description>
+      <description></description>
     </item>
     <item>
       <title>Re-use dependency layers</title>
       <link>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/re-use-layers/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/re-use-layers/</guid>
-      <description>This page is a stub! The CNB project is applying to Google Season of Docs to receive support for improving our documentation. Please check back soon.&#xA;If you are familiar with this content and would like to make a contribution, please feel free to open a PR :)</description>
+      <description></description>
     </item>
     <item>
       <title>Specify the environment</title>
       <link>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/specify-env/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/specify-env/</guid>
-      <description>This page is a stub! The CNB project is applying to Google Season of Docs to receive support for improving our documentation. Please check back soon.&#xA;If you are familiar with this content and would like to make a contribution, please feel free to open a PR :)&#xA;To cover:&#xA;POSIX paths Build env Process env Runtime env Modifiers </description>
+      <description></description>
     </item>
     <item>
       <title>Use exec.d binaries to configure the application at runtime</title>
       <link>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/use-exec.d/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/use-exec.d/</guid>
-      <description>This page is a stub! The CNB project is applying to Google Season of Docs to receive support for improving our documentation. Please check back soon.&#xA;If you are familiar with this content and would like to make a contribution, please feel free to open a PR :)</description>
+      <description></description>
     </item>
   </channel>
 </rss>

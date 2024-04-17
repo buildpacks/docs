@@ -4,7 +4,7 @@
     <title>Deprecated (unsupported) APIs on Cloud Native Buildpacks</title>
     <link>https://buildpacks.io/docs/for-buildpack-authors/how-to/migrate/deprecated/</link>
     <description>Recent content in Deprecated (unsupported) APIs on Cloud Native Buildpacks</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo 0.125.0</generator>
     <language>en-us</language>
     <atom:link href="https://buildpacks.io/docs/for-buildpack-authors/how-to/migrate/deprecated/index.xml" rel="self" type="application/rss+xml" />
     <item>
@@ -12,21 +12,21 @@
       <link>https://buildpacks.io/docs/for-buildpack-authors/how-to/migrate/deprecated/buildpack-api-0.4-0.5/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-buildpack-authors/how-to/migrate/deprecated/buildpack-api-0.4-0.5/</guid>
-      <description>This guide is most relevant to buildpack authors.&#xA;See the spec release for Buildpack API 0.5 for the full list of changes and further details.&#xA;Stack ID The buildpack may now indicate compatibility with any stack by specifying the special value *.&#xA;Character restrictions for process types For each process in launch.toml, type is now restricted to only contain numbers, letters, and the characters ., _, and -, so symlinks on both Linux and windows filesystems can be created.</description>
+      <description></description>
     </item>
     <item>
       <title>Buildpack API 0.5 -&gt; 0.6</title>
       <link>https://buildpacks.io/docs/for-buildpack-authors/how-to/migrate/deprecated/buildpack-api-0.5-0.6/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-buildpack-authors/how-to/migrate/deprecated/buildpack-api-0.5-0.6/</guid>
-      <description>This guide is most relevant to buildpack authors.&#xA;See the spec release for Buildpack API 0.6 for the full list of changes and further details.&#xA;Opt-in layer caching and launch.toml format changes Buildpacks must now explicitly opt-in to layer re-use by setting the launch, build, and cache keys in &amp;lt;layers&amp;gt;/&amp;lt;layer&amp;gt;.toml. If buildpacks do not modify &amp;lt;layers&amp;gt;/&amp;lt;layer&amp;gt;.toml, the layer will behave like a temporary directory, available only to the authoring buildpack, existing for the duration of a single build - even if the buildpack in the previous build set any of these keys to true.</description>
+      <description></description>
     </item>
     <item>
       <title>Buildpack API 0.6 -&gt; 0.7</title>
       <link>https://buildpacks.io/docs/for-buildpack-authors/how-to/migrate/deprecated/buildpack-api-0.6-0.7/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-buildpack-authors/how-to/migrate/deprecated/buildpack-api-0.6-0.7/</guid>
-      <description>This guide is most relevant to buildpack authors.&#xA;See the spec release for Buildpack API 0.7 for the full list of changes and further details.&#xA;New standardized SBOM format Buildpacks may write Software Bill of Materials (SBOM) files describing build- or run-time dependencies. These files must use the application/vnd.cyclonedx+json, application/spdx+json, or application/vnd.syft+json media types (a buildpack may output SBOM files in multiple formats). Files may be written to the following locations:</description>
+      <description></description>
     </item>
   </channel>
 </rss>

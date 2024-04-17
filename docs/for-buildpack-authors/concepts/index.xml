@@ -4,7 +4,7 @@
     <title>Concepts on Cloud Native Buildpacks</title>
     <link>https://buildpacks.io/docs/for-buildpack-authors/concepts/</link>
     <description>Recent content in Concepts on Cloud Native Buildpacks</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo 0.125.0</generator>
     <language>en-us</language>
     <atom:link href="https://buildpacks.io/docs/for-buildpack-authors/concepts/index.xml" rel="self" type="application/rss+xml" />
     <item>
@@ -47,21 +47,21 @@
       <link>https://buildpacks.io/docs/for-buildpack-authors/concepts/layer/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-buildpack-authors/concepts/layer/</guid>
-      <description>This page is a stub! The CNB project is applying to Google Season of Docs to receive support for improving our documentation. Please check back soon.&#xA;If you are familiar with this content and would like to make a contribution, please feel free to open a PR :)</description>
+      <description></description>
     </item>
     <item>
       <title>What is a buildpack package?</title>
       <link>https://buildpacks.io/docs/for-buildpack-authors/concepts/package/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-buildpack-authors/concepts/package/</guid>
-      <description>This page is a stub! The CNB project is applying to Google Season of Docs to receive support for improving our documentation. Please check back soon.&#xA;If you are familiar with this content and would like to make a contribution, please feel free to open a PR :)</description>
+      <description></description>
     </item>
     <item>
       <title>What is a component buildpack?</title>
       <link>https://buildpacks.io/docs/for-buildpack-authors/concepts/component-buildpack/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-buildpack-authors/concepts/component-buildpack/</guid>
-      <description>This page is a stub! The CNB project is applying to Google Season of Docs to receive support for improving our documentation. Please check back soon.&#xA;If you are familiar with this content and would like to make a contribution, please feel free to open a PR :)</description>
+      <description></description>
     </item>
     <item>
       <title>What is a composite buildpack?</title>
@@ -82,7 +82,7 @@
       <link>https://buildpacks.io/docs/for-buildpack-authors/concepts/build-plan/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-buildpack-authors/concepts/build-plan/</guid>
-      <description>This page is a stub! The CNB project is applying to Google Season of Docs to receive support for improving our documentation. Please check back soon.&#xA;If you are familiar with this content and would like to make a contribution, please feel free to open a PR :)</description>
+      <description></description>
     </item>
   </channel>
 </rss>
