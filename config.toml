@@ -52,14 +52,9 @@ featureKatacoda = false
   weight     = 1
 
   [[menu.footer1]]
-  name       = "Analytics"
-  url        = "https://datastudio.google.com/reporting/4b23856c-6c24-44f5-86f2-333d0ad3f236"
-  weight     = 2
-
-  [[menu.footer1]]
   name       = "Privacy Policy"
   url        = "https://www.linuxfoundation.org/privacy/"
-  weight     = 3
+  weight     = 2
 
   [[menu.footer2]]
   name       = "Mailing List"
@@ -91,3 +86,29 @@ featureKatacoda = false
   [security.http]
     methods = ['(?i)GET|POST']
     urls = ['.*']
+
+# For more information, see https://gohugo.io/getting-started/directory-structure/#union-file-system
+[[module.mounts]]
+    source = 'content'
+    target = 'content'
+[[module.mounts]]
+    source = 'content/docs/.common/concepts/buildpack.md'
+    target = 'content/docs/for-app-developers/concepts/buildpack.md'
+[[module.mounts]]
+    source = 'content/docs/.common/concepts/buildpack.md'
+    target = 'content/docs/for-buildpack-authors/concepts/buildpack.md'
+[[module.mounts]]
+    source = 'content/docs/.common/concepts/buildpack.md'
+    target = 'content/docs/for-platform-operators/concepts/buildpack.md'
+[[module.mounts]]
+    source = 'content/docs/.common/concepts/extension.md'
+    target = 'content/docs/for-buildpack-authors/concepts/extension.md'
+[[module.mounts]]
+    source = 'content/docs/.common/concepts/extension.md'
+    target = 'content/docs/for-platform-operators/concepts/extension.md'
+[[module.mounts]]
+    source = 'content/docs/.common/concepts/composite-buildpack.md'
+    target = 'content/docs/for-buildpack-authors/concepts/composite-buildpack.md'
+[[module.mounts]]
+    source = 'content/docs/.common/concepts/composite-buildpack.md'
+    target = 'content/docs/for-platform-operators/concepts/composite-buildpack.md'

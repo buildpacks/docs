@@ -24,7 +24,7 @@ jobs:
       - name: Install Dependencies
         run: sudo apt-get install make curl jq
       - name: Install pack
-        uses: buildpacks/github-actions/setup-pack@v5.5.1
+        uses: buildpacks/github-actions/setup-pack@v5.5.4
         with:
           pack-version: '0.31.0'
       - name: Test
@@ -52,7 +52,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download public folder
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: public
           path: ./public
