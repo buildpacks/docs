@@ -52,14 +52,9 @@ featureKatacoda = false
   weight     = 1
 
   [[menu.footer1]]
-  name       = "Analytics"
-  url        = "https://datastudio.google.com/reporting/4b23856c-6c24-44f5-86f2-333d0ad3f236"
-  weight     = 2
-
-  [[menu.footer1]]
   name       = "Privacy Policy"
   url        = "https://www.linuxfoundation.org/privacy/"
-  weight     = 3
+  weight     = 2
 
   [[menu.footer2]]
   name       = "Mailing List"
