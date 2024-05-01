@@ -7,6 +7,11 @@ aliases=[
 weight=2
 +++
 
+You can use buildpacks to build container images that run Windows containers on Windows (WCOW).
+
+This page is not relevant if your host machine is Windows but you are running Linux containers on Windows (LCOW);
+in this case, no special configuration is required.
+
 <!--more-->
 
 > **EXPERIMENTAL** Windows support is experimental!

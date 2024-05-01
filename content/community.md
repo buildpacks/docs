@@ -5,11 +5,48 @@ layout="community"
 summary="Join other users, contributors and providers of Cloud Native Buildpacks."
 +++
 
-## Calendar
+# Help us build Cloud Native Buildpacks
 
-Partake in one or many of our following public events:
+Cloud Native Buildpacks is better because of our contributors and maintainers. It is because of you that we can bring great software to the community. See below for further details on the several ways you can get more involved with the project.
+
+## Check out GitHub
+
+You can follow the work we do, be part of on-going discussions, and examine our improvement ideas on each [respective repo’s](https://github.com/buildpacks) GitHub issues page.
+
+If you're a newcomer, check out the good first issue label in each repository, take [pack](https://github.com/buildpacks/pack/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22) for example.
+
+If you are ready to jump in and add code, tests, or help with documentation, follow the guidelines in the contributing documentation in the respective repository.
+
+## Join our Slack channels
+
+Join any of our several channels within the [Cloud Native Computing Foundation’s Slack workspace](https://cloud-native.slack.com/) and talk to us and over 1,000 other community members:
+
+- [#buildpacks](https://cloud-native.slack.com/archives/C033DV8D9FB)
+- [#buildpacks-authors](https://cloud-native.slack.com/archives/C0333LG1E68)
+- [#buildpacks-implementation](https://cloud-native.slack.com/archives/C0331B5QS02)
+- [#buildpacks-kpack](https://cloud-native.slack.com/archives/C05GETJ2NP7)
+- [#buildpacks-learning-team](https://cloud-native.slack.com/archives/C032LNSTUNB)
+- [#buildpacks-maintainers](https://cloud-native.slack.com/archives/C0333LG7C9J)
+- [#buildpacks-mentoring](https://cloud-native.slack.com/archives/C032LNSKPP1)
+- [#buildpacks-pack-cli](https://cloud-native.slack.com/archives/C0331B61A1Y)
+- [#buildpacks-platform](https://cloud-native.slack.com/archives/C033DV9CSAD)
+- [#buildpacks-spec](https://cloud-native.slack.com/archives/C033DV9EBDF)
+
+## Attend our Working Group meetings
+
+Working Group Meetings are held every 1st and 3rd Thursday at 10am Pacific Time ([convert to your time zone](https://dateful.com/time-zone-converter?t=08:00&tz=PT%20%28Pacific%20Time%29)) and every 2nd and 4th Thursday at 7am Pacific Time ([convert to your time zone](https://dateful.com/time-zone-converter?t=08:00&tz=PT%20%28Pacific%20Time%29)).
 
 {{< calendar >}}
+
+Attend working group meetings to hear the latest development updates, provide feedback, ask questions, meet the maintainers, and get to know other members of the community.
+
+Join our [Mailing List](https://lists.cncf.io/g/cncf-buildpacks) to get updates on the project and invitations to working group meetings.
+
+- [Meeting Zoom Link](https://zoom.us/j/91289548697?pwd=SzNzaHdmVUVBZGhJM20weThIdGdkUT09)
+- See previous community meetings on our [YouTube Playlist](https://www.youtube.com/playlist?list=PL1p8pquzNvRpDbbgZ0db0MRA-W5_w0G1U)
+- [Meeting agenda](https://docs.google.com/document/d/18gkdfJsy8AQWsOgzPbLRnxN4a-WtUoaCM2Lh7-08rdo/edit#heading=h.3kg2wwvbnkb3)
+
+Topics should be added to the agenda in the public [Google Doc](https://docs.google.com/document/d/18gkdfJsy8AQWsOgzPbLRnxN4a-WtUoaCM2Lh7-08rdo/edit#heading=h.3kg2wwvbnkb3) the day prior to the meeting. The list of topics will be finalized by the meeting organizers. If any scheduled topics are covered in less than the allotted time, additional topics may be covered.
 
 ## Contributing
 
@@ -136,3 +173,13 @@ The full text of the certification is available [here](https://developercertific
 
 - Push to GitHub: `git push origin {{BRANCH_NAME}}`
 - [Create the pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork).
+
+## Donate your project to Buildpacks Community, our vendor-neutral GitHub organization
+
+As our adopters and contributors have grown substantially over the last several years, we created a new GitHub organization to allow us to foster partner projects. The [Buildpacks Community organization](https://github.com/buildpacks-community/) is a vendor-neutral Github organization where the community provides trusted Cloud Native Buildpacks tooling, platforms, and integrations.
+
+​​For a project to be admitted to the Buildpacks community organization, it must meet several criteria, but the first step is to create a Github issue in the Buildpacks Community repository. Once it is mature enough to be part of the core Buildpacks organization, the project maintainers can request for the project to be graduated into the core Buildpacks organization. Kpack was the first project to be donated into this new org and you can read more about the first major community project donation [here](https://medium.com/buildpacks/kpack-joins-the-buildpacks-community-organization-223e59bda951).
+
+If you want to know more and how you can donate your own project, you can find all the details in the [RFC](https://github.com/buildpacks/rfcs/blob/main/text/0117-buildpacks-community.md).
+
+##### Thank you for your interest in making this project even better.

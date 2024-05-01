@@ -5,6 +5,7 @@ aliases=[
   "/docs/features/experimental/export-to-oci-layout"
 ]
 weight=3
+summary="The OCI Image Layout is the directory structure for OCI content-addressable blobs and location-addressable references."
 +++
 
 <!--more-->
