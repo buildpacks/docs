@@ -19,13 +19,13 @@ A **Software-Bill-of-Materials** (`SBOM`) lists all the software components incl
 You can use the `sbom download` command to inspect your app for its Software-Bill-of-Materials. The following command will download the application layer containing the `SBOM` files to `./layers/sbom/...` on your local filesystem.
 
 ```bash
-pack sbom download your-image-name
+pack sbom download my-app:my-tag
 ```
 
 You can also choose to download the `SBOM` from an image hosted in a remote registry, as opposed to an image hosted in a Docker daemon. You use the `--remote` flag to do so.
 
 ```bash
-pack sbom download your-image-name --remote
+pack sbom download registry.example.com/example/my-app:my-tag --remote
 ```
 
 The following example demonstrates  running `pack sbom download ...` on an image containing an `SBOM` in  `syft` format.  Running `pack sbom download ...` creates a `layers/sbom` directory and populates that directory with `sbom.syft.json` files.  The combined metadata from all of the `sbom.syft.json` files is the image `SBOM`. Where an image generates CycloneDX `SBOM` metadata, the files are named `sbom.cdx.json`. Similarly, Spdx files are named `sbom.spdx.json`.

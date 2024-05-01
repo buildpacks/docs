@@ -81,8 +81,8 @@ docker run --rm \
   --volume ~/workspace/platform:/platform \
   --mount type=bind,source=~/workspace/order.toml,target=/cnb/order.toml \
   --env CNB_PLATFORM_API=0.7 \
-  ubuntu:jammy \
-  /cnb/lifecycle/creator -log-level debug -daemon -run-image ubuntu:jammy hello-arm64
+  docker.io/ubuntu:jammy \
+  /cnb/lifecycle/creator -log-level debug -daemon -run-image docker.io/ubuntu:jammy hello-arm64
 ```
 
 ### 4. Run it

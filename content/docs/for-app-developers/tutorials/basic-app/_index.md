@@ -41,12 +41,12 @@ ls samples || git clone https://github.com/buildpacks/samples
 
 2. Build the app
 ```
-pack build sample-app --path samples/apps/java-maven --builder cnbs/sample-builder:jammy
+pack build sample-app --path samples/apps/java-maven --builder docker.io/cnbs/sample-builder:jammy
 ```
 <!--+- "{{execute}}"+-->
 
 > **TIP:** If you don't want to keep specifying a builder every time you build, you can set it as your default
-> builder by running `pack config default-builder <BUILDER>` for example `pack config default-builder cnbs/sample-builder:jammy`
+> builder by running `pack config default-builder <BUILDER>` for example `pack config default-builder docker.io/cnbs/sample-builder:jammy`
 <!--+- "{{execute}}"+-->
 
 ### 3. Run it

@@ -32,7 +32,7 @@ For the following examples we will use:
 Next we trust the `cnbs/sample-builder:jammy` builder in order to allow access to docker credentials when publishing.
 
 ```
-pack config trusted-builders add cnbs/sample-builder:jammy
+pack config trusted-builders add docker.io/cnbs/sample-builder:jammy
 ```
 <!--+- "{{execute}}"+-->
 
@@ -42,7 +42,7 @@ To build the `localhost:5000/buildpack-examples/cache-image-example` application
 
 ```
 pack build localhost:5000/buildpack-examples/cache-image-example \
-    --builder cnbs/sample-builder:jammy \
+    --builder docker.io/cnbs/sample-builder:jammy \
     --buildpack samples/java-maven \
     --path samples/apps/java-maven \
     --cache-image localhost:5000/buildpack-examples/maven-cache-image:latest \
@@ -76,7 +76,7 @@ builds may also update the specified `cache-image`.
 The following command will restore data for the `samples/java-maven:maven_m2` layer from the cache image.
 ```
 pack build localhost:5000/buildpack-examples/second-cache-image-example \
-    --builder cnbs/sample-builder:jammy \
+    --builder docker.io/cnbs/sample-builder:jammy \
     --buildpack samples/java-maven \
     --path samples/apps/java-maven \
     --cache-image localhost:5000/buildpack-examples/maven-cache-image:latest \
