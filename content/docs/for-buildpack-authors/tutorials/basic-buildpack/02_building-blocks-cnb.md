@@ -113,7 +113,7 @@ pack config trusted-builders add cnbs/sample-builder:jammy
 ```
 <!--+- "{{execute}}"+-->
 
-Then run the following `pack` command after `cd` to `node-js-sample-app`:
+Then run the following `pack` command from the `node-js-sample-app` directory:
 
 <!-- test:exec;exit-code=1 -->
 ```bash
