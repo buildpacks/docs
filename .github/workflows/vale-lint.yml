@@ -11,4 +11,3 @@ jobs:
         continue-on-error: true
         with: 
           token: ${{secrets.GITHUB_TOKEN}}
-          files: ./content
