@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: errata-ai/vale-action@reviewdog
-        continue-on-error: true
         with: 
+          fail_on_error: true
           token: ${{secrets.GITHUB_TOKEN}}
           files: ./content
