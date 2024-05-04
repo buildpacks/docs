@@ -31,11 +31,11 @@ if [[ ! -f package.json ]]; then
 fi
 ```
 
-Next, rebuild your app with the updated buildpack:
+Next, rebuild your app with the updated buildpack from the `node-js-sample-app` directory:
 
 <!-- test:exec;exit-code=1 -->
 ```bash
-pack build test-node-js-app --path ./node-js-sample-app --buildpack ./node-js-buildpack
+pack build test-node-js-app --path ./ --buildpack ./node-js-buildpack
 ```
 <!--+- "{{execute}}"+-->
 
