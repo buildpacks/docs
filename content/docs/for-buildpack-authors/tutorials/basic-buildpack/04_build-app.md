@@ -79,11 +79,11 @@ wget -q -O - "${node_js_url}" | tar -xJf - --strip-components 1 -C "${node_js_la
 echo -e '[types]\nlaunch = true' > "${CNB_LAYERS_DIR}/node-js.toml"
 ```
 
-Build your app again:
+Build your app again from the `node-js-sample-app` directory:
 
 <!-- test:exec -->
 ```bash
-pack build test-node-js-app --path ./node-js-sample-app --buildpack ./node-js-buildpack
+pack build test-node-js-app --path ./ --buildpack ./node-js-buildpack
 ```
 <!--+- "{{execute}}"+-->
 
