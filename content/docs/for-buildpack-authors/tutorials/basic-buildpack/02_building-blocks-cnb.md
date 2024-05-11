@@ -15,7 +15,8 @@ Let's create the directory where your buildpack will live:
 
 ## Using the Pack CLI
 
-The `buildpack new <id>` command will create a directory named for the buildpack ID.
+The `buildpack new <id>` command will create a directory named for the buildpack ID. 
+Make sure to run this command outside the `node-js-sample-app` directory created previously.
 
 Example:
 <!-- test:exec -->
