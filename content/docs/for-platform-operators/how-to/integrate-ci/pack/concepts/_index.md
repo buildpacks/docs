@@ -2,7 +2,7 @@
 +++
 title="Concepts"
 aliases=[
-  "/docs/tools/pack/concepts/_index"
+  "/docs/tools/pack/concepts/"
 ]
 include_summaries=true
 
