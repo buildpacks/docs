@@ -343,6 +343,9 @@
 <li data-nav-id="/docs/for-platform-operators/concepts/lifecycle/rebase/" class="dd-item depth-3 collapse">
   <a href="/docs/for-platform-operators/concepts/lifecycle/rebase/">Rebase</a>
 </li>
+<li data-nav-id="/docs/for-platform-operators/concepts/lifecycle/extend/" class="dd-item depth-3 collapse">
+  <a href="/docs/for-platform-operators/concepts/lifecycle/extend/">Extend</a>
+</li>
   </ul>
 </li>
 <li data-nav-id="/docs/for-platform-operators/concepts/composite-buildpack/" class="dd-item depth-2">
@@ -895,7 +898,8 @@ a build-time base image, a <a href="/docs/for-platform-operators/concepts/lifecy
             </div>
         
           <h2><a href="https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/" class="">What is the lifecycle?</a></h2>
-          <p class="m-1">The <code>lifecycle</code> orchestrates buildpack execution, then assembles the resulting artifacts into an <a href="https://github.com/opencontainers/image-spec">OCI image</a>.</p>
+          <p class="m-1">The <code>lifecycle</code> orchestrates buildpacks, then assembles the resulting artifacts into an <a href="https://github.com/opencontainers/image-spec">OCI image</a>.
+It does its work in a series of distinct &ldquo;phases&rdquo;.</p>
 
           
       
@@ -944,6 +948,12 @@ a build-time base image, a <a href="/docs/for-platform-operators/concepts/lifecy
         
           <ul>
             <li class="list-item-icon"><h3><a href="https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/rebase/" class="">Rebase</a></h3></li>
+            
+          </ul>
+        
+        
+          <ul>
+            <li class="list-item-icon"><h3><a href="https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/extend/" class="">Extend</a></h3></li>
             
           </ul>
         

@@ -8,8 +8,9 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-<link rel="canonical" content="https://buildpacks.io/docs/for-buildpack-authors/tutorials/">
+<meta name="description" content="The extender applies Dockerfiles output by image extensions to the build or runtime base image.
+"/>
+<link rel="canonical" content="https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/extend/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
 
@@ -17,12 +18,13 @@
 
 
 
-<meta property="og:title" content="Tutorials · Cloud Native Buildpacks">
+<meta property="og:title" content="Extend · Cloud Native Buildpacks">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://buildpacks.io/docs/for-buildpack-authors/tutorials/">
+<meta property="og:url" content="https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/extend/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-
+<meta property="og:description" content="The extender applies Dockerfiles output by image extensions to the build or runtime base image.
+">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -33,7 +35,7 @@
 
 
 
-<meta property="twitter:title" content="Tutorials · Cloud Native Buildpacks">
+<meta property="twitter:title" content="Extend · Cloud Native Buildpacks">
 <meta property="twitter:card" content="summary">
 <meta property="twitter:image" content="https://buildpacks.io/images/buildpacks-social-card-square.jpg">
 <meta property="twitter:image:alt" content="Buildpacks project logo">
@@ -96,7 +98,7 @@
     gtag('config', 'G-CJLSR4FQXL');
   </script>
 
-  <title>Tutorials · Cloud Native Buildpacks</title>
+  <title>Extend · Cloud Native Buildpacks</title>
 </head>
 
 <body>
@@ -296,7 +298,7 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/for-platform-operators/" class="dd-item depth-0 haschildren">
+<li data-nav-id="/docs/for-platform-operators/" class="dd-item depth-0 parent haschildren">
   <a href="/docs/for-platform-operators/">For Platform Operators</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/for-platform-operators/tutorials/" class="dd-item depth-1 haschildren">
@@ -307,51 +309,51 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/for-platform-operators/concepts/" class="dd-item depth-1 haschildren">
+<li data-nav-id="/docs/for-platform-operators/concepts/" class="dd-item depth-1 parent haschildren">
   <a href="/docs/for-platform-operators/concepts/">Concepts</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/for-platform-operators/concepts/buildpack/" class="dd-item depth-2 collapse">
+<li data-nav-id="/docs/for-platform-operators/concepts/buildpack/" class="dd-item depth-2">
   <a href="/docs/for-platform-operators/concepts/buildpack/">What is a buildpack?</a>
 </li>
-<li data-nav-id="/docs/for-platform-operators/concepts/builder/" class="dd-item depth-2 collapse">
+<li data-nav-id="/docs/for-platform-operators/concepts/builder/" class="dd-item depth-2">
   <a href="/docs/for-platform-operators/concepts/builder/">What is a builder?</a>
 </li>
-<li data-nav-id="/docs/for-platform-operators/concepts/lifecycle/" class="dd-item depth-2 collapse haschildren">
+<li data-nav-id="/docs/for-platform-operators/concepts/lifecycle/" class="dd-item depth-2 parent haschildren">
   <a href="/docs/for-platform-operators/concepts/lifecycle/">What is the lifecycle?</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/for-platform-operators/concepts/lifecycle/analyze/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/for-platform-operators/concepts/lifecycle/analyze/" class="dd-item depth-3">
   <a href="/docs/for-platform-operators/concepts/lifecycle/analyze/">Analyze</a>
 </li>
-<li data-nav-id="/docs/for-platform-operators/concepts/lifecycle/detect/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/for-platform-operators/concepts/lifecycle/detect/" class="dd-item depth-3">
   <a href="/docs/for-platform-operators/concepts/lifecycle/detect/">Detect</a>
 </li>
-<li data-nav-id="/docs/for-platform-operators/concepts/lifecycle/restore/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/for-platform-operators/concepts/lifecycle/restore/" class="dd-item depth-3">
   <a href="/docs/for-platform-operators/concepts/lifecycle/restore/">Restore</a>
 </li>
-<li data-nav-id="/docs/for-platform-operators/concepts/lifecycle/build/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/for-platform-operators/concepts/lifecycle/build/" class="dd-item depth-3">
   <a href="/docs/for-platform-operators/concepts/lifecycle/build/">Build</a>
 </li>
-<li data-nav-id="/docs/for-platform-operators/concepts/lifecycle/export/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/for-platform-operators/concepts/lifecycle/export/" class="dd-item depth-3">
   <a href="/docs/for-platform-operators/concepts/lifecycle/export/">Export</a>
 </li>
-<li data-nav-id="/docs/for-platform-operators/concepts/lifecycle/create/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/for-platform-operators/concepts/lifecycle/create/" class="dd-item depth-3">
   <a href="/docs/for-platform-operators/concepts/lifecycle/create/">Create</a>
 </li>
-<li data-nav-id="/docs/for-platform-operators/concepts/lifecycle/launch/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/for-platform-operators/concepts/lifecycle/launch/" class="dd-item depth-3">
   <a href="/docs/for-platform-operators/concepts/lifecycle/launch/">Launch</a>
 </li>
-<li data-nav-id="/docs/for-platform-operators/concepts/lifecycle/rebase/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/for-platform-operators/concepts/lifecycle/rebase/" class="dd-item depth-3">
   <a href="/docs/for-platform-operators/concepts/lifecycle/rebase/">Rebase</a>
 </li>
-<li data-nav-id="/docs/for-platform-operators/concepts/lifecycle/extend/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/for-platform-operators/concepts/lifecycle/extend/" class="dd-item depth-3 active">
   <a href="/docs/for-platform-operators/concepts/lifecycle/extend/">Extend</a>
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/for-platform-operators/concepts/composite-buildpack/" class="dd-item depth-2 collapse">
+<li data-nav-id="/docs/for-platform-operators/concepts/composite-buildpack/" class="dd-item depth-2">
   <a href="/docs/for-platform-operators/concepts/composite-buildpack/">What is a composite buildpack?</a>
 </li>
-<li data-nav-id="/docs/for-platform-operators/concepts/extension/" class="dd-item depth-2 collapse">
+<li data-nav-id="/docs/for-platform-operators/concepts/extension/" class="dd-item depth-2">
   <a href="/docs/for-platform-operators/concepts/extension/">What is an image extension?</a>
 </li>
   </ul>
@@ -619,10 +621,10 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/for-buildpack-authors/" class="dd-item depth-0 parent haschildren">
+<li data-nav-id="/docs/for-buildpack-authors/" class="dd-item depth-0 haschildren">
   <a href="/docs/for-buildpack-authors/">For Buildpack Authors</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/for-buildpack-authors/tutorials/" class="dd-item depth-1 active haschildren">
+<li data-nav-id="/docs/for-buildpack-authors/tutorials/" class="dd-item depth-1 haschildren">
   <a href="/docs/for-buildpack-authors/tutorials/">Tutorials</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/for-buildpack-authors/tutorials/basic-buildpack/" class="dd-item depth-2 haschildren">
@@ -857,12 +859,12 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BTutorials%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ffor-buildpack-authors%2Ftutorials%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BExtend%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ffor-platform-operators%2Fconcepts%2Flifecycle%2Fextend%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/for-buildpack-authors/tutorials/_index.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/for-platform-operators/concepts/lifecycle/extend.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
@@ -870,29 +872,43 @@
 
 
         <div class="heading">
-          <h1 class="title">Tutorials</h1>
+          <h1 class="title">Extend</h1>
         </div>
 
-        
+        <p>The <code>extender</code> applies Dockerfiles output by image extensions to the build or runtime base image.</p>
+<h3 id="exit-codes">Exit Codes</h3>
+<table>
+<thead>
+<tr>
+<th>Exit Code</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0</code></td>
+<td>Success</td>
+</tr>
+<tr>
+<td><code>11</code></td>
+<td>Platform API incompatibility error</td>
+</tr>
+<tr>
+<td><code>12</code></td>
+<td>Buildpack API incompatibility error</td>
+</tr>
+<tr>
+<td><code>1-10</code>, <code>13-19</code></td>
+<td>Generic lifecycle errors</td>
+</tr>
+<tr>
+<td><code>100-109</code></td>
+<td>Extension-specific lifecycle errors</td>
+</tr>
+</tbody>
+</table>
 
         
-      
-        
-          <h2><a href="https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-buildpack/" class="">Write a basic buildpack</a></h2>
-          <p class="m-1">This is a step-by-step tutorial for creating a nodeJS Cloud Native Buildpack.</p>
-
-          
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-buildpack/">Learn more →</a>
-            </div>
-        
-          <h2><a href="https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-extension/" class="">Write a basic extension</a></h2>
-          <p class="m-1">This is a step-by-step tutorial for creating and using image extensions, which allow for customization of the build-time and runtime base images using Dockerfiles.</p>
-
-          
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-extension/">Learn more →</a>
-            </div>
 
         <hr>
 <div class='footline d-block'>
@@ -900,12 +916,12 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BTutorials%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ffor-buildpack-authors%2Ftutorials%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BExtend%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ffor-platform-operators%2Fconcepts%2Flifecycle%2Fextend%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/for-buildpack-authors/tutorials/_index.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/for-platform-operators/concepts/lifecycle/extend.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   

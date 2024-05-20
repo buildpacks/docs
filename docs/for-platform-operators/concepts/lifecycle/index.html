@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="The lifecycle orchestrates buildpack execution, then assembles the resulting artifacts into an OCI image.
+<meta name="description" content="The lifecycle orchestrates buildpacks, then assembles the resulting artifacts into an OCI image. It does its work in a series of distinct &amp;ldquo;phases&amp;rdquo;.
 "/>
 <link rel="canonical" content="https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
@@ -23,7 +23,7 @@
 <meta property="og:url" content="https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-<meta property="og:description" content="The lifecycle orchestrates buildpack execution, then assembles the resulting artifacts into an OCI image.
+<meta property="og:description" content="The lifecycle orchestrates buildpacks, then assembles the resulting artifacts into an OCI image. It does its work in a series of distinct &amp;ldquo;phases&amp;rdquo;.
 ">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
@@ -344,6 +344,9 @@
 </li>
 <li data-nav-id="/docs/for-platform-operators/concepts/lifecycle/rebase/" class="dd-item depth-3">
   <a href="/docs/for-platform-operators/concepts/lifecycle/rebase/">Rebase</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/concepts/lifecycle/extend/" class="dd-item depth-3">
+  <a href="/docs/for-platform-operators/concepts/lifecycle/extend/">Extend</a>
 </li>
   </ul>
 </li>
@@ -872,7 +875,33 @@
           <h1 class="title">What is the lifecycle?</h1>
         </div>
 
-        <p>The <code>lifecycle</code> orchestrates buildpack execution, then assembles the resulting artifacts into an <a href="https://github.com/opencontainers/image-spec">OCI image</a>.</p>
+        <p>The <code>lifecycle</code> orchestrates buildpacks, then assembles the resulting artifacts into an <a href="https://github.com/opencontainers/image-spec">OCI image</a>.
+It does its work in a series of distinct &ldquo;phases&rdquo;.</p>
+<h2 id="build-phases">Build Phases</h2>
+<p>An <strong>image build</strong> requires 5 lifecycle phases, as shown below:</p>
+<p><img src="/images/lifecycle-phases.png" alt="lifecycle phases"></p>
+<blockquote>
+<p><strong>Note</strong>: when talking about lifecycle phases you&rsquo;ll sometimes see nouns like <code>analyzer</code> or <code>/cnb/lifecycle/analyzer</code>
+and you&rsquo;ll sometimes see verbs like <code>analyze</code> or <code>analyze phase</code>.<br><br>
+These are all more-or-less interchangeable: the nouns refer to the lifecycle binary and the verbs refer to the work that the lifecycle performs.</p>
+</blockquote>
+<p>The lifecycle must be run in a containerized environment (such as a Docker container or CI/CD system).</p>
+<p>The <a href="/docs/for-platform-operators/concepts/lifecycle/analyze"><code>analyzer</code></a>, <a href="/docs/for-platform-operators/concepts/lifecycle/restore"><code>restorer</code></a>, and <a href="/docs/for-platform-operators/concepts/lifecycle/export"><code>exporter</code></a> (shown in pink above)
+require access to an image repository - either an <strong>OCI registry</strong> or Docker-compliant <strong>daemon</strong> (such as Docker or Podman)
+in order to do their work.</p>
+<p>This means that either registry credentials or a Docker socket must be available in the container where the lifecycle phase is running.
+For security hardening, these phases run in separate containers to avoid exposing sensitive data to <strong>buildpacks</strong>.</p>
+<p>The <a href="/docs/for-platform-operators/concepts/lifecycle/detect"><code>detector</code></a> and <a href="/docs/for-platform-operators/concepts/lifecycle/build"><code>builder</code></a> (shown in purple above)
+invoke buildpacks to do the work of determining which buildpacks are needed and
+transforming application source code into runnable artifacts (the real work of buildpacks!).
+For security hardening, both the lifecycle and buildpacks run as non-root users when doing this work.</p>
+<p>When a builder is <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/concepts/trusted_builders">trusted</a>, all 5 lifecycle phases can be run in the same container,
+and in this case the <a href="/docs/for-platform-operators/concepts/lifecycle/create"><code>creator</code></a> binary is used to run all 5 lifecycle phases with a single command invocation.</p>
+<p>To coordinate between phases, the lifecycle outputs a series of configuration files which are part of the <a href="/docs/reference/spec/platform-api">Platform API specification</a>.
+For the most part, platform operators do not need to be concerned with these files unless they are designing their own platform.</p>
+<h2 id="diving-deeper">Diving Deeper</h2>
+<p>Read on to learn more about each lifecycle phase, including phases not shown above.
+These include phases relating to <a href="/docs/for-platform-operators/concepts/lifecycle/launch">starting</a> or <a href="/docs/for-platform-operators/concepts/lifecycle/rebase">rebasing</a> the application, or <a href="/docs/for-platform-operators/concepts/lifecycle/extend">extending</a> base images used during the build.</p>
 
         
       
@@ -939,6 +968,14 @@
           
             <div class="text-md-right">
               <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/rebase/">Learn more →</a>
+            </div>
+        
+          <h2><a href="https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/extend/" class="">Extend</a></h2>
+          <p class="m-1">The <code>extender</code> applies Dockerfiles output by image extensions to the build or runtime base image.</p>
+
+          
+            <div class="text-md-right">
+              <a class="small text-pink mr-md-3 text-decoration-none" href="https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/extend/">Learn more →</a>
             </div>
 
         <hr>
