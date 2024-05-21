@@ -16,14 +16,14 @@ We can improve performance by caching the runtime between builds, only re-downlo
 To do this, replace the following lines in the `build` script:
 
 ```bash
-# 4. MAKE node-js AVAILABLE DURING LAUNCH
+# 3. MAKE node-js AVAILABLE DURING LAUNCH
 echo -e '[types]\nlaunch = true' > "${CNB_LAYERS_DIR}/node-js.toml"
 ```
 
 with the following:
 
 ```bash
-# 4. MAKE node-js AVAILABLE DURING LAUNCH and CACHE it
+# 3. MAKE node-js AVAILABLE DURING LAUNCH and CACHE it
 echo -e '[types]\ncache = true\nlaunch = true' > "${CNB_LAYERS_DIR}/node-js.toml"
 ```
 
