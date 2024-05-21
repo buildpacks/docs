@@ -47,7 +47,7 @@
       <link>https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-buildpack/06_caching/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-buildpack/06_caching/</guid>
-      <description>We can improve performance by caching the runtime between builds, only re-downloading when necessary. To begin, let&amp;rsquo;s cache the runtime layer.&#xA;Cache the runtime layer To do this, replace the following lines in the build script:&#xA;# 4. MAKE node-js AVAILABLE DURING LAUNCH echo -e &amp;#39;[types]\nlaunch = true&amp;#39; &amp;gt; &amp;#34;${CNB_LAYERS_DIR}/node-js.toml&amp;#34; with the following:&#xA;# 4. MAKE node-js AVAILABLE DURING LAUNCH and CACHE it echo -e &amp;#39;[types]\ncache = true\nlaunch = true&amp;#39; &amp;gt; &amp;#34;${CNB_LAYERS_DIR}/node-js.</description>
+      <description>We can improve performance by caching the runtime between builds, only re-downloading when necessary. To begin, let&amp;rsquo;s cache the runtime layer.&#xA;Cache the runtime layer To do this, replace the following lines in the build script:&#xA;# 3. MAKE node-js AVAILABLE DURING LAUNCH echo -e &amp;#39;[types]\nlaunch = true&amp;#39; &amp;gt; &amp;#34;${CNB_LAYERS_DIR}/node-js.toml&amp;#34; with the following:&#xA;# 3. MAKE node-js AVAILABLE DURING LAUNCH and CACHE it echo -e &amp;#39;[types]\ncache = true\nlaunch = true&amp;#39; &amp;gt; &amp;#34;${CNB_LAYERS_DIR}/node-js.</description>
     </item>
     <item>
       <title>Making your buildpack configurable</title>
