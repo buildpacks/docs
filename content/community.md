@@ -69,7 +69,7 @@ If you didn't find anything you'd like to improve while going through the tutori
 
 > Depending our your depth of understanding or desires some components may be more ideal than others.
 
-[talks]: /docs/#talks
+[talks]: /docs/talks
 [tutorials]: /docs/#tutorials
 [spec]: /docs/reference/spec/
 [platforms]: /docs/for-app-developers/concepts/platform/
