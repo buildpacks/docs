@@ -10,7 +10,7 @@ weight=1
 <!--more-->
 
 Building for the ARM architecture is now easier than ever! The `heroku/builder:24` builder supports both AMD64 and ARM64 architectures, and includes
-multi-arch Java, Node.js, Python, Ruby, Scale and Go buildpacks. You can read more about Heroku's [Cloud Native Buildpacks here][heroku-buildpacks].
+multi-arch Java, Node.js, Python, Ruby, Scala and Go buildpacks. You can read more about Heroku's [Cloud Native Buildpacks here][heroku-buildpacks].
 
 ### 1. Clone the [samples][samples] repository
 
@@ -27,7 +27,7 @@ pack build java-maven-sample --path samples/apps/java-maven/ --builder heroku/bu
 ```
 <!--+- "{{execute}}"+-->
 
-As `heroku/builder:24` is a multi-arch builder, it'll default to the current architecture, and an AMD64 image will be built when running pack on that architecture.
+As `heroku/builder:24` is a multi-arch builder, it'll default to the current architecture, and an AMD64 image will be built when running `pack` on that architecture.
 
 If you want to build an ARM64 image from a different host architecture, you can use the arch-specific builder tag: `heroku/builder:24_linux-arm64`:
 ```
@@ -55,5 +55,4 @@ The app should now be running and accessible via [localhost:8080](http://localho
 [pack]: https://github.com/buildpacks/pack
 [docker]: https://docs.docker.com
 [samples]: https://github.com/buildpacks/samples
-[lifecycle]: https://github.com/buildpacks/lifecycle
 [heroku-buildpacks]: https://github.com/heroku/buildpacks
