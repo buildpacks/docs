@@ -21,7 +21,7 @@ git clone https://github.com/buildpacks/samples
 
 ### 2. Build the app
 
-If you're using an ARM64 linux instance (such as an Apple Silicon computer, or an AWS Graviton instance), you can produce an ARM64 OCI image with [pack][pack] simply by setting your builder to `heroku/builder:24`:
+If you're using an ARM64 computer (such as an Apple Silicon Mac, or an AWS Graviton instance), you can produce an ARM64 OCI image with [pack][pack] simply by setting your builder to `heroku/builder:24`:
 ```
 pack build java-maven-sample --path samples/apps/java-maven/ --builder heroku/builder:24
 ```
