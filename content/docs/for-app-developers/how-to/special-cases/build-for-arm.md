@@ -46,7 +46,11 @@ docker run --rm -p 8080:8080 java-maven-sample
 ```
 <!--+- "{{execute}}"+-->
 
-The app image should now be built and stored on the docker daemon. You may perform `docker images` to verify.
+**Congratulations!**
+
+<!--+- if false+-->
+The app should now be running and accessible via [localhost:8080](http://localhost:8080).
+<!--+end+-->
 
 [pack]: https://github.com/buildpacks/pack
 [docker]: https://docs.docker.com
