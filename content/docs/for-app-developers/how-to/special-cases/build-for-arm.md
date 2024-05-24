@@ -14,10 +14,11 @@ multi-arch Java, Node.js, Python, Ruby, Scala and Go buildpacks. You can read mo
 
 ### 1. Clone the [samples][samples] repository
 
-```bash
+```
 # clone the repo
 git clone https://github.com/buildpacks/samples
 ```
+<!--+- "{{execute}}"+-->
 
 ### 2. Build the app
 
