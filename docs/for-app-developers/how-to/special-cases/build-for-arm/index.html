@@ -873,55 +873,32 @@
           <h1 class="title">Build for ARM architecture</h1>
         </div>
 
-        <p>As of today, there are no known released CNB builder images that support building ARM application images.</p>
-<p>Users can create their own ARM64 builder image by following <a href="https://github.com/dmikusa-pivotal/paketo-arm64">this guide</a>.</p>
-<p>In the following tutorial, we will be performing a build &ldquo;manually&rdquo;, in that we will be performing a build by invoking the lifecycle directly.</p>
-<h3 id="1-prepare-your-working-directory">1. Prepare your working directory</h3>
-<p>On your Linux ARM machine with a <a href="https://docs.docker.com">docker</a> daemon installed, prepare the following directory tree structure.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tree ~/workspace/
-</span></span><span class="line"><span class="cl">~/workspace/
-</span></span><span class="line"><span class="cl">├── buildpacks
-</span></span><span class="line"><span class="cl">│   └── samples_hello-world
-</span></span><span class="line"><span class="cl">└── platform
-</span></span></code></pre></div><p>In addition, clone the <a href="https://github.com/buildpacks/samples">samples</a> repository which will contain the application source code.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># clone the repo</span>
-</span></span><span class="line"><span class="cl">git clone https://github.com/buildpacks/samples ~/workspace/samples
-</span></span></code></pre></div><h3 id="2-prepare-the-assets">2. Prepare the assets</h3>
-<p>Now we need to prepare assets that will be used during the build process.</p>
-<p>First we download and extract the <a href="https://github.com/buildpacks/lifecycle">lifecycle</a> release, compiled for ARM. Make sure to replace <code>&lt;RELEASE-VERSION&gt;</code> with a valid release version.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># change to destination directory</span>
-</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ~/workspace
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># download and extract lifecycle</span>
-</span></span><span class="line"><span class="cl">curl -L https://github.com/buildpacks/lifecycle/releases/download/v&lt;RELEASE-VERSION&gt;/lifecycle-v&lt;RELEASE-VERSION&gt;+linux.arm64.tgz <span class="p">|</span> tar xzf -
-</span></span></code></pre></div><p>Next we make sure that our buildpack directory is structured in a way that the lifecycle will expect.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># copy hello-world buildpack</span>
-</span></span><span class="line"><span class="cl">cp -R ~/workspace/samples/buildpacks/hello-world ~/workspace/buildpacks/samples_hello-world/0.0.1
-</span></span></code></pre></div><p>And finally we write the <code>order.toml</code> file that references the hello-world buildpack.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat &gt; ~/workspace/order.toml &lt;EOF
-</span></span><span class="line"><span class="cl"><span class="o">[[</span>order<span class="o">]]</span>
-</span></span><span class="line"><span class="cl"><span class="o">[[</span>order.group<span class="o">]]</span>
-</span></span><span class="line"><span class="cl"><span class="nv">id</span> <span class="o">=</span> <span class="s2">&#34;samples/hello-world&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">version</span> <span class="o">=</span> <span class="s2">&#34;0.0.1&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nv">optional</span> <span class="o">=</span> <span class="nb">false</span>
-</span></span><span class="line"><span class="cl">EOF
-</span></span></code></pre></div><h3 id="3-build-your-app">3. Build your app</h3>
-<p>Now we can build our app. For this example we will be using the docker CLI to invoke the lifecycle directly.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># invoke the lifecycle</span>
-</span></span><span class="line"><span class="cl">docker run --rm <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --mount <span class="nv">type</span><span class="o">=</span>bind,source<span class="o">=</span>/var/run/docker.sock,target<span class="o">=</span>/var/run/docker.sock <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --volume ~/workspace/lifecycle:/cnb/lifecycle <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --volume ~/workspace/buildpacks:/cnb/buildpacks <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --volume ~/workspace/samples/apps/bash-script:/workspace <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --volume ~/workspace/platform:/platform <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --mount <span class="nv">type</span><span class="o">=</span>bind,source<span class="o">=</span>~/workspace/order.toml,target<span class="o">=</span>/cnb/order.toml <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --env <span class="nv">CNB_PLATFORM_API</span><span class="o">=</span>0.7 <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  ubuntu:jammy <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  /cnb/lifecycle/creator -log-level debug -daemon -run-image ubuntu:jammy hello-arm64
-</span></span></code></pre></div><h3 id="4-run-it">4. Run it</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run --rm hello-arm64
-</span></span></code></pre></div><p><strong>Congratulations!</strong></p>
-<p>The app image should now be built and stored on the docker daemon. You may perform <code>docker images</code> to verify.</p>
+        <p>Building for the ARM architecture is now easier than ever! The <code>heroku/builder:24</code> builder supports both AMD64 and ARM64 architectures, and includes
+multi-arch Java, Node.js, Python, Ruby, Scala and Go buildpacks. You can read more about Heroku&rsquo;s <a href="https://github.com/heroku/buildpacks">Cloud Native Buildpacks here</a>.</p>
+<h3 id="1-clone-the-samplessamples-repository">1. Clone the <a href="https://github.com/buildpacks/samples">samples</a> repository</h3>
+<pre tabindex="0"><code># clone the repo
+git clone https://github.com/buildpacks/samples
+</code></pre><!--+- "{{execute}}"+-->
+<h3 id="2-build-the-app">2. Build the app</h3>
+<p>If you&rsquo;re using an ARM64 computer (such as an Apple Silicon Mac, or an AWS Graviton instance), you can produce an ARM64 OCI image with <a href="https://github.com/buildpacks/pack">pack</a> simply by setting your builder to <code>heroku/builder:24</code>:</p>
+<pre tabindex="0"><code>pack build java-maven-sample --path samples/apps/java-maven/ --builder heroku/builder:24
+</code></pre><!--+- "{{execute}}"+-->
+<p>As <code>heroku/builder:24</code> is a multi-arch builder, it&rsquo;ll default to the current architecture, and an AMD64 image will be built when running <code>pack</code> on that architecture.</p>
+<p>If you want to build an ARM64 image from a different host architecture, you can use the arch-specific builder tag: <code>heroku/builder:24_linux-arm64</code>:</p>
+<pre tabindex="0"><code>pack build java-maven-sample --path samples/apps/java-maven/ --builder heroku/builder:24_linux-arm64
+</code></pre><!--+- "{{execute}}"+-->
+<blockquote>
+<p><strong>TIP:</strong> If you don&rsquo;t want to keep specifying a builder every time you build, you can set it as your default
+builder by running <code>pack config default-builder &lt;BUILDER&gt;</code> for example <code>pack config default-builder heroku/builder:24</code></p>
+</blockquote>
+<!--+- "{{execute}}"+-->
+<h3 id="3-run-it">3. Run it</h3>
+<pre tabindex="0"><code>docker run --rm -p 8080:8080 java-maven-sample
+</code></pre><!--+- "{{execute}}"+-->
+<p><strong>Congratulations!</strong></p>
+<!--+- if false+-->
+<p>The app should now be running and accessible via <a href="http://localhost:8080">localhost:8080</a>.</p>
+<!--+end+-->
 
         
 
