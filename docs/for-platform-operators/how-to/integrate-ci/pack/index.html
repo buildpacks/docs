@@ -510,6 +510,30 @@
 <li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_inspect/" class="dd-item depth-5 collapse">
   <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_inspect/">pack inspect</a>
 </li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_manifest/" class="dd-item depth-5 collapse">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_manifest/">pack manifest</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_manifest_add/" class="dd-item depth-5 collapse">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_manifest_add/">pack manifest add</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_manifest_annotate/" class="dd-item depth-5 collapse">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_manifest_annotate/">pack manifest annotate</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_manifest_create/" class="dd-item depth-5 collapse">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_manifest_create/">pack manifest create</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_manifest_inspect/" class="dd-item depth-5 collapse">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_manifest_inspect/">pack manifest inspect</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_manifest_push/" class="dd-item depth-5 collapse">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_manifest_push/">pack manifest push</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_manifest_remove/" class="dd-item depth-5 collapse">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_manifest_remove/">pack manifest remove</a>
+</li>
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_manifest_rm/" class="dd-item depth-5 collapse">
+  <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_manifest_rm/">pack manifest rm</a>
+</li>
 <li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_rebase/" class="dd-item depth-5 collapse">
   <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_rebase/">pack rebase</a>
 </li>
@@ -886,7 +910,7 @@
 <hr>
 <h2 id="pack-cli"><code>pack</code> CLI</h2>
 <h3 id="install">Install</h3>
-<p>You can install the most recent version of the <code>pack</code> CLI (version <strong>0.33.2</strong>) on the following operating systems:</p>
+<p>You can install the most recent version of the <code>pack</code> CLI (version <strong>0.34.0</strong>) on the following operating systems:</p>
 
 
 
@@ -968,7 +992,7 @@
 </li>
 <li>Use a version tag to pin a specific release:
 <ul>
-<li><code>buildpacksio/pack:0.33.2</code></li>
+<li><code>buildpacksio/pack:0.34.0</code></li>
 <li><a href="https://hub.docker.com/r/buildpacksio/pack/tags">other versions</a></li>
 </ul>
 </li>
@@ -1007,7 +1031,7 @@
               
               <div class="tab-pane px-3 fade " id="linux-script-install">
                 <p>The following command will download the latest version of <code>pack</code> from <a href="https://github.com/buildpacks/pack/releases">GitHub</a> and install it in <code>/usr/local/bin/</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">(</span>curl -sSL <span class="s2">&#34;https://github.com/buildpacks/pack/releases/download/v0.33.2/pack-v0.33.2-linux.tgz&#34;</span> <span class="p">|</span> sudo tar -C /usr/local/bin/ --no-same-owner -xzv pack<span class="o">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">(</span>curl -sSL <span class="s2">&#34;https://github.com/buildpacks/pack/releases/download/v0.34.0/pack-v0.34.0-linux.tgz&#34;</span> <span class="p">|</span> sudo tar -C /usr/local/bin/ --no-same-owner -xzv pack<span class="o">)</span>
 </span></span></code></pre></div>
               </div>
             
@@ -1068,7 +1092,7 @@
 </li>
 <li>Use a version tag to pin a specific release:
 <ul>
-<li><code>buildpacksio/pack:0.33.2</code></li>
+<li><code>buildpacksio/pack:0.34.0</code></li>
 <li><a href="https://hub.docker.com/r/buildpacksio/pack/tags">other versions</a></li>
 </ul>
 </li>
@@ -1098,9 +1122,9 @@
               <div class="tab-pane px-3 fade " id="macos-script-install">
                 <p>The following command will download the latest version of <code>pack</code> from <a href="https://github.com/buildpacks/pack/releases">GitHub</a> and install it in <code>/usr/local/bin/</code>.</p>
 <p>Intel:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">(</span>curl -sSL <span class="s2">&#34;https://github.com/buildpacks/pack/releases/download/v0.33.2/pack-v0.33.2-macos.tgz&#34;</span> <span class="p">|</span> sudo tar -C /usr/local/bin/ --no-same-owner -xzv pack<span class="o">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">(</span>curl -sSL <span class="s2">&#34;https://github.com/buildpacks/pack/releases/download/v0.34.0/pack-v0.34.0-macos.tgz&#34;</span> <span class="p">|</span> sudo tar -C /usr/local/bin/ --no-same-owner -xzv pack<span class="o">)</span>
 </span></span></code></pre></div><p>Apple Silicon:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">(</span>curl -sSL <span class="s2">&#34;https://github.com/buildpacks/pack/releases/download/v0.33.2/pack-v0.33.2-macos-arm64.tgz&#34;</span> <span class="p">|</span> sudo tar -C /usr/local/bin/ --no-same-owner -xzv pack<span class="o">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="o">(</span>curl -sSL <span class="s2">&#34;https://github.com/buildpacks/pack/releases/download/v0.34.0/pack-v0.34.0-macos-arm64.tgz&#34;</span> <span class="p">|</span> sudo tar -C /usr/local/bin/ --no-same-owner -xzv pack<span class="o">)</span>
 </span></span></code></pre></div>
               </div>
             
@@ -1152,7 +1176,7 @@
               
               <div class="tab-pane px-3 fade active in show" id="windows-chocolatey">
                 <p>To install <code>pack</code> on Windows, we recommend using <a href="https://chocolatey.org/">Chocolatey</a>:</p>
-<pre tabindex="0"><code>choco install pack --version=0.33.2
+<pre tabindex="0"><code>choco install pack --version=0.34.0
 </code></pre>
               </div>
             
@@ -1169,7 +1193,7 @@
 </li>
 <li>Use a version tag to pin a specific release:
 <ul>
-<li><code>buildpacksio/pack:0.33.2</code></li>
+<li><code>buildpacksio/pack:0.34.0</code></li>
 <li><a href="https://hub.docker.com/r/buildpacksio/pack/tags">other versions</a></li>
 </ul>
 </li>

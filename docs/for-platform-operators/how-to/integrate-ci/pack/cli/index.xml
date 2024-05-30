@@ -316,6 +316,62 @@
       <description></description>
     </item>
     <item>
+      <title>pack manifest</title>
+      <link>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_manifest/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_manifest/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>pack manifest add</title>
+      <link>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_manifest_add/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_manifest_add/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>pack manifest annotate</title>
+      <link>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_manifest_annotate/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_manifest_annotate/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>pack manifest create</title>
+      <link>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_manifest_create/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_manifest_create/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>pack manifest inspect</title>
+      <link>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_manifest_inspect/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_manifest_inspect/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>pack manifest push</title>
+      <link>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_manifest_push/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_manifest_push/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>pack manifest remove</title>
+      <link>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_manifest_remove/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_manifest_remove/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>pack manifest rm</title>
+      <link>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_manifest_rm/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_manifest_rm/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>pack rebase</title>
       <link>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_rebase/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
