@@ -9,94 +9,51 @@ weight=1
 
 <!--more-->
 
-As of today, there are no known released CNB builder images that support building ARM application images. 
+Building for the ARM architecture is now easier than ever! The `heroku/builder:24` builder supports both AMD64 and ARM64 architectures, and includes
+multi-arch Java, Node.js, Python, Ruby, Scala and Go buildpacks. You can read more about Heroku's [Cloud Native Buildpacks here][heroku-buildpacks].
 
-Users can create their own ARM64 builder image by following [this guide][this guide].
+### 1. Clone the [samples][samples] repository
 
-In the following tutorial, we will be performing a build "manually", in that we will be performing a build by invoking the lifecycle directly.
-
-### 1. Prepare your working directory
-
-On your Linux ARM machine with a [docker][docker] daemon installed, prepare the following directory tree structure.
-
-```bash
-tree ~/workspace/
-~/workspace/
-├── buildpacks
-│   └── samples_hello-world
-└── platform
 ```
-
-In addition, clone the [samples][samples] repository which will contain the application source code.
-
-```bash
 # clone the repo
-git clone https://github.com/buildpacks/samples ~/workspace/samples
+git clone https://github.com/buildpacks/samples
 ```
+<!--+- "{{execute}}"+-->
 
-### 2. Prepare the assets
+### 2. Build the app
 
-Now we need to prepare assets that will be used during the build process.
-
-First we download and extract the [lifecycle][lifecycle] release, compiled for ARM. Make sure to replace `<RELEASE-VERSION>` with a valid release version.
-
-```bash
-# change to destination directory
-cd ~/workspace
-
-# download and extract lifecycle
-curl -L https://github.com/buildpacks/lifecycle/releases/download/v<RELEASE-VERSION>/lifecycle-v<RELEASE-VERSION>+linux.arm64.tgz | tar xzf -
+If you're using an ARM64 computer (such as an Apple Silicon Mac, or an AWS Graviton instance), you can produce an ARM64 OCI image with [pack][pack] simply by setting your builder to `heroku/builder:24`:
 ```
-
-Next we make sure that our buildpack directory is structured in a way that the lifecycle will expect.
-
-```bash
-# copy hello-world buildpack
-cp -R ~/workspace/samples/buildpacks/hello-world ~/workspace/buildpacks/samples_hello-world/0.0.1
+pack build java-maven-sample --path samples/apps/java-maven/ --builder heroku/builder:24
 ```
+<!--+- "{{execute}}"+-->
 
-And finally we write the `order.toml` file that references the hello-world buildpack.
+As `heroku/builder:24` is a multi-arch builder, it'll default to the current architecture, and an AMD64 image will be built when running `pack` on that architecture.
 
-```bash
-cat > ~/workspace/order.toml <EOF
-[[order]]
-[[order.group]]
-id = "samples/hello-world"
-version = "0.0.1"
-optional = false
-EOF
+If you want to build an ARM64 image from a different host architecture, you can use the arch-specific builder tag: `heroku/builder:24_linux-arm64`:
 ```
-
-### 3. Build your app
-
-Now we can build our app. For this example we will be using the docker CLI to invoke the lifecycle directly.
-
-```bash
-# invoke the lifecycle
-docker run --rm \
-  --mount type=bind,source=/var/run/docker.sock,target=/var/run/docker.sock \
-  --volume ~/workspace/lifecycle:/cnb/lifecycle \
-  --volume ~/workspace/buildpacks:/cnb/buildpacks \
-  --volume ~/workspace/samples/apps/bash-script:/workspace \
-  --volume ~/workspace/platform:/platform \
-  --mount type=bind,source=~/workspace/order.toml,target=/cnb/order.toml \
-  --env CNB_PLATFORM_API=0.7 \
-  docker.io/ubuntu:jammy \
-  /cnb/lifecycle/creator -log-level debug -daemon -run-image docker.io/ubuntu:jammy hello-arm64
+pack build java-maven-sample --path samples/apps/java-maven/ --builder heroku/builder:24_linux-arm64
 ```
+<!--+- "{{execute}}"+-->
 
-### 4. Run it
+> **TIP:** If you don't want to keep specifying a builder every time you build, you can set it as your default
+> builder by running `pack config default-builder <BUILDER>` for example `pack config default-builder heroku/builder:24`
+<!--+- "{{execute}}"+-->
 
-```bash
-docker run --rm hello-arm64
+### 3. Run it
+
 ```
+docker run --rm -p 8080:8080 java-maven-sample
+```
+<!--+- "{{execute}}"+-->
 
 **Congratulations!**
 
-The app image should now be built and stored on the docker daemon. You may perform `docker images` to verify.
+<!--+- if false+-->
+The app should now be running and accessible via [localhost:8080](http://localhost:8080).
+<!--+end+-->
 
 [pack]: https://github.com/buildpacks/pack
 [docker]: https://docs.docker.com
 [samples]: https://github.com/buildpacks/samples
-[lifecycle]: https://github.com/buildpacks/lifecycle
-[this guide]: https://github.com/dmikusa-pivotal/paketo-arm64
+[heroku-buildpacks]: https://github.com/heroku/buildpacks
