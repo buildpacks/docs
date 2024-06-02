@@ -904,7 +904,7 @@
 <p>We work through a full example of building a &ldquo;hello world&rdquo; NodeJs web application.</p>
 <p>In the example we run <code>pack</code> on the NodeJS application to produce an application image.  We assume that we have a NodeJS buildpack, <code>registry.fake/buildpacks/nodejs:latest</code>, that is decomposed into buildpacks that help with the build.  We expand each of the buildpacks phases to explain the process.  Throughout the example we take a production-level view of their operation.  For example, our assumed NodeJS buildpack will be described to create different build, cache and launch layers in a manner similar to how a real NodeJS buildpack would operate.</p>
 <h2 id="nodejs-buildpack">NodeJS buildpack</h2>
-<p>The example NodeJS buildpack is a meta-buildpack.  It is composed of</p>
+<p>The example NodeJS buildpack is a composite buildpack (sometimes referred to as a &ldquo;meta buildpack&rdquo;).  It is composed of</p>
 <ul>
 <li><code>node-engine</code> buildpack that provides the <code>node</code> and <code>npm</code> binaries,</li>
 <li><code>yarn</code> buildpack that provides the <code>yarn</code> binary,</li>
@@ -912,7 +912,7 @@
 <li><code>yarn-start</code> and <code>npm-start</code> buildpacks that configure the entrypoint to the application image,</li>
 <li><code>procfile</code> a buildpack that allows developers to provide a <a href="https://devcenter.heroku.com/articles/procfile#procfile-format">Heroku-style</a> entrypoint for the image.</li>
 </ul>
-<p>The <code>nodejs</code> buildpack itself is a meta-buildpack which defines two <strong>order groups</strong>.  Here we represent the order groups visually:</p>
+<p>The <code>nodejs</code> buildpack itself is a composite buildpack which defines two <strong>order groups</strong>.  Here we represent the order groups visually:</p>
 <p><img src="/images/order-groups.svg" alt="nodejs order groups"></p>
 <p>The order group containing <code>yarn</code> logic has higher precedence in the <code>nodejs</code> buildpack than the order group containing <code>npm-install</code>.  In both order groups the <code>procfile</code> buildpack is optional.  The function of order groups will become more clear as we proceed through our example.</p>
 <h2 id="running-pack">Running <code>pack</code></h2>
@@ -947,7 +947,7 @@
 </span></span><span class="line"><span class="cl">  <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>Finally, we describe the container entrypoint using a script in the <code>package.json</code>.  The script must be named <code>start</code> according to NodeJS convention.   Here we see that the entrypoint should run the provided <code>node index.js</code> command.</p>
-<p>We build our application using the default builder and specify to only use the <code>nodejs</code> meta-buildpack in the build.  The restriction to use only the <code>nodejs</code> meta-buildpack simplifies the explanation as that buildpack provides only two order groups.</p>
+<p>We build our application using the default builder and specify to only use the <code>nodejs</code> composite buildpack in the build.  The restriction to use only the <code>nodejs</code> composite buildpack simplifies the explanation as that buildpack provides only two order groups.</p>
 <p><asciinema-player
 idle-time-limit="0.5s"
 font-size="medium"
@@ -1185,7 +1185,7 @@ Finished running build for buildpack example/npm-start@0.0.2
 <p>The export phase constructs a new OCI image using all the layers provided in the build phase.  In addition the application source is added as a layer to the output image and the image <code>ENTRYPOINT</code> is set.  The exported image, which we call <code>example</code>, contains only launch layers.  Cache layers are preserved on the local machine for subsequent builds.</p>
 <p>Our NodeJS example image requires an entrypoint called <code>web</code>.  The <code>web</code> entrypoint is implemented on the application image as a symlink to the <code>launcher</code> binary.  As we have specified a single entrypoint, this then becomes the default entrypoint of the image.</p>
 <h2 id="summary">Summary</h2>
-<p>We have taken a detailed look at how buildpacks are used to build a sample application.  The meta-buildpack contains two order groups and we have seen examples of how an order group is resolved.  In addition we have looked at the contributions that a buildpack makes to the build plan and considered how these are resolved into a buildpack plan to be provided to the build phase of specific buildpacks.  Finally, we have briefly considered how the analyze and restore phases can allow advanced caching strategies.</p>
+<p>We have taken a detailed look at how buildpacks are used to build a sample application.  The composite buildpack contains two order groups and we have seen examples of how an order group is resolved.  In addition we have looked at the contributions that a buildpack makes to the build plan and considered how these are resolved into a buildpack plan to be provided to the build phase of specific buildpacks.  Finally, we have briefly considered how the analyze and restore phases can allow advanced caching strategies.</p>
 
         
 

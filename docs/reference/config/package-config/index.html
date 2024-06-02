@@ -912,7 +912,7 @@ A URL or path to an <a href="/docs/reference/builder-config#supported-archives">
 </li>
 <li>
 <h4 id="dependencies-_list-optional_"><code>dependencies</code> <em>(list, optional)</em></h4>
-<p>A set of dependent buildpack locations, for packaging a meta-buildpack. Each dependent buildpack location must correspond to an <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#order-resolution">order group</a> within the meta-buildpack being packaged, and must have <strong>one</strong> of the following fields:</p>
+<p>A set of dependent buildpack locations, for packaging a composite buildpack (sometimes referred to as a &ldquo;meta buildpack&rdquo;). Each dependent buildpack location must correspond to an <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#order-resolution">order group</a> within the composite buildpack being packaged, and must have <strong>one</strong> of the following fields:</p>
 <ul>
 <li><strong><code>uri</code></strong> <em>(string)</em><br>
 A URL or path to an <a href="/docs/reference/builder-config#supported-archives">archive</a>, a packaged buildpack (saved as a <code>.cnb</code> file), or a directory. If path is relative, it must be relative to the <code>package.toml</code>.</li>
