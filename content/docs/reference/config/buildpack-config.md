@@ -88,7 +88,7 @@ The schema is as follows:
     A list of mixins required on the stack images.
 
 - **`order`** _(list, optional)_\
-  A list of buildpack groups for the purpose of creating a [meta-buildpack][meta-buildpack]. This list determines the
+  A list of buildpack groups for the purpose of creating a [composite buildpack][composite buildpack] (sometimes referred to as a "meta buildpack"). This list determines the
   order in which groups of buildpacks will be tested during detection. _If omitted, `targets` or `stacks` list must be present.
   Cannot be used in conjunction with `targets` or `stacks` list._
 
@@ -110,3 +110,4 @@ The schema is as follows:
 
 [buildpack]: /docs/for-buildpack-authors/concepts/buildpack
 [lifecycle]: /docs/for-buildpack-authors/concepts/lifecycle-phases
+[composite buildpack]: /docs/for-platform-operators/concepts/composite-buildpack
