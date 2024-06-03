@@ -5,7 +5,7 @@ weight=99
 
 <!--more-->
 
-The [buildpacks `exec.d` interface](https://github.com/buildpacks/spec/blob/main/buildpack.md#execd) allows buildpack authors to execute custom scripts when the application image is executed. This interface can be particularly useful for injecting dynamic behavior or environment variables into the runtime environment of an application.
+The [buildpacks `exec.d` interface](https://github.com/buildpacks/spec/blob/main/buildpack.md#execd) allows buildpack authors to execute custom scripts or binaries when the application image is started. This interface can be particularly useful for injecting dynamic behavior or environment variables into the runtime environment of an application.
 
 ## Key Points:
 
