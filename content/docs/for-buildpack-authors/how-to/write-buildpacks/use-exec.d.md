@@ -12,8 +12,10 @@ The [buildpacks `exec.d` interface](https://github.com/buildpacks/spec/blob/main
     1. Location and Naming: Scripts are placed in the `<layer>/exec.d/` directory within a launch layer and must be executable. They can have any name.
 
     2. Script Behavior:
-        * Environment Variables: Scripts can output environment variables in the form of key=value pairs. These variables are added to the application's runtime environment.
-        * File descriptor 3: The output should be directed to file descriptor 3, passed as the first argument to the executable, for environment variable settings. Any other output is ignored.
+    * **Inputs**
+        * A third open file descriptor (in addition to stdin and stdout).
+    * **Outputs**
+        * Valid TOML describing environment variables in the form of key=value pairs. These variables are added to the application's runtime environment. The content should be written to file descriptor 3 (see examples for how to do this).
         * Exit Code: The scripts should exit with a status code of `0` to indicate success. A non-zero exit code will indicate an error and prevent the application from launching.
 
 ## Use Cases:
