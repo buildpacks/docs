@@ -25,7 +25,7 @@ The [buildpacks `exec.d` interface](https://github.com/buildpacks/spec/blob/main
 ## Implementation Steps:
 * Write Scripts: Create executable scripts within the `<layer>/exec.d/` directory.
 * Set Permissions: Ensure scripts have the appropriate execute permissions (chmod +x).
-* Environment Variables: Use scripts to print `key="value"` pairs to the file descriptor passed as the first argument to the executable.
+* Environment Variables: Use scripts to print `key="value"` pairs to the third open file descriptor.
 
 ### Example
 
