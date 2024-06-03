@@ -9,7 +9,7 @@ The [buildpacks `exec.d` interface](https://github.com/buildpacks/spec/blob/main
 
 ## Key Points:
 
-    1. Location and Naming: Scripts are placed in the `<layer>/exec.d/` directory within a lunch layer and must be executable. They can have any name.
+    1. Location and Naming: Scripts are placed in the `<layer>/exec.d/` directory within a launch layer and must be executable. They can have any name.
 
     2. Script Behavior:
         * Environment Variables: Scripts can output environment variables in the form of key=value pairs. These variables are added to the application's runtime environment.
