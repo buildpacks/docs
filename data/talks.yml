@@ -1,7 +1,7 @@
 # - name (required): Name of video
 #   description: Short video description
 #   event_name: Name of the event
-#   preseters: Presenters of talk
+#   presenters: Presenters of talk
 #      - Name, Employer
 #   youtube_id (required): URL to video
 #   year (required): Year recorded
@@ -78,25 +78,6 @@
     - name: Slides
       icon: file-powerpoint
       url: https://docs.google.com/presentation/d/1Ejo8Mf7GXxVHL7PjiApCZMJLtbX6VO8n2H7vEcZkV0I/view
-- name: "Pack to the Future: Cloud-Native Buildpacks on k8s"
-  presenters:
-    - Emily Casey, Pivotal
-    - Joe Kutner, Heroku
-  description: >-
-    Are you a developer that would rather build features than maintain Dockerfiles? Is your organization
-    excited about Kubernetes but worried about patching vulnerable dependencies across a great number of
-    containers? In this talk, you’ll learn how to use the pack CLI to go from source to image in seconds
-    and patch a pod even faster. Cloud Foundry and Heroku users have long appreciated the developer
-    experience and security guarantees provided by buildpacks. Cloud-Native Buildpacks (a CNCF sandbox
-    project) represents a generational leap in buildpacks, bringing the power of buildpacks to k8s and
-    beyond.
-  event_name: SpringOne Platform
-  youtube_id: J2SXkmOo8iQ
-  year: 2019
-  resources:
-    - name: Slides
-      icon: file-powerpoint
-      url: https://docs.google.com/presentation/d/14rkLA2hn3nVu_liiW6Y7hy3hSsnz1HueEdLkhvChONM/view
 - name: "Production CI/CD w/CNBs: Tekton, Gitlab & CircleCI(plus), Oh My!"
   presenters:
     - David Freilich, VMware
@@ -146,3 +127,23 @@
     - name: Slides
       icon: file-powerpoint
       url: https://slides.com/danielleadams/cnbs-node-js-interactive-19
+- name: "Pack to the Future: Cloud-Native Buildpacks on k8s"
+  presenters:
+    - Emily Casey, Pivotal
+    - Joe Kutner, Heroku
+  description: >-
+    Are you a developer that would rather build features than maintain Dockerfiles? Is your organization
+    excited about Kubernetes but worried about patching vulnerable dependencies across a great number of
+    containers? In this talk, you’ll learn how to use the pack CLI to go from source to image in seconds
+    and patch a pod even faster. Cloud Foundry and Heroku users have long appreciated the developer
+    experience and security guarantees provided by buildpacks. Cloud-Native Buildpacks (a CNCF sandbox
+    project) represents a generational leap in buildpacks, bringing the power of buildpacks to k8s and
+    beyond.
+  event_name: SpringOne Platform
+  youtube_id: J2SXkmOo8iQ
+  year: 2019
+  resources:
+    - name: Slides
+      icon: file-powerpoint
+      url: https://docs.google.com/presentation/d/14rkLA2hn3nVu_liiW6Y7hy3hSsnz1HueEdLkhvChONM/view
+      
