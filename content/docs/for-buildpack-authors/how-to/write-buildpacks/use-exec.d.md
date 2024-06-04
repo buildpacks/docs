@@ -13,7 +13,7 @@ The [buildpacks `exec.d` interface](https://github.com/buildpacks/spec/blob/main
 
     2. Script Behavior:
     * **Inputs**
-        * A third open file descriptor (in addition to stdin and stdout).
+        * A third open file descriptor (in addition to stdin and stdout).  The third open file descriptor is inherited from the calling process.
     * **Outputs**
         * Valid TOML describing environment variables in the form of key=value pairs. These variables are added to the application's runtime environment. The content should be written to file descriptor 3 (see examples for how to do this).
         * Exit Code: The scripts should exit with a status code of `0` to indicate success. A non-zero exit code will indicate an error and prevent the application from launching.
@@ -29,14 +29,14 @@ The [buildpacks `exec.d` interface](https://github.com/buildpacks/spec/blob/main
 
 ### Example
 
-`exec.d` executables can be written in any language.  We provide examples in bash, Go and Python that inject the `EXAMPLE="test"` into the runtime environment.  It is important that environment variables are written to the open file descriptor passed as the first argument to the `exec.d` binary.
+`exec.d` executables can be written in any language.  We provide examples in bash, Go and Python that inject the `EXAMPLE="test"` into the runtime environment.  It is important that environment variables are written to the third file descriptor which is inherited by the `exec.d` binary.
 
 A `bash` example looks as follows:
 ```bash
 #!/bin/bash
 
-# Get the file descriptor from the first argument
-FD=$1
+# Use the third file descriptor
+FD=&3
 
 # Output the environment variable EXAMPLE="test" to the specified file descriptor
 echo "EXAMPLE=\"test\"" >&$FD
@@ -52,20 +52,12 @@ import (
 )
 
 func main() {
-    // Convert the file descriptor argument to an integer
-    fd, err := strconv.Atoi(os.Args[1])
-    if err != nil {
-        fmt.Println("Invalid file descriptor:", os.Args[1])
-        return
-    }
-
 	// Open file descriptor 3 for writing
 	fd3 := os.NewFile(3, "fd3")
 	if fd3 == nil {
 		fmt.Println("Failed to open file descriptor 3")
 		return
 	}
-	defer fd3.Close()
 
 	// Write the environment variable to file descriptor 3
 	_, err := fd3.WriteString(`EXAMPLE="test"\n`)
@@ -79,23 +71,15 @@ Finally, we provide a short Python example:
 import os
 import sys
 
-def main(fd):
-    # Ensure the provided file descriptor is valid
-    try:
-        fd = int(fd)
-    except ValueError:
-        print("Invalid file descriptor", file=sys.stderr)
-        return
+def main():
+    # Use file descriptor 3
+    fd = 3
 
     # Write the environment variable to the given file descriptor
     os.write(fd, b'EXAMPLE="test"\n')
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("Usage: python3 output_example.py <file_descriptor>", file=sys.stderr)
-        sys.exit(1)
-
-    main(sys.argv[1])
+    main()
 ```
 
 The `exec.d` interface provides a powerful mechanism for dynamically configuring runtime environments in a flexible and programmable manner, enhancing the customization capabilities available to application programmers using buildpacks.
