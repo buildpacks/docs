@@ -17,7 +17,7 @@ The CNB project was initiated by Pivotal and Heroku in January 2018 and joined t
 ## Tutorials
 
 * [An App’s Brief Journey from Source to Image](/docs/app-journey/) - An easy-to-follow introduction to Cloud Native Buildpacks using `pack`, a command line tool for Cloud Native Buildpacks.
-* [How to write a basic buildpack](/docs/for-buildpack-authors/tutorials/basic-buildpack) - A tutorial walking through the creation of a simple Ruby buildpack.
+* [How to write a basic buildpack](/docs/for-buildpack-authors/tutorials/basic-buildpack) - A tutorial walking through the creation of an example NodeJS buildpack.
 
 ---
 
