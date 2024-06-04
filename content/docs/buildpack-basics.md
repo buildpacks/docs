@@ -47,6 +47,25 @@ the latest changes to an existing buildpack.
 `launcher` is an independent step that can be used to launch the application
 at any time. 
 
+### How BuildPacks add Efficiency to Code Iterations
+
+#### Building with Containers:
+
+Here's a quick look at how much manual effort is needed when working with
+containers, especially when major changes to the application need to be
+re-built.
+
+![Working with Containers](/images/rebase-containers.png)
+
+#### Building with BuildPacks:
+
+With BuildPacks, a lot of the steps mentioned above are automated. However,
+the true power of BuildPack is evident when 'rebasing' a newer iteration of the
+application code. With a layered approach, only incremental changes are
+rebuilt, greatly improving the time and efficiency of the build process.
+
+![Working with BuildPacks](/images/rebase-buildpacks.png)
+
 ### What is a Platform
 
 A platform coordinates builds by invoking the lifecycle binary together with
