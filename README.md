@@ -5,7 +5,7 @@
 
 ## Preview
 
-This repository contains the documentation for Cloud Native Buildpacks (CNBs); pluggable and modular tools that translate source code into OCI images.
+This repository contains the documentation for Cloud Native Buildpacks (CNBs), pluggable and modular tools that translate source code into OCI images.
 
 Read more about Cloud Native Buildpacks, features, and story behind on our [website](https://buildpacks.io/).  
 
