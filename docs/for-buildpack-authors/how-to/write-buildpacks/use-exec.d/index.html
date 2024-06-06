@@ -897,8 +897,74 @@
           <h1 class="title">Use exec.d binaries to configure the application at runtime</h1>
         </div>
 
-        <p>This page is a stub! The CNB project is applying to <a href="https://developers.google.com/season-of-docs/docs/timeline">Google Season of Docs</a> to receive support for improving our documentation. Please check back soon.</p>
-<p>If you are familiar with this content and would like to make a contribution, please feel free to open a PR :)</p>
+        <p>The <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#execd">buildpacks <code>exec.d</code> interface</a> allows buildpack authors to execute custom scripts or binaries when the application image is started. This interface can be particularly useful for injecting dynamic behavior or environment variables into the runtime environment of an application.</p>
+<h2 id="key-points">Key Points:</h2>
+<pre><code>1. Location and Naming: Scripts are placed in the `&lt;layer&gt;/exec.d/` directory within a launch layer and must be executable. They can have any name.
+
+2. Script Behavior:
+* **Inputs**
+    * A third open file descriptor (in addition to stdin and stdout).  The third open file descriptor is inherited from the calling process.
+* **Outputs**
+    * Valid TOML describing environment variables in the form of key=value pairs. These variables are added to the application's runtime environment. The content should be written to file descriptor 3 (see examples for how to do this).
+    * Exit Code: The scripts should exit with a status code of `0` to indicate success. A non-zero exit code will indicate an error and prevent the application from launching.
+</code></pre>
+<h2 id="use-cases">Use Cases:</h2>
+<ul>
+<li>Dynamic Configuration: Inject configuration values that are determined at runtime.</li>
+<li>Service Bindings: Configure environment variables based on bound services.</li>
+</ul>
+<h2 id="implementation-steps">Implementation Steps:</h2>
+<ul>
+<li>Write Scripts: Create executable scripts within the <code>&lt;layer&gt;/exec.d/</code> directory.</li>
+<li>Set Permissions: Ensure scripts have the appropriate execute permissions (chmod +x).</li>
+<li>Environment Variables: Use scripts to print <code>key=&quot;value&quot;</code> pairs to the third open file descriptor.</li>
+</ul>
+<h3 id="examples">Examples</h3>
+<p><code>exec.d</code> executables can be written in any language.  We provide examples in bash, Go and Python that inject the <code>EXAMPLE=&quot;test&quot;</code> into the runtime environment.  It is important that environment variables are written to the third file descriptor which is inherited by the <code>exec.d</code> binary.</p>
+<p>A <code>bash</code> example looks as follows:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Use the third file descriptor</span>
+</span></span><span class="line"><span class="cl"><span class="nv">FD</span><span class="o">=</span><span class="p">&amp;</span><span class="m">3</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Output the environment variable EXAMPLE=&#34;test&#34; to the specified file descriptor</span>
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;EXAMPLE=\&#34;test\&#34;&#34;</span> &gt;<span class="p">&amp;</span><span class="nv">$FD</span>
+</span></span></code></pre></div><p>And a <code>Go</code> example is:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl">	<span class="s">&#34;os&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="c1">// Open file descriptor 3 for writing
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">fd3</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">NewFile</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s">&#34;fd3&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">fd3</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Failed to open file descriptor 3&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1">// Write the environment variable to file descriptor 3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">fd3</span><span class="p">.</span><span class="nf">WriteString</span><span class="p">(</span><span class="s">`EXAMPLE=&#34;test&#34;\n`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Error writing to file descriptor 3:&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>Finally, we provide a short Python example:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Use file descriptor 3</span>
+</span></span><span class="line"><span class="cl">    <span class="n">fd</span> <span class="o">=</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1"># Write the environment variable to the given file descriptor</span>
+</span></span><span class="line"><span class="cl">    <span class="n">os</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span> <span class="sa">b</span><span class="s1">&#39;EXAMPLE=&#34;test&#34;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">main</span><span class="p">()</span>
+</span></span></code></pre></div><p>The <code>exec.d</code> interface provides a powerful mechanism for dynamically configuring runtime environments in a flexible and programmable manner, enhancing the customization capabilities available to application programmers using buildpacks.</p>
 
         
 
