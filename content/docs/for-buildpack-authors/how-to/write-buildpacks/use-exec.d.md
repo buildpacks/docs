@@ -27,7 +27,7 @@ The [buildpacks `exec.d` interface](https://github.com/buildpacks/spec/blob/main
 * Set Permissions: Ensure scripts have the appropriate execute permissions (chmod +x).
 * Environment Variables: Use scripts to print `key="value"` pairs to the third open file descriptor.
 
-### Example
+### Examples
 
 `exec.d` executables can be written in any language.  We provide examples in bash, Go and Python that inject the `EXAMPLE="test"` into the runtime environment.  It is important that environment variables are written to the third file descriptor which is inherited by the `exec.d` binary.
 
