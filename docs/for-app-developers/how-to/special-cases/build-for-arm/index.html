@@ -898,18 +898,18 @@
         </div>
 
         <p>Building for the ARM architecture is now easier than ever! The <code>heroku/builder:24</code> builder supports both AMD64 and ARM64 architectures, and includes
-multi-arch Java, Node.js, Python, Ruby, Scala and Go buildpacks. You can read more about Heroku&rsquo;s <a href="https://github.com/heroku/buildpacks">Cloud Native Buildpacks here</a>.</p>
+multi-arch Go, Java, Node.js, PHP, Python, Ruby and Scala buildpacks. You can read more about Heroku&rsquo;s <a href="https://github.com/heroku/buildpacks">Cloud Native Buildpacks here</a>.</p>
 <h3 id="1-clone-the-samplessamples-repository">1. Clone the <a href="https://github.com/buildpacks/samples">samples</a> repository</h3>
 <pre tabindex="0"><code># clone the repo
 git clone https://github.com/buildpacks/samples
 </code></pre><!--+- "{{execute}}"+-->
 <h3 id="2-build-the-app">2. Build the app</h3>
-<p>If you&rsquo;re using an ARM64 computer (such as an Apple Silicon Mac, or an AWS Graviton instance), you can produce an ARM64 OCI image with <a href="https://github.com/buildpacks/pack">pack</a> simply by setting your builder to <code>heroku/builder:24</code>:</p>
+<p>If you&rsquo;re using an ARM64 computer (such as an Apple Silicon Mac, or an AWS Graviton instance), you can build an ARM64 OCI image with <a href="https://github.com/buildpacks/pack">pack</a> simply by setting your builder to <code>heroku/builder:24</code>:</p>
 <pre tabindex="0"><code>pack build java-maven-sample --path samples/apps/java-maven/ --builder heroku/builder:24
 </code></pre><!--+- "{{execute}}"+-->
-<p>As <code>heroku/builder:24</code> is a multi-arch builder, it&rsquo;ll default to the current architecture, and an AMD64 image will be built when running <code>pack</code> on that architecture.</p>
-<p>If you want to build an ARM64 image from a different host architecture, you can use the arch-specific builder tag: <code>heroku/builder:24_linux-arm64</code>:</p>
-<pre tabindex="0"><code>pack build java-maven-sample --path samples/apps/java-maven/ --builder heroku/builder:24_linux-arm64
+<p>By default, <code>pack</code> uses the current architecture for multi-arch builders like <code>heroku/builder:24</code>, so an AMD64 image will be built on AMD64 systems.</p>
+<p>If you want to build an ARM64 image from a different host architecture, use the <code>--platform</code> parameter:</p>
+<pre tabindex="0"><code>pack build java-maven-sample --path samples/apps/java-maven/ --builder heroku/builder:24 --platform linux/arm64
 </code></pre><!--+- "{{execute}}"+-->
 <blockquote>
 <p><strong>TIP:</strong> If you don&rsquo;t want to keep specifying a builder every time you build, you can set it as your default
