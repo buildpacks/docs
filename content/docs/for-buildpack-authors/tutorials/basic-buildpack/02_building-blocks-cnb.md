@@ -15,7 +15,8 @@ Let's create the directory where your buildpack will live:
 
 ## Using the Pack CLI
 
-The `buildpack new <id>` command will create a directory named for the buildpack ID.
+The `buildpack new <id>` command will create a directory named for the buildpack ID. 
+Make sure to run this command outside the `node-js-sample-app` directory created previously.
 
 Example:
 <!-- test:exec -->
@@ -117,7 +118,7 @@ Then run the following `pack` command:
 
 <!-- test:exec;exit-code=1 -->
 ```bash
-pack build test-node-js-app --path ./node-js-sample-app --buildpack ./node-js-buildpack
+pack build test-node-js-app --path ./node-js-sample-app --buildpack ./node-js-buildpack --no-color
 ```
 <!--+- "{{execute}}"+-->
 
@@ -130,9 +131,9 @@ After running the command, you should see that it failed to detect, as the `dete
 ===> DETECTING
 ...
 err:  examples/node-js@0.0.1 (1)
-...
 ERROR: No buildpack groups passed detection.
 ERROR: failed to detect: buildpack(s) failed with err
+ERROR: failed to build: executing lifecycle: failed with status code: 21
 ```
 
 <!--+ if false+-->
