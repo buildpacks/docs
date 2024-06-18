@@ -44,7 +44,10 @@
       content: |
         `pack` can be installed using the [official PPA](https://launchpad.net/~cncf-buildpacks/+archive/ubuntu/pack-cli) by running the following commands:
 
+        > Note that `python3-launchpadlib` may need to be installed before adding the `ppa:cncf-buildpacks/pack-cli` repository.
+
         ```shell bash
+        # sudo apt-get update && sudo apt-get install python3-launchpadlib
         sudo add-apt-repository ppa:cncf-buildpacks/pack-cli
         sudo apt-get update
         sudo apt-get install pack-cli
