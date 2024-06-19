@@ -7,22 +7,24 @@ weight=99
 
 The [buildpacks `exec.d` interface](https://github.com/buildpacks/spec/blob/main/buildpack.md#execd) allows buildpack authors to execute custom scripts or binaries when the application image is started. This interface can be particularly useful for injecting dynamic behavior or environment variables into the runtime environment of an application.
 
-## Key Points:
+## Key Points
 
-    1. Location and Naming: Scripts are placed in the `<layer>/exec.d/` directory within a launch layer and must be executable. They can have any name.
+1. Location and Naming: Scripts are placed in the `<layer>/exec.d/` directory within a launch layer and must be executable. They can have any name.
 
-    2. Script Behavior:
+2. Script Behavior:
     * **Inputs**
-        * A third open file descriptor (in addition to stdout and stderr).  The third open file descriptor is inherited from the calling process.
+        *A third open file descriptor. File descriptors are integers used by a process to uniquely identify opened files; pre-opened file descriptors are usually 0 for stdin, 1 for stdout and 2 for stderr. The third open file descriptor is inherited from the calling process.  
     * **Outputs**
         * Valid TOML describing environment variables in the form of key=value pairs. These variables are added to the application's runtime environment. The content should be written to file descriptor 3 (see examples for how to do this).
         * Exit Code: The scripts should exit with a status code of `0` to indicate success. A non-zero exit code will indicate an error and prevent the application from launching.
 
-## Use Cases:
+## Use Cases
+
 * Dynamic Configuration: Inject configuration values that are determined at runtime.
 * Service Bindings: Configure environment variables based on bound services.
 
-## Implementation Steps:
+## Implementation Steps
+
 * Write Scripts: Create executable scripts within the `<layer>/exec.d/` directory.
 * Set Permissions: Ensure scripts have the appropriate execute permissions (chmod +x).
 * Environment Variables: Use scripts to print `key="value"` pairs to the third open file descriptor.
@@ -32,6 +34,7 @@ The [buildpacks `exec.d` interface](https://github.com/buildpacks/spec/blob/main
 `exec.d` executables can be written in any language.  We provide examples in bash, Go and Python that inject the `EXAMPLE="test"` into the runtime environment.  It is important that environment variables are written to the third file descriptor which is inherited by the `exec.d` binary.
 
 A `bash` example looks as follows:
+
 ```bash
 #!/bin/bash
 
@@ -43,6 +46,7 @@ echo "EXAMPLE=\"test\"" >&$FD
 ```
 
 And a `Go` example is:
+
 ```Go
 package main
 
@@ -66,7 +70,9 @@ func main() {
 	}
 }
 ```
+
 Finally, we provide a short Python example:
+
 ```Python
 import os
 import sys
