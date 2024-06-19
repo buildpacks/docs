@@ -7,7 +7,7 @@ weight=99
 
 Labels are key-value pairs, stored as strings, that are attached to an image (i.e., arbitrary metadata). Labels are used to add helpful descriptions or attributes to an application image, which are meaningful to users.
 
-Labels are usually added at the time an image is created and can also be modified at a later time. Images can have multiple labels; however, each key must be unique.
+Labels are usually added at the time an image is created. Images can have multiple labels; however, each key must be unique.
 
 ## Key Points
 
@@ -30,31 +30,42 @@ Since adding labels to application images is optional and not needed to run cont
 
 ## Implementation Steps
 
-* General syntax of `LABEL` instruction is as follows:
+Taking the perspective of a buildpack author, labels are added to the `launch.toml` file in the `<layers>/<layer>` directory as follows:
 
-    `LABEL <key-string>=<value-string>`
+```toml
+[[labels]]
+key1 = "key1-string"
+value1 = "value1-string"
 
-    `LABEL version="1.0"`
+[[labels]]
+key2 = "key2-string"
+value2 = "value2-string"
+```
+
+Going back to the example in the [Buildpack Author's Guide](/docs/for-buildpack-authors/tutorials/basic-buildpack/01_setup-local-environment), this means writing to`"${CNB_LAYERS_DIR}"/node-js/launch.toml`.  
 
 ### Examples  
 
-1. A `run.Dockerfile` SHOULD set the label `io.buildpacks.rebasable` to `true` to indicate that any new run image layers are safe to rebase on top of new runtime base images
+A `shell` example looks as follows:
 
-    * For the final image to be rebasable, all applied Dockerfiles must set this label to `true`
+```shell
+cat << EOF > "${CNB_LAYERS_DIR}"/node-js/launch.toml
+[[labels]]
+key = "key"
+value = "value"
+EOF
+```
 
-2. A buildpack ID, buildpack version, and at least one stack MUST be provided in the OCI image config as a Label.
+While a `Go` example would set the `Labels` field in a `libcnb.BuildResult` as returned by the `build` binary:  
 
-    Label: `io.buildpacks.buildpackage.metadata`
+```Go
+func (b Build) Build(context libcnb.BuildContext) (libcnb.BuildResult, error) {
+    result := libcnb.BuildResult{}
 
-```json
-{
-  "id": "<entrypoint buildpack ID>",
-  "version": "<entrypoint buildpack version>",
-  "stacks": [
-    {
-      "id": "<stack ID>",
-      "mixins": ["<mixin name>"]
-    }
-  ]
+    result.Labels = append(result.Labels, libcnb.Label{Key: "key", Value: "value"})
+
+    return result
 }
 ```
+
+The `libcnb` library will automatically take care of writing the `launch.toml` file to the right place.
