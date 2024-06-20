@@ -897,8 +897,51 @@
           <h1 class="title">Add labels to the application image</h1>
         </div>
 
-        <p>This page is a stub! The CNB project is applying to <a href="https://developers.google.com/season-of-docs/docs/timeline">Google Season of Docs</a> to receive support for improving our documentation. Please check back soon.</p>
-<p>If you are familiar with this content and would like to make a contribution, please feel free to open a PR :)</p>
+        <p>Labels are key-value pairs, stored as strings, that are attached to an image (i.e., arbitrary metadata). Labels are used to add helpful descriptions or attributes to an application image, which are meaningful to users.</p>
+<p>Labels are usually added at the time an image is created. Images can have multiple labels; however, each key must be unique.</p>
+<h2 id="key-points">Key Points</h2>
+<p>A <code>LABEL</code></p>
+<ul>
+<li>MUST specify a unique key for a given image</li>
+<li>MUST specify a value to be set in the image label</li>
+<li>MUST be added as an image label on the created image metadata</li>
+<li>If one key is given multiple values, the last value overwrites</li>
+</ul>
+<h2 id="use-cases">Use Cases</h2>
+<p>Since adding labels to application images is optional and not needed to run containers, this property is often overlooked. The following are few reasons to why labels should be widely adopted</p>
+<ul>
+<li>Documenting versioning</li>
+<li>Record licensing information</li>
+<li>Including information about a project maintainer</li>
+<li>Including a description of the image and  additional metadata related to the image</li>
+<li>Labels can also be used to organize images</li>
+</ul>
+<h2 id="implementation-steps">Implementation Steps</h2>
+<p>Taking the perspective of a buildpack author, labels are added to the <code>launch.toml</code> file in the <code>&lt;layers&gt;/&lt;layer&gt;</code> directory as follows:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">labels</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">key1</span> <span class="p">=</span> <span class="s2">&#34;key1-string&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">value1</span> <span class="p">=</span> <span class="s2">&#34;value1-string&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">labels</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">key2</span> <span class="p">=</span> <span class="s2">&#34;key2-string&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">value2</span> <span class="p">=</span> <span class="s2">&#34;value2-string&#34;</span>
+</span></span></code></pre></div><p>Going back to the example in the <a href="/docs/for-buildpack-authors/tutorials/basic-buildpack/01_setup-local-environment">Buildpack Author&rsquo;s Guide</a>, this means writing to<code>&quot;${CNB_LAYERS_DIR}&quot;/node-js/launch.toml</code>.</p>
+<h3 id="examples">Examples</h3>
+<p>A <code>shell</code> example looks as follows:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">cat <span class="s">&lt;&lt; EOF &gt; &#34;${CNB_LAYERS_DIR}&#34;/node-js/launch.toml
+</span></span></span><span class="line"><span class="cl"><span class="s">[[labels]]
+</span></span></span><span class="line"><span class="cl"><span class="s">key = &#34;key&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">value = &#34;value&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">EOF</span>
+</span></span></code></pre></div><p>While a <code>Go</code> example would set the <code>Labels</code> field in a <code>libcnb.BuildResult</code> as returned by the <code>build</code> binary:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">b</span> <span class="nx">Build</span><span class="p">)</span> <span class="nf">Build</span><span class="p">(</span><span class="nx">context</span> <span class="nx">libcnb</span><span class="p">.</span><span class="nx">BuildContext</span><span class="p">)</span> <span class="p">(</span><span class="nx">libcnb</span><span class="p">.</span><span class="nx">BuildResult</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">result</span> <span class="o">:=</span> <span class="nx">libcnb</span><span class="p">.</span><span class="nx">BuildResult</span><span class="p">{}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nx">result</span><span class="p">.</span><span class="nx">Labels</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">result</span><span class="p">.</span><span class="nx">Labels</span><span class="p">,</span> <span class="nx">libcnb</span><span class="p">.</span><span class="nx">Label</span><span class="p">{</span><span class="nx">Key</span><span class="p">:</span> <span class="s">&#34;key&#34;</span><span class="p">,</span> <span class="nx">Value</span><span class="p">:</span> <span class="s">&#34;value&#34;</span><span class="p">})</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">result</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>The <code>libcnb</code> library will automatically take care of writing the <code>launch.toml</code> file to the right place.</p>
 
         
 

@@ -898,22 +898,31 @@
         </div>
 
         <p>The <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#execd">buildpacks <code>exec.d</code> interface</a> allows buildpack authors to execute custom scripts or binaries when the application image is started. This interface can be particularly useful for injecting dynamic behavior or environment variables into the runtime environment of an application.</p>
-<h2 id="key-points">Key Points:</h2>
-<pre><code>1. Location and Naming: Scripts are placed in the `&lt;layer&gt;/exec.d/` directory within a launch layer and must be executable. They can have any name.
-
-2. Script Behavior:
-* **Inputs**
-    * A third open file descriptor (in addition to stdout and stderr).  The third open file descriptor is inherited from the calling process.
-* **Outputs**
-    * Valid TOML describing environment variables in the form of key=value pairs. These variables are added to the application's runtime environment. The content should be written to file descriptor 3 (see examples for how to do this).
-    * Exit Code: The scripts should exit with a status code of `0` to indicate success. A non-zero exit code will indicate an error and prevent the application from launching.
-</code></pre>
-<h2 id="use-cases">Use Cases:</h2>
+<h2 id="key-points">Key Points</h2>
+<ol>
+<li>
+<p>Location and Naming: Scripts are placed in the <code>&lt;layer&gt;/exec.d/</code> directory within a launch layer and must be executable. They can have any name.</p>
+</li>
+<li>
+<p>Script Behavior:</p>
+<ul>
+<li><strong>Inputs</strong>
+*A third open file descriptor. File descriptors are integers used by a process to uniquely identify opened files; pre-opened file descriptors are usually 0 for stdin, 1 for stdout and 2 for stderr. The third open file descriptor is inherited from the calling process.</li>
+<li><strong>Outputs</strong>
+<ul>
+<li>Valid TOML describing environment variables in the form of key=value pairs. These variables are added to the application&rsquo;s runtime environment. The content should be written to file descriptor 3 (see examples for how to do this).</li>
+<li>Exit Code: The scripts should exit with a status code of <code>0</code> to indicate success. A non-zero exit code will indicate an error and prevent the application from launching.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="use-cases">Use Cases</h2>
 <ul>
 <li>Dynamic Configuration: Inject configuration values that are determined at runtime.</li>
 <li>Service Bindings: Configure environment variables based on bound services.</li>
 </ul>
-<h2 id="implementation-steps">Implementation Steps:</h2>
+<h2 id="implementation-steps">Implementation Steps</h2>
 <ul>
 <li>Write Scripts: Create executable scripts within the <code>&lt;layer&gt;/exec.d/</code> directory.</li>
 <li>Set Permissions: Ensure scripts have the appropriate execute permissions (chmod +x).</li>
