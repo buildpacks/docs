@@ -13,7 +13,7 @@ The [buildpacks `exec.d` interface](https://github.com/buildpacks/spec/blob/main
 
 2. Script Behavior:
     * **Inputs**
-        *A third open file descriptor. File descriptors are integers used by a process to uniquely identify opened files; pre-opened file descriptors are usually 0 for stdin, 1 for stdout and 2 for stderr. The third open file descriptor is inherited from the calling process.  
+        * A third open file descriptor. File descriptors are integers used by a process to uniquely identify opened files; pre-opened file descriptors are usually `0` for `stdin`, `1` for `stdout` and `2` for `stderr`. The third open file descriptor is inherited from the calling process.  
     * **Outputs**
         * Valid TOML describing environment variables in the form of key=value pairs. These variables are added to the application's runtime environment. The content should be written to file descriptor 3 (see examples for how to do this).
         * Exit Code: The scripts should exit with a status code of `0` to indicate success. A non-zero exit code will indicate an error and prevent the application from launching.
