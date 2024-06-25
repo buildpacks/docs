@@ -900,6 +900,40 @@
         </div>
 
         <p>One of the benefits of buildpacks is that they are multi-process - an image can have multiple entrypoints for each operational mode.</p>
+<p>A <code>process type</code> is a named process definition, contributed by a buildpack at build-time and executed by the launcher at run-time.
+Buildpacks declare process types during the build phase by writing entries into <code>&lt;layers&gt;/launch.toml</code>.</p>
+<h2 id="key-points">Key Points</h2>
+<p>For each process, the buildpack:</p>
+<ul>
+<li>MUST specify a <code>type</code>, an identifier for the process, which:
+<ul>
+<li>MUST NOT be identical to other process types provided by the same buildpack.</li>
+<li>MUST only contain numbers, letters, and the characters <code>.</code>, <code>_</code>, and <code>-</code>.</li>
+</ul>
+</li>
+<li>MUST specify a <code>command</code> list such that:
+<ul>
+<li>The first element of <code>command</code> is a path to an executable or the file name of an executable in <code>$PATH</code>.</li>
+<li>Any remaining elements of <code>command</code> are arguments that are always passed directly to the executable [^command-args].</li>
+</ul>
+</li>
+<li>MAY specify an <code>args</code> list to be passed directly to the specified executable, after arguments specified in <code>command</code>.
+<ul>
+<li>The <code>args</code> list is a default list of arguments that may be overridden by the user [^command-args].</li>
+</ul>
+</li>
+<li>MAY specify a <code>default</code> boolean that indicates that the process type should be selected as the <a href="https://github.com/buildpacks/spec/blob/main/platform.md#outputs-4">buildpack-provided default</a> during the export phase.</li>
+<li>MAY specify a <code>working-dir</code> for the process. The <code>working-dir</code> defaults to the application directory if not specified.</li>
+</ul>
+<h2 id="implementation-steps">Implementation Steps</h2>
+<p>Processes are added to the <code>launch.toml</code> file in the <code>&lt;layers&gt;/&lt;layer&gt;</code> directory as follows:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">processes</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;&lt;process type&gt;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">command</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;&lt;command&gt;&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">args</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;&lt;arguments&gt;&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">default</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl"><span class="nx">working-dir</span> <span class="p">=</span> <span class="s2">&#34;&lt;working directory&gt;&#34;</span>
+</span></span></code></pre></div><h3 id="examples">Examples</h3>
 <p>Let&rsquo;s see how this works. We will specify a process type that allows a debugger to attach to our application.</p>
 <p>To enable running the debug process, we&rsquo;ll need to have our buildpack define a &ldquo;process type&rdquo; for the worker.
 We&rsquo;ll need to create a <code>launch.toml</code> file in the buildpack layers directory:</p>

@@ -907,7 +907,10 @@
 <p>Script Behavior:</p>
 <ul>
 <li><strong>Inputs</strong>
-*A third open file descriptor. File descriptors are integers used by a process to uniquely identify opened files; pre-opened file descriptors are usually 0 for stdin, 1 for stdout and 2 for stderr. The third open file descriptor is inherited from the calling process.</li>
+<ul>
+<li>A third open file descriptor. File descriptors are integers used by a process to uniquely identify opened files; pre-opened file descriptors are usually <code>0</code> for <code>stdin</code>, <code>1</code> for <code>stdout</code> and <code>2</code> for <code>stderr</code>. The third open file descriptor is inherited from the calling process.</li>
+</ul>
+</li>
 <li><strong>Outputs</strong>
 <ul>
 <li>Valid TOML describing environment variables in the form of key=value pairs. These variables are added to the application&rsquo;s runtime environment. The content should be written to file descriptor 3 (see examples for how to do this).</li>
