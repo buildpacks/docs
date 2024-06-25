@@ -32,13 +32,13 @@ args = ["override-1", "override-2"]
 `always-1` and `always-2` are arguments that are always provided to `some-command`. If no user-provided arguments are specified when the application image is launched, `override-1` and `override-2` will also be provided. If user-provided arguments are specified, these will be provided **instead of** `override-1` and `override-2`. Example:
 
 ```
-docker run --entrypoint from-newer-buildpack my-image
+docker run --entrypoint from-newer-buildpack registry.example.com/example/my-app
 ```
 
 will result in the following command invocation: `some-command always-1 always-2 override-1 override-2`. However:
 
 ```
-docker run --entrypoint from-newer-buildpack my-image user-1 user-2
+docker run --entrypoint from-newer-buildpack registry.example.com/example/my-app user-1 user-2
 ```
 
 will result in the following command invocation: `some-command always-1 always-2 user-1 user-2`.
@@ -50,7 +50,7 @@ For processes from newer buildpacks, upgrading the platform (without changing an
 As an example, the following on Platform API version 0.9:
 
 ```
-docker run --entrypoint from-newer-buildpack my-image user-1 user-2
+docker run --entrypoint from-newer-buildpack registry.example.com/example/my-app user-1 user-2
 ```
 
 will result in the following command invocation: `some-command always-1 always-2 override-1 override-2 user-1 user-2`, where overridable arguments are treated like regular arguments, and user-provided arguments are always appended. Upgrading the platform will cause `override-1` and `override-2` to be dropped, as shown above.
@@ -68,13 +68,13 @@ args = ["always-1", "always-2"]
 The `command` list will never have more than one element. `always-1` and `always-2` are arguments that are always provided to `some-command`. If no user-provided arguments are specified when the application image is launched, `always-1` and `always-2` will be provided only. If user-provided arguments are specified, these will be **appended** to the `args` list. Example:
 
 ```
-docker run --entrypoint from-older-buildpack my-image
+docker run --entrypoint from-older-buildpack registry.example.com/example/my-app
 ```
 
 will result in the following command invocation: `some-command always-1 always-2`. However:
 
 ```
-docker run --entrypoint from-older-buildpack my-image user-1 user-2
+docker run --entrypoint from-older-buildpack registry.example.com/example/my-app user-1 user-2
 ```
 
 will result in the following command invocation: `some-command always-1 always-2 user-1 user-2`.

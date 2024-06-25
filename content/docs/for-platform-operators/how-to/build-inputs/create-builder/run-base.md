@@ -17,7 +17,7 @@ We need a Dockerfile similar to the following:
 
 ```Dockerfile
 # Define the base image
-FROM ubuntu:jammy
+FROM docker.io/ubuntu:jammy
 
 # Install packages that we want to make available at run time
 RUN apt-get update && \
@@ -62,5 +62,5 @@ To determine which values to provide, see [targets](/docs/for-buildpack-authors/
 ## Build the run base image
 
 ```bash
-docker build . -t cnbs/sample-base-run:jammy
+docker build . -t docker.io/cnbs/sample-base-run:jammy
 ```

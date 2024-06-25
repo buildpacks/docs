@@ -24,12 +24,13 @@ If so, `rebase` updates the app image's layer metadata to reference the newer ba
 
 ### Example: Rebasing an app image
 
-Consider an app image `my-app:my-tag` that was originally built using the default builder.
-That builder has a reference to a run image called `pack/run`.
-Running the following will update the base of `my-app:my-tag` with the latest version of `pack/run`.
+Consider an app image `registry.example.com/example/my-app:my-tag` that was originally built using the default builder.
+That builder has a reference to a run image called `registry.example.com/example/run`.
+Running the following will update the base of `registry.example.com/example/my-app:my-tag` with the latest version of
+`registry.example.com/example/run`.
 
 ```bash
-$ pack rebase my-app:my-tag
+$ pack rebase registry.example.com/example/my-app:my-tag
 ```
 
 > **TIP:** `pack rebase` has a `--publish` flag that can be used to publish the updated app image directly to a registry. 
