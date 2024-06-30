@@ -24,25 +24,28 @@ Let's see how this works with an example.
 
 Let's walk through some possible cases a `node-engine` buildpack may consider:
 
-1.  Nothing in the app explicitly calls out that it is needed
-2.  It is explicitly referred to in some configuration file
+1. Nothing in the app explicitly calls out that it is needed
+2. It is explicitly referred to in some configuration file
 
 We will also consider what an `NPM` and a `JVM` buildpack may do.
 
 #### Scenario 1: No Explicit Request
 
 A `node-engine` buildpack is always happy to `provide` the `node` dependency. The build plan it will write may look something like:
-```
+
+```toml
 [[provides]]
 name = "node"
 ```
+
 > **NOTE:** If this was the only buildpack running, this would fail the `detect` phase. In order to pass, every `provides` must be matched up with a `requires`, whether in the same buildpack or in another buildpack.
 > See the [spec](https://github.com/buildpacks/spec/blob/main/buildpack.md#phase-1-detection) for particulars on how ordering buildpacks can adjust detection results.
 
 #### Scenario 2: One Version Requested
 
 During the `detect` phase, the `node-engine` buildpack sees in one configuration file (e.g. a `.nvmrc` file in the app directory) that `node v10.x` is explicitly requested by the application. Seeing that, it may write the below text to the build plan:
-```
+
+```toml
 [[provides]]
 name = "node"
 
@@ -63,13 +66,15 @@ As always, the buildpack `provides` `node`. In this particular case, a version o
 NPM is typically distributed together with node. As a result, a NPM buildpack may require `node`, but not want to `provide` it, trusting that the `node-engine` buildpack will be in charge of `providing` `node`.
 
 The NPM buildpack could write the following to the build plan, if the buildpack sees that `npm` is necessary (e.g., it sees a `package.json` file in the app directory):
-```
+
+```toml
 [[requires]]
 name = "node"
 ```
 
 If, looking in the `package.json` file, the NPM buildpack sees a specific version of `node` requested in the [engines](https://docs.npmjs.com/files/package.json#engines) field (e.g. `14.1`), it may write the following to the build plan:
-```
+
+```toml
 [[requires]]
 name = "node"
 version = "14.1"
@@ -90,7 +95,7 @@ A very naive implementation of the buildpack may have it write several `provides
 while later buildpacks would figure out based on the application which options it requires, and would `require` those.
 In this particular case, we can use the `or` operator to present different possible build plans the buildpack can follow:
 
-```
+```toml
 # option 1 (`jre` and `jdk`)
 [[provides]]
 name = "jre"
@@ -110,6 +115,7 @@ name = "jre"
 ```
 
 The buildpack gives three options to the lifecycle:
+
 * It can provide a standalone `jre`
 * It can provide a standalone `jdk`
 * It can provide both the `jdk` and `jre`
