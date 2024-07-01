@@ -10,8 +10,7 @@ A **build plan** is a `toml` file is the output of the [detect](https://buildpac
 ## Example Build Plan (TOML)
 
 In order to make contributions to the Build Plan, a `/bin/detect` executable MUST write entries to `<plan>` in two sections: `requires` and `provides`.
-Additionally, these two sections MAY be repeated together inside of an `or` array at the top-level.
-Each `requires` and `provides` section MUST be a list of entries formatted as described below:
+Additionally, these two sections MAY be repeated together inside of an `or` array at the top-level. Each `requires` and `provides` section MUST be a list of entries formatted as described below:
 
 ```toml
 [[provides]]
@@ -42,4 +41,4 @@ name = "<dependency name>"
 * Each pairing of `requires` and `provides` sections (at the top level, or inside of an `or` array) is a potential Build Plan.
 * A group will only pass detection, if a valid build plan can be produced from the dependencies that all elements in the group require and provide.
 * The `detect` phase could fail, if a buildpack requires a dependency that cannot be resolved.  
-* The `build plan` is passed as one of the inputs to the `build` phase.
+* The resulting `build plan` is passed as one of the inputs to the `build` phase.
