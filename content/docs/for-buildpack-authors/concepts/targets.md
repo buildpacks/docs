@@ -1,4 +1,3 @@
-
 +++
 title="What are targets?"
 aliases=[
@@ -12,6 +11,7 @@ The concept of `targets` is used to identify compatibility between buildpacks an
 <!--more-->
 
 Target data includes:
+
 * Operating system name (e.g., "linux")
 * Architecture (e.g., "amd64", "arm64")
 * Architecture variant
@@ -25,6 +25,7 @@ Buildpacks may declare the targets they are compatible with in `buildpack.toml`.
 This information will be used by `pack` (or other platforms) and the lifecycle to avoid running buildpacks on images they aren't designed to work with.
 
 Additionally, during builds this information will be read by the lifecycle from the run image and exposed to buildpacks through `CNB_TARGET_` environment variables:
+
 * `CNB_TARGET_OS`
 * `CNB_TARGET_ARCH`
 * `CNB_TARGET_ARCH_VARIANT`

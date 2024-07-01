@@ -1,4 +1,3 @@
-
 +++
 title="What caching strategies are available to buildpacks?"
 aliases=[
@@ -8,7 +7,7 @@ weight=4
 summary="Learn strategies for caching layers at build-time for future re-use."
 +++
 
-# Layers
+## Layers
 
 There are three types of layers that can be contributed to an image
 
@@ -18,7 +17,7 @@ There are three types of layers that can be contributed to an image
 
 In this section we look at caching each layer type.
 
-## Layer Metadata
+### Layer Metadata
 
 buildpacks ensure byte-for-byte reproducibility of layers.  File creation time is [normalized to January 1, 1980](https://medium.com/buildpacks/time-travel-with-pack-e0efd8bf05db) to ensure reproducibility.  Byte-for-byte reproducibility means previous layers can be reused.  However, we may want to invalidate previously cached layers if an important property changes, such as:
 
@@ -27,7 +26,7 @@ buildpacks ensure byte-for-byte reproducibility of layers.  File creation time i
 
 Launch layers are exported to an OCI registry.  The layer metadata is commonly used when deciding if a launch layer should be re-used.  A launch layer may be re-used on an OCI registry without downloading the layer to the machine running a build.
 
-## Caching Strategies
+### Caching Strategies
 
 Caching during the production of an application image is necessarily very flexible.  Most buildpacks that wish to contribute a layer to the application image need only to
 
