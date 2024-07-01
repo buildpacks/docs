@@ -3,8 +3,10 @@ title="What is a buildpack dependency layer?"
 weight=99
 +++
 
+`Dependency layers` are semantically meaningful layers that are contributed by one or more buildpacks during the building phase, one for each dependency.
+
 <!--more-->
 
-This page is a stub! The CNB project is applying to [Google Season of Docs](https://developers.google.com/season-of-docs/docs/timeline) to receive support for improving our documentation. Please check back soon.
+Multiple buildpacks can contribute a subset of an app's required dependencies that are added as subdirectories under the `CNB_LAYERS_DIR` directory. These dependencies then get exported as layers in the final app image or build cache.
 
-If you are familiar with this content and would like to make a contribution, please feel free to open a PR :)
+The `build` phase runs the build binary of each buildpack that then outputs zero or more layers into `$(CNB_LAYERS_DIR)/<buildpack-id>` and writes metadata for each layer as TOML files in that directory.
