@@ -3,7 +3,7 @@ title="What is a buildpack package?"
 weight=99
 +++
 
-A `buildpack package` refers to the process of packaging buildpacks for distribution as OCI images or tar files.
+A `buildpack package` refers to the process of packaging buildpacks for distribution as OCI images or `tar` files.
 
 <!--more-->
 
