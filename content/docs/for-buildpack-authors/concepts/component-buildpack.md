@@ -3,7 +3,7 @@ title="What is a component buildpack?"
 weight=99
 +++
 
-A **component buildpack** is a buildpack containing the `/bin/detect` and `/bin/build` executables and that implements the [Buildpack Interface](https://github.com/buildpacks/spec/blob/main/buildpack.md#buildpack-interface).
+A **component buildpack** is a buildpack containing `/bin/detect` and `/bin/build` executables and that implements the [Buildpack Interface](https://github.com/buildpacks/spec/blob/main/buildpack.md#buildpack-interface).
 
 <!--more-->
 
