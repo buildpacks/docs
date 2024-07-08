@@ -39,7 +39,7 @@ name = "<dependency name>"
 ## Key Points
   
 * A valid `build plan` is a plan where all required dependencies are provided in the necessary order, meaning that during the `build` phase, each component buildpack will have its required dependencies provided by component buildpack or an image extension that runs before it.
-* Each pairing of `requires` and `provides` sections (at the top level, or inside of an `or` array) is a potential Build Plan.
+* Each pairing of `requires` and `provides` sections (at the top level, or inside of an `or` array) is a potential build plan. For more details, see the [JVM buildpack](https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/use-build-plan/#example-jvm-buildpack) example.
 * A group will only pass detection if a valid build plan can be produced from the dependencies that all elements in the group require and provide.
 * The `detect` phase could fail if a buildpack requires a dependency that it does not itself provide, or is not provided by another buildpack.
 * The `detect` phase could also fail when the buildpacks order is incorrect, i.e, the buildpacks providing dependencies run `after` the buildpacks requiring them.
