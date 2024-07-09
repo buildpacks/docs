@@ -51,7 +51,7 @@ The OCI layout feature must be enabled using the convention `oci:<path/to/save/i
 For example:
 
 ```bash
-pack build oci:sample-app --path samples/apps/java-maven --builder cnbs/sample-builder:bionic
+pack build oci:sample-app --path samples/apps/java-maven --builder docker.io/cnbs/sample-builder:bionic
 ```
 
 It will save the image in a folder `./sample-app` created in your current directory.
@@ -101,7 +101,7 @@ If you don't need your `run-image` layers on disk, you can skip them using `--sp
 For example:
 
 ```bash
-pack build oci:sample-app --sparse --path samples/apps/java-maven --builder cnbs/sample-builder:bionic
+pack build oci:sample-app --sparse --path samples/apps/java-maven --builder docker.io/cnbs/sample-builder:bionic
 ```
 
 Verify your application image
@@ -151,8 +151,3 @@ But [crane](https://github.com/google/go-containerregistry/tree/main/cmd/crane)
 crane pull <your-image> <dest> --format=oci
 ```
 It will give you `application/vnd.docker.distribution.manifest.list.v2+json`, which will fail because of the [state of our current implementation](https://github.com/buildpacks/rfcs/pull/203#discussion_r1092449172), we will improve this behavior in future versions.
-
-
-
-
-

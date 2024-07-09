@@ -153,7 +153,7 @@ spec:
         - name: SOURCE_SUBPATH
           value: "apps/java-maven" # This is the path within the samples repo you want to build (OPTIONAL, default: "")
         - name: BUILDER_IMAGE
-          value: paketobuildpacks/builder:base # This is the builder we want the task to use (REQUIRED)
+          value: docker.io/paketobuildpacks/builder:base # This is the builder we want the task to use (REQUIRED)
     - name: display-results
       runAfter:
         - buildpacks

@@ -40,13 +40,18 @@ This prevented rebasing by digest, among other use cases.
 In Platform 0.11, the original image may be specified separately from the destination image with the `previous-image` flag, as in the following:
 
 ```bash
-/cnb/lifecycle/rebaser -previous-image some-original-image some-destination-image
+/cnb/lifecycle/rebaser \
+    -previous-image registry.example.com/example/my-app:org \
+    registry.example.com/example/my-app:dst
 ```
 
 As before, additional tags for the destination image can also be provided:
 
 ```bash
-/cnb/lifecycle/rebaser -previous-image some-original-image -tag some-additional-tag:latest some-destination-image
+/cnb/lifecycle/rebaser \
+    -previous-image registry.example.com/example/my-app:org \
+    -tag registry.example.com/example/my-app:latest \
+    registry.example.com/example/my-app:dst
 ```
 
 To use this feature, platforms can provide the new `-previous-image` flag to the `rebaser`.
