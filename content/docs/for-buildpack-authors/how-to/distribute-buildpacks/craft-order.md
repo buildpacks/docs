@@ -9,7 +9,7 @@ Buildpack order is
 
 ## Composite Buildpacks
 
-A **composite buildpack** is a buildpack that doesn't contain any `/bin/detect` or `/bin/build` executables; instead it references other buildpacks in its `buildpack.toml` via the `[[order]]` array. Composite buildpacks MUST be [resolvable](https://github.com/buildpacks/spec/blob/main/buildpack.md#order-resolution) into a collection of component buildpacks.
+A **composite buildpack** is a buildpack that doesn't contain any `/bin/detect` or `/bin/build` executables; instead it references other buildpacks in its `buildpack.toml` via the `[[order]]` array. Composite buildpacks MUST be [resolvable](https://github.com/buildpacks/spec/blob/main/buildpack.md#order-resolution) into a collection of component buildpacks. That is, after the [detect phase](https://buildpacks.io/docs/for-buildpack-authors/concepts/lifecycle-phases/#phase-2-detect) of the lifecycle has completed, a single group of component buildpacks from the `[[order]]` array will have opted in to the build.
 
 ## Why use Composite Buildpacks
 
