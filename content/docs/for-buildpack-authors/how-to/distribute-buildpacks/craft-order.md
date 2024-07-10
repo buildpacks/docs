@@ -3,9 +3,13 @@ title="Craft a buildpack order"
 weight=99
 +++
 
-Buildpack order is
+An `order` is a list of one or more `groups` to be tested against application source code, so that the appropriate `group` for a build can be determined.
 
 <!--more-->
+
+Whereas a `buildpack group`, or `group`, is a list of one or more buildpacks that are designed to work together. For example, a buildpack that provides `node` and a buildpack that provides `npm`.
+
+During the `detect` phase, an order definition for buildpacks and an order definition for image extensions—if present—MUST be resolved into a group of component buildpacks and a group of image extensions.
 
 ## Composite Buildpacks
 
