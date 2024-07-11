@@ -44,3 +44,7 @@ name = "<dependency name>"
 * The `detect` phase could fail if a buildpack requires a dependency that it does not itself provide, or is not provided by another buildpack.
 * The `detect` phase could also fail when the buildpacks order is incorrect, i.e, the buildpacks providing dependencies run `after` the buildpacks requiring them.
 * The resulting `build plan` is passed as one of the inputs to the `build` phase.
+
+## Resources
+
+For more about build plans, look at [Use the build plan]( https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/use-build-plan/)
