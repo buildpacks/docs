@@ -8,7 +8,8 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+<meta name="description" content="Dependency layers are semantically meaningful layers that are contributed by one or more buildpacks during the build phase, one for each dependency.
+"/>
 <link rel="canonical" content="https://buildpacks.io/docs/for-buildpack-authors/concepts/layer/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
@@ -22,7 +23,8 @@
 <meta property="og:url" content="https://buildpacks.io/docs/for-buildpack-authors/concepts/layer/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-
+<meta property="og:description" content="Dependency layers are semantically meaningful layers that are contributed by one or more buildpacks during the build phase, one for each dependency.
+">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -897,8 +899,32 @@
           <h1 class="title">What is a buildpack dependency layer?</h1>
         </div>
 
-        <p>This page is a stub! The CNB project is applying to <a href="https://developers.google.com/season-of-docs/docs/timeline">Google Season of Docs</a> to receive support for improving our documentation. Please check back soon.</p>
-<p>If you are familiar with this content and would like to make a contribution, please feel free to open a PR :)</p>
+        <p><code>Dependency layers</code> are semantically meaningful layers that are contributed by one or more buildpacks during the <code>build</code> phase, one for each dependency.</p>
+<p>To better understand dependency layers and how they fit into the larger picture, it&rsquo;s helpful to understand the concept of an <code>OCI image layer</code>.</p>
+<p>At a high level,  an <code>OCI image layer</code> can be seen as a <a href="https://github.com/opencontainers/image-spec/blob/main/layer.md">filesystem changeset</a> and some accompanying metadata. The ordering of layers is usually important for OCI images; however this is not the case for buildpack contributed layers.</p>
+<p>From a buildpack author&rsquo;s perspective, it is helpful to know that the directories created would be mapped to OCI image layers.That being said, the following are different types of layers created when building with buildpacks:</p>
+<ul>
+<li>Base image layers (<a href="https://buildpacks.io/docs/for-app-developers/concepts/base-images/build/">build</a> and <a href="https://buildpacks.io/docs/for-app-developers/concepts/base-images/run/">run</a>), which are the layers that make up the underlying OS for the <code>build-time</code> container and the <code>runtime</code> container, respectively.</li>
+<li>Buildpack-contributed dependency layers, which contain application dependencies, such as language runtime &amp; libraries.</li>
+<li>Application layer(s), which can be thought of as transformation of the application source code into a compiled executable. It&rsquo;s possible to divide an application into several layers—<a href="https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/create-slice-layers/">slices</a>—in order to make updates faster.</li>
+<li>Finally, CNB-contributed layers, such as the <code>SBOM</code>, the <code>launcher</code> executable, and some configuration for the <code>launcher</code>.</li>
+</ul>
+<p>Buildpack authors don’t usually have control over the first and last layers added above. However, an ultimate goal for most buildpack authors is keeping layers small, which creates reusable and composable layers. This reduces duplication in what buildpack authors need to maintain and minimizes data transfer to/from the <code>registry</code> when builds are rerun.</p>
+<p><img src="/images/builder.svg" alt="builder"></p>
+<p>Going back to the concept of <code>dependency layers</code> and as seen in the image above, buildpacks read application source code and create dependency layers. Each buildpack can contribute a subset of an app&rsquo;s required dependencies, added as subdirectories under the <code>CNB_LAYERS_DIR</code> directory. These dependencies are then exported as layers in the final app image or build cache.</p>
+<p>The <code>build</code> phase runs the <code>/bin/build</code> binary of each buildpack, which outputs zero or more layers into <code>$(CNB_LAYERS_DIR)/&lt;buildpack-id&gt;</code> and writes metadata for each layer as <code>toml</code> files in that directory. During the <code>export</code> phase, all layers created by the buildpacks are either cached or added to the output application image.</p>
+<p>The following shows an example filesystem tree created after the <code>build</code> phase is complete:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">layers/
+</span></span><span class="line"><span class="cl">├── buildpack-1-id
+</span></span><span class="line"><span class="cl">│   ├── layer-1
+</span></span><span class="line"><span class="cl">│   ├── layer-1.toml
+</span></span><span class="line"><span class="cl">│   ├── layer-2
+</span></span><span class="line"><span class="cl">│   └── layer-2.toml
+</span></span><span class="line"><span class="cl">└── buildpack-2-id
+</span></span></code></pre></div><blockquote>
+<p>For more information about creating <code>dependency layers</code>, see <a href="https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/create-layer/">Create dependency layers</a></p>
+</blockquote>
 
         
 

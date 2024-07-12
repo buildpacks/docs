@@ -913,7 +913,7 @@
 </li>
 <li><strong>Outputs</strong>
 <ul>
-<li>Valid TOML describing environment variables in the form of key=value pairs. These variables are added to the application&rsquo;s runtime environment. The content should be written to file descriptor 3 (see examples for how to do this).</li>
+<li>Valid TOML describing environment variables in the form of <code>key=&quot;value&quot;</code> pairs. These variables are added to the application&rsquo;s runtime environment. The content should be written to file descriptor 3 (see examples for how to do this).</li>
 <li>Exit Code: The scripts should exit with a status code of <code>0</code> to indicate success. A non-zero exit code will indicate an error and prevent the application from launching.</li>
 </ul>
 </li>

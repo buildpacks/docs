@@ -26,7 +26,7 @@
       <link>https://buildpacks.io/docs/for-buildpack-authors/concepts/buildpack-group/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-buildpack-authors/concepts/buildpack-group/</guid>
-      <description>&lt;p&gt;A buildpack group is a list of individual buildpacks that are designged to work together to build an application.&lt;/p&gt;</description>
+      <description>&lt;p&gt;A buildpack group is a list of individual buildpacks that are designed to work together to build an application.&lt;/p&gt;</description>
     </item>
     <item>
       <title>What are targets?</title>
@@ -47,21 +47,21 @@
       <link>https://buildpacks.io/docs/for-buildpack-authors/concepts/layer/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-buildpack-authors/concepts/layer/</guid>
-      <description></description>
+      <description>&lt;p&gt;&lt;code&gt;Dependency layers&lt;/code&gt; are semantically meaningful layers that are contributed by one or more buildpacks during the &lt;code&gt;build&lt;/code&gt; phase, one for each dependency.&lt;/p&gt;</description>
     </item>
     <item>
       <title>What is a buildpack package?</title>
       <link>https://buildpacks.io/docs/for-buildpack-authors/concepts/package/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-buildpack-authors/concepts/package/</guid>
-      <description></description>
+      <description>&lt;p&gt;A &lt;code&gt;buildpack package&lt;/code&gt; refers to the process of packaging buildpacks for distribution as OCI images or OCI-compatible &lt;code&gt;tar&lt;/code&gt; files.&lt;/p&gt;</description>
     </item>
     <item>
       <title>What is a component buildpack?</title>
       <link>https://buildpacks.io/docs/for-buildpack-authors/concepts/component-buildpack/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-buildpack-authors/concepts/component-buildpack/</guid>
-      <description></description>
+      <description>&lt;p&gt;A &lt;strong&gt;component buildpack&lt;/strong&gt; is a buildpack containing &lt;code&gt;/bin/detect&lt;/code&gt; and &lt;code&gt;/bin/build&lt;/code&gt; executables and that implements the &lt;a href=&#34;https://github.com/buildpacks/spec/blob/main/buildpack.md#buildpack-interface&#34;&gt;Buildpack Interface&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     <item>
       <title>What is a composite buildpack?</title>
@@ -82,7 +82,7 @@
       <link>https://buildpacks.io/docs/for-buildpack-authors/concepts/build-plan/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-buildpack-authors/concepts/build-plan/</guid>
-      <description></description>
+      <description>&lt;p&gt;A &lt;strong&gt;build plan&lt;/strong&gt; is a &lt;code&gt;toml&lt;/code&gt; file that is the output of the &lt;a href=&#34;https://buildpacks.io/docs/for-buildpack-authors/concepts/lifecycle-phases/#phase-2-detect&#34;&gt;detect&lt;/a&gt; phase, in which each component buildpack or image extension may express the dependencies it requires and the dependencies it provides.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

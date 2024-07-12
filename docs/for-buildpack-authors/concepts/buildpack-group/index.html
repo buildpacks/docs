@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="A buildpack group is a list of individual buildpacks that are designged to work together to build an application.
+<meta name="description" content="A buildpack group is a list of individual buildpacks that are designed to work together to build an application.
 "/>
 <link rel="canonical" content="https://buildpacks.io/docs/for-buildpack-authors/concepts/buildpack-group/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
@@ -23,7 +23,7 @@
 <meta property="og:url" content="https://buildpacks.io/docs/for-buildpack-authors/concepts/buildpack-group/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-<meta property="og:description" content="A buildpack group is a list of individual buildpacks that are designged to work together to build an application.
+<meta property="og:description" content="A buildpack group is a list of individual buildpacks that are designed to work together to build an application.
 ">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
@@ -899,16 +899,16 @@
           <h1 class="title">What is a buildpack group?</h1>
         </div>
 
-        <p>A buildpack group is a list of individual buildpacks that are designged to work together to build an application.</p>
+        <p>A buildpack group is a list of individual buildpacks that are designed to work together to build an application.</p>
 <p>Buildpack groups allow you to connect multiple modular buildpacks together, making buildpacks modular and re-usable.</p>
 <p>For example, you might have a buildpack that installs Java and a buildpack that uses Maven to build your application. These two buildpacks can be combined into a group to implement higher-level functionality, specifically that the first one will install Java and the second will use Java to run Maven, which is a Java build tool.</p>
-<p>Because you can have many buildpack groups in a <a href="/docs/for-platform-operators/concepts/builder/">builder</a> or <a href="/docs/for-platform-operators/concepts/composite-buildpack">composite buildpack</a> (sometimes referred to as a &ldquo;meta buildpack&rdquo;),
+<p>Because you can have many buildpack groups in a <a href="/docs/for-platform-operators/concepts/builder/">builder</a> or <a href="/docs/for-buildpack-authors/concepts/composite-buildpack">composite buildpack</a> (sometimes referred to as a &ldquo;meta buildpack&rdquo;),
 and you can reuse buildpacks, you could have a second buildpack group that reuses the buildpack to provide Java but uses a third buildpack that provides Gradle to build your application. By doing this, you can create additional high-level functionality without having duplication.</p>
 <h2 id="anatomy-of-a-buildpack-group">Anatomy of a buildpack group</h2>
 <p>A <a href="/docs/reference/config/builder-config/#order-_list-required_">buildpack group</a> is a list of buildpack entries defined in the order in which they will run.</p>
 <p>A buildpack entry is identified by an id and a version. It may also be marked as optional. While you may have one or more buildpacks in a buildpack group, you may have one or more buildpack groups in a builder or composite buildpack.</p>
 <h2 id="detection-with-buildpack-groups">Detection with buildpack groups</h2>
-<p>A <a href="/docs/for-platform-operators/concepts/builder/">builder</a> or <a href="/docs/for-platform-operators/concepts/composite-buildpack">composite buildpack</a> may contain multiple buildpack groups. When the lifecycle executes the detection process, it will process each buildpack group it finds in the order that the groups are specified. For each buildpack group, the lifecycle will execute the detect phase of all buildpacks in that group (these can be executed in parallel) and aggregate the results. The lifecycle will select the first buildpack group by order where all of the non-optional buildpacks in that group pass detection.</p>
+<p>A <a href="/docs/for-platform-operators/concepts/builder/">builder</a> or <a href="/docs/for-buildpack-authors/concepts/composite-buildpack">composite buildpack</a> may contain multiple buildpack groups. When the lifecycle executes the detection process, it will process each buildpack group it finds in the order that the groups are specified. For each buildpack group, the lifecycle will execute the detect phase of all buildpacks in that group (these can be executed in parallel) and aggregate the results. The lifecycle will select the first buildpack group by order where all of the non-optional buildpacks in that group pass detection.</p>
 <p>For example, if a builder has buildpack groups A, B and C. The lifecycle will run detection against A. If all of the non-optional buildpacks in that group pass detection, then it will select A. In that case, B and C will not be processed. If A has any failing non-optional buildpacks, then the lifecycle will move on to process buildpack group B. If B has any failing non-optional buildpacks, then the lifecycle will move on to process buildpack group C. If C fails, then the entire detection process will fail.</p>
 <p>If a buildpack group contains composite buildpacks, which in turn may contain more buildpack groups those are expanded using <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#order-resolution">the order resolution rules</a> such that each buildpack group in the composite buildpack is tried with the other buildpacks in the containing buildpack group.</p>
 <p>For example:</p>

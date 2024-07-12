@@ -920,7 +920,7 @@ by analyzing the code and determining the best way to build it.</p>
             </div>
         
           <h2><a href="https://buildpacks.io/docs/for-buildpack-authors/concepts/buildpack-group/" class="">What is a buildpack group?</a></h2>
-          <p class="m-1">A buildpack group is a list of individual buildpacks that are designged to work together to build an application.</p>
+          <p class="m-1">A buildpack group is a list of individual buildpacks that are designed to work together to build an application.</p>
 
           
             <div class="text-md-right">
@@ -944,7 +944,7 @@ by analyzing the code and determining the best way to build it.</p>
             </div>
         
           <h2><a href="https://buildpacks.io/docs/for-buildpack-authors/concepts/layer/" class="">What is a buildpack dependency layer?</a></h2>
-          <p class="m-1"></p>
+          <p class="m-1"><code>Dependency layers</code> are semantically meaningful layers that are contributed by one or more buildpacks during the <code>build</code> phase, one for each dependency.</p>
 
           
             <div class="text-md-right">
@@ -952,7 +952,7 @@ by analyzing the code and determining the best way to build it.</p>
             </div>
         
           <h2><a href="https://buildpacks.io/docs/for-buildpack-authors/concepts/package/" class="">What is a buildpack package?</a></h2>
-          <p class="m-1"></p>
+          <p class="m-1">A <code>buildpack package</code> refers to the process of packaging buildpacks for distribution as OCI images or OCI-compatible <code>tar</code> files.</p>
 
           
             <div class="text-md-right">
@@ -960,7 +960,7 @@ by analyzing the code and determining the best way to build it.</p>
             </div>
         
           <h2><a href="https://buildpacks.io/docs/for-buildpack-authors/concepts/component-buildpack/" class="">What is a component buildpack?</a></h2>
-          <p class="m-1"></p>
+          <p class="m-1">A <strong>component buildpack</strong> is a buildpack containing <code>/bin/detect</code> and <code>/bin/build</code> executables and that implements the <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#buildpack-interface">Buildpack Interface</a>.</p>
 
           
             <div class="text-md-right">
@@ -985,7 +985,7 @@ This is useful for composing more complex detection strategies.</p>
             </div>
         
           <h2><a href="https://buildpacks.io/docs/for-buildpack-authors/concepts/build-plan/" class="">What is the build plan?</a></h2>
-          <p class="m-1"></p>
+          <p class="m-1">A <strong>build plan</strong> is a <code>toml</code> file that is the output of the <a href="https://buildpacks.io/docs/for-buildpack-authors/concepts/lifecycle-phases/#phase-2-detect">detect</a> phase, in which each component buildpack or image extension may express the dependencies it requires and the dependencies it provides.</p>
 
           
             <div class="text-md-right">

@@ -897,7 +897,7 @@
           <h1 class="title">Use the build plan</h1>
         </div>
 
-        <p>The <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#build-plan-toml">Build Plan</a> is a document that buildpacks can use to pass information between the <code>detect</code> and <code>build</code> phases, and between each other.
+        <p>The <a href="https://buildpacks.io/docs/for-buildpack-authors/concepts/build-plan/">Build Plan</a> is a document that buildpacks can use to pass information between the <code>detect</code> and <code>build</code> phases, and between each other.
 The build plan is passed (by the lifecycle) as a parameter to the <code>detect</code> and <code>build</code> binaries of each buildpack.</p>
 <p>During the <code>detect</code> phase, each buildpack may write something it <code>requires</code> or <code>provides</code> (or both) into the Build Plan.
 A buildpack can <code>require</code> or <code>provide</code> multiple dependencies, and even multiple groupings of dependencies (using <code>or</code> lists).
@@ -916,38 +916,38 @@ by seeing whether all dependencies required can be provided by that list.</p>
 <p>We will also consider what an <code>NPM</code> and a <code>JVM</code> buildpack may do.</p>
 <h4 id="scenario-1-no-explicit-request">Scenario 1: No Explicit Request</h4>
 <p>A <code>node-engine</code> buildpack is always happy to <code>provide</code> the <code>node</code> dependency. The build plan it will write may look something like:</p>
-<pre tabindex="0"><code>[[provides]]
-name = &#34;node&#34;
-</code></pre><blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">provides</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;node&#34;</span>
+</span></span></code></pre></div><blockquote>
 <p><strong>NOTE:</strong> If this was the only buildpack running, this would fail the <code>detect</code> phase. In order to pass, every <code>provides</code> must be matched up with a <code>requires</code>, whether in the same buildpack or in another buildpack.
 See the <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#phase-1-detection">spec</a> for particulars on how ordering buildpacks can adjust detection results.</p>
 </blockquote>
 <h4 id="scenario-2-one-version-requested">Scenario 2: One Version Requested</h4>
 <p>During the <code>detect</code> phase, the <code>node-engine</code> buildpack sees in one configuration file (e.g. a <code>.nvmrc</code> file in the app directory) that <code>node v10.x</code> is explicitly requested by the application. Seeing that, it may write the below text to the build plan:</p>
-<pre tabindex="0"><code>[[provides]]
-name = &#34;node&#34;
-
-[[requires]]
-name = &#34;node&#34;
-version = &#34;10.x&#34;
-
-[requires.metadata]
-version-source = &#34;.nvmrc&#34;
-</code></pre><p>As always, the buildpack <code>provides</code> <code>node</code>. In this particular case, a version of <code>node</code> (<code>10.x</code>) is being requested in a configuration file (<code>.nvmrc</code>). The buildpack chooses to add an additional piece of metadata (<code>version-source</code>), so that it can understand where that request came from.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">provides</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;node&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">requires</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;node&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;10.x&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">requires</span><span class="p">.</span><span class="nx">metadata</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">version-source</span> <span class="p">=</span> <span class="s2">&#34;.nvmrc&#34;</span>
+</span></span></code></pre></div><p>As always, the buildpack <code>provides</code> <code>node</code>. In this particular case, a version of <code>node</code> (<code>10.x</code>) is being requested in a configuration file (<code>.nvmrc</code>). The buildpack chooses to add an additional piece of metadata (<code>version-source</code>), so that it can understand where that request came from.</p>
 <h4 id="npm-buildpack">NPM Buildpack</h4>
 <p><code>NPM</code> is the default package manager for <code>node</code>. A NPM Buildpack may ensure that all the packages for the application are present (by running <code>npm install</code>), and perhaps cache those packages as well, to optimize future builds.</p>
 <p>NPM is typically distributed together with node. As a result, a NPM buildpack may require <code>node</code>, but not want to <code>provide</code> it, trusting that the <code>node-engine</code> buildpack will be in charge of <code>providing</code> <code>node</code>.</p>
 <p>The NPM buildpack could write the following to the build plan, if the buildpack sees that <code>npm</code> is necessary (e.g., it sees a <code>package.json</code> file in the app directory):</p>
-<pre tabindex="0"><code>[[requires]]
-name = &#34;node&#34;
-</code></pre><p>If, looking in the <code>package.json</code> file, the NPM buildpack sees a specific version of <code>node</code> requested in the <a href="https://docs.npmjs.com/files/package.json#engines">engines</a> field (e.g. <code>14.1</code>), it may write the following to the build plan:</p>
-<pre tabindex="0"><code>[[requires]]
-name = &#34;node&#34;
-version = &#34;14.1&#34;
-
-[requires.metadata]
-version-source = &#34;package.json&#34;
-</code></pre><blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">requires</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;node&#34;</span>
+</span></span></code></pre></div><p>If, looking in the <code>package.json</code> file, the NPM buildpack sees a specific version of <code>node</code> requested in the <a href="https://docs.npmjs.com/files/package.json#engines">engines</a> field (e.g. <code>14.1</code>), it may write the following to the build plan:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">requires</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;node&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;14.1&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">requires</span><span class="p">.</span><span class="nx">metadata</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">version-source</span> <span class="p">=</span> <span class="s2">&#34;package.json&#34;</span>
+</span></span></code></pre></div><blockquote>
 <p><strong>NOTE:</strong> As above, if this was the only buildpack running, this would fail the <code>detect</code> phase. In order to pass, every <code>provides</code> must be matched up with a <code>requires</code>, whether in the same buildpack or in another buildpack.
 See the <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#phase-1-detection">spec</a> for particulars on how ordering buildpacks can adjust detection results.</p>
 </blockquote>
@@ -957,23 +957,23 @@ See the <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#phase
 A very naive implementation of the buildpack may have it write several <code>provides</code> options to the build plan, detailing everything that it can provide,
 while later buildpacks would figure out based on the application which options it requires, and would <code>require</code> those.
 In this particular case, we can use the <code>or</code> operator to present different possible build plans the buildpack can follow:</p>
-<pre tabindex="0"><code># option 1 (`jre` and `jdk`)
-[[provides]]
-name = &#34;jre&#34;
-
-[[provides]]
-name = &#34;jdk&#34;
-
-# option 2 (or just `jdk`)
-[[or]]
-[[or.provides]]
-name = &#34;jdk&#34;
-
-# option 3 (or just `jre`)
-[[or]]
-[[or.provides]]
-name = &#34;jre&#34;
-</code></pre><p>The buildpack gives three options to the lifecycle:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="c"># option 1 (`jre` and `jdk`)</span>
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">provides</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;jre&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">provides</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;jdk&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># option 2 (or just `jdk`)</span>
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">or</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">or</span><span class="p">.</span><span class="nx">provides</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;jdk&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># option 3 (or just `jre`)</span>
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">or</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">or</span><span class="p">.</span><span class="nx">provides</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;jre&#34;</span>
+</span></span></code></pre></div><p>The buildpack gives three options to the lifecycle:</p>
 <ul>
 <li>It can provide a standalone <code>jre</code></li>
 <li>It can provide a standalone <code>jdk</code></li>

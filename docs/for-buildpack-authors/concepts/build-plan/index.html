@@ -8,7 +8,8 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+<meta name="description" content="A build plan is a toml file that is the output of the detect phase, in which each component buildpack or image extension may express the dependencies it requires and the dependencies it provides.
+"/>
 <link rel="canonical" content="https://buildpacks.io/docs/for-buildpack-authors/concepts/build-plan/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
@@ -22,7 +23,8 @@
 <meta property="og:url" content="https://buildpacks.io/docs/for-buildpack-authors/concepts/build-plan/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-
+<meta property="og:description" content="A build plan is a toml file that is the output of the detect phase, in which each component buildpack or image extension may express the dependencies it requires and the dependencies it provides.
+">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -897,8 +899,53 @@
           <h1 class="title">What is the build plan?</h1>
         </div>
 
-        <p>This page is a stub! The CNB project is applying to <a href="https://developers.google.com/season-of-docs/docs/timeline">Google Season of Docs</a> to receive support for improving our documentation. Please check back soon.</p>
-<p>If you are familiar with this content and would like to make a contribution, please feel free to open a PR :)</p>
+        <p>A <strong>build plan</strong> is a <code>toml</code> file that is the output of the <a href="https://buildpacks.io/docs/for-buildpack-authors/concepts/lifecycle-phases/#phase-2-detect">detect</a> phase, in which each component buildpack or image extension may express the dependencies it requires and the dependencies it provides.</p>
+<p>Before we dive into more details, let&rsquo;s explain the difference between three terms relevant to the concept of <code>build plan</code>.</p>
+<ul>
+<li>
+<p>First, the <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#build-plan-toml">build plan</a> piece that is contributed by the buildpack during the <code>detect</code> phase. This piece is seen as the <code>build plan</code> from buildpack&rsquo;s perspective and is written to a temporary directory by the buildpack.</p>
+</li>
+<li>
+<p>Second, the concatenation of all buildpacks contributions that passed <code>detect</code>, which is considered the true <a href="https://github.com/buildpacks/spec/blob/main/platform.md#plantoml-toml">build plan</a> from the platform&rsquo;s perspective. This file usually gets written to the <code>&lt;layers&gt;</code> directory—unless the platform provided another path for it.</p>
+</li>
+<li>
+<p>Finally, the build plan piece that is shown to the buildpack during the <code>build</code> phase that is referred to as the <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#buildpack-plan-toml">buildpack plan</a>. This file only contains dependencies that a buildpack is responsible for providing; however a buildpack may choose NOT to provide any of these dependencies, leaving that work for a future buildpack. The <code>buildpack plan</code> file is usually written to a temporary directory by the <code>lifecycle</code>.</p>
+</li>
+</ul>
+<h2 id="example-build-plan-toml">Example Build Plan (toml)</h2>
+<p>In order to make contributions to the <code>Build Plan</code>, a <code>/bin/detect</code> executable MUST write entries to <code>&lt;plan&gt;</code> in two sections: <code>requires</code> and <code>provides</code>. The generated <code>plan.toml</code> file is usually added under the <code>&lt;layers&gt;</code>directory.
+The <code>requires</code> and <code>provides</code> sections MAY be repeated together inside of an <code>or</code> array at the top-level.<br>
+Each <code>requires</code> and <code>provides</code> section MUST be a list of entries formatted as shown below:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">provides</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;&lt;dependency name&gt;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">requires</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;&lt;dependency name&gt;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">requires</span><span class="p">.</span><span class="nx">metadata</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="c"># buildpack-specific data</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">or</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">or</span><span class="p">.</span><span class="nx">provides</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;&lt;dependency name&gt;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">or</span><span class="p">.</span><span class="nx">requires</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;&lt;dependency name&gt;&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">or</span><span class="p">.</span><span class="nx">requires</span><span class="p">.</span><span class="nx">metadata</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="c"># buildpack-specific data</span>
+</span></span></code></pre></div><h2 id="key-points">Key Points</h2>
+<ul>
+<li>A valid <code>build plan</code> is a plan where all required dependencies are provided in the necessary order, meaning that during the <code>build</code> phase, each component buildpack will have its required dependencies provided by component buildpack or an image extension that runs before it.</li>
+<li>Each pairing of <code>requires</code> and <code>provides</code> sections (at the top level, or inside of an <code>or</code> array) is a potential build plan. For more details, see the <a href="https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/use-build-plan/#example-jvm-buildpack">JVM buildpack</a> example.</li>
+<li>A group will only pass detection if a valid build plan can be produced from the dependencies that all elements in the group require and provide.</li>
+<li>The <code>detect</code> phase could fail if a buildpack requires a dependency that it does not itself provide, or is not provided by another buildpack.</li>
+<li>The <code>detect</code> phase could also fail when the buildpacks order is incorrect, i.e, the buildpacks providing dependencies run <code>after</code> the buildpacks requiring them.</li>
+<li>The resulting <code>build plan</code> is passed as one of the inputs to the <code>build</code> phase.</li>
+</ul>
+<h2 id="resources">Resources</h2>
+<p>For further examples and guidance on using the build plan, see the <a href="https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/use-build-plan/">how-to page</a>.</p>
 
         
 

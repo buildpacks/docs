@@ -897,7 +897,7 @@
           <h1 class="title">What caching strategies are available to buildpacks?</h1>
         </div>
 
-        <h1 id="layers">Layers</h1>
+        <h2 id="layers">Layers</h2>
 <p>There are three types of layers that can be contributed to an image</p>
 <ul>
 <li><code>build</code> layers &ndash; the directory will be accessible by subsequent buildpacks,</li>
@@ -905,14 +905,14 @@
 <li><code>launch</code> layers &ndash; the directory will be included in the final app image as a single layer,</li>
 </ul>
 <p>In this section we look at caching each layer type.</p>
-<h2 id="layer-metadata">Layer Metadata</h2>
+<h3 id="layer-metadata">Layer Metadata</h3>
 <p>buildpacks ensure byte-for-byte reproducibility of layers.  File creation time is <a href="https://medium.com/buildpacks/time-travel-with-pack-e0efd8bf05db">normalized to January 1, 1980</a> to ensure reproducibility.  Byte-for-byte reproducibility means previous layers can be reused.  However, we may want to invalidate previously cached layers if an important property changes, such as:</p>
 <ul>
 <li>the major version of the runtime changes eg: NodeJS changes from 16 to 18</li>
 <li>requested application dependencies have changed eg: a Python application adds a dependency on the <code>requests</code> module</li>
 </ul>
 <p>Launch layers are exported to an OCI registry.  The layer metadata is commonly used when deciding if a launch layer should be re-used.  A launch layer may be re-used on an OCI registry without downloading the layer to the machine running a build.</p>
-<h2 id="caching-strategies">Caching Strategies</h2>
+<h3 id="caching-strategies">Caching Strategies</h3>
 <p>Caching during the production of an application image is necessarily very flexible.  Most buildpacks that wish to contribute a layer to the application image need only to</p>
 <ol>
 <li>Check that the metadata of the cached layer is current,</li>

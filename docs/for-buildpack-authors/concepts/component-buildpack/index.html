@@ -8,7 +8,8 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+<meta name="description" content="A component buildpack is a buildpack containing /bin/detect and /bin/build executables and that implements the Buildpack Interface.
+"/>
 <link rel="canonical" content="https://buildpacks.io/docs/for-buildpack-authors/concepts/component-buildpack/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
@@ -22,7 +23,8 @@
 <meta property="og:url" content="https://buildpacks.io/docs/for-buildpack-authors/concepts/component-buildpack/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-
+<meta property="og:description" content="A component buildpack is a buildpack containing /bin/detect and /bin/build executables and that implements the Buildpack Interface.
+">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -897,8 +899,22 @@
           <h1 class="title">What is a component buildpack?</h1>
         </div>
 
-        <p>This page is a stub! The CNB project is applying to <a href="https://developers.google.com/season-of-docs/docs/timeline">Google Season of Docs</a> to receive support for improving our documentation. Please check back soon.</p>
-<p>If you are familiar with this content and would like to make a contribution, please feel free to open a PR :)</p>
+        <p>A <strong>component buildpack</strong> is a buildpack containing <code>/bin/detect</code> and <code>/bin/build</code> executables and that implements the <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#buildpack-interface">Buildpack Interface</a>.</p>
+<h2 id="key-points">Key Points</h2>
+<p>During the <code>build</code> phase, typical component buildpacks might perform one, or more, of the following actions:</p>
+<ul>
+<li>Read the <a href="https://buildpacks.io/docs/for-buildpack-authors/concepts/build-plan/">Buildpack Plan</a> in <code>&lt;plan&gt;</code> to determine what dependencies to provide</li>
+<li>Supply the application with <a href="https://buildpacks.io/docs/for-buildpack-authors/concepts/layer/">dependencies</a> for launch in <code>&lt;layers&gt;/&lt;layer&gt;</code></li>
+<li>Reuse application <a href="https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/re-use-layers/">dependencies</a> from a previous image by appending <code>[types]</code> and <code>launch = true</code> to <code>&lt;layers&gt;/&lt;layer&gt;.toml</code></li>
+<li>Contribute <a href="https://buildpacks.io/docs/for-buildpack-authors/concepts/layer/">dependencies</a> added in <code>&lt;layers&gt;/&lt;layer&gt;</code> to subsequent buildpacks</li>
+<li>Reuse <a href="https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/create-layer/">cached build dependencies</a> from a previous build by appending <code>[types]</code>, <code>build = true</code> and <code>cache = true</code> to <code>&lt;layers&gt;/&lt;layer&gt;.toml</code></li>
+<li>Compile the application source code into object code</li>
+<li>Remove application source code that is not necessary for launch</li>
+<li>Supply start command in <code>&lt;layers&gt;/launch.toml</code></li>
+<li>Write a partial <a href="https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/add-sbom/">Software Bill of Materials</a> to <code>&lt;layers&gt;/&lt;layer&gt;.sbom.&lt;ext&gt;</code> describing any dependencies provided in the layer</li>
+<li>Write a partial <a href="https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/add-sbom/">Software Bill of Materials</a> to <code>&lt;layers&gt;/launch.sbom.&lt;ext&gt;</code> describing any provided application dependencies not associated with a layer</li>
+<li>Write a partial <a href="https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/add-sbom/">Software Bill of Materials</a> to <code>&lt;layers&gt;/build.sbom.&lt;ext&gt;</code> describing any provided build dependencies not associated with a layer</li>
+</ul>
 
         
 
