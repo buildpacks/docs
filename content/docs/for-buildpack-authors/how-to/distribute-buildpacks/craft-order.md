@@ -19,4 +19,4 @@ A **composite buildpack** is a buildpack that doesn't contain any `/bin/detect` 
 
 Most advanced buildpacks aren’t actually a single buildpack, but instead a composite or an ordered list of component buildpacks with each buildpack performing specific jobs. This is useful for composing more complex detection strategies.
 
->For more details on composite buildpacks, buildpack groups, and order resolution, check [What is a buildpack group?](https://buildpacks.io/docs/for-buildpack-authors/concepts/buildpack-group/)
+>For more details on composite buildpacks, buildpack groups, and order resolution, see the [concept page](https://buildpacks.io/docs/for-buildpack-authors/concepts/buildpack-group/) for buildpack groups.
