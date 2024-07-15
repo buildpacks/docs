@@ -19,7 +19,7 @@
       <link>https://buildpacks.io/docs/for-buildpack-authors/how-to/distribute-buildpacks/craft-order/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-buildpack-authors/how-to/distribute-buildpacks/craft-order/</guid>
-      <description></description>
+      <description>&lt;p&gt;An &lt;code&gt;order&lt;/code&gt; is a list of one or more &lt;code&gt;groups&lt;/code&gt; to be tested against application source code, so that the appropriate &lt;code&gt;group&lt;/code&gt; for a build can be determined.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
