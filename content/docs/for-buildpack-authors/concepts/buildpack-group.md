@@ -1,4 +1,3 @@
-
 +++
 title="What is a buildpack group?"
 aliases=[
@@ -7,7 +6,7 @@ aliases=[
 weight=2
 +++
 
-A buildpack group is a list of individual buildpacks that are designged to work together to build an application.
+A buildpack group is a list of individual buildpacks that are designed to work together to build an application.
 
 <!--more-->
 
@@ -58,4 +57,4 @@ The [Operator's Guide][operator-guide] has more information on creating builders
 [order-resolution]: https://github.com/buildpacks/spec/blob/main/buildpack.md#order-resolution
 [operator-guide]: /docs/for-platform-operators/
 [builder]: /docs/for-platform-operators/concepts/builder/
-[composite buildpack]: /docs/for-platform-operators/concepts/composite-buildpack
+[composite buildpack]: /docs/for-buildpack-authors/concepts/composite-buildpack
