@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+<meta name="description" content="The lifecycle provides a mechanism for buildpacks to explicitly opt into reusing any necessary dependency layers from a previous build. Buildpacks may modify cached build dependencies before reusing…"/>
 <link rel="canonical" content="https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/re-use-layers/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
@@ -22,7 +22,7 @@
 <meta property="og:url" content="https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/re-use-layers/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-
+<meta property="og:description" content="The lifecycle provides a mechanism for buildpacks to explicitly opt into reusing any necessary dependency layers from a previous build. Buildpacks may modify cached build dependencies before reusing…">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -897,8 +897,41 @@
           <h1 class="title">Re-use dependency layers</h1>
         </div>
 
-        <p>This page is a stub! The CNB project is applying to <a href="https://developers.google.com/season-of-docs/docs/timeline">Google Season of Docs</a> to receive support for improving our documentation. Please check back soon.</p>
-<p>If you are familiar with this content and would like to make a contribution, please feel free to open a PR :)</p>
+        <p>The <a href="https://buildpacks.io/docs/for-buildpack-authors/concepts/lifecycle-phases/">lifecycle</a> provides a mechanism for buildpacks to explicitly opt into reusing any necessary <a href="https://buildpacks.io/docs/for-buildpack-authors/concepts/layer/">dependency layers</a> from a previous build. Buildpacks may modify cached build dependencies before reusing them.</p>
+<p>A buildpack usually reads metadata about layers it created during a previous build to ensure only changed layers are updated. For buildpack authors, this can aid in improving build performance by avoiding re-uploading unchanged layers and restoring any previously-cached dependencies.</p>
+<p>To decide whether layer reuse is appropriate, a buildpack should consider:</p>
+<ul>
+<li>Whether files in the <code>&lt;app&gt;</code> directory have changed since the layer was created.</li>
+<li>Whether the environment has changed since the layer was created.</li>
+<li>Whether the buildpack version has changed since the layer was created.</li>
+<li>Whether new application dependency versions have been made available since the layer was created.</li>
+</ul>
+<p>At the start of the <code>build</code> phase a buildpack MAY find:</p>
+<ul>
+<li>Partial <code>&lt;layers&gt;/&lt;layer&gt;.toml</code> files describing layers from the previous builds. The restored <code>Layer Content Metadata</code> SHALL NOT contain <code>launch</code>, <code>build</code>, or <code>cache</code> booleans even if those values were set on a previous build.</li>
+<li><code>&lt;layers&gt;/&lt;layer&gt;.sbom.&lt;ext&gt;</code> files that were written previously.</li>
+<li><code>&lt;layers&gt;/&lt;layer&gt;/</code> directories containing layer contents that have been restored from the cache.</li>
+</ul>
+<p>A buildpack:</p>
+<ul>
+<li>MAY set <code>launch = true</code> under <code>[types]</code> in the restored <code>&lt;layers&gt;/&lt;layer&gt;.toml</code> file in order to include the layer in the final OCI image.</li>
+<li>MAY modify <code>metadata</code> in  <code>&lt;layers&gt;/&lt;layer&gt;.toml</code></li>
+<li>MAY modify <code>metadata</code> in  <code>&lt;layers&gt;/&lt;layer&gt;.sbom.&lt;ext&gt;</code></li>
+<li><strong>If</strong> the layer contents have been restored to the <code>&lt;layers&gt;/&lt;layer&gt;/</code> directory
+<ul>
+<li>MAY set <code>build = true</code> under <code>[types]</code> in the restored <code>&lt;layers&gt;/&lt;layer&gt;.toml</code> to expose the layer to subsequent buildpacks.
+<ul>
+<li>MAY set <code>cache = true</code> under <code>[types]</code> in the restored <code>&lt;layers&gt;/&lt;layer&gt;.toml</code> to persist the layer to subsequent builds.</li>
+<li>MAY modify the contents of <code>&lt;layers&gt;/&lt;layer&gt;/</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>If the buildpack does not set <code>launch</code>, <code>build</code>, or <code>cache</code> under <code>[types]</code> in the restored <code>&lt;layers&gt;/&lt;layer&gt;.toml</code> the layer SHALL be ignored.</p>
+<blockquote>
+<p>For more information on buildpack layer caching, see the documentation on <a href="https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/create-layer/">create dependency layers</a> and <a href="https://buildpacks.io/docs/for-buildpack-authors/concepts/caching-strategies/">buildpack layer types</a>.</p>
+</blockquote>
 
         
 

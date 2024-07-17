@@ -684,7 +684,7 @@
       <link>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/re-use-layers/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/re-use-layers/</guid>
-      <description></description>
+      <description>&lt;p&gt;The &lt;a href=&#34;https://buildpacks.io/docs/for-buildpack-authors/concepts/lifecycle-phases/&#34;&gt;lifecycle&lt;/a&gt; provides a mechanism for buildpacks to explicitly opt into reusing any necessary &lt;a href=&#34;https://buildpacks.io/docs/for-buildpack-authors/concepts/layer/&#34;&gt;dependency layers&lt;/a&gt; from a previous build. Buildpacks may modify cached build dependencies before reusing them.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Specify the default launch process</title>
