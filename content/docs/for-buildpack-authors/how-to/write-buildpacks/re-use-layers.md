@@ -3,7 +3,7 @@ title="Re-use dependency layers"
 weight=99
 +++
 
-The [lifecycle](https://buildpacks.io/docs/for-buildpack-authors/concepts/lifecycle-phases/) provides a mechanism for buildpacks to explicitly opt into reusing any necessary dependency layers from a previous build. Buildpacks may modify cached build dependencies before reusing them.
+The [lifecycle](https://buildpacks.io/docs/for-buildpack-authors/concepts/lifecycle-phases/) provides a mechanism for buildpacks to explicitly opt into reusing any necessary [dependency layers](https://buildpacks.io/docs/for-buildpack-authors/concepts/layer/) from a previous build. Buildpacks may modify cached build dependencies before reusing them.
 
 <!--more-->
 
@@ -33,3 +33,5 @@ A buildpack:
     * MAY modify the contents of `<layers>/<layer>/`.
 
 If the buildpack does not set `launch`, `build`, or `cache` under `[types]` in the restored `<layers>/<layer>.toml` the layer SHALL be ignored.
+
+>For more information on buildpack layer caching, see the documentation on [create dependency layers](https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/create-layer/) and [buildpack layer types](https://buildpacks.io/docs/for-buildpack-authors/concepts/caching-strategies/).
