@@ -1,4 +1,3 @@
-
 +++
 title="What is the lifecycle?"
 aliases=[
@@ -19,7 +18,7 @@ In the example we run `pack` on the NodeJS application to produce an application
 
 ## NodeJS buildpack
 
-The example NodeJS buildpack is a meta-buildpack.  It is composed of
+The example NodeJS buildpack is a composite buildpack (sometimes referred to as a "meta buildpack").  It is composed of
 
 * `node-engine` buildpack that provides the `node` and `npm` binaries,
 * `yarn` buildpack that provides the `yarn` binary,
@@ -27,7 +26,7 @@ The example NodeJS buildpack is a meta-buildpack.  It is composed of
 * `yarn-start` and `npm-start` buildpacks that configure the entrypoint to the application image,
 * `procfile` a buildpack that allows developers to provide a [Heroku-style](https://devcenter.heroku.com/articles/procfile#procfile-format) entrypoint for the image.
 
-The `nodejs` buildpack itself is a meta-buildpack which defines two **order groups**.  Here we represent the order groups visually:
+The `nodejs` buildpack itself is a composite buildpack which defines two **order groups**.  Here we represent the order groups visually:
 
 ![nodejs order groups](/images/order-groups.svg)
 
@@ -79,7 +78,7 @@ The dependencies are provided using the mechanism an NodeJS developer expects.  
 
 Finally, we describe the container entrypoint using a script in the `package.json`.  The script must be named `start` according to NodeJS convention.   Here we see that the entrypoint should run the provided `node index.js` command.
 
-We build our application using the default builder and specify to only use the `nodejs` meta-buildpack in the build.  The restriction to use only the `nodejs` meta-buildpack simplifies the explanation as that buildpack provides only two order groups.
+We build our application using the default builder and specify to only use the `nodejs` composite buildpack in the build.  The restriction to use only the `nodejs` composite buildpack simplifies the explanation as that buildpack provides only two order groups.
 
 <asciinema-player
   idle-time-limit="0.5s"
@@ -388,4 +387,4 @@ Our NodeJS example image requires an entrypoint called `web`.  The `web` entrypo
 
 ## Summary
 
-We have taken a detailed look at how buildpacks are used to build a sample application.  The meta-buildpack contains two order groups and we have seen examples of how an order group is resolved.  In addition we have looked at the contributions that a buildpack makes to the build plan and considered how these are resolved into a buildpack plan to be provided to the build phase of specific buildpacks.  Finally, we have briefly considered how the analyze and restore phases can allow advanced caching strategies.
+We have taken a detailed look at how buildpacks are used to build a sample application.  The composite buildpack contains two order groups and we have seen examples of how an order group is resolved.  In addition we have looked at the contributions that a buildpack makes to the build plan and considered how these are resolved into a buildpack plan to be provided to the build phase of specific buildpacks.  Finally, we have briefly considered how the analyze and restore phases can allow advanced caching strategies.
