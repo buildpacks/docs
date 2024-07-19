@@ -3,9 +3,11 @@ title="Use exec.d binaries to configure the application at runtime"
 weight=99
 +++
 
+The [buildpacks `exec.d` interface](https://github.com/buildpacks/spec/blob/main/buildpack.md#execd) allows buildpack authors to execute custom scripts or binaries when the application image is started.
+
 <!--more-->
 
-The [buildpacks `exec.d` interface](https://github.com/buildpacks/spec/blob/main/buildpack.md#execd) allows buildpack authors to execute custom scripts or binaries when the application image is started. This interface can be particularly useful for injecting dynamic behavior or environment variables into the runtime environment of an application.
+This interface can be particularly useful for injecting dynamic behavior or environment variables into the runtime environment of an application.
 
 ## Key Points
 
@@ -51,23 +53,23 @@ And a `Go` example is:
 package main
 
 import (
-	"fmt"
-	"os"
+ "fmt"
+ "os"
 )
 
 func main() {
-	// Open file descriptor 3 for writing
-	fd3 := os.NewFile(3, "fd3")
-	if fd3 == nil {
-		fmt.Println("Failed to open file descriptor 3")
-		return
-	}
+ // Open file descriptor 3 for writing
+ fd3 := os.NewFile(3, "fd3")
+ if fd3 == nil {
+  fmt.Println("Failed to open file descriptor 3")
+  return
+ }
 
-	// Write the environment variable to file descriptor 3
-	_, err := fd3.WriteString(`EXAMPLE="test"\n`)
-	if err != nil {
-		fmt.Println("Error writing to file descriptor 3:", err)
-	}
+ // Write the environment variable to file descriptor 3
+ _, err := fd3.WriteString(`EXAMPLE="test"\n`)
+ if err != nil {
+  fmt.Println("Error writing to file descriptor 3:", err)
+ }
 }
 ```
 
