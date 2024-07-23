@@ -3,8 +3,10 @@ title="What is a buildpack package?"
 weight=99
 +++
 
+A `buildpack package` refers to the process of packaging buildpacks for distribution as OCI images or OCI-compatible `tar` files.
+
 <!--more-->
 
-This page is a stub! The CNB project is applying to [Google Season of Docs](https://developers.google.com/season-of-docs/docs/timeline) to receive support for improving our documentation. Please check back soon.
+A `buildpack package` typically encapsulates the scripts, required dependencies, and metadata needed to transform application source code into a fully operational application within a specific platform's runtime environment.
 
-If you are familiar with this content and would like to make a contribution, please feel free to open a PR :)
+For more information about packaging a buildpack, see [Package a buildpack or extension](https://buildpacks.io/docs/for-buildpack-authors/how-to/distribute-buildpacks/package-buildpack/).
