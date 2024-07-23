@@ -12,7 +12,7 @@ weight=1
 Building for the ARM architecture is now easier than ever! The `heroku/builder:24` builder supports both AMD64 and ARM64 architectures, and includes
 multi-arch Go, Java, Node.js, PHP, Python, Ruby and Scala buildpacks. You can read more about Heroku's [Cloud Native Buildpacks here][heroku-buildpacks].
 
-> **NOTE:** Our current multi-architecture support allows building an ARM64 application image on an ARM64 host, and building an AMD64 application image on an AMD64 host.  We do not currently support building an application image for one architecture on a different architecture.
+> **NOTE:** Our current multi-architecture support allows building an ARM64 application image on an ARM64 host, and building an AMD64 application image on an AMD64 host. We do not currently support building an application image for one architecture on a different architecture.
 
 ### 1. Clone the [samples][samples] repository
 
