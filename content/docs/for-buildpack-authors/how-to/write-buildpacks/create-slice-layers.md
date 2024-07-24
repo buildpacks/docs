@@ -7,7 +7,7 @@ A `Slice` represents a layer in the `<app>` directory to be exported during the 
 
 <!--more-->
 
-A buildpack MAY specify sub-paths within `<app>` as `slices` in `launch.toml`. Separate layers MUST be created during the [export](https://buildpacks.io/docs/for-buildpack-authors/concepts/lifecycle-phases/#phase-5-export) phase for each slice with one or more files or directories.
+A buildpack may specify sub-paths within `<app>` as `slices` in `launch.toml`. The lifecycle will create separate layers during the [export](https://buildpacks.io/docs/for-buildpack-authors/concepts/lifecycle-phases/#phase-5-export) phase for each slice with one or more files or directories.
 
 ## Key Points
 
