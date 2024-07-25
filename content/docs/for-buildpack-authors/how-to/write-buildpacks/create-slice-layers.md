@@ -3,11 +3,11 @@ title="Create slice layers"
 weight=99
 +++
 
-A `Slice` represents a layer in the `<app>` directory to be exported during the `export` phase.
+After all buildpacks have executed, the contents of the application directory will be included in the final application image as a single layer, OR as `slice` layers. A `slice` layer contains a portion of the application directory as defined by a `filepath` glob.
 
 <!--more-->
 
-A buildpack may specify sub-paths within `<app>` as `slices` in `launch.toml`. The lifecycle will create separate layers during the [export](https://buildpacks.io/docs/for-buildpack-authors/concepts/lifecycle-phases/#phase-5-export) phase for each slice with one or more files or directories.
+`Slices` are useful to avoid re-uploading unchanged data to the image registry. For example, if the application directory is a monolithic repository containing code for both a web frontend and sever backend, buildpacks can slice the directory into separate layers. Thus developers iterating on one part of the code base don't have to wait for the entire directory to re-upload at the end of the build.
 
 ## Key Points
 
@@ -17,14 +17,7 @@ A buildpack may specify sub-paths within `<app>` as `slices` in `launch.toml`. T
 * `Path globs` MUST:
   * Follow the pattern syntax defined in the [Go standard library](https://golang.org/pkg/path/filepath/#Match)
   * Match zero or more files or directories
-* The `lifecycle` MUST convert the `<app>` directory into one or more layers using slices in each `launch.toml` such that slices from earlier buildpacks are processed before slices from later buildpacks.
-* The `lifecycle` MUST process each slice as if all files matched in preceding slices no longer exists in the app directory
-* The `lifecycle` MUST accept slices that do not contain any files or directory; however, it MAY warn about such slices
-* The `lifecycle` MUST include all unmatched files in the app directory in any number of additional layers in the `OCI image`
-
-## Use Cases
-
-* `Slices` aid in optimizing data transfer for files that are commonly shared across applications
+* `Slices` from earlier buildpacks are processed before `slices` from later buildpacks. When a file is included in a `slice`, it is seen as if it no longer exists in the application directory for processing future `slices`.
 
 ## Implementation Steps
 
@@ -34,3 +27,5 @@ A buildpack may specify sub-paths within `<app>` as `slices` in `launch.toml`. T
 [[slices]]
 paths = ["<app sub-path glob>"]
 ```
+
+A buildpack may specify sub-paths within `<app>` as `slices` in `launch.toml`. The lifecycle will create separate layers during the [export](https://buildpacks.io/docs/for-buildpack-authors/concepts/lifecycle-phases/#phase-5-export) phase for each slice containing one or more files or directories. Any files in the `<app>` directory that are not included in buildpack-defined slices will be included in the image as a final slice layer.
