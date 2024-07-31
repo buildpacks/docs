@@ -61,7 +61,7 @@
       <link>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/create-slice-layers/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/create-slice-layers/</guid>
-      <description></description>
+      <description>&lt;p&gt;After all buildpacks have executed, the contents of the application directory will be included in the final application image as a single layer, OR as &lt;code&gt;slice&lt;/code&gt; layers. A &lt;code&gt;slice&lt;/code&gt; layer contains a portion of the application directory as defined by a &lt;code&gt;filepath&lt;/code&gt; glob.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Re-use dependency layers</title>

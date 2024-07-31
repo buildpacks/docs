@@ -962,7 +962,7 @@ to describe the dependencies that they provide.</p>
             </div>
         
           <h2><a href="https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/create-slice-layers/" class="">Create slice layers</a></h2>
-          <p class="m-1"></p>
+          <p class="m-1">After all buildpacks have executed, the contents of the application directory will be included in the final application image as a single layer, OR as <code>slice</code> layers. A <code>slice</code> layer contains a portion of the application directory as defined by a <code>filepath</code> glob.</p>
 
           
             <div class="text-md-right">
