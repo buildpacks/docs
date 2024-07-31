@@ -17,7 +17,7 @@ After all buildpacks have executed, the contents of the application directory wi
 * `Path globs` MUST:
   * Follow the pattern syntax defined in the [Go standard library](https://golang.org/pkg/path/filepath/#Match)
   * Match zero or more files or directories
-* `Slices` from earlier buildpacks are processed before `slices` from later buildpacks. When a file is included in a `slice`, it is seen as if it no longer exists in the application directory for processing future `slices`.
+* `Slices` from earlier buildpacks are processed before `slices` from later buildpacks. When a file is included in a `slice`, it is as if it no longer exists in the application directory for processing future `slices`.
 
 ## Implementation Steps
 
