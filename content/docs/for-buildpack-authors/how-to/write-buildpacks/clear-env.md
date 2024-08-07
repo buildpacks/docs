@@ -3,14 +3,14 @@ title="Clear the buildpack environment"
 weight=99
 +++
 
-During the `detect` and `build` phases, the lifecycle MUST provide as environment variables any user-provided files in `<platform>/env/` with environment variable names and contents matching the file names and contents.
+Clearing the buildpack environment `clear-env` is the process of preventing end-users from customizing a buildpack.
 
 <!--more-->
 
-The `lifecycle` MUST also provide as environment variables any operator-provided files in `<build-config>/env` with environment variable names and contents matching the file names and contents. This applies for all values of `clear-env` or if `clear-env` is undefined in `buildpack.toml`.
+Buildpack authors may elect to clear user-defined environment variables on the execution of `bin/detect` and `bin/build`. This is achievable by setting `clear-env` to `true` in [buildpack.toml](https://github.com/buildpacks/spec/blob/main/buildpack.md#buildpacktoml-toml); by default `clear-env` is set `false`.
 
 * When `clear-env` in `buildpack.toml` is set to `true` for a given buildpack, the lifecycle MUST NOT set user-provided environment variables in the environment of `/bin/detect` or `/bin/build`.
-* When `clear-env` in `buildpack.toml` is not set to `true` for a given buildpack, the lifecycle MUST set user-provided environment variables in the environment of `/bin/detect` or `/bin/build` such that:
+* On the other hand, when `clear-env` in `buildpack.toml` is not set to `true` for a given buildpack, the lifecycle MUST set user-provided environment variables in the environment of `/bin/detect` or `/bin/build` such that:
 
   * For layer path environment variables, user-provided values are prepended before any existing values and are delimited by the OS path list separator.
   * For all other environment variables, user-provided values override any existing values.

@@ -3,7 +3,7 @@ title="Specify the environment"
 weight=99
 +++
 
-Environment variables are a common way to configure various buildpacks at build-time.
+Environment variables are a common way to configure various buildpacks at build-time, make executables available on the `$PATH` environment variable, and configure the app at runtime.
 
 <!--more-->
 
