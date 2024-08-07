@@ -21,13 +21,14 @@ A buildpack can control how a layer will be used by creating a `<layer>.toml` wi
 
 A buildpack might create a `$CNB_LAYERS_DIR/python` directory and a `$CNB_LAYERS_DIR/python.toml` with the following contents:
 
-```
+```toml
 launch = true
 cache = true
 build = true
 ```
 
 In this example:
+
 * the final app image will contain a layer with `python`, as this is needed to run the app
 * the `$CNB_LAYERS_DIR/python` directory will be pre-created for future builds, avoiding the need to re-download this large dependency
 * buildpacks that follow in the build will be able to use `python`
@@ -36,7 +37,7 @@ In this example:
 
 This is a simple `./bin/build` script for a buildpack that runs Python's `pip` package manager to resolve dependencies:
 
-```
+```bash
 #!/bin/sh
 
 PIP_LAYER="$CNB_LAYERS_DIR/pip"

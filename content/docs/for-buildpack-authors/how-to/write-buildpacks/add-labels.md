@@ -3,9 +3,9 @@ title="Add labels to the application image"
 weight=99
 +++
 
-<!--more-->
-
 Labels are key-value pairs, stored as strings, that are attached to an image (i.e., arbitrary metadata). Labels are used to add helpful descriptions or attributes to an application image, which are meaningful to users.
+
+<!--more-->
 
 Labels are usually added at the time an image is created. Images can have multiple labels; however, each key must be unique.
 

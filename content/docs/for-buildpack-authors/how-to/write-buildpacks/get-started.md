@@ -24,7 +24,7 @@ A buildpack must contain a `buildpack.toml` file in its root directory.
 
 ### Example
 
-```
+```toml
 api = "0.10"
 
 [buildpack]
@@ -46,7 +46,7 @@ For more information, see [buildpack config](/docs/reference/config/buildpack-co
 
 ### Usage
 
-```
+```txt
 bin/detect
 ```
 
@@ -72,7 +72,7 @@ Other exit codes indicate an error during detection.
 This is a simple example of a buildpack that detects a Python application
 by checking for the presence of a `requirements.txt` file:
 
-```
+```bash
 #!/bin/sh
 
 if [ -f requirements.txt ]; then
@@ -87,7 +87,7 @@ fi
 
 ### Usage
 
-```
+```txt
 bin/build
 ```
 
