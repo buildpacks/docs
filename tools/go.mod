@@ -5,7 +5,7 @@ go 1.22
 toolchain go1.22.2
 
 require (
-	github.com/buildpacks/pack v0.33.2
+	github.com/buildpacks/pack v0.34.2
 	github.com/gohugoio/hugo v0.126.1
 	github.com/spf13/cobra v1.8.0
 )
@@ -82,7 +82,7 @@ require (
 	github.com/bep/overlayfs v0.9.2 // indirect
 	github.com/bep/simplecobra v0.4.0 // indirect
 	github.com/bep/tmc v0.5.1 // indirect
-	github.com/buildpacks/imgutil v0.0.0-20240514200737-4af87862ff7e // indirect
+	github.com/buildpacks/imgutil v0.0.0-20240605145725-186f89b2d168 // indirect
 	github.com/buildpacks/lifecycle v0.19.6 // indirect
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/chrismellard/docker-credential-acr-env v0.0.0-20230304212654-82a0ddb27589 // indirect
