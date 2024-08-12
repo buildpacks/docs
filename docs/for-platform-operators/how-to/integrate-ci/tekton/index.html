@@ -920,8 +920,8 @@ both of which use the <a href="/docs/for-platform-operators/concepts/lifecycle">
 <p>We also recommend using the <code>Tekton dashboard</code>. To install it, follow the steps in the <a href="https://tekton.dev/docs/dashboard/">dashboard docs</a>, and
 start the dashboard server.</p>
 <h3 id="2-install-the-buildpacks-task">2. Install the Buildpacks Task</h3>
-<p>Install the latest version of the buildpacks task (currently <code>0.3</code>), by running:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/master/task/buildpacks/0.3/buildpacks.yaml
+<p>Install the latest version of the buildpacks task (currently <code>0.6</code>), by running:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/master/task/buildpacks/0.6/buildpacks.yaml
 </span></span></code></pre></div><h3 id="3-install-git-clone-task">3. Install git-clone Task</h3>
 <p>For our <code>pipeline</code>, we will use the <code>git-clone</code> task to clone a repository. Install the latest version (currently <code>0.4</code>), by running:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/master/task/git-clone/0.4/git-clone.yaml
