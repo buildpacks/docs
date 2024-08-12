@@ -39,10 +39,10 @@ start the dashboard server.
 
 ### 2. Install the Buildpacks Task
 
-Install the latest version of the buildpacks task (currently `0.3`), by running:
+Install the latest version of the buildpacks task (currently `0.6`), by running:
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/master/task/buildpacks/0.3/buildpacks.yaml
+kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/master/task/buildpacks/0.6/buildpacks.yaml
 ```
 
 ### 3. Install git-clone Task
