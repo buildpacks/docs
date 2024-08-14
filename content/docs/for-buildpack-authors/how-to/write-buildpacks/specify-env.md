@@ -3,7 +3,7 @@ title="Specify the environment"
 weight=99
 +++
 
-Environment variables are a common way to configure various buildpacks at build-time, make executables available on the `$PATH` environment variable, and configure the app at runtime.
+Environment variables are a common way to configure buildpacks at build-time and the application at runtime.
 
 <!--more-->
 
@@ -13,17 +13,19 @@ When `clear-env` is not set to `true`, the `lifecycle` MUST set user-provided en
 * For all other environment variables, user-provided values override any existing values.
 * The environment variable prefix `CNB_` is reserved. It MUST NOT be used for environment variables that are not defined in this specification or approved extensions.
 
-### POSIX Path Variables
+### Preparing the environment at build time
 
-When the `lifecycle` runs buildpacks, it first tears down anything defined on the `build-time` base image of the environment. It only allows a [specific set](https://github.com/buildpacks/lifecycle/blob/a43d5993a4f2cc23c44b6480ba2ab09fe81d57ed/env/build.go#L9-L19) of pre-configured environment variables through.
+When the `lifecycle` runs each buildpack, it first tears down any environment variables defined on the `build-time` base image of the environment. It only allows a [specific set](https://github.com/buildpacks/lifecycle/blob/a43d5993a4f2cc23c44b6480ba2ab09fe81d57ed/env/build.go#L9-L19) of pre-configured environment variables through.
 
-Then, it applies `buildpack defined` environment variables including anything that might have been configured by a buildpack that ran earlier during the `build` phase.
+For the detect phase, the lifecycle then applies user-provided environment variables. For more information, see [clearing the buildpack environment](https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/clear-env/)
+
+For the `build` phase, the process is more complex. Before applying user-provided environment variables, the `lifecycle` applies buildpack-provided environment variables, which is anything that a previous buildpack (a buildpack that ran earlier in the `build` phase) might have configured in its `layers` directory.
 
 >Note that buildpacks cannot set environment variables for other buildpacks during the `detect` phase.
 
 #### Example
 
-Looking at the following directory tree and table
+Let's look at the following directory tree to see how layers created by a previous buildpack (with id `some-buildpack-id`) would affect the environment for the current buildpack.
 
 ```text
 
@@ -34,14 +36,21 @@ layers/
     │   │   └── some-binary
     │   ├── env
     │   │   └── SOME_VAR # contents foo
-    │   ├── env.build
-    │   │   └── SOME_VAR # contents bar
     │   └── lib
-    │       ├── some-shared-library
     │       └── some-static-library
-    └── some-build-layer.toml
+    └── some-build-layer.toml  # has build = true in the [types] table
 
 ```
+
+With this tree:
+
+* The current buildpack will see `SOME_VAR=foo` in its environment
+* The current buildpack will find `some-binary` in `PATH`
+* The current buildpack will find `some-static-library` in `LIBRARY_PATH`
+
+Thus, any `<layers>/<layer>/<env>` directory is for setting environment variables directly, and `<layers>/<layer>/<bin>`, `<layers>/<layer>/<lib>`, etc. offer a convenient way to modify `POSIX` path variables.
+
+The full list of convenience directories is summarized in the table below:
 
 | Env Variable                               | Layer Path   | Contents         | Build | Launch |
 |--------------------------------------------|--------------|------------------|-------|--------|
@@ -51,31 +60,11 @@ layers/
 | `CPATH`                                    | `/include`   | header files     | [x]   |        |
 | `PKG_CONFIG_PATH`                          | `/pkgconfig` | pc files         | [x]   |        |
 
-* To add a directory to the $PATH variable for buildpacks that follow, we need to create a `<layers>/<layer>/bin` directory and add any executables we want to make available within that directory. The `lifecycle` will automatically add the new `bin` directory to the `PATH` for buildpacks that follow.
-* Binaries, such as `some-binary`, are added to `PATH` for buildpacks that follow
-* Shared libraries, such as `Some-shared-library` and `some-static-library`, are added to `LD_LIBRARY_PATH` and `LIBRARY_PATH`
-* If `env/SOME_VAR` and `env.build/SOME_VAR` have a conflict, a given procedure applies to figure out who "wins" when applying the environment [modification rules](#environment-variable-modification-rules).
+* If `env/SOME_VAR` and `env.build/SOME_VAR` have a conflict, a given procedure applies to figure out who "wins" when applying the environment [modification rules](https://github.com/buildpacks/spec/blob/main/buildpack.md#environment-variable-modification-rules).
 * `User-defined` variables are then applied; meaning it's possible to override `buildpack-defined` variables.
 * Finally, `platform-defined` variables are applied, which eventually override any previous values.
 
-The above is only relevant for `build` because the layer `some-build-layer` is a build layer, i.e., `some-build-layer.toml` has
-
-```yaml
-
-[types]
-build = true
-
-```
-
->Note that the platform SHOULD NOT assume any other `base-image` provided environment variables are inherited by the buildpack.
-
-### Build Environment Variables
-
-During the `build` phase, buildpacks MAY write environment variable files to `<layers>/<layer>/env/`, `<layers>/<layer>/env.build/`, and `<layers>/<layer>/env.launch/` directories.
-
-For each `<layers>/<layer>/` designated as a build layer, for each file written to `<layers>/<layer>/env/` or `<layers>/<layer>/env.build/` by `/bin/build`, the `lifecycle` MUST modify an environment variable in subsequent executions of `/bin/build` according to the [environment variable modification rules](https://github.com/buildpacks/spec/blob/main/buildpack.md#environment-variable-modification-rules).
-
-### Process and Runtime Environment Variables
+### Preparing the environment at runtime
 
 For `runtime` and `process` environment variables, the [tree above](#example) is still applicable except that it doesn't include a `build` layer. Instead it has a`launch` layer, i.e., `some-launch-layer.toml` that has
 
@@ -86,19 +75,11 @@ launch = true
 
 ```
 
-### Multiple Buildpacks Defining the Same Environment Variable
+>Note that the `launcher` binary sets up the environment at `runtime`. The `launcher` is found inside the app image at `/cnb/lifecycle/launcher` and is the entrypoint for any `CNB-built` image.
 
-During the `build` phase, each variable designated for `build` MUST contain absolute paths of all previous buildpacks’ `<layers>/<layer>/` directories that are designated for build.
+### When multiple buildpacks define the same variable
 
-When the exported `OCI image` is launched, each variable designated for launch MUST contain absolute paths of all buildpacks’ `<layers>/<layer>/` directories that are designated for launch.
-
-In either case,
-
-* The lifecycle MUST order all `<layer>` paths to reflect the reversed order of the buildpack group.
-* The lifecycle MUST order all `<layer>` paths provided by a given buildpack alphabetically ascending.
-* The lifecycle MUST separate each path with the OS path list separator (e.g. `:` on Linux, `;` on Windows).
-
-#### Environment Variable Modification Rules
+When multiple buildpacks define the same variable, the ["environment modification rules"](https://github.com/buildpacks/spec/blob/main/buildpack.md#environment-variable-modification-rules) come into play.
 
 The lifecycle MUST consider the name of the environment variable to be the name of the file up to the first period (`.`) or to the end of the name if no periods are present. In all cases, file contents MUST NOT be evaluated by a shell or otherwise modified before inclusion in environment variable values.
 
@@ -113,23 +94,23 @@ For each environment variable file the period-delimited suffix SHALL determine t
 | `.override`| [Override](#override)                     |
 | `.prepend` | [Prepend](#prepend)                       |
 
-##### Append
+#### Append
 
 The value of the environment variable MUST be a concatenation of the file contents and the contents of other files representing that environment variable.
 
-##### Default
+#### Default
 
 The value of the environment variable MUST only be the file contents if the environment variable is empty.
 
-##### Delimiter
+#### Delimiter
 
 The file contents MUST be used to delimit any concatenation within the same layer involving that environment variable.
 
-##### Override
+#### Override
 
 The value of the environment variable MUST be the file contents.
 
-##### Prepend
+#### Prepend
 
 The value of the environment variable MUST be a concatenation of the file contents and the contents of other files representing that environment variable.
 
@@ -157,6 +138,6 @@ Assuming that `some-buildpack-id` comes before `some-other-buildpack-id` in the 
 
 >For more information on modifying environment variables, see [Environment Variable Modification Rules](https://github.com/buildpacks/spec/blob/main/buildpack.md#environment-variable-modification-rules) specification.
 
-### Further Reading
+### Further reading
 
 For more about environment variables, see the [customize buildpack behavior with build-time environment variables](https://buildpacks.io/docs/for-app-developers/how-to/build-inputs/configure-build-time-environment/) documentation and the [Environment](https://github.com/buildpacks/spec/blob/main/buildpack.md#environment) specification.
