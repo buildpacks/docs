@@ -7,12 +7,6 @@ Environment variables are a common way to configure buildpacks at build-time and
 
 <!--more-->
 
-When `clear-env` is not set to `true`, the `lifecycle` MUST set user-provided environment variables in the environment of `/bin/detect` or `/bin/build` such that:
-
-* For layer path environment variables, user-provided values are prepended before any existing values and are delimited by the OS path list separator.
-* For all other environment variables, user-provided values override any existing values.
-* The environment variable prefix `CNB_` is reserved. It MUST NOT be used for environment variables that are not defined in this specification or approved extensions.
-
 ### Preparing the environment at build time
 
 When the `lifecycle` runs each buildpack, it first tears down any environment variables defined on the `build-time` base image of the environment. It only allows a [specific set](https://github.com/buildpacks/lifecycle/blob/a43d5993a4f2cc23c44b6480ba2ab09fe81d57ed/env/build.go#L9-L19) of pre-configured environment variables through.
@@ -137,6 +131,14 @@ layers/
 Assuming that `some-buildpack-id` comes before `some-other-buildpack-id` in the buildpack group, the final value of `SOME_VAR` shown above  would be `foo:bar`
 
 >For more information on modifying environment variables, see [Environment Variable Modification Rules](https://github.com/buildpacks/spec/blob/main/buildpack.md#environment-variable-modification-rules) specification.
+
+Please note that when `clear-env` is not set to `true`, the `lifecycle` MUST set user-provided environment variables in the environment of `/bin/detect` or `/bin/build` such that:
+
+* For layer path environment variables, user-provided values are prepended before any existing values and are delimited by the OS path list separator.
+* For all other environment variables, user-provided values override any existing values.
+* The environment variable prefix `CNB_` is reserved. It MUST NOT be used for environment variables that are not defined in this specification or approved extensions.
+
+>For more information on clearing user-defined environment variables, see [Clear the buildpack environment](https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/clear-env/) documentation.
 
 ### Further reading
 
