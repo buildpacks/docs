@@ -7,10 +7,10 @@ weight=99
 
 <!--more-->
 
-Buildpack authors may elect to clear user-defined environment variables when `bin/detect` and `bin/build` are executed. This is achieved by setting `clear-env` to `true` in [buildpack.toml](https://github.com/buildpacks/spec/blob/main/buildpack.md#buildpacktoml-toml); by default `clear-env` is set to `false`.
+Buildpack authors may elect to clear user-provided environment variables when `bin/detect` and `bin/build` are executed. This is achieved by setting `clear-env` to `true` in [buildpack.toml](https://github.com/buildpacks/spec/blob/main/buildpack.md#buildpacktoml-toml); by default `clear-env` is set to `false`.
 
-* When `clear-env` is set to `true` for a given buildpack, the `lifecycle` will not set user-provided environment variables when running `/bin/detect` or `/bin/build` for the given buildpack.
-* If a buildpack does allow customization by the end-user through the environment (`clear-env` is `false`), there is a special convention for naming the available environment variables, shown in the following table:
+* When `clear-env` is set to `true` for a given buildpack, the `lifecycle` will not set user-provided environment variables when running `/bin/detect` or `/bin/build`.
+* If a buildpack does allow customization by the end-user through the environment (`clear-env` is `false`), there is a special convention for naming the environment variables recognized by the buildpack, shown in the following table:
 
 | Env Variable           | Description                                       | Detect | Build | Launch |
 |------------------------|---------------------------------------------------|--------|-------|--------|
