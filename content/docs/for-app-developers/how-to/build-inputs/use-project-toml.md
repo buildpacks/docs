@@ -107,6 +107,21 @@ pack build sample-app \
 docker run sample-app
 ```
 
+### Specify Builder
+The builder can also be [specified](https://github.com/buildpacks/spec/blob/main/extensions/project-descriptor.md#iobuildpacksbuilder-optional) in `project.toml`.
+
+```toml
+[io.buildpacks.builder]
+builder = "cnbs/sample-builder:jammy"
+```
+
+```shell script
+# then the pack command does not require builder to be set
+pack build sample-app \
+    --path  samples/apps/bash-script/
+```
+
+
 ### Further Reading
 For more about project descriptors, look at the [schema][descriptor-schema], as well as the [specification][spec].
 
