@@ -9,9 +9,9 @@ Environment variables are a common way to configure buildpacks at build-time and
 
 ### Preparing the environment at build time
 
-When the `lifecycle` runs each buildpack, it first tears down any environment variables defined on the `build-time` base image of the environment. It only allows a [specific set](https://github.com/buildpacks/lifecycle/blob/a43d5993a4f2cc23c44b6480ba2ab09fe81d57ed/env/build.go#L9-L19) of pre-configured environment variables through.
+When the `lifecycle` runs each buildpack, it first tears down any environment variables defined on the `build-time` base image. It only allows a [specific set](https://github.com/buildpacks/lifecycle/blob/a43d5993a4f2cc23c44b6480ba2ab09fe81d57ed/env/build.go#L9-L19) of pre-configured environment variables through.
 
-For the detect phase, the lifecycle then applies user-provided environment variables. For more information, see [clearing the buildpack environment](https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/clear-env/)
+For the `detect` phase, the `lifecycle` then applies user-provided environment variables, followed by platform-provided environment variables. For more information, see the page for how to [customize buildpack behavior with build-time environment variables](https://buildpacks.io/docs/for-app-developers/how-to/build-inputs/configure-build-time-environment/).
 
 For the `build` phase, the process is more complex. Before applying user-provided environment variables, the `lifecycle` applies buildpack-provided environment variables, which is anything that a previous buildpack (a buildpack that ran earlier in the `build` phase) might have configured in its `layers` directory.
 
@@ -54,13 +54,13 @@ The full list of convenience directories is summarized in the table below:
 | `CPATH`                                    | `/include`   | header files     | [x]   |        |
 | `PKG_CONFIG_PATH`                          | `/pkgconfig` | pc files         | [x]   |        |
 
-* If `env/SOME_VAR` and `env.build/SOME_VAR` have a conflict, a given procedure applies to figure out who "wins" when applying the environment [modification rules](https://github.com/buildpacks/spec/blob/main/buildpack.md#environment-variable-modification-rules).
-* `User-defined` variables are then applied; meaning it's possible to override `buildpack-defined` variables.
+* User-provided variables are then applied, meaning that it's possible for the end-user to override buildpack-provided variables.
 * Finally, `platform-defined` variables are applied, which eventually override any previous values.
 
 ### Preparing the environment at runtime
 
-For `runtime` and `process` environment variables, the [tree above](#example) is still applicable except that it doesn't include a `build` layer. Instead it has a`launch` layer, i.e., `some-launch-layer.toml` that has
+At `runtime`, the `lifecycle` (or rather, the piece of the lifecycle known as the `launcher` that gets included in the application image) prepares the environment for the application process.
+For setting up environment variables at `runtime`, the [tree above](#example) is still applicable except that the layer must be a `launch` layer, i.e., `some-launch-layer.toml` has
 
 ```yaml
 
@@ -69,46 +69,23 @@ launch = true
 
 ```
 
->Note that the `launcher` binary sets up the environment at `runtime`. The `launcher` is found inside the app image at `/cnb/lifecycle/launcher` and is the entrypoint for any `CNB-built` image.
+>Note that the `launcher` binary is found inside the application image at `/cnb/lifecycle/launcher` and is the entrypoint for any CNB-built image.
 
 ### When multiple buildpacks define the same variable
 
 When multiple buildpacks define the same variable, the ["environment modification rules"](https://github.com/buildpacks/spec/blob/main/buildpack.md#environment-variable-modification-rules) come into play.
 
-The lifecycle MUST consider the name of the environment variable to be the name of the file up to the first period (`.`) or to the end of the name if no periods are present. In all cases, file contents MUST NOT be evaluated by a shell or otherwise modified before inclusion in environment variable values.
+Let's say buildpack A (which runs first) defines `SOME_VAR=foo` and buildpack B defines `SOME_VAR=bar`. The `lifecycle` can perform different modifications when setting up the environment for buildpack C (which runs last).
 
-For each environment variable file the period-delimited suffix SHALL determine the modification behavior as follows.
+* The `lifecycle` can `append` the second value to the first, so that buildpack C sees something like `SOME_VAR=foo:bar`.
+* The `lifecycle can` `prepend` the second value to the first, so that buildpack C sees something like `SOME_VAR=bar:foo`.
+* The `lifecycle` can `override` the first value with the second value, so that buildpack C sees `SOME_VAR=bar`.
+* The `lifecycle` can treat the second value as a `default` (the value to set when no other entity defines this variable), so that buildpack C sees `SOME_VAR=foo`.
+* In all cases, the behavior of the `lifecycle` is governed by the file suffix for `<layers>/<layer>/<env>/SOME_VAR<.suffix>`. The suffix is optional, and the assumed behavior when no suffix is provided is `override`.
 
-| Suffix     | Modification Behavior                     |
-|------------|-------------------------------------------|
-| none       | [Override](#override)                     |
-| `.append`  | [Append](#append)                         |
-| `.default` | [Default](#default)                       |
-| `.delim`   | [Delimiter](#delimiter)                   |
-| `.override`| [Override](#override)                     |
-| `.prepend` | [Prepend](#prepend)                       |
+>Note that whenever the suffix is `append` or `prepend` an additional file, `<layers>/<layer>/<env>/SOME_VAR.delim`, is needed to specify the delimiter used during concatenation. If no delimiter is provided, none will be used.
 
-#### Append
-
-The value of the environment variable MUST be a concatenation of the file contents and the contents of other files representing that environment variable.
-
-#### Default
-
-The value of the environment variable MUST only be the file contents if the environment variable is empty.
-
-#### Delimiter
-
-The file contents MUST be used to delimit any concatenation within the same layer involving that environment variable.
-
-#### Override
-
-The value of the environment variable MUST be the file contents.
-
-#### Prepend
-
-The value of the environment variable MUST be a concatenation of the file contents and the contents of other files representing that environment variable.
-
-To better understand the above modification rules, let's take a look at the tree below,
+To better understand the above modification rules, let's take a look at the tree below:
 
 ```text
 
@@ -128,18 +105,10 @@ layers/
 
 ```
 
-Assuming that `some-buildpack-id` comes before `some-other-buildpack-id` in the buildpack group, the final value of `SOME_VAR` shown above  would be `foo:bar`
+Assuming that `some-buildpack-id` comes before `some-other-buildpack-id` in the buildpack group, the final value of `SOME_VAR` shown above  would be `foo:bar`.
 
->For more information on modifying environment variables, see [Environment Variable Modification Rules](https://github.com/buildpacks/spec/blob/main/buildpack.md#environment-variable-modification-rules) specification.
+Note that the examples shown on this page are relatively simple. It is possible for a buildpack to double-specify the same variable (i.e., within two or more different layers), and for a buildpack to specify a variable for a particular phase (build or launch) when the layer has type both `build = true` and `launch = true`. Additionally, for `runtime` variables, buildpacks can specify a variable for a particular process.
 
-Please note that when `clear-env` is not set to `true`, the `lifecycle` MUST set user-provided environment variables in the environment of `/bin/detect` or `/bin/build` such that:
+In these cases, the lifecycle determines the final value of the variable according to a process outlined in the specification.
 
-* For layer path environment variables, user-provided values are prepended before any existing values and are delimited by the OS path list separator.
-* For all other environment variables, user-provided values override any existing values.
-* The environment variable prefix `CNB_` is reserved. It MUST NOT be used for environment variables that are not defined in this specification or approved extensions.
-
->For more information on clearing user-defined environment variables, see [Clear the buildpack environment](https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/clear-env/) documentation.
-
-### Further reading
-
-For more about environment variables, see the [customize buildpack behavior with build-time environment variables](https://buildpacks.io/docs/for-app-developers/how-to/build-inputs/configure-build-time-environment/) documentation and the [Environment](https://github.com/buildpacks/spec/blob/main/buildpack.md#environment) specification.
+>For more information on modifying environment variables, see the [Environment Variable Modification Rules](https://github.com/buildpacks/spec/blob/main/buildpack.md#environment-variable-modification-rules) section of the specification.
