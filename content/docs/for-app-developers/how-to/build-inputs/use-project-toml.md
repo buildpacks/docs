@@ -111,7 +111,7 @@ docker run sample-app
 The builder can also be [specified](https://github.com/buildpacks/spec/blob/main/extensions/project-descriptor.md#iobuildpacksbuilder-optional) in `project.toml`.
 
 ```toml
-[io.buildpacks.builder]
+[io.buildpacks]
 builder = "cnbs/sample-builder:jammy"
 ```
 
