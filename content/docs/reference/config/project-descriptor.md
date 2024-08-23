@@ -63,6 +63,9 @@ The schema is as follows:
       - **`value`** _(string, optional, default: latest)_\
         The assigned version of the environment variable
 
+   - **`builder`** _(string, optional)_\
+    The builder image to use for the build.
+
    - **`include`** _(string list, optional)_\
     A list of files to include in the build, while excluding everything else.
 
