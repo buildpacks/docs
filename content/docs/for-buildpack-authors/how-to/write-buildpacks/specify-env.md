@@ -69,7 +69,7 @@ launch = true
 
 ```
 
->Note that the `launcher` binary is found inside the application image at `/cnb/lifecycle/launcher` and is the entrypoint for any CNB-built image.
+>Note that the `launcher` binary is found inside the application image at `/cnb/lifecycle/launcher` and is the entrypoint for any `CNB-built` image.
 
 ### When multiple buildpacks define the same variable
 
