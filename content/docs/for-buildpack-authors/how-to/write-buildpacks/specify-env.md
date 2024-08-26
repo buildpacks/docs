@@ -109,6 +109,6 @@ Assuming that `some-buildpack-id` comes before `some-other-buildpack-id` in the 
 
 Note that the examples shown on this page are relatively simple. It is possible for a buildpack to double-specify the same variable (i.e., within two or more different layers), and for a buildpack to specify a variable for a particular phase (build or launch) when the layer has type both `build = true` and `launch = true`. Additionally, for `runtime` variables, buildpacks can specify a variable for a particular process.
 
-In these cases, the lifecycle determines the final value of the variable according to a process outlined in the specification.
+In these cases, the `lifecycle` determines the final value of the variable according to a process outlined in the specification.
 
 >For more information on modifying environment variables, see the [Environment Variable Modification Rules](https://github.com/buildpacks/spec/blob/main/buildpack.md#environment-variable-modification-rules) section of the specification.
