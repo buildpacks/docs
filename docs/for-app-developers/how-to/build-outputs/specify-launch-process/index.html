@@ -931,14 +931,14 @@ Rebasable: true
 
 Buildpacks:
   ID                             VERSION           HOMEPAGE
-  samples/java-maven             0.0.1             https://github.com/buildpacks/samples/tree/main/buildpacks/java-maven
+  samples/java-maven             0.0.2             https://github.com/buildpacks/samples/tree/main/buildpacks/java-maven
   samples/hello-processes        0.0.1             https://github.com/buildpacks/samples/tree/main/buildpacks/hello-process
 
 Processes:
   TYPE                 SHELL        COMMAND                                                     ARGS
   web (default)        bash         java -jar target/sample-0.0.1-SNAPSHOT.jar
   sys-info             bash         /layers/samples_hello-processes/sys-info/sys-info.sh
-</code></pre><p>Notice that the default process type is <code>web</code>. This is because <code>pack</code> will always attempt to set the default process type to <code>web</code> unless the <code>--default-process</code> flag is passed.
+</code></pre><p>Notice that the <code>java-maven</code> buildpack defined <code>web</code> as the default process type.
 If we had run the <code>pack build</code> command above with <code>--default-process sys-info</code>, <code>sys-info</code> would be the default process for the app image!</p>
 <h3 id="run-a-multi-process-app">Run a multi-process app</h3>
 <p>Buildpacks are designed to give you much flexibility in how you run your app. The lifecycle includes a binary called the <code>launcher</code> which is present in the final app image and is responsible for starting your app.
