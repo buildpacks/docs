@@ -936,42 +936,42 @@ The detector reads the build plans of the buildpacks of the “chosen” group (
 <p>If at least one of the above failed on a required buildpack, the trial fails and the detector will look for the next trial. If at least one of the above failed on an optional buildpack, this buildpack should be excluded from the final plan. If all of the trials fail, the group fails (and the detector moves on to the next group).</p>
 <h3 id="exit-codes">Exit Codes</h3>
 <table>
-<thead>
-<tr>
-<th>Exit Code</th>
-<th>Result</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>0</code></td>
-<td>Success</td>
-</tr>
-<tr>
-<td><code>11</code></td>
-<td>Platform API incompatibility error</td>
-</tr>
-<tr>
-<td><code>12</code></td>
-<td>Buildpack API incompatibility error</td>
-</tr>
-<tr>
-<td><code>1-10</code>, <code>13-19</code></td>
-<td>Generic lifecycle errors</td>
-</tr>
-<tr>
-<td><code>20</code></td>
-<td>All buildpacks groups have failed to detect w/o error</td>
-</tr>
-<tr>
-<td><code>21</code></td>
-<td>All buildpack groups have failed to detect and at least one buildpack has errored</td>
-</tr>
-<tr>
-<td><code>22-29</code></td>
-<td>Detection-specific lifecycle errors</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">Exit Code</th>
+          <th style="text-align: left">Result</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>0</code></td>
+          <td style="text-align: left">Success</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>11</code></td>
+          <td style="text-align: left">Platform API incompatibility error</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>12</code></td>
+          <td style="text-align: left">Buildpack API incompatibility error</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>1-10</code>, <code>13-19</code></td>
+          <td style="text-align: left">Generic lifecycle errors</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>20</code></td>
+          <td style="text-align: left">All buildpacks groups have failed to detect w/o error</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>21</code></td>
+          <td style="text-align: left">All buildpack groups have failed to detect and at least one buildpack has errored</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>22-29</code></td>
+          <td style="text-align: left">Detection-specific lifecycle errors</td>
+      </tr>
+  </tbody>
 </table>
 <h3 id="some-links-to-important-parts-of-the-code">Some links to important parts of the code:</h3>
 <p>The following file is responsible for the detection command: <a href="https://github.com/buildpacks/lifecycle/blob/main/cmd/lifecycle/detector.go">https://github.com/buildpacks/lifecycle/blob/main/cmd/lifecycle/detector.go</a>.</p>

@@ -921,26 +921,26 @@
 </ul>
 <p>Valid <code>&lt;ext&gt;</code> extensions are as follows:</p>
 <table>
-<thead>
-<tr>
-<th>SBOM Media Type</th>
-<th>File Extension</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>application/vnd.cyclonedx+json</code></td>
-<td><code>cdx.json</code></td>
-</tr>
-<tr>
-<td><code>application/spdx+json</code></td>
-<td><code>spdx.json</code></td>
-</tr>
-<tr>
-<td><code>application/vnd.syft+json</code></td>
-<td><code>syft.json</code></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">SBOM Media Type</th>
+          <th style="text-align: left">File Extension</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>application/vnd.cyclonedx+json</code></td>
+          <td style="text-align: left"><code>cdx.json</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>application/spdx+json</code></td>
+          <td style="text-align: left"><code>spdx.json</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>application/vnd.syft+json</code></td>
+          <td style="text-align: left"><code>syft.json</code></td>
+      </tr>
+  </tbody>
 </table>
 <p>SBOM files for launch will be included in the application image if the platform api supports it; SBOM files for build may be saved off by the platform prior to the build container exiting.</p>
 <p>Layer-associated SBOM files will be cached and restored to the buildpack layers directory on re-builds of the same image (much like the <code>&lt;layers&gt;/&lt;layer&gt;.toml</code> metadata file). <code>&lt;layers&gt;/launch.sbom.&lt;ext&gt;</code> and <code>&lt;layers&gt;/build.sbom.&lt;ext&gt;</code> must be re-created on each build.</p>

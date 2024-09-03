@@ -68,7 +68,7 @@
       <link>https://buildpacks.io/docs/for-buildpack-authors/concepts/composite-buildpack/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-buildpack-authors/concepts/composite-buildpack/</guid>
-      <description>A composite buildpack, also sometimes called a &amp;ldquo;meta buildpack&amp;rdquo;, is a buildpack that does not contain any ./bin/detect or ./bin/build binaries, but instead references other buildpacks in its buildpack.toml via the [[order]] array.&#xA;This is useful for composing more complex detection strategies.</description>
+      <description>&lt;p&gt;A composite buildpack, also sometimes called a &amp;ldquo;meta buildpack&amp;rdquo;,&#xA;is a buildpack that does not contain any &lt;code&gt;./bin/detect&lt;/code&gt; or &lt;code&gt;./bin/build&lt;/code&gt; binaries,&#xA;but instead references other buildpacks in its &lt;code&gt;buildpack.toml&lt;/code&gt; via the &lt;code&gt;[[order]]&lt;/code&gt; array.&lt;/p&gt;&#xA;&lt;p&gt;This is useful for composing more complex detection strategies.&lt;/p&gt;</description>
     </item>
     <item>
       <title>What is an image extension?</title>

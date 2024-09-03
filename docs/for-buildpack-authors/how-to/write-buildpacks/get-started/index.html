@@ -913,24 +913,24 @@ or they can be executables compiled from a language like Go.</p>
 <h2 id="buildpacktoml"><code>buildpack.toml</code></h2>
 <p>A buildpack must contain a <code>buildpack.toml</code> file in its root directory.</p>
 <h3 id="example">Example</h3>
-<pre tabindex="0"><code>api = &#34;0.10&#34;
-
-[buildpack]
-id = &#34;example.com/python&#34;
-version = &#34;1.0&#34;
-
-# Targets the buildpack will work with
-[[targets]]
-os = &#34;linux&#34;
-
-# Stacks (deprecated) the buildpack will work with
-[[stacks]]
-id = &#34;io.buildpacks.stacks.jammy&#34;
-</code></pre><p>For more information, see <a href="/docs/reference/config/buildpack-config">buildpack config</a>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="nx">api</span> <span class="p">=</span> <span class="s2">&#34;0.10&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">buildpack</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;example.com/python&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">version</span> <span class="p">=</span> <span class="s2">&#34;1.0&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Targets the buildpack will work with</span>
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">targets</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">os</span> <span class="p">=</span> <span class="s2">&#34;linux&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># Stacks (deprecated) the buildpack will work with</span>
+</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">stacks</span><span class="p">]]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;io.buildpacks.stacks.jammy&#34;</span>
+</span></span></code></pre></div><p>For more information, see <a href="/docs/reference/config/buildpack-config">buildpack config</a>.</p>
 <h2 id="bindetect"><code>bin/detect</code></h2>
 <h3 id="usage">Usage</h3>
-<pre tabindex="0"><code>bin/detect
-</code></pre><h3 id="summary">Summary</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">bin/detect
+</span></span></code></pre></div><h3 id="summary">Summary</h3>
 <p><code>bin/detect</code> is used to determine if a buildpack can work with a given codebase.
 It will often check for the existence of a particular file,
 or some configuration indicating what kind of application has been provided.</p>
@@ -946,18 +946,18 @@ Other exit codes indicate an error during detection.</p>
 <h3 id="example-1">Example</h3>
 <p>This is a simple example of a buildpack that detects a Python application
 by checking for the presence of a <code>requirements.txt</code> file:</p>
-<pre tabindex="0"><code>#!/bin/sh
-
-if [ -f requirements.txt ]; then
-  echo &#34;Python Buildpack&#34;
-  exit 0
-else
-  exit 100
-fi
-</code></pre><h2 id="binbuild"><code>bin/build</code></h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/sh
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> -f requirements.txt <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">echo</span> <span class="s2">&#34;Python Buildpack&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">exit</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">exit</span> <span class="m">100</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span></code></pre></div><h2 id="binbuild"><code>bin/build</code></h2>
 <h3 id="usage-1">Usage</h3>
-<pre tabindex="0"><code>bin/build
-</code></pre><p><code>bin/build</code> does (all or part of) the work of transforming application source code into a runnable artifact.
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">bin/build
+</span></span></code></pre></div><p><code>bin/build</code> does (all or part of) the work of transforming application source code into a runnable artifact.
 It will often resolve dependencies, install binary packages, and compile code.
 Three environment variables identify important file system paths:</p>
 <ul>

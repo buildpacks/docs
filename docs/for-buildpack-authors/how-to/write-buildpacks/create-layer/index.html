@@ -902,34 +902,34 @@
         <p>Each directory created by the buildpack under the <code>CNB_LAYERS_DIR</code> can be used as a layer in the final app image or build cache.</p>
 <p>That is, each directory can be used for any of the following purposes:</p>
 <table>
-<thead>
-<tr>
-<th>Layer Type</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Launch</code></td>
-<td>the directory will be included in the <strong>final app image</strong> as a single layer</td>
-</tr>
-<tr>
-<td><code>Cache</code></td>
-<td>the directory will be included in the <strong>build cache</strong> and restored to the <code>CNB_LAYERS_DIR</code> on future builds</td>
-</tr>
-<tr>
-<td><code>Build</code></td>
-<td>the directory will be accessible to <strong>buildpacks that follow</strong> in the build (via the environment)</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">Layer Type</th>
+          <th style="text-align: left"></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>Launch</code></td>
+          <td style="text-align: left">the directory will be included in the <strong>final app image</strong> as a single layer</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>Cache</code></td>
+          <td style="text-align: left">the directory will be included in the <strong>build cache</strong> and restored to the <code>CNB_LAYERS_DIR</code> on future builds</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>Build</code></td>
+          <td style="text-align: left">the directory will be accessible to <strong>buildpacks that follow</strong> in the build (via the environment)</td>
+      </tr>
+  </tbody>
 </table>
 <p>A buildpack can control how a layer will be used by creating a <code>&lt;layer&gt;.toml</code> with a name matching the directory it describes in the <code>CNB_LAYERS_DIR</code>.</p>
 <h3 id="example">Example</h3>
 <p>A buildpack might create a <code>$CNB_LAYERS_DIR/python</code> directory and a <code>$CNB_LAYERS_DIR/python.toml</code> with the following contents:</p>
-<pre tabindex="0"><code>launch = true
-cache = true
-build = true
-</code></pre><p>In this example:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="nx">launch</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl"><span class="nx">cache</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl"><span class="nx">build</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span></code></pre></div><p>In this example:</p>
 <ul>
 <li>the final app image will contain a layer with <code>python</code>, as this is needed to run the app</li>
 <li>the <code>$CNB_LAYERS_DIR/python</code> directory will be pre-created for future builds, avoiding the need to re-download this large dependency</li>
@@ -937,17 +937,17 @@ build = true
 </ul>
 <h3 id="example-1">Example</h3>
 <p>This is a simple <code>./bin/build</code> script for a buildpack that runs Python&rsquo;s <code>pip</code> package manager to resolve dependencies:</p>
-<pre tabindex="0"><code>#!/bin/sh
-
-PIP_LAYER=&#34;$CNB_LAYERS_DIR/pip&#34;
-mkdir -p &#34;$PIP_LAYER/modules&#34; &#34;$PIP_LAYER/env&#34;
-
-pip install -r requirements.txt -t &#34;$PIP_LAYER/modules&#34; \
-  --install-option=&#34;--install-scripts=$PIP_LAYER/bin&#34; \
-  --exists-action=w --disable-pip-version-check --no-cache-dir
-
-echo &#34;launch = true&#34; &gt; &#34;$PIP_LAYER.toml&#34;
-</code></pre>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/sh
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span><span class="line"><span class="cl"><span class="nv">PIP_LAYER</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$CNB_LAYERS_DIR</span><span class="s2">/pip&#34;</span>
+</span></span><span class="line"><span class="cl">mkdir -p <span class="s2">&#34;</span><span class="nv">$PIP_LAYER</span><span class="s2">/modules&#34;</span> <span class="s2">&#34;</span><span class="nv">$PIP_LAYER</span><span class="s2">/env&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">pip install -r requirements.txt -t <span class="s2">&#34;</span><span class="nv">$PIP_LAYER</span><span class="s2">/modules&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --install-option<span class="o">=</span><span class="s2">&#34;--install-scripts=</span><span class="nv">$PIP_LAYER</span><span class="s2">/bin&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --exists-action<span class="o">=</span>w --disable-pip-version-check --no-cache-dir
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;launch = true&#34;</span> &gt; <span class="s2">&#34;</span><span class="nv">$PIP_LAYER</span><span class="s2">.toml&#34;</span>
+</span></span></code></pre></div>
 
         
 

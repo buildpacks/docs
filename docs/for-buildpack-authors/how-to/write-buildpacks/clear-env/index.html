@@ -8,7 +8,8 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+<meta name="description" content="&ldquo;Clearing&rdquo; the buildpack environment with clear-env is the process of preventing end-users from customizing a buildpack&rsquo;s behavior through environment variables.
+"/>
 <link rel="canonical" content="https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/clear-env/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
@@ -22,7 +23,8 @@
 <meta property="og:url" content="https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/clear-env/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-
+<meta property="og:description" content="&ldquo;Clearing&rdquo; the buildpack environment with clear-env is the process of preventing end-users from customizing a buildpack&rsquo;s behavior through environment variables.
+">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -897,8 +899,41 @@
           <h1 class="title">Clear the buildpack environment</h1>
         </div>
 
-        <p>This page is a stub! The CNB project is applying to <a href="https://developers.google.com/season-of-docs/docs/timeline">Google Season of Docs</a> to receive support for improving our documentation. Please check back soon.</p>
-<p>If you are familiar with this content and would like to make a contribution, please feel free to open a PR :)</p>
+        <p>&ldquo;Clearing&rdquo; the buildpack environment with <code>clear-env</code> is the process of preventing end-users from customizing a buildpack&rsquo;s behavior through environment variables.</p>
+<p>Buildpack authors may elect to clear user-provided environment variables when <code>bin/detect</code> and <code>bin/build</code> are executed. This is achieved by setting <code>clear-env</code> to <code>true</code> in <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#buildpacktoml-toml">buildpack.toml</a>; by default <code>clear-env</code> is set to <code>false</code>.</p>
+<ul>
+<li>When <code>clear-env</code> is set to <code>true</code> for a given buildpack, the <code>lifecycle</code> will not set user-provided environment variables when running <code>/bin/detect</code> or <code>/bin/build</code>.</li>
+<li>If a buildpack does allow customization by the end-user through the environment (<code>clear-env</code> is <code>false</code>), there is a special convention for naming the environment variables recognized by the buildpack, shown in the following table:</li>
+</ul>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Env Variable</th>
+          <th style="text-align: left">Description</th>
+          <th style="text-align: left">Detect</th>
+          <th style="text-align: left">Build</th>
+          <th style="text-align: left">Launch</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>BP_*</code></td>
+          <td style="text-align: left">User-provided variable for buildpack</td>
+          <td style="text-align: left">[x]</td>
+          <td style="text-align: left">[x]</td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>BPL_*</code></td>
+          <td style="text-align: left">User-provided variable for exec.d</td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left"></td>
+          <td style="text-align: left">[x]</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="further-reading">Further Reading</h3>
+<p>For more about how environment variables are specified by end-users, see the page for how to <a href="https://buildpacks.io/docs/for-app-developers/how-to/build-inputs/configure-build-time-environment/">customize buildpack behavior with build-time environment variables</a>.</p>
 
         
 

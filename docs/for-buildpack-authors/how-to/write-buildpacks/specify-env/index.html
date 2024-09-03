@@ -8,7 +8,8 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+<meta name="description" content="Environment variables are a common way to configure buildpacks at build-time and the application at runtime.
+"/>
 <link rel="canonical" content="https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/specify-env/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
@@ -22,7 +23,8 @@
 <meta property="og:url" content="https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/specify-env/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-
+<meta property="og:description" content="Environment variables are a common way to configure buildpacks at build-time and the application at runtime.
+">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -897,16 +899,130 @@
           <h1 class="title">Specify the environment</h1>
         </div>
 
-        <p>This page is a stub! The CNB project is applying to <a href="https://developers.google.com/season-of-docs/docs/timeline">Google Season of Docs</a> to receive support for improving our documentation. Please check back soon.</p>
-<p>If you are familiar with this content and would like to make a contribution, please feel free to open a PR :)</p>
-<p>To cover:</p>
+        <p>Environment variables are a common way to configure buildpacks at build-time and the application at runtime.</p>
+<h3 id="preparing-the-environment-at-build-time">Preparing the environment at build time</h3>
+<p>When the <code>lifecycle</code> runs each buildpack, it first tears down any environment variables defined on the <code>build-time</code> base image. It only allows a <a href="https://github.com/buildpacks/lifecycle/blob/a43d5993a4f2cc23c44b6480ba2ab09fe81d57ed/env/build.go#L9-L19">specific set</a> of pre-configured environment variables through.</p>
+<p>For the <code>detect</code> phase, the <code>lifecycle</code> then applies user-provided environment variables, followed by platform-provided environment variables. For more information, see the page for how to <a href="https://buildpacks.io/docs/for-app-developers/how-to/build-inputs/configure-build-time-environment/">customize buildpack behavior with build-time environment variables</a>.</p>
+<p>For the <code>build</code> phase, the process is more complex. Before applying user-provided environment variables, the <code>lifecycle</code> applies buildpack-provided environment variables, which is anything that a previous buildpack (a buildpack that ran earlier in the <code>build</code> phase) might have configured in its <code>layers</code> directory.</p>
+<blockquote>
+<p>Note that buildpacks cannot set environment variables for other buildpacks during the <code>detect</code> phase.</p>
+</blockquote>
+<h4 id="example">Example</h4>
+<p>Let&rsquo;s look at the following directory tree to see how layers created by a previous buildpack (with id <code>some-buildpack-id</code>) would affect the environment for the current buildpack.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">layers/
+</span></span><span class="line"><span class="cl">└── some-buildpack-id
+</span></span><span class="line"><span class="cl">    ├── some-build-layer
+</span></span><span class="line"><span class="cl">    │   ├── bin
+</span></span><span class="line"><span class="cl">    │   │   └── some-binary
+</span></span><span class="line"><span class="cl">    │   ├── env
+</span></span><span class="line"><span class="cl">    │   │   └── SOME_VAR # contents foo
+</span></span><span class="line"><span class="cl">    │   └── lib
+</span></span><span class="line"><span class="cl">    │       └── some-static-library
+</span></span><span class="line"><span class="cl">    └── some-build-layer.toml  # has build = true in the [types] table
+</span></span></code></pre></div><p>With this tree:</p>
 <ul>
-<li>POSIX paths</li>
-<li>Build env</li>
-<li>Process env</li>
-<li>Runtime env</li>
-<li>Modifiers</li>
+<li>The current buildpack will see <code>SOME_VAR=foo</code> in its environment</li>
+<li>The current buildpack will find <code>some-binary</code> in <code>PATH</code></li>
+<li>The current buildpack will find <code>some-static-library</code> in <code>LIBRARY_PATH</code></li>
 </ul>
+<p>Thus, any <code>&lt;layers&gt;/&lt;layer&gt;/&lt;env&gt;</code> directory is for setting environment variables directly, and <code>&lt;layers&gt;/&lt;layer&gt;/&lt;bin&gt;</code>, <code>&lt;layers&gt;/&lt;layer&gt;/&lt;lib&gt;</code>, etc. offer a convenient way to modify <code>POSIX</code> path variables.</p>
+<p>The full list of convenience directories is summarized in the table below:</p>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">Env Variable</th>
+          <th style="text-align: left">Layer Path</th>
+          <th style="text-align: left">Contents</th>
+          <th style="text-align: left">Build</th>
+          <th style="text-align: left">Launch</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>PATH</code></td>
+          <td style="text-align: left"><code>/bin</code></td>
+          <td style="text-align: left">binaries</td>
+          <td style="text-align: left">[x]</td>
+          <td style="text-align: left">[x]</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>LD_LIBRARY_PATH</code></td>
+          <td style="text-align: left"><code>/lib</code></td>
+          <td style="text-align: left">shared libraries</td>
+          <td style="text-align: left">[x]</td>
+          <td style="text-align: left">[x]</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>LIBRARY_PATH</code></td>
+          <td style="text-align: left"><code>/lib</code></td>
+          <td style="text-align: left">static libraries</td>
+          <td style="text-align: left">[x]</td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>CPATH</code></td>
+          <td style="text-align: left"><code>/include</code></td>
+          <td style="text-align: left">header files</td>
+          <td style="text-align: left">[x]</td>
+          <td style="text-align: left"></td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>PKG_CONFIG_PATH</code></td>
+          <td style="text-align: left"><code>/pkgconfig</code></td>
+          <td style="text-align: left">pc files</td>
+          <td style="text-align: left">[x]</td>
+          <td style="text-align: left"></td>
+      </tr>
+  </tbody>
+</table>
+<ul>
+<li>User-provided variables are then applied, meaning that it&rsquo;s possible for the end-user to override buildpack-provided variables.</li>
+<li>Finally, <code>platform-defined</code> variables are applied, which eventually override any previous values.</li>
+</ul>
+<h3 id="preparing-the-environment-at-runtime">Preparing the environment at runtime</h3>
+<p>At <code>runtime</code>, the <code>lifecycle</code> (or rather, the piece of the lifecycle known as the <code>launcher</code> that gets included in the application image) prepares the environment for the application process.
+For setting up environment variables at <code>runtime</code>, the <a href="#example">tree above</a> is still applicable except that the layer must be a <code>launch</code> layer, i.e., <code>some-launch-layer.toml</code> has</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">[</span><span class="l">types]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">launch = true</span><span class="w">
+</span></span></span></code></pre></div><blockquote>
+<p>Note that the <code>launcher</code> binary is found inside the application image at <code>/cnb/lifecycle/launcher</code> and is the entrypoint for any <code>CNB-built</code> image.</p>
+</blockquote>
+<h3 id="when-multiple-buildpacks-define-the-same-variable">When multiple buildpacks define the same variable</h3>
+<p>When multiple buildpacks define the same variable, the <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#environment-variable-modification-rules">&ldquo;environment modification rules&rdquo;</a> come into play.</p>
+<p>Let&rsquo;s say buildpack A (which runs first) defines <code>SOME_VAR=foo</code> and buildpack B defines <code>SOME_VAR=bar</code>. The <code>lifecycle</code> can perform different modifications when setting up the environment for buildpack C (which runs last).</p>
+<ul>
+<li>The <code>lifecycle</code> can <code>append</code> the second value to the first, so that buildpack C sees something like <code>SOME_VAR=foo:bar</code>.</li>
+<li>The <code>lifecycle can</code> <code>prepend</code> the second value to the first, so that buildpack C sees something like <code>SOME_VAR=bar:foo</code>.</li>
+<li>The <code>lifecycle</code> can <code>override</code> the first value with the second value, so that buildpack C sees <code>SOME_VAR=bar</code>.</li>
+<li>The <code>lifecycle</code> can treat the second value as a <code>default</code> (the value to set when no other entity defines this variable), so that buildpack C sees <code>SOME_VAR=foo</code>.</li>
+<li>In all cases, the behavior of the <code>lifecycle</code> is governed by the file suffix for <code>&lt;layers&gt;/&lt;layer&gt;/&lt;env&gt;/SOME_VAR&lt;.suffix&gt;</code>. The suffix is optional, and the assumed behavior when no suffix is provided is <code>override</code>.</li>
+</ul>
+<blockquote>
+<p>Note that whenever the suffix is <code>append</code> or <code>prepend</code> an additional file, <code>&lt;layers&gt;/&lt;layer&gt;/&lt;env&gt;/SOME_VAR.delim</code>, is needed to specify the delimiter used during concatenation. If no delimiter is provided, none will be used.</p>
+</blockquote>
+<p>To better understand the above modification rules, let&rsquo;s take a look at the tree below:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">layers/
+</span></span><span class="line"><span class="cl">├── some-buildpack-id
+</span></span><span class="line"><span class="cl">│   ├── some-layer
+</span></span><span class="line"><span class="cl">│   │   └── env
+</span></span><span class="line"><span class="cl">│   │       ├── SOME_VAR # contents foo
+</span></span><span class="line"><span class="cl">│   │       └── SOME_VAR.append # contents :
+</span></span><span class="line"><span class="cl">│   └── some-layer.toml
+</span></span><span class="line"><span class="cl">└── some-other-buildpack-id
+</span></span><span class="line"><span class="cl">    ├── some-layer
+</span></span><span class="line"><span class="cl">    │   └── env
+</span></span><span class="line"><span class="cl">    │       ├── SOME_VAR # contents bar
+</span></span><span class="line"><span class="cl">    │       └── SOME_VAR.append # contents :
+</span></span><span class="line"><span class="cl">    └── some-layer.toml
+</span></span></code></pre></div><p>Assuming that <code>some-buildpack-id</code> comes before <code>some-other-buildpack-id</code> in the buildpack group, the final value of <code>SOME_VAR</code> shown above  would be <code>foo:bar</code>.</p>
+<p>Note that the examples shown on this page are relatively simple. It is possible for a buildpack to double-specify the same variable (i.e., within two or more different layers), and for a buildpack to specify a variable for a particular phase (build or launch) when the layer has type both <code>build = true</code> and <code>launch = true</code>. Additionally, for <code>runtime</code> variables, buildpacks can specify a variable for a particular process.</p>
+<p>In these cases, the lifecycle determines the final value of the variable according to a process outlined in the specification.</p>
+<blockquote>
+<p>For more information on modifying environment variables, see the <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#environment-variable-modification-rules">Environment Variable Modification Rules</a> section of the specification.</p>
+</blockquote>
 
         
 

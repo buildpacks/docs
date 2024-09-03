@@ -96,7 +96,7 @@
       <link>https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-buildpack/01_setup-local-environment/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-buildpack/01_setup-local-environment/</guid>
-      <description>Check system requirements Before we get started, make sure you&amp;rsquo;ve got the following installed:&#xA;Install Docker Install pack First, we&amp;rsquo;ll create a sample nodeJS app that you can use when developing your buildpack:&#xA;mkdir node-js-sample-app Create a file in the current directory called node-js-sample-app/app.js with the following contents:&#xA;const http = require(&amp;#39;http&amp;#39;); const hostname = &amp;#39;0.0.0.0&amp;#39;; const port = 8080; const server = http.createServer((req, res) =&amp;gt; { res.statusCode = 200; res.</description>
+      <description>&lt;h3 id=&#34;check-system-requirements&#34;&gt;Check system requirements&lt;/h3&gt;&#xA;&lt;p&gt;Before we get started, make sure you&amp;rsquo;ve got the following installed:&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#39;https://store.docker.com/search?type=edition&amp;amp;offering=community&#39; class=&#39;download-button button icon-button bg-blue&#39;&gt; Install Docker &lt;/a&gt;&lt;br /&gt;&#xA;&lt;a href=&#39;https://buildpacks.io/docs/install-pack&#39; class=&#39;download-button button icon-button bg-pink&#39;&gt; Install pack &lt;/a&gt;&lt;br /&gt;&lt;/p&gt;&#xA;&lt;!-- test:suite=create-buildpack;weight=1 --&gt;&#xA;&lt;!-- test:setup:exec;exit-code=-1 --&gt;&#xA;&lt;!--&#xA;```bash&#xA;docker rmi test-node-js-app&#xA;pack config trusted-builders add cnbs/sample-builder:jammy&#xA;```&#xA;--&gt;&#xA;&lt;!-- test:teardown:exec --&gt;&#xA;&lt;!--&#xA;```bash&#xA;docker rmi test-node-js-app&#xA;```&#xA;--&gt;&#xA;&lt;p&gt;First, we&amp;rsquo;ll create a sample nodeJS app that you can use when developing your buildpack:&lt;/p&gt;</description>
     </item>
     <item>
       <title>Setting up your local environment</title>
@@ -145,7 +145,7 @@
       <link>https://buildpacks.io/docs/app-journey/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/app-journey/</guid>
-      <description>Pack for the journey In this tutorial, we&amp;rsquo;ll explain how to use pack and buildpacks to create a runnable app image from source code.&#xA;In order to run the build process in an isolated fashion, pack uses Docker or a Docker-compatible daemon to create the containers where buildpacks execute. That means you&amp;rsquo;ll need to make sure you have both pack and a daemon installed:&#xA;Install pack Install Docker or alternatively, see this page about working with podman.</description>
+      <description>&lt;h2 id=&#34;pack-for-the-journey&#34;&gt;Pack for the journey&lt;/h2&gt;&#xA;&lt;p&gt;In this tutorial, we&amp;rsquo;ll explain how to use &lt;code&gt;pack&lt;/code&gt; and &lt;strong&gt;buildpacks&lt;/strong&gt; to create a runnable app image from source code.&lt;/p&gt;&#xA;&lt;p&gt;In order to run the build process in an isolated fashion, &lt;code&gt;pack&lt;/code&gt; uses &lt;strong&gt;Docker&lt;/strong&gt; or a Docker-compatible daemon to create the containers where buildpacks execute.&#xA;That means you&amp;rsquo;ll need to make sure you have both &lt;code&gt;pack&lt;/code&gt; and a daemon installed:&lt;/p&gt;&#xA;&lt;a href=&#39;https://buildpacks.io/docs/install-pack&#39; class=&#39;download-button button icon-button bg-pink&#39;&gt; Install pack &lt;/a&gt;&lt;br /&gt;&#xA;&lt;p&gt;&lt;a href=&#39;https://store.docker.com/search?type=edition&amp;amp;offering=community&#39; class=&#39;download-button button icon-button bg-blue&#39;&gt; Install Docker &lt;/a&gt;&lt;br /&gt; or alternatively, see &lt;a href=&#34;https://buildpacks.io/docs/for-app-developers/how-to/special-cases/build-on-podman&#34;&gt;this page&lt;/a&gt; about working with &lt;code&gt;podman&lt;/code&gt;.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Build for Windows containers</title>
@@ -236,7 +236,7 @@
       <link>https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-buildpack/02_building-blocks-cnb/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-buildpack/02_building-blocks-cnb/</guid>
-      <description>Now we will set up the buildpack scaffolding.&#xA;Let&amp;rsquo;s create the directory where your buildpack will live:&#xA;Using the Pack CLI The buildpack new &amp;lt;id&amp;gt; command will create a directory named for the buildpack ID. Make sure to run this command outside the node-js-sample-app directory created previously.&#xA;Example:&#xA;pack buildpack new examples/node-js \ --api 0.10 \ --path node-js-buildpack \ --version 0.0.1 \ --stacks io.buildpacks.samples.stacks.jammy This command will create node-js-buildpack directory which contains buildpack.</description>
+      <description>&lt;!-- test:suite=create-buildpack;weight=2 --&gt;&#xA;&lt;p&gt;Now we will set up the buildpack scaffolding.&lt;/p&gt;&#xA;&lt;p&gt;Let&amp;rsquo;s create the directory where your buildpack will live:&lt;/p&gt;&#xA;&lt;h2 id=&#34;using-the-pack-cli&#34;&gt;Using the Pack CLI&lt;/h2&gt;&#xA;&lt;p&gt;The &lt;code&gt;buildpack new &amp;lt;id&amp;gt;&lt;/code&gt; command will create a directory named for the buildpack ID.&#xA;Make sure to run this command outside the &lt;code&gt;node-js-sample-app&lt;/code&gt; directory created previously.&lt;/p&gt;&#xA;&lt;p&gt;Example:&lt;/p&gt;&#xA;&lt;!-- test:exec --&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;pack buildpack new examples/node-js &lt;span class=&#34;se&#34;&gt;\&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    --api 0.10 &lt;span class=&#34;se&#34;&gt;\&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    --path node-js-buildpack &lt;span class=&#34;se&#34;&gt;\&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    --version 0.0.1 &lt;span class=&#34;se&#34;&gt;\&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;se&#34;&gt;&lt;/span&gt;    --stacks io.buildpacks.samples.stacks.jammy&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pr</description>
     </item>
     <item>
       <title>Use the build plan</title>
@@ -313,7 +313,7 @@
       <link>https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-buildpack/03_detection/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-buildpack/03_detection/</guid>
-      <description>Next, you will want to actually detect that the app you are building is a node-js app. In order to do this, you will need to check for a package.json.&#xA;Replace exit 1 in the detect script with the following check:&#xA;if [[ ! -f package.json ]]; then exit 100 fi Your node-js-buildpack/bin/detect script should look like this:&#xA;#!/usr/bin/env bash set -eo pipefail if [[ ! -f package.json ]]; then exit 100 fi Next, rebuild your app with the updated buildpack:</description>
+      <description>&lt;!-- test:suite=create-buildpack;weight=3 --&gt;&#xA;&lt;p&gt;Next, you will want to actually detect that the app you are building is a node-js app. In order to do this, you will need to check for a &lt;code&gt;package.json&lt;/code&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Replace &lt;code&gt;exit 1&lt;/code&gt; in the &lt;code&gt;detect&lt;/code&gt; script with the following check:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;[[&lt;/span&gt; ! -f package.json &lt;span class=&#34;o&#34;&gt;]]&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;then&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;   &lt;span class=&#34;nb&#34;&gt;exit&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;100&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;fi&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pr</description>
     </item>
     <item>
       <title>Download a Software Bill-of-Materials (SBOM)</title>
@@ -327,7 +327,7 @@
       <link>https://buildpacks.io/docs/for-app-developers/how-to/special-cases/export-to-oci-layout/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-app-developers/how-to/special-cases/export-to-oci-layout/</guid>
-      <description></description>
+      <description>The OCI Image Layout is the directory structure for OCI content-addressable blobs and location-addressable references.</description>
     </item>
     <item>
       <title>Mount volumes at build-time</title>
@@ -397,7 +397,7 @@
       <link>https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-buildpack/04_build-app/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-buildpack/04_build-app/</guid>
-      <description>Now we&amp;rsquo;ll change the build step you created to install application dependencies. This will require updates to the build script such that it performs the following steps:&#xA;Create a layer for the NodeJS runtime Download the NodeJS runtime and installs it to the layer By doing this, you&amp;rsquo;ll learn how to create arbitrary layers with your buildpack, and how to read the contents of the app in order to perform actions like downloading dependencies.</description>
+      <description>&lt;!-- test:suite=create-buildpack;weight=4 --&gt;&#xA;&lt;p&gt;Now we&amp;rsquo;ll change the build step you created to install application dependencies. This will require updates to the &lt;code&gt;build&lt;/code&gt; script such that it performs the following steps:&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Create a layer for the NodeJS runtime&lt;/li&gt;&#xA;&lt;li&gt;Download the NodeJS runtime and installs it to the layer&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;p&gt;By doing this, you&amp;rsquo;ll learn how to create arbitrary layers with your buildpack, and how to read the contents of the app in order to perform actions like downloading dependencies.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Buildpack API 0.7 -&gt; 0.8</title>
@@ -516,7 +516,7 @@
       <link>https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-buildpack/05_make-app-runnable/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-buildpack/05_make-app-runnable/</guid>
-      <description>To make your app runnable, a default start command must be set. You&amp;rsquo;ll need to add the following to the end of your build script:&#xA;# ... # Set default start command cat &amp;gt; &amp;#34;${CNB_LAYERS_DIR}/launch.toml&amp;#34; &amp;lt;&amp;lt; EOL [[processes]] type = &amp;#34;web&amp;#34; command = [&amp;#34;node&amp;#34;, &amp;#34;app.js&amp;#34;] default = true EOL # ... Your full node-js-buildpack/bin/build script should now look like the following:&#xA;#!/usr/bin/env bash set -eo pipefail echo &amp;#34;---&amp;gt; NodeJS Buildpack&amp;#34; # 1.</description>
+      <description>&lt;!-- test:suite=create-buildpack;weight=5 --&gt;&#xA;&lt;p&gt;To make your app runnable, a default start command must be set. You&amp;rsquo;ll need to add the following to the end of your &lt;code&gt;build&lt;/code&gt; script:&lt;/p&gt;&#xA;&lt;!-- file=node-js-buildpack/bin/build data-target=append --&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# ...&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Set default start command&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;cat &amp;gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;CNB_LAYERS_DIR&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;/launch.toml&amp;#34;&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;lt;&amp;lt; EOL&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s&#34;&gt;[[processes]]&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s&#34;&gt;type = &amp;#34;web&amp;#34;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s&#34;&gt;command = [&amp;#34;node&amp;#34;, &amp;#34;app.js&amp;#34;]&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s&#34;&gt;default = true&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;s&#34;&gt;EOL&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# ...&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pr</description>
     </item>
     <item>
       <title>Platform API 0.11 -&gt; 0.12</title>
@@ -586,7 +586,7 @@
       <link>https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-buildpack/06_caching/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-buildpack/06_caching/</guid>
-      <description>We can improve performance by caching the runtime between builds, only re-downloading when necessary. To begin, let&amp;rsquo;s cache the runtime layer.&#xA;Cache the runtime layer To do this, replace the following lines in the build script:&#xA;# 3. MAKE node-js AVAILABLE DURING LAUNCH echo -e &amp;#39;[types]\nlaunch = true&amp;#39; &amp;gt; &amp;#34;${CNB_LAYERS_DIR}/node-js.toml&amp;#34; with the following:&#xA;# 3. MAKE node-js AVAILABLE DURING LAUNCH and CACHE it echo -e &amp;#39;[types]\ncache = true\nlaunch = true&amp;#39; &amp;gt; &amp;#34;${CNB_LAYERS_DIR}/node-js.</description>
+      <description>&lt;!-- test:suite=create-buildpack;weight=7 --&gt;&#xA;&lt;p&gt;We can improve performance by caching the runtime between builds, only re-downloading when necessary. To begin, let&amp;rsquo;s cache the runtime layer.&lt;/p&gt;&#xA;&lt;h2 id=&#34;cache-the-runtime-layer&#34;&gt;Cache the runtime layer&lt;/h2&gt;&#xA;&lt;p&gt;To do this, replace the following lines in the &lt;code&gt;build&lt;/code&gt; script:&lt;/p&gt;&#xA;&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# 3. MAKE node-js AVAILABLE DURING LAUNCH&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;nb&#34;&gt;echo&lt;/span&gt; -e &lt;span class=&#34;s1&#34;&gt;&amp;#39;[types]\nlaunch = true&amp;#39;&lt;/span&gt; &amp;gt; &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;${&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;CNB_LAYERS_DIR&lt;/span&gt;&lt;span class=&#34;si&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;/node-js.toml&amp;#34;&lt;/span&gt;&#xA;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pr</description>
     </item>
     <item>
       <title>Tekton</title>
@@ -621,7 +621,7 @@
       <link>https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-buildpack/07_make-buildpack-configurable/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-buildpack/07_make-buildpack-configurable/</guid>
-      <description>It&amp;rsquo;s likely that not all NodeJS apps will want to use the same version of NodeJS. Let&amp;rsquo;s make the NodeJS version configurable.&#xA;Select NodeJS version We&amp;rsquo;ll allow buildpack users to define the desired NodeJS version via a .node-js-version file in their app. We&amp;rsquo;ll first update the detect script to check for this file. We will then record the dependency we can provide (NodeJS), as well as the specific dependency the application will require, in the Build Plan, a document the lifecycle uses to determine if the buildpack will provide everything the application needs.</description>
+      <description>&lt;!-- test:suite=create-buildpack;weight=8 --&gt;&#xA;&lt;p&gt;It&amp;rsquo;s likely that not all NodeJS apps will want to use the same version of NodeJS. Let&amp;rsquo;s make the NodeJS version configurable.&lt;/p&gt;&#xA;&lt;h2 id=&#34;select-nodejs-version&#34;&gt;Select NodeJS version&lt;/h2&gt;&#xA;&lt;p&gt;We&amp;rsquo;ll allow buildpack users to define the desired NodeJS version via a &lt;code&gt;.node-js-version&lt;/code&gt; file in their app. We&amp;rsquo;ll first update the &lt;code&gt;detect&lt;/code&gt; script to check for this file. We will then record the dependency we can &lt;code&gt;provide&lt;/code&gt; (NodeJS), as well as the specific dependency the application will &lt;code&gt;require&lt;/code&gt;, in the &lt;code&gt;Build Plan&lt;/code&gt;, a document the lifecycle uses to determine if the buildpack will provide everything the application needs.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Rebase</title>
@@ -649,14 +649,14 @@
       <link>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/add-labels/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/add-labels/</guid>
-      <description></description>
+      <description>&lt;p&gt;Labels are key-value pairs, stored as strings, that are attached to an image (i.e., arbitrary metadata). Labels are used to add helpful descriptions or attributes to an application image, which are meaningful to users.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Clear the buildpack environment</title>
       <link>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/clear-env/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/clear-env/</guid>
-      <description></description>
+      <description>&lt;p&gt;&amp;ldquo;Clearing&amp;rdquo; the buildpack environment with &lt;code&gt;clear-env&lt;/code&gt; is the process of preventing end-users from customizing a buildpack&amp;rsquo;s behavior through environment variables.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Craft a buildpack order</title>
@@ -698,7 +698,7 @@
       <link>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/specify-env/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/specify-env/</guid>
-      <description></description>
+      <description>&lt;p&gt;Environment variables are a common way to configure buildpacks at build-time and the application at runtime.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Stack</title>
@@ -719,7 +719,7 @@
       <link>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/use-exec.d/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/use-exec.d/</guid>
-      <description></description>
+      <description>&lt;p&gt;The &lt;a href=&#34;https://github.com/buildpacks/spec/blob/main/buildpack.md#execd&#34;&gt;buildpacks &lt;code&gt;exec.d&lt;/code&gt; interface&lt;/a&gt; allows buildpack authors to execute custom scripts or binaries when the application image is started.&lt;/p&gt;</description>
     </item>
     <item>
       <title>What is a buildpack dependency layer?</title>
@@ -747,14 +747,14 @@
       <link>https://buildpacks.io/docs/for-buildpack-authors/concepts/composite-buildpack/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-buildpack-authors/concepts/composite-buildpack/</guid>
-      <description>A composite buildpack, also sometimes called a &amp;ldquo;meta buildpack&amp;rdquo;, is a buildpack that does not contain any ./bin/detect or ./bin/build binaries, but instead references other buildpacks in its buildpack.toml via the [[order]] array.&#xA;This is useful for composing more complex detection strategies.</description>
+      <description>&lt;p&gt;A composite buildpack, also sometimes called a &amp;ldquo;meta buildpack&amp;rdquo;,&#xA;is a buildpack that does not contain any &lt;code&gt;./bin/detect&lt;/code&gt; or &lt;code&gt;./bin/build&lt;/code&gt; binaries,&#xA;but instead references other buildpacks in its &lt;code&gt;buildpack.toml&lt;/code&gt; via the &lt;code&gt;[[order]]&lt;/code&gt; array.&lt;/p&gt;&#xA;&lt;p&gt;This is useful for composing more complex detection strategies.&lt;/p&gt;</description>
     </item>
     <item>
       <title>What is a composite buildpack?</title>
       <link>https://buildpacks.io/docs/for-platform-operators/concepts/composite-buildpack/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-platform-operators/concepts/composite-buildpack/</guid>
-      <description>A composite buildpack, also sometimes called a &amp;ldquo;meta buildpack&amp;rdquo;, is a buildpack that does not contain any ./bin/detect or ./bin/build binaries, but instead references other buildpacks in its buildpack.toml via the [[order]] array.&#xA;This is useful for composing more complex detection strategies.</description>
+      <description>&lt;p&gt;A composite buildpack, also sometimes called a &amp;ldquo;meta buildpack&amp;rdquo;,&#xA;is a buildpack that does not contain any &lt;code&gt;./bin/detect&lt;/code&gt; or &lt;code&gt;./bin/build&lt;/code&gt; binaries,&#xA;but instead references other buildpacks in its &lt;code&gt;buildpack.toml&lt;/code&gt; via the &lt;code&gt;[[order]]&lt;/code&gt; array.&lt;/p&gt;&#xA;&lt;p&gt;This is useful for composing more complex detection strategies.&lt;/p&gt;</description>
     </item>
     <item>
       <title>What is an image extension?</title>

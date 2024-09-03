@@ -8,7 +8,8 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+<meta name="description" content="The buildpacks exec.d interface allows buildpack authors to execute custom scripts or binaries when the application image is started.
+"/>
 <link rel="canonical" content="https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/use-exec.d/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
@@ -22,7 +23,8 @@
 <meta property="og:url" content="https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/use-exec.d/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-
+<meta property="og:description" content="The buildpacks exec.d interface allows buildpack authors to execute custom scripts or binaries when the application image is started.
+">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -897,7 +899,8 @@
           <h1 class="title">Use exec.d binaries to configure the application at runtime</h1>
         </div>
 
-        <p>The <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#execd">buildpacks <code>exec.d</code> interface</a> allows buildpack authors to execute custom scripts or binaries when the application image is started. This interface can be particularly useful for injecting dynamic behavior or environment variables into the runtime environment of an application.</p>
+        <p>The <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#execd">buildpacks <code>exec.d</code> interface</a> allows buildpack authors to execute custom scripts or binaries when the application image is started.</p>
+<p>This interface can be particularly useful for injecting dynamic behavior or environment variables into the runtime environment of an application.</p>
 <h2 id="key-points">Key Points</h2>
 <ol>
 <li>
@@ -945,23 +948,23 @@
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Go" data-lang="Go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
-</span></span><span class="line"><span class="cl">	<span class="s">&#34;fmt&#34;</span>
-</span></span><span class="line"><span class="cl">	<span class="s">&#34;os&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;os&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="c1">// Open file descriptor 3 for writing
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">fd3</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">NewFile</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s">&#34;fd3&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">fd3</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Failed to open file descriptor 3&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">		<span class="k">return</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"> <span class="c1">// Open file descriptor 3 for writing
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="nx">fd3</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">NewFile</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s">&#34;fd3&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="k">if</span> <span class="nx">fd3</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Failed to open file descriptor 3&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span>
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="c1">// Write the environment variable to file descriptor 3
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">fd3</span><span class="p">.</span><span class="nf">WriteString</span><span class="p">(</span><span class="s">`EXAMPLE=&#34;test&#34;\n`</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Error writing to file descriptor 3:&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"> <span class="c1">// Write the environment variable to file descriptor 3
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">fd3</span><span class="p">.</span><span class="nf">WriteString</span><span class="p">(</span><span class="s">`EXAMPLE=&#34;test&#34;\n`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Error writing to file descriptor 3:&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>Finally, we provide a short Python example:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Python" data-lang="Python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">os</span>

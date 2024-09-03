@@ -968,8 +968,10 @@ by analyzing the code and determining the best way to build it.</p>
             </div>
         
           <h2><a href="https://buildpacks.io/docs/for-buildpack-authors/concepts/composite-buildpack/" class="">What is a composite buildpack?</a></h2>
-          <p class="m-1">A composite buildpack, also sometimes called a “meta buildpack”, is a buildpack that does not contain any ./bin/detect or ./bin/build binaries, but instead references other buildpacks in its buildpack.toml via the [[order]] array.
-This is useful for composing more complex detection strategies.</p>
+          <p class="m-1"><p>A composite buildpack, also sometimes called a &ldquo;meta buildpack&rdquo;,
+is a buildpack that does not contain any <code>./bin/detect</code> or <code>./bin/build</code> binaries,
+but instead references other buildpacks in its <code>buildpack.toml</code> via the <code>[[order]]</code> array.</p>
+<p>This is useful for composing more complex detection strategies.</p></p>
 
           
             <div class="text-md-right">

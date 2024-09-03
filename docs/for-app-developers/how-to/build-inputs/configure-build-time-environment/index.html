@@ -931,25 +931,25 @@
 </code></pre><!--+- "{{execute}}"+-->
 <p>The following environment variables were set and available to buildpacks at build-time:</p>
 <table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Value</th>
-<th><em>Source</em></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>HELLO</code></td>
-<td><code>WORLD</code></td>
-<td><em>hard-coded inline value</em></td>
-</tr>
-<tr>
-<td><code>FOO</code></td>
-<td><code>BAR</code></td>
-<td><em>current environment</em></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">Name</th>
+          <th style="text-align: left">Value</th>
+          <th style="text-align: left"><em>Source</em></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>HELLO</code></td>
+          <td style="text-align: left"><code>WORLD</code></td>
+          <td style="text-align: left"><em>hard-coded inline value</em></td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>FOO</code></td>
+          <td style="text-align: left"><code>BAR</code></td>
+          <td style="text-align: left"><em>current environment</em></td>
+      </tr>
+  </tbody>
 </table>
 <h3 id="using-env-files---env-file">Using env files (<code>--env-file</code>)</h3>
 <p>The <code>--env-file</code> parameter must be a path to a file where each line is one of the following:</p>
@@ -985,25 +985,25 @@
 </code></pre><!--+- "{{execute}}"+-->
 <p>The following environment variables were set and available to buildpacks at build-time:</p>
 <table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Value</th>
-<th><em>Source</em></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>HELLO</code></td>
-<td><code>WORLD</code></td>
-<td><em>hard-coded value in file</em></td>
-</tr>
-<tr>
-<td><code>FOO</code></td>
-<td><code>BAR</code></td>
-<td><em>current environment</em></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">Name</th>
+          <th style="text-align: left">Value</th>
+          <th style="text-align: left"><em>Source</em></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>HELLO</code></td>
+          <td style="text-align: left"><code>WORLD</code></td>
+          <td style="text-align: left"><em>hard-coded value in file</em></td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><code>FOO</code></td>
+          <td style="text-align: left"><code>BAR</code></td>
+          <td style="text-align: left"><em>current environment</em></td>
+      </tr>
+  </tbody>
 </table>
 <blockquote>
 <p><strong>NOTE:</strong> Variables defined using <code>--env</code> take precedence over variables defined in <code>--env-file</code>.</p>
@@ -1039,20 +1039,20 @@ EOL
 </code></pre><!--+- "{{execute}}"+-->
 <p>The following environment variables were set and available to buildpacks at build-time:</p>
 <table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Value</th>
-<th><em>Source</em></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>HELLO</code></td>
-<td><code>WORLD</code></td>
-<td><em>hard-coded value in file</em></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">Name</th>
+          <th style="text-align: left">Value</th>
+          <th style="text-align: left"><em>Source</em></th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><code>HELLO</code></td>
+          <td style="text-align: left"><code>WORLD</code></td>
+          <td style="text-align: left"><em>hard-coded value in file</em></td>
+      </tr>
+  </tbody>
 </table>
 <blockquote>
 <p><strong>NOTE:</strong> Variables defined using <code>--env</code> or <code>--env-file</code> take precedence over variables defined in the <code>project.toml</code>.</p>

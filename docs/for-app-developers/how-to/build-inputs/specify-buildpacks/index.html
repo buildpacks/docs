@@ -899,38 +899,38 @@
 
         <p>You may specify exactly what buildpacks are used during the build process by referencing them with a URI in any of the following formats.</p>
 <table>
-<thead>
-<tr>
-<th>Type</th>
-<th>Format</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Relative</td>
-<td><code>&lt;path&gt;</code></td>
-</tr>
-<tr>
-<td>Filesystem</td>
-<td><code>file://[&lt;host&gt;]/&lt;path&gt;</code></td>
-</tr>
-<tr>
-<td>URL</td>
-<td><code>http[s]://&lt;host&gt;/&lt;path&gt;</code></td>
-</tr>
-<tr>
-<td>Docker</td>
-<td><code>docker://[&lt;host&gt;]/&lt;path&gt;[:&lt;tag&gt;⏐@&lt;digest&gt;]</code></td>
-</tr>
-<tr>
-<td>CNB Builder Resource</td>
-<td><code>urn:cnb:builder[:&lt;id&gt;[@&lt;version&gt;]]</code></td>
-</tr>
-<tr>
-<td>CNB Registry Resource</td>
-<td><code>urn:cnb:registry[:&lt;id&gt;[@&lt;version&gt;]]</code></td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left">Type</th>
+          <th style="text-align: left">Format</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Relative</td>
+          <td style="text-align: left"><code>&lt;path&gt;</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Filesystem</td>
+          <td style="text-align: left"><code>file://[&lt;host&gt;]/&lt;path&gt;</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">URL</td>
+          <td style="text-align: left"><code>http[s]://&lt;host&gt;/&lt;path&gt;</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">Docker</td>
+          <td style="text-align: left"><code>docker://[&lt;host&gt;]/&lt;path&gt;[:&lt;tag&gt;⏐@&lt;digest&gt;]</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">CNB Builder Resource</td>
+          <td style="text-align: left"><code>urn:cnb:builder[:&lt;id&gt;[@&lt;version&gt;]]</code></td>
+      </tr>
+      <tr>
+          <td style="text-align: left">CNB Registry Resource</td>
+          <td style="text-align: left"><code>urn:cnb:registry[:&lt;id&gt;[@&lt;version&gt;]]</code></td>
+      </tr>
+  </tbody>
 </table>
 <h5 id="fallback-behavior">Fallback Behavior</h5>
 <p>When a string does not include a scheme prefix (ex. <code>docker://</code>) and also does not match a path on the filesystem,
