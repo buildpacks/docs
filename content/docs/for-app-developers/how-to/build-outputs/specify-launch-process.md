@@ -54,7 +54,7 @@ Rebasable: true
 
 Buildpacks:
   ID                             VERSION           HOMEPAGE
-  samples/java-maven             0.0.1             https://github.com/buildpacks/samples/tree/main/buildpacks/java-maven
+  samples/java-maven             0.0.2             https://github.com/buildpacks/samples/tree/main/buildpacks/java-maven
   samples/hello-processes        0.0.1             https://github.com/buildpacks/samples/tree/main/buildpacks/hello-process
 
 Processes:
@@ -63,7 +63,7 @@ Processes:
   sys-info             bash         /layers/samples_hello-processes/sys-info/sys-info.sh
 ```
 
-Notice that the default process type is `web`. This is because `pack` will always attempt to set the default process type to `web` unless the `--default-process` flag is passed.
+Notice that the `java-maven` buildpack defined `web` as the default process type.
 If we had run the `pack build` command above with `--default-process sys-info`, `sys-info` would be the default process for the app image!
 
 ### Run a multi-process app
