@@ -3,7 +3,7 @@ title="Extend"
 weight=9
 +++
 
-The `extender` applies Dockerfiles output by image extensions to the build or runtime base image.
+The `extender` applies Dockerfiles output by image extensions to the `build` or `runtime` base image.
 
 <!--more-->
 
@@ -16,3 +16,7 @@ The `extender` applies Dockerfiles output by image extensions to the build or ru
 | `12`            | Buildpack API incompatibility error |
 | `1-10`, `13-19` | Generic lifecycle errors            |
 | `100-109`       | Extension-specific lifecycle errors |
+
+***
+
+For more information about the `extender`, see the [Platform API spec](https://github.com/buildpacks/spec/blob/main/platform.md#extender-optional).

@@ -16,3 +16,7 @@ The `restorer` copies layers from the cache into the build container.
 | `12`            | Buildpack API incompatibility error   |
 | `1-10`, `13-19` | Generic lifecycle errors              |
 | `40-49`         | Restoration-specific lifecycle errors |
+
+***
+
+For more information about the `restorer`, see the [Platform API spec](https://github.com/buildpacks/spec/blob/main/platform.md#restorer).
