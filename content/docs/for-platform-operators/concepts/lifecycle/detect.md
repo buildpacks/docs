@@ -10,12 +10,12 @@ The `detector` finds an ordered group of buildpacks to use during the `build` ph
 
 <!--more-->
 
-Detection is the first phase of the Lifecycle. It’s done by the `detector`.
-In this phase, the detector looks for an ordered group of buildpacks that will be used during the build phase.
-The detector is invoked in the build environment without any required arguments and it cannot run with root privileges.
+Detection is the first phase of the `Lifecycle`. It’s done by the `detector`.
+In this phase, the `detector` looks for an ordered group of buildpacks that will be used during the `build` phase.
+The `detector` is invoked in the `build` environment without any required arguments and it cannot run with root privileges.
 One of the [input files][inputs] is [`order.toml`][order] and two of its [output files][outputs] are [`group.toml`][group] and [`plan.toml`][plan].
 
-Unless some flags are passed in, the detector will use the following defaults:
+Unless some flags are passed in, the `detector` will use the following defaults:
 
 * Path resolution for order definition: `/cnb/order.toml`
 * Path to output group definition: `<layers>/group.toml`
@@ -33,9 +33,9 @@ Each buildpack in each group is marked as either optional or as required.
 In order to pass the detection process, two conditions must be satisfied:
 
 * The detect scripts of all required buildpacks must pass successfully (the exit code is zero).
-* The detector should be able to create a build plan (to be written in the `plan.toml`) with all of the requirements of the group’s buildpacks.
+* The detector should be able to create a `build plan` (to be written in the `plan.toml`) with all of the requirements of the group’s buildpacks.
 
-The first group that passes both steps is written to `group.toml` and its build plan is written to `plan.toml`.
+The first group that passes both steps is written to `group.toml` and its `build plan` is written to `plan.toml`.
 
 Note: If the detect script of an optional buildpack failed, the group can still pass the detection process and be the “chosen”  group. In order for that to happen, there should be at least one (required or optional) buildpack in this group that passes the detect script successfully.
 
@@ -46,7 +46,7 @@ The buildpacks of the “chosen” group will be written to `group.toml` if they
 ### `plan.toml`
 
 Each buildpack can define two lists with provided and required dependencies (or several pairs of lists separated by `or`). These lists (if they aren’t empty) are called a [build plan][buildPlan] and they are part of the [output of each buildpack’s detect script][detectScriptOutput].
-The detector reads the build plans of the buildpacks of the “chosen” group (after filtering out the buildpacks whose detect script failed). It goes over all of the options and tries to create a file with a list of entries, each with provides and requires lists, that fulfills all of the buildpacks requirements. Each of the options is called a trial, and this output file is called `plan.toml`.
+The `detector` reads the build plans of the buildpacks of the “chosen” group (after filtering out the buildpacks whose detect script failed). It goes over all of the options and tries to create a file with a list of entries, each with provides and requires lists, that fulfills all of the buildpacks requirements. Each of the options is called a trial, and this output file is called `plan.toml`.
 
 The two restrictions for provides and requires are:
 

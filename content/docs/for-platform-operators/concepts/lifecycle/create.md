@@ -8,6 +8,10 @@ The `creator` runs `analyze`, `detect`, `restore`, `build`, and `export` in a si
 <!--more-->
 
 The `platform` must execute `creator` in the `build` environment.
+An image reference (i.e., `<previous-image>`) to be analyzed is one of the `creator`'s inputs.  
+
+- **If** `<skip-restore>` is `true` the `creator` shall skip the restoration of any data to each buildpack's layers directory, with the exception of `store.toml`.
+- **If** the platform provides one or more `<tag>` inputs they shall be treated as additional `<image>` inputs to the `exporter`
 
 ### Exit Codes
 
