@@ -899,8 +899,36 @@
           <h1 class="title">Restore</h1>
         </div>
 
-        <p>The <code>restorer</code> copies layers from the cache into the build container.</p>
+        <p>The <code>restorer</code> copies layers from the <code>cache</code> into the <code>build</code> container.</p>
+<p>During this phase, the <code>restorer</code> looks for layers that could be reused or should be replaced while building the app image.</p>
+<p>One of the <code>restorer</code>&rsquo;s <a href="https://github.com/buildpacks/spec/blob/main/platform.md#inputs-2">input files</a> are <code>&lt;cache-dir&gt;</code>and <code>&lt;cache-image&gt;</code>to retrieve cache contents, and two of its <a href="https://github.com/buildpacks/spec/blob/main/platform.md#outputs-2">output files</a> are <code>store.toml</code> and <code>&lt;layer&gt;.toml</code>.</p>
+<p>Unless the <code>&lt;skip-layers&gt;</code> flag is passed in as <code>true</code>, the <code>restorer</code> must always perform <a href="#layer-restoration">layer restoration</a></p>
+<ul>
+<li>For each buildpack in <code>&lt;group&gt;</code>, if persistent metadata for that buildpack exists in the analysis metadata, the <code>lifecycle</code> must write a <code>toml</code> representation of the persistent metadata to <code>&lt;layers&gt;/&lt;buildpack-id&gt;/store.toml</code></li>
+<li><strong>If</strong> <code>&lt;skip-layers&gt;</code> is <code>true</code> the lifecycle must not perform layer restoration.</li>
+<li><strong>Else</strong> the <code>lifecycle</code> must perform <a href="#layer-restoration">layer restoration</a> for any app image layers or cached layers created by any buildpack present in the provided <code>&lt;group&gt;</code>.</li>
+<li>When <code>&lt;build-image&gt;</code> is provided (optional), the lifecycle:
+<ul>
+<li>MUST record the digest reference to the provided <code>&lt;build-image&gt;</code> in <code>&lt;analyzed&gt;</code></li>
+<li>MUST copy the OCI manifest and config file for <code>&lt;build-image&gt;</code> to <code>&lt;kaniko-dir&gt;/cache</code></li>
+</ul>
+</li>
+<li>The <code>lifecycle</code>:
+<ul>
+<li>Must <a href="https://github.com/buildpacks/spec/blob/main/platform.md#run-image-resolution">resolve mirrors</a> for the <code>run-image.reference</code> in <code>&lt;analyzed&gt;</code> and resolve it to a digest reference</li>
+<li>Must populate <code>run-image.target</code> data in <code>&lt;analyzed&gt;</code> if not present</li>
+<li><strong>If</strong> <code>&lt;analyzed&gt;</code> has <code>run-image.extend = true</code>, the <code>lifecycle</code>:
+<ul>
+<li>Must download from the registry and save in OCI layout format the <code>run-image</code> in <code>&lt;analyzed&gt;</code> to <code>&lt;kaniko-dir&gt;/cache</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="layer-restoration">Layer Restoration</h3>
+<p>The <code>lifecycle</code> must use the provided <code>cache-dir</code> or <code>cache-image</code> to retrieve cache contents. The <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#layer-types">rules</a> for restoration must be followed when determining how and when to store cache layers.</p>
 <h3 id="exit-codes">Exit Codes</h3>
+<p>If the <code>restore</code> phase was successful or there was any error during the process, the output will have one of the following exit codes:</p>
 <table>
   <thead>
       <tr>
@@ -931,6 +959,8 @@
       </tr>
   </tbody>
 </table>
+<hr>
+<p>For more information about the <code>restorer</code>, see the <a href="https://github.com/buildpacks/spec/blob/main/platform.md#restorer">Platform API spec</a>.</p>
 
         
 

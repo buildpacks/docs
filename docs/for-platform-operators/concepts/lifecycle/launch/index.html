@@ -901,6 +901,7 @@
 
         <p>The <code>launcher</code> is the entrypoint for the final OCI image, responsible for launching application processes.</p>
 <h3 id="exit-codes">Exit Codes</h3>
+<p>If the <code>launcher</code> errors before executing the process, it will have one of the following error codes:</p>
 <table>
   <thead>
       <tr>
@@ -923,6 +924,9 @@
       </tr>
   </tbody>
 </table>
+<p>Otherwise, the exit code shall be the exit code of the launched process.</p>
+<hr>
+<p>For more information about the <code>launcher</code>, see the <a href="https://github.com/buildpacks/spec/blob/main/platform.md#launcher">Platform API spec</a>.</p>
 
         
 

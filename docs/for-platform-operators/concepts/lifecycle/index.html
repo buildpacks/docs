@@ -907,18 +907,18 @@ It does its work in a series of distinct &ldquo;phases&rdquo;.</p>
 <blockquote>
 <p><strong>Note</strong>: when talking about lifecycle phases you&rsquo;ll sometimes see nouns like <code>analyzer</code> or <code>/cnb/lifecycle/analyzer</code>
 and you&rsquo;ll sometimes see verbs like <code>analyze</code> or <code>analyze phase</code>.<br><br>
-These are all more-or-less interchangeable: the nouns refer to the lifecycle binary and the verbs refer to the work that the lifecycle performs.</p>
+These are all more-or-less interchangeable: the nouns refer to the <code>lifecycle</code> binary and the verbs refer to the work that the <code>lifecycle</code> performs.</p>
 </blockquote>
-<p>The lifecycle must be run in a containerized environment (such as a Docker container or CI/CD system).</p>
+<p>The <code>lifecycle</code> must be run in a containerized environment (such as a <code>Docker</code> container or <code>CI/CD</code> system).</p>
 <p>The <a href="/docs/for-platform-operators/concepts/lifecycle/analyze"><code>analyzer</code></a>, <a href="/docs/for-platform-operators/concepts/lifecycle/restore"><code>restorer</code></a>, and <a href="/docs/for-platform-operators/concepts/lifecycle/export"><code>exporter</code></a> (shown in pink above)
-require access to an image repository - either an <strong>OCI registry</strong> or Docker-compliant <strong>daemon</strong> (such as Docker or Podman)
+require access to an image repository - either an <strong>OCI registry</strong> or Docker-compliant <strong>daemon</strong> (such as <code>Docker</code> or <code>Podman</code>)
 in order to do their work.</p>
-<p>This means that either registry credentials or a Docker socket must be available in the container where the lifecycle phase is running.
+<p>This means that either registry credentials or a <code>Docker</code> socket must be available in the container where the lifecycle phase is running.
 For security hardening, these phases run in separate containers to avoid exposing sensitive data to <strong>buildpacks</strong>.</p>
 <p>The <a href="/docs/for-platform-operators/concepts/lifecycle/detect"><code>detector</code></a> and <a href="/docs/for-platform-operators/concepts/lifecycle/build"><code>builder</code></a> (shown in purple above)
 invoke buildpacks to do the work of determining which buildpacks are needed and
 transforming application source code into runnable artifacts (the real work of buildpacks!).
-For security hardening, both the lifecycle and buildpacks run as non-root users when doing this work.</p>
+For security hardening, both the <code>lifecycle</code> and buildpacks run as non-root users when doing this work.</p>
 <p>When a builder is <a href="/docs/for-platform-operators/how-to/integrate-ci/pack/concepts/trusted_builders">trusted</a>, all 5 lifecycle phases can be run in the same container,
 and in this case the <a href="/docs/for-platform-operators/concepts/lifecycle/create"><code>creator</code></a> binary is used to run all 5 lifecycle phases with a single command invocation.</p>
 <p>To coordinate between phases, the lifecycle outputs a series of configuration files which are part of the <a href="/docs/reference/spec/platform-api">Platform API specification</a>.
@@ -931,7 +931,7 @@ These include phases relating to <a href="/docs/for-platform-operators/concepts/
       
         
           <h2><a href="https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/analyze/" class="">Analyze</a></h2>
-          <p class="m-1">The <code>analyzer</code> restores files that buildpacks may use to optimize the build and export phases.</p>
+          <p class="m-1">The <code>analyzer</code> restores files that buildpacks may use to optimize the <code>build</code> and <code>export</code> phases.</p>
 
           
             <div class="text-md-right">
@@ -939,7 +939,7 @@ These include phases relating to <a href="/docs/for-platform-operators/concepts/
             </div>
         
           <h2><a href="https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/detect/" class="">Detect</a></h2>
-          <p class="m-1">The <code>detector</code> finds an ordered group of buildpacks to use during the build phase.</p>
+          <p class="m-1">The <code>detector</code> finds an ordered group of buildpacks to use during the <code>build</code> phase.</p>
 
           
             <div class="text-md-right">
@@ -947,7 +947,7 @@ These include phases relating to <a href="/docs/for-platform-operators/concepts/
             </div>
         
           <h2><a href="https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/restore/" class="">Restore</a></h2>
-          <p class="m-1">The <code>restorer</code> copies layers from the cache into the build container.</p>
+          <p class="m-1">The <code>restorer</code> copies layers from the <code>cache</code> into the <code>build</code> container.</p>
 
           
             <div class="text-md-right">
@@ -963,7 +963,7 @@ These include phases relating to <a href="/docs/for-platform-operators/concepts/
             </div>
         
           <h2><a href="https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/export/" class="">Export</a></h2>
-          <p class="m-1">The <code>exporter</code> creates the final OCI image.</p>
+          <p class="m-1">The <code>exporter</code> creates the final <code>OCI image</code> and updates the image config with new metadata to reflect the latest changes.</p>
 
           
             <div class="text-md-right">
@@ -971,7 +971,7 @@ These include phases relating to <a href="/docs/for-platform-operators/concepts/
             </div>
         
           <h2><a href="https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/create/" class="">Create</a></h2>
-          <p class="m-1">The <code>creator</code> runs analyze, detect, restore, build, and export in a single command.</p>
+          <p class="m-1">The <code>creator</code> runs <code>analyze</code>, <code>detect</code>, <code>restore</code>, <code>build</code>, and <code>export</code> in a single command.</p>
 
           
             <div class="text-md-right">
@@ -987,7 +987,7 @@ These include phases relating to <a href="/docs/for-platform-operators/concepts/
             </div>
         
           <h2><a href="https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/rebase/" class="">Rebase</a></h2>
-          <p class="m-1">The <code>rebaser</code> places application layers atop a new version of the runtime base image.</p>
+          <p class="m-1">The <code>rebaser</code> places application layers atop a new version of the <code>runtime</code> base image.</p>
 
           
             <div class="text-md-right">
@@ -995,7 +995,7 @@ These include phases relating to <a href="/docs/for-platform-operators/concepts/
             </div>
         
           <h2><a href="https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/extend/" class="">Extend</a></h2>
-          <p class="m-1">The <code>extender</code> applies Dockerfiles output by image extensions to the build or runtime base image.</p>
+          <p class="m-1">The <code>extender</code> applies <code>Dockerfiles</code> output by image extensions to the <code>build</code> or <code>runtime</code> base image.</p>
 
           
             <div class="text-md-right">

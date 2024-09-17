@@ -899,8 +899,13 @@
           <h1 class="title">Extend</h1>
         </div>
 
-        <p>The <code>extender</code> applies Dockerfiles output by image extensions to the build or runtime base image.</p>
+        <p>The <code>extender</code> applies <code>Dockerfiles</code> output by image extensions to the <code>build</code> or <code>runtime</code> base image.</p>
 <h3 id="exit-codes">Exit Codes</h3>
+<p>When extending the build image:</p>
+<ul>
+<li>In addition to the outputs enumerated below, outputs produced by <code>extender</code> include those produced by <code>builder</code> - as the <code>lifecycle</code> will run the <code>build</code> phase after extending the <code>build image</code>.</li>
+<li>Platforms MUST skip the <code>builder</code> and proceed to the <code>exporter</code>.</li>
+</ul>
 <table>
   <thead>
       <tr>
@@ -931,6 +936,42 @@
       </tr>
   </tbody>
 </table>
+<ul>
+<li>For each extension in <code>&lt;group&gt;</code> in order, if a <code>Dockerfile</code> exists in <code>&lt;generated&gt;/&lt;buildpack-id&gt;/&lt;kind&gt;.Dockerfile</code>, the <code>lifecycle</code>:
+<ul>
+<li>Shall apply the <code>Dockerfile</code> to the environment according to the process outlined in the <a href="https://github.com/buildpacks/spec/blob/main/image_extension.md">Image Extension Specification</a>.</li>
+<li>SHALL set the build context to the folder according to the process outlined in the <a href="https://github.com/buildpacks/spec/blob/main/image_extension.md">Image Extension Specification</a>.</li>
+</ul>
+</li>
+<li>The extended image must be an extension of:
+<ul>
+<li>The <code>build-image</code> in <code>&lt;analyzed&gt;</code> when <code>&lt;kind&gt;</code> is <code>build</code>, or</li>
+<li>The <code>run-image</code> in <code>&lt;analyzed&gt;</code> when <code>&lt;kind&gt;</code> is <code>run</code></li>
+</ul>
+</li>
+<li>When extending the <code>build image</code>, after all <code>build.Dockerfile</code>s are applied, the <code>lifecycle</code>:
+<ul>
+<li>Shall proceed with the <code>build</code> phase using the provided <code>&lt;gid&gt;</code> and <code>&lt;uid&gt;</code></li>
+</ul>
+</li>
+<li>When extending the run image, after all <code>run.Dockerfile</code>s are applied, the <code>lifecycle</code>:
+<ul>
+<li><strong>If</strong> any <code>run.Dockerfile</code> set the label <code>io.buildpacks.rebasable</code> to <code>false</code> or left the label unset:
+<ul>
+<li>Shall set the label <code>io.buildpacks.rebasable</code> to <code>false</code> on the extended run image</li>
+</ul>
+</li>
+<li><strong>If</strong> after the final <code>run.Dockerfile</code> the run image user is <code>root</code>,
+<ul>
+<li>Shall fail</li>
+</ul>
+</li>
+<li>Shall copy the manifest and config for the extended run image, along with any new layers, to <code>&lt;extended&gt;</code>/run</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>For more information about the <code>extender</code>, see the <a href="https://github.com/buildpacks/spec/blob/main/platform.md#extender-optional">Platform API spec</a>.</p>
 
         
 

@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="The exporter creates the final OCI image.
+<meta name="description" content="The exporter creates the final OCI image and updates the image config with new metadata to reflect the latest changes.
 "/>
 <link rel="canonical" content="https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/export/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
@@ -23,7 +23,7 @@
 <meta property="og:url" content="https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/export/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-<meta property="og:description" content="The exporter creates the final OCI image.
+<meta property="og:description" content="The exporter creates the final OCI image and updates the image config with new metadata to reflect the latest changes.
 ">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
@@ -899,7 +899,7 @@
           <h1 class="title">Export</h1>
         </div>
 
-        <p>The <code>exporter</code> creates the final OCI image.</p>
+        <p>The <code>exporter</code> creates the final <code>OCI image</code> and updates the image config with new metadata to reflect the latest changes.</p>
 <h3 id="exit-codes">Exit Codes</h3>
 <table>
   <thead>
@@ -932,9 +932,15 @@
   </tbody>
 </table>
 <h3 id="image">Image</h3>
-<p>The <code>exporter</code> accepts as an argument the tag reference to which the app image will be written, either in an OCI image registry or a docker daemon.</p>
+<p>The <code>exporter</code> accepts as an argument the <code>&lt;image&gt;</code> tag reference to which the app image will be written, either in an <code>OCI image</code> registry or a <code>docker daemon</code>.</p>
+<ul>
+<li>At least one <code>&lt;image&gt;</code> must be provided.</li>
+<li>Each <code>&lt;image&gt;</code> must be a valid tag reference.</li>
+<li>If <code>&lt;daemon&gt;</code> is false and more than one <code>&lt;image&gt;</code> is provided they must refer to the same registry.</li>
+<li>The <code>&lt;run-image&gt;</code> will be read from <code>analyzed.toml</code>.</li>
+</ul>
 <h3 id="reporttoml">report.toml</h3>
-<p>The <code>exporter</code> will write a <a href="https://github.com/buildpacks/spec/blob/main/platform.md#reporttoml-toml"><code>report.toml</code></a> containing information about the exported image such as its digest and manifest size (if exported to an OCI registry) or identifier, and any build BOM contributed by buildpacks. The location of the output report can be specified by passing the <code>-report</code> flag; by default, it is written to <code>&lt;layers&gt;/report.toml</code> - note that this is NOT present in the filesystem of the exported image.</p>
+<p>The <code>exporter</code> will write a <a href="https://github.com/buildpacks/spec/blob/main/platform.md#reporttoml-toml"><code>report.toml</code></a> containing information about the exported image such as its digest and manifest size (if exported to an <code>OCI registry</code>) or identifier, and any build BOM contributed by buildpacks. The location of the output report can be specified by passing the <code>-report</code> flag; by default, it is written to <code>&lt;layers&gt;/report.toml</code> - note that this is NOT present in the filesystem of the exported image.</p>
 <hr>
 <p>For more information about the <code>exporter</code>, see the <a href="https://github.com/buildpacks/spec/blob/main/platform.md#exporter">Platform API spec</a>.</p>
 

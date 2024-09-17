@@ -12,21 +12,21 @@
       <link>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/analyze/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/analyze/</guid>
-      <description>&lt;p&gt;The &lt;code&gt;analyzer&lt;/code&gt; restores files that buildpacks may use to optimize the build and export phases.&lt;/p&gt;</description>
+      <description>&lt;p&gt;The &lt;code&gt;analyzer&lt;/code&gt; restores files that buildpacks may use to optimize the &lt;code&gt;build&lt;/code&gt; and &lt;code&gt;export&lt;/code&gt; phases.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Detect</title>
       <link>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/detect/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/detect/</guid>
-      <description>&lt;p&gt;The &lt;code&gt;detector&lt;/code&gt; finds an ordered group of buildpacks to use during the build phase.&lt;/p&gt;</description>
+      <description>&lt;p&gt;The &lt;code&gt;detector&lt;/code&gt; finds an ordered group of buildpacks to use during the &lt;code&gt;build&lt;/code&gt; phase.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Restore</title>
       <link>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/restore/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/restore/</guid>
-      <description>&lt;p&gt;The &lt;code&gt;restorer&lt;/code&gt; copies layers from the cache into the build container.&lt;/p&gt;</description>
+      <description>&lt;p&gt;The &lt;code&gt;restorer&lt;/code&gt; copies layers from the &lt;code&gt;cache&lt;/code&gt; into the &lt;code&gt;build&lt;/code&gt; container.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Build</title>
@@ -40,14 +40,14 @@
       <link>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/export/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/export/</guid>
-      <description>&lt;p&gt;The &lt;code&gt;exporter&lt;/code&gt; creates the final OCI image.&lt;/p&gt;</description>
+      <description>&lt;p&gt;The &lt;code&gt;exporter&lt;/code&gt; creates the final &lt;code&gt;OCI image&lt;/code&gt; and updates the image config with new metadata to reflect the latest changes.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Create</title>
       <link>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/create/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/create/</guid>
-      <description>&lt;p&gt;The &lt;code&gt;creator&lt;/code&gt; runs analyze, detect, restore, build, and export in a single command.&lt;/p&gt;</description>
+      <description>&lt;p&gt;The &lt;code&gt;creator&lt;/code&gt; runs &lt;code&gt;analyze&lt;/code&gt;, &lt;code&gt;detect&lt;/code&gt;, &lt;code&gt;restore&lt;/code&gt;, &lt;code&gt;build&lt;/code&gt;, and &lt;code&gt;export&lt;/code&gt; in a single command.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Launch</title>
@@ -61,14 +61,14 @@
       <link>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/rebase/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/rebase/</guid>
-      <description>&lt;p&gt;The &lt;code&gt;rebaser&lt;/code&gt; places application layers atop a new version of the runtime base image.&lt;/p&gt;</description>
+      <description>&lt;p&gt;The &lt;code&gt;rebaser&lt;/code&gt; places application layers atop a new version of the &lt;code&gt;runtime&lt;/code&gt; base image.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Extend</title>
       <link>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/extend/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/extend/</guid>
-      <description>&lt;p&gt;The &lt;code&gt;extender&lt;/code&gt; applies Dockerfiles output by image extensions to the build or runtime base image.&lt;/p&gt;</description>
+      <description>&lt;p&gt;The &lt;code&gt;extender&lt;/code&gt; applies &lt;code&gt;Dockerfiles&lt;/code&gt; output by image extensions to the &lt;code&gt;build&lt;/code&gt; or &lt;code&gt;runtime&lt;/code&gt; base image.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

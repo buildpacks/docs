@@ -899,8 +899,15 @@
           <h1 class="title">Create</h1>
         </div>
 
-        <p>The <code>creator</code> runs analyze, detect, restore, build, and export in a single command.</p>
+        <p>The <code>creator</code> runs <code>analyze</code>, <code>detect</code>, <code>restore</code>, <code>build</code>, and <code>export</code> in a single command.</p>
+<p>The <code>platform</code> must execute <code>creator</code> in the <code>build</code> environment.
+An image reference (i.e., <code>&lt;previous-image&gt;</code>) to be analyzed is one of the <code>creator</code>&rsquo;s inputs.</p>
+<ul>
+<li><strong>If</strong> <code>&lt;skip-restore&gt;</code> is <code>true</code> the <code>creator</code> shall skip the restoration of any data to each buildpack&rsquo;s layers directory, with the exception of <code>store.toml</code>.</li>
+<li><strong>If</strong> the platform provides one or more <code>&lt;tag&gt;</code> inputs they shall be treated as additional <code>&lt;image&gt;</code> inputs to the <code>exporter</code></li>
+</ul>
 <h3 id="exit-codes">Exit Codes</h3>
+<p>The outputs produced by <code>creator</code> are identical to those produced by <code>exporter</code>, with the following additional expanded set of error codes.</p>
 <table>
   <thead>
       <tr>
@@ -947,6 +954,8 @@
       </tr>
   </tbody>
 </table>
+<hr>
+<p>For more information about the <code>creator</code>, see the <a href="https://github.com/buildpacks/spec/blob/main/platform.md#creator">Platform API spec</a>.</p>
 
         
 
