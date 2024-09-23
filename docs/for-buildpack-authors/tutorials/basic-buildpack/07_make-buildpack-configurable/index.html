@@ -913,15 +913,16 @@ Select NodeJS version We&rsquo;ll allow buildpack users to…">
 </span></span><span class="line"><span class="cl"><span class="k">fi</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># ======= ADDED =======</span>
-</span></span><span class="line"><span class="cl"><span class="nv">plan</span><span class="o">=</span><span class="si">${</span><span class="nv">CNB_BUILD_PLAN_PATH</span><span class="si">}</span>
 </span></span><span class="line"><span class="cl"><span class="nv">version</span><span class="o">=</span>3.1.3
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[[</span> -f .node-js-version <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
-</span></span><span class="line"><span class="cl">    <span class="nv">version</span><span class="o">=</span><span class="k">$(</span>cat .node-js-version <span class="p">|</span> tr -d <span class="s1">&#39;[:space:]&#39;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nv">version</span><span class="o">=</span><span class="k">$(</span>&lt; .node-js-version tr -d <span class="s1">&#39;[:space:]&#39;</span><span class="k">)</span>
 </span></span><span class="line"><span class="cl"><span class="k">fi</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;provides = [{ name = \&#34;node-js\&#34; }]&#34;</span> &gt; <span class="s2">&#34;</span><span class="nv">$plan</span><span class="s2">&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;requires = [{ name = \&#34;node-js\&#34;, metadata = { version = \&#34;</span><span class="nv">$version</span><span class="s2">\&#34; } }]&#34;</span> &gt;&gt; <span class="s2">&#34;</span><span class="nv">$plan</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">cat &gt; <span class="s2">&#34;</span><span class="si">${</span><span class="nv">CNB_BUILD_PLAN_PATH</span><span class="si">}</span><span class="s2">&#34;</span> <span class="s">&lt;&lt; EOL
+</span></span></span><span class="line"><span class="cl"><span class="s">provides = [{ name = &#34;node-js&#34; }]
+</span></span></span><span class="line"><span class="cl"><span class="s">requires = [{ name = &#34;node-js&#34;, metadata = { version = &#34;$version&#34; } }]
+</span></span></span><span class="line"><span class="cl"><span class="s">EOL</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># ======= /ADDED =======</span>
 </span></span></code></pre></div><p>Then you will need to update your <code>build</code> script to look for the recorded NodeJS version in the build plan:</p>
 <p>Your <code>node-js-buildpack/bin/build</code> script should look like the following:</p>
@@ -944,8 +945,8 @@ Select NodeJS version We&rsquo;ll allow buildpack users to…">
 </span></span><span class="line"><span class="cl"><span class="nv">default_node_js_version</span><span class="o">=</span><span class="s2">&#34;18.18.1&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">node_js_version</span><span class="o">=</span><span class="k">$(</span>cat <span class="s2">&#34;</span><span class="nv">$plan</span><span class="s2">&#34;</span> <span class="p">|</span> yj -t <span class="p">|</span> jq -r <span class="s1">&#39;.entries[] | select(.name == &#34;node-js&#34;) | .metadata.version&#39;</span> <span class="o">||</span> <span class="nb">echo</span> <span class="si">${</span><span class="nv">default_node_js_version</span><span class="si">}</span><span class="k">)</span>
 </span></span><span class="line"><span class="cl"><span class="nv">node_js_url</span><span class="o">=</span>https://nodejs.org/dist/v<span class="si">${</span><span class="nv">node_js_version</span><span class="si">}</span>/node-v<span class="si">${</span><span class="nv">node_js_version</span><span class="si">}</span>-linux-x64.tar.xz
-</span></span><span class="line"><span class="cl"><span class="nv">remote_nodejs_version</span><span class="o">=</span><span class="k">$(</span>cat <span class="s2">&#34;</span><span class="si">${</span><span class="nv">CNB_LAYERS_DIR</span><span class="si">}</span><span class="s2">/node-js.toml&#34;</span> 2&gt; /dev/null <span class="p">|</span> yj -t <span class="p">|</span> jq -r .metadata.nodejs_version 2&gt;/dev/null <span class="o">||</span> <span class="nb">echo</span> <span class="s1">&#39;NOT FOUND&#39;</span><span class="k">)</span>
-</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[[</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">node_js_url</span><span class="si">}</span><span class="s2">&#34;</span> !<span class="o">=</span> *<span class="s2">&#34;</span><span class="si">${</span><span class="nv">remote_nodejs_version</span><span class="si">}</span><span class="s2">&#34;</span>* <span class="o">]]</span> <span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl"><span class="nv">remote_nodejs_version</span><span class="o">=</span><span class="k">$(</span>cat <span class="s2">&#34;</span><span class="si">${</span><span class="nv">CNB_LAYERS_DIR</span><span class="si">}</span><span class="s2">/node-js.toml&#34;</span> 2&gt;/dev/null <span class="p">|</span> yj -t <span class="p">|</span> jq -r .metadata.nodejs_version 2&gt;/dev/null <span class="o">||</span> <span class="nb">echo</span> <span class="s1">&#39;NOT FOUND&#39;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[[</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">node_js_url</span><span class="si">}</span><span class="s2">&#34;</span> !<span class="o">=</span> *<span class="s2">&#34;</span><span class="si">${</span><span class="nv">remote_nodejs_version</span><span class="si">}</span><span class="s2">&#34;</span>* <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
 </span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;-----&gt; Downloading and extracting NodeJS&#34;</span> <span class="si">${</span><span class="nv">node_js_version</span><span class="si">}</span>
 </span></span><span class="line"><span class="cl">    wget -q -O - <span class="s2">&#34;</span><span class="si">${</span><span class="nv">node_js_url</span><span class="si">}</span><span class="s2">&#34;</span> <span class="p">|</span> tar -xJf - --strip-components <span class="m">1</span> -C <span class="s2">&#34;</span><span class="si">${</span><span class="nv">node_js_layer</span><span class="si">}</span><span class="s2">&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="k">else</span>
@@ -953,7 +954,7 @@ Select NodeJS version We&rsquo;ll allow buildpack users to…">
 </span></span><span class="line"><span class="cl"><span class="k">fi</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 4. MAKE node-js AVAILABLE DURING LAUNCH and CACHE the LAYER</span>
-</span></span><span class="line"><span class="cl">    cat &gt; <span class="s2">&#34;</span><span class="si">${</span><span class="nv">CNB_LAYERS_DIR</span><span class="si">}</span><span class="s2">/node-js.toml&#34;</span> <span class="s">&lt;&lt; EOL
+</span></span><span class="line"><span class="cl">cat &gt; <span class="s2">&#34;</span><span class="si">${</span><span class="nv">CNB_LAYERS_DIR</span><span class="si">}</span><span class="s2">/node-js.toml&#34;</span> <span class="s">&lt;&lt; EOL
 </span></span></span><span class="line"><span class="cl"><span class="s">[types]
 </span></span></span><span class="line"><span class="cl"><span class="s">cache = true
 </span></span></span><span class="line"><span class="cl"><span class="s">launch = true
@@ -963,7 +964,7 @@ Select NodeJS version We&rsquo;ll allow buildpack users to…">
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># ========== ADDED ===========</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 5. SET DEFAULT START COMMAND</span>
-</span></span><span class="line"><span class="cl">cat &gt;&gt; <span class="s2">&#34;</span><span class="si">${</span><span class="nv">CNB_LAYERS_DIR</span><span class="si">}</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt; EOL
+</span></span><span class="line"><span class="cl">cat &gt; <span class="s2">&#34;</span><span class="si">${</span><span class="nv">CNB_LAYERS_DIR</span><span class="si">}</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt; EOL
 </span></span></span><span class="line"><span class="cl"><span class="s">[[processes]]
 </span></span></span><span class="line"><span class="cl"><span class="s">type = &#34;web&#34;
 </span></span></span><span class="line"><span class="cl"><span class="s">command = [&#34;node&#34;, &#34;app.js&#34;]
