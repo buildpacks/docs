@@ -27,15 +27,16 @@ if [[ ! -f package.json ]]; then
 fi
 
 # ======= ADDED =======
-plan=${CNB_BUILD_PLAN_PATH}
 version=3.1.3
 
 if [[ -f .node-js-version ]]; then
-    version=$(cat .node-js-version | tr -d '[:space:]')
+    version=$(< .node-js-version tr -d '[:space:]')
 fi
 
-echo "provides = [{ name = \"node-js\" }]" > "$plan"
-echo "requires = [{ name = \"node-js\", metadata = { version = \"$version\" } }]" >> "$plan"
+cat > "${CNB_BUILD_PLAN_PATH}" << EOL
+provides = [{ name = "node-js" }]
+requires = [{ name = "node-js", metadata = { version = "$version" } }]
+EOL
 # ======= /ADDED =======
 ```
 
@@ -63,8 +64,8 @@ mkdir -p "${node_js_layer}"
 default_node_js_version="18.18.1"
 node_js_version=$(cat "$plan" | yj -t | jq -r '.entries[] | select(.name == "node-js") | .metadata.version' || echo ${default_node_js_version})
 node_js_url=https://nodejs.org/dist/v${node_js_version}/node-v${node_js_version}-linux-x64.tar.xz
-remote_nodejs_version=$(cat "${CNB_LAYERS_DIR}/node-js.toml" 2> /dev/null | yj -t | jq -r .metadata.nodejs_version 2>/dev/null || echo 'NOT FOUND')
-if [[ "${node_js_url}" != *"${remote_nodejs_version}"* ]] ; then
+remote_nodejs_version=$(cat "${CNB_LAYERS_DIR}/node-js.toml" 2>/dev/null | yj -t | jq -r .metadata.nodejs_version 2>/dev/null || echo 'NOT FOUND')
+if [[ "${node_js_url}" != *"${remote_nodejs_version}"* ]]; then
     echo "-----> Downloading and extracting NodeJS" ${node_js_version}
     wget -q -O - "${node_js_url}" | tar -xJf - --strip-components 1 -C "${node_js_layer}"
 else
@@ -72,7 +73,7 @@ else
 fi
 
 # 4. MAKE node-js AVAILABLE DURING LAUNCH and CACHE the LAYER
-    cat > "${CNB_LAYERS_DIR}/node-js.toml" << EOL
+cat > "${CNB_LAYERS_DIR}/node-js.toml" << EOL
 [types]
 cache = true
 launch = true
@@ -82,7 +83,7 @@ EOL
 
 # ========== ADDED ===========
 # 5. SET DEFAULT START COMMAND
-cat >> "${CNB_LAYERS_DIR}/launch.toml" << EOL
+cat > "${CNB_LAYERS_DIR}/launch.toml" << EOL
 [[processes]]
 type = "web"
 command = ["node", "app.js"]
