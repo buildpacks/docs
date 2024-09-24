@@ -129,15 +129,62 @@ In this tutorial, there is no previous `apps/bash-script` image, and the output 
 OUTPUT PLACEHOLDER
 ```
 
-Now checking the `layers` directory you should have a `analyzer.toml` file with a bunch of null entries.
+Now if you check the `layers` directory, you should have a `analyzer.toml` file with a few null entries.
 
 #### Detect
+
+In this phase, the `detector` looks for an ordered group of buildpacks that will be used during the `build` phase. The `detector` requires an `order.toml` file being present in the `root` directory, which you could derived from `builder.toml` in the `samples` directory while removing the deprecated `stack` section as follows:
+
+```text
+cat "${CNB_SAMPLES_PATH}/builders/jammy/builder.toml" | grep -v -i "stack" | sed 's/\.\.\/\.\./\./' > order.toml
+
+```
+
+`order.toml` files contain a list of groups with each group containing a list of buildpacks. The `detector` reads `order.toml` and looks for the first group that passes the detection process.
+
+##### Set buildpacks layout directory
+
+Before running the `detector`, you need to:
+
+1. Create a `buildpacks` directory in the `root` directory
+
+    ```text
+    mkdir -p buildpacks
+    ```
+
+2. Then you must populate the `buildpacks` directory with your buildpacks of interest.
+
+    > You have to follow the [directory layout][directory layout] defined in the buildpack spec, where each top-level directory is a `buildpack ID` and each second-level directory is a `buildpack version`.
+
+    Let’s do that for every buildpack in the `samples/buildpacks` directory:
+
+    ```text
+    for f in `ls --color=no $CNB_SAMPLES_PATH/buildpacks | grep -v README`
+    do
+    mkdir -p ./buildpacks/samples_"$f"/0.0.1
+    cp -r "$CNB_SAMPLES_PATH/buildpacks/$f/" ./buildpacks/samples_"$f"/0.0.1/
+    done
+    ```
+
+Now, you can run the `detector` binary:
+
+```text
+${CNB_LIFECYCLE_PATH}/detector -log-level debug -layers="./layers" -order="./order.toml" -buildpacks="./buildpacks" -app apps/bash-script
+```
+
+The output of the above command should have `group.toml` and `plan.toml` output files (i.e., the groups that have passed the detection have been written into the `group.toml` file writing its build plan into the `plan.toml` file)
+
+```text
+OUTPUT PLACEHOLDER
+```
+
+You can view more details about the [order](https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/detect/#ordertoml), [group](https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/detect/#grouptoml) and [plan](https://buildpacks.io/docs/concepts/components/lifecycle/detect/#plantoml) toml files in the platform documentation.
 
 #### Restore
 
 The `restorer` retrieves cache contents, if it contains any, into the build container. During this phase, the `restorer` looks for layers that could be reused or should be replaced while building the application image.
 
-First, you need to create the `cache` directory, and then run the `restorer` binary as follows:
+First, you need to create the `cache` directory, and then run the `restorer` binary as added below:
 
 ```text
 mkdir cache
@@ -214,7 +261,7 @@ To export the artifacts built by the `builder`, you first need to specify the pa
   export {CNB_LINUX_LAUNCHER_PATH}=/<your-path>/lifecycle/out/linux-arm64/lifecycle/launcher
   ```
 
-Now you can run the `exporter`
+Now you can run the `exporter`:
 
 ```text
 ${CNB_LIFECYCLE_PATH}/exporter --log-level debug -launch-cache "./cache" -daemon -cache-dir "./cache" -analyzed "./layers/analyzed.toml" -group "./layers/group.toml" -layers="./layers" -app "./workspace" -launcher="${CNB_LINUX_LAUNCHER_PATH}" -process-type="shell" apps/bash-script
@@ -241,5 +288,6 @@ At the end of this tutorial, we hope that you have a better overview of the proc
 [pack]: https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/
 [kpack]: https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/kpack/
 [lifecycle]: https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/
+[directory layout]: https://github.com/buildpacks/spec/blob/main/platform.md#buildpacks-directory-layout
 [Platform API]: https://github.com/buildpacks/spec/releases?q=platform
 [blog post]: https://medium.com/buildpacks/unpacking-cloud-native-buildpacks-ff51b5a767bf
