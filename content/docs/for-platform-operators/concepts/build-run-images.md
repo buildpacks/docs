@@ -71,7 +71,7 @@ The platform should ensure that:
 * The image config's `Label` field has the label `io.buildpacks.base.released` set to the release date of the image.
 * The image config's `Label` field has the label `io.buildpacks.base.description` set to the description of the image
 * The image config's `Label` field has the label `io.buildpacks.base.metadata` set to additional metadata related to the image
-* The image config's `Label` field has the label `io.buildpacks.rebasable` set to `true` to indicate that new run image versions maintain [ABI-compatibility](https://en.wikipedia.org/wiki/Application_binary_interface) with previous versions (see [Compatibility Guarantees]([#compatibility-guarantees](https://github.com/buildpacks/spec/blob/main/platform.md#compatibility-guarantees))).
+* The image config's `Label` field has the label `io.buildpacks.rebasable` set to `true` to indicate that new run image versions maintain [ABI-compatibility](https://en.wikipedia.org/wiki/Application_binary_interface) with previous versions (see [Compatibility Guarantees](https://github.com/buildpacks/spec/blob/main/platform.md#compatibility-guarantees)).
 
 #### Anatomy of a run image
 
