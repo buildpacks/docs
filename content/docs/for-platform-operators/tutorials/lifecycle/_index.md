@@ -51,16 +51,14 @@ As a starting step, you need to build the `lifecycle` in order to use its phases
 In order to execute the various `lifecycle phases` correctly, you first need to set the values of few important environment variables by running the following commands in the terminal:
 
 ```text
-
-export CNB_USER_ID=1000 CNB_GROUP_ID=1000 CNB_PLATFORM_API=0.14
+export CNB_USER_ID=$(id -u) CNB_GROUP_ID=$(id -g) CNB_PLATFORM_API=0.14
 export CNB_SAMPLES_PATH="/<your-path>/samples"
-export CNB_LIFECYCLE_PATH="/<your-path/lifecycle/out/<your-arch>/lifecycle"`
-
+export CNB_LIFECYCLE_PATH="/<your-path/lifecycle/out/<your-arch>/lifecycle"
 ```
 
 Where
 
-* `CNB_USER_ID` and `CNB_GROUP_ID` are arbitrary values that need to be consistent, which both have a default value of `1000`.
+* `CNB_USER_ID` and `CNB_GROUP_ID` are arbitrary values that need to be consistent. This example re-uses our user id and group id for the `CNB` user.  In a production system, these are commonly set to `1000`.
 * `CNB_PLATFORM_API` or the `Platform API` version, varies depending on the use case. This tutorial uses `v0.14`, which is the latest [Platform API][Platform API] version.
 * `CNB_SAMPLES_PATH` represents the path of our local copy of the `samples` directory.
 * `CNB_LIFECYCLE_PATH` represents the path of our local compiled `lifecycle` directory.
@@ -96,14 +94,16 @@ mkdir -p layers
 Next,  you need to copy the `bash-script` samples into our `apps/bash-script` directory, which will host our app's source code.
 
 ```text
-cp -r "${CNB_SAMPLES_PATH}/apps/bash-script/" ./apps/bash-script
+cp -r "${CNB_SAMPLES_PATH}/apps/bash-script/*" ./apps/bash-script
 ```
 
-Now, you can invoke the `analyzer` for `AMD64` and `ARM64` architectures respectively
+Now, you can invoke the `analyzer` for `AMD64` architecture
 
 ```text
-${CNB_LIFECYCLE_PATH}/analyzer -log-level debug -daemon -layers="./layers" -run-image cnbs/sample-stack-run:bionic apps/bash-script
+${CNB_LIFECYCLE_PATH}/analyzer -log-level debug -daemon -layers="./layers" -run-image cnbs/sample-stack-run:jammy apps/bash-script
 ```
+
+Or if you are on an `ARM64` platform
 
 ```text
 ${CNB_LIFECYCLE_PATH}/analyzer -log-level debug -daemon -layers="./layers" -run-image arm64v8/ubuntu:latest apps/bash-script
@@ -126,14 +126,24 @@ Now the `analyzer`:
 In this tutorial, there is no previous `apps/bash-script` image, and the output produced should be similar to the following:
 
 ```text
-OUTPUT PLACEHOLDER
+sample-stack-run:jammy apps/bash-script
+Starting analyzer...
+Parsing inputs...
+Ensuring privileges...
+Executing command...
+Timer: Analyzer started at 2024-09-30T07:38:14Z
+Image with name "apps/bash-script" not found
+Image with name "cnbs/sample-stack-run:jammy" not found
+Timer: Analyzer ran for 41.92µs and ended at 2024-09-30T07:38:14Z
+Run image info in analyzed metadata is: 
+{"Reference":"","Image":"cnbs/sample-stack-run:jammy","Extend":false,"target":{"os":"linux","arch":"amd64"}}
 ```
 
-Now if you check the `layers` directory, you should have a `analyzer.toml` file with a few null entries.
+Now if you check the `layers` directory, you should have a `analyzed.toml` file with a few null entries.
 
 #### Detect
 
-In this phase, the `detector` looks for an ordered group of buildpacks that will be used during the `build` phase. The `detector` requires an `order.toml` file being present in the `root` directory, which you could derived from `builder.toml` in the `samples` directory while removing the deprecated `stack` section as follows:
+In this phase, the `detector` looks for an ordered group of buildpacks that will be used during the `build` phase. The `detector` requires an `order.toml` file being present in the `root` directory, which you could derive from `builder.toml` in the `samples` directory while removing the deprecated `stack` section as follows:
 
 ```text
 cat "${CNB_SAMPLES_PATH}/builders/jammy/builder.toml" | grep -v -i "stack" | sed 's/\.\.\/\.\./\./' > order.toml
@@ -156,13 +166,19 @@ Before running the `detector`, you need to:
 
     > You have to follow the [directory layout][directory layout] defined in the buildpack spec, where each top-level directory is a `buildpack ID` and each second-level directory is a `buildpack version`.
 
+    We will use [`dasel`](http://github.com/tomwright/dasel/) to help us parse toml files.
+
+    ```command
+    $ go install github.com/tomwright/dasel/v2/cmd/dasel@master
+
     Let’s do that for every buildpack in the `samples/buildpacks` directory:
 
     ```text
-    for f in `ls --color=no $CNB_SAMPLES_PATH/buildpacks | grep -v README`
+    for f in $(ls --color=no ${CNB_SAMPLES_PATH}/buildpacks | grep -v README)
     do
-    mkdir -p ./buildpacks/samples_"$f"/0.0.1
-    cp -r "$CNB_SAMPLES_PATH/buildpacks/$f/" ./buildpacks/samples_"$f"/0.0.1/
+    bp_version=$(cat $f | dasel -r toml "${CNB_SAMPLES_PATH}/buildpacks/${f}/buildpack.version" | sed s/\'//g)
+    mkdir -p ./buildpacks/samples_"${f}"/${bp_version}
+    cp -r "$CNB_SAMPLES_PATH/buildpacks/${f}/" ./buildpacks/samples_"${f}"/${bp_version}/
     done
     ```
 
