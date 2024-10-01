@@ -176,9 +176,9 @@ Before running the `detector`, you need to:
     ```text
     for f in $(ls --color=no ${CNB_SAMPLES_PATH}/buildpacks | grep -v README)
     do
-    bp_version=$(cat $f | dasel -r toml "${CNB_SAMPLES_PATH}/buildpacks/${f}/buildpack.version" | sed s/\'//g)
+    bp_version=$(cat ${CNB_SAMPLES_PATH}/buildpacks/$f/buildpack.toml | dasel -r toml buildpack.version | sed s/\'//g);
     mkdir -p ./buildpacks/samples_"${f}"/${bp_version}
-    cp -r "$CNB_SAMPLES_PATH/buildpacks/${f}/" ./buildpacks/samples_"${f}"/${bp_version}/
+    cp -r "$CNB_SAMPLES_PATH/buildpacks/${f}/*" ./buildpacks/samples_"${f}"/${bp_version}/
     done
     ```
 
@@ -188,10 +188,36 @@ Now, you can run the `detector` binary:
 ${CNB_LIFECYCLE_PATH}/detector -log-level debug -layers="./layers" -order="./order.toml" -buildpacks="./buildpacks" -app apps/bash-script
 ```
 
-The output of the above command should have `group.toml` and `plan.toml` output files (i.e., the groups that have passed the detection have been written into the `group.toml` file writing its build plan into the `plan.toml` file)
+The output of the above command should have `layers/group.toml` and `layers/plan.toml` output files (i.e., the groups that have passed the detection have been written into the `group.toml` file writing its build plan into the `plan.toml` file)
 
 ```text
-OUTPUT PLACEHOLDER
+Starting detector...
+Parsing inputs...
+Ensuring privileges...
+Executing command...
+Timer: Detector started at 2024-10-01T07:00:50Z
+Checking for match against descriptor: {linux   []}
+target distro name/version labels not found, reading /etc/os-release file
+Checking for match against descriptor: {linux   []}
+target distro name/version labels not found, reading /etc/os-release file
+Checking for match against descriptor: {linux   []}
+target distro name/version labels not found, reading /etc/os-release file
+Checking for match against descriptor: {linux   []}
+target distro name/version labels not found, reading /etc/os-release file
+Checking for match against descriptor: {linux   []}
+======== Results ========
+fail: samples/java-maven@0.0.2
+======== Results ========
+fail: samples/kotlin-gradle@0.0.2
+======== Results ========
+fail: samples/ruby-bundler@0.0.1
+======== Results ========
+pass: samples/hello-world@0.0.1
+pass: samples/hello-moon@0.0.1
+Resolving plan... (try #1)
+samples/hello-world 0.0.1
+samples/hello-moon  0.0.1
+Timer: Detector ran for 26.011769ms and ended at 2024-10-01T07:00:50Z
 ```
 
 You can view more details about the [order](https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/detect/#ordertoml), [group](https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/detect/#grouptoml) and [plan](https://buildpacks.io/docs/concepts/components/lifecycle/detect/#plantoml) toml files in the platform documentation.
@@ -213,7 +239,22 @@ ${CNB_LIFECYCLE_PATH}/restorer -log-level debug -layers="./layers" -group="./lay
 The `cache` directory should now be populated by two sub-directories, `committed` and `staging` as shown in the output below:
 
 ```text
-OUTPUT PLACEHOLDER
+Starting restorer...
+Parsing inputs...
+Ensuring privileges...
+Executing command...
+No run metadata found at path "/cnb/run.toml"
+Run image info in analyzed metadata is: 
+{"Reference":"","Image":"cnbs/sample-stack-run:jammy","Extend":false,"target":{"os":"linux","arch":"amd64"}}
+Timer: Restorer started at 2024-10-01T07:03:47Z
+Restoring Layer Metadata
+Reading buildpack directory: /tmp/example/layers/samples_hello-world
+Reading buildpack directory: /tmp/example/layers/samples_hello-moon
+Reading Buildpack Layers directory /tmp/example/layers
+Reading buildpack directory: /tmp/example/layers/samples_hello-world
+Reading Buildpack Layers directory /tmp/example/layers
+Reading buildpack directory: /tmp/example/layers/samples_hello-moon
+Timer: Restorer ran for 274.41µs and ended at 2024-10-01T07:03:47Z
 ```
 
 #### Build
@@ -240,6 +281,7 @@ Before running the `builder`, the following steps are required:
 3. Create a `launcher` file with instructions to run your application
 
     ```text
+    mkdir -p layers/samples_hello-moon
     cat << EOF > ./layers/samples_hello-moon/launch.toml
     [[processes]]
     type = "shell"
@@ -256,7 +298,94 @@ ${CNB_LIFECYCLE_PATH}/builder -log-level debug -layers="./layers" -group="./laye
 Taking a deep look at the following output shows that you have built the two buildpacks that we need in order to run our `bash-script` application. In addition, checking the `layers` directory should show other directories like the two from the buildpacks, a `config` and a `sbom` ones.
 
 ```text
-OUTPUT PLACEHOLDER
+Starting builder...
+Parsing inputs...
+Ensuring privileges...
+Executing command...
+Timer: Builder started at 2024-10-01T07:07:46Z
+target distro name/version labels not found, reading /etc/os-release file
+Running build for buildpack samples/hello-world@0.0.1
+Looking up buildpack
+Finding plan
+Creating plan directory
+Preparing paths
+Running build command
+---> Hello World buildpack
+     platform_dir files:
+       /tmp/example/platform:
+       total 0
+       drwxr-xr-x 2 gitpod gitpod  40 Oct  1 07:04 .
+       drwxr-xr-x 8 gitpod gitpod 180 Oct  1 07:04 ..
+     env_dir: /tmp/example/platform/env
+     env vars:
+       declare -x CNB_BP_PLAN_PATH="/tmp/samples_hello-world-576309032/samples_hello-world/plan.toml"
+       declare -x CNB_BUILDPACK_DIR="/tmp/example/buildpacks/samples_hello-world/0.0.1"
+       declare -x CNB_LAYERS_DIR="/tmp/example/layers/samples_hello-world"
+       declare -x CNB_PLATFORM_DIR="/tmp/example/platform"
+       declare -x CNB_TARGET_ARCH="amd64"
+       declare -x CNB_TARGET_DISTRO_NAME="ubuntu"
+       declare -x CNB_TARGET_DISTRO_VERSION="22.04"
+       declare -x CNB_TARGET_OS="linux"
+       declare -x HOME="/home/gitpod"
+       declare -x HOSTNAME="buildpacks-docs-dusxugo5ehi"
+       declare -x OLDPWD
+       declare -x PATH="/bin:/usr/bin:/usr/local/bin"
+       declare -x PWD="/tmp/example/workspace"
+       declare -x SHLVL="1"
+     layers_dir: /tmp/example/layers/samples_hello-world
+     plan_path: /tmp/samples_hello-world-576309032/samples_hello-world/plan.toml
+     plan contents:
+       [[entries]]
+         name = "some-world"
+       
+       [[entries]]
+         name = "some-world"
+         [entries.metadata]
+           world = "Earth-616"
+---> Done
+Processing layers
+Updating environment
+Reading output files
+Updating buildpack processes
+Updating process list
+Finished running build for buildpack samples/hello-world@0.0.1
+Running build for buildpack samples/hello-moon@0.0.1
+Looking up buildpack
+Finding plan
+Creating plan directory
+Preparing paths
+Running build command
+---> Hello Moon buildpack
+     env_dir: /tmp/example/platform/env
+     env vars:
+       declare -x CNB_BP_PLAN_PATH="/tmp/samples_hello-moon-3356528850/samples_hello-moon/plan.toml"
+       declare -x CNB_BUILDPACK_DIR="/tmp/example/buildpacks/samples_hello-moon/0.0.1"
+       declare -x CNB_LAYERS_DIR="/tmp/example/layers/samples_hello-moon"
+       declare -x CNB_PLATFORM_DIR="/tmp/example/platform"
+       declare -x CNB_TARGET_ARCH="amd64"
+       declare -x CNB_TARGET_DISTRO_NAME="ubuntu"
+       declare -x CNB_TARGET_DISTRO_VERSION="22.04"
+       declare -x CNB_TARGET_OS="linux"
+       declare -x HOME="/home/gitpod"
+       declare -x HOSTNAME="buildpacks-docs-dusxugo5ehi"
+       declare -x OLDPWD
+       declare -x PATH="/bin:/usr/bin:/usr/local/bin"
+       declare -x PWD="/tmp/example/workspace"
+       declare -x SHLVL="1"
+     layers_dir: /tmp/example/layers/samples_hello-moon
+     plan_path: /tmp/samples_hello-moon-3356528850/samples_hello-moon/plan.toml
+     plan contents:
+---> Done
+Processing layers
+Updating environment
+Reading output files
+Updating buildpack processes
+Updating process list
+Finished running build for buildpack samples/hello-moon@0.0.1
+Copying SBOM files
+Creating SBOM files for legacy BOM
+Listing processes
+Timer: Builder ran for 20.200892ms and ended at 2024-10-01T07:07:46Z
 ```
 
 #### Export
@@ -268,13 +397,13 @@ To export the artifacts built by the `builder`, you first need to specify the pa
 * For AMD64 architectures
   
   ```text
-  export {CNB_LINUX_LAUNCHER_PATH}=/<your-path>/lifecycle/out/linux-amd64/lifecycle/launcher
+  export CNB_LINUX_LAUNCHER_PATH=/<your-path>/lifecycle/out/linux-amd64/lifecycle/launcher
   ```
 
 * For ARM64 Architectures
 
   ```text
-  export {CNB_LINUX_LAUNCHER_PATH}=/<your-path>/lifecycle/out/linux-arm64/lifecycle/launcher
+  export CNB_LINUX_LAUNCHER_PATH=/<your-path>/lifecycle/out/linux-arm64/lifecycle/launcher
   ```
 
 Now you can run the `exporter`:
