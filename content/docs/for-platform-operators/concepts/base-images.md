@@ -3,11 +3,11 @@ title="Base image types"
 weight=99
 +++
 
-As you already know, `Cloud Native Buildpacks (CNBs)` transform your application source code into `OCI images`  that can run on any cloud and include all of the components your application needs to build and run and.
+As you already know, `Cloud Native Buildpacks (CNBs)` transform your application source code into `OCI images`  that can run on any cloud.
 
 <!--more-->
 
-Each buildpack checks the source code and provides any relevant dependencies. Then, a `base image` is then generated from the application’s source code and these dependencies.
+Each buildpack checks the source code and provides any relevant dependencies in the form of layers. Then, buildpack-provided layers are placed atop a runtime `base image` to form the final application image.
 
 ## Base image types
 
@@ -15,7 +15,7 @@ A `base image` is an `OCI image` containing the base, or initial set of layers, 
 
 ### Build image
 
-A `build image` is an `OCI image` that serves as the base image for the `build` environment in which buildpacks `lifecycle` is executed.
+A `build image` is an `OCI image` that serves as the base image for the `build` environment in which the CNB `lifecycle` and buildpacks are executed.
 
 A typical `build image` might determine:
 
@@ -48,7 +48,7 @@ Typically, a `build` image may include:
 * Minimal operating system distribution, such as Linux utilities that build systems might call out to
 * Build time libraries
 
-### Run image
+### Runtime image
 
 A `run image` is an `OCI image` that serves as the base image for the final application image.
 
@@ -73,7 +73,7 @@ The platform should ensure that:
 * The image config's `Label` field has the label `io.buildpacks.base.metadata` set to additional metadata related to the image
 * The image config's `Label` field has the label `io.buildpacks.rebasable` set to `true` to indicate that new run image versions maintain [ABI-compatibility](https://en.wikipedia.org/wiki/Application_binary_interface) with previous versions (see [Compatibility Guarantees](https://github.com/buildpacks/spec/blob/main/platform.md#compatibility-guarantees)).
 
-#### Anatomy of a run image
+#### Anatomy of a runtime base image
 
 A `runtime` image may contain:
 
