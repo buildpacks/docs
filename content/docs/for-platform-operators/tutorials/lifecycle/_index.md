@@ -94,7 +94,7 @@ mkdir -p layers
 Next,  you need to copy the `bash-script` samples into our `apps/bash-script` directory, which will host our app's source code.
 
 ```text
-cp -r "${CNB_SAMPLES_PATH}/apps/bash-script/*" ./apps/bash-script
+cp -r "${CNB_SAMPLES_PATH}/apps/bash-script" ./apps/
 ```
 
 Now, you can invoke the `analyzer` for `AMD64` architecture
