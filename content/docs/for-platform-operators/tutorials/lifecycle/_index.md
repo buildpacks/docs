@@ -9,17 +9,17 @@ A `platform` orchestrates builds by invoking the [lifecycle][lifecycle] binary t
 
 <!--more-->
 
-The majority of Buildpack users use platforms, such as [pack][pack] and [kpack][kpack], to run Buildpacks and create `OCI images`. However this might not be desireable especially for users maintaining their own platforms and seeking more control over how the underlying Buildpack `lifecycle phases` are executed.
+The majority of Buildpack users use community-maintained platforms, such as [pack][pack] and [kpack][kpack], to run Buildpacks and create `OCI images`. However this might not be desireable especially for users maintaining their own platforms and seeking more control over how the underlying Buildpack `lifecycle phases` are executed.
 
-> This tutorial is derived from a [blog post][blog post] contributed by one of our community.
+> This tutorial is derived from a [blog post][blog post] contributed by one of our community members.
 
 In this step-by-step tutorial, you will build a `Bash` application without using any `platform` tooling like `pack` or `kpack`. You will also leverage the individual `lifecycle phases` to produce a runnable application image.
 
 ## Prerequisites
 
-You'll need to clone a local copy of the following to get started:
+This tutorial has been tested on linux amd64 and darwin arm64 platforms. You'll need to clone a local copy of the following to get started:
 
-* The `lifecycle`
+* The CNB `lifecycle`
   
   ```text
   git clone https://github.com/buildpacks/lifecycle
@@ -41,7 +41,7 @@ Now that you’re set up, let’s build our `Bash` application and dive deeper i
 
 As a starting step, you need to build the `lifecycle` in order to use its phases. This could be done by navigating to the `lifecycle` directory and executing one of the following commands, depending on your system architecture.
 
-* `make build` for `AMD64` architectures (for Linux users)
+* `make build-linux-amd64` for `AMD64` architectures (for Linux users)
 * `make build-darwin-arm64` for `ARM64` architectures (for Mac users)
 
 > Please note that the entire process is most easily followed on Linux systems
@@ -53,7 +53,7 @@ In order to execute the various `lifecycle phases` correctly, you first need to 
 ```text
 export CNB_USER_ID=$(id -u) CNB_GROUP_ID=$(id -g) CNB_PLATFORM_API=0.14
 export CNB_SAMPLES_PATH="/<your-path>/samples"
-export CNB_LIFECYCLE_PATH="/<your-path/lifecycle/out/<your-arch>/lifecycle"
+export CNB_LIFECYCLE_PATH="/<your-path/lifecycle/out/<your-os-arch>/lifecycle"
 ```
 
 Where
@@ -112,16 +112,16 @@ ${CNB_LIFECYCLE_PATH}/analyzer -log-level debug -daemon -layers="./layers" -run-
 The commands above run the `analyzer` with:
 
 * A `debug` logging level
-* Pointing to the local `Docker daemon`
-* Pointing to the `layers` directory, which is the main `lifecycle` working directory
-* Running the specified image
-* The path to the app that you are analyzing
+* Pointing to the local `Docker daemon` as the repository where the lifecycle should look for images
+* Pointing to the `layers` directory, which is the `lifecycle`'s main working directory
+* Pointing to a `run` image, the base image for the application
+* Specifying a name for the final application image
 
 Now the `analyzer`:
 
-* Checks a registry for previous images called `apps/bash-script`.
-* Resolves the image metadata making it available to the subsequent `restore` phase.
-* Verifies that you have write access to the registry to create or update the image called `apps/bash-script`.
+* Checks the image repository (`daemon` in this case) for a previous image called `apps/bash-script`
+* Reads metadata from the previous image (if it exists) for later use
+* Verifies that have permission to create or update the image called `apps/bash-script` in the image repository
 
 In this tutorial, there is no previous `apps/bash-script` image, and the output produced should be similar to the following:
 
@@ -139,11 +139,11 @@ Run image info in analyzed metadata is:
 {"Reference":"","Image":"cnbs/sample-stack-run:jammy","Extend":false,"target":{"os":"linux","arch":"amd64"}}
 ```
 
-Now if you check the `layers` directory, you should have a `analyzed.toml` file with a few null entries.
+Now if you `cat ./layers/analyzed.toml`, you should see a few null entries, a `run-image` section that records the provided name provided, and the found `os/arch`.
 
 #### Detect
 
-In this phase, the `detector` looks for an ordered group of buildpacks that will be used during the `build` phase. The `detector` requires an `order.toml` file being present in the `root` directory, which you could derive from `builder.toml` in the `samples` directory while removing the deprecated `stack` section as follows:
+In this phase, the `detector` looks for an ordered group of buildpacks that will be used during the `build` phase. The `detector` requires an `order.toml` file to be provided. We can derive an order from `builder.toml` in the `samples` directory while removing the deprecated `stack` section as follows:
 
 ```text
 cat "${CNB_SAMPLES_PATH}/builders/jammy/builder.toml" | grep -v -i "stack" | sed 's/\.\.\/\.\./\./' > order.toml
@@ -178,7 +178,7 @@ Before running the `detector`, you need to:
     do
     bp_version=$(cat ${CNB_SAMPLES_PATH}/buildpacks/$f/buildpack.toml | dasel -r toml buildpack.version | sed s/\'//g);
     mkdir -p ./buildpacks/samples_"${f}"/${bp_version}
-    cp -r "$CNB_SAMPLES_PATH/buildpacks/${f}/*" ./buildpacks/samples_"${f}"/${bp_version}/
+    cp -r "$CNB_SAMPLES_PATH/buildpacks/${f}/" ./buildpacks/samples_"${f}"/${bp_version}/
     done
     ```
 
@@ -224,7 +224,7 @@ You can view more details about the [order](https://buildpacks.io/docs/for-platf
 
 #### Restore
 
-The `restorer` retrieves cache contents, if it contains any, into the build container. During this phase, the `restorer` looks for layers that could be reused or should be replaced while building the application image.
+The `restorer` copies cache contents, if there is a cache, into the build container. This avoids buildpacks having to re-download build-time dependencies that were downloaded during a previous build.
 
 First, you need to create the `cache` directory, and then run the `restorer` binary as added below:
 
@@ -233,7 +233,7 @@ mkdir cache
 ```
 
 ```text
-${CNB_LIFECYCLE_PATH}/restorer -log-level debug -layers="./layers" -group="./layers/group.toml" -cache-dir="./cache" -analyzed="./layers/analyzed.toml"
+${CNB_LIFECYCLE_PATH}/restorer -log-level debug -daemon -layers="./layers" -group="./layers/group.toml" -cache-dir="./cache" -analyzed="./layers/analyzed.toml"
 ```
 
 The `cache` directory should now be populated by two sub-directories, `committed` and `staging` as shown in the output below:
@@ -259,13 +259,13 @@ Timer: Restorer ran for 274.41µs and ended at 2024-10-01T07:03:47Z
 
 #### Build
 
-The `builder` transforms application source code into runnable artifacts that can be packaged into a container.
+The `builder` run buildpacks, that do the actual work of transforming application source code into runnable artifacts.
 
 Before running the `builder`, the following steps are required:
 
 1. Create two directories:
-   * `platform` directory to store configurations and environment variables
-   * `workspace` directory to store application source code and where you build it
+   * `platform` directory to store platform configuration and environment variables
+   * `workspace` directory to store the application source code
   
     ```text
     mkdir -p platform
@@ -295,7 +295,7 @@ Now you're ready to run the `builder` as follows:
 ${CNB_LIFECYCLE_PATH}/builder -log-level debug -layers="./layers" -group="./layers/group.toml" -analyzed="./layers/analyzed.toml" -plan="./layers/plan.toml" -buildpacks="./buildpacks" -app="./workspace" -platform="./platform"
 ```
 
-Taking a deep look at the following output shows that you have built the two buildpacks that we need in order to run our `bash-script` application. In addition, checking the `layers` directory should show other directories like the two from the buildpacks, a `config` and a `sbom` ones.
+Taking a look at the following output shows that you have invoked the two buildpacks that we need in order to run our `bash-script` application.
 
 ```text
 Starting builder...
@@ -392,7 +392,7 @@ Timer: Builder ran for 20.200892ms and ended at 2024-10-01T07:07:46Z
 
 The purpose of the `export` phase is to create a new `OCI` image using a combination of remote layers, local `<layers>/<layer>` layers, and the processed `app` directory.
 
-To export the artifacts built by the `builder`, you first need to specify the path of the `launcher` that your image is going to run:
+To export the artifacts built by the `builder`, you first need to specify where to find the `launcher` executable that will be bundled into your image as the entrypoint to run:
 
 * For AMD64 architectures
   
@@ -409,7 +409,7 @@ To export the artifacts built by the `builder`, you first need to specify the pa
 Now you can run the `exporter`:
 
 ```text
-${CNB_LIFECYCLE_PATH}/exporter --log-level debug -launch-cache "./cache" -daemon -cache-dir "./cache" -analyzed "./layers/analyzed.toml" -group "./layers/group.toml" -layers="./layers" -app "./workspace" -launcher="${CNB_LINUX_LAUNCHER_PATH}" -process-type="shell" apps/bash-script
+${CNB_LIFECYCLE_PATH}/exporter --log-level debug -launch-cache "./cache" -daemon -cache-dir "./cache" -analyzed "./layers/analyzed.toml" -group "./layers/group.toml" -layers="./layers" -app "./workspace" -launcher="${CNB_LINUX_LAUNCHER_PATH}" apps/bash-script
 ```
 
 You can verify that the image was successfully exported by running the `docker images` command.
@@ -428,7 +428,7 @@ OUTPUT PLACEHOLDER
 
 ## Wrapping up
 
-At the end of this tutorial, we hope that you now have a better understanding on how you could use `Buildpacks` to create container images. You are now ready to explore this technology further and customize it to fit your application development and deployment needs.
+At the end of this tutorial, we hope that you now have a better understanding of what happens during each lifecycle phase, and how you could use `Buildpacks` to create container images. You are now ready to explore this technology further and customize it to fit your application development and deployment needs.
 
 [pack]: https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/
 [kpack]: https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/kpack/
