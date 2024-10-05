@@ -11,7 +11,7 @@ Each buildpack checks the source code and provides any relevant dependencies in 
 
 ## Base image types
 
-A `base image` is an `OCI image` containing the base, or initial set of layers, for other images. It is helpful to distinguish between two distinct types of images, `Build` and `Run` images.
+A `base image` is an `OCI image` containing the base, or initial set of layers, for other images. It is helpful to distinguish between two distinct types of images, `Build` and `Runtime` images.
 
 ### Build image
 
@@ -50,9 +50,9 @@ Typically, a `build` image may include:
 
 ### Runtime image
 
-A `run image` is an `OCI image` that serves as the base image for the final application image.
+A `runtime image` is an `OCI image` that serves as the base image for the final application image.
 
-A typical run image might determine:
+A typical runtime image might determine:
 
 * The OS distro or distroless OS in the launch environment
 * OS packages installed in the launch environment
@@ -81,10 +81,10 @@ A `runtime` image may contain:
 * Runtime libraries, such as Libfreetype
 * Runtime platforms, such as python interpreter, which are generally added by buildpacks
 
-For both build images and run images, the platform must ensure that:
+For both build images and runtime images, the platform must ensure that:
 
 * The image config's `os` and `architecture` fields are set to valid identifiers as defined in the [OCI Image Specification](https://github.com/opencontainers/image-spec/blob/main/config.md)
-* The build image config and the run image config both specify the same `os`, `architecture`, `variant` (if specified), `io.buildpacks.base.distro.name` (if specified), and `io.buildpacks.base.distro.version` (if specified)
+* The build image config and the runtime image config both specify the same `os`, `architecture`, `variant` (if specified), `io.buildpacks.base.distro.name` (if specified), and `io.buildpacks.base.distro.version` (if specified)
 
 The platform should ensure that:
 
