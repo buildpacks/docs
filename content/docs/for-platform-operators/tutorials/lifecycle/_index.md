@@ -44,6 +44,7 @@ As a starting step, you need to build the `lifecycle` in order to use its phases
 * `make build-linux-amd64` for `AMD64` architectures (for Linux users)
 * `make build-darwin-arm64` for `ARM64` architectures (for Mac users)
 
+It's recommended to check the [lifecycle releases][releases] page to download binaries based on your system.
 > Please note that the entire process is most easily followed on Linux systems
 
 ### Set environment variables
@@ -226,7 +227,9 @@ You can view more details about the [order](https://buildpacks.io/docs/for-platf
 
 The `restorer` copies cache contents, if there is a cache, into the build container. This avoids buildpacks having to re-download build-time dependencies that were downloaded during a previous build.
 
-First, you need to create the `cache` directory, and then run the `restorer` binary as added below:
+This tutorial doesn't have any previous builds, i.e., the `analyze` phase didn't return any `cached` image. Therefore the `restore` phase will not be copying any `cache` contents at this stage. Feel free to inspect the `cache` when the `build` is done, and re-run the tutorial using the cache created to see how this speeds things up.
+
+Meanwhile you can start by creating a `cache` directory, and then run the `restorer` binary as added below:
 
 ```text
 mkdir cache
@@ -390,7 +393,7 @@ Timer: Builder ran for 20.200892ms and ended at 2024-10-01T07:07:46Z
 
 #### Export
 
-The purpose of the `export` phase is to create a new `OCI` image using a combination of remote layers, local `<layers>/<layer>` layers, and the processed `app` directory.
+The purpose of the `export` phase is to take the output from buildpacks and package it into an `OCI` image using a combination of remote layers, local buildpack-contributed layers (under `<layers>`), and the processed `app` directory.
 
 To export the artifacts built by the `builder`, you first need to specify where to find the `launcher` executable that will be bundled into your image as the entrypoint to run:
 
@@ -436,3 +439,4 @@ At the end of this tutorial, we hope that you now have a better understanding of
 [directory layout]: https://github.com/buildpacks/spec/blob/main/platform.md#buildpacks-directory-layout
 [Platform API]: https://github.com/buildpacks/spec/releases?q=platform
 [blog post]: https://medium.com/buildpacks/unpacking-cloud-native-buildpacks-ff51b5a767bf
+[releases]: https://github.com/buildpacks/lifecycle/releases
