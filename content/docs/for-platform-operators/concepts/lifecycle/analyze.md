@@ -15,7 +15,7 @@ This information is used during the `export` phase in order to avoid re-uploadin
 Starting from `Platform API 0.7`, the `analyze` phase runs before the `detect` phase in order to validate registry access for all images that are used during the `build` as early as possible. In this way it provides faster failures for end users. The other responsibilities of the `analyzer` were moved to the `restorer`.\
 For more information, please see [this migration guide][platform-api-06-07-migration].
 
-The `lifecycle` should attempt to locate a reference to the latest `OCI image` from a previous build that is readable and was created by the `lifecycle` using the same application source code. If no such reference is found, the `analysis` is skipped.\
+The `lifecycle` should attempt to locate a reference to the latest `OCI image` from a previous build that is readable and was created by the `lifecycle` using the same application source code. If no such reference is found, the `analysis` is skipped.
 
 The `lifecycle` must write [analysis metadata][analyzedtoml-toml] to `<analyzed>`, where:
 
