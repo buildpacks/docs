@@ -45,8 +45,8 @@ To use a `project.toml` file, simply:
 ```shell script
 # build the app
 pack build sample-app \
-    --builder cnbs/sample-builder:jammy \
-    --path  samples/apps/bash-script/
+    --builder docker.io/cnbs/sample-builder:jammy \
+    --path samples/apps/bash-script/
 
 # run the app
 docker run sample-app
@@ -55,9 +55,9 @@ docker run sample-app
 If the descriptor is named `project.toml`, it will be read by `pack` automatically. Otherwise, you can run:
 ```shell script
 pack build sample-app \
-    --builder cnbs/sample-builder:jammy \
-    --path  samples/apps/bash-script/ \
-    --descriptor  samples/apps/bash-script/<project-descriptor-file.toml>
+    --builder docker.io/cnbs/sample-builder:jammy \
+    --path samples/apps/bash-script/ \
+    --descriptor samples/apps/bash-script/<project-descriptor-file.toml>
 ```
 to specify an alternatively named `project descriptor`.
 
@@ -99,8 +99,8 @@ Paste the above `toml` as `new-project.toml` in the `samples/apps/bash-script/` 
 ```shell script
 # build the app
 pack build sample-app \
-    --builder cnbs/sample-builder:jammy \
-    --path  samples/apps/bash-script/ \
+    --builder docker.io/cnbs/sample-builder:jammy \
+    --path samples/apps/bash-script/ \
     --descriptor samples/apps/bash-script/new-project.toml
 
 # run the app

@@ -32,7 +32,7 @@ Here are some other related commands:
 * By default, any builder suggested by  [`pack builder suggest`](/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_builder_suggest/) is considered trusted.
 * Any other builder can be trusted using  [`pack config trusted-builders add <builder-name>`](/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_trusted-builders_add/).
 
-* To stop trusting a builder use [`pack config trusted-builders remove <builder-name`](/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_trusted-builders_remove/).
+* To stop trusting a builder use [`pack config trusted-builders remove <builder-name>`](/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_config_trusted-builders_remove/).
 
 * You may trust any builder for the duration of a single build by using the `--trust-builder` flag with [`pack build`](/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_build/).
 

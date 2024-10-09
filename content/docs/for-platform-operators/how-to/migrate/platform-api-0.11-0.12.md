@@ -137,26 +137,26 @@ The new `builder.toml` schema is:
 ```toml
 [run]
 [[run.images]]
-image = "cnbs/some-run-image"
-mirrors = ["mirror1", "mirror2"]
+image = "docker.io/example/run"
+mirrors = ["gcr.io/example/run", "registry.example.com/example/run"]
 [build]
-image = "cnbs/some-build-image"
+image = "docker.io/example/build"
 ```
 
 Run image information will be translated to `run.toml` in the builder with schema:
 
 ```toml
 [[images]]
- image = "cnbs/some-run-image"
- mirrors = ["mirror1", "mirror2"]
+ image = "docker.io/example/run"
+ mirrors = ["gcr.io/example/run", "registry.example.com/example/run"]
 ```
 
 Run image information will also be translated to `stack.toml` (for compatibility with older platforms) in the builder with schema:
 
 ```toml
 [run-image]
- image = "cnbs/some-run-image"
- mirrors = ["mirror1", "mirror2"]
+ image = "docker.io/example/run"
+ mirrors = ["gcr.io/example/run", "registry.example.com/example/run"]
 ```
 
 The old `builder.toml` schema is still valid:
@@ -164,9 +164,9 @@ The old `builder.toml` schema is still valid:
 ```toml
 [stack]
 id = "some.stack.id"
-run-image = "cnbs/some-run-image"
-run-image-mirrors = ["mirror1", "mirror2"]
-build-image = "cnbs/some-build-image"
+run-image = "docker.io/example/run"
+run-image-mirrors = ["gcr.io/example/run", "registry.example.com/example/run"]
+build-image = "docker.io/example/build"
 ```
 
 If the old `builder.toml` schema is used, run image information will be translated to the same `run.toml` and `stack.toml` file formats as above.

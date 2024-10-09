@@ -12,7 +12,7 @@ The lifecycle is a binary responsible for orchestrating buildpacks.
 
 There are five phases to a buildpacks build.
 
-We work through a full example of building a "hello world" NodeJs web application.  
+We work through a full example of building a "hello world" NodeJS web application.
 
 In the example we run `pack` on the NodeJS application to produce an application image.  We assume that we have a NodeJS buildpack, `registry.fake/buildpacks/nodejs:latest`, that is decomposed into buildpacks that help with the build.  We expand each of the buildpacks phases to explain the process.  Throughout the example we take a production-level view of their operation.  For example, our assumed NodeJS buildpack will be described to create different build, cache and launch layers in a manner similar to how a real NodeJS buildpack would operate.
 
@@ -83,7 +83,7 @@ We build our application using the default builder and specify to only use the `
 <asciinema-player
   idle-time-limit="0.5s"
   font-size="medium"
-  poster="data:text/plain,$ pack build example --verbose --buildpack docker://registry.fake/buildpacks/nodejs:latest" src="/images/pack-hello-world-nodejs.cast"></asciinema-player>
+  poster="data:text/plain,$ pack build registry.fake/example --verbose --buildpack docker://registry.fake/buildpacks/nodejs:latest" src="/images/pack-hello-world-nodejs.cast"></asciinema-player>
 
 Now that we understand the example application we can step through each of the Buildpack phases.
 
@@ -99,16 +99,16 @@ At a high-level each layer:
 * Build phase - Executes buildpacks (via /bin/build).
 * Export phase - Creates an image and caches layers.
 
-We consider each of the buildpacks phases in the context of our invocation of `pack build example --buildpack docker://registry.fake/buildpacks/nodejs:latest`.
+We consider each of the buildpacks phases in the context of our invocation of `pack build registry.fake/example --buildpack docker://registry.fake/buildpacks/nodejs:latest`.
 
 ### Phase 1: Analyze
 
-The analyze phase checks a registry for previous images called `example`.  It resolves the image metadata making it available to the subsequent restore phase.  In addition, analyze verifies that we have write access to the registry to create or update the image called `example`.
+The analyze phase checks a registry for previous images called `registry.fake/example`.  It resolves the image metadata making it available to the subsequent restore phase.  In addition, analyze verifies that we have write access to the registry to create or update the image called `registry.fake/example`.
 
-In our case `pack` tells us that there is no previous `example` image.  It provides the output.
+In our case `pack` tells us that there is no previous `registry.fake/example` image.  It provides the output.
 
 ```
-Previous image with name "example" not found
+Previous image with name "registry.fake/example" not found
 Analyzing image "98070ee549c522cbc08d15683d134aa0af1817fcdc56f450b07e6b4a7903f9b
 0"
 ```
@@ -119,7 +119,7 @@ The analyze phase writes to disk the metadata it has found.  The metadata is use
 
 The detect phase runs the `detect` binary of each buildpack in the order provided in the buildpack metadata.
 
-The invocation of `pack build example --buildpack docker://registry.fake/buildpacks/nodejs:latest` explicitly defines a buildpack order.  The command line invocation includes a single `nodejs` buildpack.   In our example the detect phase runs the `detect` binary from each buildpack in the first order group.  The `yarn-install` `detect` binary will fail as no yarn lock file is present in our source project.  As the `detect` binary of a non-optional buildpack has failed, then detection of the entire build group containing `yarn-install` has failed.  The detect phase then proceeds to run the `detect` binary of each buildpack in the second order group.  As all non-optional buildpacks in this group have passed the detect phase, all the passing buildpacks are added to the build order.
+The invocation of `pack build registry.fake/example --buildpack docker://registry.fake/buildpacks/nodejs:latest` explicitly defines a buildpack order.  The command line invocation includes a single `nodejs` buildpack.   In our example the detect phase runs the `detect` binary from each buildpack in the first order group.  The `yarn-install` `detect` binary will fail as no yarn lock file is present in our source project.  As the `detect` binary of a non-optional buildpack has failed, then detection of the entire build group containing `yarn-install` has failed.  The detect phase then proceeds to run the `detect` binary of each buildpack in the second order group.  As all non-optional buildpacks in this group have passed the detect phase, all the passing buildpacks are added to the build order.
 
 ![nodejs order groups](/images/order-groups-detect.svg)
 
