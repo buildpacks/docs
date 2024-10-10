@@ -64,6 +64,8 @@ Where
 * `CNB_SAMPLES_PATH` represents the path of our local copy of the `samples` directory.
 * `CNB_LIFECYCLE_PATH` represents the path of our local compiled `lifecycle` directory.
 
+> Please note that  we only run the commands above on a host machine for the purpose of this tutorial, which is not a common practice for buildpacks.
+
 ### Examine lifecycle phases
 
 A single app image build consists of the following phases:
