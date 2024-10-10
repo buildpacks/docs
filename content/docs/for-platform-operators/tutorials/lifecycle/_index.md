@@ -433,7 +433,7 @@ OUTPUT PLACEHOLDER
 
 ## Wrapping up
 
-At the end of this tutorial, we hope that you now have a better understanding of what happens during each lifecycle phase, and how you could use `Buildpacks` to create container images. You are now ready to explore this technology further and customize it to fit your application development and deployment needs.
+At the end of this tutorial, we hope that you now have a better understanding of what happens during each `lifecycle phase`, and how you could use `Buildpacks` to create container images. You are now ready to explore this technology further and customize it to fit your application development and deployment needs.
 
 [pack]: https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/
 [kpack]: https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/kpack/
