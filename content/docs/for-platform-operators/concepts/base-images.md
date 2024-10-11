@@ -24,21 +24,6 @@ A typical `build image` might determine:
 * Trusted CA certificates in the build environment
 * The default user in the build environment
 
-The platform must ensure that:
-
-* The image config's `User` field is set to a non-root user with a writable home directory
-* The image config's `Env` field has the environment variable `CNB_USER_ID` set to the user [UID/SID](https://github.com/buildpacks/spec/blob/main/README.md#operating-system-conventions) of the user specified in the `User` field
-* The image config's `Env` field has the environment variable `CNB_GROUP_ID` set to the primary group [GID/SID](https://github.com/buildpacks/spec/blob/main/README.md#operating-system-conventions) of the user specified in the `User` field
-* The image config's `Env` field has the environment variable `PATH` set to a valid set of paths or explicitly set to empty (`PATH=`)
-
-The platform should ensure that:
-
-* The image config's `Label` field has the label `io.buildpacks.base.maintainer` set to the name of the image maintainer.
-* The image config's `Label` field has the label `io.buildpacks.base.homepage` set to the homepage of the image.
-* The image config's `Label` field has the label `io.buildpacks.base.released` set to the release date of the image.
-* The image config's `Label` field has the label `io.buildpacks.base.description` set to the description of the image.
-* The image config's `Label` field has the label `io.buildpacks.base.metadata` set to additional metadata related to the image.
-
 #### Anatomy of a build image
 
 Typically, a `build` image may include:
@@ -59,20 +44,6 @@ A typical runtime image might determine:
 * Trusted CA certificates in the launch environment
 * The default user in the run environment
 
-The platform must ensure that:
-
-* The image config's `Env` field has the environment variable `PATH` set to a valid set of paths or explicitly set to empty (`PATH=`)
-
-The platform should ensure that:
-
-* The image config's `User` field is set to a user with a **DIFFERENT** user [UID/SID](https://github.com/buildpacks/spec/blob/main/README.md#operating-system-conventions) as the build image
-* The image config's `Label` field has the label `io.buildpacks.base.maintainer` set to the name of the image maintainer
-* The image config's `Label` field has the label `io.buildpacks.base.homepage` set to the homepage of the image
-* The image config's `Label` field has the label `io.buildpacks.base.released` set to the release date of the image.
-* The image config's `Label` field has the label `io.buildpacks.base.description` set to the description of the image
-* The image config's `Label` field has the label `io.buildpacks.base.metadata` set to additional metadata related to the image
-* The image config's `Label` field has the label `io.buildpacks.rebasable` set to `true` to indicate that new run image versions maintain [ABI-compatibility](https://en.wikipedia.org/wiki/Application_binary_interface) with previous versions (see [Compatibility Guarantees](https://github.com/buildpacks/spec/blob/main/platform.md#compatibility-guarantees)).
-
 #### Anatomy of a runtime base image
 
 A `runtime` image may contain:
@@ -81,14 +52,6 @@ A `runtime` image may contain:
 * Runtime libraries, such as Libfreetype
 * Runtime platforms, such as python interpreter, which are generally added by buildpacks
 
-For both build images and runtime images, the platform must ensure that:
+For more details on `build` and `runtime` images, you can check out the [specification][spec]
 
-* The image config's `os` and `architecture` fields are set to valid identifiers as defined in the [OCI Image Specification](https://github.com/opencontainers/image-spec/blob/main/config.md)
-* The build image config and the runtime image config both specify the same `os`, `architecture`, `variant` (if specified), `io.buildpacks.base.distro.name` (if specified), and `io.buildpacks.base.distro.version` (if specified)
-
-The platform should ensure that:
-
-* The image config's `variant` field is set to a valid identifier as defined in the [OCI Image Specification](https://github.com/opencontainers/image-spec/blob/main/config.md)
-* The image config's `Label` field has the label `io.buildpacks.base.distro.name` set to the OS distribution and the label `io.buildpacks.base.distro.version` set to the OS distribution version
-  * For Linux-based images, each label should contain the values specified in `/etc/os-release` (`$ID` and `$VERSION_ID`), as the `os.version` field in an image config may contain combined distribution and version information
-  * For Windows-based images, `io.buildpacks.base.distro.name` should be empty; `io.buildpacks.base.distro.version` should contain the value of `os.version` in the image config (e.g., `10.0.14393.1066`)
+[spec]: https://github.com/buildpacks/spec/blob/main/platform.md#build-image
