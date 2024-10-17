@@ -20,14 +20,15 @@ A builder consists of the following components:
 
 * [Buildpacks][buildpack]
 * A [lifecycle][lifecycle]
-* A [build image](/docs/for-app-developers/concepts/base-images/build/)
-* A reference to a [run image](/docs/for-app-developers/concepts/base-images/run/)
+* A [build image][build-image]
+* A reference to a [run image][run-image]
 
 ### Resources
 
 To learn how to create your own builder, see our [Operator's Guide][operator-guide].
 
-[builder-config]: /docs/reference/builder-config/
 [buildpack]: /docs/for-platform-operators/concepts/buildpack/
 [lifecycle]: /docs/for-platform-operators/concepts/lifecycle/
 [operator-guide]: /docs/for-platform-operators/
+[build-image]: /docs/for-platform-operators/concepts/base-images.md
+[run-image]: /docs/for-platform-operators/concepts/base-images.md
