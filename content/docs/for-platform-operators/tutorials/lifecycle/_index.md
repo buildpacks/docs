@@ -84,9 +84,11 @@ Let's expand each `lifecycle` phase to explain how the `lifecycle` orchestrates 
 
 The `analyze` phase runs before the `detect` phase in order to validate registry access for all images used during the `build` as early as possible. In this way it provides faster failures for end users.
 
-Prior to executing `/cnb/lifecycle/analyzer`, you need to create two directories in the `root` directory as follows:
+Prior to executing `/cnb/lifecycle/analyzer`, you need to create a parent directory for this tutorial and two other directories inside it as follows:
 
 ```text
+mkdir /tmp/tutorial # or your preferred directory
+cd /tmp/tutorial
 mkdir -p apps/bash-script
 mkdir -p layers
 ```
@@ -283,7 +285,7 @@ Before running the `builder`, the following steps are required:
     cp -r apps/bash-script/* ./workspace
     ```
 
-3. Create a `launcher` file with instructions to run your application
+3. Create a `launcher` file with instructions to run your application. Note that in a real buildpacks build, the `platform` does not create this file! The `samples/hello-moon` buildpack would create it. In our case, the `samples/hello-moon` buildpack hasn't been updated with this functionality, so we are faking that behavior.
 
     ```text
     mkdir -p layers/samples_hello-moon
