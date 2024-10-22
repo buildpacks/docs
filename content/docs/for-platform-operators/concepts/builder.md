@@ -30,5 +30,5 @@ To learn how to create your own builder, see our [Operator's Guide][operator-gui
 [buildpack]: /docs/for-platform-operators/concepts/buildpack/
 [lifecycle]: /docs/for-platform-operators/concepts/lifecycle/
 [operator-guide]: /docs/for-platform-operators/
-[build-image]: /docs/for-platform-operators/concepts/base-images.md
-[run-image]: /docs/for-platform-operators/concepts/base-images.md
+[build-image]: /docs/for-platform-operators/concepts/base-images
+[run-image]: /docs/for-platform-operators/concepts/base-images
