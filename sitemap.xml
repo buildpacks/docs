@@ -246,6 +246,8 @@
   </url><url>
     <loc>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/add-labels/</loc>
   </url><url>
+    <loc>https://buildpacks.io/docs/for-platform-operators/concepts/base-images/</loc>
+  </url><url>
     <loc>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/clear-env/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/for-buildpack-authors/how-to/distribute-buildpacks/craft-order/</loc>

@@ -8,9 +8,9 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="A buildpack is software that transforms application source code into runnable artifacts by analyzing the code and determining the best way to build it.
+<meta name="description" content="As you already know, Cloud Native Buildpacks (CNBs) transform your application source code into OCI images that can run on any cloud.
 "/>
-<link rel="canonical" content="https://buildpacks.io/docs/for-app-developers/concepts/buildpack/">
+<link rel="canonical" content="https://buildpacks.io/docs/for-platform-operators/concepts/base-images/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
 
@@ -18,12 +18,12 @@
 
 
 
-<meta property="og:title" content="What is a buildpack? · Cloud Native Buildpacks">
+<meta property="og:title" content="Base image types · Cloud Native Buildpacks">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://buildpacks.io/docs/for-app-developers/concepts/buildpack/">
+<meta property="og:url" content="https://buildpacks.io/docs/for-platform-operators/concepts/base-images/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-<meta property="og:description" content="A buildpack is software that transforms application source code into runnable artifacts by analyzing the code and determining the best way to build it.
+<meta property="og:description" content="As you already know, Cloud Native Buildpacks (CNBs) transform your application source code into OCI images that can run on any cloud.
 ">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
@@ -35,7 +35,7 @@
 
 
 
-<meta property="twitter:title" content="What is a buildpack? · Cloud Native Buildpacks">
+<meta property="twitter:title" content="Base image types · Cloud Native Buildpacks">
 <meta property="twitter:card" content="summary">
 <meta property="twitter:image" content="https://buildpacks.io/images/buildpacks-social-card-square.jpg">
 <meta property="twitter:image:alt" content="Buildpacks project logo">
@@ -98,7 +98,7 @@
     gtag('config', 'G-CJLSR4FQXL');
   </script>
 
-  <title>What is a buildpack? · Cloud Native Buildpacks</title>
+  <title>Base image types · Cloud Native Buildpacks</title>
 </head>
 
 <body>
@@ -177,7 +177,7 @@
 </li>
       </ul>
     </li>
-<li data-nav-id="/docs/for-app-developers/" class="dd-item depth-0 parent haschildren">
+<li data-nav-id="/docs/for-app-developers/" class="dd-item depth-0 haschildren">
   <a href="/docs/for-app-developers/">For App Developers</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/for-app-developers/tutorials/" class="dd-item depth-1 haschildren">
@@ -188,25 +188,25 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/for-app-developers/concepts/" class="dd-item depth-1 parent haschildren">
+<li data-nav-id="/docs/for-app-developers/concepts/" class="dd-item depth-1 haschildren">
   <a href="/docs/for-app-developers/concepts/">Concepts</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/for-app-developers/concepts/buildpack/" class="dd-item depth-2 active">
+<li data-nav-id="/docs/for-app-developers/concepts/buildpack/" class="dd-item depth-2 collapse">
   <a href="/docs/for-app-developers/concepts/buildpack/">What is a buildpack?</a>
 </li>
-<li data-nav-id="/docs/for-app-developers/concepts/builder/" class="dd-item depth-2">
+<li data-nav-id="/docs/for-app-developers/concepts/builder/" class="dd-item depth-2 collapse">
   <a href="/docs/for-app-developers/concepts/builder/">What is a builder?</a>
 </li>
-<li data-nav-id="/docs/for-app-developers/concepts/build/" class="dd-item depth-2">
+<li data-nav-id="/docs/for-app-developers/concepts/build/" class="dd-item depth-2 collapse">
   <a href="/docs/for-app-developers/concepts/build/">What happens during build?</a>
 </li>
-<li data-nav-id="/docs/for-app-developers/concepts/rebase/" class="dd-item depth-2">
+<li data-nav-id="/docs/for-app-developers/concepts/rebase/" class="dd-item depth-2 collapse">
   <a href="/docs/for-app-developers/concepts/rebase/">What happens during rebase?</a>
 </li>
-<li data-nav-id="/docs/for-app-developers/concepts/platform/" class="dd-item depth-2">
+<li data-nav-id="/docs/for-app-developers/concepts/platform/" class="dd-item depth-2 collapse">
   <a href="/docs/for-app-developers/concepts/platform/">What is a platform?</a>
 </li>
-<li data-nav-id="/docs/for-app-developers/concepts/base-images/" class="dd-item depth-2 haschildren">
+<li data-nav-id="/docs/for-app-developers/concepts/base-images/" class="dd-item depth-2 collapse haschildren">
   <a href="/docs/for-app-developers/concepts/base-images/">What are base images?</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/for-app-developers/concepts/base-images/build/" class="dd-item depth-3 collapse">
@@ -220,7 +220,7 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/for-app-developers/concepts/reproducibility/" class="dd-item depth-2">
+<li data-nav-id="/docs/for-app-developers/concepts/reproducibility/" class="dd-item depth-2 collapse">
   <a href="/docs/for-app-developers/concepts/reproducibility/">What is build reproducibility?</a>
 </li>
   </ul>
@@ -298,7 +298,7 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/for-platform-operators/" class="dd-item depth-0 haschildren">
+<li data-nav-id="/docs/for-platform-operators/" class="dd-item depth-0 parent haschildren">
   <a href="/docs/for-platform-operators/">For Platform Operators</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/for-platform-operators/tutorials/" class="dd-item depth-1 haschildren">
@@ -309,16 +309,16 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/for-platform-operators/concepts/" class="dd-item depth-1 haschildren">
+<li data-nav-id="/docs/for-platform-operators/concepts/" class="dd-item depth-1 parent haschildren">
   <a href="/docs/for-platform-operators/concepts/">Concepts</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/for-platform-operators/concepts/buildpack/" class="dd-item depth-2 collapse">
+<li data-nav-id="/docs/for-platform-operators/concepts/buildpack/" class="dd-item depth-2">
   <a href="/docs/for-platform-operators/concepts/buildpack/">What is a buildpack?</a>
 </li>
-<li data-nav-id="/docs/for-platform-operators/concepts/builder/" class="dd-item depth-2 collapse">
+<li data-nav-id="/docs/for-platform-operators/concepts/builder/" class="dd-item depth-2">
   <a href="/docs/for-platform-operators/concepts/builder/">What is a builder?</a>
 </li>
-<li data-nav-id="/docs/for-platform-operators/concepts/lifecycle/" class="dd-item depth-2 collapse haschildren">
+<li data-nav-id="/docs/for-platform-operators/concepts/lifecycle/" class="dd-item depth-2 haschildren">
   <a href="/docs/for-platform-operators/concepts/lifecycle/">What is the lifecycle?</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/for-platform-operators/concepts/lifecycle/analyze/" class="dd-item depth-3 collapse">
@@ -350,13 +350,13 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/for-platform-operators/concepts/base-images/" class="dd-item depth-2 collapse">
+<li data-nav-id="/docs/for-platform-operators/concepts/base-images/" class="dd-item depth-2 active">
   <a href="/docs/for-platform-operators/concepts/base-images/">Base image types</a>
 </li>
-<li data-nav-id="/docs/for-platform-operators/concepts/composite-buildpack/" class="dd-item depth-2 collapse">
+<li data-nav-id="/docs/for-platform-operators/concepts/composite-buildpack/" class="dd-item depth-2">
   <a href="/docs/for-platform-operators/concepts/composite-buildpack/">What is a composite buildpack?</a>
 </li>
-<li data-nav-id="/docs/for-platform-operators/concepts/extension/" class="dd-item depth-2 collapse">
+<li data-nav-id="/docs/for-platform-operators/concepts/extension/" class="dd-item depth-2">
   <a href="/docs/for-platform-operators/concepts/extension/">What is an image extension?</a>
 </li>
   </ul>
@@ -886,12 +886,12 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BWhat&#43;is&#43;a&#43;buildpack%3F%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ffor-app-developers%2Fconcepts%2Fbuildpack%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BBase&#43;image&#43;types%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ffor-platform-operators%2Fconcepts%2Fbase-images%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/for-app-developers/concepts/buildpack.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/for-platform-operators/concepts/base-images.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
@@ -899,45 +899,47 @@
 
 
         <div class="heading">
-          <h1 class="title">What is a buildpack?</h1>
+          <h1 class="title">Base image types</h1>
         </div>
 
-        <p>A <code>buildpack</code> is software that transforms application source code into runnable artifacts
-by analyzing the code and determining the best way to build it.</p>
-<p><img src="/images/what.svg" alt="buildpacks"></p>
-<h2 id="why-buildpacks">Why buildpacks?</h2>
-<p>Buildpacks allow application developers to focus on what they do best - writing code, without having to worry about image security, optimizing container images, or container build strategy.</p>
-<p>How much time have you spent struggling to wrangle yet another Dockerfile? Copying and pasting random Dockerfile snippets into every project? Buildpacks can help! They are a better approach to building container images for applications.</p>
-<h2 id="what-do-they-look-like">What do they look like?</h2>
-<p>Typical buildpacks consist of at least three files:</p>
+        <p>As you already know, <code>Cloud Native Buildpacks (CNBs)</code> transform your application source code into <code>OCI images</code>  that can run on any cloud.</p>
+<p>Each buildpack checks the source code and provides any relevant dependencies in the form of layers. Then, buildpack-provided layers are placed atop a runtime <code>base image</code> to form the final application image.</p>
+<h2 id="base-image-types">Base image types</h2>
+<p>A <code>base image</code> is an <code>OCI image</code> containing the base, or initial set of layers, for other images. It is helpful to distinguish between two distinct types of images, <code>Build</code> and <code>Runtime</code> images.</p>
+<h3 id="build-image">Build image</h3>
+<p>A <code>build image</code> is an <code>OCI image</code> that serves as the base image for the <code>build</code> environment in which the CNB <code>lifecycle</code> and buildpacks are executed.</p>
+<p>A typical <code>build image</code> might determine:</p>
 <ul>
-<li><code>buildpack.toml</code> &ndash; provides metadata about the buildpack, containing information such as its name, ID, and version.</li>
-<li><code>bin/detect</code> &ndash; performs <a href="#detect">detect</a>.</li>
-<li><code>bin/build</code> &ndash; performs <a href="#build">build</a>.</li>
+<li>The OS distro in the build environment</li>
+<li>OS packages installed in the build environment</li>
+<li>Trusted CA certificates in the build environment</li>
+<li>The default user in the build environment</li>
 </ul>
-<h2 id="how-do-they-work">How do they work?</h2>
-<p><img src="/images/how.svg" alt="how"></p>
-<p><strong>Each buildpack has two jobs to do</strong></p>
-<h3 id="detect">Detect</h3>
-<p>The buildpack determines if it is needed or not.</p>
-<p>For example:</p>
+<h4 id="anatomy-of-a-build-image">Anatomy of a build image</h4>
+<p>Typically, a <code>build</code> image may include:</p>
 <ul>
-<li>A Python buildpack may look for a <code>requirements.txt</code> or a <code>setup.py</code> file.</li>
-<li>A Node buildpack may look for a <code>package-lock.json</code> file.</li>
+<li>Shell</li>
+<li>C-compiler</li>
+<li>Minimal operating system distribution, such as Linux utilities that build systems might call out to</li>
+<li>Build time libraries</li>
 </ul>
-<h3 id="build">Build</h3>
-<p>The buildpack transforms application source code in some way, for example by</p>
+<h3 id="runtime-image">Runtime image</h3>
+<p>A <code>runtime image</code> is an <code>OCI image</code> that serves as the base image for the final application image.</p>
+<p>A typical runtime image might determine:</p>
 <ul>
-<li>Setting build-time and run-time environment variables.</li>
-<li>Downloading dependencies.</li>
-<li>Running source code compilation (if needed).</li>
-<li>Configuring the application entrypoint and any startup scripts.</li>
+<li>The OS distro or distroless OS in the launch environment</li>
+<li>OS packages installed in the launch environment</li>
+<li>Trusted CA certificates in the launch environment</li>
+<li>The default user in the run environment</li>
 </ul>
-<p>For example:</p>
+<h4 id="anatomy-of-a-runtime-base-image">Anatomy of a runtime base image</h4>
+<p>A <code>runtime</code> image may contain:</p>
 <ul>
-<li>A Python buildpack may run <code>pip install -r requirements.txt</code> if it detected a <code>requirements.txt</code> file.</li>
-<li>A Node buildpack may run <code>npm install</code> if it detected a <code>package-lock.json</code> file.</li>
+<li>No-shell, unless it&rsquo;s needed by the application</li>
+<li>Runtime libraries, such as Libfreetype</li>
+<li>Runtime platforms, such as python interpreter, which are generally added by buildpacks</li>
 </ul>
+<p>For more details on <code>build</code> and <code>runtime</code> images, you can check out the <a href="https://github.com/buildpacks/spec/blob/main/platform.md#build-image">specification</a></p>
 
         
 
@@ -947,12 +949,12 @@ by analyzing the code and determining the best way to build it.</p>
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BWhat&#43;is&#43;a&#43;buildpack%3F%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ffor-app-developers%2Fconcepts%2Fbuildpack%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BBase&#43;image&#43;types%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ffor-platform-operators%2Fconcepts%2Fbase-images%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/for-app-developers/concepts/buildpack.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/for-platform-operators/concepts/base-images.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   

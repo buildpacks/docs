@@ -22,6 +22,13 @@
       <description>&lt;p&gt;A &lt;code&gt;builder&lt;/code&gt; is an OCI image containing&#xA;an ordered combination of &lt;a href=&#34;https://buildpacks.io/docs/for-platform-operators/concepts/buildpack/&#34;&gt;buildpacks&lt;/a&gt; and&#xA;a build-time base image, a &lt;a href=&#34;https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/&#34;&gt;lifecycle&lt;/a&gt; binary, and a reference to a runtime base image.&lt;/p&gt;</description>
     </item>
     <item>
+      <title>Base image types</title>
+      <link>https://buildpacks.io/docs/for-platform-operators/concepts/base-images/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-platform-operators/concepts/base-images/</guid>
+      <description>&lt;p&gt;As you already know, &lt;code&gt;Cloud Native Buildpacks (CNBs)&lt;/code&gt; transform your application source code into &lt;code&gt;OCI images&lt;/code&gt;  that can run on any cloud.&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>What is a composite buildpack?</title>
       <link>https://buildpacks.io/docs/for-platform-operators/concepts/composite-buildpack/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

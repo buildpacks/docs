@@ -652,6 +652,13 @@
       <description>&lt;p&gt;Labels are key-value pairs, stored as strings, that are attached to an image (i.e., arbitrary metadata). Labels are used to add helpful descriptions or attributes to an application image, which are meaningful to users.&lt;/p&gt;</description>
     </item>
     <item>
+      <title>Base image types</title>
+      <link>https://buildpacks.io/docs/for-platform-operators/concepts/base-images/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-platform-operators/concepts/base-images/</guid>
+      <description>&lt;p&gt;As you already know, &lt;code&gt;Cloud Native Buildpacks (CNBs)&lt;/code&gt; transform your application source code into &lt;code&gt;OCI images&lt;/code&gt;  that can run on any cloud.&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>Clear the buildpack environment</title>
       <link>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/clear-env/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
