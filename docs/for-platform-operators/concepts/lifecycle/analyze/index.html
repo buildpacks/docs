@@ -907,7 +907,7 @@
 This information is used during the <code>export</code> phase in order to avoid re-uploading unchanged layers.<br>
 Starting from <code>Platform API 0.7</code>, the <code>analyze</code> phase runs before the <code>detect</code> phase in order to validate registry access for all images that are used during the <code>build</code> as early as possible. In this way it provides faster failures for end users. The other responsibilities of the <code>analyzer</code> were moved to the <code>restorer</code>.<br>
 For more information, please see <a href="https://buildpacks.io/docs/for-platform-operators/how-to/migrate/deprecated/platform-api-0.6-0.7/">this migration guide</a>.</p>
-<p>The <code>lifecycle</code> should attempt to locate a reference to the latest <code>OCI image</code> from a previous build that is readable and was created by the <code>lifecycle</code> using the same application source code. If no such reference is found, the <code>analysis</code> is skipped.\</p>
+<p>The <code>lifecycle</code> should attempt to locate a reference to the latest <code>OCI image</code> from a previous build that is readable and was created by the <code>lifecycle</code> using the same application source code. If no such reference is found, the <code>analysis</code> is skipped.</p>
 <p>The <code>lifecycle</code> must write <a href="https://github.com/buildpacks/spec/blob/main/platform.md#analyzedtoml-toml">analysis metadata</a> to <code>&lt;analyzed&gt;</code>, where:</p>
 <ul>
 <li><code>image</code> MUST describe the <code>&lt;previous-image&gt;</code>, if accessible</li>

@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="Coming soon! In the meantime check out this excellent blog post from our community.
+<meta name="description" content="A platform orchestrates builds by invoking the lifecycle binary together with buildpacks and application source code to produce a runnable OCI image.
 "/>
 <link rel="canonical" content="https://buildpacks.io/docs/for-platform-operators/tutorials/lifecycle/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
@@ -23,7 +23,7 @@
 <meta property="og:url" content="https://buildpacks.io/docs/for-platform-operators/tutorials/lifecycle/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-<meta property="og:description" content="Coming soon! In the meantime check out this excellent blog post from our community.
+<meta property="og:description" content="A platform orchestrates builds by invoking the lifecycle binary together with buildpacks and application source code to produce a runnable OCI image.
 ">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
@@ -902,8 +902,333 @@
           <h1 class="title">Orchestrate a build with the CNB lifecycle</h1>
         </div>
 
-        <p>Coming soon! In the meantime check out this excellent <a href="https://medium.com/buildpacks/unpacking-cloud-native-buildpacks-ff51b5a767bf">blog post</a> from our community.</p>
+        <p>A <code>platform</code> orchestrates builds by invoking the <a href="https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/">lifecycle</a> binary together with buildpacks and application source code to produce a runnable <code>OCI image</code>.</p>
+<p>The majority of Buildpack users use community-maintained platforms, such as <a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/">pack</a> and <a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/kpack/">kpack</a>, to run Buildpacks and create <code>OCI images</code>. However this might not be desireable especially for users maintaining their own platforms and seeking more control over how the underlying Buildpack <code>lifecycle phases</code> are executed.</p>
+<blockquote>
+<p>This tutorial is derived from a <a href="https://medium.com/buildpacks/unpacking-cloud-native-buildpacks-ff51b5a767bf">blog post</a> contributed by one of our community members.</p>
+</blockquote>
+<p>In this step-by-step tutorial, you will build a <code>Bash</code> application without using any <code>platform</code> tooling like <code>pack</code> or <code>kpack</code>. You will also leverage the individual <code>lifecycle phases</code> to produce a runnable application image.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>This tutorial has been tested on linux amd64 and darwin arm64 platforms. You&rsquo;ll need to clone a local copy of the following to get started:</p>
+<ul>
+<li>
+<p>The CNB <code>lifecycle</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">git clone https://github.com/buildpacks/lifecycle
+</span></span></code></pre></div></li>
+<li>
+<p>The official <code>Buildpack.io</code> samples repo</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">git clone https://github.com/buildpacks/samples
+</span></span></code></pre></div></li>
+</ul>
+<p>As previously mentioned, the <code>lifecycle</code> orchestrates <code>Buildpacks</code> then assembles the resulting artifacts into an <code>OCI image</code>.  The <code>lifecycle</code> is composed of a series of distinct <code>phases</code> that need to be executed to have the final image built and exported.</p>
+<h2 id="overview">Overview</h2>
+<p>Now that you’re set up, let’s build our <code>Bash</code> application and dive deeper into the <code>lifecycle</code> and its phases.</p>
+<h3 id="build-the-lifecycle">Build the lifecycle</h3>
+<p>As a starting step, you need to build the <code>lifecycle</code> in order to use its phases. This could be done by navigating to the <code>lifecycle</code> directory and executing one of the following commands, depending on your system architecture.</p>
+<ul>
+<li><code>make build-linux-amd64</code> for <code>AMD64</code> architectures (for Linux users)</li>
+<li><code>make build-darwin-arm64</code> for <code>ARM64</code> architectures (for Mac users)</li>
+</ul>
+<p>It&rsquo;s recommended to check the <a href="https://github.com/buildpacks/lifecycle/releases">lifecycle releases</a> page to download binaries based on your system.</p>
+<blockquote>
+<p>Please note that the entire process is most easily followed on Linux systems</p>
+</blockquote>
+<h3 id="set-environment-variables">Set environment variables</h3>
+<p>In order to execute the various <code>lifecycle phases</code> correctly, you first need to set the values of few important environment variables by running the following commands in the terminal:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">export CNB_USER_ID=$(id -u) CNB_GROUP_ID=$(id -g) CNB_PLATFORM_API=0.14
+</span></span><span class="line"><span class="cl">export CNB_SAMPLES_PATH=&#34;/&lt;your-path&gt;/samples&#34;
+</span></span><span class="line"><span class="cl">export CNB_LIFECYCLE_PATH=&#34;/&lt;your-path/lifecycle/out/&lt;your-os-arch&gt;/lifecycle&#34;
+</span></span></code></pre></div><p>Where</p>
+<ul>
+<li><code>CNB_USER_ID</code> and <code>CNB_GROUP_ID</code> are arbitrary values that need to be consistent. This example re-uses our user id and group id for the <code>CNB</code> user.  In a production system, these are commonly set to <code>1000</code>.</li>
+<li><code>CNB_PLATFORM_API</code> or the <code>Platform API</code> version, varies depending on the use case. This tutorial uses <code>v0.14</code>, which is the latest <a href="https://github.com/buildpacks/spec/releases?q=platform">Platform API</a> version.</li>
+<li><code>CNB_SAMPLES_PATH</code> represents the path of our local copy of the <code>samples</code> directory.</li>
+<li><code>CNB_LIFECYCLE_PATH</code> represents the path of our local compiled <code>lifecycle</code> directory.</li>
+</ul>
+<blockquote>
+<p>Please note that  we only run the commands above on a host machine for the purpose of this tutorial, which is not a common practice for buildpacks.</p>
+</blockquote>
+<h3 id="examine-lifecycle-phases">Examine lifecycle phases</h3>
+<p>A single app image build consists of the following phases:</p>
+<ol>
+<li><a href="#analyze">Analysis</a></li>
+<li><a href="#detect">Detection</a></li>
+<li><a href="#restore">Cache Restoration</a></li>
+<li><a href="#build">Build</a></li>
+<li><a href="#export">Export</a></li>
+</ol>
+<blockquote>
+<p>Note that a <code>platform</code> executes the phases above either by invoking phase-specific lifecycle binaries in order or by executing <code>/cnb/lifecycle/creator</code>.</p>
+</blockquote>
+<p>Let&rsquo;s expand each <code>lifecycle</code> phase to explain how the <code>lifecycle</code> orchestrates buildpacks:</p>
+<h4 id="analyze">Analyze</h4>
+<p>The <code>analyze</code> phase runs before the <code>detect</code> phase in order to validate registry access for all images used during the <code>build</code> as early as possible. In this way it provides faster failures for end users.</p>
+<p>Prior to executing <code>/cnb/lifecycle/analyzer</code>, you need to create a parent directory for this tutorial and two other directories inside it as follows:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">mkdir /tmp/tutorial # or your preferred directory
+</span></span><span class="line"><span class="cl">cd /tmp/tutorial
+</span></span><span class="line"><span class="cl">mkdir -p apps/bash-script
+</span></span><span class="line"><span class="cl">mkdir -p layers
+</span></span></code></pre></div><ul>
+<li><code>apps</code> directory that contains a <code>bash-script</code> directory</li>
+<li><code>layers</code> directory that contains subdirectories representing each layer created by the Buildpack in the final image or build cache.</li>
+</ul>
+<p>Next,  you need to copy the <code>bash-script</code> samples into our <code>apps/bash-script</code> directory, which will host our app&rsquo;s source code.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">cp -r &#34;${CNB_SAMPLES_PATH}/apps/bash-script&#34; ./apps/
+</span></span></code></pre></div><p>Now, you can invoke the <code>analyzer</code> for <code>AMD64</code> architecture</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">${CNB_LIFECYCLE_PATH}/analyzer -log-level debug -daemon -layers=&#34;./layers&#34; -run-image cnbs/sample-stack-run:jammy apps/bash-script
+</span></span></code></pre></div><p>Or if you are on an <code>ARM64</code> platform</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">${CNB_LIFECYCLE_PATH}/analyzer -log-level debug -daemon -layers=&#34;./layers&#34; -run-image arm64v8/ubuntu:latest apps/bash-script
+</span></span></code></pre></div><p>The commands above run the <code>analyzer</code> with:</p>
+<ul>
+<li>A <code>debug</code> logging level</li>
+<li>Pointing to the local <code>Docker daemon</code> as the repository where the lifecycle should look for images</li>
+<li>Pointing to the <code>layers</code> directory, which is the <code>lifecycle</code>&rsquo;s main working directory</li>
+<li>Pointing to a <code>run</code> image, the base image for the application</li>
+<li>Specifying a name for the final application image</li>
+</ul>
+<p>Now the <code>analyzer</code>:</p>
+<ul>
+<li>Checks the image repository (<code>daemon</code> in this case) for a previous image called <code>apps/bash-script</code></li>
+<li>Reads metadata from the previous image (if it exists) for later use</li>
+<li>Verifies that have permission to create or update the image called <code>apps/bash-script</code> in the image repository</li>
+</ul>
+<p>In this tutorial, there is no previous <code>apps/bash-script</code> image, and the output produced should be similar to the following:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">sample-stack-run:jammy apps/bash-script
+</span></span><span class="line"><span class="cl">Starting analyzer...
+</span></span><span class="line"><span class="cl">Parsing inputs...
+</span></span><span class="line"><span class="cl">Ensuring privileges...
+</span></span><span class="line"><span class="cl">Executing command...
+</span></span><span class="line"><span class="cl">Timer: Analyzer started at 2024-09-30T07:38:14Z
+</span></span><span class="line"><span class="cl">Image with name &#34;apps/bash-script&#34; not found
+</span></span><span class="line"><span class="cl">Image with name &#34;cnbs/sample-stack-run:jammy&#34; not found
+</span></span><span class="line"><span class="cl">Timer: Analyzer ran for 41.92µs and ended at 2024-09-30T07:38:14Z
+</span></span><span class="line"><span class="cl">Run image info in analyzed metadata is: 
+</span></span><span class="line"><span class="cl">{&#34;Reference&#34;:&#34;&#34;,&#34;Image&#34;:&#34;cnbs/sample-stack-run:jammy&#34;,&#34;Extend&#34;:false,&#34;target&#34;:{&#34;os&#34;:&#34;linux&#34;,&#34;arch&#34;:&#34;amd64&#34;}}
+</span></span></code></pre></div><p>Now if you <code>cat ./layers/analyzed.toml</code>, you should see a few null entries, a <code>run-image</code> section that records the provided name provided, and the found <code>os/arch</code>.</p>
+<h4 id="detect">Detect</h4>
+<p>In this phase, the <code>detector</code> looks for an ordered group of buildpacks that will be used during the <code>build</code> phase. The <code>detector</code> requires an <code>order.toml</code> file to be provided. We can derive an order from <code>builder.toml</code> in the <code>samples</code> directory while removing the deprecated <code>stack</code> section as follows:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">cat &#34;${CNB_SAMPLES_PATH}/builders/jammy/builder.toml&#34; | grep -v -i &#34;stack&#34; | sed &#39;s/\.\.\/\.\./\./&#39; &gt; order.toml
+</span></span></code></pre></div><p><code>order.toml</code> files contain a list of groups with each group containing a list of buildpacks. The <code>detector</code> reads <code>order.toml</code> and looks for the first group that passes the detection process.</p>
+<h5 id="set-buildpacks-layout-directory">Set buildpacks layout directory</h5>
+<p>Before running the <code>detector</code>, you need to:</p>
+<ol>
+<li>
+<p>Create a <code>buildpacks</code> directory in the <code>root</code> directory</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">mkdir -p buildpacks
+</span></span></code></pre></div></li>
+<li>
+<p>Then you must populate the <code>buildpacks</code> directory with your buildpacks of interest.</p>
+<blockquote>
+<p>You have to follow the <a href="https://github.com/buildpacks/spec/blob/main/platform.md#buildpacks-directory-layout">directory layout</a> defined in the buildpack spec, where each top-level directory is a <code>buildpack ID</code> and each second-level directory is a <code>buildpack version</code>.</p>
+</blockquote>
+<p>We will use <a href="http://github.com/tomwright/dasel/"><code>dasel</code></a> to help us parse toml files.</p>
+<pre tabindex="0"><code class="language-command" data-lang="command">$ go install github.com/tomwright/dasel/v2/cmd/dasel@master
 
+Let’s do that for every buildpack in the `samples/buildpacks` directory:
+
+```text
+for f in $(ls --color=no ${CNB_SAMPLES_PATH}/buildpacks | grep -v README)
+do
+bp_version=$(cat ${CNB_SAMPLES_PATH}/buildpacks/$f/buildpack.toml | dasel -r toml buildpack.version | sed s/\&#39;//g);
+mkdir -p ./buildpacks/samples_&#34;${f}&#34;/${bp_version}
+cp -r &#34;$CNB_SAMPLES_PATH/buildpacks/${f}/&#34; ./buildpacks/samples_&#34;${f}&#34;/${bp_version}/
+done
+</code></pre></li>
+</ol>
+<p>Now, you can run the <code>detector</code> binary:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">${CNB_LIFECYCLE_PATH}/detector -log-level debug -layers=&#34;./layers&#34; -order=&#34;./order.toml&#34; -buildpacks=&#34;./buildpacks&#34; -app apps/bash-script
+</span></span></code></pre></div><p>The output of the above command should have <code>layers/group.toml</code> and <code>layers/plan.toml</code> output files (i.e., the groups that have passed the detection have been written into the <code>group.toml</code> file writing its build plan into the <code>plan.toml</code> file)</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Starting detector...
+</span></span><span class="line"><span class="cl">Parsing inputs...
+</span></span><span class="line"><span class="cl">Ensuring privileges...
+</span></span><span class="line"><span class="cl">Executing command...
+</span></span><span class="line"><span class="cl">Timer: Detector started at 2024-10-01T07:00:50Z
+</span></span><span class="line"><span class="cl">Checking for match against descriptor: {linux   []}
+</span></span><span class="line"><span class="cl">target distro name/version labels not found, reading /etc/os-release file
+</span></span><span class="line"><span class="cl">Checking for match against descriptor: {linux   []}
+</span></span><span class="line"><span class="cl">target distro name/version labels not found, reading /etc/os-release file
+</span></span><span class="line"><span class="cl">Checking for match against descriptor: {linux   []}
+</span></span><span class="line"><span class="cl">target distro name/version labels not found, reading /etc/os-release file
+</span></span><span class="line"><span class="cl">Checking for match against descriptor: {linux   []}
+</span></span><span class="line"><span class="cl">target distro name/version labels not found, reading /etc/os-release file
+</span></span><span class="line"><span class="cl">Checking for match against descriptor: {linux   []}
+</span></span><span class="line"><span class="cl">======== Results ========
+</span></span><span class="line"><span class="cl">fail: samples/java-maven@0.0.2
+</span></span><span class="line"><span class="cl">======== Results ========
+</span></span><span class="line"><span class="cl">fail: samples/kotlin-gradle@0.0.2
+</span></span><span class="line"><span class="cl">======== Results ========
+</span></span><span class="line"><span class="cl">fail: samples/ruby-bundler@0.0.1
+</span></span><span class="line"><span class="cl">======== Results ========
+</span></span><span class="line"><span class="cl">pass: samples/hello-world@0.0.1
+</span></span><span class="line"><span class="cl">pass: samples/hello-moon@0.0.1
+</span></span><span class="line"><span class="cl">Resolving plan... (try #1)
+</span></span><span class="line"><span class="cl">samples/hello-world 0.0.1
+</span></span><span class="line"><span class="cl">samples/hello-moon  0.0.1
+</span></span><span class="line"><span class="cl">Timer: Detector ran for 26.011769ms and ended at 2024-10-01T07:00:50Z
+</span></span></code></pre></div><p>You can view more details about the <a href="https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/detect/#ordertoml">order</a>, <a href="https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/detect/#grouptoml">group</a> and <a href="https://buildpacks.io/docs/concepts/components/lifecycle/detect/#plantoml">plan</a> toml files in the platform documentation.</p>
+<h4 id="restore">Restore</h4>
+<p>The <code>restorer</code> copies cache contents, if there is a cache, into the build container. This avoids buildpacks having to re-download build-time dependencies that were downloaded during a previous build.</p>
+<p>This tutorial doesn&rsquo;t have any previous builds, i.e., the <code>analyze</code> phase didn&rsquo;t return any <code>cached</code> image. Therefore the <code>restore</code> phase will not be copying any <code>cache</code> contents at this stage. Feel free to inspect the <code>cache</code> when the <code>build</code> is done, and re-run the tutorial using the cache created to see how this speeds things up.</p>
+<p>Meanwhile you can start by creating a <code>cache</code> directory, and then run the <code>restorer</code> binary as added below:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">mkdir cache
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">${CNB_LIFECYCLE_PATH}/restorer -log-level debug -daemon -layers=&#34;./layers&#34; -group=&#34;./layers/group.toml&#34; -cache-dir=&#34;./cache&#34; -analyzed=&#34;./layers/analyzed.toml&#34;
+</span></span></code></pre></div><p>The <code>cache</code> directory should now be populated by two sub-directories, <code>committed</code> and <code>staging</code> as shown in the output below:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Starting restorer...
+</span></span><span class="line"><span class="cl">Parsing inputs...
+</span></span><span class="line"><span class="cl">Ensuring privileges...
+</span></span><span class="line"><span class="cl">Executing command...
+</span></span><span class="line"><span class="cl">No run metadata found at path &#34;/cnb/run.toml&#34;
+</span></span><span class="line"><span class="cl">Run image info in analyzed metadata is: 
+</span></span><span class="line"><span class="cl">{&#34;Reference&#34;:&#34;&#34;,&#34;Image&#34;:&#34;cnbs/sample-stack-run:jammy&#34;,&#34;Extend&#34;:false,&#34;target&#34;:{&#34;os&#34;:&#34;linux&#34;,&#34;arch&#34;:&#34;amd64&#34;}}
+</span></span><span class="line"><span class="cl">Timer: Restorer started at 2024-10-01T07:03:47Z
+</span></span><span class="line"><span class="cl">Restoring Layer Metadata
+</span></span><span class="line"><span class="cl">Reading buildpack directory: /tmp/example/layers/samples_hello-world
+</span></span><span class="line"><span class="cl">Reading buildpack directory: /tmp/example/layers/samples_hello-moon
+</span></span><span class="line"><span class="cl">Reading Buildpack Layers directory /tmp/example/layers
+</span></span><span class="line"><span class="cl">Reading buildpack directory: /tmp/example/layers/samples_hello-world
+</span></span><span class="line"><span class="cl">Reading Buildpack Layers directory /tmp/example/layers
+</span></span><span class="line"><span class="cl">Reading buildpack directory: /tmp/example/layers/samples_hello-moon
+</span></span><span class="line"><span class="cl">Timer: Restorer ran for 274.41µs and ended at 2024-10-01T07:03:47Z
+</span></span></code></pre></div><h4 id="build">Build</h4>
+<p>The <code>builder</code> run buildpacks, that do the actual work of transforming application source code into runnable artifacts.</p>
+<p>Before running the <code>builder</code>, the following steps are required:</p>
+<ol>
+<li>
+<p>Create two directories:</p>
+<ul>
+<li><code>platform</code> directory to store platform configuration and environment variables</li>
+<li><code>workspace</code> directory to store the application source code</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">mkdir -p platform
+</span></span><span class="line"><span class="cl">mkdir -p workspace
+</span></span></code></pre></div></li>
+<li>
+<p>Copy the source code from the <code>app</code> directory to the <code>workspace</code> directory</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">cp -r apps/bash-script/* ./workspace
+</span></span></code></pre></div></li>
+<li>
+<p>Create a <code>launcher</code> file with instructions to run your application. Note that in a real buildpacks build, the <code>platform</code> does not create this file! The <code>samples/hello-moon</code> buildpack would create it. In our case, the <code>samples/hello-moon</code> buildpack hasn&rsquo;t been updated with this functionality, so we are faking that behavior.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">mkdir -p layers/samples_hello-moon
+</span></span><span class="line"><span class="cl">cat &lt;&lt; EOF &gt; ./layers/samples_hello-moon/launch.toml
+</span></span><span class="line"><span class="cl">[[processes]]
+</span></span><span class="line"><span class="cl">type = &#34;shell&#34;
+</span></span><span class="line"><span class="cl">command = [&#34;./app.sh&#34;]
+</span></span><span class="line"><span class="cl">EOF
+</span></span></code></pre></div></li>
+</ol>
+<p>Now you&rsquo;re ready to run the <code>builder</code> as follows:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">${CNB_LIFECYCLE_PATH}/builder -log-level debug -layers=&#34;./layers&#34; -group=&#34;./layers/group.toml&#34; -analyzed=&#34;./layers/analyzed.toml&#34; -plan=&#34;./layers/plan.toml&#34; -buildpacks=&#34;./buildpacks&#34; -app=&#34;./workspace&#34; -platform=&#34;./platform&#34;
+</span></span></code></pre></div><p>Taking a look at the following output shows that you have invoked the two buildpacks that we need in order to run our <code>bash-script</code> application.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Starting builder...
+</span></span><span class="line"><span class="cl">Parsing inputs...
+</span></span><span class="line"><span class="cl">Ensuring privileges...
+</span></span><span class="line"><span class="cl">Executing command...
+</span></span><span class="line"><span class="cl">Timer: Builder started at 2024-10-01T07:07:46Z
+</span></span><span class="line"><span class="cl">target distro name/version labels not found, reading /etc/os-release file
+</span></span><span class="line"><span class="cl">Running build for buildpack samples/hello-world@0.0.1
+</span></span><span class="line"><span class="cl">Looking up buildpack
+</span></span><span class="line"><span class="cl">Finding plan
+</span></span><span class="line"><span class="cl">Creating plan directory
+</span></span><span class="line"><span class="cl">Preparing paths
+</span></span><span class="line"><span class="cl">Running build command
+</span></span><span class="line"><span class="cl">---&gt; Hello World buildpack
+</span></span><span class="line"><span class="cl">     platform_dir files:
+</span></span><span class="line"><span class="cl">       /tmp/example/platform:
+</span></span><span class="line"><span class="cl">       total 0
+</span></span><span class="line"><span class="cl">       drwxr-xr-x 2 gitpod gitpod  40 Oct  1 07:04 .
+</span></span><span class="line"><span class="cl">       drwxr-xr-x 8 gitpod gitpod 180 Oct  1 07:04 ..
+</span></span><span class="line"><span class="cl">     env_dir: /tmp/example/platform/env
+</span></span><span class="line"><span class="cl">     env vars:
+</span></span><span class="line"><span class="cl">       declare -x CNB_BP_PLAN_PATH=&#34;/tmp/samples_hello-world-576309032/samples_hello-world/plan.toml&#34;
+</span></span><span class="line"><span class="cl">       declare -x CNB_BUILDPACK_DIR=&#34;/tmp/example/buildpacks/samples_hello-world/0.0.1&#34;
+</span></span><span class="line"><span class="cl">       declare -x CNB_LAYERS_DIR=&#34;/tmp/example/layers/samples_hello-world&#34;
+</span></span><span class="line"><span class="cl">       declare -x CNB_PLATFORM_DIR=&#34;/tmp/example/platform&#34;
+</span></span><span class="line"><span class="cl">       declare -x CNB_TARGET_ARCH=&#34;amd64&#34;
+</span></span><span class="line"><span class="cl">       declare -x CNB_TARGET_DISTRO_NAME=&#34;ubuntu&#34;
+</span></span><span class="line"><span class="cl">       declare -x CNB_TARGET_DISTRO_VERSION=&#34;22.04&#34;
+</span></span><span class="line"><span class="cl">       declare -x CNB_TARGET_OS=&#34;linux&#34;
+</span></span><span class="line"><span class="cl">       declare -x HOME=&#34;/home/gitpod&#34;
+</span></span><span class="line"><span class="cl">       declare -x HOSTNAME=&#34;buildpacks-docs-dusxugo5ehi&#34;
+</span></span><span class="line"><span class="cl">       declare -x OLDPWD
+</span></span><span class="line"><span class="cl">       declare -x PATH=&#34;/bin:/usr/bin:/usr/local/bin&#34;
+</span></span><span class="line"><span class="cl">       declare -x PWD=&#34;/tmp/example/workspace&#34;
+</span></span><span class="line"><span class="cl">       declare -x SHLVL=&#34;1&#34;
+</span></span><span class="line"><span class="cl">     layers_dir: /tmp/example/layers/samples_hello-world
+</span></span><span class="line"><span class="cl">     plan_path: /tmp/samples_hello-world-576309032/samples_hello-world/plan.toml
+</span></span><span class="line"><span class="cl">     plan contents:
+</span></span><span class="line"><span class="cl">       [[entries]]
+</span></span><span class="line"><span class="cl">         name = &#34;some-world&#34;
+</span></span><span class="line"><span class="cl">       
+</span></span><span class="line"><span class="cl">       [[entries]]
+</span></span><span class="line"><span class="cl">         name = &#34;some-world&#34;
+</span></span><span class="line"><span class="cl">         [entries.metadata]
+</span></span><span class="line"><span class="cl">           world = &#34;Earth-616&#34;
+</span></span><span class="line"><span class="cl">---&gt; Done
+</span></span><span class="line"><span class="cl">Processing layers
+</span></span><span class="line"><span class="cl">Updating environment
+</span></span><span class="line"><span class="cl">Reading output files
+</span></span><span class="line"><span class="cl">Updating buildpack processes
+</span></span><span class="line"><span class="cl">Updating process list
+</span></span><span class="line"><span class="cl">Finished running build for buildpack samples/hello-world@0.0.1
+</span></span><span class="line"><span class="cl">Running build for buildpack samples/hello-moon@0.0.1
+</span></span><span class="line"><span class="cl">Looking up buildpack
+</span></span><span class="line"><span class="cl">Finding plan
+</span></span><span class="line"><span class="cl">Creating plan directory
+</span></span><span class="line"><span class="cl">Preparing paths
+</span></span><span class="line"><span class="cl">Running build command
+</span></span><span class="line"><span class="cl">---&gt; Hello Moon buildpack
+</span></span><span class="line"><span class="cl">     env_dir: /tmp/example/platform/env
+</span></span><span class="line"><span class="cl">     env vars:
+</span></span><span class="line"><span class="cl">       declare -x CNB_BP_PLAN_PATH=&#34;/tmp/samples_hello-moon-3356528850/samples_hello-moon/plan.toml&#34;
+</span></span><span class="line"><span class="cl">       declare -x CNB_BUILDPACK_DIR=&#34;/tmp/example/buildpacks/samples_hello-moon/0.0.1&#34;
+</span></span><span class="line"><span class="cl">       declare -x CNB_LAYERS_DIR=&#34;/tmp/example/layers/samples_hello-moon&#34;
+</span></span><span class="line"><span class="cl">       declare -x CNB_PLATFORM_DIR=&#34;/tmp/example/platform&#34;
+</span></span><span class="line"><span class="cl">       declare -x CNB_TARGET_ARCH=&#34;amd64&#34;
+</span></span><span class="line"><span class="cl">       declare -x CNB_TARGET_DISTRO_NAME=&#34;ubuntu&#34;
+</span></span><span class="line"><span class="cl">       declare -x CNB_TARGET_DISTRO_VERSION=&#34;22.04&#34;
+</span></span><span class="line"><span class="cl">       declare -x CNB_TARGET_OS=&#34;linux&#34;
+</span></span><span class="line"><span class="cl">       declare -x HOME=&#34;/home/gitpod&#34;
+</span></span><span class="line"><span class="cl">       declare -x HOSTNAME=&#34;buildpacks-docs-dusxugo5ehi&#34;
+</span></span><span class="line"><span class="cl">       declare -x OLDPWD
+</span></span><span class="line"><span class="cl">       declare -x PATH=&#34;/bin:/usr/bin:/usr/local/bin&#34;
+</span></span><span class="line"><span class="cl">       declare -x PWD=&#34;/tmp/example/workspace&#34;
+</span></span><span class="line"><span class="cl">       declare -x SHLVL=&#34;1&#34;
+</span></span><span class="line"><span class="cl">     layers_dir: /tmp/example/layers/samples_hello-moon
+</span></span><span class="line"><span class="cl">     plan_path: /tmp/samples_hello-moon-3356528850/samples_hello-moon/plan.toml
+</span></span><span class="line"><span class="cl">     plan contents:
+</span></span><span class="line"><span class="cl">---&gt; Done
+</span></span><span class="line"><span class="cl">Processing layers
+</span></span><span class="line"><span class="cl">Updating environment
+</span></span><span class="line"><span class="cl">Reading output files
+</span></span><span class="line"><span class="cl">Updating buildpack processes
+</span></span><span class="line"><span class="cl">Updating process list
+</span></span><span class="line"><span class="cl">Finished running build for buildpack samples/hello-moon@0.0.1
+</span></span><span class="line"><span class="cl">Copying SBOM files
+</span></span><span class="line"><span class="cl">Creating SBOM files for legacy BOM
+</span></span><span class="line"><span class="cl">Listing processes
+</span></span><span class="line"><span class="cl">Timer: Builder ran for 20.200892ms and ended at 2024-10-01T07:07:46Z
+</span></span></code></pre></div><h4 id="export">Export</h4>
+<p>The purpose of the <code>export</code> phase is to take the output from buildpacks and package it into an <code>OCI</code> image using a combination of remote layers, local buildpack-contributed layers (under <code>&lt;layers&gt;</code>), and the processed <code>app</code> directory.</p>
+<p>To export the artifacts built by the <code>builder</code>, you first need to specify where to find the <code>launcher</code> executable that will be bundled into your image as the entrypoint to run:</p>
+<ul>
+<li>
+<p>For AMD64 architectures</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">export CNB_LINUX_LAUNCHER_PATH=/&lt;your-path&gt;/lifecycle/out/linux-amd64/lifecycle/launcher
+</span></span></code></pre></div></li>
+<li>
+<p>For ARM64 Architectures</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">export CNB_LINUX_LAUNCHER_PATH=/&lt;your-path&gt;/lifecycle/out/linux-arm64/lifecycle/launcher
+</span></span></code></pre></div></li>
+</ul>
+<p>Now you can run the <code>exporter</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">${CNB_LIFECYCLE_PATH}/exporter --log-level debug -launch-cache &#34;./cache&#34; -daemon -cache-dir &#34;./cache&#34; -analyzed &#34;./layers/analyzed.toml&#34; -group &#34;./layers/group.toml&#34; -layers=&#34;./layers&#34; -app &#34;./workspace&#34; -launcher=&#34;${CNB_LINUX_LAUNCHER_PATH}&#34; apps/bash-script
+</span></span></code></pre></div><p>You can verify that the image was successfully exported by running the <code>docker images</code> command.</p>
+<h3 id="run-the-app-image">Run the app image</h3>
+<p>Finally, you can run the exported image as follows:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">docker run -it apps/bash-script ./app.sh
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">OUTPUT PLACEHOLDER
+</span></span></code></pre></div><h2 id="wrapping-up">Wrapping up</h2>
+<p>At the end of this tutorial, we hope that you now have a better understanding of what happens during each <code>lifecycle phase</code>, and how you could use <code>Buildpacks</code> to create container images. You are now ready to explore this technology further and customize it to fit your application development and deployment needs.</p>
 
         
       
