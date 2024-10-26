@@ -3,7 +3,7 @@ title="Specify the build time environment variables"
 weight=4
 +++
 
-Environment variables are used to configure buildpack behavior. They may be specified by:
+`Environment variables` are used to configure buildpack behavior. They may be specified by:
 
 * The platform operator (this page)
 * The end user (see [Customize buildpack behavior with build-time environment variables][end user])
@@ -11,9 +11,9 @@ Environment variables are used to configure buildpack behavior. They may be spec
 
 <!--more-->
 
-When more than one entity specifies the same environment variable, the order of precedence is as shown above, with the platform operator having ultimate say over what the final value of the variable will be.
+When more than one entity specifies the same `environment variable`, the order of precedence is as shown above, with the platform operator having ultimate say over what the final value of the variable will be.
 
-The platform operator specifies environment variables in a manner that is very similar to buildpacks (see XXX), but with a few differences. Namely:
+The platform operator specifies `environment variables` in a manner that is very similar to buildpacks (see XXX), but with a few differences. Namely:
 
 * The env directory is `/cnb/build-config`
 * When no suffix is provided, the modification behavior is `default`
