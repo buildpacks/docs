@@ -9,6 +9,24 @@ A `platform` orchestrates builds by invoking the [lifecycle][lifecycle] binary t
 
 <!--more-->
 
+<!-- test:suite=orchastrate-lifecycle;weight=1 -->
+
+<!-- test:setup:exec;exit-code=-1 -->
+<!--
+```bash
+mkdir /tmp/demo
+git clone https://github.com/buildpacks/lifecycle /tmp/demo/lifecycle
+git clone https://github.com/buildpacks/samples /tmp/demo/samples
+```
+-->
+
+<!-- test:teardown:exec -->
+<!--
+```bash
+rm -rf /tmp/demo
+```
+-->
+
 The majority of Buildpack users use community-maintained platforms, such as [pack][pack] and [kpack][kpack], to run Buildpacks and create `OCI images`. However this might not be desireable especially for users maintaining their own platforms and seeking more control over how the underlying Buildpack `lifecycle phases` are executed.
 
 > This tutorial is derived from a [blog post][blog post] contributed by one of our community members.
@@ -43,6 +61,14 @@ As a starting step, you need to build the `lifecycle` in order to use its phases
 
 * `make build-linux-amd64` for `AMD64` architectures (for Linux users)
 * `make build-darwin-arm64 && make build-linux-arm64-launcher` for `ARM64` architectures (for Mac users)
+
+<!-- test:exec -->
+<!--
+```bash
+cd /tmp/demo/lifecycle
+make build-linux-amd64
+```
+-->
 
 It's recommended to check the [lifecycle releases][releases] page to download binaries based on your system.
 > Please note that the entire process is most easily followed on Linux systems
