@@ -4,6 +4,6 @@ weight=99
 summary="How to troubleshoot when things go wrong."
 +++
 
-This page is a stub! The CNB project is applying to [Google Season of Docs](https://developers.google.com/season-of-docs/docs/timeline) to receive support for improving our documentation. Please check back soon.
+While `Buildpacks` help developers transform applications' source code into container images that can run on any cloud, creating an error-free experience remains far from achieved.
 
-If you are familiar with this content and would like to make a contribution, please feel free to open a PR :)
+This guide explores some of the most common issues that may prevent image build completion and provides troubleshooting tips to help end-users navigate these issues.
