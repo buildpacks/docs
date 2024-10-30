@@ -10,7 +10,7 @@ a [build-time base image], a [lifecycle] binary, and a reference to a [runtime b
 <!--more-->
 
 The [build-time base image] provides the base environment for the `builder`
-(e.g., an Ubuntu Jammy OS image with build tooling) and
+(e.g., an Ubuntu Noble OS image with build tooling) and
 a [runtime base image] provides the base environment for the `app image` during runtime.
 
 ![builder](/images/builder.svg)
