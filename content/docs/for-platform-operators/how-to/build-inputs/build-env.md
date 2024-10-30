@@ -15,13 +15,20 @@ When more than one entity specifies the same `environment variable`, the order o
 
 The platform operator specifies `environment variables` in a manner that is very similar to buildpacks (see XXX), but with a few differences. Namely:
 
-* The env directory is `/cnb/build-config`
+* The directory for environment variable settings `/cnb/build-config`
 * When no suffix is provided, the modification behavior is `default`
 For more information, consult the [Platform Specification](https://github.com/buildpacks/spec/blob/main/platform.md).
 
 ### Example
 
-PLACEHOLDER
+Platform operators can make choices that "override" or provide defaults for application authors.  In the following configuration the platform operator overrides the value of `CGO_ENABLED` for all application authors.  The value of `PIP_VERBOSE` is set by default and can be overridden by buildpack authors or application authors.  Any value for the environment variable `CLASSPATH` is prepended with the values provided by the platform operator.
+
+```bash
+$ tree /cnb/buildconfig/env
+├── CGO_ENABLED.override
+├── PIP_VERBOSE
+└── CLASSPATH.prepend
+```
 
 [env]: https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/specify-env/
 [end user]: https://buildpacks.io/docs/for-app-developers/how-to/build-inputs/configure-build-time-environment/
