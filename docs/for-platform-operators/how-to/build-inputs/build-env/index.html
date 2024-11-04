@@ -8,8 +8,9 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="The OCI Image Layout is the directory structure for OCI content-addressable blobs and location-addressable references."/>
-<link rel="canonical" content="https://buildpacks.io/docs/for-app-developers/how-to/special-cases/export-to-oci-layout/">
+<meta name="description" content="Environment variables are used to configure buildpack behavior. They may be specified by:
+The platform operator (this page) The end user (see Customize buildpack behavior with build-time environment…"/>
+<link rel="canonical" content="https://buildpacks.io/docs/for-platform-operators/how-to/build-inputs/build-env/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
 
@@ -17,12 +18,13 @@
 
 
 
-<meta property="og:title" content="Export to OCI layout format on disk · Cloud Native Buildpacks">
+<meta property="og:title" content="Specify the build time environment variables · Cloud Native Buildpacks">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://buildpacks.io/docs/for-app-developers/how-to/special-cases/export-to-oci-layout/">
+<meta property="og:url" content="https://buildpacks.io/docs/for-platform-operators/how-to/build-inputs/build-env/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-<meta property="og:description" content="The OCI Image Layout is the directory structure for OCI content-addressable blobs and location-addressable references.">
+<meta property="og:description" content="Environment variables are used to configure buildpack behavior. They may be specified by:
+The platform operator (this page) The end user (see Customize buildpack behavior with build-time environment…">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -33,7 +35,7 @@
 
 
 
-<meta property="twitter:title" content="Export to OCI layout format on disk · Cloud Native Buildpacks">
+<meta property="twitter:title" content="Specify the build time environment variables · Cloud Native Buildpacks">
 <meta property="twitter:card" content="summary">
 <meta property="twitter:image" content="https://buildpacks.io/images/buildpacks-social-card-square.jpg">
 <meta property="twitter:image:alt" content="Buildpacks project logo">
@@ -96,7 +98,7 @@
     gtag('config', 'G-CJLSR4FQXL');
   </script>
 
-  <title>Export to OCI layout format on disk · Cloud Native Buildpacks</title>
+  <title>Specify the build time environment variables · Cloud Native Buildpacks</title>
 </head>
 
 <body>
@@ -175,7 +177,7 @@
 </li>
       </ul>
     </li>
-<li data-nav-id="/docs/for-app-developers/" class="dd-item depth-0 parent haschildren">
+<li data-nav-id="/docs/for-app-developers/" class="dd-item depth-0 haschildren">
   <a href="/docs/for-app-developers/">For App Developers</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/for-app-developers/tutorials/" class="dd-item depth-1 haschildren">
@@ -223,10 +225,10 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/for-app-developers/how-to/" class="dd-item depth-1 parent haschildren">
+<li data-nav-id="/docs/for-app-developers/how-to/" class="dd-item depth-1 haschildren">
   <a href="/docs/for-app-developers/how-to/">How To</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/for-app-developers/how-to/build-inputs/" class="dd-item depth-2 haschildren">
+<li data-nav-id="/docs/for-app-developers/how-to/build-inputs/" class="dd-item depth-2 collapse haschildren">
   <a href="/docs/for-app-developers/how-to/build-inputs/">Configure build inputs</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/for-app-developers/how-to/build-inputs/specify-buildpacks/" class="dd-item depth-3 collapse">
@@ -255,7 +257,7 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/for-app-developers/how-to/build-outputs/" class="dd-item depth-2 haschildren">
+<li data-nav-id="/docs/for-app-developers/how-to/build-outputs/" class="dd-item depth-2 collapse haschildren">
   <a href="/docs/for-app-developers/how-to/build-outputs/">Understand build outputs</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/for-app-developers/how-to/build-outputs/specify-launch-process/" class="dd-item depth-3 collapse">
@@ -272,22 +274,22 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/for-app-developers/how-to/special-cases/" class="dd-item depth-2 parent haschildren">
+<li data-nav-id="/docs/for-app-developers/how-to/special-cases/" class="dd-item depth-2 collapse haschildren">
   <a href="/docs/for-app-developers/how-to/special-cases/">Build in custom environments</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/for-app-developers/how-to/special-cases/build-for-arm/" class="dd-item depth-3">
+<li data-nav-id="/docs/for-app-developers/how-to/special-cases/build-for-arm/" class="dd-item depth-3 collapse">
   <a href="/docs/for-app-developers/how-to/special-cases/build-for-arm/">Build for ARM architecture</a>
 </li>
-<li data-nav-id="/docs/for-app-developers/how-to/special-cases/build-for-windows/" class="dd-item depth-3">
+<li data-nav-id="/docs/for-app-developers/how-to/special-cases/build-for-windows/" class="dd-item depth-3 collapse">
   <a href="/docs/for-app-developers/how-to/special-cases/build-for-windows/">Build for Windows containers</a>
 </li>
-<li data-nav-id="/docs/for-app-developers/how-to/special-cases/export-to-oci-layout/" class="dd-item depth-3 active">
+<li data-nav-id="/docs/for-app-developers/how-to/special-cases/export-to-oci-layout/" class="dd-item depth-3 collapse">
   <a href="/docs/for-app-developers/how-to/special-cases/export-to-oci-layout/">Export to OCI layout format on disk</a>
 </li>
-<li data-nav-id="/docs/for-app-developers/how-to/special-cases/use-http-proxy/" class="dd-item depth-3">
+<li data-nav-id="/docs/for-app-developers/how-to/special-cases/use-http-proxy/" class="dd-item depth-3 collapse">
   <a href="/docs/for-app-developers/how-to/special-cases/use-http-proxy/">Use an HTTP proxy</a>
 </li>
-<li data-nav-id="/docs/for-app-developers/how-to/special-cases/build-on-podman/" class="dd-item depth-3">
+<li data-nav-id="/docs/for-app-developers/how-to/special-cases/build-on-podman/" class="dd-item depth-3 collapse">
   <a href="/docs/for-app-developers/how-to/special-cases/build-on-podman/">Build on Podman</a>
 </li>
   </ul>
@@ -296,7 +298,7 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/for-platform-operators/" class="dd-item depth-0 haschildren">
+<li data-nav-id="/docs/for-platform-operators/" class="dd-item depth-0 parent haschildren">
   <a href="/docs/for-platform-operators/">For Platform Operators</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/for-platform-operators/tutorials/" class="dd-item depth-1 haschildren">
@@ -359,10 +361,10 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/for-platform-operators/how-to/" class="dd-item depth-1 haschildren">
+<li data-nav-id="/docs/for-platform-operators/how-to/" class="dd-item depth-1 parent haschildren">
   <a href="/docs/for-platform-operators/how-to/">How To</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/" class="dd-item depth-2 collapse haschildren">
+<li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/" class="dd-item depth-2 haschildren">
   <a href="/docs/for-platform-operators/how-to/integrate-ci/">Integrate with your favorite CI tooling</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/for-platform-operators/how-to/integrate-ci/pack/" class="dd-item depth-3 collapse haschildren">
@@ -577,10 +579,10 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/for-platform-operators/how-to/build-inputs/" class="dd-item depth-2 collapse haschildren">
+<li data-nav-id="/docs/for-platform-operators/how-to/build-inputs/" class="dd-item depth-2 parent haschildren">
   <a href="/docs/for-platform-operators/how-to/build-inputs/">Prepare build inputs</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/for-platform-operators/how-to/build-inputs/create-builder/" class="dd-item depth-3 collapse haschildren">
+<li data-nav-id="/docs/for-platform-operators/how-to/build-inputs/create-builder/" class="dd-item depth-3 haschildren">
   <a href="/docs/for-platform-operators/how-to/build-inputs/create-builder/">Create a builder</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/for-platform-operators/how-to/build-inputs/create-builder/build-base/" class="dd-item depth-4 collapse">
@@ -597,18 +599,18 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/for-platform-operators/how-to/build-inputs/declare-source-metadata/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/for-platform-operators/how-to/build-inputs/declare-source-metadata/" class="dd-item depth-3">
   <a href="/docs/for-platform-operators/how-to/build-inputs/declare-source-metadata/">Declare source metadata</a>
 </li>
-<li data-nav-id="/docs/for-platform-operators/how-to/build-inputs/build-env/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/for-platform-operators/how-to/build-inputs/build-env/" class="dd-item depth-3 active">
   <a href="/docs/for-platform-operators/how-to/build-inputs/build-env/">Specify the build time environment variables</a>
 </li>
-<li data-nav-id="/docs/for-platform-operators/how-to/build-inputs/stack/" class="dd-item depth-3 collapse">
+<li data-nav-id="/docs/for-platform-operators/how-to/build-inputs/stack/" class="dd-item depth-3">
   <a href="/docs/for-platform-operators/how-to/build-inputs/stack/">Create a stack (deprecated)</a>
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/for-platform-operators/how-to/migrate/" class="dd-item depth-2 collapse haschildren">
+<li data-nav-id="/docs/for-platform-operators/how-to/migrate/" class="dd-item depth-2 haschildren">
   <a href="/docs/for-platform-operators/how-to/migrate/">Migrate</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/for-platform-operators/how-to/migrate/platform-api-0.7-0.8/" class="dd-item depth-3 collapse">
@@ -887,12 +889,12 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BExport&#43;to&#43;OCI&#43;layout&#43;format&#43;on&#43;disk%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ffor-app-developers%2Fhow-to%2Fspecial-cases%2Fexport-to-oci-layout%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BSpecify&#43;the&#43;build&#43;time&#43;environment&#43;variables%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ffor-platform-operators%2Fhow-to%2Fbuild-inputs%2Fbuild-env%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/for-app-developers/how-to/special-cases/export-to-oci-layout.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/for-platform-operators/how-to/build-inputs/build-env.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
@@ -900,97 +902,29 @@
 
 
         <div class="heading">
-          <h1 class="title">Export to OCI layout format on disk</h1>
+          <h1 class="title">Specify the build time environment variables</h1>
         </div>
 
-        <div class="quote mb-4">
-    The OCI Image Layout is the directory structure for OCI content-addressable blobs and location-addressable references.
-    <div class="author">See the <a href="https://github.com/opencontainers/image-spec/blob/main/image-layout.md">specification.</a></div>
-</div>
-<p>Exporting to OCI layout format is an <strong>experimental</strong> feature available on pack since version 0.30.0</p>
-<h3 id="1-enable-experimental-feature">1. Enable experimental feature</h3>
-<p>Verify your pack version is equal or greater than 0.30.0</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack version
-</span></span></code></pre></div><p>Enable the experimental features on pack</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack config experimental <span class="nb">true</span>
-</span></span></code></pre></div><p>You can confirm everything is fine, checking the <code>config.toml</code> file in your <code>PACK_HOME</code> installation folder. For example:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat ~/.pack/config.toml
-</span></span><span class="line"><span class="cl"><span class="nv">experimental</span> <span class="o">=</span> <span class="nb">true</span>
-</span></span><span class="line"><span class="cl">layout-repo-dir <span class="o">=</span> <span class="s2">&#34;&lt;</span><span class="nv">$HOME</span><span class="s2">&gt;/.pack/layout-repo&#34;</span>
-</span></span></code></pre></div><p>The configuration shows the experimental mode was <strong>enabled</strong> and a local directory to save images on disk was configured to path <code>&lt;$HOME&gt;/.pack/layout-repo</code>. <code>layout-repo-dir</code> is being used as a <a href="https://github.com/buildpacks/rfcs/blob/main/text/0119-export-to-oci.md#how-it-works">local repository</a>
-to save images requires by <code>pack build</code> command in OCI layout format.</p>
-<h3 id="2-build-the-app">2. Build the app</h3>
-<p>Please first follow the steps to <a href="/docs/for-app-developers/tutorials/basic-app">build an app</a>, once you have successfully built an application you can export the sample application to disk in OCI layout format.</p>
-<p>The OCI layout feature must be enabled using the convention <code>oci:&lt;path/to/save/image&gt;</code> in the <code>&lt;image-name&gt;</code> parameter when invoking <code>pack build</code>.</p>
-<p>For example:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack build oci:sample-app --path samples/apps/java-maven --builder cnbs/sample-builder:bionic
-</span></span></code></pre></div><p>It will save the image in a folder <code>./sample-app</code> created in your current directory.</p>
-<h3 id="3-check-your-image">3. Check your image</h3>
-<p><strong>Congratulations!</strong></p>
-<p>You can verify your application image was saved on disk in a folder called <code>./sample-app</code> in your current directory in OCI layout format. For example:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">tree sample-app
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">sample-app
-</span></span><span class="line"><span class="cl">├── blobs
-</span></span><span class="line"><span class="cl">│ └── sha256
-</span></span><span class="line"><span class="cl">│     ├── 141bfb0cd434d425bc70edb9e56ea11d07aed76450eb0e73e6110645f251a8d3
-</span></span><span class="line"><span class="cl">│     ├── 2fa192256ce255c6ea6c1296eadfe2feba8094f40e6aa85e699645caca2e85d8
-</span></span><span class="line"><span class="cl">│     ├── 5a44e4f7b58d74fe6f92dd7028075c91191128d1e2e7f39846fe061a9a98836e
-</span></span><span class="line"><span class="cl">│     ├── 72d9f18d70f395ff9bfae4d193077ccea3ca583e3da3dd66f5c84520c0100727
-</span></span><span class="line"><span class="cl">│     ├── 827746ec7ba80f4e4811b6c9195b6f810fbc2d58a6c9cc337bf0305791f24e97
-</span></span><span class="line"><span class="cl">│     ├── ad13830c92258c952f25d561d8bf7d9eb58b8a3003960db1502cbda8239130b5
-</span></span><span class="line"><span class="cl">│     ├── b97b58b190d5f731c879b0f7446a2bd554863b51851e03757199c74dd922ce61
-</span></span><span class="line"><span class="cl">│     ├── c44222730efa142cd5bedc0babf82a9a07d325494be7f5c3cfde56f43166b65f
-</span></span><span class="line"><span class="cl">│     ├── e1048fb89c3194a1f0542c0847aa086a7034dd7867c48fe8c93675cf36f90610
-</span></span><span class="line"><span class="cl">│     ├── f0a30c5bc44742065b1b4ffa95271a39994f05ba7a03dd7e7143d1d3e45fa0b1
-</span></span><span class="line"><span class="cl">│     └── f9d6350d0c44c0e7165a522155f53181ce8c163a6b8ead1f6baea22d1a8d8a78
-</span></span><span class="line"><span class="cl">├── index.json
-</span></span><span class="line"><span class="cl">└── oci-layout  
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="m">3</span> directories, <span class="m">13</span> files
-</span></span></code></pre></div><p>If you want to keep playing with the image in  OCI layout format, one tool you can take a look at is <a href="https://umo.ci/">umoci</a>. It can help you to create a
-<a href="https://github.com/opencontainers/runtime-spec">runtime bundler</a> that can be executed with another tool like <a href="https://github.com/opencontainers/runc">runc</a></p>
-<hr>
-<h2 id="extra-configuration">Extra configuration</h2>
-<h3 id="skip-saving-your-run-image-layers-on-disk">Skip saving your run-image layers on disk</h3>
-<p>Before using this option we suggest to remove your local layout directory (the one configured in your pack config.toml with the key <code>layout-repo-dir</code>) and
-your application image folder (if you are planning to use the same folder). The reason for this is pack doesn&rsquo;t remove the blobs saved in the <code>layout-repo-dir</code> if you use the <code>--sparse</code> flag</p>
-<p>If you don&rsquo;t need your <code>run-image</code> layers on disk, you can skip them using <code>--sparse</code> flag in your <code>pack build</code> command invocation.</p>
-<p>For example:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack build oci:sample-app --sparse --path samples/apps/java-maven --builder cnbs/sample-builder:bionic
-</span></span></code></pre></div><p>Verify your application image</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sample-app
-</span></span><span class="line"><span class="cl">├── blobs
-</span></span><span class="line"><span class="cl">│ └── sha256
-</span></span><span class="line"><span class="cl">│     ├── 2ebed3ab57806441e2bf814eaf0648ed77289e058340d2b76d32b422fbaac5d8
-</span></span><span class="line"><span class="cl">│     ├── 2fa192256ce255c6ea6c1296eadfe2feba8094f40e6aa85e699645caca2e85d8
-</span></span><span class="line"><span class="cl">│     ├── 5a44e4f7b58d74fe6f92dd7028075c91191128d1e2e7f39846fe061a9a98836e
-</span></span><span class="line"><span class="cl">│     ├── 741e558b7b807fea350b26b8152170a2463277cb3d1268b60de76ec12608518a
-</span></span><span class="line"><span class="cl">│     ├── 907c84671180d979a38affb62d9a6ea8e9a510e27639e0b60a34a42f1a846ddc
-</span></span><span class="line"><span class="cl">│     ├── ad13830c92258c952f25d561d8bf7d9eb58b8a3003960db1502cbda8239130b5
-</span></span><span class="line"><span class="cl">│     ├── c44222730efa142cd5bedc0babf82a9a07d325494be7f5c3cfde56f43166b65f
-</span></span><span class="line"><span class="cl">│     └── f9d6350d0c44c0e7165a522155f53181ce8c163a6b8ead1f6baea22d1a8d8a78
-</span></span><span class="line"><span class="cl">├── index.json
-</span></span><span class="line"><span class="cl">└── oci-layout
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="m">3</span> directories, <span class="m">10</span> files
-</span></span></code></pre></div><p>As you can see, there are 3 missing files at <code>sample-app/blobs/sha256</code> folder. The missing 3 blobs are the blobs from the
-<code>run-image</code> that were not downloaded but if you check your config file you&rsquo;ll notice you have the same number of layers as
-when you export the full image.</p>
-<h2 id="implementation-notes">Implementation notes</h2>
-<h3 id="media-types">Media Types</h3>
-<p>According to the OCI specification, the <a href="https://github.com/opencontainers/image-spec/blob/main/media-types.md#compatibility-matrix">compatibles media types</a> for the index.json files must be:</p>
+        <p><code>Environment variables</code> are used to configure buildpack behavior. They may be specified by:</p>
 <ul>
-<li><code>application/vnd.oci.image.index.v1+json</code> or</li>
-<li><code>application/vnd.docker.distribution.manifest.list.v2+json</code></li>
+<li>The platform operator (this page)</li>
+<li>The end user (see <a href="https://buildpacks.io/docs/for-app-developers/how-to/build-inputs/configure-build-time-environment/">Customize buildpack behavior with build-time environment variables</a>)</li>
+<li>Other buildpacks (see <a href="https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/specify-env/">Specify the environment</a>)</li>
 </ul>
-<p>If you are trying to use the lifecycle directly without using <code>pack</code> to export your image, take on consideration that tools like:</p>
-<p><a href="https://github.com/containers/skopeo">skopeo</a></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">skopeo copy -a docker://&lt;your-image&gt; &lt;dest&gt;
-</span></span></code></pre></div><p>It will give you <code>application/vnd.oci.image.index.v1+json</code> media type, which is currently working</p>
-<p>But <a href="https://github.com/google/go-containerregistry/tree/main/cmd/crane">crane</a></p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">crane pull &lt;your-image&gt; &lt;dest&gt; --format<span class="o">=</span>oci
-</span></span></code></pre></div><p>It will give you <code>application/vnd.docker.distribution.manifest.list.v2+json</code>, which will fail because of the <a href="https://github.com/buildpacks/rfcs/pull/203#discussion_r1092449172">state of our current implementation</a>, we will improve this behavior in future versions.</p>
+<p>When more than one entity specifies the same <code>environment variable</code>, the order of precedence is as shown above, with the platform operator having ultimate say over what the final value of the variable will be.</p>
+<p>The platform operator specifies <code>environment variables</code> in a manner that is very similar to buildpacks (see XXX), but with a few differences. Namely:</p>
+<ul>
+<li>The directory for environment variable settings <code>/cnb/build-config</code></li>
+<li>When no suffix is provided, the modification behavior is <code>default</code>
+For more information, consult the <a href="https://github.com/buildpacks/spec/blob/main/platform.md">Platform Specification</a>.</li>
+</ul>
+<h3 id="example">Example</h3>
+<p>Platform operators can make choices that &ldquo;override&rdquo; or provide defaults for application authors.  In the following configuration the platform operator overrides the value of <code>CGO_ENABLED</code> for all application authors.  The value of <code>PIP_VERBOSE</code> is set by default and can be overridden by buildpack authors or application authors.  Any value for the environment variable <code>CLASSPATH</code> is prepended with the values provided by the platform operator.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ tree /cnb/buildconfig/env
+</span></span><span class="line"><span class="cl">├── CGO_ENABLED.override
+</span></span><span class="line"><span class="cl">├── PIP_VERBOSE
+</span></span><span class="line"><span class="cl">└── CLASSPATH.prepend
+</span></span></code></pre></div>
 
         
 
@@ -1000,12 +934,12 @@ when you export the full image.</p>
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BExport&#43;to&#43;OCI&#43;layout&#43;format&#43;on&#43;disk%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ffor-app-developers%2Fhow-to%2Fspecial-cases%2Fexport-to-oci-layout%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BSpecify&#43;the&#43;build&#43;time&#43;environment&#43;variables%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ffor-platform-operators%2Fhow-to%2Fbuild-inputs%2Fbuild-env%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/for-app-developers/how-to/special-cases/export-to-oci-layout.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/for-platform-operators/how-to/build-inputs/build-env.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   

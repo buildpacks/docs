@@ -186,6 +186,8 @@
   </url><url>
     <loc>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/specify-launch-processes/</loc>
   </url><url>
+    <loc>https://buildpacks.io/docs/for-platform-operators/how-to/build-inputs/build-env/</loc>
+  </url><url>
     <loc>https://buildpacks.io/docs/for-app-developers/how-to/special-cases/use-http-proxy/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/for-app-developers/how-to/build-inputs/use-project-toml/</loc>

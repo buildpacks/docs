@@ -15,6 +15,13 @@
       <description>Declare information about application source code, to be included as metadata in the application image.</description>
     </item>
     <item>
+      <title>Specify the build time environment variables</title>
+      <link>https://buildpacks.io/docs/for-platform-operators/how-to/build-inputs/build-env/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-platform-operators/how-to/build-inputs/build-env/</guid>
+      <description>&lt;p&gt;&lt;code&gt;Environment variables&lt;/code&gt; are used to configure buildpack behavior. They may be specified by:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;The platform operator (this page)&lt;/li&gt;&#xA;&lt;li&gt;The end user (see &lt;a href=&#34;https://buildpacks.io/docs/for-app-developers/how-to/build-inputs/configure-build-time-environment/&#34;&gt;Customize buildpack behavior with build-time environment variables&lt;/a&gt;)&lt;/li&gt;&#xA;&lt;li&gt;Other buildpacks (see &lt;a href=&#34;https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/specify-env/&#34;&gt;Specify the environment&lt;/a&gt;)&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+    <item>
       <title>Create a stack (deprecated)</title>
       <link>https://buildpacks.io/docs/for-platform-operators/how-to/build-inputs/stack/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
