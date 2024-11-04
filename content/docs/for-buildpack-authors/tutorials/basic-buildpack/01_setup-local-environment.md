@@ -63,7 +63,7 @@ const server = http.createServer((req, res) => {
 console.log(`Server running at http://${hostname}:${port}/`)
 ```
 
-We also create a `package.json` file with the following contents:
+We also create a `node-js-sample-app/package.json` file with the following contents:
 
 <!-- test:file=node-js-sample-app/package.json -->
 ```javascript

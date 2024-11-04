@@ -33,10 +33,10 @@ export FOO=BAR
 pack build sample-app \
     --env "HELLO=WORLD" \
     --env "FOO" \
-    --builder cnbs/sample-builder:jammy \
-    --buildpack  samples/buildpacks/hello-world/ \
+    --builder docker.io/cnbs/sample-builder:jammy \
+    --buildpack samples/buildpacks/hello-world/ \
     --buildpack samples/apps/bash-script/bash-script-buildpack/ \
-    --path  samples/apps/bash-script/
+    --path samples/apps/bash-script/
 ```
 <!--+- "{{execute}}"+-->
 
@@ -79,10 +79,10 @@ echo -en "HELLO=WORLD\nFOO" > ./envfile
 ```
 pack build sample-app \
     --env-file ./envfile \
-    --builder cnbs/sample-builder:jammy \
-    --buildpack  samples/buildpacks/hello-world/ \
+    --builder docker.io/cnbs/sample-builder:jammy \
+    --buildpack samples/buildpacks/hello-world/ \
     --buildpack samples/apps/bash-script/bash-script-buildpack/ \
-    --path  samples/apps/bash-script/
+    --path samples/apps/bash-script/
 ```
 <!--+- "{{execute}}"+-->
 
@@ -125,10 +125,10 @@ EOL
 2. Build the app
 ```
 pack build sample-app \
-    --builder cnbs/sample-builder:jammy \
-    --buildpack  samples/buildpacks/hello-world/ \
+    --builder docker.io/cnbs/sample-builder:jammy \
+    --buildpack samples/buildpacks/hello-world/ \
     --buildpack samples/apps/bash-script/bash-script-buildpack/ \
-    --path  samples/apps/bash-script/
+    --path samples/apps/bash-script/
 ```
 <!--+- "{{execute}}"+-->
 

@@ -26,7 +26,7 @@ git clone https://github.com/buildpacks/samples
 
 If you're using an ARM64 computer (such as an Apple Silicon Mac, or an AWS Graviton instance), you can build an ARM64 OCI image with [pack][pack] simply by setting your builder to `heroku/builder:24`:
 ```
-pack build java-maven-sample --path samples/apps/java-maven/ --builder heroku/builder:24
+pack build java-maven-sample --path samples/apps/java-maven/ --builder docker.io/heroku/builder:24
 ```
 <!--+- "{{execute}}"+-->
 

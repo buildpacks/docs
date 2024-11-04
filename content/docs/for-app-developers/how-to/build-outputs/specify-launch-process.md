@@ -17,7 +17,7 @@ For this example we will use the `hello-processes` buildpack from our [samples][
 Let's build the app.
 ```
 pack build multi-process-app \
-    --builder cnbs/sample-builder:alpine \
+    --builder docker.io/cnbs/sample-builder:alpine \
     --buildpack samples/java-maven \
     --buildpack samples/buildpacks/hello-processes/ \
     --path samples/apps/java-maven/

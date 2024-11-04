@@ -17,10 +17,10 @@ We show how to solve both of these constraints.
 
 ## Making `pack` Proxy Aware
 
-You may need the `pack` command-line tool to download buildpacks and images via your proxy.  Building an application with an incorrectly configured proxy results in errors such as the following:
+You may need the `pack` command-line tool to download buildpacks and images via your proxy. Building an application with an incorrectly configured proxy results in errors such as the following:
 
 ```console
-$ pack build sample-app --path samples/apps/java-maven --builder cnbs/sample-builder:jammy
+$ pack build sample-app --path samples/apps/java-maven --builder docker.io/cnbs/sample-builder:jammy
 ERROR: failed to build: failed to fetch builder image 'index.docker.io/cnbs/sample-builder:jammy'
 : Error response from daemon: Get "https//registry-1.docker.io/v2/": context deadline exceeded
 ```
@@ -38,10 +38,10 @@ The Docker project documents [how to configure configure the HTTP/HTTPS proxy](h
 
 Buildpacks may also need to be aware of your http and https proxies at build time.  For example python, java and nodejs buildpacks need to be aware of proxies in order to resolve dependencies.  To make buildpacks aware of proxies, export the `http_proxy` and `https_proxy` environment variables before invoking `pack`.  For example:
 
-```console
+```
 export http_proxy=http://user:pass@my-proxy.example.com:3128
 export https_proxy=https://my-proxy.example.com:3129
-pack build sample-app --path samples/apps/java-maven --builder cnbs/sample-builder:jammy
+pack build sample-app --path samples/apps/java-maven --builder docker.io/cnbs/sample-builder:jammy
 ```
 
 ## Making your Application Proxy Aware

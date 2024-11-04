@@ -92,8 +92,8 @@ type = "image"
 
   [source.metadata]
    path = "/source"
-   repository =  "index.docker.io/example/image:latest"
-   refs = ["index.docker.io/example/image:mytag", "index.docker.io/example/image@sha256:146c4bce42545e6a4575283b32a7f01924ef86ce848273079693a42b52b27321"]
+   repository =  "registry.example.com/example/my-app:latest"
+   refs = ["registry.example.com/example/my-app:my-tag", "registry.example.com/example/my-app@sha256:146c4bce42545e6a4575283b32a7f01924ef86ce848273079693a42b52b27321"]
 ```
 
 ### Additive
@@ -142,8 +142,8 @@ type = "image"
 
   [source.metadata]
   path = "/source"
-  repository =  "index.docker.io/example/image:latest"
-  refs = ["index.docker.io/example/image:mytag", "index.docker.io/example/image@sha256:146c4bce42545e6a4575283b32a7f01924ef86ce848273079693a42b52b27321"]
+  repository =  "registry.example.com/example/my-app:latest"
+  refs = ["registry.example.com/example/my-app:my-tag", "registry.example.com/example/my-app@sha256:146c4bce42545e6a4575283b32a7f01924ef86ce848273079693a42b52b27321"]
   url = "https://github.com/example/repo"
 ```
 

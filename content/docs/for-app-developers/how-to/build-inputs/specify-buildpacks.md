@@ -39,10 +39,10 @@ For this example we will use a few buildpacks from our [samples][samples] repo.
 
 ```
 pack build sample-java-maven-app \
-    --builder cnbs/sample-builder:alpine \
+    --builder registry.example.com/example/builder:alpine \
     --buildpack samples/java-maven \
     --buildpack samples/buildpacks/hello-processes/ \
-    --buildpack docker://cnbs/sample-package:hello-universe \
+    --buildpack docker://registry.example.com/example/sample-package:hello-universe \
     --path samples/apps/java-maven/
 ```
 <!--+- "{{execute}}"+-->
@@ -78,7 +78,7 @@ uri = "samples/java-maven"
 uri = "samples/buildpacks/hello-processes/"
 
 [[io.buildpacks.group]]
-uri = "docker://cnbs/sample-package:hello-universe"
+uri = "docker://registry.example.com/example/sample-package:hello-universe"
 ```
 
 ## URI Examples

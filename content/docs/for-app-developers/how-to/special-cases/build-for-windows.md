@@ -65,7 +65,7 @@ To [build][build] an app you must first decide which [builder][builder] you're g
 includes the [buildpacks][buildpack] that will be used as well as the environment for building your
 app.
 
-For this guide we're going to use a sample builder, `cnbs/sample-builder:dotnet-framework-1809`.
+For this guide we're going to use a sample builder, `docker.io/cnbs/sample-builder:dotnet-framework-1809`.
 
 ### 2. Build your app
 
@@ -79,7 +79,7 @@ git clone https://github.com/buildpacks/samples
 cd samples
 
 # build the app
-pack build sample-app --path apps/aspnet --builder cnbs/sample-builder:dotnet-framework-1809 --trust-builder
+pack build sample-app --path apps/aspnet --builder docker.io/cnbs/sample-builder:dotnet-framework-1809 --trust-builder
 ```
 
 > **TIP:** The builder may take a few minutes to download on the first use.
@@ -116,7 +116,7 @@ ssh -f -N -L 2375:127.0.0.1:2375 10.0.0.1
 export DOCKER_HOST=tcp://localhost:2375
 
 # build the app
-pack build sample-app --path samples/apps/aspnet --builder cnbs/sample-builder:dotnet-framework-1809 --trust-builder
+pack build sample-app --path samples/apps/aspnet --builder docker.io/cnbs/sample-builder:dotnet-framework-1809 --trust-builder
 
 # run it
 docker run --rm -it -p 8080:80 sample-app

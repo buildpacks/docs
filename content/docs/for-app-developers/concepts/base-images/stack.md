@@ -42,8 +42,8 @@ Stacks are used by [builders][builder] and are configured through a builder's
 
 [stack]
   id = "com.example.stack"
-  build-image = "example/build"
-  run-image = "example/run"
+  build-image = "docker.io/example/build"
+  run-image = "docker.io/example/run"
   run-image-mirrors = ["gcr.io/example/run", "registry.example.com/example/run"]
 ```
 

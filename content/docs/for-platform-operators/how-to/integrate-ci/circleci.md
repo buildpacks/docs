@@ -28,7 +28,7 @@ workflows:
     jobs:
       - pack/build:
           image-name: sample
-          builder: 'paketobuildpacks/builder:base'
+          builder: 'docker.io/paketobuildpacks/builder:base'
 ```
 
 For more precise steps, see the `pack-orb` [documentation][pack-orb-docs]
