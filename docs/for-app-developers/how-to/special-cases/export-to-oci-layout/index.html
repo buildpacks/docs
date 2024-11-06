@@ -923,7 +923,7 @@ to save images requires by <code>pack build</code> command in OCI layout format.
 <p>Please first follow the steps to <a href="/docs/for-app-developers/tutorials/basic-app">build an app</a>, once you have successfully built an application you can export the sample application to disk in OCI layout format.</p>
 <p>The OCI layout feature must be enabled using the convention <code>oci:&lt;path/to/save/image&gt;</code> in the <code>&lt;image-name&gt;</code> parameter when invoking <code>pack build</code>.</p>
 <p>For example:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack build oci:sample-app --path samples/apps/java-maven --builder cnbs/sample-builder:bionic
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack build oci:sample-app --path samples/apps/java-maven --builder cnbs/sample-builder:noble
 </span></span></code></pre></div><p>It will save the image in a folder <code>./sample-app</code> created in your current directory.</p>
 <h3 id="3-check-your-image">3. Check your image</h3>
 <p><strong>Congratulations!</strong></p>
@@ -957,7 +957,7 @@ to save images requires by <code>pack build</code> command in OCI layout format.
 your application image folder (if you are planning to use the same folder). The reason for this is pack doesn&rsquo;t remove the blobs saved in the <code>layout-repo-dir</code> if you use the <code>--sparse</code> flag</p>
 <p>If you don&rsquo;t need your <code>run-image</code> layers on disk, you can skip them using <code>--sparse</code> flag in your <code>pack build</code> command invocation.</p>
 <p>For example:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack build oci:sample-app --sparse --path samples/apps/java-maven --builder cnbs/sample-builder:bionic
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack build oci:sample-app --sparse --path samples/apps/java-maven --builder cnbs/sample-builder:noble
 </span></span></code></pre></div><p>Verify your application image</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">sample-app
 </span></span><span class="line"><span class="cl">├── blobs

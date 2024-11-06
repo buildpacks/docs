@@ -909,7 +909,7 @@
 <h2 id="define-a-build-base-image-for-your-cnb-build">Define a build base image for your CNB build</h2>
 <p>We need a Dockerfile similar to the following:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile"><span class="line"><span class="cl"><span class="c"># Define the base image</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">FROM</span><span class="s"> ubuntu:jammy</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">FROM</span><span class="s"> ubuntu:noble</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># Install packages that we want to make available at build time</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> apt-get update <span class="o">&amp;&amp;</span> <span class="se">\
@@ -933,7 +933,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">LABEL</span> io.buildpacks.base.distro.name<span class="o">=</span><span class="s2">&#34;your distro name&#34;</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">LABEL</span> io.buildpacks.base.distro.version<span class="o">=</span><span class="s2">&#34;your distro version&#34;</span><span class="err">
 </span></span></span></code></pre></div><h3 id="define-the-base-image">Define the base image</h3>
-<p>We start with <code>ubuntu:jammy</code> as our base image.
+<p>We start with <code>ubuntu:noble</code> as our base image.
 You can use any operating system, operating system distribution, and operating system distribution version of your choosing,
 as long as they are supported by the available buildpacks.</p>
 <h3 id="install-packages-that-we-want-to-make-available-at-build-time">Install packages that we want to make available at build time</h3>
@@ -947,7 +947,7 @@ as long as they are supported by the available buildpacks.</p>
 <p>Finally, we need to label the image with operating system distribution information for platforms and the lifecycle to use.</p>
 <p>To determine which values to provide, see <a href="/docs/for-buildpack-authors/concepts/targets/">targets</a> concept information.</p>
 <h2 id="build-the-build-base-image">Build the build base image</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker build . -t cnbs/sample-base-build:jammy
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker build . -t cnbs/sample-base-build:noble
 </span></span></code></pre></div>
 
         

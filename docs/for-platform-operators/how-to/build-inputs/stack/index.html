@@ -917,7 +917,7 @@ To find out how, read on&hellip;</p>
 <p>Before we get started, make sure you&rsquo;ve got the following installed:</p>
 <a href='https://store.docker.com/search?type=edition&amp;offering=community' class='download-button button icon-button bg-blue'> Install Docker </a><br />
 <h2 id="creating-a-custom-stack">Creating a custom stack</h2>
-<p>We will create a sample stack based on <code>Ubuntu Jammy Jellyfish</code>. To create a custom stack, we need to create customized build and run images.
+<p>We will create a sample stack based on <code>Ubuntu Noble Jellyfish</code>. To create a custom stack, we need to create customized build and run images.
 To find out how, see <a href="/docs/for-platform-operators/how-to/build-inputs/create-builder/build-base/">create a build base image</a> and <a href="/docs/for-platform-operators/how-to/build-inputs/create-builder/run-base/">create a run base image</a>, then come back here.</p>
 <h2 id="choose-your-stack-id">Choose your stack ID</h2>
 <p>Choose a stack ID to uniquely identify your stack. The stack ID:</p>
@@ -928,10 +928,10 @@ To find out how, see <a href="/docs/for-platform-operators/how-to/build-inputs/c
 </ul>
 <p>Example stack IDs:</p>
 <ul>
-<li><code>io.buildpacks.stacks.bionic</code></li>
-<li><code>io.buildpacks.stacks.jammy</code></li>
-<li><code>io.buildpacks.samples.stacks.bionic</code></li>
-<li><code>io.buildpacks.samples.stacks.jammy</code></li>
+<li><code>io.buildpacks.stacks.noble</code></li>
+<li><code>io.buildpacks.stacks.noble</code></li>
+<li><code>io.buildpacks.samples.stacks.noble</code></li>
+<li><code>io.buildpacks.samples.stacks.noble</code></li>
 </ul>
 <h2 id="label-your-images">Label your images</h2>
 <p>Add the following to the Dockerfiles used to create your build and run base images:</p>
@@ -987,7 +987,7 @@ The following rules apply for mixin declarations:</p>
 </ul>
 <h5 id="example-1">Example</h5>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">stacks</span><span class="p">]]</span>
-</span></span><span class="line"><span class="cl"><span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;io.buildpacks.stacks.jammy&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;io.buildpacks.stacks.noble&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nx">mixins</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;build:git&#34;</span><span class="p">,</span> <span class="s2">&#34;run:imagemagick&#34;</span><span class="p">,</span> <span class="s2">&#34;wget&#34;</span><span class="p">]</span>
 </span></span></code></pre></div><h2 id="resources">Resources</h2>
 <p>For technical details on stacks, see the stack sections in the <a href="https://github.com/buildpacks/spec/blob/main/platform.md#iobuildpacksstack-labels">Platform</a>

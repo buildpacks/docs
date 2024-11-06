@@ -913,7 +913,7 @@ app.</p>
 <p>When using <code>pack</code>, you can run <code>pack builder suggest</code> for a list of suggested builders.</p>
 <pre tabindex="0"><code>pack builder suggest
 </code></pre><!--+- "{{execute}}"+-->
-<p>For this guide we&rsquo;re actually going to use a sample builder, <code>cnbs/sample-builder:jammy</code>, which is not listed
+<p>For this guide we&rsquo;re actually going to use a sample builder, <code>cnbs/sample-builder:noble</code>, which is not listed
 as a suggested builder for good reason. It&rsquo;s a sample.</p>
 <h3 id="2-build-your-app">2. Build your app</h3>
 <p>Now that you&rsquo;ve decided on what builder to use, we can build our app. For this example we&rsquo;ll use our <a href="https://github.com/buildpacks/samples">samples</a>
@@ -926,11 +926,11 @@ repo for simplicity.</p>
 <ol start="2">
 <li>Build the app</li>
 </ol>
-<pre tabindex="0"><code>pack build sample-app --path samples/apps/java-maven --builder cnbs/sample-builder:jammy
+<pre tabindex="0"><code>pack build sample-app --path samples/apps/java-maven --builder cnbs/sample-builder:noble
 </code></pre><!--+- "{{execute}}"+-->
 <blockquote>
 <p><strong>TIP:</strong> If you don&rsquo;t want to keep specifying a builder every time you build, you can set it as your default
-builder by running <code>pack config default-builder &lt;BUILDER&gt;</code> for example <code>pack config default-builder cnbs/sample-builder:jammy</code></p>
+builder by running <code>pack config default-builder &lt;BUILDER&gt;</code> for example <code>pack config default-builder cnbs/sample-builder:noble</code></p>
 </blockquote>
 <!--+- "{{execute}}"+-->
 <h3 id="3-run-it">3. Run it</h3>

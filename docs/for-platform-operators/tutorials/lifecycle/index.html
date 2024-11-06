@@ -978,7 +978,7 @@
 <p>Next,  you need to copy the <code>bash-script</code> samples into our <code>apps/bash-script</code> directory, which will host our app&rsquo;s source code.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">cp -r &#34;${CNB_SAMPLES_PATH}/apps/bash-script&#34; ./apps/
 </span></span></code></pre></div><p>Now, you can invoke the <code>analyzer</code> for <code>AMD64</code> architecture</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">${CNB_LIFECYCLE_PATH}/analyzer -log-level debug -daemon -layers=&#34;./layers&#34; -run-image cnbs/sample-stack-run:jammy apps/bash-script
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">${CNB_LIFECYCLE_PATH}/analyzer -log-level debug -daemon -layers=&#34;./layers&#34; -run-image cnbs/sample-stack-run:noble apps/bash-script
 </span></span></code></pre></div><p>Or if you are on an <code>ARM64</code> platform</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">${CNB_LIFECYCLE_PATH}/analyzer -log-level debug -daemon -layers=&#34;./layers&#34; -run-image arm64v8/ubuntu:latest apps/bash-script
 </span></span></code></pre></div><p>The commands above run the <code>analyzer</code> with:</p>
@@ -996,21 +996,21 @@
 <li>Verifies that have permission to create or update the image called <code>apps/bash-script</code> in the image repository</li>
 </ul>
 <p>In this tutorial, there is no previous <code>apps/bash-script</code> image, and the output produced should be similar to the following:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">sample-stack-run:jammy apps/bash-script
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">sample-stack-run:noble apps/bash-script
 </span></span><span class="line"><span class="cl">Starting analyzer...
 </span></span><span class="line"><span class="cl">Parsing inputs...
 </span></span><span class="line"><span class="cl">Ensuring privileges...
 </span></span><span class="line"><span class="cl">Executing command...
 </span></span><span class="line"><span class="cl">Timer: Analyzer started at 2024-09-30T07:38:14Z
 </span></span><span class="line"><span class="cl">Image with name &#34;apps/bash-script&#34; not found
-</span></span><span class="line"><span class="cl">Image with name &#34;cnbs/sample-stack-run:jammy&#34; not found
+</span></span><span class="line"><span class="cl">Image with name &#34;cnbs/sample-stack-run:noble&#34; not found
 </span></span><span class="line"><span class="cl">Timer: Analyzer ran for 41.92µs and ended at 2024-09-30T07:38:14Z
 </span></span><span class="line"><span class="cl">Run image info in analyzed metadata is: 
-</span></span><span class="line"><span class="cl">{&#34;Reference&#34;:&#34;&#34;,&#34;Image&#34;:&#34;cnbs/sample-stack-run:jammy&#34;,&#34;Extend&#34;:false,&#34;target&#34;:{&#34;os&#34;:&#34;linux&#34;,&#34;arch&#34;:&#34;amd64&#34;}}
+</span></span><span class="line"><span class="cl">{&#34;Reference&#34;:&#34;&#34;,&#34;Image&#34;:&#34;cnbs/sample-stack-run:noble&#34;,&#34;Extend&#34;:false,&#34;target&#34;:{&#34;os&#34;:&#34;linux&#34;,&#34;arch&#34;:&#34;amd64&#34;}}
 </span></span></code></pre></div><p>Now if you <code>cat ./layers/analyzed.toml</code>, you should see a few null entries, a <code>run-image</code> section that records the provided name provided, and the found <code>os/arch</code>.</p>
 <h4 id="detect">Detect</h4>
 <p>In this phase, the <code>detector</code> looks for an ordered group of buildpacks that will be used during the <code>build</code> phase. The <code>detector</code> requires an <code>order.toml</code> file to be provided. We can derive an order from <code>builder.toml</code> in the <code>samples</code> directory while removing the deprecated <code>stack</code> section as follows:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">cat &#34;${CNB_SAMPLES_PATH}/builders/jammy/builder.toml&#34; | grep -v -i &#34;stack&#34; | sed &#39;s/\.\.\/\.\./\./&#39; &gt; order.toml
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">cat &#34;${CNB_SAMPLES_PATH}/builders/noble/builder.toml&#34; | grep -v -i &#34;stack&#34; | sed &#39;s/\.\.\/\.\./\./&#39; &gt; order.toml
 </span></span></code></pre></div><p><code>order.toml</code> files contain a list of groups with each group containing a list of buildpacks. The <code>detector</code> reads <code>order.toml</code> and looks for the first group that passes the detection process.</p>
 <h5 id="set-buildpacks-layout-directory">Set buildpacks layout directory</h5>
 <p>Before running the <code>detector</code>, you need to:</p>
@@ -1082,7 +1082,7 @@ done
 </span></span><span class="line"><span class="cl">Executing command...
 </span></span><span class="line"><span class="cl">No run metadata found at path &#34;/cnb/run.toml&#34;
 </span></span><span class="line"><span class="cl">Run image info in analyzed metadata is: 
-</span></span><span class="line"><span class="cl">{&#34;Reference&#34;:&#34;&#34;,&#34;Image&#34;:&#34;cnbs/sample-stack-run:jammy&#34;,&#34;Extend&#34;:false,&#34;target&#34;:{&#34;os&#34;:&#34;linux&#34;,&#34;arch&#34;:&#34;amd64&#34;}}
+</span></span><span class="line"><span class="cl">{&#34;Reference&#34;:&#34;&#34;,&#34;Image&#34;:&#34;cnbs/sample-stack-run:noble&#34;,&#34;Extend&#34;:false,&#34;target&#34;:{&#34;os&#34;:&#34;linux&#34;,&#34;arch&#34;:&#34;amd64&#34;}}
 </span></span><span class="line"><span class="cl">Timer: Restorer started at 2024-10-01T07:03:47Z
 </span></span><span class="line"><span class="cl">Restoring Layer Metadata
 </span></span><span class="line"><span class="cl">Reading buildpack directory: /tmp/example/layers/samples_hello-world

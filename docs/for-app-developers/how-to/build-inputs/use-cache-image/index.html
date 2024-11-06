@@ -918,14 +918,14 @@ These images can improve performance when using <code>pack</code> in ephemeral e
 <blockquote>
 <p><strong>NOTE:</strong>  If we wish to publish to an external registry like <code>Dockerhub</code> we will first need to authenticate with <code>docker</code> to allow us to push images. We can do this via <code>docker login</code></p>
 </blockquote>
-<p>Next we trust the <code>cnbs/sample-builder:jammy</code> builder in order to allow access to docker credentials when publishing.</p>
-<pre tabindex="0"><code>pack config trusted-builders add cnbs/sample-builder:jammy
+<p>Next we trust the <code>cnbs/sample-builder:noble</code> builder in order to allow access to docker credentials when publishing.</p>
+<pre tabindex="0"><code>pack config trusted-builders add cnbs/sample-builder:noble
 </code></pre><!--+- "{{execute}}"+-->
 <p>To build the <code>localhost:5000/buildpack-examples/cache-image-example</code> application image
 and the <code>localhost:5000/buildpack-examples/maven-cache-image:latest</code> cache image
 we may run the following</p>
 <pre tabindex="0"><code>pack build localhost:5000/buildpack-examples/cache-image-example \
-    --builder cnbs/sample-builder:jammy \
+    --builder cnbs/sample-builder:noble \
     --buildpack samples/java-maven \
     --path samples/apps/java-maven \
     --cache-image localhost:5000/buildpack-examples/maven-cache-image:latest \
@@ -948,7 +948,7 @@ docker inspect localhost:5000/buildpack-examples/maven-cache-image:latest
 builds may also update the specified <code>cache-image</code>.</p>
 <p>The following command will restore data for the <code>samples/java-maven:maven_m2</code> layer from the cache image.</p>
 <pre tabindex="0"><code>pack build localhost:5000/buildpack-examples/second-cache-image-example \
-    --builder cnbs/sample-builder:jammy \
+    --builder cnbs/sample-builder:noble \
     --buildpack samples/java-maven \
     --path samples/apps/java-maven \
     --cache-image localhost:5000/buildpack-examples/maven-cache-image:latest \
