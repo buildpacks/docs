@@ -25,7 +25,7 @@ pack buildpack new examples/node-js \
     --api 0.10 \
     --path node-js-buildpack \
     --version 0.0.1 \
-    --stacks io.buildpacks.samples.stacks.jammy
+    --stacks io.buildpacks.samples.stacks.noble
 ```
 <!--+- "{{execute}}"+-->
 This command will create `node-js-buildpack` directory which contains `buildpack.toml`, `bin/build`,  `bin/detect` files.
@@ -58,13 +58,13 @@ os = "linux"
 
 # Stacks (deprecated) the buildpack will work with
 [[stacks]]
-  id = "io.buildpacks.samples.stacks.jammy"
+  id = "io.buildpacks.samples.stacks.noble"
 
 ```
 
 The buildpack ID is the way you will reference the buildpack when you create buildpack groups, builders, etc.
 [Targets](/docs/for-buildpack-authors/concepts/targets/) identifies the kind of build and run base images the buildpack will work with.
-The stack ID (deprecated) uniquely identifies a build and run image configuration the buildpack will work with. This example can be run on Ubuntu Jammy.
+The stack ID (deprecated) uniquely identifies a build and run image configuration the buildpack will work with. This example can be run on Ubuntu Noble.
 
 ### `detect` and `build`
 
@@ -102,7 +102,7 @@ Set your default [builder][builder] by running the following:
 
 <!-- test:exec -->
 ```bash
-pack config default-builder cnbs/sample-builder:jammy
+pack config default-builder cnbs/sample-builder:noble
 ```
 <!--+- "{{execute}}"+-->
 
@@ -110,7 +110,7 @@ Tell pack to trust our default builder:
 
 <!-- test:exec -->
 ```bash
-pack config trusted-builders add cnbs/sample-builder:jammy
+pack config trusted-builders add cnbs/sample-builder:noble
 ```
 <!--+- "{{execute}}"+-->
 

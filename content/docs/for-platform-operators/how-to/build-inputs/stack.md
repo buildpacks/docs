@@ -30,7 +30,7 @@ Before we get started, make sure you've got the following installed:
 
 ## Creating a custom stack
 
-We will create a sample stack based on `Ubuntu Jammy Jellyfish`. To create a custom stack, we need to create customized build and run images.
+We will create a sample stack based on `Ubuntu Noble Jellyfish`. To create a custom stack, we need to create customized build and run images.
 To find out how, see [create a build base image](/docs/for-platform-operators/how-to/build-inputs/create-builder/build-base/) and [create a run base image](/docs/for-platform-operators/how-to/build-inputs/create-builder/run-base/), then come back here.
 
 ## Choose your stack ID
@@ -41,10 +41,10 @@ Choose a stack ID to uniquely identify your stack. The stack ID:
   * should use reverse domain notation to avoid name collisions - i.e. buildpacks.io will be io.buildpacks.
 
 Example stack IDs:
-  * `io.buildpacks.stacks.bionic`
-  * `io.buildpacks.stacks.jammy`
-  * `io.buildpacks.samples.stacks.bionic`
-  * `io.buildpacks.samples.stacks.jammy`
+  * `io.buildpacks.stacks.noble`
+  * `io.buildpacks.stacks.noble`
+  * `io.buildpacks.samples.stacks.noble`
+  * `io.buildpacks.samples.stacks.noble`
 
 ## Label your images
 
@@ -117,7 +117,7 @@ When validating whether the buildpack's mixins are satisfied by a stack, the fol
 
 ```toml
 [[stacks]]
-id = "io.buildpacks.stacks.jammy"
+id = "io.buildpacks.stacks.noble"
 mixins = ["build:git", "run:imagemagick", "wget"]
 ```
 

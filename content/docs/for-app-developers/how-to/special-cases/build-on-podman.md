@@ -49,7 +49,7 @@ git clone https://github.com/buildpacks/samples
 ![](https://i.imgur.com/0mmV6K7.png)
 
 ```shell=bash
-pack build sample-app -p samples/apps/ruby-bundler/ -B cnbs/sample-builder:jammy
+pack build sample-app -p samples/apps/ruby-bundler/ -B cnbs/sample-builder:noble
 ```
 
 Where:

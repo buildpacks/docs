@@ -33,7 +33,7 @@ export FOO=BAR
 pack build sample-app \
     --env "HELLO=WORLD" \
     --env "FOO" \
-    --builder cnbs/sample-builder:jammy \
+    --builder cnbs/sample-builder:noble \
     --buildpack  samples/buildpacks/hello-world/ \
     --buildpack samples/apps/bash-script/bash-script-buildpack/ \
     --path  samples/apps/bash-script/
@@ -79,7 +79,7 @@ echo -en "HELLO=WORLD\nFOO" > ./envfile
 ```
 pack build sample-app \
     --env-file ./envfile \
-    --builder cnbs/sample-builder:jammy \
+    --builder cnbs/sample-builder:noble \
     --buildpack  samples/buildpacks/hello-world/ \
     --buildpack samples/apps/bash-script/bash-script-buildpack/ \
     --path  samples/apps/bash-script/
@@ -125,7 +125,7 @@ EOL
 2. Build the app
 ```
 pack build sample-app \
-    --builder cnbs/sample-builder:jammy \
+    --builder cnbs/sample-builder:noble \
     --buildpack  samples/buildpacks/hello-world/ \
     --buildpack samples/apps/bash-script/bash-script-buildpack/ \
     --path  samples/apps/bash-script/

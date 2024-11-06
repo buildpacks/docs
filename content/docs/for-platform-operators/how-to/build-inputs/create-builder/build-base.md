@@ -17,7 +17,7 @@ We need a Dockerfile similar to the following:
 
 ```Dockerfile
 # Define the base image
-FROM ubuntu:jammy
+FROM ubuntu:noble
 
 # Install packages that we want to make available at build time
 RUN apt-get update && \
@@ -44,7 +44,7 @@ LABEL io.buildpacks.base.distro.version="your distro version"
 
 ### Define the base image
 
-We start with `ubuntu:jammy` as our base image.
+We start with `ubuntu:noble` as our base image.
 You can use any operating system, operating system distribution, and operating system distribution version of your choosing,
 as long as they are supported by the available buildpacks.
 
@@ -71,5 +71,5 @@ To determine which values to provide, see [targets](/docs/for-buildpack-authors/
 ## Build the build base image
 
 ```bash
-docker build . -t cnbs/sample-base-build:jammy
+docker build . -t cnbs/sample-base-build:noble
 ```

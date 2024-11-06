@@ -83,7 +83,7 @@ Now, we can mount this volume during `pack build`:
 ```bash
 ls -al
 pack build volume-example \
-    --builder cnbs/sample-builder:jammy \
+    --builder cnbs/sample-builder:noble \
     --buildpack samples/buildpacks/hello-world \
     --path samples/apps/bash-script \
     --volume test-volume:/platform/volume:ro
