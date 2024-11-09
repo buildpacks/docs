@@ -37,7 +37,7 @@ os = "linux"
 
 # Stacks (deprecated) the buildpack will work with
 [[stacks]]
-id = "io.buildpacks.stacks.jammy"
+id = "io.buildpacks.stacks.noble"
 ```
 
 For more information, see [buildpack config](/docs/reference/config/buildpack-config).

@@ -20,7 +20,7 @@ Before we get started, make sure you've got the following installed:
 <!--
 ```bash
 docker rmi test-node-js-app
-pack config trusted-builders add cnbs/sample-builder:jammy
+pack config trusted-builders add cnbs/sample-builder:noble
 ```
 -->
 

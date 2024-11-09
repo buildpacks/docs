@@ -105,7 +105,7 @@ cp -r "${CNB_SAMPLES_PATH}/apps/bash-script" ./apps/
 Now, you can invoke the `analyzer` for `AMD64` architecture
 
 ```text
-${CNB_LIFECYCLE_PATH}/analyzer -log-level debug -daemon -layers="./layers" -run-image cnbs/sample-stack-run:jammy apps/bash-script
+${CNB_LIFECYCLE_PATH}/analyzer -log-level debug -daemon -layers="./layers" -run-image cnbs/sample-stack-run:noble apps/bash-script
 ```
 
 Or if you are on an `ARM64` platform
@@ -131,17 +131,17 @@ Now the `analyzer`:
 In this tutorial, there is no previous `apps/bash-script` image, and the output produced should be similar to the following:
 
 ```text
-sample-stack-run:jammy apps/bash-script
+sample-stack-run:noble apps/bash-script
 Starting analyzer...
 Parsing inputs...
 Ensuring privileges...
 Executing command...
 Timer: Analyzer started at 2024-09-30T07:38:14Z
 Image with name "apps/bash-script" not found
-Image with name "cnbs/sample-stack-run:jammy" not found
+Image with name "cnbs/sample-stack-run:noble" not found
 Timer: Analyzer ran for 41.92µs and ended at 2024-09-30T07:38:14Z
 Run image info in analyzed metadata is: 
-{"Reference":"","Image":"cnbs/sample-stack-run:jammy","Extend":false,"target":{"os":"linux","arch":"amd64"}}
+{"Reference":"","Image":"cnbs/sample-stack-run:noble","Extend":false,"target":{"os":"linux","arch":"amd64"}}
 ```
 
 Now if you `cat ./layers/analyzed.toml`, you should see a few null entries, a `run-image` section that records the provided name provided, and the found `os/arch`.
@@ -151,7 +151,7 @@ Now if you `cat ./layers/analyzed.toml`, you should see a few null entries, a `r
 In this phase, the `detector` looks for an ordered group of buildpacks that will be used during the `build` phase. The `detector` requires an `order.toml` file to be provided. We can derive an order from `builder.toml` in the `samples` directory while removing the deprecated `stack` section as follows:
 
 ```text
-cat "${CNB_SAMPLES_PATH}/builders/jammy/builder.toml" | grep -v -i "stack" | sed 's/\.\.\/\.\./\./' > order.toml
+cat "${CNB_SAMPLES_PATH}/builders/noble/builder.toml" | grep -v -i "stack" | sed 's/\.\.\/\.\./\./' > order.toml
 
 ```
 
@@ -252,7 +252,7 @@ Ensuring privileges...
 Executing command...
 No run metadata found at path "/cnb/run.toml"
 Run image info in analyzed metadata is: 
-{"Reference":"","Image":"cnbs/sample-stack-run:jammy","Extend":false,"target":{"os":"linux","arch":"amd64"}}
+{"Reference":"","Image":"cnbs/sample-stack-run:noble","Extend":false,"target":{"os":"linux","arch":"amd64"}}
 Timer: Restorer started at 2024-10-01T07:03:47Z
 Restoring Layer Metadata
 Reading buildpack directory: /tmp/example/layers/samples_hello-world
