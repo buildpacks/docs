@@ -51,7 +51,7 @@ The OCI layout feature must be enabled using the convention `oci:<path/to/save/i
 For example:
 
 ```bash
-pack build oci:sample-app --path samples/apps/java-maven --builder cnbs/sample-builder:bionic
+pack build oci:sample-app --path samples/apps/java-maven --builder cnbs/sample-builder:noble
 ```
 
 It will save the image in a folder `./sample-app` created in your current directory.
@@ -101,7 +101,7 @@ If you don't need your `run-image` layers on disk, you can skip them using `--sp
 For example:
 
 ```bash
-pack build oci:sample-app --sparse --path samples/apps/java-maven --builder cnbs/sample-builder:bionic
+pack build oci:sample-app --sparse --path samples/apps/java-maven --builder cnbs/sample-builder:noble
 ```
 
 Verify your application image

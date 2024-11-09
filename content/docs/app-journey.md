@@ -63,7 +63,7 @@ cd samples/apps/java-maven
 
 3. Build the app using [`pack`][pack-docs]
 ```
-pack build myapp --builder cnbs/sample-builder:jammy
+pack build myapp --builder cnbs/sample-builder:noble
 ```
 <!--+- "{{execute}}"+-->
 

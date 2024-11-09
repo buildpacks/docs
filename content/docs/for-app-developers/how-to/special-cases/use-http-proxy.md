@@ -20,8 +20,8 @@ We show how to solve both of these constraints.
 You may need the `pack` command-line tool to download buildpacks and images via your proxy.  Building an application with an incorrectly configured proxy results in errors such as the following:
 
 ```console
-$ pack build sample-app --path samples/apps/java-maven --builder cnbs/sample-builder:jammy
-ERROR: failed to build: failed to fetch builder image 'index.docker.io/cnbs/sample-builder:jammy'
+$ pack build sample-app --path samples/apps/java-maven --builder cnbs/sample-builder:noble
+ERROR: failed to build: failed to fetch builder image 'index.docker.io/cnbs/sample-builder:noble'
 : Error response from daemon: Get "https//registry-1.docker.io/v2/": context deadline exceeded
 ```
 
@@ -41,7 +41,7 @@ Buildpacks may also need to be aware of your http and https proxies at build tim
 ```console
 export http_proxy=http://user:pass@my-proxy.example.com:3128
 export https_proxy=https://my-proxy.example.com:3129
-pack build sample-app --path samples/apps/java-maven --builder cnbs/sample-builder:jammy
+pack build sample-app --path samples/apps/java-maven --builder cnbs/sample-builder:noble
 ```
 
 ## Making your Application Proxy Aware
