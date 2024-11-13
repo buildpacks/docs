@@ -175,6 +175,7 @@ Before running the `detector`, you need to:
 
     ```command
     $ go install github.com/tomwright/dasel/v2/cmd/dasel@master
+    ```
 
     Let’s do that for every buildpack in the `samples/buildpacks` directory:
 
