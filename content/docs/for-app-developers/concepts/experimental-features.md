@@ -3,25 +3,34 @@ title="What are experimental features?"
 weight=8
 +++
 
-Certain features are considered `experimental` and susceptible to change in a future API version.
+Certain features are considered `experimental` and susceptible to change in future API versions.
 
 <!--more-->
 
 This means users will need to enable the `experimental` mode in order to use one of these features.
 
-To enable these features, run `pack config experimental true`, or add `experimental = true` to the `~/.pack/config.toml` file.
+If using `pack`, run `pack config experimental true`, or add `experimental = true` to your `~/.pack/config.toml` file to enable experimental features.
 
-For example, exporting your application to disk in `OCI` layout format is an experimental feature available on `pack` since version `v0.30.0`.
+If using the `lifecycle` directly, set the `CNB_EXPERIMENTAL_MODE` [environment variable](https://github.com/buildpacks/spec/blob/main/platform.md#experimental-features).
 
-The following is a list of experimental features:
+The following features are experimental for `pack`:
 
-* Image extensions
-* Windows extensions
-* Windows containers
-* Windows buildpackage
-* Buildpack registry
-* Flattening a buildpack package
+* building for [Windows containers][windows]
+* exporting to [OCI layout][oci-layout] format on disk
+* Interacting with the [buildpack registry][registry]
+* `pack manifest` commands
+* `pack buildpack --flatten`
+* `pack build --interactive`
+* When building, reading project metadata version & source URL from [project.toml][project-descriptor]
 
-For more information and to look at an example of how this might be valuable, see [Export to OCI layout format on disk][exp-feature].
+The following features are experimental for `lifecycle`:
 
-[exp-feature]: https://buildpacks.io/docs/for-app-developers/how-to/special-cases/export-to-oci-layout/
+* Building for [Windows containers][windows]
+* Exporting to [OCI layout][oci-layout] format on disk
+
+For more information and to look at an example of how this might be valuable, see [Export to OCI layout format on disk][oci-layout].
+
+[oci-layout]: https://buildpacks.io/docs/for-app-developers/how-to/special-cases/export-to-oci-layout/
+[project-descriptor]: https://buildpacks.io/docs/reference/config/project-descriptor/
+[registry]: https://buildpacks.io/docs/for-buildpack-authors/how-to/distribute-buildpacks/publish-buildpack/
+[windows]: https://buildpacks.io/docs/for-app-developers/how-to/special-cases/build-for-windows/

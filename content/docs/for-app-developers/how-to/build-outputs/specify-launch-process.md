@@ -81,7 +81,7 @@ docker run --rm -p 8080:8080 multi-process-app
 ```
 <!--+- "{{execute}}"+-->
 
->As an app developer, you can specify what the default process is, see [specify default launch process][default-process] page for more information.
+>As an app developer, you can specify what the default process is; see the [specify default launch process][default-process] page for more information.
 
 #### Default process type with additional arguments
 

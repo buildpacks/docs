@@ -15,7 +15,7 @@ Information includes:
 * Whether the run-image can be rebased with a new version through the `Rebasable` label or not
 * And more...!
 
-`Pack` offers a built-in command to help you inspect the resultant image and view some of its contents as shown below:
+`pack` offers a command to help you inspect the application image and view some of its contents as shown below:
 
 ```bash
 pack inspect-image test-node-js-app
@@ -39,13 +39,13 @@ Processes:
 
 Apart from the above standard metadata, buildpacks can also populate information about the dependencies they have provided in form of a `Software Bill-of-Materials` or [SBOM].
 
-As already mentioned, buildpacks help you get an `OCI` images that are constructed in a way that’s easy to understand and update with each of the layers being meaningful and independent of all other layers. You can get more details about each layer and how it was created to better understand how the [Build] actually worked.
+Buildpacks-built images are constructed in a way that’s easy to understand, with each of the layers being meaningful and independent of all other layers. You can get more details about each layer and how it was created to better understand how the [build] actually worked.
 
-There are some available tools that help you achieve this and understand what is contained in your `OCI` image; a popular one is [Dive].
+There are a number of available tools that can help you achieve this and understand what is contained in your `OCI` image; a popular one is [dive].
 
-Dive can help you inspect `OCI` images, view their layers and each layer's details. If you were to build an `OCI` image following the [multi process app] example and run `Dive` on the generated image, you'll be presented with some detailed information about all of the image layers and understand what is in each layer.
+`Dive` can help you inspect `OCI` images and view their layers and each layer's details. If you were to build an `OCI` image following the [multi process app] example and run `dive` on the generated image, you'll be presented with some detailed information about all of the image layers and the contents of each layer.
 
-You can use `Dive` as follows:
+You can use `dive` as follows:
 
 ```bash
 dive multi-process-app
