@@ -221,6 +221,9 @@
 <li data-nav-id="/docs/for-app-developers/concepts/reproducibility/" class="dd-item depth-2 collapse">
   <a href="/docs/for-app-developers/concepts/reproducibility/">What is build reproducibility?</a>
 </li>
+<li data-nav-id="/docs/for-app-developers/concepts/experimental-features/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-app-developers/concepts/experimental-features/">What are experimental features?</a>
+</li>
   </ul>
 </li>
 <li data-nav-id="/docs/for-app-developers/how-to/" class="dd-item depth-1 parent haschildren">
@@ -903,9 +906,34 @@
           <h1 class="title">Understand build failures</h1>
         </div>
 
-        <p>This page is a stub! The CNB project is applying to <a href="https://developers.google.com/season-of-docs/docs/timeline">Google Season of Docs</a> to receive support for improving our documentation. Please check back soon.</p>
-<p>If you are familiar with this content and would like to make a contribution, please feel free to open a PR :)</p>
-
+        <p>While <code>Buildpacks</code> help developers transform source code into container images that can run on any cloud, creating an error-free experience remains far from achieved.</p>
+<p>This guide catalogs some commonly reported issues that may prevent image build completion and provides troubleshooting tips to help end-users navigate these issues.</p>
+<p>If you would like to report an issue, please open a PR against this page using the included template (see bottom of page in Markdown).</p>
+<h4 id="issue-error-failed-to-build-failed-to-fetch-base-layers-saving-image-with-id-sha256sha256-from-the-docker-daemon-error-response-from-daemon-unable-to-create-manifests-file-notfound-content-digest-sha256sha256-not-found">Issue: <code>ERROR: failed to build: failed to fetch base layers: saving image with ID &quot;sha256:&lt;sha256&gt;&quot; from the docker daemon: Error response from daemon: unable to create manifests file: NotFound: content digest sha256:&lt;sha256&gt;: not found</code></h4>
+<p><strong>Occurs when</strong>: building and saving to a docker daemon
+<strong>Analysis</strong>: this seems to indicate a problem with the underlying image store in <code>Docker</code>
+<strong>Remediation</strong>: remove existing images with <code>docker image prune</code> (potentially, from multiple storage drivers if switching between <code>overlay2</code> and <code>containerd</code>)
+<strong>Related error messages</strong>:</p>
+<ul>
+<li><code>ERROR: failed to initialize analyzer: getting previous image: get history for image &quot;test&quot;: Error response from daemon: NotFound: snapshot sha256:&lt;sha256&gt; does not exist: not found</code></li>
+<li><code>ERROR: failed to export: saving image: failed to fetch base layers: open /tmp/imgutil.local.image.&lt;identifier&gt;/blobs/sha256/&lt;sha256&gt;: no such file or directory</code></li>
+</ul>
+<p><strong>For more information</strong>:</p>
+<ul>
+<li><a href="https://github.com/buildpacks/pack/issues/2270">Issue link on GitHub</a></li>
+<li><a href="https://cloud-native.slack.com/archives/C0331B61A1Y/p1717422902392339?thread_ts=1717185700.984459&amp;cid=C0331B61A1Y">Slack thread</a></li>
+<li><a href="https://cloud-native.slack.com/archives/C033DV8D9FB/p1730243369203799">Another Slack thread</a></li>
+</ul>
+<!--
+#### Issue: `<error text>`
+**Occurs when**: <creating a builder, building, running the application, etc.>
+**Analysis**: < why this issue occurs >
+**Remediation**: < how to avoid this issue >
+**Related error messages**:
+* `<error text>`
+**For more information**:
+* <link to GitHub issue, Slack thread, etc.>
+--->
 
         
 

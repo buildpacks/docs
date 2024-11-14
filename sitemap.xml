@@ -242,6 +242,8 @@
   </url><url>
     <loc>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/rebase/</loc>
   </url><url>
+    <loc>https://buildpacks.io/docs/for-app-developers/concepts/experimental-features/</loc>
+  </url><url>
     <loc>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/extend/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/for-app-developers/how-to/build-inputs/specify-export-target/</loc>

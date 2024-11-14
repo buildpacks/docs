@@ -221,6 +221,9 @@
 <li data-nav-id="/docs/for-app-developers/concepts/reproducibility/" class="dd-item depth-2 collapse">
   <a href="/docs/for-app-developers/concepts/reproducibility/">What is build reproducibility?</a>
 </li>
+<li data-nav-id="/docs/for-app-developers/concepts/experimental-features/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-app-developers/concepts/experimental-features/">What are experimental features?</a>
+</li>
   </ul>
 </li>
 <li data-nav-id="/docs/for-app-developers/how-to/" class="dd-item depth-1 parent haschildren">
@@ -903,9 +906,14 @@
           <h1 class="title">Specify the default launch process</h1>
         </div>
 
-        <p>This page is a stub! The CNB project is applying to <a href="https://developers.google.com/season-of-docs/docs/timeline">Google Season of Docs</a> to receive support for improving our documentation. Please check back soon.</p>
-<p>If you are familiar with this content and would like to make a contribution, please feel free to open a PR :)</p>
-
+        <p>While buildpacks usually define the default process type for an application, end users may specify the desired default process.</p>
+<p>To specify the default process:</p>
+<ul>
+<li>You first need to know what named process types might be contributed by the buildpacks in your build; for more information, see docs for <a href="https://buildpacks.io/docs/for-app-developers/how-to/build-outputs/specify-launch-process/">running the application</a></li>
+<li>Append the following flag to the <code>pack build</code> command:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack build --default-process &lt;process name&gt; &lt;image name&gt;<span class="sb">`</span> <span class="c1"># &lt;process name&gt; must be a valid process name</span>
+</span></span></code></pre></div>
 
         
 

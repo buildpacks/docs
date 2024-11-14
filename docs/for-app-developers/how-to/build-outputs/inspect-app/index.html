@@ -223,6 +223,9 @@
 <li data-nav-id="/docs/for-app-developers/concepts/reproducibility/" class="dd-item depth-2 collapse">
   <a href="/docs/for-app-developers/concepts/reproducibility/">What is build reproducibility?</a>
 </li>
+<li data-nav-id="/docs/for-app-developers/concepts/experimental-features/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-app-developers/concepts/experimental-features/">What are experimental features?</a>
+</li>
   </ul>
 </li>
 <li data-nav-id="/docs/for-app-developers/how-to/" class="dd-item depth-1 parent haschildren">
@@ -914,6 +917,7 @@
 <li>Whether the run-image can be rebased with a new version through the <code>Rebasable</code> label or not</li>
 <li>And more&hellip;!</li>
 </ul>
+<p><code>pack</code> offers a command to help you inspect the application image and view some of its contents as shown below:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack inspect-image test-node-js-app
 </span></span></code></pre></div><p>You should see the following:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Run Images:
@@ -928,6 +932,14 @@
 </span></span><span class="line"><span class="cl">  TYPE                 SHELL        COMMAND                           ARGS        WORK DIR
 </span></span><span class="line"><span class="cl">  web (default)        bash         node-js app.js                                   /workspace
 </span></span></code></pre></div><p>Apart from the above standard metadata, buildpacks can also populate information about the dependencies they have provided in form of a <code>Software Bill-of-Materials</code> or <a href="/docs/for-app-developers/how-to/build-outputs/download-sbom">SBOM</a>.</p>
+<p>Buildpacks-built images are constructed in a way that’s easy to understand, with each of the layers being meaningful and independent of all other layers. You can get more details about each layer and how it was created to better understand how the <a href="https://buildpacks.io/docs/for-app-developers/concepts/build/">build</a> actually worked.</p>
+<p>There are a number of available tools that can help you achieve this and understand what is contained in your <code>OCI</code> image; a popular one is <a href="https://github.com/wagoodman/dive">dive</a>.</p>
+<p><code>Dive</code> can help you inspect <code>OCI</code> images and view their layers and each layer&rsquo;s details. If you were to build an <code>OCI</code> image following the <a href="https://buildpacks.io/docs/for-app-developers/how-to/build-outputs/specify-launch-process/#build-a-multi-process-app">multi process app</a> example and run <code>dive</code> on the generated image, you&rsquo;ll be presented with some detailed information about all of the image layers and the contents of each layer.</p>
+<p>You can use <code>dive</code> as follows:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">dive multi-process-app
+</span></span></code></pre></div><p>The output should look similar to the following:</p>
+<p>PLACEHOLDER</p>
+<p>As seen in the output above, you&rsquo;re presented with <code>Layers</code>, <code>Layer Details</code>, <code>Image Details</code>, and <code>Current Layer Contents</code>. To view the contents or explore the file tree of any layer, you need to select the layer on the left using the arrow keys.</p>
 
         
 

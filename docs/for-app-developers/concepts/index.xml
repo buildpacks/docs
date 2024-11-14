@@ -49,5 +49,12 @@
       <guid>https://buildpacks.io/docs/for-app-developers/concepts/reproducibility/</guid>
       <description>&lt;p&gt;Given the same inputs, two builds should produce the same outputs.&lt;/p&gt;</description>
     </item>
+    <item>
+      <title>What are experimental features?</title>
+      <link>https://buildpacks.io/docs/for-app-developers/concepts/experimental-features/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://buildpacks.io/docs/for-app-developers/concepts/experimental-features/</guid>
+      <description>&lt;p&gt;Certain features are considered &lt;code&gt;experimental&lt;/code&gt; and susceptible to change in future API versions.&lt;/p&gt;</description>
+    </item>
   </channel>
 </rss>

@@ -8,9 +8,9 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="The package config file is used for packaging buildpacks for distribution as OCI images or tar files.
+<meta name="description" content="Certain features are considered experimental and susceptible to change in future API versions.
 "/>
-<link rel="canonical" content="https://buildpacks.io/docs/reference/config/package-config/">
+<link rel="canonical" content="https://buildpacks.io/docs/for-app-developers/concepts/experimental-features/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
 
@@ -18,12 +18,12 @@
 
 
 
-<meta property="og:title" content="package.toml · Cloud Native Buildpacks">
+<meta property="og:title" content="What are experimental features? · Cloud Native Buildpacks">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://buildpacks.io/docs/reference/config/package-config/">
+<meta property="og:url" content="https://buildpacks.io/docs/for-app-developers/concepts/experimental-features/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-<meta property="og:description" content="The package config file is used for packaging buildpacks for distribution as OCI images or tar files.
+<meta property="og:description" content="Certain features are considered experimental and susceptible to change in future API versions.
 ">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
@@ -35,7 +35,7 @@
 
 
 
-<meta property="twitter:title" content="package.toml · Cloud Native Buildpacks">
+<meta property="twitter:title" content="What are experimental features? · Cloud Native Buildpacks">
 <meta property="twitter:card" content="summary">
 <meta property="twitter:image" content="https://buildpacks.io/images/buildpacks-social-card-square.jpg">
 <meta property="twitter:image:alt" content="Buildpacks project logo">
@@ -98,7 +98,7 @@
     gtag('config', 'G-CJLSR4FQXL');
   </script>
 
-  <title>package.toml · Cloud Native Buildpacks</title>
+  <title>What are experimental features? · Cloud Native Buildpacks</title>
 </head>
 
 <body>
@@ -177,7 +177,7 @@
 </li>
       </ul>
     </li>
-<li data-nav-id="/docs/for-app-developers/" class="dd-item depth-0 haschildren">
+<li data-nav-id="/docs/for-app-developers/" class="dd-item depth-0 parent haschildren">
   <a href="/docs/for-app-developers/">For App Developers</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/for-app-developers/tutorials/" class="dd-item depth-1 haschildren">
@@ -188,25 +188,25 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/for-app-developers/concepts/" class="dd-item depth-1 haschildren">
+<li data-nav-id="/docs/for-app-developers/concepts/" class="dd-item depth-1 parent haschildren">
   <a href="/docs/for-app-developers/concepts/">Concepts</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/for-app-developers/concepts/buildpack/" class="dd-item depth-2 collapse">
+<li data-nav-id="/docs/for-app-developers/concepts/buildpack/" class="dd-item depth-2">
   <a href="/docs/for-app-developers/concepts/buildpack/">What is a buildpack?</a>
 </li>
-<li data-nav-id="/docs/for-app-developers/concepts/builder/" class="dd-item depth-2 collapse">
+<li data-nav-id="/docs/for-app-developers/concepts/builder/" class="dd-item depth-2">
   <a href="/docs/for-app-developers/concepts/builder/">What is a builder?</a>
 </li>
-<li data-nav-id="/docs/for-app-developers/concepts/build/" class="dd-item depth-2 collapse">
+<li data-nav-id="/docs/for-app-developers/concepts/build/" class="dd-item depth-2">
   <a href="/docs/for-app-developers/concepts/build/">What happens during build?</a>
 </li>
-<li data-nav-id="/docs/for-app-developers/concepts/rebase/" class="dd-item depth-2 collapse">
+<li data-nav-id="/docs/for-app-developers/concepts/rebase/" class="dd-item depth-2">
   <a href="/docs/for-app-developers/concepts/rebase/">What happens during rebase?</a>
 </li>
-<li data-nav-id="/docs/for-app-developers/concepts/platform/" class="dd-item depth-2 collapse">
+<li data-nav-id="/docs/for-app-developers/concepts/platform/" class="dd-item depth-2">
   <a href="/docs/for-app-developers/concepts/platform/">What is a platform?</a>
 </li>
-<li data-nav-id="/docs/for-app-developers/concepts/base-images/" class="dd-item depth-2 collapse haschildren">
+<li data-nav-id="/docs/for-app-developers/concepts/base-images/" class="dd-item depth-2 haschildren">
   <a href="/docs/for-app-developers/concepts/base-images/">What are base images?</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/for-app-developers/concepts/base-images/build/" class="dd-item depth-3 collapse">
@@ -220,10 +220,10 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/for-app-developers/concepts/reproducibility/" class="dd-item depth-2 collapse">
+<li data-nav-id="/docs/for-app-developers/concepts/reproducibility/" class="dd-item depth-2">
   <a href="/docs/for-app-developers/concepts/reproducibility/">What is build reproducibility?</a>
 </li>
-<li data-nav-id="/docs/for-app-developers/concepts/experimental-features/" class="dd-item depth-2 collapse">
+<li data-nav-id="/docs/for-app-developers/concepts/experimental-features/" class="dd-item depth-2 active">
   <a href="/docs/for-app-developers/concepts/experimental-features/">What are experimental features?</a>
 </li>
   </ul>
@@ -844,27 +844,27 @@
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/reference/" class="dd-item depth-0 parent haschildren">
+<li data-nav-id="/docs/reference/" class="dd-item depth-0 haschildren">
   <a href="/docs/reference/">Reference</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/reference/config/" class="dd-item depth-1 parent haschildren">
+<li data-nav-id="/docs/reference/config/" class="dd-item depth-1 collapse haschildren">
   <a href="/docs/reference/config/">Configuration</a>
   <ul class="ml-2">
-<li data-nav-id="/docs/reference/config/project-descriptor/" class="dd-item depth-2">
+<li data-nav-id="/docs/reference/config/project-descriptor/" class="dd-item depth-2 collapse">
   <a href="/docs/reference/config/project-descriptor/">project.toml</a>
 </li>
-<li data-nav-id="/docs/reference/config/builder-config/" class="dd-item depth-2">
+<li data-nav-id="/docs/reference/config/builder-config/" class="dd-item depth-2 collapse">
   <a href="/docs/reference/config/builder-config/">builder.toml</a>
 </li>
-<li data-nav-id="/docs/reference/config/buildpack-config/" class="dd-item depth-2">
+<li data-nav-id="/docs/reference/config/buildpack-config/" class="dd-item depth-2 collapse">
   <a href="/docs/reference/config/buildpack-config/">buildpack.toml</a>
 </li>
-<li data-nav-id="/docs/reference/config/package-config/" class="dd-item depth-2 active">
+<li data-nav-id="/docs/reference/config/package-config/" class="dd-item depth-2 collapse">
   <a href="/docs/reference/config/package-config/">package.toml</a>
 </li>
   </ul>
 </li>
-<li data-nav-id="/docs/reference/spec/" class="dd-item depth-1 haschildren">
+<li data-nav-id="/docs/reference/spec/" class="dd-item depth-1 collapse haschildren">
   <a href="/docs/reference/spec/">Specification</a>
   <ul class="ml-2">
 <li data-nav-id="/docs/reference/spec/buildpack-api/" class="dd-item depth-2">
@@ -892,12 +892,12 @@
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5Bpackage.toml%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Freference%2Fconfig%2Fpackage-config%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BWhat&#43;are&#43;experimental&#43;features%3F%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ffor-app-developers%2Fconcepts%2Fexperimental-features%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/reference/config/package-config.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/for-app-developers/concepts/experimental-features.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   
@@ -905,39 +905,29 @@
 
 
         <div class="heading">
-          <h1 class="title">package.toml</h1>
+          <h1 class="title">What are experimental features?</h1>
         </div>
 
-        <p>The package config file is used for packaging buildpacks for distribution as OCI images or tar files.</p>
-<p>The schema is as follows:</p>
+        <p>Certain features are considered <code>experimental</code> and susceptible to change in future API versions.</p>
+<p>This means users will need to enable the <code>experimental</code> mode in order to use one of these features.</p>
+<p>If using <code>pack</code>, run <code>pack config experimental true</code>, or add <code>experimental = true</code> to your <code>~/.pack/config.toml</code> file to enable experimental features.</p>
+<p>If using the <code>lifecycle</code> directly, set the <code>CNB_EXPERIMENTAL_MODE</code> <a href="https://github.com/buildpacks/spec/blob/main/platform.md#experimental-features">environment variable</a>.</p>
+<p>The following features are experimental for <code>pack</code>:</p>
 <ul>
-<li>
-<h4 id="buildpack-_required_"><code>buildpack</code> <em>(required)</em></h4>
-<p>The buildpack to package. It must contain the following field:</p>
+<li>building for <a href="https://buildpacks.io/docs/for-app-developers/how-to/special-cases/build-for-windows/">Windows containers</a></li>
+<li>exporting to <a href="https://buildpacks.io/docs/for-app-developers/how-to/special-cases/export-to-oci-layout/">OCI layout</a> format on disk</li>
+<li>Interacting with the <a href="https://buildpacks.io/docs/for-buildpack-authors/how-to/distribute-buildpacks/publish-buildpack/">buildpack registry</a></li>
+<li><code>pack manifest</code> commands</li>
+<li><code>pack buildpack --flatten</code></li>
+<li><code>pack build --interactive</code></li>
+<li>When building, reading project metadata version &amp; source URL from <a href="https://buildpacks.io/docs/reference/config/project-descriptor/">project.toml</a></li>
+</ul>
+<p>The following features are experimental for <code>lifecycle</code>:</p>
 <ul>
-<li><strong><code>uri</code></strong> <em>(string, required)</em><br>
-A URL or path to an <a href="/docs/reference/builder-config#supported-archives">archive</a>, or a path to a directory. If path is relative, it must be relative to the <code>package.toml</code>.</li>
+<li>Building for <a href="https://buildpacks.io/docs/for-app-developers/how-to/special-cases/build-for-windows/">Windows containers</a></li>
+<li>Exporting to <a href="https://buildpacks.io/docs/for-app-developers/how-to/special-cases/export-to-oci-layout/">OCI layout</a> format on disk</li>
 </ul>
-</li>
-<li>
-<h4 id="dependencies-_list-optional_"><code>dependencies</code> <em>(list, optional)</em></h4>
-<p>A set of dependent buildpack locations, for packaging a composite buildpack (sometimes referred to as a &ldquo;meta buildpack&rdquo;). Each dependent buildpack location must correspond to an <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#order-resolution">order group</a> within the composite buildpack being packaged, and must have <strong>one</strong> of the following fields:</p>
-<ul>
-<li><strong><code>uri</code></strong> <em>(string)</em><br>
-A URL or path to an <a href="/docs/reference/builder-config#supported-archives">archive</a>, a packaged buildpack (saved as a <code>.cnb</code> file), or a directory. If path is relative, it must be relative to the <code>package.toml</code>.</li>
-</ul>
-</li>
-<li>
-<h4 id="platform-_optional_"><code>platform</code> <em>(optional)</em></h4>
-<p>The expected runtime environment for the buildpackage. It should contain the following field:</p>
-<ul>
-<li><strong><code>os</code></strong> <em>(string, optional)</em><br>
-The operating system type that the buildpackage will run on. Only <code>linux</code> or <code>windows</code> is supported. If omitted, <code>linux</code> will be the default.</li>
-</ul>
-</li>
-</ul>
-<h2 id="further-reading">Further Reading</h2>
-<p>You can view <a href="https://github.com/buildpacks/samples/tree/main/packages">sample buildpackages</a> on Github.</p>
+<p>For more information and to look at an example of how this might be valuable, see <a href="https://buildpacks.io/docs/for-app-developers/how-to/special-cases/export-to-oci-layout/">Export to OCI layout format on disk</a>.</p>
 
         
 
@@ -947,12 +937,12 @@ The operating system type that the buildpackage will run on. Only <code>linux</c
   
     
     
-    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5Bpackage.toml%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Freference%2Fconfig%2Fpackage-config%2F%29"
+    <a href="https://github.com/buildpacks/docs/issues/new?body=%2A%2AOn&#43;Page%3A%2A%2A&#43;%5BWhat&#43;are&#43;experimental&#43;features%3F%5D%28https%3A%2F%2Fbuildpacks.io%2Fdocs%2Ffor-app-developers%2Fconcepts%2Fexperimental-features%2F%29"
        class="button-light button-small icon-button blank bg-white inline-flex" target="_blank">Report Issue</a>
 
     
     
-    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/reference/config/package-config.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
+    <a href="https://github.com/buildpacks/docs/edit/main/content/docs/for-app-developers/concepts/experimental-features.md?description=Signed-off-by%3A&#43;NAME&#43;%3CEMAIL_ADDRESS%3E%0A%0A%3E&#43;_By&#43;signing&#43;off&#43;you&#43;acknowledge&#43;adhering&#43;to&#43;the&#43;requirements&#43;listed&#43;here%3A&#43;https%3A%2F%2Fprobot.github.io%2Fapps%2Fdco%2F_"
        class="button-light button-small icon-button github-button bg-white inline-flex" target="_blank">Edit</a>
     
   

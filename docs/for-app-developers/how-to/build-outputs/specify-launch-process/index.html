@@ -221,6 +221,9 @@
 <li data-nav-id="/docs/for-app-developers/concepts/reproducibility/" class="dd-item depth-2 collapse">
   <a href="/docs/for-app-developers/concepts/reproducibility/">What is build reproducibility?</a>
 </li>
+<li data-nav-id="/docs/for-app-developers/concepts/experimental-features/" class="dd-item depth-2 collapse">
+  <a href="/docs/for-app-developers/concepts/experimental-features/">What are experimental features?</a>
+</li>
   </ul>
 </li>
 <li data-nav-id="/docs/for-app-developers/how-to/" class="dd-item depth-1 parent haschildren">
@@ -907,44 +910,44 @@
 <h3 id="build-a-multi-process-app">Build a multi-process app</h3>
 <p>For this example we will use the <code>hello-processes</code> buildpack from our <a href="https://github.com/buildpacks/samples">samples</a> repo so make sure you have it cloned locally.</p>
 <p>Let&rsquo;s build the app.</p>
-<pre tabindex="0"><code>pack build multi-process-app \
-    --builder cnbs/sample-builder:alpine \
-    --buildpack samples/java-maven \
-    --buildpack samples/buildpacks/hello-processes/ \
-    --path samples/apps/java-maven/
-</code></pre><!--+- "{{execute}}"+-->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack build multi-process-app <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --builder cnbs/sample-builder:alpine <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --buildpack samples/java-maven <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --buildpack samples/buildpacks/hello-processes/ <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --path samples/apps/java-maven/
+</span></span></code></pre></div><!--+- "{{execute}}"+-->
 <p>If you inspect the app image with <code>pack</code>, you will see multiple process types defined:</p>
-<pre tabindex="0"><code>pack inspect-image multi-process-app
-</code></pre><!--+- "{{execute}}"+-->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack inspect-image multi-process-app
+</span></span></code></pre></div><!--+- "{{execute}}"+-->
 <p>The output should look similar to the below:</p>
-<pre tabindex="0"><code>Inspecting image: multi-process-app
-
-REMOTE:
-(not present)
-
-LOCAL:
-
-Stack: io.buildpacks.samples.stacks.alpine
-
-Base Image:
-  Reference: f5898fb2b30c2b66f5a69a424bae6473259fa48b387df35335f04332af7f1091
-  Top Layer: sha256:700c764e7c5d5c75e6a0fc7d272b7e1c70ab327c03fbdf4abd9313e5ec3217f7
-
-Run Images:
-  cnbs/sample-base-run:alpine
-
-Rebasable: true
-
-Buildpacks:
-  ID                             VERSION           HOMEPAGE
-  samples/java-maven             0.0.2             https://github.com/buildpacks/samples/tree/main/buildpacks/java-maven
-  samples/hello-processes        0.0.1             https://github.com/buildpacks/samples/tree/main/buildpacks/hello-process
-
-Processes:
-  TYPE                 SHELL        COMMAND                                                     ARGS
-  web (default)        bash         java -jar target/sample-0.0.1-SNAPSHOT.jar
-  sys-info             bash         /layers/samples_hello-processes/sys-info/sys-info.sh
-</code></pre><p>Notice that the <code>java-maven</code> buildpack defined <code>web</code> as the default process type.
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Inspecting image: multi-process-app
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">REMOTE:
+</span></span><span class="line"><span class="cl">(not present)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">LOCAL:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Stack: io.buildpacks.samples.stacks.alpine
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Base Image:
+</span></span><span class="line"><span class="cl">  Reference: f5898fb2b30c2b66f5a69a424bae6473259fa48b387df35335f04332af7f1091
+</span></span><span class="line"><span class="cl">  Top Layer: sha256:700c764e7c5d5c75e6a0fc7d272b7e1c70ab327c03fbdf4abd9313e5ec3217f7
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Run Images:
+</span></span><span class="line"><span class="cl">  cnbs/sample-base-run:alpine
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Rebasable: true
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Buildpacks:
+</span></span><span class="line"><span class="cl">  ID                             VERSION           HOMEPAGE
+</span></span><span class="line"><span class="cl">  samples/java-maven             0.0.2             https://github.com/buildpacks/samples/tree/main/buildpacks/java-maven
+</span></span><span class="line"><span class="cl">  samples/hello-processes        0.0.1             https://github.com/buildpacks/samples/tree/main/buildpacks/hello-process
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Processes:
+</span></span><span class="line"><span class="cl">  TYPE                 SHELL        COMMAND                                                     ARGS
+</span></span><span class="line"><span class="cl">  web (default)        bash         java -jar target/sample-0.0.1-SNAPSHOT.jar
+</span></span><span class="line"><span class="cl">  sys-info             bash         /layers/samples_hello-processes/sys-info/sys-info.sh
+</span></span></code></pre></div><p>Notice that the <code>java-maven</code> buildpack defined <code>web</code> as the default process type.
 If we had run the <code>pack build</code> command above with <code>--default-process sys-info</code>, <code>sys-info</code> would be the default process for the app image!</p>
 <h3 id="run-a-multi-process-app">Run a multi-process app</h3>
 <p>Buildpacks are designed to give you much flexibility in how you run your app. The lifecycle includes a binary called the <code>launcher</code> which is present in the final app image and is responsible for starting your app.
@@ -952,45 +955,48 @@ By default, the <code>launcher</code> will start processes with <code>bash</code
 The <code>launcher</code> will source any profile scripts (for <code>non-direct</code> processes) and set buildpack-provided environment variables in the app&rsquo;s execution environment before starting the app process.</p>
 <h4 id="default-process-type">Default process type</h4>
 <p>If you would like to run the default process, you can simply run the app image without any additional arguments:</p>
-<pre tabindex="0"><code>docker run --rm -p 8080:8080 multi-process-app
-</code></pre><!--+- "{{execute}}"+-->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run --rm -p 8080:8080 multi-process-app
+</span></span></code></pre></div><!--+- "{{execute}}"+-->
+<blockquote>
+<p>As an app developer, you can specify what the default process is; see the <a href="https://buildpacks.io/docs/for-app-developers/how-to/build-inputs/specify-default-launch-process/">specify default launch process</a> page for more information.</p>
+</blockquote>
 <h4 id="default-process-type-with-additional-arguments">Default process type with additional arguments</h4>
 <p>If you would like to pass additional arguments to the default process, you can run the app image with the arguments specified in the command:</p>
-<pre tabindex="0"><code>docker run --rm -p 8080:8080 multi-process-app --spring.profiles.active=mysql
-</code></pre><!--+- "{{execute interrupt}}"+-->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run --rm -p 8080:8080 multi-process-app --spring.profiles.active<span class="o">=</span>mysql
+</span></span></code></pre></div><!--+- "{{execute interrupt}}"+-->
 <h4 id="non-default-process-type">Non-default process-type</h4>
 <p>To run a non-default process type, set the process type as the entrypoint for the run container:</p>
-<pre tabindex="0"><code>docker run --rm --entrypoint sys-info multi-process-app
-</code></pre><!--+- "{{execute interrupt}}"+-->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run --rm --entrypoint sys-info multi-process-app
+</span></span></code></pre></div><!--+- "{{execute interrupt}}"+-->
 <h4 id="non-default-process-type-with-additional-arguments">Non-default process-type with additional arguments</h4>
 <p>You can pass additional arguments to a non-default process type:</p>
-<pre tabindex="0"><code>docker run --rm --entrypoint sys-info multi-process-app --spring.profiles.active=mysql
-</code></pre><!--+- "{{execute interrupt}}"+-->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run --rm --entrypoint sys-info multi-process-app --spring.profiles.active<span class="o">=</span>mysql
+</span></span></code></pre></div><!--+- "{{execute interrupt}}"+-->
 <h4 id="user-provided-shell-process">User-provided shell process</h4>
 <p>You can even override the buildpack-defined process types:</p>
-<pre tabindex="0"><code>docker run --rm --entrypoint launcher -it multi-process-app bash
-</code></pre><!--+- "{{execute interrupt}}"+-->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run --rm --entrypoint launcher -it multi-process-app bash
+</span></span></code></pre></div><!--+- "{{execute interrupt}}"+-->
 <p>Now let&rsquo;s exit this shell and run an alternative entrypoint -</p>
-<pre tabindex="0"><code>exit
-</code></pre><!--+- "{{execute interrupt}}"+-->
-<pre tabindex="0"><code>docker run --rm --entrypoint launcher -it multi-process-app echo hello &#34;$WORLD&#34; # $WORLD is evaluated on the host machine
-</code></pre><!--+- "{{execute interrupt}}"+-->
-<pre tabindex="0"><code>docker run --rm --entrypoint launcher -it multi-process-app echo hello &#39;$WORLD&#39; # $WORLD is evaluated in the container after profile scripts are sourced
-</code></pre><!--+- "{{execute interrupt}}"+-->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">exit</span>
+</span></span></code></pre></div><!--+- "{{execute interrupt}}"+-->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run --rm --entrypoint launcher -it multi-process-app <span class="nb">echo</span> hello <span class="s2">&#34;</span><span class="nv">$WORLD</span><span class="s2">&#34;</span> <span class="c1"># $WORLD is evaluated on the host machine</span>
+</span></span></code></pre></div><!--+- "{{execute interrupt}}"+-->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run --rm --entrypoint launcher -it multi-process-app <span class="nb">echo</span> hello <span class="s1">&#39;$WORLD&#39;</span> <span class="c1"># $WORLD is evaluated in the container after profile scripts are sourced</span>
+</span></span></code></pre></div><!--+- "{{execute interrupt}}"+-->
 <h4 id="user-provided-shell-process-with-bash-script">User-provided shell process with bash script</h4>
 <p>An entire script may be provided as a single argument:</p>
-<pre tabindex="0"><code>docker run --rm --entrypoint launcher -it multi-process-app &#39;for opt in $JAVA_OPTS; do echo $opt; done&#39;
-</code></pre><!--+- "{{execute interrupt}}"+-->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run --rm --entrypoint launcher -it multi-process-app <span class="s1">&#39;for opt in $JAVA_OPTS; do echo $opt; done&#39;</span>
+</span></span></code></pre></div><!--+- "{{execute interrupt}}"+-->
 <h4 id="user-provided-direct-process">User-provided direct process</h4>
 <p>By passing <code>--</code> before the command, we instruct the <code>launcher</code> to start the provided process without <code>bash</code>.
 Note that while buildpack-provided environment variables will be set in the execution environment, no profile scripts will be sourced (as these require <code>bash</code>):</p>
-<pre tabindex="0"><code>docker run --rm --entrypoint launcher multi-process-app -- env # output will include buildpack-provided env vars
-docker run --rm --entrypoint launcher multi-process-app -- echo hello &#34;$WORLD&#34; # $WORLD is evaluated on the host machine
-docker run --rm --entrypoint launcher multi-process-app -- echo hello &#39;$WORLD&#39; # $WORLD is not evaluated, output will include string literal `$WORLD`
-</code></pre><h4 id="no-launcher">No launcher</h4>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">docker run --rm --entrypoint launcher multi-process-app -- env # output will include buildpack-provided env vars
+</span></span><span class="line"><span class="cl">docker run --rm --entrypoint launcher multi-process-app -- echo hello &#34;$WORLD&#34; # $WORLD is evaluated on the host machine
+</span></span><span class="line"><span class="cl">docker run --rm --entrypoint launcher multi-process-app -- echo hello &#39;$WORLD&#39; # $WORLD is not evaluated, output will include string literal `$WORLD`
+</span></span></code></pre></div><h4 id="no-launcher">No launcher</h4>
 <p>You can bypass the launcher entirely by setting a new entrypoint for the run container:</p>
-<pre tabindex="0"><code>docker run --rm --entrypoint bash -it multi-process-app # profile scripts have NOT been sourced and buildpack-provided env vars are NOT set in this shell
-</code></pre><!--+- "{{execute interrupt}}"+-->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run --rm --entrypoint bash -it multi-process-app <span class="c1"># profile scripts have NOT been sourced and buildpack-provided env vars are NOT set in this shell</span>
+</span></span></code></pre></div><!--+- "{{execute interrupt}}"+-->
 <p>To learn more about the launcher, see the <a href="https://github.com/buildpacks/spec/blob/main/platform.md#launcher">platform spec</a>.</p>
 
 
