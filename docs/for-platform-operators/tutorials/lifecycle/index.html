@@ -1026,17 +1026,14 @@
 </blockquote>
 <p>We will use <a href="http://github.com/tomwright/dasel/"><code>dasel</code></a> to help us parse toml files.</p>
 <pre tabindex="0"><code class="language-command" data-lang="command">$ go install github.com/tomwright/dasel/v2/cmd/dasel@master
-
-Let’s do that for every buildpack in the `samples/buildpacks` directory:
-
-```text
-for f in $(ls --color=no ${CNB_SAMPLES_PATH}/buildpacks | grep -v README)
-do
-bp_version=$(cat ${CNB_SAMPLES_PATH}/buildpacks/$f/buildpack.toml | dasel -r toml buildpack.version | sed s/\&#39;//g);
-mkdir -p ./buildpacks/samples_&#34;${f}&#34;/${bp_version}
-cp -r &#34;$CNB_SAMPLES_PATH/buildpacks/${f}/&#34; ./buildpacks/samples_&#34;${f}&#34;/${bp_version}/
-done
-</code></pre></li>
+</code></pre><p>Let’s do that for every buildpack in the <code>samples/buildpacks</code> directory:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">for f in $(ls --color=no ${CNB_SAMPLES_PATH}/buildpacks | grep -v README)
+</span></span><span class="line"><span class="cl">do
+</span></span><span class="line"><span class="cl">bp_version=$(cat ${CNB_SAMPLES_PATH}/buildpacks/$f/buildpack.toml | dasel -r toml buildpack.version | sed s/\&#39;//g);
+</span></span><span class="line"><span class="cl">mkdir -p ./buildpacks/samples_&#34;${f}&#34;/${bp_version}
+</span></span><span class="line"><span class="cl">cp -r &#34;$CNB_SAMPLES_PATH/buildpacks/${f}/&#34; ./buildpacks/samples_&#34;${f}&#34;/${bp_version}/
+</span></span><span class="line"><span class="cl">done
+</span></span></code></pre></div></li>
 </ol>
 <p>Now, you can run the <code>detector</code> binary:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">${CNB_LIFECYCLE_PATH}/detector -log-level debug -layers=&#34;./layers&#34; -order=&#34;./order.toml&#34; -buildpacks=&#34;./buildpacks&#34; -app apps/bash-script
