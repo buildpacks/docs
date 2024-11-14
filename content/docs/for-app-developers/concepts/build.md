@@ -23,5 +23,4 @@ Builders provide a convenient way to distribute buildpacks.
 [build-time base image]: /docs/for-app-developers/concepts/base-images/build/
 [builder]: /docs/for-platform-operators/concepts/builder
 [buildpack]: /docs/for-app-developers/concepts/buildpack/
-[lifecycle]: /docs/for-platform-operators/concepts/lifecycle/
 [runtime base image]: /docs/for-app-developers/concepts/base-images/run/
