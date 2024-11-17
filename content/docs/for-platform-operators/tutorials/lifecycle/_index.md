@@ -42,7 +42,7 @@ Now that you’re set up, let’s build our `Bash` application and dive deeper i
 As a starting step, you need to build the `lifecycle` in order to use its phases. This could be done by navigating to the `lifecycle` directory and executing one of the following commands, depending on your system architecture.
 
 * `make build-linux-amd64` for `AMD64` architectures (for Linux users)
-* `make build-darwin-arm64` for `ARM64` architectures (for Mac users)
+* `make build-darwin-arm64 && make build-linux-arm64-launcher` for `ARM64` architectures (for Mac users)
 
 It's recommended to check the [lifecycle releases][releases] page to download binaries based on your system.
 > Please note that the entire process is most easily followed on Linux systems
