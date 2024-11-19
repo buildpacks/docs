@@ -933,7 +933,7 @@
 <p>As a starting step, you need to build the <code>lifecycle</code> in order to use its phases. This could be done by navigating to the <code>lifecycle</code> directory and executing one of the following commands, depending on your system architecture.</p>
 <ul>
 <li><code>make build-linux-amd64</code> for <code>AMD64</code> architectures (for Linux users)</li>
-<li><code>make build-darwin-arm64</code> for <code>ARM64</code> architectures (for Mac users)</li>
+<li><code>make build-darwin-arm64 &amp;&amp; make build-linux-arm64-launcher</code> for <code>ARM64</code> architectures (for Mac users)</li>
 </ul>
 <p>It&rsquo;s recommended to check the <a href="https://github.com/buildpacks/lifecycle/releases">lifecycle releases</a> page to download binaries based on your system.</p>
 <blockquote>
