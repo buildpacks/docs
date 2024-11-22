@@ -1229,7 +1229,41 @@
 <h3 id="run-the-app-image">Run the app image</h3>
 <p>Finally, you can run the exported image as follows:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">docker run -it apps/bash-script ./app.sh
-</span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">OUTPUT PLACEHOLDER
+</span></span></code></pre></div><p>The output should look similar to the following:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    |&#39;-_ _-&#39;|       ____          _  _      _                      _             _
+</span></span><span class="line"><span class="cl">    |   |   |      |  _ \        (_)| |    | |                    | |           (_)
+</span></span><span class="line"><span class="cl">     &#39;-_|_-&#39;       | |_) | _   _  _ | |  __| | _ __    __ _   ___ | | __ ___     _   ___
+</span></span><span class="line"><span class="cl">|&#39;-_ _-&#39;|&#39;-_ _-&#39;|  |  _ &lt; | | | || || | / _` ||&#39;_ \  / _\ | / __|| |/ // __|   | | / _ \
+</span></span><span class="line"><span class="cl">|   |   |   |   |  | |_) || |_| || || || (_| || |_) || (_| || (__ |   &lt; \__ \ _ | || (_) |
+</span></span><span class="line"><span class="cl"> &#39;-_|_-&#39; &#39;-_|_-&#39;   |____/  \__,_||_||_| \__,_|| .__/  \__,_| \___||_|\_\|___/(_)|_| \___/
+</span></span><span class="line"><span class="cl">                                              | |
+</span></span><span class="line"><span class="cl">                                              |_|
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Here are the contents of the current working directory:
+</span></span><span class="line"><span class="cl">.:
+</span></span><span class="line"><span class="cl">total 24
+</span></span><span class="line"><span class="cl">drwxr-xr-x 3 502 dialout 4096 Jan  1  1980 .
+</span></span><span class="line"><span class="cl">drwxr-xr-x 1 502 root    4096 Jan  1  1980 ..
+</span></span><span class="line"><span class="cl">-rw-r--r-- 1 502 dialout  692 Jan  1  1980 README.md
+</span></span><span class="line"><span class="cl">-rwxr-xr-x 1 502 dialout  736 Jan  1  1980 app.sh
+</span></span><span class="line"><span class="cl">drwxr-xr-x 3 502 dialout 4096 Jan  1  1980 bash-script-buildpack
+</span></span><span class="line"><span class="cl">-rw-r--r-- 1 502 dialout  202 Jan  1  1980 project.toml
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">./bash-script-buildpack:
+</span></span><span class="line"><span class="cl">total 16
+</span></span><span class="line"><span class="cl">drwxr-xr-x 3 502 dialout 4096 Jan  1  1980 .
+</span></span><span class="line"><span class="cl">drwxr-xr-x 3 502 dialout 4096 Jan  1  1980 ..
+</span></span><span class="line"><span class="cl">drwxr-xr-x 2 502 dialout 4096 Jan  1  1980 bin
+</span></span><span class="line"><span class="cl">-rw-r--r-- 1 502 dialout  226 Jan  1  1980 buildpack.toml
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">./bash-script-buildpack/bin:
+</span></span><span class="line"><span class="cl">total 16
+</span></span><span class="line"><span class="cl">drwxr-xr-x 2 502 dialout 4096 Jan  1  1980 .
+</span></span><span class="line"><span class="cl">drwxr-xr-x 3 502 dialout 4096 Jan  1  1980 ..
+</span></span><span class="line"><span class="cl">-rwxr-xr-x 1 502 dialout  345 Jan  1  1980 build
+</span></span><span class="line"><span class="cl">-rwxr-xr-x 1 502 dialout  242 Jan  1  1980 detect
 </span></span></code></pre></div><h2 id="wrapping-up">Wrapping up</h2>
 <p>At the end of this tutorial, we hope that you now have a better understanding of what happens during each <code>lifecycle phase</code>, and how you could use <code>Buildpacks</code> to create container images. You are now ready to explore this technology further and customize it to fit your application development and deployment needs.</p>
 
