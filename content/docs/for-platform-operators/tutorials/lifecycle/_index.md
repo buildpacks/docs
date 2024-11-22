@@ -430,8 +430,43 @@ Finally, you can run the exported image as follows:
 docker run -it apps/bash-script ./app.sh
 ```
 
+The output should look similar to the following:
+
 ```text
-OUTPUT PLACEHOLDER
+
+    |'-_ _-'|       ____          _  _      _                      _             _
+    |   |   |      |  _ \        (_)| |    | |                    | |           (_)
+     '-_|_-'       | |_) | _   _  _ | |  __| | _ __    __ _   ___ | | __ ___     _   ___
+|'-_ _-'|'-_ _-'|  |  _ < | | | || || | / _` ||'_ \  / _\ | / __|| |/ // __|   | | / _ \
+|   |   |   |   |  | |_) || |_| || || || (_| || |_) || (_| || (__ |   < \__ \ _ | || (_) |
+ '-_|_-' '-_|_-'   |____/  \__,_||_||_| \__,_|| .__/  \__,_| \___||_|\_\|___/(_)|_| \___/
+                                              | |
+                                              |_|
+
+
+Here are the contents of the current working directory:
+.:
+total 24
+drwxr-xr-x 3 502 dialout 4096 Jan  1  1980 .
+drwxr-xr-x 1 502 root    4096 Jan  1  1980 ..
+-rw-r--r-- 1 502 dialout  692 Jan  1  1980 README.md
+-rwxr-xr-x 1 502 dialout  736 Jan  1  1980 app.sh
+drwxr-xr-x 3 502 dialout 4096 Jan  1  1980 bash-script-buildpack
+-rw-r--r-- 1 502 dialout  202 Jan  1  1980 project.toml
+
+./bash-script-buildpack:
+total 16
+drwxr-xr-x 3 502 dialout 4096 Jan  1  1980 .
+drwxr-xr-x 3 502 dialout 4096 Jan  1  1980 ..
+drwxr-xr-x 2 502 dialout 4096 Jan  1  1980 bin
+-rw-r--r-- 1 502 dialout  226 Jan  1  1980 buildpack.toml
+
+./bash-script-buildpack/bin:
+total 16
+drwxr-xr-x 2 502 dialout 4096 Jan  1  1980 .
+drwxr-xr-x 3 502 dialout 4096 Jan  1  1980 ..
+-rwxr-xr-x 1 502 dialout  345 Jan  1  1980 build
+-rwxr-xr-x 1 502 dialout  242 Jan  1  1980 detect
 ```
 
 ## Wrapping up
