@@ -25,7 +25,7 @@ pack buildpack new examples/node-js \
     --api 0.10 \
     --path node-js-buildpack \
     --version 0.0.1 \
-    --stacks io.buildpacks.samples.stacks.noble
+    --targets "linux/amd64"
 ```
 <!--+- "{{execute}}"+-->
 This command will create `node-js-buildpack` directory which contains `buildpack.toml`, `bin/build`,  `bin/detect` files.
@@ -46,6 +46,11 @@ You will have `node-js-buildpack/buildpack.toml`<!--+"{{open}}"+--> in your buil
 ```toml
 # Buildpack API version
 api = "0.10"
+# Enable to allow the buildpack to build on a Windows target
+WithWindowsBuild = false
+# Enable to force the buildpack to build only on supported Linux targets
+# "false" by default, which allows the buildpack to build on *all* Linux targets
+WithLinuxBuild = false
 
 # Buildpack ID and metadata
 [buildpack]
@@ -54,12 +59,8 @@ api = "0.10"
 
 # Targets the buildpack will work with
 [[targets]]
-os = "linux"
-
-# Stacks (deprecated) the buildpack will work with
-[[stacks]]
-  id = "io.buildpacks.samples.stacks.noble"
-
+  os = "linux"
+  arch = "amd64"
 ```
 
 The buildpack ID is the way you will reference the buildpack when you create buildpack groups, builders, etc.
