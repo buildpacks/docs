@@ -26,7 +26,7 @@ jobs:
       - name: Install pack
         uses: buildpacks/github-actions/setup-pack@v5.8.2
         with:
-          pack-version: '0.31.0'
+          pack-version: '0.36.0'
       - name: Test
         run: make test
         env:
