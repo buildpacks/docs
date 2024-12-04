@@ -25,7 +25,7 @@ pack buildpack new examples/node-js \
     --api 0.10 \
     --path node-js-buildpack \
     --version 0.0.1 \
-    --stacks io.buildpacks.samples.stacks.noble
+    --targets "linux/amd64"
 ```
 <!--+- "{{execute}}"+-->
 This command will create `node-js-buildpack` directory which contains `buildpack.toml`, `bin/build`,  `bin/detect` files.
@@ -34,7 +34,6 @@ This command will create `node-js-buildpack` directory which contains `buildpack
 - `-a, --api` Buildpack API compatibility of the generated buildpack
 - `-h, --help` Help for 'new'
 - `--path` the location on the filesystem to generate the artifacts
-- `--stacks` Stacks (deprecated) the buildpack will work with
 - `-V, --version` the version of the buildpack in buildpack.toml
 
 
@@ -55,11 +54,7 @@ api = "0.10"
 # Targets the buildpack will work with
 [[targets]]
 os = "linux"
-
-# Stacks (deprecated) the buildpack will work with
-[[stacks]]
-  id = "io.buildpacks.samples.stacks.noble"
-
+architecture = "amd64"
 ```
 
 The buildpack ID is the way you will reference the buildpack when you create buildpack groups, builders, etc.
@@ -130,9 +125,9 @@ After running the command, you should see that it failed to detect, as the `dete
 ```
 ===> DETECTING
 ...
-err:  examples/node-js@0.0.1 (1)
-ERROR: No buildpack groups passed detection.
-ERROR: failed to detect: buildpack(s) failed with err
+[detector] err:  examples/node-js@0.0.1 (1)
+[detector] ERROR: No buildpack groups passed detection.
+[detector] ERROR: failed to detect: buildpack(s) failed with err
 ERROR: failed to build: executing lifecycle: failed with status code: 21
 ```
 
