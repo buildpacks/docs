@@ -140,8 +140,8 @@ you will see the new caching logic at work during the `BUILDING` phase:
 ```text
 ===> BUILDING
 ...
----> NodeJS Buildpack
------> Reusing NodeJS
+[builder] ---> NodeJS Buildpack
+[builder] -----> Reusing NodeJS
 ```
 
 Next, let's see how buildpack users may be able to provide configuration to the buildpack.

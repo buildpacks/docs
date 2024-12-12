@@ -94,8 +94,8 @@ You will see the following output:
 ...
 ===> RESTORING
 ===> BUILDING
----> NodeJS Buildpack
----> Downloading and extracting NodeJS
+[builder] ---> NodeJS Buildpack
+[builder] ---> Downloading and extracting NodeJS
 ...
 ===> EXPORTING
 ...
