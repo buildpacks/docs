@@ -929,6 +929,7 @@ e.g., <code>index.docker.io/&lt;username&gt;</code>.</p>
 <!-- test:exec -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack builder create localhost:5000/extensions-builder <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  --config <span class="nv">$PWD</span>/samples/builders/alpine/builder.toml <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --target <span class="s2">&#34;linux/amd64&#34;</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  --publish
 </span></span></code></pre></div><h3 id="build-the-application-image">Build the application image</h3>
 <p>Run <code>pack build</code> (note that the &ldquo;source&rdquo; directory is effectively ignored in our example):</p>

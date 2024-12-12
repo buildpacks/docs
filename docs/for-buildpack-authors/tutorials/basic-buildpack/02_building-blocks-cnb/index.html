@@ -922,7 +922,7 @@ Make sure to run this command outside the <code>node-js-sample-app</code> direct
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>    --api 0.10 <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>    --path node-js-buildpack <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>    --version 0.0.1 <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --stacks io.buildpacks.samples.stacks.noble
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --targets <span class="s2">&#34;linux/amd64&#34;</span>
 </span></span></code></pre></div><!--+- "{{execute}}"+-->
 <p>This command will create <code>node-js-buildpack</code> directory which contains <code>buildpack.toml</code>, <code>bin/build</code>,  <code>bin/detect</code> files.</p>
 <h3 id="additional-parameters">Additional Parameters</h3>
@@ -930,7 +930,6 @@ Make sure to run this command outside the <code>node-js-sample-app</code> direct
 <li><code>-a, --api</code> Buildpack API compatibility of the generated buildpack</li>
 <li><code>-h, --help</code> Help for &rsquo;new'</li>
 <li><code>--path</code> the location on the filesystem to generate the artifacts</li>
-<li><code>--stacks</code> Stacks (deprecated) the buildpack will work with</li>
 <li><code>-V, --version</code> the version of the buildpack in buildpack.toml</li>
 </ul>
 <h3 id="buildpacktoml">buildpack.toml</h3>
@@ -947,10 +946,7 @@ Make sure to run this command outside the <code>node-js-sample-app</code> direct
 </span></span><span class="line"><span class="cl"><span class="c"># Targets the buildpack will work with</span>
 </span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">targets</span><span class="p">]]</span>
 </span></span><span class="line"><span class="cl"><span class="nx">os</span> <span class="p">=</span> <span class="s2">&#34;linux&#34;</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c"># Stacks (deprecated) the buildpack will work with</span>
-</span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">stacks</span><span class="p">]]</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;io.buildpacks.samples.stacks.noble&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">architecture</span> <span class="p">=</span> <span class="s2">&#34;amd64&#34;</span>
 </span></span></code></pre></div><p>The buildpack ID is the way you will reference the buildpack when you create buildpack groups, builders, etc.
 <a href="/docs/for-buildpack-authors/concepts/targets/">Targets</a> identifies the kind of build and run base images the buildpack will work with.
 The stack ID (deprecated) uniquely identifies a build and run image configuration the buildpack will work with. This example can be run on Ubuntu Noble.</p>
@@ -989,9 +985,9 @@ The stack ID (deprecated) uniquely identifies a build and run image configuratio
 <!-- test:assert=contains;ignore-lines=... -->
 <pre tabindex="0"><code>===&gt; DETECTING
 ...
-err:  examples/node-js@0.0.1 (1)
-ERROR: No buildpack groups passed detection.
-ERROR: failed to detect: buildpack(s) failed with err
+[detector] err:  examples/node-js@0.0.1 (1)
+[detector] ERROR: No buildpack groups passed detection.
+[detector] ERROR: failed to detect: buildpack(s) failed with err
 ERROR: failed to build: executing lifecycle: failed with status code: 21
 </code></pre><!--+ if false+-->
 <hr>
