@@ -34,7 +34,6 @@ This command will create `node-js-buildpack` directory which contains `buildpack
 - `-a, --api` Buildpack API compatibility of the generated buildpack
 - `-h, --help` Help for 'new'
 - `--path` the location on the filesystem to generate the artifacts
-- `--stacks` Stacks (deprecated) the buildpack will work with
 - `-V, --version` the version of the buildpack in buildpack.toml
 
 
@@ -131,9 +130,9 @@ After running the command, you should see that it failed to detect, as the `dete
 ```
 ===> DETECTING
 ...
-err:  examples/node-js@0.0.1 (1)
-ERROR: No buildpack groups passed detection.
-ERROR: failed to detect: buildpack(s) failed with err
+[detector] err:  examples/node-js@0.0.1 (1)
+[detector] ERROR: No buildpack groups passed detection.
+[detector] ERROR: failed to detect: buildpack(s) failed with err
 ERROR: failed to build: executing lifecycle: failed with status code: 21
 ```
 

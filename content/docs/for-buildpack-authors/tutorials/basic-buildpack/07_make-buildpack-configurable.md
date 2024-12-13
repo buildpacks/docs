@@ -112,8 +112,8 @@ You will notice that version of NodeJS specified in the app's `.node-js-version`
 ```text
 ===> BUILDING
 ...
----> NodeJS Buildpack
------> Downloading and extracting NodeJS 18.18.1
+[builder] ---> NodeJS Buildpack
+[builder] -----> Downloading and extracting NodeJS 18.18.1
 ```
 
 ## Going further

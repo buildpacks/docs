@@ -56,6 +56,7 @@ Create the builder:
 ```bash
 pack builder create localhost:5000/extensions-builder \
   --config $PWD/samples/builders/alpine/builder.toml \
+  --target "linux/amd64" \
   --publish
 ```
 
