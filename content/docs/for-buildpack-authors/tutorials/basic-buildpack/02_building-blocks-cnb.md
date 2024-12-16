@@ -45,6 +45,11 @@ You will have `node-js-buildpack/buildpack.toml`<!--+"{{open}}"+--> in your buil
 ```toml
 # Buildpack API version
 api = "0.10"
+# Enable to allow the buildpack to build on a Windows target
+WithWindowsBuild = false
+# Enable to force the buildpack to build only on supported Linux targets
+# "false" by default, which allows the buildpack to build on *all* Linux targets
+WithLinuxBuild = false
 
 # Buildpack ID and metadata
 [buildpack]
@@ -53,8 +58,8 @@ api = "0.10"
 
 # Targets the buildpack will work with
 [[targets]]
-os = "linux"
-architecture = "amd64"
+  os = "linux"
+  arch = "amd64"
 ```
 
 The buildpack ID is the way you will reference the buildpack when you create buildpack groups, builders, etc.
