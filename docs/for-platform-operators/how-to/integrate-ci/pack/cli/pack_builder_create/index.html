@@ -914,7 +914,8 @@
 </code></pre><h3 id="examples">Examples</h3>
 <pre tabindex="0"><code>pack builder create my-builder:bionic --config ./builder.toml
 </code></pre><h3 id="options">Options</h3>
-<pre tabindex="0"><code>  -R, --buildpack-registry string   Buildpack Registry by name
+<pre tabindex="0"><code>      --append-image-name-suffix    When publishing to a registry that doesn&#39;t allow overwrite existing tags use this flag to append a [os]-[arch] suffix to &lt;image-name&gt;
+  -R, --buildpack-registry string   Buildpack Registry by name
   -c, --config string               Path to builder TOML file (required)
       --flatten stringArray         List of buildpacks to flatten together into a single layer (format: &#39;&lt;buildpack-id&gt;@&lt;buildpack-version&gt;,&lt;buildpack-id&gt;@&lt;buildpack-version&gt;&#39;
   -h, --help                        Help for &#39;create&#39;

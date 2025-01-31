@@ -937,6 +937,11 @@ Make sure to run this command outside the <code>node-js-sample-app</code> direct
 <!-- test:file=node-js-buildpack/buildpack.toml -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="c"># Buildpack API version</span>
 </span></span><span class="line"><span class="cl"><span class="nx">api</span> <span class="p">=</span> <span class="s2">&#34;0.10&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Enable to allow the buildpack to build on a Windows target</span>
+</span></span><span class="line"><span class="cl"><span class="nx">WithWindowsBuild</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl"><span class="c"># Enable to force the buildpack to build only on supported Linux targets</span>
+</span></span><span class="line"><span class="cl"><span class="c"># &#34;false&#34; by default, which allows the buildpack to build on *all* Linux targets</span>
+</span></span><span class="line"><span class="cl"><span class="nx">WithLinuxBuild</span> <span class="p">=</span> <span class="kc">false</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c"># Buildpack ID and metadata</span>
 </span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">buildpack</span><span class="p">]</span>
@@ -945,8 +950,8 @@ Make sure to run this command outside the <code>node-js-sample-app</code> direct
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c"># Targets the buildpack will work with</span>
 </span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">targets</span><span class="p">]]</span>
-</span></span><span class="line"><span class="cl"><span class="nx">os</span> <span class="p">=</span> <span class="s2">&#34;linux&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nx">architecture</span> <span class="p">=</span> <span class="s2">&#34;amd64&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">os</span> <span class="p">=</span> <span class="s2">&#34;linux&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">arch</span> <span class="p">=</span> <span class="s2">&#34;amd64&#34;</span>
 </span></span></code></pre></div><p>The buildpack ID is the way you will reference the buildpack when you create buildpack groups, builders, etc.
 <a href="/docs/for-buildpack-authors/concepts/targets/">Targets</a> identifies the kind of build and run base images the buildpack will work with.
 The stack ID (deprecated) uniquely identifies a build and run image configuration the buildpack will work with. This example can be run on Ubuntu Noble.</p>

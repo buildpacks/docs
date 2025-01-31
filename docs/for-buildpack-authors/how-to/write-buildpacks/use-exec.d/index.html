@@ -962,15 +962,15 @@
 </span></span><span class="line"><span class="cl"><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl"> <span class="c1">// Open file descriptor 3 for writing
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="nx">fd3</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">NewFile</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s">&#34;fd3&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="c1">// Open file descriptor 3 for writing</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">fd3</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">NewFile</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s">&#34;fd3&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"> <span class="k">if</span> <span class="nx">fd3</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Failed to open file descriptor 3&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="k">return</span>
 </span></span><span class="line"><span class="cl"> <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"> <span class="c1">// Write the environment variable to file descriptor 3
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">fd3</span><span class="p">.</span><span class="nf">WriteString</span><span class="p">(</span><span class="s">`EXAMPLE=&#34;test&#34;\n`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="c1">// Write the environment variable to file descriptor 3</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">_</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">fd3</span><span class="p">.</span><span class="nf">WriteString</span><span class="p">(</span><span class="s">`EXAMPLE=&#34;test&#34;\n`</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"> <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Error writing to file descriptor 3:&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"> <span class="p">}</span>

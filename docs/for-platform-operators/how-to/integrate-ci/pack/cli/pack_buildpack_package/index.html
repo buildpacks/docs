@@ -912,7 +912,8 @@
 <pre tabindex="0"><code>pack buildpack package my-buildpack --config ./package.toml
 pack buildpack package my-buildpack.cnb --config ./package.toml --f file
 </code></pre><h3 id="options">Options</h3>
-<pre tabindex="0"><code>  -r, --buildpack-registry string   Buildpack Registry name
+<pre tabindex="0"><code>      --append-image-name-suffix    When publishing to a registry that doesn&#39;t allow overwrite existing tags use this flag to append a [os]-[arch] suffix to package &lt;name&gt;
+  -r, --buildpack-registry string   Buildpack Registry name
   -c, --config string               Path to package TOML config
       --flatten                     Flatten the buildpack into a single layer
   -e, --flatten-exclude strings     Buildpacks to exclude from flattening, in the form of &#39;&lt;buildpack-id&gt;@&lt;buildpack-version&gt;&#39;

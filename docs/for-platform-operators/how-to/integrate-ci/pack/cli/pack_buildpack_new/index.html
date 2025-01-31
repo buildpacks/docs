@@ -914,7 +914,7 @@
 <pre tabindex="0"><code>  -a, --api string        Buildpack API compatibility of the generated buildpack (default &#34;0.8&#34;)
   -h, --help              Help for &#39;new&#39;
   -p, --path string       Path to generate the buildpack
-  -t, --targets strings   Targets are the list platforms that one targeting, these are generated as part of scaffolding inside buildpack.toml file. one can provide target platforms in format [os][/arch][/variant]:[distroname@osversion@anotherversion];[distroname@osversion]
+  -t, --targets strings   Targets are of the form &#39;os/arch/variant&#39;, for example &#39;linux/amd64&#39; or &#39;linux/arm64/v9&#39;. The full format for targets follows the form [os][/arch][/variant]:[distroname@osversion@anotherversion];[distroname@osversion]
                           	- Base case for two different architectures :  &#39;--targets &#34;linux/amd64&#34; --targets &#34;linux/arm64&#34;&#39;
                           	- case for distribution version: &#39;--targets &#34;windows/amd64:windows-nano@10.0.19041.1415&#34;&#39;
                           	- case for different architecture with distributed versions : &#39;--targets &#34;linux/arm/v6:ubuntu@14.04&#34;  --targets &#34;linux/arm/v6:ubuntu@16.04&#34;&#39;
