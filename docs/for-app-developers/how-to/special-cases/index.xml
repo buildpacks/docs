@@ -19,7 +19,7 @@
       <link>https://buildpacks.io/docs/for-app-developers/how-to/special-cases/build-for-windows/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-app-developers/how-to/special-cases/build-for-windows/</guid>
-      <description>&lt;p&gt;You can use buildpacks to build container images that run Windows containers on Windows (WCOW).&lt;/p&gt;&#xA;&lt;p&gt;This page is not relevant if your host machine is Windows but you are running Linux containers on Windows (LCOW);&#xA;in this case, no special configuration is required.&lt;/p&gt;</description>
+      <description>&lt;p&gt;The Cloud Native Buildpacks tools have dropped support for Windows containers on Windows (WCOW).&lt;/p&gt;&#xA;&lt;p&gt;You can continue to build Linux containers on Windows using &lt;code&gt;pack&lt;/code&gt; and other Cloud Native Buildpacks tools.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Export to OCI layout format on disk</title>

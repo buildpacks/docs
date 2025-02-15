@@ -919,8 +919,7 @@ both of which use the <a href="/docs/for-platform-operators/concepts/lifecycle">
 </ol>
 <h2 id="set-up">Set Up</h2>
 <blockquote>
-<p>NOTE: Prior to installing <code>Tekton</code>, we recommend reviewing the basic Tekton concepts in the <a href="https://tekton.dev/docs/concepts/">documentation</a>.</p>
-</blockquote>
+<p>NOTE: Prior to installing <code>Tekton</code>, we recommend reviewing the basic Tekton concepts in the <a href="https://tekton.dev/docs/concepts/">documentation</a>.</p></blockquote>
 <h3 id="prerequisites">Prerequisites</h3>
 <p>Before we get started, make sure you&rsquo;ve got the following installed:</p>
 <a href='https://kubernetes.io/docs/tasks/tools/install-kubectl/' class='download-button button icon-button bg-blue'> Install kubectl </a><br />
@@ -958,8 +957,7 @@ a request for storage by a user.</li>
 </span></span></span></code></pre></div><h4 id="42-authorization">4.2 Authorization</h4>
 <blockquote>
 <p>NOTE: You don&rsquo;t need to use authorization if you are pushing to a local registry. However, if you are pushing to a
-remote registry (e.g. <code>DockerHub</code>, <code>GCR</code>), you need to add authorization</p>
-</blockquote>
+remote registry (e.g. <code>DockerHub</code>, <code>GCR</code>), you need to add authorization</p></blockquote>
 <p>Create a <code>Secret</code> containing username and password that the build should use to authenticate to the container registry.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl create secret docker-registry docker-user-pass <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>    --docker-username<span class="o">=</span>&lt;USERNAME&gt; <span class="se">\
@@ -1060,8 +1058,7 @@ remote registry (e.g. <code>DockerHub</code>, <code>GCR</code>), you need to add
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">image</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">&lt;REGISTRY/IMAGE NAME, eg gcr.io/test/image &gt;</span><span class="w"> </span><span class="c"># This defines the name of output image</span><span class="w">
 </span></span></span></code></pre></div><blockquote>
-<p>Make sure to replace <code>&lt;REGISTRY/IMAGE NAME&gt;</code> with your image path.</p>
-</blockquote>
+<p>Make sure to replace <code>&lt;REGISTRY/IMAGE NAME&gt;</code> with your image path.</p></blockquote>
 <p>Apply it with:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl apply -f run.yml
 </span></span></code></pre></div><h3 id="6-see-it-build">6. See it Build</h3>

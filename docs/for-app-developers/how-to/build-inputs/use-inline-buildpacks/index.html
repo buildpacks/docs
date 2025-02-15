@@ -925,8 +925,7 @@
 </span></span><span class="line"><span class="cl">  <span class="nx">inline</span> <span class="p">=</span> <span class="s2">&#34;rake package&#34;</span>
 </span></span></code></pre></div><p>In this example, the <code>me/rake-tasks</code> inline buildpack is configured to run after the <code>example/ruby</code> buildpack. The inline script is compatible with Buildpack API version <code>0.6</code> (this is a required field), and it will execute the <code>rake package</code> command during the build step.</p>
 <blockquote>
-<p><strong>Note:</strong> Inline buildpacks will <em>always</em> pass detection.</p>
-</blockquote>
+<p><strong>Note:</strong> Inline buildpacks will <em>always</em> pass detection.</p></blockquote>
 <p>Inline buildpacks aren&rsquo;t constrained to a single command, however. You can define complex scripts as <a href="https://toml.io/en/v1.0.0#string">heredocs</a> in your project descriptor. For example, this snippet of a descriptor will source a shell script contained in the app repo, use it to modify the app directory (and thus the files that go into the final image), and create slices for the app:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">io</span><span class="p">.</span><span class="nx">buildpacks</span><span class="p">.</span><span class="nx">group</span><span class="p">]]</span>
 </span></span><span class="line"><span class="cl"><span class="nx">id</span> <span class="p">=</span> <span class="s2">&#34;me/cleanup&#34;</span>

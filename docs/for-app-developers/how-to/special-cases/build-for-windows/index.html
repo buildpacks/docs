@@ -8,8 +8,8 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="You can use buildpacks to build container images that run Windows containers on Windows (WCOW).
-This page is not relevant if your host machine is Windows but you are running Linux containers on…"/>
+<meta name="description" content="The Cloud Native Buildpacks tools have dropped support for Windows containers on Windows (WCOW).
+You can continue to build Linux containers on Windows using pack and other Cloud Native Buildpacks…"/>
 <link rel="canonical" content="https://buildpacks.io/docs/for-app-developers/how-to/special-cases/build-for-windows/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
@@ -23,8 +23,8 @@ This page is not relevant if your host machine is Windows but you are running Li
 <meta property="og:url" content="https://buildpacks.io/docs/for-app-developers/how-to/special-cases/build-for-windows/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-<meta property="og:description" content="You can use buildpacks to build container images that run Windows containers on Windows (WCOW).
-This page is not relevant if your host machine is Windows but you are running Linux containers on…">
+<meta property="og:description" content="The Cloud Native Buildpacks tools have dropped support for Windows containers on Windows (WCOW).
+You can continue to build Linux containers on Windows using pack and other Cloud Native Buildpacks…">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -908,102 +908,9 @@ This page is not relevant if your host machine is Windows but you are running Li
           <h1 class="title">Build for Windows containers</h1>
         </div>
 
-        <p>You can use buildpacks to build container images that run Windows containers on Windows (WCOW).</p>
-<p>This page is not relevant if your host machine is Windows but you are running Linux containers on Windows (LCOW);
-in this case, no special configuration is required.</p>
-<blockquote>
-<p><strong>EXPERIMENTAL</strong> Windows support is experimental!</p>
-<p>Enable experimental mode by running: <code>pack config experimental true</code></p>
-</blockquote>
-<h3 id="before-you-start">Before You Start</h3>
-<h4 id="recommended-reading">Recommended reading</h4>
-<p>Before trying out builds for Windows images, we recommend following the <a href="/docs/app-journey">Linux image tutorial</a> under <a href="/docs">Getting Started</a>. Don&rsquo;t worry, you can still run it on a Windows OS if you need to &ndash; just make sure to <a href="https://docs.docker.com/desktop/faqs/windowsfaqs/#how-do-i-switch-between-windows-and-linux-containers">enable Linux containers</a> for Docker first.</p>
-<p>When you&rsquo;re done, head back here.</p>
-<h4 id="enable-windows-container-mode">Enable Windows container mode</h4>
-<p>In order to produce Windows container images, ensure <a href="https://docs.docker.com/desktop/faqs/windowsfaqs/#how-do-i-switch-between-windows-and-linux-containers">Windows container mode</a> is enabled in your Docker settings (available only in Docker for Windows).</p>
-<p>Then, building a Windows app using Cloud Native Buildpacks is nearly identical to <a href="/docs/for-app-developers/tutorials/basic-app">building for Linux</a>.</p>
-<blockquote>
-<p><strong>Not using Windows?</strong></p>
-<p><code>pack</code> can build Windows apps using a remote Windows Docker by setting a <code>DOCKER_HOST</code>. <a href="#using-remote-docker-hosts">Learn more</a></p>
-</blockquote>
-<hr>
-<h3 id="0-determine-windows-version">0. Determine Windows Version</h3>
-<p>Before we can start, we&rsquo;ll want to match your Windows environment.</p>
-<p>Type the following command in PowerShell:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-powershell" data-lang="powershell"><span class="line"><span class="cl"><span class="nb">Get-ItemProperty</span> <span class="s2">&#34;HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion&#34;</span> <span class="p">|</span> <span class="nb">Format-Table</span> <span class="n">-Property</span> <span class="n">ReleaseId</span><span class="p">,</span> <span class="n">CurrentBuild</span>
-</span></span></code></pre></div><p>Select the output that best matches your environment:
-<div id="page-replacer" class="btn-group py-2" role="group">
-<button type="button" class="btn btn-outline-primary" data-search='1809|2004|2022' data-replace='1809'>Release ID: 1809, Build: <i>any</i></button>
-<button type="button" class="btn btn-outline-primary" data-search='1809|2004|2022' data-replace='2004'>Release ID: 2009, Build: 1904<i>x</i></button>
-<button type="button" class="btn btn-outline-primary" data-search='1809|2004|2022' data-replace='2022'>Release ID: 2009, Build: 2200<i>x</i></button>
-</div>
-<script type="application/javascript">
-  jQuery('#page-replacer button').on('click', function () {
-    jQuery('#page-replacer button').removeClass('active');
-    let el = this;
-    jQuery(el).addClass('active');
-    for (const search of el.dataset.search.split("|")) {
-      jQuery('.docs-content *:not([data-search])').replaceText(search, el.dataset.replace);
-    }
-  });
-  jQuery('#page-replacer button:first').click();
-</script>
-</p>
-<p><small><a href="https://docs.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/version-compatibility?tabs=windows-server-2019%2Cwindows-10-20H2#windows-client-host-os-compatibility">Learn more about compatibility</a>.</small></p>
-<h3 id="1-select-a-builder">1. Select a builder</h3>
-<p>To <a href="/docs/for-app-developers/concepts/build">build</a> an app you must first decide which <a href="/docs/for-platform-operators/concepts/builder">builder</a> you&rsquo;re going to use. A builder
-includes the <a href="/docs/for-platform-operators/concepts/buildpack">buildpacks</a> that will be used as well as the environment for building your
-app.</p>
-<p>For this guide we&rsquo;re going to use a sample builder, <code>cnbs/sample-builder:dotnet-framework-1809</code>.</p>
-<h3 id="2-build-your-app">2. Build your app</h3>
-<p>Now we can build our app. For this example we&rsquo;ll use our <a href="https://github.com/buildpacks/samples">samples</a> repo for simplicity.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># clone the repo</span>
-</span></span><span class="line"><span class="cl">git clone https://github.com/buildpacks/samples
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># change directory to samples</span>
-</span></span><span class="line"><span class="cl"><span class="nb">cd</span> samples
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># build the app</span>
-</span></span><span class="line"><span class="cl">pack build sample-app --path apps/aspnet --builder cnbs/sample-builder:dotnet-framework-1809 --trust-builder
-</span></span></code></pre></div><blockquote>
-<p><strong>TIP:</strong> The builder may take a few minutes to download on the first use.</p>
-</blockquote>
-<blockquote>
-<p><strong>TIP:</strong> If you don&rsquo;t want to keep specifying a builder every time you build, you can set it as your default
-builder by running <code>pack config default-builder &lt;BUILDER&gt;</code>.</p>
-</blockquote>
-<h3 id="3-run-it">3. Run it</h3>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run --rm -it -p 8080:80 sample-app
-</span></span></code></pre></div><p><strong>Congratulations!</strong></p>
-<p>The app should now be running and accessible via <a href="http://localhost:8080">localhost:8080</a></p>
-<hr>
-<h2 id="using-remote-docker-hosts">Using remote Docker hosts</h2>
-<p><code>pack</code> and your source code don&rsquo;t need to be on the same machine as your Docker daemon, thanks to support for the <a href="https://docs.docker.com/engine/reference/commandline/cli/#environment-variables"><code>DOCKER_HOST</code></a> environment variable.</p>
-<p>Essentially, this points your local Docker client (e.g. <code>docker</code> or <code>pack</code> CLI) to a remote Docker daemon. For instance, if the IP address of your host is <code>10.0.0.1</code> and its daemon is listening on port <code>2375</code>, you can set <code>DOCKER_HOST</code> to <code>tcp://10.0.0.1:2375</code>. Any subsequent <code>pack</code> or <code>docker</code> commands would communicate with the daemon on that machine instead of a local daemon.</p>
-<p>This can be used to make <code>pack</code> build Windows container images, as long as your remote Docker host is configured to support them (i.e. the host runs a Windows OS, has <a href="https://docs.docker.com/desktop/faqs/windowsfaqs/#how-do-i-switch-between-windows-and-linux-containers">Windows container mode enabled</a>).</p>
-<p>Here&rsquo;s an example where <code>pack</code> on a Linux/MacOS machine can access a Windows 10 machine with Docker Desktop, using the <a href="https://docs.docker.com/docker-for-windows/#general">localhost:2375 listener</a> and the built-in <a href="https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse">OpenSSH Server</a>.</p>
-<pre tabindex="0"><code># ssh port-forward for localhost:2375 to remote daemon
-ssh -f -N -L 2375:127.0.0.1:2375 10.0.0.1
+        <p>The Cloud Native Buildpacks tools have dropped support for Windows containers on Windows (WCOW).</p>
+<p>You can continue to build Linux containers on Windows using <code>pack</code> and other Cloud Native Buildpacks tools.</p>
 
-# set to your local forwarded port
-export DOCKER_HOST=tcp://localhost:2375
-
-# build the app
-pack build sample-app --path samples/apps/aspnet --builder cnbs/sample-builder:dotnet-framework-1809 --trust-builder
-
-# run it
-docker run --rm -it -p 8080:80 sample-app
-
-# access your app on your remote docker host
-curl http://10.0.0.1:8080
-</code></pre><blockquote>
-<p><strong>NOTE</strong>: When setting <code>DOCKER_HOST</code>, keep in mind:</p>
-<ul>
-<li>never expose an insecure Docker daemon to an untrusted network. Use SSH port forwarding or <a href="https://docs.docker.com/engine/security/https/">mTLS</a> instead.</li>
-<li>any volumes mounted via <code>pack build --volume &lt;volume&gt; ...</code> or <code>docker run --volume &lt;volume&gt; ...</code> must exist on the <em>docker host</em>, not the client machine.</li>
-<li>any ports published via <code>docker run --publish &lt;host-port&gt;:&lt;container-port&gt; ...</code> will be published on the <em>docker host</em>, not the client machine.</li>
-</ul>
-</blockquote>
 
         
 
