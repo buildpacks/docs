@@ -11,13 +11,16 @@
       <ul class="navbar-nav">
         {{ $current := . }}
         {{ range $.Site.Menus.main }}
-        {{ $topLevel := replace .URL "/" "" }}
-        <li class="nav-item mr-lg-4 text-center text-lg-left {{ if or (eq $current.Permalink .URL) (eq $current.Type $topLevel) }}active{{end}}">
-          <a class="nav-link py-2 py-lg-0 px-1" {{if (hasPrefix .URL "https" )}}target='_blank' {{end}} href="{{ .URL }}">
-            {{.Name}}
-          </a>
-        </li>
+          {{ $topLevel := replace .URL "/" "" }}
+          <li class="nav-item ms-lg-4 text-center text-lg-left {{ if or (eq $current.Permalink .URL) (eq $current.Type $topLevel) }}active{{end}}">
+            <a class="nav-link py-2 py-lg-0 px-1" {{ if (hasPrefix .URL "https") }}target='_blank'{{ end }} 
+              href="{{ .URL }}">
+              {{ .Name }}
+            </a>
+          </li>
         {{ end }}
+    
+        <!-- Mobile-specific links (Docs & GitHub) -->
         <li class="nav-item text-center d-lg-none">
           <a class="nav-link py-2 px-1" href="/docs">Docs</a>
         </li>
@@ -26,8 +29,10 @@
         </li>
       </ul>
 
-      <a class="button-light mr-3 d-none d-lg-block" href="/docs"><i class="far fa-file-alt mr-2"></i>Docs</a>
-      <a class="github-button icon-button bg-blue button d-none d-lg-flex" href="https://github.com/buildpacks">GitHub</a>
-    </div>
+      <a class="button-light ms-3 d-none d-lg-block" href="/docs">
+        <i class="far fa-file-alt me-2"></i>Docs
+      </a>
+       <a class="github-button ms-3  icon-button bg-blue button d-none d-lg-flex" href="https://github.com/buildpacks">GitHub</a>
+    </div>    
   </nav>
 </header>
