@@ -43,7 +43,7 @@
 <meta property="twitter:creator" content="@buildpacks_io">
 
   <script
-    src="https://cdn.jsdelivr.net/combine/npm/axios@0.21.0,npm/jquery@3.5.1,npm/bootstrap@5.3.3,npm/fullcalendar@5.4.0,npm/jquery-replacetext@1.1.0/replacetext.min.js"></script>
+    src="https://cdn.jsdelivr.net/combine/npm/axios@1.7.9,npm/jquery@3.7.1,npm/bootstrap@5.3.3,npm/fullcalendar@5.4.0,npm/jquery-replacetext@1.1.0/replacetext.min.js"></script>
 
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css"
@@ -920,12 +920,12 @@
 <p>The schema is as follows:</p>
 <ul>
 <li>
-<h4 id="description-_string-optional_"><code>description</code> <em>(string, optional)</em></h4>
+<h4 id="description-string-optional"><code>description</code> <em>(string, optional)</em></h4>
 <p>A human-readable description of the builder, to be shown in <code>builder inspect</code> output
 (run <code>pack builder inspect -h</code> for more information).</p>
 </li>
 <li>
-<h4 id="buildpacks-_list-optional_"><code>buildpacks</code> <em>(list, optional)</em></h4>
+<h4 id="buildpacks-list-optional"><code>buildpacks</code> <em>(list, optional)</em></h4>
 <p>A list of buildpacks, each with the following fields:</p>
 <ul>
 <li>
@@ -943,7 +943,7 @@ A URL or path to an <a href="#supported-archives">archive</a>, a packaged buildp
 </ul>
 </li>
 <li>
-<h4 id="order-_list-required_"><code>order</code> <em>(list, required)</em></h4>
+<h4 id="order-list-required"><code>order</code> <em>(list, required)</em></h4>
 <p>A list of buildpack groups. This list determines the order in which groups of buildpacks
 will be tested during detection. Detection is a phase of the <a href="/docs/for-platform-operators/concepts/lifecycle">lifecycle</a> where
 buildpacks are tested, one group at a time, for compatibility with the provided application source code. The first
@@ -974,7 +974,7 @@ Whether this buildpack is optional during detection.</p>
 </ul>
 </li>
 <li>
-<h4 id="build-_required_"><code>build</code> <em>(required)</em></h4>
+<h4 id="build-required"><code>build</code> <em>(required)</em></h4>
 <p>Build-time information. It contains the following field:</p>
 <ul>
 <li><strong><code>image</code></strong> <em>(required, string)</em><br>
@@ -982,7 +982,7 @@ Image to use as the build-time base</li>
 </ul>
 </li>
 <li>
-<h4 id="run-_required_"><code>run</code> <em>(required)</em></h4>
+<h4 id="run-required"><code>run</code> <em>(required)</em></h4>
 <p>Run-time information. It contains the following:</p>
 <ul>
 <li>
@@ -1004,7 +1004,7 @@ Image to use as the run-time base</p>
 </ul>
 </li>
 <li>
-<h4 id="stack-_optional-deprecated_"><code>stack</code> <em>(optional, deprecated)</em></h4>
+<h4 id="stack-optional-deprecated"><code>stack</code> <em>(optional, deprecated)</em></h4>
 <p>The stack to use for the builder. See <a href="/docs/for-app-developers/concepts/base-images/stack">stack</a> concept information for more details.
 This field should be specified if it is necessary to maintain compatibility with older platforms.
 If specified, the information in this field must be consistent with the <code>build</code> and <code>run</code> fields (see above).
@@ -1029,7 +1029,7 @@ Run image for the stack</p>
 </ul>
 </li>
 <li>
-<h4 id="lifecycle-_optional_"><code>lifecycle</code> <em>(optional)</em></h4>
+<h4 id="lifecycle-optional"><code>lifecycle</code> <em>(optional)</em></h4>
 <p>The <a href="/docs/for-platform-operators/concepts/lifecycle">lifecycle</a> to embed into the builder. It must contain <strong>at most one</strong> the following fields:</p>
 <ul>
 <li>
@@ -1047,7 +1047,7 @@ will not change despite new lifecycle versions being released.</p></blockquote>
 </ul>
 </li>
 <li>
-<h4 id="buildenv-_optional_"><code>build.env</code> <em>(optional)</em></h4>
+<h4 id="buildenv-optional"><code>build.env</code> <em>(optional)</em></h4>
 <p>The <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#environment-variable-modification-rules">[[build.env]]</a> is used to specify <a href="https://github.com/buildpacks/spec/blob/main/platform.md#operator-defined-variables">operator-defined</a> build-time environment variables for buildpacks. Set <code>CNB_BUILD_CONFIG_DIR</code> in pack&rsquo;s environment to override the default directory (<code>/cnb/build-config/env</code>) where environment variable files are stored within the builder.</p>
 <ul>
 <li>

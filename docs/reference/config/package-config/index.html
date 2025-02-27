@@ -43,7 +43,7 @@
 <meta property="twitter:creator" content="@buildpacks_io">
 
   <script
-    src="https://cdn.jsdelivr.net/combine/npm/axios@0.21.0,npm/jquery@3.5.1,npm/bootstrap@5.3.3,npm/fullcalendar@5.4.0,npm/jquery-replacetext@1.1.0/replacetext.min.js"></script>
+    src="https://cdn.jsdelivr.net/combine/npm/axios@1.7.9,npm/jquery@3.7.1,npm/bootstrap@5.3.3,npm/fullcalendar@5.4.0,npm/jquery-replacetext@1.1.0/replacetext.min.js"></script>
 
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css"
@@ -920,7 +920,7 @@
 <p>The schema is as follows:</p>
 <ul>
 <li>
-<h4 id="buildpack-_required_"><code>buildpack</code> <em>(required)</em></h4>
+<h4 id="buildpack-required"><code>buildpack</code> <em>(required)</em></h4>
 <p>The buildpack to package. It must contain the following field:</p>
 <ul>
 <li><strong><code>uri</code></strong> <em>(string, required)</em><br>
@@ -928,7 +928,7 @@ A URL or path to an <a href="/docs/reference/builder-config#supported-archives">
 </ul>
 </li>
 <li>
-<h4 id="dependencies-_list-optional_"><code>dependencies</code> <em>(list, optional)</em></h4>
+<h4 id="dependencies-list-optional"><code>dependencies</code> <em>(list, optional)</em></h4>
 <p>A set of dependent buildpack locations, for packaging a composite buildpack (sometimes referred to as a &ldquo;meta buildpack&rdquo;). Each dependent buildpack location must correspond to an <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#order-resolution">order group</a> within the composite buildpack being packaged, and must have <strong>one</strong> of the following fields:</p>
 <ul>
 <li><strong><code>uri</code></strong> <em>(string)</em><br>
@@ -936,7 +936,7 @@ A URL or path to an <a href="/docs/reference/builder-config#supported-archives">
 </ul>
 </li>
 <li>
-<h4 id="platform-_optional_"><code>platform</code> <em>(optional)</em></h4>
+<h4 id="platform-optional"><code>platform</code> <em>(optional)</em></h4>
 <p>The expected runtime environment for the buildpackage. It should contain the following field:</p>
 <ul>
 <li><strong><code>os</code></strong> <em>(string, optional)</em><br>

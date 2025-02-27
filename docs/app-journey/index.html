@@ -43,7 +43,7 @@ In order to run the build process in an isolated fashion,…">
 <meta property="twitter:creator" content="@buildpacks_io">
 
   <script
-    src="https://cdn.jsdelivr.net/combine/npm/axios@0.21.0,npm/jquery@3.5.1,npm/bootstrap@5.3.3,npm/fullcalendar@5.4.0,npm/jquery-replacetext@1.1.0/replacetext.min.js"></script>
+    src="https://cdn.jsdelivr.net/combine/npm/axios@1.7.9,npm/jquery@3.7.1,npm/bootstrap@5.3.3,npm/fullcalendar@5.4.0,npm/jquery-replacetext@1.1.0/replacetext.min.js"></script>
 
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css"
@@ -926,7 +926,7 @@ That means you&rsquo;ll need to make sure you have both <code>pack</code> and a 
 <p><strong>NOTE:</strong> <code>pack</code> is only one implementation of the <a href="https://github.com/buildpacks/spec/blob/main/platform.md">Cloud Native Buildpacks Platform Specification</a>. Additionally, not all Cloud Native Buildpacks Platforms require Docker.</p></blockquote>
 <h2 id="buildpack-base-camp">Buildpack base camp</h2>
 <p>Before we set out, you&rsquo;ll need to know the basics of <strong>buildpacks</strong> and how they work.</p>
-<h3 id="what-is-a-buildpackbuildpack">What is a <a href="/docs/for-platform-operators/concepts/buildpack/">buildpack</a>?</h3>
+<h3 id="what-is-a-buildpack">What is a <a href="/docs/for-platform-operators/concepts/buildpack/">buildpack</a>?</h3>
 <p>A buildpack is something you&rsquo;ve probably used without knowing it, as they&rsquo;re currently
 being used in many cloud platforms. A buildpack&rsquo;s job is to gather everything your app needs to build and run,
 and it often does this job quickly and quietly.</p>
@@ -937,7 +937,7 @@ code into a runnable app image.</p>
 tests groups of buildpacks against your app&rsquo;s source code. The first group that successfully detects your source code
 will become the selected set of buildpacks for your app. Detection criteria is specific to each buildpack &ndash; for
 instance, an <strong>NPM buildpack</strong> might look for a <code>package.json</code>, and a <strong>Go buildpack</strong> might look for Go source files.</p>
-<h3 id="what-is-a-builderbuilder">What is a <a href="/docs/for-platform-operators/concepts/builder/">builder</a>?</h3>
+<h3 id="what-is-a-builder">What is a <a href="/docs/for-platform-operators/concepts/builder/">builder</a>?</h3>
 <p>A builder is an image that contains all the components necessary to execute a build. A builder image is created by taking a build image and adding a lifecycle, buildpacks, and files that configure aspects of the build including the buildpack detection order and the location(s) of the run image.</p>
 <h2 id="next-stop-the-end">Next stop, the end</h2>
 <p>Let&rsquo;s see all this in action using <code>pack build</code>.</p>
