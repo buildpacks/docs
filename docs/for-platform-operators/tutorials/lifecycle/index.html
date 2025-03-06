@@ -917,6 +917,21 @@
         </div>
 
         <p>A <code>platform</code> orchestrates builds by invoking the <a href="https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/">lifecycle</a> binary together with buildpacks and application source code to produce a runnable <code>OCI image</code>.</p>
+<!-- test:suite=orchastrate-lifecycle;weight=1 -->
+<!-- test:setup:exec;exit-code=-1 -->
+<!--
+```bash
+mkdir /tmp/tutorial
+git clone https://github.com/buildpacks/lifecycle /tmp/tutorial/lifecycle
+git clone https://github.com/buildpacks/samples /tmp/tutorial/samples
+```
+-->
+<!-- test:teardown:exec -->
+<!--
+```bash
+rm -rf /tmp/tutorial
+```
+-->
 <p>The majority of Buildpack users use community-maintained platforms, such as <a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/">pack</a> and <a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/kpack/">kpack</a>, to run Buildpacks and create <code>OCI images</code>. However this might not be desireable especially for users maintaining their own platforms and seeking more control over how the underlying Buildpack <code>lifecycle phases</code> are executed.</p>
 <blockquote>
 <p>This tutorial is derived from a <a href="https://medium.com/buildpacks/unpacking-cloud-native-buildpacks-ff51b5a767bf">blog post</a> contributed by one of our community members.</p></blockquote>
@@ -942,15 +957,22 @@
 <li><code>make build-linux-amd64</code> for <code>AMD64</code> architectures (for Linux users)</li>
 <li><code>make build-darwin-arm64 &amp;&amp; make build-linux-arm64-launcher</code> for <code>ARM64</code> architectures (for Mac users)</li>
 </ul>
+<!-- test:exec -->
+<!--
+```bash
+cd /tmp/tutorial/lifecycle
+make build-linux-amd64 # hardcode CI tests to linux-amd64
+```
+-->
 <p>It&rsquo;s recommended to check the <a href="https://github.com/buildpacks/lifecycle/releases">lifecycle releases</a> page to download binaries based on your system.</p>
 <blockquote>
 <p>Please note that the entire process is most easily followed on Linux systems</p></blockquote>
 <h3 id="set-environment-variables">Set environment variables</h3>
 <p>In order to execute the various <code>lifecycle phases</code> correctly, you first need to set the values of few important environment variables by running the following commands in the terminal:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">export CNB_USER_ID=$(id -u) CNB_GROUP_ID=$(id -g) CNB_PLATFORM_API=0.14
-</span></span><span class="line"><span class="cl">export CNB_SAMPLES_PATH=&#34;/&lt;your-path&gt;/samples&#34;
-</span></span><span class="line"><span class="cl">export CNB_LIFECYCLE_PATH=&#34;/&lt;your-path/lifecycle/out/&lt;your-os-arch&gt;/lifecycle&#34;
-</span></span></code></pre></div><p>Where</p>
+<pre tabindex="0"><code class="language-command" data-lang="command">export CNB_USER_ID=$(id -u) CNB_GROUP_ID=$(id -g) CNB_PLATFORM_API=0.14
+export CNB_SAMPLES_PATH=&#34;/&lt;your-path&gt;/samples&#34;
+export CNB_LIFECYCLE_PATH=&#34;/&lt;your-path/lifecycle/out/&lt;your-os-arch&gt;/lifecycle&#34;
+</code></pre><p>Where</p>
 <ul>
 <li><code>CNB_USER_ID</code> and <code>CNB_GROUP_ID</code> are arbitrary values that need to be consistent. This example re-uses our user id and group id for the <code>CNB</code> user.  In a production system, these are commonly set to <code>1000</code>.</li>
 <li><code>CNB_PLATFORM_API</code> or the <code>Platform API</code> version, varies depending on the use case. This tutorial uses <code>v0.14</code>, which is the latest <a href="https://github.com/buildpacks/spec/releases?q=platform">Platform API</a> version.</li>
@@ -974,19 +996,34 @@
 <h4 id="analyze">Analyze</h4>
 <p>The <code>analyze</code> phase runs before the <code>detect</code> phase in order to validate registry access for all images used during the <code>build</code> as early as possible. In this way it provides faster failures for end users.</p>
 <p>Prior to executing <code>/cnb/lifecycle/analyzer</code>, you need to create a parent directory for this tutorial and two other directories inside it as follows:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">mkdir /tmp/tutorial # or your preferred directory
-</span></span><span class="line"><span class="cl">cd /tmp/tutorial
-</span></span><span class="line"><span class="cl">mkdir -p apps/bash-script
-</span></span><span class="line"><span class="cl">mkdir -p layers
-</span></span></code></pre></div><ul>
+<!-- test:exec -->
+<pre tabindex="0"><code class="language-command" data-lang="command">mkdir -p /tmp/tutorial # or your preferred directory
+cd /tmp/tutorial
+mkdir -p apps/bash-script
+mkdir -p layers
+</code></pre><ul>
 <li><code>apps</code> directory that contains a <code>bash-script</code> directory</li>
 <li><code>layers</code> directory that contains subdirectories representing each layer created by the Buildpack in the final image or build cache.</li>
 </ul>
 <p>Next,  you need to copy the <code>bash-script</code> samples into our <code>apps/bash-script</code> directory, which will host our app&rsquo;s source code.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">cp -r &#34;${CNB_SAMPLES_PATH}/apps/bash-script&#34; ./apps/
-</span></span></code></pre></div><p>Now, you can invoke the <code>analyzer</code> for <code>AMD64</code> architecture</p>
+<pre tabindex="0"><code class="language-command" data-lang="command">cp -r &#34;${CNB_SAMPLES_PATH}/apps/bash-script&#34; ./apps/
+</code></pre><!-- test:exec -->
+<!--
+```command
+cp -r "/tmp/tutorial/samples/apps/bash-script" ./apps/
+```
+-->
+<p>Now, you can invoke the <code>analyzer</code> for <code>AMD64</code> architecture</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">${CNB_LIFECYCLE_PATH}/analyzer -log-level debug -daemon -layers=&#34;./layers&#34; -run-image cnbs/sample-stack-run:noble apps/bash-script
-</span></span></code></pre></div><p>Or if you are on an <code>ARM64</code> platform</p>
+</span></span></code></pre></div><!-- test:exec -->
+<!--
+```command
+export CNB_USER_ID=$(id -u) CNB_GROUP_ID=$(id -g) CNB_PLATFORM_API=0.14
+export CNB_LIFECYCLE_PATH=/tmp/tutorial/lifecycle/out/linux-amd64/lifecycle
+${CNB_LIFECYCLE_PATH}/analyzer -log-level debug -daemon -layers="./layers" -run-image cnbs/sample-stack-run:noble apps/bash-script
+```
+-->
+<p>Or if you are on an <code>ARM64</code> platform</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">${CNB_LIFECYCLE_PATH}/analyzer -log-level debug -daemon -layers=&#34;./layers&#34; -run-image arm64v8/ubuntu:latest apps/bash-script
 </span></span></code></pre></div><p>The commands above run the <code>analyzer</code> with:</p>
 <ul>
@@ -1003,15 +1040,16 @@
 <li>Verifies that have permission to create or update the image called <code>apps/bash-script</code> in the image repository</li>
 </ul>
 <p>In this tutorial, there is no previous <code>apps/bash-script</code> image, and the output produced should be similar to the following:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">sample-stack-run:noble apps/bash-script
+<!-- test:assert=contains;ignore-lines=... -->
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">...
 </span></span><span class="line"><span class="cl">Starting analyzer...
 </span></span><span class="line"><span class="cl">Parsing inputs...
 </span></span><span class="line"><span class="cl">Ensuring privileges...
 </span></span><span class="line"><span class="cl">Executing command...
-</span></span><span class="line"><span class="cl">Timer: Analyzer started at 2024-09-30T07:38:14Z
+</span></span><span class="line"><span class="cl">...
 </span></span><span class="line"><span class="cl">Image with name &#34;apps/bash-script&#34; not found
 </span></span><span class="line"><span class="cl">Image with name &#34;cnbs/sample-stack-run:noble&#34; not found
-</span></span><span class="line"><span class="cl">Timer: Analyzer ran for 41.92µs and ended at 2024-09-30T07:38:14Z
+</span></span><span class="line"><span class="cl">...
 </span></span><span class="line"><span class="cl">Run image info in analyzed metadata is: 
 </span></span><span class="line"><span class="cl">{&#34;Reference&#34;:&#34;&#34;,&#34;Image&#34;:&#34;cnbs/sample-stack-run:noble&#34;,&#34;Extend&#34;:false,&#34;target&#34;:{&#34;os&#34;:&#34;linux&#34;,&#34;arch&#34;:&#34;amd64&#34;}}
 </span></span></code></pre></div><p>Now if you <code>cat ./layers/analyzed.toml</code>, you should see a few null entries, a <code>run-image</code> section that records the provided name provided, and the found <code>os/arch</code>.</p>
