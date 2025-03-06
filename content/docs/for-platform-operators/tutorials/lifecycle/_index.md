@@ -9,6 +9,24 @@ A `platform` orchestrates builds by invoking the [lifecycle][lifecycle] binary t
 
 <!--more-->
 
+<!-- test:suite=orchastrate-lifecycle;weight=1 -->
+
+<!-- test:setup:exec;exit-code=-1 -->
+<!--
+```bash
+mkdir /tmp/tutorial
+git clone https://github.com/buildpacks/lifecycle /tmp/tutorial/lifecycle
+git clone https://github.com/buildpacks/samples /tmp/tutorial/samples
+```
+-->
+
+<!-- test:teardown:exec -->
+<!--
+```bash
+rm -rf /tmp/tutorial
+```
+-->
+
 The majority of Buildpack users use community-maintained platforms, such as [pack][pack] and [kpack][kpack], to run Buildpacks and create `OCI images`. However this might not be desireable especially for users maintaining their own platforms and seeking more control over how the underlying Buildpack `lifecycle phases` are executed.
 
 > This tutorial is derived from a [blog post][blog post] contributed by one of our community members.
@@ -44,6 +62,14 @@ As a starting step, you need to build the `lifecycle` in order to use its phases
 * `make build-linux-amd64` for `AMD64` architectures (for Linux users)
 * `make build-darwin-arm64 && make build-linux-arm64-launcher` for `ARM64` architectures (for Mac users)
 
+<!-- test:exec -->
+<!--
+```bash
+cd /tmp/tutorial/lifecycle
+make build-linux-amd64 # hardcode CI tests to linux-amd64
+```
+-->
+
 It's recommended to check the [lifecycle releases][releases] page to download binaries based on your system.
 > Please note that the entire process is most easily followed on Linux systems
 
@@ -51,7 +77,7 @@ It's recommended to check the [lifecycle releases][releases] page to download bi
 
 In order to execute the various `lifecycle phases` correctly, you first need to set the values of few important environment variables by running the following commands in the terminal:
 
-```text
+```command
 export CNB_USER_ID=$(id -u) CNB_GROUP_ID=$(id -g) CNB_PLATFORM_API=0.14
 export CNB_SAMPLES_PATH="/<your-path>/samples"
 export CNB_LIFECYCLE_PATH="/<your-path/lifecycle/out/<your-os-arch>/lifecycle"
@@ -86,8 +112,9 @@ The `analyze` phase runs before the `detect` phase in order to validate registry
 
 Prior to executing `/cnb/lifecycle/analyzer`, you need to create a parent directory for this tutorial and two other directories inside it as follows:
 
-```text
-mkdir /tmp/tutorial # or your preferred directory
+<!-- test:exec -->
+```command
+mkdir -p /tmp/tutorial # or your preferred directory
 cd /tmp/tutorial
 mkdir -p apps/bash-script
 mkdir -p layers
@@ -98,15 +125,31 @@ mkdir -p layers
 
 Next,  you need to copy the `bash-script` samples into our `apps/bash-script` directory, which will host our app's source code.
 
-```text
+```command
 cp -r "${CNB_SAMPLES_PATH}/apps/bash-script" ./apps/
 ```
+
+<!-- test:exec -->
+<!--
+```command
+cp -r "/tmp/tutorial/samples/apps/bash-script" ./apps/
+```
+-->
 
 Now, you can invoke the `analyzer` for `AMD64` architecture
 
 ```text
 ${CNB_LIFECYCLE_PATH}/analyzer -log-level debug -daemon -layers="./layers" -run-image cnbs/sample-stack-run:noble apps/bash-script
 ```
+
+<!-- test:exec -->
+<!--
+```command
+export CNB_USER_ID=$(id -u) CNB_GROUP_ID=$(id -g) CNB_PLATFORM_API=0.14
+export CNB_LIFECYCLE_PATH=/tmp/tutorial/lifecycle/out/linux-amd64/lifecycle
+${CNB_LIFECYCLE_PATH}/analyzer -log-level debug -daemon -layers="./layers" -run-image cnbs/sample-stack-run:noble apps/bash-script
+```
+-->
 
 Or if you are on an `ARM64` platform
 
@@ -130,16 +173,17 @@ Now the `analyzer`:
 
 In this tutorial, there is no previous `apps/bash-script` image, and the output produced should be similar to the following:
 
+<!-- test:assert=contains;ignore-lines=... -->
 ```text
-sample-stack-run:noble apps/bash-script
+...
 Starting analyzer...
 Parsing inputs...
 Ensuring privileges...
 Executing command...
-Timer: Analyzer started at 2024-09-30T07:38:14Z
+...
 Image with name "apps/bash-script" not found
 Image with name "cnbs/sample-stack-run:noble" not found
-Timer: Analyzer ran for 41.92µs and ended at 2024-09-30T07:38:14Z
+...
 Run image info in analyzed metadata is: 
 {"Reference":"","Image":"cnbs/sample-stack-run:noble","Extend":false,"target":{"os":"linux","arch":"amd64"}}
 ```
