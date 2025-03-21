@@ -913,13 +913,25 @@
 
         <h2 id="pack-extension-package">pack extension package</h2>
 <p>Package an extension in OCI format</p>
+<h3 id="synopsis">Synopsis</h3>
+<p>extension package allows users to package (an) extension(s) into OCI format, which can then to be hosted in image repositories or persisted on disk as a &lsquo;.cnb&rsquo; file.Packaged extensions can be used as inputs to <code>pack build</code> (using the <code>--extension</code> flag), and they can be included in the configs used in <code>pack builder create</code> and <code>pack extension package</code>. For more on how to package an extension, see: <a href="https://buildpacks.io/docs/buildpack-author-guide/package-a-buildpack/">https://buildpacks.io/docs/buildpack-author-guide/package-a-buildpack/</a>.</p>
 <pre tabindex="0"><code>pack extension package &lt;name&gt; --config &lt;config-path&gt; [flags]
+</code></pre><h3 id="examples">Examples</h3>
+<pre tabindex="0"><code>pack extension package /output/file.cnb --path /extracted/from/tgz/folder --format file
+pack extension package registry/image-name --path  /extracted/from/tgz/folder --format image --publish
 </code></pre><h3 id="options">Options</h3>
 <pre tabindex="0"><code>  -c, --config string        Path to package TOML config
   -f, --format string        Format to save package as (&#34;image&#34; or &#34;file&#34;)
   -h, --help                 Help for &#39;package&#39;
+  -p, --path string          Path to the Extension that needs to be packaged
       --publish              Publish the extension directly to the container registry specified in &lt;name&gt;, instead of the daemon (applies to &#34;--format=image&#34; only).
       --pull-policy string   Pull policy to use. Accepted values are always, never, and if-not-present. The default is always
+  -t, --target strings       Target platforms to build for.
+                             Targets should be in the format &#39;[os][/arch][/variant]:[distroname@osversion@anotherversion];[distroname@osversion]&#39;.
+                             - To specify two different architectures: &#39;--target &#34;linux/amd64&#34; --target &#34;linux/arm64&#34;&#39;
+                             - To specify the distribution version: &#39;--target &#34;linux/arm/v6:ubuntu@14.04&#34;&#39;
+                             - To specify multiple distribution versions: &#39;--target &#34;linux/arm/v6:ubuntu@14.04&#34;  --target &#34;linux/arm/v6:ubuntu@16.04&#34;&#39;
+                             	
 </code></pre><h3 id="options-inherited-from-parent-commands">Options inherited from parent commands</h3>
 <pre tabindex="0"><code>      --force-color   Force color output
       --no-color      Disable color output
