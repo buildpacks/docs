@@ -1,6 +1,6 @@
 +++
 title="An App's Brief Journey from Source to Image"
-weight=2
+weight=3
 getting-started=true
 +++
 
