@@ -115,7 +115,7 @@ You can define environment variables in an `env` table in the file, and pass tho
 ```
 cat >> samples/apps/bash-script/project.toml <<EOL
 
-[[build.env]]
+[[io.buildpacks.build.env]]
 name="HELLO"
 value="WORLD"
 EOL
