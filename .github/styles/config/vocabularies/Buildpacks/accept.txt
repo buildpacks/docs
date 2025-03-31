@@ -1,6 +1,7 @@
 API(?s)
 [Bb]uildpack(?s)
 config
+containerd
 Dockerfile(?s)
 GitHub
 mixin(?s)
