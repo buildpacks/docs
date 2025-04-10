@@ -974,7 +974,10 @@ a JDK, run Maven, or otherwise configure a build environment. <code>pack</code> 
 deploying your new image to your favorite cloud!</p>
 <blockquote>
 <p>In case you need it, <code>pack build</code> has a handy flag called <code>--publish</code> that will build your image directly onto a Docker
-registry. You can learn more about <code>pack</code> features in the <a href="/docs/tools/pack/">documentation</a>.</p></blockquote>
+registry. You can learn more about <code>pack</code> features in the <a href="/docs/tools/pack/">documentation</a>.</p>
+<p>Additionally, if your Docker daemon uses <code>containerd</code> image storage (not the Docker default),
+it may degrade the performance of <code>pack build</code>. For more details, please refer to
+<a href="https://github.com/buildpacks/pack/issues/2272">the related issue</a>.</p></blockquote>
 <h2 id="what-about-windows-apps">What about Windows apps?</h2>
 <p>Windows image builds are now supported!</p>
 <p><a href="/docs/for-app-developers/how-to/special-cases/build-for-windows" class="button bg-blue">Windows build guide</a></p>
