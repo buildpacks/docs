@@ -2,10 +2,11 @@
   methods:
     - name: Arch Linux
       content: |
-        On Arch Linux, there are two packages available:
+        `pack` can be installed using the [official repo](https://archlinux.org/packages/extra/x86_64/pack-cli) by running the following commands:
 
-        - [pack-cli](https://aur.archlinux.org/packages/pack-cli/)
-        - [pack-cli-bin](https://aur.archlinux.org/packages/pack-cli-bin/)
+        ```bash
+        pacman -S pack-cli
+        ```
     - &container
       name: Container
       content: |
