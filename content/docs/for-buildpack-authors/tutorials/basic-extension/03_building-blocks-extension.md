@@ -14,7 +14,6 @@ weight=3
 
 ### Examine `vim` extension
 
-<!-- test:exec -->
 ```bash
 tree $PWD/samples/extensions/vim
 ```
