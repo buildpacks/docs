@@ -95,6 +95,10 @@ deploying your new image to your favorite cloud!
 
 > In case you need it, `pack build` has a handy flag called `--publish` that will build your image directly onto a Docker
 > registry. You can learn more about `pack` features in the [documentation][pack-docs].
+>
+> Additionally, if your Docker daemon uses `containerd` image storage (not the Docker default),
+> it may degrade the performance of `pack build`. For more details, please refer to
+> [the related issue](https://github.com/buildpacks/pack/issues/2272).
 
 ## What about Windows apps?
 
