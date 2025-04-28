@@ -75,7 +75,7 @@
 
         1. Add the SSH key for the podman VM to your keychain:
             ```shell=zsh
-            ssh-add -k "$HOME/.ssh/podman-machine-default"
+            ssh-add -k $(podman system connection list --format="{{.URI}} {{.Identity}}" | grep root |  cut -d' ' -f2)
             ```
         2. Change default connection to use `root`:
             ```shell=zsh
