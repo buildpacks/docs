@@ -919,14 +919,15 @@
 </code></pre><h3 id="examples">Examples</h3>
 <pre tabindex="0"><code>pack rebase buildpacksio/pack
 </code></pre><h3 id="options">Options</h3>
-<pre tabindex="0"><code>      --force                      Perform rebase operation without target validation (only available for API &gt;= 0.12)
-  -h, --help                       Help for &#39;rebase&#39;
-      --previous-image string      Image to rebase. Set to a particular tag reference, digest reference, or (when performing a daemon build) image ID. Use this flag in combination with &lt;image-name&gt; to avoid replacing the original image.
-      --publish                    Publish the rebased application image directly to the container registry specified in &lt;image-name&gt;, instead of the daemon. The previous application image must also reside in the registry.
-      --pull-policy string         Pull policy to use. Accepted values are always, never, and if-not-present. The default is always
-      --report-output-dir string   Path to export build report.toml.
-                                   Omitting the flag yield no report file.
-      --run-image string           Run image to use for rebasing
+<pre tabindex="0"><code>      --force                           Perform rebase operation without target validation (only available for API &gt;= 0.12)
+  -h, --help                            Help for &#39;rebase&#39;
+      --insecure-registry stringArray   List of insecure registries (only available for API &gt;= 0.13)
+      --previous-image string           Image to rebase. Set to a particular tag reference, digest reference, or (when performing a daemon build) image ID. Use this flag in combination with &lt;image-name&gt; to avoid replacing the original image.
+      --publish                         Publish the rebased application image directly to the container registry specified in &lt;image-name&gt;, instead of the daemon. The previous application image must also reside in the registry.
+      --pull-policy string              Pull policy to use. Accepted values are always, never, and if-not-present. The default is always
+      --report-output-dir string        Path to export build report.toml.
+                                        Omitting the flag yield no report file.
+      --run-image string                Run image to use for rebasing
 </code></pre><h3 id="options-inherited-from-parent-commands">Options inherited from parent commands</h3>
 <pre tabindex="0"><code>      --force-color   Force color output
       --no-color      Disable color output

@@ -920,83 +920,86 @@
 </code></pre><h3 id="examples">Examples</h3>
 <pre tabindex="0"><code>pack build test_img --path apps/test-app --builder cnbs/sample-builder:bionic
 </code></pre><h3 id="options">Options</h3>
-<pre tabindex="0"><code>  -B, --builder string               Builder image (default &#34;cnbs/sample-builder:noble&#34;)
-  -b, --buildpack strings            Buildpack to use. One of:
-                                       a buildpack by id and version in the form of &#39;&lt;buildpack&gt;@&lt;version&gt;&#39;,
-                                       path to a buildpack directory (not supported on Windows),
-                                       path/URL to a buildpack .tar or .tgz file, or
-                                       a packaged buildpack image name in the form of &#39;&lt;hostname&gt;/&lt;repo&gt;[:&lt;tag&gt;]&#39;
-                                     Repeat for each buildpack in order, or supply once by comma-separated list
-  -r, --buildpack-registry string    Buildpack Registry by name
-      --cache cache                  Cache options used to define cache techniques for build process.
-                                     - Cache as bind: &#39;type=&lt;build/launch&gt;;format=bind;source=&lt;path to directory&gt;&#39;
-                                     - Cache as image (requires --publish): &#39;type=&lt;build/launch&gt;;format=image;name=&lt;registry image name&gt;&#39;
-                                     - Cache as volume: &#39;type=&lt;build/launch&gt;;format=volume;[name=&lt;volume name&gt;]&#39;
-                                         - If no name is provided, a random name will be generated.
-                                      (default type=build;format=volume;type=launch;format=volume;)
-      --cache-image string           Cache build layers in remote registry. Requires --publish
-      --clear-cache                  Clear image&#39;s associated cache before building
-      --creation-time string         Desired create time in the output image config. Accepted values are Unix timestamps (e.g., &#39;1641013200&#39;), or &#39;now&#39;. Platform API version must be at least 0.9 to use this feature.
-  -D, --default-process string       Set the default process type. (default &#34;web&#34;)
-  -d, --descriptor string            Path to the project descriptor file
-      --docker-host string           Address to docker daemon that will be exposed to the build container.
-                                     If not set (or set to empty string) the standard socket location will be used.
-                                     Special value &#39;inherit&#39; may be used in which case DOCKER_HOST environment variable will be used.
-                                     This option may set DOCKER_HOST environment variable for the build container if needed.
-                                     
-  -e, --env stringArray              Build-time environment variable, in the form &#39;VAR=VALUE&#39; or &#39;VAR&#39;.
-                                     When using latter value-less form, value will be taken from current
-                                       environment at the time this command is executed.
-                                     This flag may be specified multiple times and will override
-                                       individual values defined by --env-file.
-                                     Repeat for each env in order (comma-separated lists not accepted)
-                                     NOTE: These are NOT available at image runtime.
-      --env-file stringArray         Build-time environment variables file
-                                     One variable per line, of the form &#39;VAR=VALUE&#39; or &#39;VAR&#39;
-                                     When using latter value-less form, value will be taken from current
-                                       environment at the time this command is executed
-                                     NOTE: These are NOT available at image runtime.&#34;
-      --extension strings            Extension to use. One of:
-                                       an extension by id and version in the form of &#39;&lt;extension&gt;@&lt;version&gt;&#39;,
-                                       path to an extension directory (not supported on Windows),
-                                       path/URL to an extension .tar or .tgz file, or
-                                       a packaged extension image name in the form of &#39;&lt;hostname&gt;/&lt;repo&gt;[:&lt;tag&gt;]&#39;
-                                     Repeat for each extension in order, or supply once by comma-separated list
-      --gid int                      Override GID of user&#39;s group in the stack&#39;s build and run images. The provided value must be a positive number
-  -h, --help                         Help for &#39;build&#39;
-      --interactive                  Launch a terminal UI to depict the build process
-      --lifecycle-image string       Custom lifecycle image to use for analysis, restore, and export when builder is untrusted.
-      --network string               Connect detect and build containers to network
-  -p, --path string                  Path to app dir or zip-formatted file (defaults to current working directory)
-      --platform string              Platform to build on (e.g., &#34;linux/amd64&#34;).
-      --post-buildpack stringArray   Buildpacks to append to the groups in the builder&#39;s order
-      --pre-buildpack stringArray    Buildpacks to prepend to the groups in the builder&#39;s order
-      --previous-image string        Set previous image to a particular tag reference, digest reference, or (when performing a daemon build) image ID
-      --publish                      Publish the application image directly to the container registry specified in &lt;image-name&gt;, instead of the daemon. The run image must also reside in the registry.
-      --pull-policy string           Pull policy to use. Accepted values are always, never, and if-not-present. (default &#34;always&#34;)
-      --report-output-dir string     Path to export build report.toml.
-                                     Omitting the flag yield no report file.
-      --run-image string             Run image (defaults to default stack&#39;s run image)
-      --sbom-output-dir string       Path to export SBoM contents.
-                                     Omitting the flag will yield no SBoM content.
-      --sparse                       Use this flag to avoid saving on disk the run-image layers when the application image is exported to OCI layout format
-  -t, --tag strings                  Additional tags to push the output image to.
-                                     Tags should be in the format &#39;image:tag&#39; or &#39;repository/image:tag&#39;.
-                                     Repeat for each tag in order, or supply once by comma-separated list
-      --trust-builder                Trust the provided builder.
-                                     All lifecycle phases will be run in a single container.
-                                     For more on trusted builders, and when to trust or untrust a builder, check out our docs here: https://buildpacks.io/docs/tools/pack/concepts/trusted_builders
-      --trust-extra-buildpacks       Trust buildpacks that are provided in addition to the buildpacks on the builder
-      --uid int                      Override UID of user in the stack&#39;s build and run images. The provided value must be a positive number
-      --volume stringArray           Mount host volume into the build container, in the form &#39;&lt;host path&gt;:&lt;target path&gt;[:&lt;options&gt;]&#39;.
-                                     - &#39;host path&#39;: Name of the volume or absolute directory path to mount.
-                                     - &#39;target path&#39;: The path where the file or directory is available in the container.
-                                     - &#39;options&#39; (default &#34;ro&#34;): An optional comma separated list of mount options.
-                                         - &#34;ro&#34;, volume contents are read-only.
-                                         - &#34;rw&#34;, volume contents are readable and writeable.
-                                         - &#34;volume-opt=&lt;key&gt;=&lt;value&gt;&#34;, can be specified more than once, takes a key-value pair consisting of the option name and its value.
-                                     Repeat for each volume in order (comma-separated lists not accepted)
-      --workspace string             Location at which to mount the app dir in the build image
+<pre tabindex="0"><code>  -B, --builder string                  Builder image (default &#34;cnbs/sample-builder:noble&#34;)
+  -b, --buildpack strings               Buildpack to use. One of:
+                                          a buildpack by id and version in the form of &#39;&lt;buildpack&gt;@&lt;version&gt;&#39;,
+                                          path to a buildpack directory (not supported on Windows),
+                                          path/URL to a buildpack .tar or .tgz file, or
+                                          a packaged buildpack image name in the form of &#39;&lt;hostname&gt;/&lt;repo&gt;[:&lt;tag&gt;]&#39;
+                                        Repeat for each buildpack in order, or supply once by comma-separated list
+  -r, --buildpack-registry string       Buildpack Registry by name
+      --cache cache                     Cache options used to define cache techniques for build process.
+                                        - Cache as bind: &#39;type=&lt;build/launch&gt;;format=bind;source=&lt;path to directory&gt;&#39;
+                                        - Cache as image (requires --publish): &#39;type=&lt;build/launch&gt;;format=image;name=&lt;registry image name&gt;&#39;
+                                        - Cache as volume: &#39;type=&lt;build/launch&gt;;format=volume;[name=&lt;volume name&gt;]&#39;
+                                            - If no name is provided, a random name will be generated.
+                                         (default type=build;format=volume;type=launch;format=volume;)
+      --cache-image string              Cache build layers in remote registry. Requires --publish
+      --clear-cache                     Clear image&#39;s associated cache before building
+      --creation-time string            Desired create time in the output image config. Accepted values are Unix timestamps (e.g., &#39;1641013200&#39;), or &#39;now&#39;. Platform API version must be at least 0.9 to use this feature.
+  -D, --default-process string          Set the default process type. (default &#34;web&#34;)
+  -d, --descriptor string               Path to the project descriptor file
+      --disable-system-buildpacks       Disable System Buildpacks
+      --docker-host string              Address to docker daemon that will be exposed to the build container.
+                                        If not set (or set to empty string) the standard socket location will be used.
+                                        Special value &#39;inherit&#39; may be used in which case DOCKER_HOST environment variable will be used.
+                                        This option may set DOCKER_HOST environment variable for the build container if needed.
+                                        
+  -e, --env stringArray                 Build-time environment variable, in the form &#39;VAR=VALUE&#39; or &#39;VAR&#39;.
+                                        When using latter value-less form, value will be taken from current
+                                          environment at the time this command is executed.
+                                        This flag may be specified multiple times and will override
+                                          individual values defined by --env-file.
+                                        Repeat for each env in order (comma-separated lists not accepted)
+                                        NOTE: These are NOT available at image runtime.
+      --env-file stringArray            Build-time environment variables file
+                                        One variable per line, of the form &#39;VAR=VALUE&#39; or &#39;VAR&#39;
+                                        When using latter value-less form, value will be taken from current
+                                          environment at the time this command is executed
+                                        NOTE: These are NOT available at image runtime.&#34;
+      --extension strings               Extension to use. One of:
+                                          an extension by id and version in the form of &#39;&lt;extension&gt;@&lt;version&gt;&#39;,
+                                          path to an extension directory (not supported on Windows),
+                                          path/URL to an extension .tar or .tgz file, or
+                                          a packaged extension image name in the form of &#39;&lt;hostname&gt;/&lt;repo&gt;[:&lt;tag&gt;]&#39;
+                                        Repeat for each extension in order, or supply once by comma-separated list
+      --gid int                         Override GID of user&#39;s group in the stack&#39;s build and run images. The provided value must be a positive number
+  -h, --help                            Help for &#39;build&#39;
+      --insecure-registry stringArray   List of insecure registries (only available for API &gt;= 0.13)
+      --interactive                     Launch a terminal UI to depict the build process
+      --lifecycle-image string          Custom lifecycle image to use for analysis, restore, and export when builder is untrusted.
+      --network string                  Connect detect and build containers to network
+  -p, --path string                     Path to app dir or zip-formatted file (defaults to current working directory)
+      --platform string                 Platform to build on (e.g., &#34;linux/amd64&#34;).
+      --post-buildpack stringArray      Buildpacks to append to the groups in the builder&#39;s order
+      --pre-buildpack stringArray       Buildpacks to prepend to the groups in the builder&#39;s order
+      --previous-image string           Set previous image to a particular tag reference, digest reference, or (when performing a daemon build) image ID
+      --publish                         Publish the application image directly to the container registry specified in &lt;image-name&gt;, instead of the daemon. The run image must also reside in the registry.
+      --pull-policy string              Pull policy to use. Accepted values are always, never, and if-not-present. (default &#34;always&#34;)
+      --report-output-dir string        Path to export build report.toml.
+                                        Omitting the flag yield no report file.
+      --run-image string                Run image (defaults to default stack&#39;s run image)
+      --sbom-output-dir string          Path to export SBoM contents.
+                                        Omitting the flag will yield no SBoM content.
+      --sparse                          Use this flag to avoid saving on disk the run-image layers when the application image is exported to OCI layout format
+  -t, --tag strings                     Additional tags to push the output image to.
+                                        Tags should be in the format &#39;image:tag&#39; or &#39;repository/image:tag&#39;.
+                                        Repeat for each tag in order, or supply once by comma-separated list
+      --trust-builder                   Trust the provided builder.
+                                        All lifecycle phases will be run in a single container.
+                                        For more on trusted builders, and when to trust or untrust a builder, check out our docs here: https://buildpacks.io/docs/tools/pack/concepts/trusted_builders
+      --trust-extra-buildpacks          Trust buildpacks that are provided in addition to the buildpacks on the builder
+      --uid int                         Override UID of user in the stack&#39;s build and run images. The provided value must be a positive number
+      --userns-host                     Enable user namespace isolation for the build containers
+      --volume stringArray              Mount host volume into the build container, in the form &#39;&lt;host path&gt;:&lt;target path&gt;[:&lt;options&gt;]&#39;.
+                                        - &#39;host path&#39;: Name of the volume or absolute directory path to mount.
+                                        - &#39;target path&#39;: The path where the file or directory is available in the container.
+                                        - &#39;options&#39; (default &#34;ro&#34;): An optional comma separated list of mount options.
+                                            - &#34;ro&#34;, volume contents are read-only.
+                                            - &#34;rw&#34;, volume contents are readable and writeable.
+                                            - &#34;volume-opt=&lt;key&gt;=&lt;value&gt;&#34;, can be specified more than once, takes a key-value pair consisting of the option name and its value.
+                                        Repeat for each volume in order (comma-separated lists not accepted)
+      --workspace string                Location at which to mount the app dir in the build image
 </code></pre><h3 id="options-inherited-from-parent-commands">Options inherited from parent commands</h3>
 <pre tabindex="0"><code>      --force-color   Force color output
       --no-color      Disable color output
