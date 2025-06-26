@@ -11,3 +11,7 @@ Rebasing
 SBOM(?s)
 semver
 Syft
+[Tt]ekton
+kubernetes
+uid
+Minikube
