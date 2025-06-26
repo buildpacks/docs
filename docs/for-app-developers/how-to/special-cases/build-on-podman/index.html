@@ -1053,7 +1053,7 @@ sudo apt-get -y install podman
 </code></pre><h4 id="connection">Connection</h4>
 <ol>
 <li>Add the SSH key for the podman VM to your keychain:
-<pre tabindex="0"><code class="language-shell=zsh" data-lang="shell=zsh">ssh-add -k &#34;$HOME/.ssh/podman-machine-default&#34;
+<pre tabindex="0"><code class="language-shell=zsh" data-lang="shell=zsh">ssh-add -k $(podman system connection list --format=&#34;{{.URI}} {{.Identity}}&#34; | grep root |  cut -d&#39; &#39; -f2)
 </code></pre></li>
 <li>Change default connection to use <code>root</code>:
 <pre tabindex="0"><code class="language-shell=zsh" data-lang="shell=zsh">podman system connection default podman-machine-default-root
