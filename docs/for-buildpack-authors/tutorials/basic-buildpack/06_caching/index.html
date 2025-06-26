@@ -968,45 +968,45 @@ Cache the runtime layer To do this, replace the…">
 </span></span></code></pre></div><h2 id="caching-dependencies">Caching dependencies</h2>
 <p>Now, let&rsquo;s implement the caching logic.  We need to record the version of the NodeJS runtime that is used in a build.  On subsequent builds, the caching logic will detect if the NodeJS version is the same as the version in the cached layer.  We restore the previous layer from the cache if the current requested NodeJS version matches the previous NodeJS runtime version.</p>
 <!-- test:file=node-js-buildpack/bin/build -->
-<pre tabindex="0"><code>#!/usr/bin/env bash
-set -eo pipefail
-
-echo &#34;---&gt; NodeJS Buildpack&#34;
-
-# 1. CREATE THE LAYER DIRECTORY
-node_js_layer=&#34;${CNB_LAYERS_DIR}&#34;/node-js
-mkdir -p &#34;${node_js_layer}&#34;
-
-# ======= MODIFIED =======
-# 2. DOWNLOAD node-js
-node_js_version=&#34;18.18.1&#34;
-node_js_url=https://nodejs.org/dist/v${node_js_version}/node-v${node_js_version}-linux-x64.tar.xz
-cached_nodejs_version=$(cat &#34;${CNB_LAYERS_DIR}/node-js.toml&#34; 2&gt; /dev/null | yj -t | jq -r .metadata.nodejs_version 2&gt;/dev/null || echo &#39;NOT FOUND&#39;)
-if [[ &#34;${node_js_url}&#34; != *&#34;${cached_nodejs_version}&#34;* ]] ; then
-    echo &#34;-----&gt; Downloading and extracting NodeJS&#34;
-    wget -q -O - &#34;${node_js_url}&#34; | tar -xJf - --strip-components 1 -C &#34;${node_js_layer}&#34;
-else
-    echo &#34;-----&gt; Reusing NodeJS&#34;
-fi
-
-# ======= MODIFIED =======
-# 3. MAKE node-js AVAILABLE DURING LAUNCH and CACHE the LAYER
-    cat &gt; &#34;${CNB_LAYERS_DIR}/node-js.toml&#34; &lt;&lt; EOL
-[types]
-cache = true
-launch = true
-[metadata]
-nodejs_version = &#34;${node_js_version}&#34;
-EOL
-
-# 4. SET DEFAULT START COMMAND
-cat &gt;&gt; &#34;${CNB_LAYERS_DIR}/launch.toml&#34; &lt;&lt; EOL
-[[processes]]
-type = &#34;web&#34;
-command = [&#34;node&#34;, &#34;app.js&#34;]
-default = true
-EOL
-</code></pre><p>Now when you build your app, the second call will reuse the layer:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="nb">set</span> -eo pipefail
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;---&gt; NodeJS Buildpack&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 1. CREATE THE LAYER DIRECTORY</span>
+</span></span><span class="line"><span class="cl"><span class="nv">node_js_layer</span><span class="o">=</span><span class="s2">&#34;</span><span class="si">${</span><span class="nv">CNB_LAYERS_DIR</span><span class="si">}</span><span class="s2">&#34;</span>/node-js
+</span></span><span class="line"><span class="cl">mkdir -p <span class="s2">&#34;</span><span class="si">${</span><span class="nv">node_js_layer</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ======= MODIFIED =======</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 2. DOWNLOAD node-js</span>
+</span></span><span class="line"><span class="cl"><span class="nv">node_js_version</span><span class="o">=</span><span class="s2">&#34;18.18.1&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">node_js_url</span><span class="o">=</span>https://nodejs.org/dist/v<span class="si">${</span><span class="nv">node_js_version</span><span class="si">}</span>/node-v<span class="si">${</span><span class="nv">node_js_version</span><span class="si">}</span>-linux-x64.tar.xz
+</span></span><span class="line"><span class="cl"><span class="nv">cached_nodejs_version</span><span class="o">=</span><span class="k">$(</span>cat <span class="s2">&#34;</span><span class="si">${</span><span class="nv">CNB_LAYERS_DIR</span><span class="si">}</span><span class="s2">/node-js.toml&#34;</span> 2&gt; /dev/null <span class="p">|</span> yj -t <span class="p">|</span> jq -r .metadata.nodejs_version 2&gt;/dev/null <span class="o">||</span> <span class="nb">echo</span> <span class="s1">&#39;NOT FOUND&#39;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[[</span> <span class="s2">&#34;</span><span class="si">${</span><span class="nv">node_js_url</span><span class="si">}</span><span class="s2">&#34;</span> !<span class="o">=</span> *<span class="s2">&#34;</span><span class="si">${</span><span class="nv">cached_nodejs_version</span><span class="si">}</span><span class="s2">&#34;</span>* <span class="o">]]</span> <span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;-----&gt; Downloading and extracting NodeJS&#34;</span>
+</span></span><span class="line"><span class="cl">    wget -q -O - <span class="s2">&#34;</span><span class="si">${</span><span class="nv">node_js_url</span><span class="si">}</span><span class="s2">&#34;</span> <span class="p">|</span> tar -xJf - --strip-components <span class="m">1</span> -C <span class="s2">&#34;</span><span class="si">${</span><span class="nv">node_js_layer</span><span class="si">}</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">else</span>
+</span></span><span class="line"><span class="cl">    <span class="nb">echo</span> <span class="s2">&#34;-----&gt; Reusing NodeJS&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># ======= MODIFIED =======</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 3. MAKE node-js AVAILABLE DURING LAUNCH and CACHE the LAYER</span>
+</span></span><span class="line"><span class="cl">    cat &gt; <span class="s2">&#34;</span><span class="si">${</span><span class="nv">CNB_LAYERS_DIR</span><span class="si">}</span><span class="s2">/node-js.toml&#34;</span> <span class="s">&lt;&lt; EOL
+</span></span></span><span class="line"><span class="cl"><span class="s">[types]
+</span></span></span><span class="line"><span class="cl"><span class="s">cache = true
+</span></span></span><span class="line"><span class="cl"><span class="s">launch = true
+</span></span></span><span class="line"><span class="cl"><span class="s">[metadata]
+</span></span></span><span class="line"><span class="cl"><span class="s">nodejs_version = &#34;${node_js_version}&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">EOL</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 4. SET DEFAULT START COMMAND</span>
+</span></span><span class="line"><span class="cl">cat &gt;&gt; <span class="s2">&#34;</span><span class="si">${</span><span class="nv">CNB_LAYERS_DIR</span><span class="si">}</span><span class="s2">/launch.toml&#34;</span> <span class="s">&lt;&lt; EOL
+</span></span></span><span class="line"><span class="cl"><span class="s">[[processes]]
+</span></span></span><span class="line"><span class="cl"><span class="s">type = &#34;web&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s">command = [&#34;node&#34;, &#34;app.js&#34;]
+</span></span></span><span class="line"><span class="cl"><span class="s">default = true
+</span></span></span><span class="line"><span class="cl"><span class="s">EOL</span>
+</span></span></code></pre></div><p>Now when you build your app, the second call will reuse the layer:</p>
 <!-- test:exec -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">pack build test-node-js-app --path ./node-js-sample-app --buildpack ./node-js-buildpack
 </span></span><span class="line"><span class="cl">pack build test-node-js-app --path ./node-js-sample-app --buildpack ./node-js-buildpack
