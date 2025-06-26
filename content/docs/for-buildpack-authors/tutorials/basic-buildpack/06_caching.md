@@ -84,7 +84,7 @@ Reusing layer 'examples/node-js:node-js'
 Now, let's implement the caching logic.  We need to record the version of the NodeJS runtime that is used in a build.  On subsequent builds, the caching logic will detect if the NodeJS version is the same as the version in the cached layer.  We restore the previous layer from the cache if the current requested NodeJS version matches the previous NodeJS runtime version.
 
 <!-- test:file=node-js-buildpack/bin/build -->
-```
+```bash
 #!/usr/bin/env bash
 set -eo pipefail
 
