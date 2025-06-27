@@ -35,7 +35,7 @@ To start, set up a `Tekton` version `>= 1.0`, using the Tekton [documentation][t
 We also recommend using the `Tekton dashboard`. To install it, follow the steps in the [dashboard docs][tekton-dashboard-setup], and
 start the dashboard server.
 
-> NOTE: If you run Tekton on a Kind or Minikube kubernetes cluster, be sure to set the `coschedule` flag to `disabled` within the `feature-flags` ConfigMap.
+> NOTE: If you run Tekton on a Kind or Minikube Kubernetes cluster, be sure to set the `coschedule` flag to `disabled` within the `feature-flags` ConfigMap.
 
 ### 2. Install the Buildpacks Task
 
@@ -55,7 +55,7 @@ In order to set up our pipeline, we will need to define a few things:
 - PersistentVolumeClaim &rarr; A `PersistentVolumeClaim` (a general Kubernetes concept, generally shortened to PVC) is
   a request for storage by a user.
 
-#### 4.1 PVCs
+#### 4.1 Persistent Volume
 
 Create a file `resources.yml` that defines a `PersistentVolumeClaim` able to store the git cloned project and buildpacks files:
 

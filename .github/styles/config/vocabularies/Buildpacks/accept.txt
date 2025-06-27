@@ -12,6 +12,8 @@ SBOM(?s)
 semver
 Syft
 [Tt]ekton
-kubernetes
+[Kk]ubernetes
 uid
 Minikube
+kubectl
+Quarkus
