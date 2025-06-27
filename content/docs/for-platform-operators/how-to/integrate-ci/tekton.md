@@ -110,25 +110,37 @@ metadata:
   name: buildpacks-test-pipeline
 spec:
   params:
+    - name: git-url
+      type: string
+      description: URL of the project to git clone
+    - name: source-subpath
+      type: string
+      description: The subpath within the git project
     - name: image
       type: string
       description: image URL to push
     - name: builder
       type: string
       description: builder image URL
+    - name: env-vars
+      type: array
+      description: env vars to pass to the lifecycle binaries
   workspaces:
     - name: source-workspace # Directory where application source is located. (REQUIRED)
     - name: cache-workspace # Directory where cache is stored (OPTIONAL)
   tasks:
     - name: fetch-repository # This task fetches a repository from github, using the `git-clone` task you installed
       taskRef:
-        name: git-clone
+        resolver: http
+        params:
+          - name: url
+            value: https://raw.githubusercontent.com/tektoncd/catalog/refs/heads/main/task/git-clone/0.9/git-clone.yaml
       workspaces:
         - name: output
           workspace: source-workspace
       params:
         - name: url
-          value: https://github.com/buildpacks/samples
+          value: "$(params.git-url)"
         - name: deleteExisting
           value: "true"
     - name: buildpacks # This task uses the `buildpacks` task to build the application
@@ -145,9 +157,11 @@ spec:
         - name: APP_IMAGE
           value: "$(params.image)"
         - name: SOURCE_SUBPATH
-          value: "apps/java-maven" # This is the path within the samples repo you want to build (OPTIONAL, default: "")
-        - name: BUILDER_IMAGE
+          value: "$(params.source-subpath)"
+        - name: CNB_BUILDER_IMAGE
           value: "$(params.builder)"
+        - name: CNB_ENV_VARS
+          value: "[$(params.env-vars]" 
     - name: display-results
       runAfter:
         - buildpacks
@@ -193,8 +207,15 @@ spec:
       persistentVolumeClaim:
         claimName: buildpacks-source-pvc
   params:
-    - name: builder
-      value: paketobuildpacks/builder-ubi8-base:0.1.30 # This is the builder image we want the task to use (REQUIRED). E.g. paketobuildpacks/builder:base
+    - # The url of the git project to clone (REQURED).
+      name: git-url
+      value: https://github.com/buildpacks/samples
+    - # This is the path within the git project you want to build (OPTIONAL, default: "")
+      name: source-subpath
+      value: "apps/java-maven"
+    - # This is the builder image we want the task to use (REQUIRED).
+      name: builder
+      value: paketobuildpacks/builder:base
     - name: image
       value: <REGISTRY/IMAGE NAME, eg gcr.io/test/image > # This defines the name of output image
 ```
@@ -224,7 +245,42 @@ docker | podman pull <REGISTRY/IMAGE NAME>
 docker | podman run -it <REGISTRY/IMAGE NAME>
 ```
 
-### 7. Cleanup (Optional)
+### 7. Using extension
+
+If your builder image supports the [extension][extension] mechanism able to customize the [build][extension-build] or the [run (aka execution)][extension-run], then you can replay this scenario by simply changing within the `PipelineRun` resource file the builder parameter
+
+```yaml
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  name: buildpacks-test-pipeline-run
+spec:
+  serviceAccountName: buildpacks-service-account
+  pipelineRef:
+    name: buildpacks-test-pipeline
+  workspaces:
+    - name: source-workspace
+      subPath: source
+      persistentVolumeClaim:
+        claimName: buildpacks-source-pvc
+  params:
+    - name: git-url
+      value: https://github.com/buildpacks/samples
+    - name: source-subpath
+      value: "getting-started"  
+    - name: builder
+      value: paketobuildpacks/builder-ubi8-base:0.1.30
+    - name: env-vars
+      value:
+      - BP_JVM_VERSION=21
+...
+```
+When the build process will start, then you should see if you build a Java runtime (Quarkus, Spring boot, etc) such log messages if the extension installs by example a different JDK
+```shell
+
+```
+
+### 8. Cleanup (Optional)
 
 To clean up, run:
 
@@ -257,3 +313,6 @@ Some general resources for Tekton are:
 [tekton-concepts]: https://tekton.dev/docs/concepts/
 [kubectl-install]: https://kubernetes.io/docs/tasks/tools/install-kubectl/
 [tekton-auth]: https://tekton.dev/docs/pipelines/auth/
+[extension]: https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-extension/02_why-dockerfiles/
+[extension-build]: https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-extension/04_build-dockerfile/
+[extension-run]: https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-extension/06_run-dockerfile-extend/
