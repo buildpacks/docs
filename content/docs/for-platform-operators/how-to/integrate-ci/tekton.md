@@ -127,7 +127,6 @@ spec:
       description: env vars to pass to the lifecycle binaries
   workspaces:
     - name: source-workspace # Directory where application source is located. (REQUIRED)
-    # - name: cache-workspace # Directory where cache is stored (OPTIONAL)
   tasks:
     - name: fetch-repository # This task fetches a repository from github, using the `git-clone` task you installed
       taskRef:
@@ -151,8 +150,6 @@ spec:
       workspaces:
         - name: source
           workspace: source-workspace
-        #- name: cache
-        #  workspace: cache-workspace
       params:
         - name: APP_IMAGE
           value: "$(params.image)"
