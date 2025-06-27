@@ -127,7 +127,7 @@ spec:
       description: env vars to pass to the lifecycle binaries
   workspaces:
     - name: source-workspace # Directory where application source is located. (REQUIRED)
-    - name: cache-workspace # Directory where cache is stored (OPTIONAL)
+    # - name: cache-workspace # Directory where cache is stored (OPTIONAL)
   tasks:
     - name: fetch-repository # This task fetches a repository from github, using the `git-clone` task you installed
       taskRef:
@@ -143,16 +143,16 @@ spec:
           value: "$(params.git-url)"
         - name: deleteExisting
           value: "true"
-    - name: buildpacks # This task uses the `buildpacks` task to build the application
+    - name: buildpacks # This task uses the `buildpacks phases` task to build the application
       taskRef:
-        name: buildpacks
+        name: buildpacks-phases
       runAfter:
         - fetch-repository
       workspaces:
         - name: source
           workspace: source-workspace
-        - name: cache
-          workspace: cache-workspace
+        #- name: cache
+        #  workspace: cache-workspace
       params:
         - name: APP_IMAGE
           value: "$(params.image)"
@@ -161,7 +161,7 @@ spec:
         - name: CNB_BUILDER_IMAGE
           value: "$(params.builder)"
         - name: CNB_ENV_VARS
-          value: "[$(params.env-vars]" 
+          value: "$(params.env-vars[*])"
     - name: display-results
       runAfter:
         - buildpacks
@@ -198,7 +198,8 @@ kind: PipelineRun
 metadata:
   name: buildpacks-test-pipeline-run
 spec:
-  serviceAccountName: buildpacks-service-account # Only needed if you set up authorization
+  taskRunTemplate:
+    serviceAccountName: buildpacks-service-account # Only needed if you set up authorization
   pipelineRef:
     name: buildpacks-test-pipeline
   workspaces:
@@ -215,7 +216,7 @@ spec:
       value: "apps/java-maven"
     - # This is the builder image we want the task to use (REQUIRED).
       name: builder
-      value: paketobuildpacks/builder:base
+      value: paketobuildpacks/builder-jammy-tiny
     - name: image
       value: <REGISTRY/IMAGE NAME, eg gcr.io/test/image > # This defines the name of output image
 ```
@@ -255,7 +256,8 @@ kind: PipelineRun
 metadata:
   name: buildpacks-test-pipeline-run
 spec:
-  serviceAccountName: buildpacks-service-account
+  taskRunTemplate:
+    serviceAccountName: buildpacks-service-account
   pipelineRef:
     name: buildpacks-test-pipeline
   workspaces:
@@ -264,8 +266,10 @@ spec:
       persistentVolumeClaim:
         claimName: buildpacks-source-pvc
   params:
+    - name: image
+      value: <REGISTRY/IMAGE NAME, eg gcr.io/test/image>
     - name: git-url
-      value: https://github.com/buildpacks/samples
+      value: https://github.com/quarkusio/quarkus-quickstarts
     - name: source-subpath
       value: "getting-started"  
     - name: builder
@@ -273,11 +277,18 @@ spec:
     - name: env-vars
       value:
       - BP_JVM_VERSION=21
-...
 ```
-When the build process will start, then you should see if you build a Java runtime (Quarkus, Spring boot, etc) such log messages if the extension installs by example a different JDK
-```shell
-
+When the build process starts, then you should see, part of the extender step, if you build a Java runtime (Quarkus, Spring boot, etc) such log messages if the extension installs by example a different JDK
+```txt
+2025-06-27T11:32:25.067007701Z time="2025-06-27T11:32:25Z" level=info msg="Performing slow lookup of group ids for root"
+2025-06-27T11:32:25.067243910Z time="2025-06-27T11:32:25Z" level=info msg="Running: [/bin/sh -c echo ${build_id}]"
+2025-06-27T11:32:25.095150183Z 9e447871-e415-4018-a860-d5a66d925a57
+2025-06-27T11:32:25.096877516Z time="2025-06-27T11:32:25Z" level=info msg="Taking snapshot of full filesystem..."
+2025-06-27T11:32:25.280396774Z time="2025-06-27T11:32:25Z" level=info msg="Pushing layer oci:/kaniko/cache/layers/cached:a035cdb3949daa8f4e7b2c523ea0d73741c7c2d5b09981c261ebae99fd2f3233 to cache now"
+2025-06-27T11:32:25.280572023Z time="2025-06-27T11:32:25Z" level=info msg="RUN microdnf --setopt=install_weak_deps=0 --setopt=tsflags=nodocs install -y openssl-devel java-21-openjdk-devel nss_wrapper which && microdnf clean all"
+2025-06-27T11:32:25.280577315Z time="2025-06-27T11:32:25Z" level=info msg="Cmd: /bin/sh"
+2025-06-27T11:32:25.280578398Z time="2025-06-27T11:32:25Z" level=info msg="Args: [-c microdnf --setopt=install_weak_deps=0 --setopt=tsflags=nodocs install -y openssl-devel java-21-openjdk-devel nss_wrapper which && microdnf clean all]"
+...
 ```
 
 ### 8. Cleanup (Optional)
