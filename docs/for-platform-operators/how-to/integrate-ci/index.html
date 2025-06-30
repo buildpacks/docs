@@ -967,8 +967,10 @@ It now also implements the CNB Platform spec as a step and makes it available in
         
           <h2><a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/tekton/" class="">Tekton</a></h2>
           <p class="m-1"><p><a href="https://tekton.dev/">Tekton</a> is an open-source CI/CD system running on k8s.</p>
-<p>The CNB project has created two reference &ldquo;tasks&rdquo; for performing buildpacks builds,
-both of which use the <a href="/docs/for-platform-operators/concepts/lifecycle">lifecycle</a> directly (i.e. they do not use <code>pack</code>).</p></p>
+<p>The CNB project has created a reference &ldquo;task&rdquo; for performing buildpacks builds with or without extensions (aka Dockerfile to be applied) top
+of the <a href="/docs/for-platform-operators/concepts/lifecycle">lifecycle</a> tool (i.e. they do not use <code>pack</code>).</p>
+<p>The <a href="https://github.com/tektoncd/catalog/tree/master/task/buildpacks-phases">Buildpacks Phases Task</a> calls the individual <a href="/docs/for-platform-operators/concepts/lifecycle">lifecycle</a> binaries (prepare, analyze, detect, restore, build or extender, export), to run each phase in a separate container.</p>
+<p>The uid and gid as defined part of the builder image will be used to build the image.</p></p>
 
           
             <div class="text-md-right">

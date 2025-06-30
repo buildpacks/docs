@@ -943,8 +943,10 @@ to build applications prior to deploying them.</li>
 <p><a href="https://github.com/pivotal/kpack">kpack</a> is part of the <a href="https://github.com/buildpacks-community">Buildpacks Community</a> organization.</p></li>
 <li><strong><a href="/docs/for-platform-operators/how-to/integrate-ci/pack">Pack</a></strong> - Pack is a CLI tool maintained by the CNB project to support the use of buildpacks.</li>
 <li><strong><a href="/docs/for-platform-operators/how-to/integrate-ci/tekton">Tekton</a></strong> - <p><a href="https://tekton.dev/">Tekton</a> is an open-source CI/CD system running on k8s.</p>
-<p>The CNB project has created two reference &ldquo;tasks&rdquo; for performing buildpacks builds,
-both of which use the <a href="/docs/for-platform-operators/concepts/lifecycle">lifecycle</a> directly (i.e. they do not use <code>pack</code>).</p></li>
+<p>The CNB project has created a reference &ldquo;task&rdquo; for performing buildpacks builds with or without extensions (aka Dockerfile to be applied) top
+of the <a href="/docs/for-platform-operators/concepts/lifecycle">lifecycle</a> tool (i.e. they do not use <code>pack</code>).</p>
+<p>The <a href="https://github.com/tektoncd/catalog/tree/master/task/buildpacks-phases">Buildpacks Phases Task</a> calls the individual <a href="/docs/for-platform-operators/concepts/lifecycle">lifecycle</a> binaries (prepare, analyze, detect, restore, build or extender, export), to run each phase in a separate container.</p>
+<p>The uid and gid as defined part of the builder image will be used to build the image.</p></li>
 </ul>
 <hr>
 <h2 id="reference"><a href="/docs/reference/">Reference</a></h2>

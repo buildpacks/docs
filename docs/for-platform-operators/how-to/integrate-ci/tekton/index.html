@@ -9,7 +9,7 @@
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="Tekton is an open-source CI/CD system running on k8s.
-The CNB project has created two reference &ldquo;tasks&rdquo; for performing buildpacks builds, both of which use the lifecycle directly (i.e.…"/>
+The CNB project has created a reference &ldquo;task&rdquo; for performing buildpacks builds with or without extensions (aka Dockerfile to be…"/>
 <link rel="canonical" content="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/tekton/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
@@ -24,7 +24,7 @@ The CNB project has created two reference &ldquo;tasks&rdquo; for performing bui
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
 <meta property="og:description" content="Tekton is an open-source CI/CD system running on k8s.
-The CNB project has created two reference &ldquo;tasks&rdquo; for performing buildpacks builds, both of which use the lifecycle directly (i.e.…">
+The CNB project has created a reference &ldquo;task&rdquo; for performing buildpacks builds with or without extensions (aka Dockerfile to be…">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -917,14 +917,11 @@ The CNB project has created two reference &ldquo;tasks&rdquo; for performing bui
         </div>
 
         <p><a href="https://tekton.dev/">Tekton</a> is an open-source CI/CD system running on k8s.</p>
-<p>The CNB project has created two reference &ldquo;tasks&rdquo; for performing buildpacks builds,
-both of which use the <a href="/docs/for-platform-operators/concepts/lifecycle">lifecycle</a> directly (i.e. they do not use <code>pack</code>).</p>
-<p>They are:</p>
-<ol>
-<li><a href="https://github.com/tektoncd/catalog/tree/master/task/buildpacks">buildpacks</a> <code>task</code> → This task, which we recommend using, calls the <code>creator</code> binary of the
-<a href="/docs/for-platform-operators/concepts/lifecycle">lifecycle</a> to construct, and optionally publish, a runnable image.</li>
-<li><a href="https://github.com/tektoncd/catalog/tree/master/task/buildpacks-phases">buildpacks-phases</a> <code>task</code> → This task calls the individual <a href="/docs/for-platform-operators/concepts/lifecycle">lifecycle</a> binaries, to run each phase in a separate container.</li>
-</ol>
+<p>The CNB project has created a reference &ldquo;task&rdquo; for performing buildpacks builds with or without extensions (aka Dockerfile to be applied) top
+of the <a href="/docs/for-platform-operators/concepts/lifecycle">lifecycle</a> tool (i.e. they do not use <code>pack</code>).</p>
+<p>The <a href="https://github.com/tektoncd/catalog/tree/master/task/buildpacks-phases">Buildpacks Phases Task</a> calls the individual <a href="/docs/for-platform-operators/concepts/lifecycle">lifecycle</a> binaries (prepare, analyze, detect, restore, build or extender, export), to run each phase in a separate container.</p>
+<p>The uid and gid as defined part of the builder image will be used to build the image.</p>
+<p>The different parameters to customize the task are defined part of the task&rsquo;s documentation under the section <code>parameters</code>.</p>
 <h2 id="set-up">Set Up</h2>
 <blockquote>
 <p>NOTE: Prior to installing <code>Tekton</code>, we recommend reviewing the basic Tekton concepts in the <a href="https://tekton.dev/docs/concepts/">documentation</a>.</p></blockquote>
@@ -932,16 +929,15 @@ both of which use the <a href="/docs/for-platform-operators/concepts/lifecycle">
 <p>Before we get started, make sure you&rsquo;ve got the following installed:</p>
 <a href='https://kubernetes.io/docs/tasks/tools/install-kubectl/' class='download-button button icon-button bg-blue'> Install kubectl </a><br />
 <h3 id="1-install-tekton-and-tekton-dashboard">1. Install Tekton and Tekton Dashboard</h3>
-<p>To start, set up <code>Tekton</code>, using the Tekton <a href="https://tekton.dev/docs/getting-started/">documentation</a>.</p>
+<p>To start, set up a <code>Tekton</code> version <code>&gt;= 1.0</code>, using the Tekton <a href="https://tekton.dev/docs/getting-started/">documentation</a>.</p>
 <p>We also recommend using the <code>Tekton dashboard</code>. To install it, follow the steps in the <a href="https://tekton.dev/docs/dashboard/">dashboard docs</a>, and
 start the dashboard server.</p>
+<blockquote>
+<p>NOTE: If you run Tekton on a Kind or Minikube Kubernetes cluster, be sure to set the <code>coschedule</code> flag to <code>disabled</code> within the <code>feature-flags</code> ConfigMap.</p></blockquote>
 <h3 id="2-install-the-buildpacks-task">2. Install the Buildpacks Task</h3>
-<p>Install the latest version of the buildpacks task (currently <code>0.6</code>), by running:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/master/task/buildpacks/0.6/buildpacks.yaml
-</span></span></code></pre></div><h3 id="3-install-git-clone-task">3. Install git-clone Task</h3>
-<p>For our <code>pipeline</code>, we will use the <code>git-clone</code> task to clone a repository. Install the latest version (currently <code>0.4</code>), by running:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/master/task/git-clone/0.4/git-clone.yaml
-</span></span></code></pre></div><h3 id="4-define-and-apply-tekton-pipeline-resources">4. Define and Apply Tekton Pipeline Resources</h3>
+<p>Install the latest version of the buildpacks task (currently <code>0.3</code>), by running:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/refs/heads/main/task/buildpacks-phases/0.3/buildpacks-phases.yaml
+</span></span></code></pre></div><h3 id="3-define-and-apply-tekton-pipeline-resources">3. Define and Apply Tekton Pipeline Resources</h3>
 <p>In order to set up our pipeline, we will need to define a few things:</p>
 <ul>
 <li>Pipeline → A <code>Pipeline</code> defines a series of <code>Tasks</code> that accomplish a specific build or delivery goal. The <code>Pipeline</code>
@@ -950,8 +946,8 @@ can be triggered by an event or invoked from a <code>PipelineRun</code>.</li>
 <li>PersistentVolumeClaim → A <code>PersistentVolumeClaim</code> (a general Kubernetes concept, generally shortened to PVC) is
 a request for storage by a user.</li>
 </ul>
-<h4 id="41-pvcs">4.1 PVCs</h4>
-<p>Create a file <code>resources.yml</code> that defines a <code>PersistentVolumeClaim</code>:</p>
+<h4 id="41-persistent-volume">4.1 Persistent Volume</h4>
+<p>Create a file <code>resources.yml</code> that defines a <code>PersistentVolumeClaim</code> able to store the git cloned project and buildpacks files:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">PersistentVolumeClaim</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
@@ -965,9 +961,9 @@ a request for storage by a user.</li>
 </span></span></span></code></pre></div><h4 id="42-authorization">4.2 Authorization</h4>
 <blockquote>
 <p>NOTE: You don&rsquo;t need to use authorization if you are pushing to a local registry. However, if you are pushing to a
-remote registry (e.g. <code>DockerHub</code>, <code>GCR</code>), you need to add authorization</p></blockquote>
+remote registry (e.g. <code>DockerHub</code>, <code>GCR</code>, `quay.io), you need to add authorization</p></blockquote>
 <p>Create a <code>Secret</code> containing username and password that the build should use to authenticate to the container registry.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl create secret docker-registry docker-user-pass <span class="se">\
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl create secret docker-registry registry-user-pass <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>    --docker-username<span class="o">=</span>&lt;USERNAME&gt; <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>    --docker-password<span class="o">=</span>&lt;PASSWORD&gt; <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>    --docker-server<span class="o">=</span>&lt;LINK TO REGISTRY, e.g. https://index.docker.io/v1/ &gt; <span class="se">\
@@ -978,52 +974,66 @@ remote registry (e.g. <code>DockerHub</code>, <code>GCR</code>), you need to add
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-service-account</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">secrets</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">docker-user-pass</span><span class="w">
-</span></span></span></code></pre></div><h4 id="43-pipeline">4.3 Pipeline</h4>
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">registry-user-pass</span><span class="w">
+</span></span></span></code></pre></div><blockquote>
+<p>NOTE: This service account will be used by Tekton in order to mount the credentials as docker config file part of the pod running buildpacks</p></blockquote>
+<h4 id="43-pipeline">4.3 Pipeline</h4>
 <p>Create a file <code>pipeline.yml</code> that defines the <code>Pipeline</code>, and relevant resources:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">tekton.dev/v1beta1</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">tekton.dev/v1</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Pipeline</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-test-pipeline</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">params</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">git-url</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l">URL of the project to git clone</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">source-subpath</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l">The subpath within the git project</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">image</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l">image URL to push</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">builder</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l">builder image URL</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">env-vars</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">array</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l">env vars to pass to the lifecycle binaries</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">workspaces</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">source-workspace</span><span class="w"> </span><span class="c"># Directory where application source is located. (REQUIRED)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">cache-workspace</span><span class="w"> </span><span class="c"># Directory where cache is stored (OPTIONAL)</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">tasks</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">fetch-repository</span><span class="w"> </span><span class="c"># This task fetches a repository from github, using the `git-clone` task you installed</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">taskRef</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">git-clone</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">resolver</span><span class="p">:</span><span class="w"> </span><span class="l">http</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">params</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">url</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">https://raw.githubusercontent.com/tektoncd/catalog/refs/heads/main/task/git-clone/0.9/git-clone.yaml</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">workspaces</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">output</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">workspace</span><span class="p">:</span><span class="w"> </span><span class="l">source-workspace</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">params</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">url</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">https://github.com/buildpacks/samples</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">subdirectory</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;$(params.git-url)&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">deleteExisting</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;true&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks</span><span class="w"> </span><span class="c"># This task uses the `buildpacks` task to build the application</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks</span><span class="w"> </span><span class="c"># This task uses the `buildpacks phases` task to build the application</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">taskRef</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-phases</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">runAfter</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">fetch-repository</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">workspaces</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">source</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">workspace</span><span class="p">:</span><span class="w"> </span><span class="l">source-workspace</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">cache</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">workspace</span><span class="p">:</span><span class="w"> </span><span class="l">cache-workspace</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">params</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">APP_IMAGE</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;$(params.image)&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">SOURCE_SUBPATH</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;apps/java-maven&#34;</span><span class="w"> </span><span class="c"># This is the path within the samples repo you want to build (OPTIONAL, default: &#34;&#34;)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">BUILDER_IMAGE</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">paketobuildpacks/builder:base</span><span class="w"> </span><span class="c"># This is the builder we want the task to use (REQUIRED)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;$(params.source-subpath)&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">CNB_BUILDER_IMAGE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;$(params.builder)&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">CNB_ENV_VARS</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;$(params.env-vars[*])&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">display-results</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">runAfter</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">buildpacks</span><span class="w">
@@ -1045,12 +1055,13 @@ remote registry (e.g. <code>DockerHub</code>, <code>GCR</code>), you need to add
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl apply -f resources.yml -f sa.yml -f pipeline.yml
 </span></span></code></pre></div><h3 id="5-create--apply-pipelinerun">5. Create &amp; Apply PipelineRun</h3>
 <p>Create a file <code>run.yml</code>, which defines the <code>PipelineRun</code>:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">tekton.dev/v1beta1</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">tekton.dev/v1</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">PipelineRun</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-test-pipeline-run</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">serviceAccountName</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-service-account</span><span class="w"> </span><span class="c"># Only needed if you set up authorization</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">taskRunTemplate</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">serviceAccountName</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-service-account</span><span class="w"> </span><span class="c"># Only needed if you set up authorization</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">pipelineRef</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-test-pipeline</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">workspaces</span><span class="p">:</span><span class="w">
@@ -1058,11 +1069,16 @@ remote registry (e.g. <code>DockerHub</code>, <code>GCR</code>), you need to add
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">subPath</span><span class="p">:</span><span class="w"> </span><span class="l">source</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">persistentVolumeClaim</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">claimName</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-source-pvc</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">cache-workspace</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">subPath</span><span class="p">:</span><span class="w"> </span><span class="l">cache</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">persistentVolumeClaim</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">claimName</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-source-pvc</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">params</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="c"># The url of the git project to clone (REQURED).</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">git-url</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">https://github.com/buildpacks/samples</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="c"># This is the path within the git project you want to build (OPTIONAL, default: &#34;&#34;)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">source-subpath</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;apps/java-maven&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="c"># This is the builder image we want the task to use (REQUIRED).</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">builder</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">cnbs/sample-builder:noble</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">image</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">&lt;REGISTRY/IMAGE NAME, eg gcr.io/test/image &gt;</span><span class="w"> </span><span class="c"># This defines the name of output image</span><span class="w">
 </span></span></span></code></pre></div><blockquote>
@@ -1073,17 +1089,56 @@ remote registry (e.g. <code>DockerHub</code>, <code>GCR</code>), you need to add
 <p>Look at the <code>PipelineRun</code> logs by running</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl describe pipelinerun buildpacks-test-pipeline-run
 </span></span></code></pre></div><p>or by using the Tekton Dashboard.</p>
-<p>Once the application is successfully built, you can pull it and run it by running:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker pull some-output-image
-</span></span></code></pre></div><h3 id="7-cleanup-optional">7. Cleanup (Optional)</h3>
+<p>Once the application is successfully built, you can pull and run it by running:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">docker <span class="p">|</span> podman pull &lt;REGISTRY/IMAGE NAME&gt;
+</span></span><span class="line"><span class="cl">docker <span class="p">|</span> podman run -it &lt;REGISTRY/IMAGE NAME&gt;
+</span></span></code></pre></div><h3 id="7-using-extension">7. Using extension</h3>
+<p>If your builder image supports the <a href="https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-extension/02_why-dockerfiles/">extension</a> mechanism able to customize the <a href="https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-extension/04_build-dockerfile/">build</a> or the <a href="https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-extension/06_run-dockerfile-extend/">run (aka execution)</a>, then you can replay this scenario by simply changing within the <code>PipelineRun</code> resource file the builder parameter</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">tekton.dev/v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">PipelineRun</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-test-pipeline-run</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">taskRunTemplate</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">serviceAccountName</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-service-account</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">pipelineRef</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-test-pipeline</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">workspaces</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">source-workspace</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">subPath</span><span class="p">:</span><span class="w"> </span><span class="l">source</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">persistentVolumeClaim</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">claimName</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks-source-pvc</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">params</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">image</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">&lt;REGISTRY/IMAGE NAME, eg gcr.io/test/image&gt;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">git-url</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">https://github.com/quarkusio/quarkus-quickstarts</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">source-subpath</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;getting-started&#34;</span><span class="w">  
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">builder</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">paketobuildpacks/builder-ubi8-base:0.1.30</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">env-vars</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">BP_JVM_VERSION=21</span><span class="w">
+</span></span></span></code></pre></div><p>When the build process starts, then you should see, part of the extender step, if you build a Java runtime (Quarkus, Spring boot, etc) such log messages if the extension installs by example a different JDK</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-txt" data-lang="txt"><span class="line"><span class="cl">2025-06-27T11:32:25.067007701Z time=&#34;2025-06-27T11:32:25Z&#34; level=info msg=&#34;Performing slow lookup of group ids for root&#34;
+</span></span><span class="line"><span class="cl">2025-06-27T11:32:25.067243910Z time=&#34;2025-06-27T11:32:25Z&#34; level=info msg=&#34;Running: [/bin/sh -c echo ${build_id}]&#34;
+</span></span><span class="line"><span class="cl">2025-06-27T11:32:25.095150183Z 9e447871-e415-4018-a860-d5a66d925a57
+</span></span><span class="line"><span class="cl">2025-06-27T11:32:25.096877516Z time=&#34;2025-06-27T11:32:25Z&#34; level=info msg=&#34;Taking snapshot of full filesystem...&#34;
+</span></span><span class="line"><span class="cl">2025-06-27T11:32:25.280396774Z time=&#34;2025-06-27T11:32:25Z&#34; level=info msg=&#34;Pushing layer oci:/kaniko/cache/layers/cached:a035cdb3949daa8f4e7b2c523ea0d73741c7c2d5b09981c261ebae99fd2f3233 to cache now&#34;
+</span></span><span class="line"><span class="cl">2025-06-27T11:32:25.280572023Z time=&#34;2025-06-27T11:32:25Z&#34; level=info msg=&#34;RUN microdnf --setopt=install_weak_deps=0 --setopt=tsflags=nodocs install -y openssl-devel java-21-openjdk-devel nss_wrapper which &amp;&amp; microdnf clean all&#34;
+</span></span><span class="line"><span class="cl">2025-06-27T11:32:25.280577315Z time=&#34;2025-06-27T11:32:25Z&#34; level=info msg=&#34;Cmd: /bin/sh&#34;
+</span></span><span class="line"><span class="cl">2025-06-27T11:32:25.280578398Z time=&#34;2025-06-27T11:32:25Z&#34; level=info msg=&#34;Args: [-c microdnf --setopt=install_weak_deps=0 --setopt=tsflags=nodocs install -y openssl-devel java-21-openjdk-devel nss_wrapper which &amp;&amp; microdnf clean all]&#34;
+</span></span><span class="line"><span class="cl">...
+</span></span></code></pre></div><h3 id="8-cleanup-optional">8. Cleanup (Optional)</h3>
 <p>To clean up, run:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl delete taskrun --all
-</span></span><span class="line"><span class="cl">kubectl delete pvc --all
-</span></span><span class="line"><span class="cl">kubectl delete pv --all
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl delete -n default pipelinerun buildpacks-test-pipeline-run
+</span></span><span class="line"><span class="cl">kubectl delete -n default pipeline buildpacks-test-pipeline
+</span></span><span class="line"><span class="cl">kubectl delete -n default buildpacks-phases
+</span></span><span class="line"><span class="cl">kubectl delete -n default pvc buildpacks-source-pvc
 </span></span></code></pre></div><h2 id="references">References</h2>
-<p>The Buildpacks tasks can be accessed at:</p>
+<p>The Buildpacks task can be accessed at:</p>
 <ul>
-<li><a href="https://github.com/tektoncd/catalog/tree/master/task/buildpacks">Buildpacks Task Source</a></li>
 <li><a href="https://github.com/tektoncd/catalog/tree/master/task/buildpacks-phases">Buildpacks Phases Task Source</a></li>
 </ul>
 <p>Some general resources for Tekton are:</p>
@@ -1093,6 +1148,7 @@ remote registry (e.g. <code>DockerHub</code>, <code>GCR</code>), you need to add
 <li><a href="https://tekton.dev/docs/concepts/">Tekton Concepts</a></li>
 <li><a href="https://tekton.dev/docs/pipelines/auth/">Tekton Authorization Documentation</a></li>
 </ul>
+
 
         
 
