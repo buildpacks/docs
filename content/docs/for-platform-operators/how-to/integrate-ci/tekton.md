@@ -213,7 +213,7 @@ spec:
       value: "apps/java-maven"
     - # This is the builder image we want the task to use (REQUIRED).
       name: builder
-      value: paketobuildpacks/builder-jammy-tiny
+      value: cnbs/sample-builder:noble
     - name: image
       value: <REGISTRY/IMAGE NAME, eg gcr.io/test/image > # This defines the name of output image
 ```
