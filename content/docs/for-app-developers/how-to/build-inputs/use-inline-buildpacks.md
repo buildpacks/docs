@@ -50,7 +50,7 @@ find . -type f -name $(my_data_files) -delete
 cat <<EOF > ${1}/launch.toml
 [[processes]]
 type = 'bash'
-command = 'bin/bash'
+command = ['bin/bash']
 EOF
 """
 ```
