@@ -917,7 +917,12 @@
         </div>
 
         <p>Environment variables are a common way to configure various buildpacks at build-time.</p>
-<p>Below are a few ways you can do so. All of them will use our <a href="https://github.com/buildpacks/samples">samples</a> repo for simplicity.</p>
+<p>Below are a few ways you can do so. All of them use the <a href="https://github.com/buildpacks/samples">samples</a> repository for
+simplicity. The following documentation assumes that all participating buildpack
+either use <code>clear-env = false</code> as the default in their
+<a href="https://buildpacks.io/docs/reference/config/buildpack-config/">buildpack.toml</a>,
+or if they use <code>clear-env = true</code>, that they merge in filtered user supplied
+environment variables.</p>
 <h3 id="using-cli-arguments---env">Using CLI arguments (<code>--env</code>)</h3>
 <p>The <code>--env</code> parameter must be one of the following:</p>
 <ul>

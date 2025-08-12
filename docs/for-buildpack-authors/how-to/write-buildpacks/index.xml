@@ -54,7 +54,7 @@
       <link>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/clear-env/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/clear-env/</guid>
-      <description>&lt;p&gt;&amp;ldquo;Clearing&amp;rdquo; the buildpack environment with &lt;code&gt;clear-env&lt;/code&gt; is the process of preventing end-users from customizing a buildpack&amp;rsquo;s behavior through environment variables.&lt;/p&gt;</description>
+      <description>&lt;p&gt;&amp;ldquo;Clearing&amp;rdquo; the buildpack environment with &lt;code&gt;clear-env&lt;/code&gt; is the process of preventing the lifecycle from automatically merging user-provided environment variables into the buildpack&amp;rsquo;s executing process&amp;rsquo;s environment variables.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Create slice layers</title>

@@ -8,8 +8,7 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="&ldquo;Clearing&rdquo; the buildpack environment with clear-env is the process of preventing end-users from customizing a buildpack&rsquo;s behavior through environment variables.
-"/>
+<meta name="description" content="&ldquo;Clearing&rdquo; the buildpack environment with clear-env is the process of preventing the lifecycle from automatically merging user-provided environment variables into the buildpack&rsquo;s…"/>
 <link rel="canonical" content="https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/clear-env/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
@@ -23,8 +22,7 @@
 <meta property="og:url" content="https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/clear-env/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-<meta property="og:description" content="&ldquo;Clearing&rdquo; the buildpack environment with clear-env is the process of preventing end-users from customizing a buildpack&rsquo;s behavior through environment variables.
-">
+<meta property="og:description" content="&ldquo;Clearing&rdquo; the buildpack environment with clear-env is the process of preventing the lifecycle from automatically merging user-provided environment variables into the buildpack&rsquo;s…">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -916,16 +914,19 @@
           <h1 class="title">Clear the buildpack environment</h1>
         </div>
 
-        <p>&ldquo;Clearing&rdquo; the buildpack environment with <code>clear-env</code> is the process of preventing end-users from customizing a buildpack&rsquo;s behavior through environment variables.</p>
-<p>Buildpack authors may elect to clear user-provided environment variables when <code>bin/detect</code> and <code>bin/build</code> are executed. This is achieved by setting <code>clear-env</code> to <code>true</code> in <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#buildpacktoml-toml">buildpack.toml</a>; by default <code>clear-env</code> is set to <code>false</code>.</p>
+        <p>&ldquo;Clearing&rdquo; the buildpack environment with <code>clear-env</code> is the process of preventing the lifecycle from automatically merging user-provided environment variables into the buildpack&rsquo;s executing process&rsquo;s environment variables.</p>
+<p>User-provided environment variables are always written to disk at <code>$CNB_PLATFORM_DIR/env/</code> as &ldquo;platform&rdquo; environment variables and are available to a buildpack regardless of the <code>clear-env</code> setting. For example, if someone runs <code>pack build --env HELLO=world</code>, there is always a <code>$CNB_PLATFORM_DIR/env/hello</code> file with the contents of <code>world</code>.</p>
+<p>By default with <code>clear-env = false</code>, the lifecycle automatically copies these user-provided environment variables into the current process environment when executing <code>/bin/detect</code> and <code>/bin/build</code>. This provides a comprehensive stream of all user environment variables for a buildpack that wants easy access to user customization.</p>
+<p>Setting <code>clear-env = true</code> in the <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#buildpacktoml-toml">buildpack.toml</a> prevents this automatic merging, giving a buildpack complete control over which user-provided environment variables to use. This provides maximum isolation and predictability for a buildpack that wants to be more selective about environment variable usage.</p>
+<p>For example, if a user has specified the <code>PATH</code> environment variable, then a buildpack written in bash might unexpectedly find that tools it relies on such as <code>cp</code> aren&rsquo;t the ones it expects. However, setting <code>clear-env = true</code> won&rsquo;t change runtime behavior.</p>
 <ul>
-<li>When <code>clear-env</code> is set to <code>true</code> for a given buildpack, the <code>lifecycle</code> will not set user-provided environment variables when running <code>/bin/detect</code> or <code>/bin/build</code>.</li>
-<li>If a buildpack does allow customization by the end-user through the environment (<code>clear-env</code> is <code>false</code>), there is a special convention for naming the environment variables recognized by the buildpack, shown in the following table:</li>
+<li>When you set <code>clear-env</code> to <code>true</code> for a given buildpack, the <code>lifecycle</code> writes user-provided environment variables to disk at <code>$CNB_PLATFORM_DIR/env/</code> but it won&rsquo;t copy those variables into the buildpack process when running <code>/bin/detect</code> or <code>/bin/build</code>.</li>
+<li>If a buildpack uses <code>clear-env = false</code> which allows customization by the end-user through the environment, there is a special convention for naming the environment variables recognized by the buildpack, shown in the following table:</li>
 </ul>
 <table>
   <thead>
       <tr>
-          <th>Env Variable</th>
+          <th>Environment Variable</th>
           <th>Description</th>
           <th>Detect</th>
           <th>Build</th>
@@ -949,8 +950,10 @@
       </tr>
   </tbody>
 </table>
-<h3 id="further-reading">Further Reading</h3>
-<p>For more about how environment variables are specified by end-users, see the page for how to <a href="https://buildpacks.io/docs/for-app-developers/how-to/build-inputs/configure-build-time-environment/">customize buildpack behavior with build-time environment variables</a>.</p>
+<p>Buildpack that use <code>clear-env = true</code> should filter and export environment variables from <code>$CNB_PLATFORM_DIR/env/</code> while warning on the filtered variables. Emitting a warning helps users understand if runtime behavior differs from build time behavior. Sourcing the user environment variables is critical to allowing sub-processes access to credentials.</p>
+<p>For example, if a private gem server hosted on <code>gems.example.com</code> needs access in a sub-process such as <code>bundle install</code>, the user must provide <code>BUNDLE_GEMS__EXAMPLE__COM=&lt;username&gt;:&lt;password&gt;</code>. If <code>clear-env = true</code> and the buildpack doesn&rsquo;t use platform environment variables, then trying to access that resource would fail.</p>
+<h3 id="further-reading">Further reading</h3>
+<p>For more about how end-users specify environment variables, see the page for how to <a href="https://buildpacks.io/docs/for-app-developers/how-to/build-inputs/configure-build-time-environment/">customize buildpack behavior with build-time environment variables</a>.</p>
 
         
 
