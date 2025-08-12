@@ -9,16 +9,14 @@ weight=6
 
 [Tekton][tekton] is an open-source CI/CD system running on k8s.
 
-The CNB project has created two reference "tasks" for performing buildpacks builds,
-both of which use the [lifecycle][lifecycle] directly (i.e. they do not use `pack`).
+The CNB project has created a reference "task" for performing buildpacks builds with or without extensions (aka Dockerfile to be applied) top
+of the [lifecycle][lifecycle] tool (i.e. they do not use `pack`).
 
-<!--more-->
+The [Buildpacks Phases Task][buildpacks-phases] calls the individual [lifecycle][lifecycle] binaries (prepare, analyze, detect, restore, build or extender, export), to run each phase in a separate container. 
 
-They are:
+The uid and gid as defined part of the builder image will be used to build the image. 
 
-1. [buildpacks][buildpacks-task] `task` &rarr; This task, which we recommend using, calls the `creator` binary of the
-   [lifecycle][lifecycle] to construct, and optionally publish, a runnable image.
-2. [buildpacks-phases][buildpacks-phases] `task` &rarr; This task calls the individual [lifecycle][lifecycle] binaries, to run each phase in a separate container.
+The different parameters to customize the task are defined part of the task's documentation under the section `parameters`.
 
 ## Set Up
 
@@ -32,28 +30,22 @@ Before we get started, make sure you've got the following installed:
 
 ### 1. Install Tekton and Tekton Dashboard
 
-To start, set up `Tekton`, using the Tekton [documentation][tekton-setup].
+To start, set up a `Tekton` version `>= 1.0`, using the Tekton [documentation][tekton-setup].
 
 We also recommend using the `Tekton dashboard`. To install it, follow the steps in the [dashboard docs][tekton-dashboard-setup], and
 start the dashboard server.
 
+> NOTE: If you run Tekton on a Kind or Minikube Kubernetes cluster, be sure to set the `coschedule` flag to `disabled` within the `feature-flags` ConfigMap.
+
 ### 2. Install the Buildpacks Task
 
-Install the latest version of the buildpacks task (currently `0.6`), by running:
+Install the latest version of the buildpacks task (currently `0.3`), by running:
 
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/master/task/buildpacks/0.6/buildpacks.yaml
+kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/refs/heads/main/task/buildpacks-phases/0.3/buildpacks-phases.yaml
 ```
 
-### 3. Install git-clone Task
-
-For our `pipeline`, we will use the `git-clone` task to clone a repository. Install the latest version (currently `0.4`), by running:
-
-```shell
-kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/master/task/git-clone/0.4/git-clone.yaml
-```
-
-### 4. Define and Apply Tekton Pipeline Resources
+### 3. Define and Apply Tekton Pipeline Resources
 
 In order to set up our pipeline, we will need to define a few things:
 
@@ -63,9 +55,9 @@ In order to set up our pipeline, we will need to define a few things:
 - PersistentVolumeClaim &rarr; A `PersistentVolumeClaim` (a general Kubernetes concept, generally shortened to PVC) is
   a request for storage by a user.
 
-#### 4.1 PVCs
+#### 4.1 Persistent Volume
 
-Create a file `resources.yml` that defines a `PersistentVolumeClaim`:
+Create a file `resources.yml` that defines a `PersistentVolumeClaim` able to store the git cloned project and buildpacks files:
 
 ```yaml
 apiVersion: v1
@@ -83,12 +75,12 @@ spec:
 #### 4.2 Authorization
 
 > NOTE: You don't need to use authorization if you are pushing to a local registry. However, if you are pushing to a
-> remote registry (e.g. `DockerHub`, `GCR`), you need to add authorization
+> remote registry (e.g. `DockerHub`, `GCR`, `quay.io), you need to add authorization
 
 Create a `Secret` containing username and password that the build should use to authenticate to the container registry.
 
 ```shell
-kubectl create secret docker-registry docker-user-pass \
+kubectl create secret docker-registry registry-user-pass \
     --docker-username=<USERNAME> \
     --docker-password=<PASSWORD> \
     --docker-server=<LINK TO REGISTRY, e.g. https://index.docker.io/v1/ > \
@@ -103,57 +95,70 @@ kind: ServiceAccount
 metadata:
   name: buildpacks-service-account
 secrets:
-  - name: docker-user-pass
+  - name: registry-user-pass
 ```
+> NOTE: This service account will be used by Tekton in order to mount the credentials as docker config file part of the pod running buildpacks 
 
 #### 4.3 Pipeline
 
 Create a file `pipeline.yml` that defines the `Pipeline`, and relevant resources:
 
 ```yaml
-apiVersion: tekton.dev/v1beta1
+apiVersion: tekton.dev/v1
 kind: Pipeline
 metadata:
   name: buildpacks-test-pipeline
 spec:
   params:
+    - name: git-url
+      type: string
+      description: URL of the project to git clone
+    - name: source-subpath
+      type: string
+      description: The subpath within the git project
     - name: image
       type: string
       description: image URL to push
+    - name: builder
+      type: string
+      description: builder image URL
+    - name: env-vars
+      type: array
+      description: env vars to pass to the lifecycle binaries
   workspaces:
     - name: source-workspace # Directory where application source is located. (REQUIRED)
-    - name: cache-workspace # Directory where cache is stored (OPTIONAL)
   tasks:
     - name: fetch-repository # This task fetches a repository from github, using the `git-clone` task you installed
       taskRef:
-        name: git-clone
+        resolver: http
+        params:
+          - name: url
+            value: https://raw.githubusercontent.com/tektoncd/catalog/refs/heads/main/task/git-clone/0.9/git-clone.yaml
       workspaces:
         - name: output
           workspace: source-workspace
       params:
         - name: url
-          value: https://github.com/buildpacks/samples
-        - name: subdirectory
-          value: ""
+          value: "$(params.git-url)"
         - name: deleteExisting
           value: "true"
-    - name: buildpacks # This task uses the `buildpacks` task to build the application
+    - name: buildpacks # This task uses the `buildpacks phases` task to build the application
       taskRef:
-        name: buildpacks
+        name: buildpacks-phases
       runAfter:
         - fetch-repository
       workspaces:
         - name: source
           workspace: source-workspace
-        - name: cache
-          workspace: cache-workspace
       params:
         - name: APP_IMAGE
           value: "$(params.image)"
         - name: SOURCE_SUBPATH
-          value: "apps/java-maven" # This is the path within the samples repo you want to build (OPTIONAL, default: "")
-        - name: BUILDER_IMAGE
-          value: paketobuildpacks/builder:base # This is the builder we want the task to use (REQUIRED)
+          value: "$(params.source-subpath)"
+        - name: CNB_BUILDER_IMAGE
+          value: "$(params.builder)"
+        - name: CNB_ENV_VARS
+          value: "$(params.env-vars[*])"
     - name: display-results
       runAfter:
         - buildpacks
@@ -185,12 +190,13 @@ kubectl apply -f resources.yml -f sa.yml -f pipeline.yml
 Create a file `run.yml`, which defines the `PipelineRun`:
 
 ```yaml
-apiVersion: tekton.dev/v1beta1
+apiVersion: tekton.dev/v1
 kind: PipelineRun
 metadata:
   name: buildpacks-test-pipeline-run
 spec:
-  serviceAccountName: buildpacks-service-account # Only needed if you set up authorization
+  taskRunTemplate:
+    serviceAccountName: buildpacks-service-account # Only needed if you set up authorization
   pipelineRef:
     name: buildpacks-test-pipeline
   workspaces:
@@ -198,11 +204,16 @@ spec:
       subPath: source
       persistentVolumeClaim:
         claimName: buildpacks-source-pvc
-    - name: cache-workspace
-      subPath: cache
-      persistentVolumeClaim:
-        claimName: buildpacks-source-pvc
   params:
+    - # The url of the git project to clone (REQURED).
+      name: git-url
+      value: https://github.com/buildpacks/samples
+    - # This is the path within the git project you want to build (OPTIONAL, default: "")
+      name: source-subpath
+      value: "apps/java-maven"
+    - # This is the builder image we want the task to use (REQUIRED).
+      name: builder
+      value: cnbs/sample-builder:noble
     - name: image
       value: <REGISTRY/IMAGE NAME, eg gcr.io/test/image > # This defines the name of output image
 ```
@@ -225,27 +236,73 @@ kubectl describe pipelinerun buildpacks-test-pipeline-run
 
 or by using the Tekton Dashboard.
 
-Once the application is successfully built, you can pull it and run it by running:
+Once the application is successfully built, you can pull and run it by running:
 
 ```shell
-docker pull some-output-image
+docker | podman pull <REGISTRY/IMAGE NAME>
+docker | podman run -it <REGISTRY/IMAGE NAME>
 ```
 
-### 7. Cleanup (Optional)
+### 7. Using extension
+
+If your builder image supports the [extension][extension] mechanism able to customize the [build][extension-build] or the [run (aka execution)][extension-run], then you can replay this scenario by simply changing within the `PipelineRun` resource file the builder parameter
+
+```yaml
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  name: buildpacks-test-pipeline-run
+spec:
+  taskRunTemplate:
+    serviceAccountName: buildpacks-service-account
+  pipelineRef:
+    name: buildpacks-test-pipeline
+  workspaces:
+    - name: source-workspace
+      subPath: source
+      persistentVolumeClaim:
+        claimName: buildpacks-source-pvc
+  params:
+    - name: image
+      value: <REGISTRY/IMAGE NAME, eg gcr.io/test/image>
+    - name: git-url
+      value: https://github.com/quarkusio/quarkus-quickstarts
+    - name: source-subpath
+      value: "getting-started"  
+    - name: builder
+      value: paketobuildpacks/builder-ubi8-base:0.1.30
+    - name: env-vars
+      value:
+      - BP_JVM_VERSION=21
+```
+When the build process starts, then you should see, part of the extender step, if you build a Java runtime (Quarkus, Spring boot, etc) such log messages if the extension installs by example a different JDK
+```txt
+2025-06-27T11:32:25.067007701Z time="2025-06-27T11:32:25Z" level=info msg="Performing slow lookup of group ids for root"
+2025-06-27T11:32:25.067243910Z time="2025-06-27T11:32:25Z" level=info msg="Running: [/bin/sh -c echo ${build_id}]"
+2025-06-27T11:32:25.095150183Z 9e447871-e415-4018-a860-d5a66d925a57
+2025-06-27T11:32:25.096877516Z time="2025-06-27T11:32:25Z" level=info msg="Taking snapshot of full filesystem..."
+2025-06-27T11:32:25.280396774Z time="2025-06-27T11:32:25Z" level=info msg="Pushing layer oci:/kaniko/cache/layers/cached:a035cdb3949daa8f4e7b2c523ea0d73741c7c2d5b09981c261ebae99fd2f3233 to cache now"
+2025-06-27T11:32:25.280572023Z time="2025-06-27T11:32:25Z" level=info msg="RUN microdnf --setopt=install_weak_deps=0 --setopt=tsflags=nodocs install -y openssl-devel java-21-openjdk-devel nss_wrapper which && microdnf clean all"
+2025-06-27T11:32:25.280577315Z time="2025-06-27T11:32:25Z" level=info msg="Cmd: /bin/sh"
+2025-06-27T11:32:25.280578398Z time="2025-06-27T11:32:25Z" level=info msg="Args: [-c microdnf --setopt=install_weak_deps=0 --setopt=tsflags=nodocs install -y openssl-devel java-21-openjdk-devel nss_wrapper which && microdnf clean all]"
+...
+```
+
+### 8. Cleanup (Optional)
 
 To clean up, run:
 
 ```shell
-kubectl delete taskrun --all
-kubectl delete pvc --all
-kubectl delete pv --all
+kubectl delete -n default pipelinerun buildpacks-test-pipeline-run
+kubectl delete -n default pipeline buildpacks-test-pipeline
+kubectl delete -n default buildpacks-phases
+kubectl delete -n default pvc buildpacks-source-pvc
 ```
 
 ## References
 
-The Buildpacks tasks can be accessed at:
+The Buildpacks task can be accessed at:
 
-- [Buildpacks Task Source][buildpacks-task]
 - [Buildpacks Phases Task Source][buildpacks-phases]
 
 Some general resources for Tekton are:
@@ -262,6 +319,8 @@ Some general resources for Tekton are:
 [tekton-setup]: https://tekton.dev/docs/getting-started/
 [tekton-dashboard-setup]: https://tekton.dev/docs/dashboard/
 [tekton-concepts]: https://tekton.dev/docs/concepts/
-[git-clone-task]: https://github.com/tektoncd/catalog/tree/master/task/git-clone
 [kubectl-install]: https://kubernetes.io/docs/tasks/tools/install-kubectl/
 [tekton-auth]: https://tekton.dev/docs/pipelines/auth/
+[extension]: https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-extension/02_why-dockerfiles/
+[extension-build]: https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-extension/04_build-dockerfile/
+[extension-run]: https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-extension/06_run-dockerfile-extend/
