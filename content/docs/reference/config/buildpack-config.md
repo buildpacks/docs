@@ -29,7 +29,10 @@ The schema is as follows:
     Human readable name.
 
   - **`clear-env`** _(boolean, optional, default: `false`)_\
-    Clears user-defined environment variables when `true` on executions of `bin/detect` and `bin/build`.
+    When `true`, prevents the lifecycle from automatically merging user-provided
+    environment variables into the buildpack process environment during
+    `bin/detect` and `bin/build`. User-provided environment variables remain
+    available at `$CNB_PLATFORM_DIR/env/` regardless of this setting.
 
   - **`homepage`** _(string, optional)_\
     Buildpack homepage.
