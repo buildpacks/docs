@@ -42,13 +42,13 @@ The schema is as follows:
     A set of buildpack references. Each buildpack reference specified has the following fields:
 
     - **`id`** _(string, required)_\
-      The identifier of a buildpack from the configuration's top-level `buildpacks` list. Buildpacks with the same ID may
+      The identifier of a buildpack from the configuration's top-level `buildpacks` list. `Buildpacks` with the same ID may
       appear in multiple groups at once but never in the same group.
 
     - **`version`** _(string, optional, default: inferred)_\
       The version of the buildpack being referred to. This field may be omitted if
       exactly one version of the buildpack
-      occurs in either the top-level `buildpacks` list or those dependencies of buildpacks.
+      occurs in either the top-level `buildpacks` list or those dependencies of `buildpacks`.
 
     - **`optional`** _(boolean, optional, default: `false`)_\
       Whether this buildpack is optional during detection.
