@@ -128,7 +128,7 @@ The schema is as follows:
 
 ### Supported archives
 
-Currently, when specifying a URI to a buildpack or lifecycle, you can use `tar`, `tgz`, or `docker://`.
+Currently, when specifying a URI to a buildpack or lifecycle, `tar`, `tgz`, or `docker://` archive types are supported.
 
 [builder]: /docs/for-platform-operators/concepts/builder
 [lifecycle]: /docs/for-platform-operators/concepts/lifecycle
