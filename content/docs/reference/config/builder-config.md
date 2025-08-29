@@ -48,7 +48,7 @@ The schema is as follows:
     - **`version`** _(string, optional, default: inferred)_\
       The version of the buildpack being referred to. This field may be omitted if
       exactly one version of the buildpack
-      occurs in either the top-level `buildpacks` list or those buildpacks' dependencies.
+      occurs in either the top-level `buildpacks` list or those Buildpacks' dependencies.
 
     - **`optional`** _(boolean, optional, default: `false`)_\
       Whether this buildpack is optional during detection.
