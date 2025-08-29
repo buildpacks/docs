@@ -28,7 +28,8 @@ The schema is as follows:
     The version of the buildpack. Must match version specified in buildpack's `buildpack.toml` file.
 
   - **`uri`** _(string)_\
-     A URL or path to an [archive](#supported-archives), a packaged buildpack (saved as a `.cnb` file), or a directory. If path is relative, it must be relative to the `builder.toml`.
+     Specify a URL or path to an [archive](#supported-archives) or a packaged buildpack (save it as a `.cnb` file),
+    or a directory. If path is relative, it must be relative to the `builder.toml`.
 
 - #### `order` _(list, required)_
 
@@ -46,7 +47,7 @@ The schema is as follows:
       appear in multiple groups at once but never in the same group.
 
     - **`version`** _(string, optional, default: inferred)_\
-      The version of the buildpack being referred to. This field may be omitted if
+      This refers to the version of the buildpack. You can omit this field if
       exactly one version of the buildpack
       occurs in either the top-level `buildpacks` list or those dependencies of `buildpacks`.
 
@@ -124,11 +125,11 @@ The schema is as follows:
   - **`delim`** _(string, optional)_\
     The delimiter used to concatenate two or more values for the given `name`.
 
-  > The `delim` is required when `suffix` is one of `append` or `prepend`.
+  > You must provide the `delim` when the `suffix` is `append` or `prepend`.
 
 ### Supported archives
 
-Currently, when specifying a URI to a buildpack or lifecycle, `tar`, `tgz` or `docker://` archive types are supported.
+Currently, a URI to a buildpack or lifecycle supports `tar`, `tgz`, or `docker://` archive types.
 
 [builder]: /docs/for-platform-operators/concepts/builder
 [lifecycle]: /docs/for-platform-operators/concepts/lifecycle
