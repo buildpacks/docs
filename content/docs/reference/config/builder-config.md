@@ -48,7 +48,7 @@ The schema is as follows:
     - **`version`** _(string, optional, default: inferred)_\
       The version of the buildpack being referred to. This field may be omitted if
       exactly one version of the buildpack
-      occurs in either the top-level `buildpacks` list or those Buildpacks' dependencies.
+      occurs in either the top-level `buildpacks` list or those dependencies of buildpacks.
 
     - **`optional`** _(boolean, optional, default: `false`)_\
       Whether this buildpack is optional during detection.
@@ -128,7 +128,7 @@ The schema is as follows:
 
 ### Supported archives
 
-Currently, when specifying a URI to a buildpack or lifecycle, only `tar` or `tgz` archive types are supported.
+Currently, when specifying a URI to a buildpack or lifecycle, `tar`, `tgz` or `docker://` archive types are supported.
 
 [builder]: /docs/for-platform-operators/concepts/builder
 [lifecycle]: /docs/for-platform-operators/concepts/lifecycle
