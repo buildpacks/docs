@@ -919,7 +919,8 @@
 <h3 id="opt-in-layer-caching-and-launchtoml-format-changes">Opt-in layer caching and launch.toml format changes</h3>
 <p>Buildpacks must now explicitly opt-in to layer re-use by setting the <code>launch</code>, <code>build</code>, and <code>cache</code> keys in <code>&lt;layers&gt;/&lt;layer&gt;.toml</code>. If buildpacks do not modify <code>&lt;layers&gt;/&lt;layer&gt;.toml</code>, the layer will behave like a temporary directory, available only to the authoring buildpack, existing for the duration of a single build - even if the buildpack in the previous build set any of these keys to <code>true</code>.</p>
 <blockquote>
-<p><strong>NOTE</strong>: Additionally, the <code>launch</code>, <code>build</code>, and <code>cache</code> keys are moved under a new <code>[types]</code> table in <code>&lt;layers&gt;/&lt;layer&gt;.toml</code> and removed from the top level.</p></blockquote>
+<p><strong>NOTE</strong>: Additionally, the <code>launch</code>, <code>build</code>, and <code>cache</code> keys are moved under a new <code>[types]</code> table in <code>&lt;layers&gt;/&lt;layer&gt;.toml</code> and removed from the top level.</p>
+</blockquote>
 <p>A Bash buildpack could write something like the following to <code>&lt;layers&gt;/&lt;layer&gt;.toml</code> in order to cache a layer:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat &gt;&gt; layer.toml <span class="s">&lt;&lt;EOL
 </span></span></span><span class="line"><span class="cl"><span class="s">[types]

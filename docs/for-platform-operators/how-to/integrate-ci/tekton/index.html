@@ -924,7 +924,8 @@ of the <a href="/docs/for-platform-operators/concepts/lifecycle">lifecycle</a> t
 <p>The different parameters to customize the task are defined part of the task&rsquo;s documentation under the section <code>parameters</code>.</p>
 <h2 id="set-up">Set Up</h2>
 <blockquote>
-<p>NOTE: Prior to installing <code>Tekton</code>, we recommend reviewing the basic Tekton concepts in the <a href="https://tekton.dev/docs/concepts/">documentation</a>.</p></blockquote>
+<p>NOTE: Prior to installing <code>Tekton</code>, we recommend reviewing the basic Tekton concepts in the <a href="https://tekton.dev/docs/concepts/">documentation</a>.</p>
+</blockquote>
 <h3 id="prerequisites">Prerequisites</h3>
 <p>Before we get started, make sure you&rsquo;ve got the following installed:</p>
 <a href='https://kubernetes.io/docs/tasks/tools/install-kubectl/' class='download-button button icon-button bg-blue'> Install kubectl </a><br />
@@ -933,7 +934,8 @@ of the <a href="/docs/for-platform-operators/concepts/lifecycle">lifecycle</a> t
 <p>We also recommend using the <code>Tekton dashboard</code>. To install it, follow the steps in the <a href="https://tekton.dev/docs/dashboard/">dashboard docs</a>, and
 start the dashboard server.</p>
 <blockquote>
-<p>NOTE: If you run Tekton on a Kind or Minikube Kubernetes cluster, be sure to set the <code>coschedule</code> flag to <code>disabled</code> within the <code>feature-flags</code> ConfigMap.</p></blockquote>
+<p>NOTE: If you run Tekton on a Kind or Minikube Kubernetes cluster, be sure to set the <code>coschedule</code> flag to <code>disabled</code> within the <code>feature-flags</code> ConfigMap.</p>
+</blockquote>
 <h3 id="2-install-the-buildpacks-task">2. Install the Buildpacks Task</h3>
 <p>Install the latest version of the buildpacks task (currently <code>0.3</code>), by running:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl apply -f https://raw.githubusercontent.com/tektoncd/catalog/refs/heads/main/task/buildpacks-phases/0.3/buildpacks-phases.yaml
@@ -961,7 +963,8 @@ a request for storage by a user.</li>
 </span></span></span></code></pre></div><h4 id="42-authorization">4.2 Authorization</h4>
 <blockquote>
 <p>NOTE: You don&rsquo;t need to use authorization if you are pushing to a local registry. However, if you are pushing to a
-remote registry (e.g. <code>DockerHub</code>, <code>GCR</code>, `quay.io), you need to add authorization</p></blockquote>
+remote registry (e.g. <code>DockerHub</code>, <code>GCR</code>, `quay.io), you need to add authorization</p>
+</blockquote>
 <p>Create a <code>Secret</code> containing username and password that the build should use to authenticate to the container registry.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl create secret docker-registry registry-user-pass <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>    --docker-username<span class="o">=</span>&lt;USERNAME&gt; <span class="se">\
@@ -976,7 +979,8 @@ remote registry (e.g. <code>DockerHub</code>, <code>GCR</code>, `quay.io), you n
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">secrets</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">registry-user-pass</span><span class="w">
 </span></span></span></code></pre></div><blockquote>
-<p>NOTE: This service account will be used by Tekton in order to mount the credentials as docker config file part of the pod running buildpacks</p></blockquote>
+<p>NOTE: This service account will be used by Tekton in order to mount the credentials as docker config file part of the pod running buildpacks</p>
+</blockquote>
 <h4 id="43-pipeline">4.3 Pipeline</h4>
 <p>Create a file <code>pipeline.yml</code> that defines the <code>Pipeline</code>, and relevant resources:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">tekton.dev/v1</span><span class="w">
@@ -1082,7 +1086,8 @@ remote registry (e.g. <code>DockerHub</code>, <code>GCR</code>, `quay.io), you n
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">image</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">&lt;REGISTRY/IMAGE NAME, eg gcr.io/test/image &gt;</span><span class="w"> </span><span class="c"># This defines the name of output image</span><span class="w">
 </span></span></span></code></pre></div><blockquote>
-<p>Make sure to replace <code>&lt;REGISTRY/IMAGE NAME&gt;</code> with your image path.</p></blockquote>
+<p>Make sure to replace <code>&lt;REGISTRY/IMAGE NAME&gt;</code> with your image path.</p>
+</blockquote>
 <p>Apply it with:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">kubectl apply -f run.yml
 </span></span></code></pre></div><h3 id="6-see-it-build">6. See it Build</h3>

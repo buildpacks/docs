@@ -922,7 +922,8 @@
 <p>For the <code>detect</code> phase, the <code>lifecycle</code> then applies user-provided environment variables, followed by platform-provided environment variables. For more information, see the page for how to <a href="https://buildpacks.io/docs/for-app-developers/how-to/build-inputs/configure-build-time-environment/">customize buildpack behavior with build-time environment variables</a>.</p>
 <p>For the <code>build</code> phase, the process is more complex. Before applying user-provided environment variables, the <code>lifecycle</code> applies buildpack-provided environment variables, which is anything that a previous buildpack (a buildpack that ran earlier in the <code>build</code> phase) might have configured in its <code>layers</code> directory.</p>
 <blockquote>
-<p>Note that buildpacks cannot set environment variables for other buildpacks during the <code>detect</code> phase.</p></blockquote>
+<p>Note that buildpacks cannot set environment variables for other buildpacks during the <code>detect</code> phase.</p>
+</blockquote>
 <h4 id="example">Example</h4>
 <p>Let&rsquo;s look at the following directory tree to see how layers created by a previous buildpack (with id <code>some-buildpack-id</code>) would affect the environment for the current buildpack.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">
@@ -1003,7 +1004,8 @@ For setting up environment variables at <code>runtime</code>, the <a href="#exam
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">[</span><span class="l">types]</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">launch = true</span><span class="w">
 </span></span></span></code></pre></div><blockquote>
-<p>Note that the <code>launcher</code> binary is found inside the application image at <code>/cnb/lifecycle/launcher</code> and is the entrypoint for any <code>CNB-built</code> image.</p></blockquote>
+<p>Note that the <code>launcher</code> binary is found inside the application image at <code>/cnb/lifecycle/launcher</code> and is the entrypoint for any <code>CNB-built</code> image.</p>
+</blockquote>
 <h3 id="when-multiple-buildpacks-define-the-same-variable">When multiple buildpacks define the same variable</h3>
 <p>When multiple buildpacks define the same variable, the <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#environment-variable-modification-rules">&ldquo;environment modification rules&rdquo;</a> come into play.</p>
 <p>Let&rsquo;s say buildpack A (which runs first) defines <code>SOME_VAR=foo</code> and buildpack B defines <code>SOME_VAR=bar</code>. The <code>lifecycle</code> can perform different modifications when setting up the environment for buildpack C (which runs last).</p>
@@ -1015,7 +1017,8 @@ For setting up environment variables at <code>runtime</code>, the <a href="#exam
 <li>In all cases, the behavior of the <code>lifecycle</code> is governed by the file suffix for <code>&lt;layers&gt;/&lt;layer&gt;/&lt;env&gt;/SOME_VAR&lt;.suffix&gt;</code>. The suffix is optional, and the assumed behavior when no suffix is provided is <code>override</code>.</li>
 </ul>
 <blockquote>
-<p>Note that whenever the suffix is <code>append</code> or <code>prepend</code> an additional file, <code>&lt;layers&gt;/&lt;layer&gt;/&lt;env&gt;/SOME_VAR.delim</code>, is needed to specify the delimiter used during concatenation. If no delimiter is provided, none will be used.</p></blockquote>
+<p>Note that whenever the suffix is <code>append</code> or <code>prepend</code> an additional file, <code>&lt;layers&gt;/&lt;layer&gt;/&lt;env&gt;/SOME_VAR.delim</code>, is needed to specify the delimiter used during concatenation. If no delimiter is provided, none will be used.</p>
+</blockquote>
 <p>To better understand the above modification rules, let&rsquo;s take a look at the tree below:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">layers/
@@ -1035,7 +1038,8 @@ For setting up environment variables at <code>runtime</code>, the <a href="#exam
 <p>Note that the examples shown on this page are relatively simple. It is possible for a buildpack to double-specify the same variable (i.e., within two or more different layers), and for a buildpack to specify a variable for a particular phase (build or launch) when the layer has type both <code>build = true</code> and <code>launch = true</code>. Additionally, for <code>runtime</code> variables, buildpacks can specify a variable for a particular process.</p>
 <p>In these cases, the lifecycle determines the final value of the variable according to a process outlined in the specification.</p>
 <blockquote>
-<p>For more information on modifying environment variables, see the <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#environment-variable-modification-rules">Environment Variable Modification Rules</a> section of the specification.</p></blockquote>
+<p>For more information on modifying environment variables, see the <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#environment-variable-modification-rules">Environment Variable Modification Rules</a> section of the specification.</p>
+</blockquote>
 
         
 

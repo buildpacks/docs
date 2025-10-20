@@ -920,7 +920,7 @@
 <h2 id="define-a-build-base-image-for-your-cnb-build">Define a build base image for your CNB build</h2>
 <p>We need a Dockerfile similar to the following:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile"><span class="line"><span class="cl"><span class="c"># Define the base image</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">FROM</span><span class="s"> ubuntu:noble</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">FROM</span><span class="w"> </span><span class="s">ubuntu:noble</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># Install packages that we want to make available at build time</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> apt-get update <span class="o">&amp;&amp;</span> <span class="se">\
@@ -938,7 +938,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  useradd --uid <span class="si">${</span><span class="nv">CNB_USER_ID</span><span class="si">}</span> --gid <span class="si">${</span><span class="nv">CNB_GROUP_ID</span><span class="si">}</span> -m -s /bin/bash cnb<span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># Set user and group</span><span class="err">
-</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">USER</span><span class="s"> ${CNB_USER_ID}:${CNB_GROUP_ID}</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">USER</span><span class="w"> </span><span class="s">${CNB_USER_ID}:${CNB_GROUP_ID</span><span class="o">}</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># Set required CNB target information</span><span class="err">
 </span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">LABEL</span> io.buildpacks.base.distro.name<span class="o">=</span><span class="s2">&#34;your distro name&#34;</span><span class="err">

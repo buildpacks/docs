@@ -934,7 +934,8 @@ rm -rf /tmp/tutorial
 -->
 <p>The majority of Buildpack users use community-maintained platforms, such as <a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/">pack</a> and <a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/kpack/">kpack</a>, to run Buildpacks and create <code>OCI images</code>. However this might not be desireable especially for users maintaining their own platforms and seeking more control over how the underlying Buildpack <code>lifecycle phases</code> are executed.</p>
 <blockquote>
-<p>This tutorial is derived from a <a href="https://medium.com/buildpacks/unpacking-cloud-native-buildpacks-ff51b5a767bf">blog post</a> contributed by one of our community members.</p></blockquote>
+<p>This tutorial is derived from a <a href="https://medium.com/buildpacks/unpacking-cloud-native-buildpacks-ff51b5a767bf">blog post</a> contributed by one of our community members.</p>
+</blockquote>
 <p>In this step-by-step tutorial, you will build a <code>Bash</code> application without using any <code>platform</code> tooling like <code>pack</code> or <code>kpack</code>. You will also leverage the individual <code>lifecycle phases</code> to produce a runnable application image.</p>
 <h2 id="prerequisites">Prerequisites</h2>
 <p>This tutorial has been tested on linux amd64 and darwin arm64 platforms. You&rsquo;ll need to clone a local copy of the following to get started:</p>
@@ -966,7 +967,8 @@ make build-linux-amd64 # hardcode CI tests to linux-amd64
 -->
 <p>It&rsquo;s recommended to check the <a href="https://github.com/buildpacks/lifecycle/releases">lifecycle releases</a> page to download binaries based on your system.</p>
 <blockquote>
-<p>Please note that the entire process is most easily followed on Linux systems</p></blockquote>
+<p>Please note that the entire process is most easily followed on Linux systems</p>
+</blockquote>
 <h3 id="set-environment-variables">Set environment variables</h3>
 <p>In order to execute the various <code>lifecycle phases</code> correctly, you first need to set the values of few important environment variables by running the following commands in the terminal:</p>
 <pre tabindex="0"><code class="language-command" data-lang="command">export CNB_USER_ID=$(id -u) CNB_GROUP_ID=$(id -g) CNB_PLATFORM_API=0.14
@@ -980,7 +982,8 @@ export CNB_LIFECYCLE_PATH=&#34;/&lt;your-path/lifecycle/out/&lt;your-os-arch&gt;
 <li><code>CNB_LIFECYCLE_PATH</code> represents the path of our local compiled <code>lifecycle</code> directory.</li>
 </ul>
 <blockquote>
-<p>Please note that  we only run the commands above on a host machine for the purpose of this tutorial, which is not a common practice for buildpacks.</p></blockquote>
+<p>Please note that  we only run the commands above on a host machine for the purpose of this tutorial, which is not a common practice for buildpacks.</p>
+</blockquote>
 <h3 id="examine-lifecycle-phases">Examine lifecycle phases</h3>
 <p>A single app image build consists of the following phases:</p>
 <ol>
@@ -991,7 +994,8 @@ export CNB_LIFECYCLE_PATH=&#34;/&lt;your-path/lifecycle/out/&lt;your-os-arch&gt;
 <li><a href="#export">Export</a></li>
 </ol>
 <blockquote>
-<p>Note that a <code>platform</code> executes the phases above either by invoking phase-specific lifecycle binaries in order or by executing <code>/cnb/lifecycle/creator</code>.</p></blockquote>
+<p>Note that a <code>platform</code> executes the phases above either by invoking phase-specific lifecycle binaries in order or by executing <code>/cnb/lifecycle/creator</code>.</p>
+</blockquote>
 <p>Let&rsquo;s expand each <code>lifecycle</code> phase to explain how the <code>lifecycle</code> orchestrates buildpacks:</p>
 <h4 id="analyze">Analyze</h4>
 <p>The <code>analyze</code> phase runs before the <code>detect</code> phase in order to validate registry access for all images used during the <code>build</code> as early as possible. In this way it provides faster failures for end users.</p>
@@ -1067,7 +1071,8 @@ ${CNB_LIFECYCLE_PATH}/analyzer -log-level debug -daemon -layers="./layers" -run-
 <li>
 <p>Then you must populate the <code>buildpacks</code> directory with your buildpacks of interest.</p>
 <blockquote>
-<p>You have to follow the <a href="https://github.com/buildpacks/spec/blob/main/platform.md#buildpacks-directory-layout">directory layout</a> defined in the buildpack spec, where each top-level directory is a <code>buildpack ID</code> and each second-level directory is a <code>buildpack version</code>.</p></blockquote>
+<p>You have to follow the <a href="https://github.com/buildpacks/spec/blob/main/platform.md#buildpacks-directory-layout">directory layout</a> defined in the buildpack spec, where each top-level directory is a <code>buildpack ID</code> and each second-level directory is a <code>buildpack version</code>.</p>
+</blockquote>
 <p>We will use <a href="http://github.com/tomwright/dasel/"><code>dasel</code></a> to help us parse toml files.</p>
 <pre tabindex="0"><code class="language-command" data-lang="command">$ go install github.com/tomwright/dasel/v2/cmd/dasel@master
 </code></pre><p>Let’s do that for every buildpack in the <code>samples/buildpacks</code> directory:</p>

@@ -941,12 +941,14 @@ buildpacks. We will need to declare the location of those dependencies as well.<
 </span></span><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">dependencies</span><span class="p">]]</span>
 </span></span><span class="line"><span class="cl"><span class="nx">uri</span> <span class="p">=</span> <span class="s2">&#34;docker://cnbs/sample-package:hello-world&#34;</span>
 </span></span></code></pre></div><blockquote>
-<p>For more information about the configuration, see <a href="/docs/reference/package-config/">package.toml</a> config.</p></blockquote>
+<p>For more information about the configuration, see <a href="/docs/reference/package-config/">package.toml</a> config.</p>
+</blockquote>
 <h3 id="4-package-your-buildpack-as-an-image">4. Package your buildpack as an image</h3>
 <p>Lastly, we&rsquo;ll run the <code>buildpack package</code> command to package the buildpack as an OCI image.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">pack buildpack package my-buildpack --config ./package.toml
 </span></span></code></pre></div><blockquote>
-<p><strong>TIP:</strong> You can verify that the image was created by running <code>docker images</code>.</p></blockquote>
+<p><strong>TIP:</strong> You can verify that the image was created by running <code>docker images</code>.</p>
+</blockquote>
 <p>That&rsquo;s it! Your buildpack is now packaged for distribution.</p>
 <p>You may now use standard <code>docker push</code> to host your buildpack on any OCI registry of your choosing.</p>
 <p>Alternatively, you can run <code>pack buildpack package</code> with <code>--publish</code> to publish it directly to the registry.</p>

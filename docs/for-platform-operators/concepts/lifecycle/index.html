@@ -924,7 +924,8 @@ It does its work in a series of distinct &ldquo;phases&rdquo;.</p>
 <blockquote>
 <p><strong>Note</strong>: when talking about lifecycle phases you&rsquo;ll sometimes see nouns like <code>analyzer</code> or <code>/cnb/lifecycle/analyzer</code>
 and you&rsquo;ll sometimes see verbs like <code>analyze</code> or <code>analyze phase</code>.<br><br>
-These are all more-or-less interchangeable: the nouns refer to the <code>lifecycle</code> binary and the verbs refer to the work that the <code>lifecycle</code> performs.</p></blockquote>
+These are all more-or-less interchangeable: the nouns refer to the <code>lifecycle</code> binary and the verbs refer to the work that the <code>lifecycle</code> performs.</p>
+</blockquote>
 <p>The <code>lifecycle</code> must be run in a containerized environment (such as a <code>Docker</code> container or <code>CI/CD</code> system).</p>
 <p>The <a href="/docs/for-platform-operators/concepts/lifecycle/analyze"><code>analyzer</code></a>, <a href="/docs/for-platform-operators/concepts/lifecycle/restore"><code>restorer</code></a>, and <a href="/docs/for-platform-operators/concepts/lifecycle/export"><code>exporter</code></a> (shown in pink above)
 require access to an image repository - either an <strong>OCI registry</strong> or Docker-compliant <strong>daemon</strong> (such as <code>Docker</code> or <code>Podman</code>)

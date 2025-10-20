@@ -923,7 +923,8 @@ That means you&rsquo;ll need to make sure you have both <code>pack</code> and a 
 <a href='/docs/install-pack' class='download-button button icon-button bg-pink'> Install pack </a><br />
 <p><a href='https://store.docker.com/search?type=edition&amp;offering=community' class='download-button button icon-button bg-blue'> Install Docker </a><br /> or alternatively, see <a href="/docs/for-app-developers/how-to/special-cases/build-on-podman">this page</a> about working with <code>podman</code>.</p>
 <blockquote>
-<p><strong>NOTE:</strong> <code>pack</code> is only one implementation of the <a href="https://github.com/buildpacks/spec/blob/main/platform.md">Cloud Native Buildpacks Platform Specification</a>. Additionally, not all Cloud Native Buildpacks Platforms require Docker.</p></blockquote>
+<p><strong>NOTE:</strong> <code>pack</code> is only one implementation of the <a href="https://github.com/buildpacks/spec/blob/main/platform.md">Cloud Native Buildpacks Platform Specification</a>. Additionally, not all Cloud Native Buildpacks Platforms require Docker.</p>
+</blockquote>
 <h2 id="buildpack-base-camp">Buildpack base camp</h2>
 <p>Before we set out, you&rsquo;ll need to know the basics of <strong>buildpacks</strong> and how they work.</p>
 <h3 id="what-is-a-buildpack">What is a <a href="/docs/for-platform-operators/concepts/buildpack/">buildpack</a>?</h3>
@@ -960,7 +961,8 @@ instance, an <strong>NPM buildpack</strong> might look for a <code>package.json<
 <blockquote>
 <p><strong>NOTE:</strong> This is your first time running <code>pack build</code> for <code>myapp</code>, so you&rsquo;ll notice that
 <strong>the build might take longer than usual.</strong> Subsequent builds will take advantage of various forms of caching.
-If you&rsquo;re curious, try running <code>pack build myapp</code> a second time to see the difference in build time.</p></blockquote>
+If you&rsquo;re curious, try running <code>pack build myapp</code> a second time to see the difference in build time.</p>
+</blockquote>
 <p><strong>That&rsquo;s it!</strong> You&rsquo;ve now got a runnable app image called <code>myapp</code> available on your local Docker daemon.
 We did say this was a <em>brief</em> journey after all. Take note that your app was built without needing to install
 a JDK, run Maven, or otherwise configure a build environment. <code>pack</code> and <strong>buildpacks</strong> took care of that for you.</p>
@@ -977,7 +979,8 @@ deploying your new image to your favorite cloud!</p>
 registry. You can learn more about <code>pack</code> features in the <a href="/docs/tools/pack/">documentation</a>.</p>
 <p>Additionally, if your Docker daemon uses <code>containerd</code> image storage (not the Docker default),
 it may degrade the performance of <code>pack build</code>. For more details, please refer to
-<a href="https://github.com/buildpacks/pack/issues/2272">the related issue</a>.</p></blockquote>
+<a href="https://github.com/buildpacks/pack/issues/2272">the related issue</a>.</p>
+</blockquote>
 <h2 id="what-about-windows-apps">What about Windows apps?</h2>
 <p>Windows image builds are now supported!</p>
 <p><a href="/docs/for-app-developers/how-to/special-cases/build-for-windows" class="button bg-blue">Windows build guide</a></p>

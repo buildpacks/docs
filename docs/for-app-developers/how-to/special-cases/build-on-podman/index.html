@@ -917,7 +917,8 @@
         <h3 id="what-is-podman">What is Podman?</h3>
 <p>To quote from the official documentation:</p>
 <blockquote>
-<p>Podman is a daemonless, open source, Linux native tool designed to make it easy to find, run, build, share and deploy applications using Open Containers Initiative (OCI) Containers and Container Images.</p></blockquote>
+<p>Podman is a daemonless, open source, Linux native tool designed to make it easy to find, run, build, share and deploy applications using Open Containers Initiative (OCI) Containers and Container Images.</p>
+</blockquote>
 <p>It can be used as a standalone daemonless CLI with sub-commands and flags almost identical the standard <code>docker</code> CLI. You can even alias <code>docker=podman</code> and everything should work as expected.</p>
 <p>Beside running as a standalone daemonless CLI, <code>podman</code> can also serve as a <code>docker</code> API daemon using <code>podman system service</code> sub-command. You just need to set the <code>DOCKER_HOST</code> environment and most applications will pick it up (<code>pack</code> is one of them).</p>
 <p>While <code>podman</code> is native to Linux you still can enjoy it on <code>macOS</code> using virtual machine. There is sub-command <code>podman machine</code> facilitating VM creation making it really easy.</p>
@@ -992,7 +993,8 @@
               <div class="tab-pane px-3 fade " id="linux-ubuntu-20-04">
                 <h4 id="install">Install</h4>
 <blockquote>
-<p><strong>WARNING:</strong> These commands will UPGRADE existing packages.</p></blockquote>
+<p><strong>WARNING:</strong> These commands will UPGRADE existing packages.</p>
+</blockquote>
 <pre tabindex="0"><code class="language-shell=bash" data-lang="shell=bash">. /etc/os-release
 echo &#34;deb https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_${VERSION_ID}/ /&#34; | sudo tee /etc/apt/sources.list.d/devel:kubic:libcontainers:stable.list
 curl -L &#34;https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable/xUbuntu_${VERSION_ID}/Release.key&#34; | sudo apt-key add -
@@ -1059,12 +1061,14 @@ sudo apt-get -y install podman
 <pre tabindex="0"><code class="language-shell=zsh" data-lang="shell=zsh">podman system connection default podman-machine-default-root
 </code></pre><blockquote>
 <p><strong>Note</strong>: <code>root</code> connection prevents needing to pass <code>--docker-host=inherit</code> on every <code>pack build</code>. <br>
-For more information, see issue <a href="https://github.com/buildpacks/pack/issues/1338">buildpacks/pack#1338</a>.</p></blockquote>
+For more information, see issue <a href="https://github.com/buildpacks/pack/issues/1338">buildpacks/pack#1338</a>.</p>
+</blockquote>
 </li>
 <li>Configure <code>DOCKER_HOST</code> with the connection information:
 <pre tabindex="0"><code class="language-shell=zsh" data-lang="shell=zsh">export DOCKER_HOST=&#34;$(podman system connection ls --format=&#34;{{.URI}}&#34; | grep root)&#34;
 </code></pre><blockquote>
-<p><strong>Tip</strong>: put the commands into your shell init file (e.g <code>~/.zshrc</code>).</p></blockquote>
+<p><strong>Tip</strong>: put the commands into your shell init file (e.g <code>~/.zshrc</code>).</p>
+</blockquote>
 </li>
 </ol>
 
@@ -1099,7 +1103,8 @@ For more information, see issue <a href="https://github.com/buildpacks/pack/issu
 <blockquote>
 <p><strong>NOTE</strong>: If using a <em>socket</em> connection, for example on Linux, you&rsquo;ll need to pass an additional flag in order to provide the proper socket location to the <code>lifecycle</code>: <code>--docker-host=inherit</code>
 <br/><br/>
-In the future, this may be <a href="https://github.com/buildpacks/pack/issues/1338">automatically detected</a>.</p></blockquote>
+In the future, this may be <a href="https://github.com/buildpacks/pack/issues/1338">automatically detected</a>.</p>
+</blockquote>
 <h3 id="results">Results</h3>
 <p><img src="https://i.imgur.com/D0Wwm9Z.png" alt=""></p>
 <pre tabindex="0"><code class="language-shell=bash" data-lang="shell=bash">podman images

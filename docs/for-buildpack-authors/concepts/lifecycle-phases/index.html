@@ -994,7 +994,8 @@ Analyzing image &#34;98070ee549c522cbc08d15683d134aa0af1817fcdc56f450b07e6b4a790
 <p><img src="/images/order-groups-detect.svg" alt="nodejs order groups"></p>
 <!-- ALERT-NOTE -->
 <blockquote>
-<p>The <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#order-resolution">specification for order resolution</a> shows each order group as a matrix and the resolution as an operation on matrices.</p></blockquote>
+<p>The <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#order-resolution">specification for order resolution</a> shows each order group as a matrix and the resolution as an operation on matrices.</p>
+</blockquote>
 <p>The above diagram shows that the <code>detect</code> binary of each required buildpack in the second order group passes.  The detect phase is summarized by pack as</p>
 <pre tabindex="0"><code>===&gt; DETECTING
 ======== Output: example/yarn-install@0.0.2 ========
@@ -1021,7 +1022,8 @@ example/npm-install 0.0.2
 example/npm-start   0.0.2
 </code></pre><p>The output of the detect phase includes a <strong>build plan</strong>.</p>
 <blockquote>
-<p>The build plan is a toml file containing declarations of what each buildpack provides and what it requires.</p></blockquote>
+<p>The build plan is a toml file containing declarations of what each buildpack provides and what it requires.</p>
+</blockquote>
 <p>For example, the <code>example/node-engine</code> buildpack will contribute metadata stating that it provides <code>node</code>.  In addition, it declares a requirement for the subsequent build phase to satisfy the <code>node</code> with some specific metadata.  That is to say, it requires that the build phase installs a node 14.17.5 runtime.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[[</span><span class="nx">provides</span><span class="p">]]</span>
 </span></span><span class="line"><span class="cl">    <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;node&#34;</span>

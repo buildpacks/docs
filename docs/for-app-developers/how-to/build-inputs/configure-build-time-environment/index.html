@@ -1028,7 +1028,8 @@ environment variables.</p>
   </tbody>
 </table>
 <blockquote>
-<p><strong>NOTE:</strong> Variables defined using <code>--env</code> take precedence over variables defined in <code>--env-file</code>.</p></blockquote>
+<p><strong>NOTE:</strong> Variables defined using <code>--env</code> take precedence over variables defined in <code>--env-file</code>.</p>
+</blockquote>
 <h3 id="using-project-descriptor">Using Project Descriptor</h3>
 <p>The <code>--descriptor</code> parameter must be a path to a file which follows the project.toml <a href="/docs/reference/project-descriptor/">schema</a>.
 Without the <code>--descriptor</code> flag, <code>pack build</code> will use the <code>project.toml</code> file in the application directory if it exists.
@@ -1076,10 +1077,12 @@ EOL
   </tbody>
 </table>
 <blockquote>
-<p><strong>NOTE:</strong> Variables defined using <code>--env</code> or <code>--env-file</code> take precedence over variables defined in the <code>project.toml</code>.</p></blockquote>
+<p><strong>NOTE:</strong> Variables defined using <code>--env</code> or <code>--env-file</code> take precedence over variables defined in the <code>project.toml</code>.</p>
+</blockquote>
 <blockquote>
 <p><strong>NOTE:</strong> <code>project.toml</code> can&rsquo;t detect environment variables (so, for instance, if one ran <code>export FOO=BAR</code> and added
-<code>name=FOO</code> to the <code>project.toml</code>, it wouldn&rsquo;t detect any value set for <code>FOO</code>).</p></blockquote>
+<code>name=FOO</code> to the <code>project.toml</code>, it wouldn&rsquo;t detect any value set for <code>FOO</code>).</p>
+</blockquote>
 
         
 

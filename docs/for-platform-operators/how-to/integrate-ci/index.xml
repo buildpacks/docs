@@ -12,7 +12,7 @@
       <link>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/kpack/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/kpack/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/pivotal/kpack&#34;&gt;kpack&lt;/a&gt; is a Kubernetes-native platform that uses unprivileged Kubernetes primitives to perform buildpacks builds and keep application images up-to-date.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://github.com/pivotal/kpack&#34;&gt;kpack&lt;/a&gt; is part of the &lt;a href=&#34;https://github.com/buildpacks-community&#34;&gt;Buildpacks Community&lt;/a&gt; organization.&lt;/p&gt;</description>
+      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/buildpacks-community/kpack&#34;&gt;kpack&lt;/a&gt; is a Kubernetes-native platform that uses unprivileged Kubernetes primitives to perform buildpacks builds and keep application images up-to-date.&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://github.com/buildpacks-community/kpack&#34;&gt;kpack&lt;/a&gt; is part of the &lt;a href=&#34;https://github.com/buildpacks-community&#34;&gt;Buildpacks Community&lt;/a&gt; organization.&lt;/p&gt;</description>
     </item>
     <item>
       <title>CircleCI</title>

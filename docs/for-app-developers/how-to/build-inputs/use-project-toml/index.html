@@ -959,7 +959,8 @@ requested. Therefore, if we&rsquo;d want to include another buildpack in our bui
 understand the environment), we would want to add it to our <code>project.toml</code>.</p>
 <blockquote>
 <p><strong>Note:</strong> Flags passed directly into <code>pack</code> have precedence over anything in the <code>project.toml</code>. Therefore, if we wanted
-to use different buildpacks in the above case, we could also call <code>pack build ... --buildpack ...</code></p></blockquote>
+to use different buildpacks in the above case, we could also call <code>pack build ... --buildpack ...</code></p>
+</blockquote>
 <p>Below is an expanded <code>project.toml</code>, with an additional buildpack and environment variable included.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="p">[</span><span class="nx">_</span><span class="p">]</span>
 </span></span><span class="line"><span class="cl"><span class="nx">schema-version</span> <span class="p">=</span> <span class="s2">&#34;0.2&#34;</span>

@@ -927,7 +927,8 @@ These images can improve performance when using <code>pack</code> in ephemeral e
 <li>Our <a href="https://github.com/buildpack/samples">samples</a> repo</li>
 </ul>
 <blockquote>
-<p><strong>NOTE:</strong>  If we wish to publish to an external registry like <code>Dockerhub</code> we will first need to authenticate with <code>docker</code> to allow us to push images. We can do this via <code>docker login</code></p></blockquote>
+<p><strong>NOTE:</strong>  If we wish to publish to an external registry like <code>Dockerhub</code> we will first need to authenticate with <code>docker</code> to allow us to push images. We can do this via <code>docker login</code></p>
+</blockquote>
 <p>Next we trust the <code>cnbs/sample-builder:noble</code> builder in order to allow access to docker credentials when publishing.</p>
 <pre tabindex="0"><code>pack config trusted-builders add cnbs/sample-builder:noble
 </code></pre><!--+- "{{execute}}"+-->
@@ -943,7 +944,8 @@ we may run the following</p>
     --publish
 </code></pre><!--+- "{{execute}}"+-->
 <blockquote>
-<p><strong>NOTE:</strong>  Please omit <code>--network host</code> if you are using a remote registry like Dockerhub or on Windows.</p></blockquote>
+<p><strong>NOTE:</strong>  Please omit <code>--network host</code> if you are using a remote registry like Dockerhub or on Windows.</p>
+</blockquote>
 <p>Now we may inspect both the application image, and the cache image by pulling them -</p>
 <p>Let&rsquo;s inspect the application image first -</p>
 <pre tabindex="0"><code>docker pull localhost:5000/buildpack-examples/cache-image-example

@@ -966,7 +966,8 @@ The <code>launcher</code> will source any profile scripts (for <code>non-direct<
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run --rm -p 8080:8080 multi-process-app
 </span></span></code></pre></div><!--+- "{{execute}}"+-->
 <blockquote>
-<p>As an app developer, you can specify what the default process is; see the <a href="https://buildpacks.io/docs/for-app-developers/how-to/build-inputs/specify-default-launch-process/">specify default launch process</a> page for more information.</p></blockquote>
+<p>As an app developer, you can specify what the default process is; see the <a href="https://buildpacks.io/docs/for-app-developers/how-to/build-inputs/specify-default-launch-process/">specify default launch process</a> page for more information.</p>
+</blockquote>
 <h4 id="default-process-type-with-additional-arguments">Default process type with additional arguments</h4>
 <p>If you would like to pass additional arguments to the default process, you can run the app image with the arguments specified in the command:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run --rm -p 8080:8080 multi-process-app --spring.profiles.active<span class="o">=</span>mysql

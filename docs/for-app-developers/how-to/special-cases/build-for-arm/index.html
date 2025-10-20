@@ -917,7 +917,8 @@
         <p>Building for the ARM architecture is now easier than ever! The <code>heroku/builder:24</code> builder supports both AMD64 and ARM64 architectures, and includes
 multi-arch .NET, Go, Java, Node.js, PHP, Python, Ruby and Scala buildpacks. You can read more about Heroku&rsquo;s <a href="https://github.com/heroku/buildpacks">Cloud Native Buildpacks here</a>.</p>
 <blockquote>
-<p><strong>NOTE:</strong> Our current multi-architecture support allows building an ARM64 application image on an ARM64 host, and building an AMD64 application image on an AMD64 host. We do not currently support building an application image for one architecture on a different architecture. However, if your host machine supports emulation (e.g., with QEMU) you may be able to perform cross platform builds, albeit with a performance penalty.</p></blockquote>
+<p><strong>NOTE:</strong> Our current multi-architecture support allows building an ARM64 application image on an ARM64 host, and building an AMD64 application image on an AMD64 host. We do not currently support building an application image for one architecture on a different architecture. However, if your host machine supports emulation (e.g., with QEMU) you may be able to perform cross platform builds, albeit with a performance penalty.</p>
+</blockquote>
 <h3 id="1-clone-the-samples-repository">1. Clone the <a href="https://github.com/buildpacks/samples">samples</a> repository</h3>
 <pre tabindex="0"><code># clone the repo
 git clone https://github.com/buildpacks/samples
@@ -932,7 +933,8 @@ git clone https://github.com/buildpacks/samples
 </code></pre><!--+- "{{execute}}"+-->
 <blockquote>
 <p><strong>TIP:</strong> If you don&rsquo;t want to keep specifying a builder every time you build, you can set it as your default
-builder by running <code>pack config default-builder &lt;BUILDER&gt;</code> for example <code>pack config default-builder heroku/builder:24</code></p></blockquote>
+builder by running <code>pack config default-builder &lt;BUILDER&gt;</code> for example <code>pack config default-builder heroku/builder:24</code></p>
+</blockquote>
 <!--+- "{{execute}}"+-->
 <h3 id="3-run-it">3. Run it</h3>
 <pre tabindex="0"><code>docker run --rm -p 8080:8080 java-maven-sample
