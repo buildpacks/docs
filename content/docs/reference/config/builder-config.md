@@ -19,7 +19,7 @@ The schema is as follows:
 
 - #### `buildpacks` _(list, optional)_
 
-  A list of buildpacks, each with the following fields:
+  A list of `buildpacks`, each with the following fields:
 
   - **`id`** _(string, optional)_\
     An identifier for the buildpack. Must match ID specified in buildpack's `buildpack.toml` file.
@@ -32,10 +32,10 @@ The schema is as follows:
 
 - #### `order` _(list, required)_
 
-  A list of buildpack groups. This list determines the order in which groups of buildpacks
+  A list of buildpack groups. This list determines the order in which groups of `buildpacks`
   will be tested during detection. Detection is a phase of the [lifecycle] where
-  buildpacks are tested, one group at a time, for compatibility with the provided application source code. The first
-  group whose non-optional buildpacks all pass detection will be the group selected for the remainder of the build. Each
+  `buildpacks` are tested, one group at a time, for compatibility with the provided application source code. The first
+  group whose non-optional `buildpacks` all pass detection will be the group selected for the remainder of the build. Each
   group currently contains a single required field:
 
   - **`group`** _(list, required)_\
@@ -110,7 +110,7 @@ The schema is as follows:
 
 - #### `build.env` _(optional)_
 
-  The [[[build.env]]](https://github.com/buildpacks/spec/blob/main/buildpack.md#environment-variable-modification-rules) is used to specify [operator-defined](https://github.com/buildpacks/spec/blob/main/platform.md#operator-defined-variables) build-time environment variables for buildpacks. Set `CNB_BUILD_CONFIG_DIR` in pack's environment to override the default directory (`/cnb/build-config/env`) where environment variable files are stored within the builder.
+  The [[[build.env]]](https://github.com/buildpacks/spec/blob/main/buildpack.md#environment-variable-modification-rules) is used to specify [operator-defined](https://github.com/buildpacks/spec/blob/main/platform.md#operator-defined-variables) build-time environment variables for `buildpacks`. Set `CNB_BUILD_CONFIG_DIR` in pack's environment to override the default directory (`/cnb/build-config/env`) where environment variable files are stored within the builder.
 
   - **`name`** _(string, required)_\
     The name/key of the environment variable.
@@ -119,7 +119,7 @@ The schema is as follows:
     The value of the environment variable.
 
   - **`suffix`** _(string, optional)_\
-    The type of action used to modify the environment variable when end-users or buildpacks define the same name/key, one of [`default`](https://github.com/buildpacks/spec/blob/main/buildpack.md#default), [`override`](https://github.com/buildpacks/spec/blob/main/buildpack.md#override), [`append`](https://github.com/buildpacks/spec/blob/main/buildpack.md#append), or [`prepend`](https://github.com/buildpacks/spec/blob/main/buildpack.md#prepend). Defaults to `default` if this field is omitted. Operator-defined environment variables take precedence over end-user or buildpack-defined environment variables.
+    The type of action used to modify the environment variable when end-users or `buildpacks` define the same name/key, one of [`default`](https://github.com/buildpacks/spec/blob/main/buildpack.md#default), [`override`](https://github.com/buildpacks/spec/blob/main/buildpack.md#override), [`append`](https://github.com/buildpacks/spec/blob/main/buildpack.md#append), or [`prepend`](https://github.com/buildpacks/spec/blob/main/buildpack.md#prepend). Defaults to `default` if this field is omitted. Operator-defined environment variables take precedence over end-user or buildpack-defined environment variables.
 
   - **`delim`** _(string, optional)_\
     The delimiter used to concatenate two or more values for the given `name`.
