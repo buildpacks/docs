@@ -32,7 +32,7 @@ The schema is as follows:
 
 - #### `order` _(list, required)_
 
-  A list of buildpack groups. This list determines the order in which the lifecycle tests groups of buildpacks during detection. Detection is a phase of the [lifecycle] where the lifecycle tests each `buildpacks` group, one at a time, for compatibility with the provided app source code. The first
+  A list of buildpack groups. This list determines the order in which the lifecycle tests groups of `buildpacks` during detection. Detection is a phase of the [lifecycle] where the lifecycle tests each `buildpacks` group, one at a time, for compatibility with the provided app source code. The first
   group whose non-optional `buildpacks` all pass detection will be the group selected for the remainder of the build. Each group currently contains a single required field:
 
   - **`group`** _(list, required)_\
