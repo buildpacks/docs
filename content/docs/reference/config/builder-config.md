@@ -129,7 +129,16 @@ The schema is as follows:
 
 ### Supported archives
 
-Currently, a URI to a buildpack or lifecycle supports `tar`, `tgz`, or `docker://` archive types.
+When specifying a URI to a buildpack or lifecycle, the following sources are supported:
+
+- **Archives:** `.tar` or `.tgz` files, either local or remote.
+- **Docker images:** using the `docker://` URI scheme.
+
+**Examples:**
+
+- `file:///path/to/buildpack.tgz`
+- `https://example.com/buildpack.tar`
+- `docker://example/buildpack:latest`
 
 [builder]: /docs/for-platform-operators/concepts/builder
 [lifecycle]: /docs/for-platform-operators/concepts/lifecycle
