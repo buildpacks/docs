@@ -33,10 +33,8 @@ The schema is as follows:
 - #### `order` _(list, required)_
 
   A list of buildpack groups. This list determines the order in which groups of `buildpacks`
-  will be tested during detection. Detection is a phase of the [lifecycle] where
-  `buildpacks` are tested, one group at a time, for compatibility with the provided application source code. The first
-  group whose non-optional `buildpacks` all pass detection will be the group selected for the remainder of the build. Each
-  group currently contains a single required field:
+  will be tested during detection. Detection is a phase of the [lifecycle] where the lifecycle tests each `buildpacks` group, one at a time, for compatibility with the provided app source code. The first
+  group whose non-optional `buildpacks` all pass detection will be the group selected for the remainder of the build.Each group currently contains a single required field:
 
   - **`group`** _(list, required)_\
     A set of buildpack references. Each buildpack reference specified has the following fields:
