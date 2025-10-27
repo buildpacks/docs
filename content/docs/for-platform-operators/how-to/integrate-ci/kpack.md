@@ -43,7 +43,7 @@ kpack is also accompanied by a handy CLI utility called [kpack CLI][cli] that le
 - [kpack GitHub repository][kpack]
 - [kpack CLI Github repository][cli]
 - [kpack tutorial][tutorial]
-- [kpack Donation announcement] [announcement]
+- [kpack Donation announcement][announcement]
 
 [kpack]: https://github.com/buildpacks-community/kpack
 [tutorial]: https://github.com/buildpacks-community/kpack/blob/main/docs/tutorial.md
