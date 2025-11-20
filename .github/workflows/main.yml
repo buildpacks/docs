@@ -21,6 +21,11 @@ jobs:
         uses: actions/setup-go@v6
         with:
           go-version: '1.x'
+      # Node is used to generate the pagefind index
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v6
+        with:
+          node-version: 'latest'
       - name: Install Dependencies
         run: sudo apt-get install make curl jq
       - name: Install pack

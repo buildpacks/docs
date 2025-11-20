@@ -30,17 +30,9 @@ TOOLS_BIN:=tools/bin
 $(TOOLS_BIN):
 	mkdir $(TOOLS_BIN)
 
-# adapted from https://stackoverflow.com/a/12099167/552902
 HUGO_OS:=Linux
-HUGO_ARCH:=32bit
+HUGO_ARCH:=64bit
 HUGO_EXT:=tar.gz
-ifeq ($(OS),Windows_NT)
-	HUGO_OS:=Windows
-	HUGO_EXT:=zip
-ifeq ($(PROCESSOR_ARCHITECTURE),AMD64)
-	HUGO_ARCH:=64bit
-endif
-endif
 
 ifeq ($(shell uname -s),Darwin)
 	HUGO_OS:=darwin
@@ -135,6 +127,8 @@ build: export PACK_VERSION:=$(PACK_VERSION)
 build: $(HUGO_BIN) pack-version pack-docs-update
 	@echo "> Building..."
 	$(HUGO_BIN)
+	# Github Workflows ensures `node` is installed.
+	npx run pagefind --source ./public --destination ./public/pagefind
 
 .PHONY: test
 test: install-pack-cli check-pack-cli-version install-ugo
