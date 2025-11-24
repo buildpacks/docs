@@ -18,13 +18,13 @@ jobs:
       - name: Git Checkout
         uses: actions/checkout@v4
       - name: Setup Go environment
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v6
         with:
           go-version: '1.x'
       - name: Install Dependencies
         run: sudo apt-get install make curl jq
       - name: Install pack
-        uses: buildpacks/github-actions/setup-pack@v5.9.3
+        uses: buildpacks/github-actions/setup-pack@v5.9.5
         with:
           pack-version: '0.36.0'
       - name: Test
@@ -39,7 +39,7 @@ jobs:
         run: |
           make check-links
       - name: Upload public folder
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:

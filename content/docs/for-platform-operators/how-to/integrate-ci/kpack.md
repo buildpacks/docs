@@ -43,12 +43,10 @@ kpack is also accompanied by a handy CLI utility called [kpack CLI][cli] that le
 - [kpack GitHub repository][kpack]
 - [kpack CLI Github repository][cli]
 - [kpack tutorial][tutorial]
-- [kpack Donation announcement] [announcement]
+- [kpack Donation announcement][announcement]
 
-[vmware]: https://www.vmware.com/company.html
-[vmware-tanzu]: https://tanzu.vmware.com/build-service
-[kpack]: https://github.com/pivotal/kpack
-[tutorial]: https://github.com/pivotal/kpack/blob/master/docs/tutorial.md
-[cli]: https://github.com/vmware-tanzu/kpack-cli/blob/master/docs/kp.md
+[kpack]: https://github.com/buildpacks-community/kpack
+[tutorial]: https://github.com/buildpacks-community/kpack/blob/main/docs/tutorial.md
+[cli]: https://github.com/buildpacks-community/kpack-cli/blob/main/docs/kp.md
 [buildpacks]: https://buildpacks.io
 [announcement]: https://medium.com/buildpacks/kpack-joins-the-buildpacks-community-organization-223e59bda951

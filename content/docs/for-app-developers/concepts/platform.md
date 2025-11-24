@@ -31,7 +31,7 @@ For the latest version of the Platform API, see [releases][releases] on the spec
 [builder]: /docs/for-app-developers/concepts/builder/
 [buildpack]: /docs/for-app-developers/concepts/buildpack/
 [buildpacks-tekton]: https://github.com/tektoncd/catalog/tree/master/task/buildpacks
-[kpack]: https://github.com/pivotal/kpack
+[kpack]: https://github.com/buildpacks-community/kpack
 [lifecycle]: /docs/for-platform-operators/concepts/lifecycle/
 [pack]: https://github.com/buildpacks/pack
 [releases]: https://github.com/buildpacks/spec/releases?q=platform
