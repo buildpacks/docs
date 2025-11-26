@@ -128,7 +128,7 @@ build: $(HUGO_BIN) pack-version pack-docs-update
 	@echo "> Building..."
 	$(HUGO_BIN)
 	# Github Workflows ensures `node` is installed.
-	npx run pagefind --source ./public --destination ./public/pagefind
+	npx pagefind --site ./public
 
 .PHONY: test
 test: install-pack-cli check-pack-cli-version install-ugo

@@ -31,7 +31,7 @@ jobs:
       - name: Install pack
         uses: buildpacks/github-actions/setup-pack@v5.9.5
         with:
-          pack-version: '0.36.0'
+          pack-version: '0.38.2'
       - name: Test
         run: make test
         env:
