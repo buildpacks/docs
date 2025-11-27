@@ -926,6 +926,9 @@ pack extension package registry/image-name --path  /extracted/from/tgz/folder --
   -p, --path string          Path to the Extension that needs to be packaged
       --publish              Publish the extension directly to the container registry specified in &lt;name&gt;, instead of the daemon (applies to &#34;--format=image&#34; only).
       --pull-policy string   Pull policy to use. Accepted values are always, never, and if-not-present. The default is always
+      --tag strings          Additional tags to push the output image to.
+                             Tags should be in the format &#39;image:tag&#39; or &#39;repository/image:tag&#39;.
+                             Repeat for each tag in order, or supply once by comma-separated list
   -t, --target strings       Target platforms to build for.
                              Targets should be in the format &#39;[os][/arch][/variant]:[distroname@osversion@anotherversion];[distroname@osversion]&#39;.
                              - To specify two different architectures: &#39;--target &#34;linux/amd64&#34; --target &#34;linux/arm64&#34;&#39;

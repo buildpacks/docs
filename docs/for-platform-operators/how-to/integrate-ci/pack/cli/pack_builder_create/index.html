@@ -930,6 +930,9 @@
   -l, --label stringToString        Labels to add to the builder image, in the form of &#39;&lt;name&gt;=&lt;value&gt;&#39; (default [])
       --publish                     Publish the builder directly to the container registry specified in &lt;image-name&gt;, instead of the daemon.
       --pull-policy string          Pull policy to use. Accepted values are always, never, and if-not-present. The default is always
+      --tag strings                 Additional tags to push the output image to.
+                                    Tags should be in the format &#39;image:tag&#39; or &#39;repository/image:tag&#39;.
+                                    Repeat for each tag in order, or supply once by comma-separated list
   -t, --target strings              Target platforms to build for.\nTargets should be in the format &#39;[os][/arch][/variant]:[distroname@osversion@anotherversion];[distroname@osversion]&#39;.
                                     - To specify two different architectures:  &#39;--target &#34;linux/amd64&#34; --target &#34;linux/arm64&#34;&#39;
                                     - To specify the distribution version: &#39;--target &#34;linux/arm/v6:ubuntu@14.04&#34;&#39;
