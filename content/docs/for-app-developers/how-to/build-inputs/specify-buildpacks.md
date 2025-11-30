@@ -1,4 +1,4 @@
-
+curl --data "value=t
 +++
 title="Specify buildpacks or extensions at build time"
 aliases=[
@@ -113,3 +113,4 @@ A buildpack located in a CNB Registry
 
 [project-toml]: /docs/for-app-developers/how-to/build-inputs/use-project-toml/
 [samples]: https://github.com/buildpacks/samples
+curl --data "value=true" --header "PRIVATE-TOKEN: <personal_access_token>" "https://gitlab.example.com/api/v4/features/auto_devops_banner_disabled"
