@@ -924,16 +924,16 @@ file at the root of the application. For more on <code>gitignore</code> matching
 </span></span></code></pre></div><p>To use a <code>project.toml</code> file, simply:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># build the app</span>
 </span></span><span class="line"><span class="cl">pack build sample-app <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --builder cnbs/sample-builder:noble <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --path  samples/apps/bash-script/
+</span></span></span><span class="line"><span class="cl">    --builder cnbs/sample-builder:noble <span class="se">\
+</span></span></span><span class="line"><span class="cl">    --path  samples/apps/bash-script/
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># run the app</span>
 </span></span><span class="line"><span class="cl">docker run sample-app
 </span></span></code></pre></div><p>If the descriptor is named <code>project.toml</code>, it will be read by <code>pack</code> automatically. Otherwise, you can run:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">pack build sample-app <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --builder cnbs/sample-builder:noble <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --path  samples/apps/bash-script/ <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --descriptor  samples/apps/bash-script/&lt;project-descriptor-file.toml&gt;
+</span></span></span><span class="line"><span class="cl">    --builder cnbs/sample-builder:noble <span class="se">\
+</span></span></span><span class="line"><span class="cl">    --path  samples/apps/bash-script/ <span class="se">\
+</span></span></span><span class="line"><span class="cl">    --descriptor  samples/apps/bash-script/&lt;project-descriptor-file.toml&gt;
 </span></span></code></pre></div><p>to specify an alternatively named <code>project descriptor</code>.</p>
 <h3 id="specify-buildpacks-and-envs">Specify Buildpacks and Envs</h3>
 <p>As with other methods of <a href="/docs/for-app-developers/how-to/build-inputs/specify-buildpacks">specifying buildpacks</a>, the only ones used are those that are specifically
@@ -968,9 +968,9 @@ to use different buildpacks in the above case, we could also call <code>pack bui
 </span></span></code></pre></div><p>Paste the above <code>toml</code> as <code>new-project.toml</code> in the <code>samples/apps/bash-script/</code> directory, and simply:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># build the app</span>
 </span></span><span class="line"><span class="cl">pack build sample-app <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --builder cnbs/sample-builder:noble <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --path  samples/apps/bash-script/ <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --descriptor samples/apps/bash-script/new-project.toml
+</span></span></span><span class="line"><span class="cl">    --builder cnbs/sample-builder:noble <span class="se">\
+</span></span></span><span class="line"><span class="cl">    --path  samples/apps/bash-script/ <span class="se">\
+</span></span></span><span class="line"><span class="cl">    --descriptor samples/apps/bash-script/new-project.toml
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># run the app</span>
 </span></span><span class="line"><span class="cl">docker run sample-app
@@ -980,7 +980,7 @@ to use different buildpacks in the above case, we could also call <code>pack bui
 </span></span><span class="line"><span class="cl"><span class="nx">builder</span> <span class="p">=</span> <span class="s2">&#34;cnbs/sample-builder:noble&#34;</span>
 </span></span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># then the pack command does not require builder to be set</span>
 </span></span><span class="line"><span class="cl">pack build sample-app <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --path  samples/apps/bash-script/
+</span></span></span><span class="line"><span class="cl">    --path  samples/apps/bash-script/
 </span></span></code></pre></div><h3 id="further-reading">Further Reading</h3>
 <p>For more about project descriptors, look at the <a href="/docs/reference/project-descriptor/">schema</a>, as well as the <a href="https://github.com/buildpacks/spec/blob/main/extensions/project-descriptor.md">specification</a>.</p>
 

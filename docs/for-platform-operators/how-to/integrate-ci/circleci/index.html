@@ -908,9 +908,9 @@ which allows users to run <a href="/docs/install-pack">pack</a> commands inside 
 it in your workflow.</p>
 <p>For instance, your <code>.circleci/config.yml</code> file may look like this:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="m">2.1</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">orbs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">orbs</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">pack</span><span class="p">:</span><span class="w"> </span><span class="l">buildpacks/pack@0.2.0</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">workflows</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="nt">workflows</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">main</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">jobs</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">pack/build</span><span class="p">:</span><span class="w">

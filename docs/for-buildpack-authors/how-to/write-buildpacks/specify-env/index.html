@@ -983,8 +983,8 @@
 <p>At <code>runtime</code>, the <code>lifecycle</code> (or rather, the piece of the lifecycle known as the <code>launcher</code> that gets included in the application image) prepares the environment for the application process.
 For setting up environment variables at <code>runtime</code>, the <a href="#example">tree above</a> is still applicable except that the layer must be a <code>launch</code> layer, i.e., <code>some-launch-layer.toml</code> has</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">[</span><span class="l">types]</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="l">launch = true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="p">[</span><span class="l">types]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="l">launch = true</span><span class="w">
 </span></span></span></code></pre></div><blockquote>
 <p>Note that the <code>launcher</code> binary is found inside the application image at <code>/cnb/lifecycle/launcher</code> and is the entrypoint for any <code>CNB-built</code> image.</p>
 </blockquote>

@@ -901,10 +901,10 @@
 <p>For this example we will use the <code>hello-processes</code> buildpack from our <a href="https://github.com/buildpacks/samples">samples</a> repo so make sure you have it cloned locally.</p>
 <p>Let&rsquo;s build the app.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack build multi-process-app <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --builder cnbs/sample-builder:alpine <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --buildpack samples/java-maven <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --buildpack samples/buildpacks/hello-processes/ <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --path samples/apps/java-maven/
+</span></span></span><span class="line"><span class="cl">    --builder cnbs/sample-builder:alpine <span class="se">\
+</span></span></span><span class="line"><span class="cl">    --buildpack samples/java-maven <span class="se">\
+</span></span></span><span class="line"><span class="cl">    --buildpack samples/buildpacks/hello-processes/ <span class="se">\
+</span></span></span><span class="line"><span class="cl">    --path samples/apps/java-maven/
 </span></span></code></pre></div><!--+- "{{execute}}"+-->
 <p>If you inspect the app image with <code>pack</code>, you will see multiple process types defined:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack inspect-image multi-process-app

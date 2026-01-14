@@ -917,21 +917,21 @@ can be used to switch the run image to that most appropriate for the current app
 <p>Build the run image:</p>
 <!-- test:exec -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker build <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --file <span class="nv">$PWD</span>/samples/base-images/alpine/run/curl.Dockerfile <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --tag localhost:5000/run-image-curl .
+</span></span></span><span class="line"><span class="cl">  --file <span class="nv">$PWD</span>/samples/base-images/alpine/run/curl.Dockerfile <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --tag localhost:5000/run-image-curl .
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">docker push localhost:5000/run-image-curl
 </span></span></code></pre></div><h3 id="configure-the-hello-extensions-buildpack-to-require-curl">Configure the <code>hello-extensions</code> buildpack to require <code>curl</code></h3>
 <p>Set the <code>BP_REQUIRES</code> build-time environment variable to configure the <code>hello-extensions</code> buildpack to require both <code>vim</code> and <code>curl</code> (review the <code>./bin/detect</code> script to see why this works).</p>
 <!-- test:exec -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack build hello-extensions <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --builder localhost:5000/extensions-builder <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --env <span class="nv">BP_EXT_DEMO</span><span class="o">=</span><span class="m">1</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --env <span class="nv">BP_REQUIRES</span><span class="o">=</span>vim,curl <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --path <span class="nv">$PWD</span>/samples/apps/java-maven <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --pull-policy always <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --network host <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --verbose
+</span></span></span><span class="line"><span class="cl">  --builder localhost:5000/extensions-builder <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --env <span class="nv">BP_EXT_DEMO</span><span class="o">=</span><span class="m">1</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --env <span class="nv">BP_REQUIRES</span><span class="o">=</span>vim,curl <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --path <span class="nv">$PWD</span>/samples/apps/java-maven <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --pull-policy always <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --network host <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --verbose
 </span></span></code></pre></div><p>Note that <code>--network host</code> is necessary when publishing to a local registry.</p>
 <p>You should see:</p>
 <pre tabindex="0"><code>[detector] ======== Results ========

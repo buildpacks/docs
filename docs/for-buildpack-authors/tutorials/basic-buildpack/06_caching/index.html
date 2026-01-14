@@ -910,7 +910,7 @@ Cache the runtime layer To do this, replace the…">
 </span></span></code></pre></div><p>Your full <code>node-js-buildpack/bin/build</code><!--+"{{open}}"+--> script should now look like the following:</p>
 <!-- test:file=node-js-buildpack/bin/build -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="nb">set</span> -eo pipefail
+</span></span></span><span class="line"><span class="cl"><span class="nb">set</span> -eo pipefail
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;---&gt; NodeJS Buildpack&#34;</span>
 </span></span><span class="line"><span class="cl">
@@ -951,7 +951,7 @@ Cache the runtime layer To do this, replace the…">
 <p>Now, let&rsquo;s implement the caching logic.  We need to record the version of the NodeJS runtime that is used in a build.  On subsequent builds, the caching logic will detect if the NodeJS version is the same as the version in the cached layer.  We restore the previous layer from the cache if the current requested NodeJS version matches the previous NodeJS runtime version.</p>
 <!-- test:file=node-js-buildpack/bin/build -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="nb">set</span> -eo pipefail
+</span></span></span><span class="line"><span class="cl"><span class="nb">set</span> -eo pipefail
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;---&gt; NodeJS Buildpack&#34;</span>
 </span></span><span class="line"><span class="cl">

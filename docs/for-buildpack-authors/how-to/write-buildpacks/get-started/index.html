@@ -946,7 +946,7 @@ Other exit codes indicate an error during detection.</p>
 <p>This is a simple example of a buildpack that detects a Python application
 by checking for the presence of a <code>requirements.txt</code> file:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/sh
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span>
+</span></span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> -f requirements.txt <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
 </span></span><span class="line"><span class="cl">  <span class="nb">echo</span> <span class="s2">&#34;Python Buildpack&#34;</span>
 </span></span><span class="line"><span class="cl">  <span class="nb">exit</span> <span class="m">0</span>

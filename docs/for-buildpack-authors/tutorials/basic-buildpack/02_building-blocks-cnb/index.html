@@ -909,10 +909,10 @@ Make sure to run this command outside the <code>node-js-sample-app</code> direct
 <p>Example:</p>
 <!-- test:exec -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack buildpack new examples/node-js <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --api 0.10 <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --path node-js-buildpack <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --version 0.0.1 <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --targets <span class="s2">&#34;linux/amd64&#34;</span>
+</span></span></span><span class="line"><span class="cl">    --api 0.10 <span class="se">\
+</span></span></span><span class="line"><span class="cl">    --path node-js-buildpack <span class="se">\
+</span></span></span><span class="line"><span class="cl">    --version 0.0.1 <span class="se">\
+</span></span></span><span class="line"><span class="cl">    --targets <span class="s2">&#34;linux/amd64&#34;</span>
 </span></span></code></pre></div><!--+- "{{execute}}"+-->
 <p>This command will create <code>node-js-buildpack</code> directory which contains <code>buildpack.toml</code>, <code>bin/build</code>,  <code>bin/detect</code> files.</p>
 <h3 id="additional-parameters">Additional Parameters</h3>
@@ -950,13 +950,13 @@ The stack ID (deprecated) uniquely identifies a build and run image configuratio
 <p>Now update your <code>node-js-buildpack/bin/detect</code><!--+"{{open}}"+--> file and copy in the following contents:</p>
 <!-- test:file=node-js-buildpack/bin/detect -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="nb">set</span> -eo pipefail
+</span></span></span><span class="line"><span class="cl"><span class="nb">set</span> -eo pipefail
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">exit</span> <span class="m">1</span>
 </span></span></code></pre></div><p>Also update your <code>node-js-buildpack/bin/build</code><!--+"{{open}}"+--> file and copy in the following contents:</p>
 <!-- test:file=node-js-buildpack/bin/build -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="nb">set</span> -eo pipefail
+</span></span></span><span class="line"><span class="cl"><span class="nb">set</span> -eo pipefail
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;---&gt; NodeJS Buildpack&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nb">exit</span> <span class="m">1</span>

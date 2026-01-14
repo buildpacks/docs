@@ -910,7 +910,7 @@ Create a layer for the…">
 <p>A Buildpack layer is represented by a directory inside the <a href="/docs/for-buildpack-authors/how-to/write-buildpacks/create-layer">layers directory</a> provided to our buildpack by the Buildpack execution environment.  As defined by the buildpack specification, the layers directory is always passed to the <code>build</code> script as the first positional parameter. To create a new layer directory representing the NodeJS runtime, change the <code>build</code> script to look like the following.  The variable <code>CNB_LAYERS_DIR</code> is provided to the build script as defined by the <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#positional-arguments-to-detect-and-build-executables">buildpacks specification</a>.</p>
 <!-- file=node-js-buildpack/bin/build -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="nb">set</span> -eo pipefail
+</span></span></span><span class="line"><span class="cl"><span class="nb">set</span> -eo pipefail
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;---&gt; NodeJS Buildpack&#34;</span>
 </span></span><span class="line"><span class="cl">
@@ -931,7 +931,7 @@ Create a layer for the…">
 <p>Your complete <code>node-js-buildpack/bin/build</code><!--+"{{open}}"+--> script should look like this:</p>
 <!-- test:file=node-js-buildpack/bin/build -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="nb">set</span> -eo pipefail
+</span></span></span><span class="line"><span class="cl"><span class="nb">set</span> -eo pipefail
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;---&gt; NodeJS Buildpack&#34;</span>
 </span></span><span class="line"><span class="cl">

@@ -905,7 +905,7 @@ Select NodeJS version We&rsquo;ll allow buildpack users to…">
 <p>Update <code>node-js-buildpack/bin/detect</code> to look like this:</p>
 <!-- test:file=node-js-buildpack/bin/detect -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="nb">set</span> -eo pipefail
+</span></span></span><span class="line"><span class="cl"><span class="nb">set</span> -eo pipefail
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[[</span> ! -f package.json <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
 </span></span><span class="line"><span class="cl">   <span class="nb">exit</span> <span class="m">100</span>
@@ -927,7 +927,7 @@ Select NodeJS version We&rsquo;ll allow buildpack users to…">
 <p>Your <code>node-js-buildpack/bin/build</code> script should look like the following:</p>
 <!-- test:file=node-js-buildpack/bin/build -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="nb">set</span> -eo pipefail
+</span></span></span><span class="line"><span class="cl"><span class="nb">set</span> -eo pipefail
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;---&gt; NodeJS Buildpack&#34;</span>
 </span></span><span class="line"><span class="cl">

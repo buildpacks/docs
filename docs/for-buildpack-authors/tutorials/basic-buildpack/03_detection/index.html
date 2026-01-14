@@ -907,7 +907,7 @@ Replace exit 1 in the detect script with the…">
 </span></span></code></pre></div><p>Your <code>node-js-buildpack/bin/detect</code><!--+"{{open}}"+--> script should look like this:</p>
 <!-- test:file=node-js-buildpack/bin/detect -->
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/usr/bin/env bash
-</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="nb">set</span> -eo pipefail
+</span></span></span><span class="line"><span class="cl"><span class="nb">set</span> -eo pipefail
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[[</span> ! -f package.json <span class="o">]]</span><span class="p">;</span> <span class="k">then</span>
 </span></span><span class="line"><span class="cl">   <span class="nb">exit</span> <span class="m">100</span>
