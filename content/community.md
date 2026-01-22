@@ -42,7 +42,8 @@ Attend working group meetings to hear the latest development updates, provide fe
 
 Join our [Mailing List](https://lists.cncf.io/g/cncf-buildpacks) to get updates on the project and invitations to working group meetings.
 
-- [Meeting Zoom Link](https://zoom-lfx.platform.linuxfoundation.org/meeting/93619711301?password=8245be83-8e37-4d5b-b46e-327859e32faf)
+- [Meeting Zoom Link (7:00 AM PT)](https://zoom-lfx.platform.linuxfoundation.org/meeting/95636585037?password=a9f5881b-81a7-424d-baa4-a674a0f1bf17)
+- [Meeting Zoom Link (10:00 AM PT)](https://zoom-lfx.platform.linuxfoundation.org/meeting/93619711301?password=8245be83-8e37-4d5b-b46e-327859e32faf)
 - See previous community meetings on our [YouTube Playlist](https://www.youtube.com/playlist?list=PL1p8pquzNvRpDbbgZ0db0MRA-W5_w0G1U)
 - [Meeting agenda](https://docs.google.com/document/d/18gkdfJsy8AQWsOgzPbLRnxN4a-WtUoaCM2Lh7-08rdo/edit#heading=h.3kg2wwvbnkb3)
 
