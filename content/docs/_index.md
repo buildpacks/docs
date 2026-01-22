@@ -62,7 +62,7 @@ If you are interested in giving a talk about buildpacks, the linked slides may p
 
 ### Meetings
 
-Feel free to look through the archive of previous community meetings on [YouTube](https://www.youtube.com/%40buildpacks). If you would like to attend a Working Group meeting, check out our [community](/community/) page.
+Feel free to look through the archive of previous community meetings on [YouTube](https://www.youtube.com/%40buildpacks). If you would like to attend a Working Group meeting, check out the [community](/community/) page.
 
 ---
 
