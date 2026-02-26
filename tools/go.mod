@@ -1,6 +1,6 @@
 module github.com/buildpacks/docs/tools
 
-go 1.25.5
+go 1.26.0
 
 require (
 	github.com/buildpacks/pack v0.40.0
