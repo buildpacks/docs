@@ -76,7 +76,7 @@ install-pack-cli: export PACK_BIN:=$(shell which pack)
 install-pack-cli: upgrade-pack
 	@echo "> Installing pack bin..."
 	@if [ -z "$(PACK_BIN)" ]; then \
-		cd tools; go install github.com/buildpacks/pack/cmd/pack; \
+		cd tools; go install github.com/buildpacks/pack; \
 	else \
 		echo "pack already installed at $(PACK_BIN)"; \
 	fi
