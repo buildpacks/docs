@@ -62,7 +62,7 @@ If you are interested in giving a talk about buildpacks, the linked slides may p
 
 ### Meetings
 
-Feel free to look through the archive of previous community meetings in our [Working Group Playlist](https://www.youtube.com/playlist?list=PL1p8pquzNvRpDbbgZ0db0MRA-W5_w0G1U) on YouTube. If you would like to attend a Working Group meeting, check out our [community](/community/) page.
+Feel free to look through the archive of previous community meetings on [YouTube](https://www.youtube.com/%40buildpacks). If you would like to attend a Working Group meeting, check out the [community](/community/) page.
 
 ---
 
@@ -81,3 +81,16 @@ Find out the various ways that _you_ can contribute to the Cloud Native Buildpac
 ### Project Roadmap
 
 This is a community driven project and our roadmap is publicly available on our [Github page](https://github.com/buildpacks/community/blob/main/ROADMAP.md). We encourage you to contribute with feature requests.
+
+---
+
+## Community learning resources
+
+Below are learning resources maintained by third parties. These aren't managed by the <!-- vale off -->Cloud Native Buildpacks<!-- vale on --> team, but are popular in the community.
+
+<!-- vale off -->
+- [Cloud Native Buildpacks Course (KodeKloud)](https://learn.kodekloud.com/user/courses/cloud-native-buildpacks) - Video-based hands-on introduction to Cloud Native Buildpacks.
+- [Cloud Native Buildpacks for Beginners (Udemy)](https://www.udemy.com/course/cloud-native-buildpacks-for-the-absolute-beginners-handson) - Comprehensive beginner's course on Cloud Native Buildpacks.
+<!-- vale on -->
+
+_Want to suggest a learning resource? Submit a pull request or open an issue._

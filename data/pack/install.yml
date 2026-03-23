@@ -41,6 +41,14 @@
         ```bash
         brew install buildpacks/tap/pack
         ```
+    - &mise
+      name: mise
+      content: |
+        `pack` can be installed via [mise](https://github.com/jdx/mise), the polygot tool versions manager:
+
+        ```bash
+        mise use -g pack@latest
+        ```
     - name: Ubuntu
       content: |
         `pack` can be installed using the [official PPA](https://launchpad.net/~cncf-buildpacks/+archive/ubuntu/pack-cli) by running the following commands:
@@ -69,6 +77,7 @@
   methods:
     - *container
     - *homebrew
+    - *mise
     - name: Script Install
       content: |
         The following command will download the latest version of `pack` from [GitHub](https://github.com/buildpacks/pack/releases) and install it in `/usr/local/bin/`.
