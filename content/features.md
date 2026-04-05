@@ -1,6 +1,6 @@
 +++
 title="Features"
-weight=1
+weight=1 
 layout="standalone"
 summary="Cloud Native Buildpacks provide a unique solution to the image build process. See how it compares to the alternatives."
 +++
