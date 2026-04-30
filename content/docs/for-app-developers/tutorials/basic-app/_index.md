@@ -25,7 +25,7 @@ pack builder suggest
 ```
 <!--+- "{{execute}}"+-->
 
-For this guide we're actually going to use a sample builder, `cnbs/sample-builder:noble`, which is not listed
+For this guide we're actually going to use a sample builder, `cnbs/sample-builder:resolute`, which is not listed
 as a suggested builder for good reason. It's a sample.
 
 ### 2. Build your app
@@ -41,12 +41,12 @@ ls samples || git clone https://github.com/buildpacks/samples
 
 2. Build the app
 ```
-pack build sample-app --path samples/apps/java-maven --builder cnbs/sample-builder:noble
+pack build sample-app --path samples/apps/java-maven --builder cnbs/sample-builder:resolute
 ```
 <!--+- "{{execute}}"+-->
 
 > **TIP:** If you don't want to keep specifying a builder every time you build, you can set it as your default
-> builder by running `pack config default-builder <BUILDER>` for example `pack config default-builder cnbs/sample-builder:noble`
+> builder by running `pack config default-builder <BUILDER>` for example `pack config default-builder cnbs/sample-builder:resolute`
 <!--+- "{{execute}}"+-->
 
 ### 3. Run it
