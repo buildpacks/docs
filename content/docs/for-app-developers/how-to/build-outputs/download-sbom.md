@@ -4,7 +4,7 @@ title="Download a Software Bill-of-Materials (SBOM)"
 aliases=[
   "/docs/features/bill-of-materials"
 ]
-summary="An SBOM can give you a layer-by-layer view of what's inside your application image."
+summary="An SBOM can give you a layer-by-layer view of what's inside your app image."
 weight=3
 +++
 
@@ -14,9 +14,9 @@ A **Software-Bill-of-Materials** (`SBOM`) lists all the software components incl
 
 1. Buildpacks can populate `SBOM` information about the dependencies they have provided.
 
-## Viewing Bill of Materials
+## Viewing bill of materials
 
-You can use the `sbom download` command to inspect your app for its Software-Bill-of-Materials. The following command will download the application layer containing the `SBOM` files to `./layers/sbom/...` on your local filesystem.
+You can use the `sbom download` command to inspect your app for its Software-Bill-of-Materials. The following command will download the app layer containing the `SBOM` files to `./layers/sbom/...` on your local filesystem.
 
 ```bash
 pack sbom download your-image-name

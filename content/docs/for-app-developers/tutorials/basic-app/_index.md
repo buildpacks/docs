@@ -1,6 +1,6 @@
 
 +++
-title="Build your very first application with buildpacks"
+title="Build your very first app with buildpacks"
 aliases=[
   "/docs/app-developer-guide/build-an-app",
   "/docs/using-pack/building-app/",

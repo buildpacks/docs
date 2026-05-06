@@ -1,5 +1,5 @@
 +++
-title="Inspect your application image"
+title="Inspect your app image"
 weight=2
 +++
 
@@ -15,7 +15,7 @@ Information includes:
 * Whether the run-image can be rebased with a new version through the `Rebasable` label or not
 * And more...!
 
-`pack` offers a command to help you inspect the application image and view some of its contents as shown below:
+`pack` offers a command to help you inspect the app image and view some of its contents as shown below:
 
 ```bash
 pack inspect-image test-node-js-app
@@ -37,7 +37,7 @@ Processes:
   web (default)        bash         node-js app.js                                   /workspace
 ```
 
-Apart from the above standard metadata, buildpacks can also populate information about the dependencies they have provided in form of a `Software Bill-of-Materials` or [SBOM].
+Apart from the preceding standard metadata, buildpacks can also populate information about the dependencies they have provided in form of a `Software Bill-of-Materials` or [SBOM].
 
 Buildpacks-built images are constructed in a way that’s easy to understand, with each of the layers being meaningful and independent of all other layers. You can get more details about each layer and how it was created to better understand how the [build] actually worked.
 
@@ -55,7 +55,7 @@ The output should look similar to the following:
 
 PLACEHOLDER
 
-As seen in the output above, you're presented with `Layers`, `Layer Details`, `Image Details`, and `Current Layer Contents`. To view the contents or explore the file tree of any layer, you need to select the layer on the left using the arrow keys.
+As seen in the preceding output, you're presented with `Layers`, `Layer Details`, `Image Details`, and `Current Layer Contents`. To view the contents or explore the file tree of any layer, you need to select the layer on the left using the arrow keys.
 
 [SBOM]: /docs/for-app-developers/how-to/build-outputs/download-sbom
 [build]: https://buildpacks.io/docs/for-app-developers/concepts/build/

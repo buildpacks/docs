@@ -44,7 +44,7 @@ to save images requires by `pack build` command in OCI layout format.
 
 ### 2. Build the app
 
-Please first follow the steps to [build an app](/docs/for-app-developers/tutorials/basic-app), once you have successfully built an application you can export the sample application to disk in OCI layout format. 
+Please first follow the steps to [build an app](/docs/for-app-developers/tutorials/basic-app), once you have successfully built an app you can export the sample app to disk in OCI layout format. 
 
 The OCI layout feature must be enabled using the convention `oci:<path/to/save/image>` in the `<image-name>` parameter when invoking `pack build`.
 
@@ -60,7 +60,7 @@ It will save the image in a folder `./sample-app` created in your current direct
 
 **Congratulations!**
 
-You can verify your application image was saved on disk in a folder called `./sample-app` in your current directory in OCI layout format. For example:
+You can verify your app image was saved on disk in a folder called `./sample-app` in your current directory in OCI layout format. For example:
 
 ```bash
 tree sample-app
@@ -94,7 +94,7 @@ If you want to keep playing with the image in  OCI layout format, one tool you c
 ### Skip saving your run-image layers on disk
 
 Before using this option we suggest to remove your local layout directory (the one configured in your pack config.toml with the key `layout-repo-dir`) and 
-your application image folder (if you are planning to use the same folder). The reason for this is pack doesn't remove the blobs saved in the `layout-repo-dir` if you use the `--sparse` flag 
+your app image folder (if you are planning to use the same folder). The reason for this is pack doesn't remove the blobs saved in the `layout-repo-dir` if you use the `--sparse` flag 
 
 If you don't need your `run-image` layers on disk, you can skip them using `--sparse` flag in your `pack build` command invocation.
 
@@ -104,7 +104,7 @@ For example:
 pack build oci:sample-app --sparse --path samples/apps/java-maven --builder cnbs/sample-builder:resolute
 ```
 
-Verify your application image
+Verify your app image
 
 ```bash
 sample-app
@@ -130,7 +130,7 @@ when you export the full image.
 
 ## Implementation notes
 
-### Media Types
+### Media types
 
 According to the OCI specification, the [compatibles media types](https://github.com/opencontainers/image-spec/blob/main/media-types.md#compatibility-matrix) for the index.json files must be:
 

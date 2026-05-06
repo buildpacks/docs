@@ -11,7 +11,7 @@ summary="Share layers between builds with a cache image."
 Cache images are a way to preserve build-optimizing layers across different host machines. 
 These images can improve performance when using `pack` in ephemeral environments such as CI/CD pipelines.
 
-## Using Cache Images (`--cache-image`)
+## Using cache images (`--cache-image`)
 
 The `--cache-image` parameter must be in the following format
 
@@ -29,14 +29,14 @@ For the following examples we will use:
 > **NOTE:**  If we wish to publish to an external registry like `Dockerhub` we will first need to authenticate with `docker` to allow us to push images. We can do this via `docker login`
 
 
-Next we trust the `cnbs/sample-builder:resolute` builder in order to allow access to docker credentials when publishing.
+Next we trust the `cnbs/sample-builder:resolute` builder to allow access to docker credentials when publishing.
 
 ```
 pack config trusted-builders add cnbs/sample-builder:resolute
 ```
 <!--+- "{{execute}}"+-->
 
-To build the `localhost:5000/buildpack-examples/cache-image-example` application image
+To build the `localhost:5000/buildpack-examples/cache-image-example` app image
  and the `localhost:5000/buildpack-examples/maven-cache-image:latest` cache image
  we may run the following 
 
@@ -53,9 +53,9 @@ pack build localhost:5000/buildpack-examples/cache-image-example \
 
 > **NOTE:**  Please omit `--network host` if you are using a remote registry like Dockerhub or on Windows.
 
-Now we may inspect both the application image, and the cache image by pulling them -
+Now we may inspect both the app image, and the cache image by pulling them -
 
-Let's inspect the application image first -
+Let's inspect the app image first -
 
 ```
 docker pull localhost:5000/buildpack-examples/cache-image-example
@@ -85,7 +85,7 @@ pack build localhost:5000/buildpack-examples/second-cache-image-example \
 ```
 <!--+- "{{execute}}"+-->
 
-### Image Retention
+### Image retention
 
 Managing the lifecycle of images should be the responsibility of the owner, as `the platform does not automatically clean up old images from the registry`.   
 You can refer to your registry's documentation to learn how to accomplish this.   

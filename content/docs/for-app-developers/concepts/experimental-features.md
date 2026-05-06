@@ -7,7 +7,7 @@ Certain features are considered `experimental` and susceptible to change in futu
 
 <!--more-->
 
-This means users will need to enable the `experimental` mode in order to use one of these features.
+This means users will need to enable the `experimental` mode to use one of these features.
 
 If using `pack`, run `pack config experimental true`, or add `experimental = true` to your `~/.pack/config.toml` file to enable experimental features.
 

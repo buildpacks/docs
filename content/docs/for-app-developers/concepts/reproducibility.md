@@ -37,7 +37,7 @@ Running `pack build cnbs/sample-hello-world:test --publish` multiple times produ
 - The same builder image
 - The same set of buildpacks (see caveat below).
 
-Inspecting the results of the above command, we see the following output:
+Inspecting the results of the preceding command, we see the following output:
 
 ```bash
 $ docker pull cnbs/sample-hello-world:test && docker images --digest # Pull remotely created image and view IDs and Digests
@@ -46,10 +46,10 @@ sample-hello-world                           test                sha256:9e3cfea3
 sample-hello-moon-app                        test                <none>                                                                    86aab15e22b8        40 years ago        43MB
 ```
 
-### Consequences and Caveats
+### Consequences and caveats
 
-There are a couple things to note about the above output:
-- We achieve reproducible builds by "zeroing" various timestamps of the layers of the output image. When images are inspected they may have confusing creation times (eg. "40 years ago").
+There are a couple things to note about the preceding output:
+- We achieve reproducible builds by "zeroing" various timestamps of the layers of the output image. When images are inspected they may have confusing creation times (e.g. "40 years ago").
 - The `cnbs/sample-hello-moon:test` image does not have an entry for the "DIGEST" column. This is because the digest is produced from the image's manifest and a manifest is only created when an image is stored in a remote registry.
 
 If you need a meaningful image creation time instead of the default January 1, 1980 timestamp, you can configure it explicitly:

@@ -1,5 +1,5 @@
 +++
-title="Run the application"
+title="Run the app"
 aliases=[
   "/docs/app-developer-guide/run-an-app"
 ]
@@ -64,7 +64,7 @@ Processes:
 ```
 
 Notice that the `java-maven` buildpack defined `web` as the default process type.
-If we had run the `pack build` command above with `--default-process sys-info`, `sys-info` would be the default process for the app image!
+If we had run the preceding `pack build` command with `--default-process sys-info`, `sys-info` would be the default process for the app image!
 
 ### Run a multi-process app
 

@@ -8,7 +8,7 @@ weight=3
 summary="Supply and persist data from build containers with arbitrary volume mounts."
 +++
 
-## Mounting Volumes (`--volume`)
+## Mounting volumes (`--volume`)
 
 The `--volume` parameter must be one of the following:
 
@@ -90,7 +90,7 @@ pack build volume-example \
 ```
 <!--+- "{{execute}}"+-->
 
-The above `pack build ...` command will mount the `test-volume` volume in the `/platform` directory of the container.
+The preceding `pack build ...` command will mount the `test-volume` volume in the `/platform` directory of the container.
 
 Since we are using the `samples/hello-world` buildpack, we should see the `/platform` directory files listed:
 

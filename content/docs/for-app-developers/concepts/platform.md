@@ -8,7 +8,7 @@ weight=4
 +++
 
 A `platform` orchestrates [builds][build] by invoking the [lifecycle] binary together with [buildpacks][buildpack] and
-application source code to produce a runnable OCI image.
+app source code to produce a runnable OCI image.
 
 <!--more-->
 
@@ -18,7 +18,7 @@ Examples of a platform might include:
 
 * A local CLI tool that uses buildpacks to create OCI images. One such tool is the [Pack CLI][pack]
 * A plugin for a continuous integration service that uses buildpacks to create OCI images. One such plugin is the [buildpacks][buildpacks-tekton] plugin in [Tekton]
-* A cloud application platform that uses buildpacks to build source code before deployment. One such platform is [kpack][kpack]
+* A cloud app platform that uses buildpacks to build source code before deployment. One such platform is [kpack][kpack]
 
 ## API
 

@@ -54,10 +54,10 @@ pack build sample-app -p samples/apps/ruby-bundler/ -B cnbs/sample-builder:resol
 
 Where:
   - `sample-app` is the image name of the image to be created.
-  - `-p` is the **path** to the application source.
+  - `-p` is the **path** to the app source.
   - `-B` is the **[builder][builder]** to use.
 
-> **NOTE**: If using a _socket_ connection, for example on Linux, you'll need to pass an additional flag in order to provide the proper socket location to the `lifecycle`: `--docker-host=inherit`
+> **NOTE**: If using a _socket_ connection, for example on Linux, you'll need to pass an additional flag to provide the proper socket location to the `lifecycle`: `--docker-host=inherit`
 > <br/><br/>
 > In the future, this may be [automatically detected](https://github.com/buildpacks/pack/issues/1338).
 
@@ -73,7 +73,7 @@ podman images
 
 ---
 
-# Known Issues & Limitations
+# Known issues & limitations
 
   * On `macOS` bind mounts do not work since the VM cannot access host file system.
   * With more time consuming builds and `--trust-builder=true` following error may occur:

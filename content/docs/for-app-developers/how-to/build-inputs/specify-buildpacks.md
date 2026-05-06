@@ -19,7 +19,7 @@ You may specify exactly what buildpacks are used during the build process by ref
 | CNB Builder Resource  | `urn:cnb:builder[:<id>[@<version>]]`         |
 | CNB Registry Resource | `urn:cnb:registry[:<id>[@<version>]]`        |
 
-##### Fallback Behavior
+##### Fallback behavior
 
 When a string does not include a scheme prefix (ex. `docker://`) and also does not match a path on the filesystem,
 a platform may attempt to resolve it to a URI in the following order:
@@ -29,9 +29,9 @@ a platform may attempt to resolve it to a URI in the following order:
 
 If you need to disambiguate a particular reference, use a fully qualified URI.
 
-## Using the Pack CLI
+## Using the pack CLI
 
-The `--buildpack` parameter accepts a URI in any of the formats described above.
+The `--buildpack` parameter accepts a URI in any of the formats described in the preceding table.
 
 ##### Example:
 
@@ -58,7 +58,7 @@ Similarly, it is possible to provide extensions at build time:
 pack build [...] --extension=foo [...]`
 ```
 
-## Using a Project Descriptor
+## Using a project descriptor
 
 The [`project.toml`][project-toml] format allows for Buildpack URIs to be specified in the `[[io.buildpacks.group]]` table with the `uri` key.
 
@@ -81,7 +81,7 @@ uri = "samples/buildpacks/hello-processes/"
 uri = "docker://cnbs/sample-package:hello-universe"
 ```
 
-## URI Examples
+## URI examples
 
 A path to a directory<sup><small>†</small></sup>, `tar` file, or `tgz` file
 

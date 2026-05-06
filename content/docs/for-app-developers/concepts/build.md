@@ -3,7 +3,7 @@ title="What happens during build?"
 weight=3
 +++
 
-`Build` is the process of executing one or more [buildpacks][buildpack] against an application's source code to produce a runnable OCI image.
+`Build` is the process of executing one or more [buildpacks][buildpack] against an app's source code to produce a runnable OCI image.
 
 <!--more-->
 

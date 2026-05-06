@@ -55,7 +55,7 @@ EOF
 """
 ```
 
-### Further Reading
+### Further reading
 For more about project descriptors, look at the [schema][descriptor-schema], as well as the [specification][spec].
 
 [project-toml]: /docs/for-app-developers/how-to/build-inputs/use-project-toml/
