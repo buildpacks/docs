@@ -58,7 +58,7 @@ It will save the image in a folder `./sample-app` created in your current direct
 
 ### 3. Check your image
 
-**Congratulations!**
+**Congratulations.**
 
 You can verify your app image was saved on disk in a folder called `./sample-app` in your current directory in OCI layout format. For example:
 

@@ -20,7 +20,7 @@ See [here][OCI layout] for more information about working with layout images.
 
 Buildpacks always need to run in a containerized environment.
 Therefore, even when you publish the app image to a registry,
-`pack` is still using a daemon under the hood to create the build container(s) where buildpacks run.
+`pack` is still using a daemon under the hood to create the build containers where buildpacks run.
 
 The relationship between the build container and the app container can be seen in the diagram below:
 

@@ -5,7 +5,7 @@ aliases=[
   "/docs/app-developer-guide/specify-buildpacks"
 ]
 weight=1
-summary="No builder author can be truly omniscient, and whoever created yours surely was no exception!"
+summary="No builder author can be truly omniscient, and whoever created yours surely was no exception."
 +++
 
 You may specify exactly what buildpacks are used during the build process by referencing them with a URI in any of the following formats.

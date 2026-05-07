@@ -9,10 +9,10 @@ weight=1
 
 <!--more-->
 
-Building for the ARM architecture is now easier than ever! The `heroku/builder:24` builder supports both AMD64 and ARM64 architectures, and includes
+Building for the ARM architecture is now easier than ever. The `heroku/builder:24` builder supports both AMD64 and ARM64 architectures, and includes
 multi-arch .NET, Go, Java, Node.js, PHP, Python, Ruby and Scala buildpacks. You can read more about Heroku's [Cloud Native Buildpacks here][heroku-buildpacks].
 
-> **NOTE:** Our current multi-architecture support allows building an ARM64 app image on an ARM64 host, and building an AMD64 app image on an AMD64 host. We do not currently support building an app image for one architecture on a different architecture. However, if your host machine supports emulation (e.g., with QEMU) you may be able to perform cross platform builds, albeit with a performance penalty.
+> **NOTE:** Our current multi-architecture support allows building an ARM64 app image on an ARM64 host, and building an AMD64 app image on an AMD64 host. We do not currently support building an app image for one architecture on a different architecture. However, if your host machine supports emulation (for example, with QEMU) you may be able to perform cross platform builds, albeit with a performance penalty.
 
 ### 1. Clone the [samples][samples] repository
 
@@ -49,7 +49,7 @@ docker run --rm -p 8080:8080 java-maven-sample
 ```
 <!--+- "{{execute}}"+-->
 
-**Congratulations!**
+**Congratulations.**
 
 <!--+- if false+-->
 The app should now be running and accessible via [localhost:8080](http://localhost:8080).

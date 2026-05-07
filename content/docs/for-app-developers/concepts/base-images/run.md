@@ -52,5 +52,5 @@ the selected run image will be `registry.example.com/example/run`.
 > This command does not modify the builder, and instead configures the local environment.
 >
 > To see what run images are configured for a builder, `pack builder inspect` can be used.
-> `pack builder inspect` will output built-in and locally-configured run images for a given builder, along with other useful information.
+> `pack builder inspect` will output built-in and locally configured run images for a given builder, along with other useful information.
 > The order of the run images in the output denotes the order in which they will be matched during `build`.

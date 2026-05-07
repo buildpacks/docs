@@ -10,7 +10,7 @@ weight=3
 
 ## Summary
 
-A **Software-Bill-of-Materials** (`SBOM`) lists all the software components included in an image.  Cloud Native Buildpacks provides all the transparency you need to have confidence in your image supply chain.  Software-Bill-of-Materials in [CycloneDX](https://cyclonedx.org/), [Syft](https://github.com/anchore/syft) and [Spdx](https://spdx.dev/) formats are supported.
+A **Software-Bill-of-Materials** (`SBOM`) lists all the software components included in an image. Cloud Native Buildpacks provides all the transparency you need to have confidence in your image supply chain. Software-Bill-of-Materials in [CycloneDX](https://cyclonedx.org/), [Syft](https://github.com/anchore/syft) and [Spdx](https://spdx.dev/) formats are supported.
 
 1. Buildpacks can populate `SBOM` information about the dependencies they have provided.
 
@@ -28,7 +28,7 @@ You can also choose to download the `SBOM` from an image hosted in a remote regi
 pack sbom download your-image-name --remote
 ```
 
-The following example demonstrates  running `pack sbom download ...` on an image containing an `SBOM` in  `syft` format.  Running `pack sbom download ...` creates a `layers/sbom` directory and populates that directory with `sbom.syft.json` files.  The combined metadata from all of the `sbom.syft.json` files is the image `SBOM`. Where an image generates CycloneDX `SBOM` metadata, the files are named `sbom.cdx.json`. Similarly, Spdx files are named `sbom.spdx.json`.
+The following example demonstrates running `pack sbom download ...` on an image containing an `SBOM` in `syft` format. Running `pack sbom download ...` creates a `layers/sbom` directory and populates that directory with `sbom.syft.json` files. The combined metadata from all of the `sbom.syft.json` files is the image `SBOM`. Where an image generates CycloneDX `SBOM` metadata, the files are named `sbom.cdx.json`. Similarly, Spdx files are named `sbom.spdx.json`.
 
 ```bash
 layers

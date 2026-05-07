@@ -56,7 +56,7 @@ docker run --rm -p 8080:8080 sample-app
 ```
 <!--+- "{{execute}}"+-->
 
-**Congratulations!**
+**Congratulations.**
 
 <!--+- if false+-->
 The app should now be running and accessible via [localhost:8080](http://localhost:8080).
@@ -64,7 +64,7 @@ The app should now be running and accessible via [localhost:8080](http://localho
 
 ## What about ARM apps?
 
-Linux ARM image builds are now supported!
+Linux ARM image builds are now supported.
 
 <!--+- if false+-->
 <a href="/docs/for-app-developers/how-to/special-cases/build-for-arm" class="button bg-blue">Linux ARM build guide</a>
@@ -75,7 +75,7 @@ Check out the [Linux ARM build guide](https://buildpacks.io//docs/for-app-develo
 ` +-->
 ## What about Windows apps?
 
-Windows image builds are now supported!
+Windows image builds are now supported.
 
 <!--+- if false+-->
 <a href="/docs/for-app-developers/how-to/special-cases/build-for-windows" class="button bg-blue">Windows build guide</a>
