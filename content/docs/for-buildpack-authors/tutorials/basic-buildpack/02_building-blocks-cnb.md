@@ -64,7 +64,7 @@ WithLinuxBuild = false
 
 The buildpack ID is the way you will reference the buildpack when you create buildpack groups, builders, etc.
 [Targets](/docs/for-buildpack-authors/concepts/targets/) identifies the kind of build and run base images the buildpack will work with.
-The stack ID (deprecated) uniquely identifies a build and run image configuration the buildpack will work with. This example can be run on Ubuntu Noble.
+The stack ID (deprecated) uniquely identifies a build and run image configuration the buildpack will work with. This example can be run on Ubuntu Resolute.
 
 ### `detect` and `build`
 
@@ -102,7 +102,7 @@ Set your default [builder][builder] by running the following:
 
 <!-- test:exec -->
 ```bash
-pack config default-builder cnbs/sample-builder:noble
+pack config default-builder cnbs/sample-builder:resolute
 ```
 <!--+- "{{execute}}"+-->
 
@@ -110,7 +110,7 @@ Tell pack to trust our default builder:
 
 <!-- test:exec -->
 ```bash
-pack config trusted-builders add cnbs/sample-builder:noble
+pack config trusted-builders add cnbs/sample-builder:resolute
 ```
 <!--+- "{{execute}}"+-->
 
