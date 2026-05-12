@@ -52,9 +52,15 @@ There are a couple things to note about the above output:
 - We achieve reproducible builds by "zeroing" various timestamps of the layers of the output image. When images are inspected they may have confusing creation times (eg. "40 years ago").
 - The `cnbs/sample-hello-moon:test` image does not have an entry for the "DIGEST" column. This is because the digest is produced from the image's manifest and a manifest is only created when an image is stored in a remote registry.
 
+If you need a meaningful image creation time instead of the default January 1, 1980 timestamp, you can configure it explicitly:
+
+- `pack build` users can set `--creation-time`.
+- Platforms invoking the lifecycle directly can set the `SOURCE_DATE_EPOCH` environment variable for the exporter.
+
+Changing the image creation time changes the resulting image digest, so this is a tradeoff between a meaningful timestamp and byte-for-byte reproducibility.
+
 The CNB lifecycle cannot fix non-reproducible buildpack layer file contents. This means that the underlying buildpack and language ecosystem have to implement reproducible output (for example `go` binaries are reproducible by default). Buildpacks that produce identical layers given the same input could be said to be reproducible buildpacks.
 
 Running `pack build cnbs/test-image:test && docker push cnbs/test-image:test` and `pack build cnbs/test-image:test --publish` with the same inputs will not produce the same image digest because:
 - The remote image will have an image digest reference in the `runImage.reference` field in the `io.buildpacks.lifecycle.metadata` label
 - The local image will have an image ID in the `runImage.reference` field in the `io.buildpacks.lifecycle.metadata` label if it was created locally
-
