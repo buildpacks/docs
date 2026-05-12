@@ -25,7 +25,7 @@ You should see the following:
 
 ```text
 Run Images:
-  cnbs/sample-base-run:noble
+  cnbs/sample-base-run:resolute
 ...
 
 Buildpacks:
