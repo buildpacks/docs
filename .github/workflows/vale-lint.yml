@@ -17,7 +17,7 @@ jobs:
           files: content/**/*.md  # Only check markdown files in the content directory
           separator: ","
 
-      - uses: errata-ai/vale-action@v2.1.1
+      - uses: errata-ai/vale-action@2.1.2
         if: steps.changed-files.outputs.any_changed == 'true'
         with: 
           fail_on_error: true
