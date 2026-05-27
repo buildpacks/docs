@@ -7,12 +7,15 @@ import (
 	"os"
 	"path"
 	"path/filepath"
+	"regexp"
 	"strings"
 
 	"github.com/buildpacks/pack/cmd"
 	"github.com/buildpacks/pack/pkg/logging"
 	"github.com/spf13/cobra/doc"
 )
+
+var ansiEscape = regexp.MustCompile(`\x1b\[[0-9;]*m`)
 
 const (
 	cliDir     = "/docs/for-platform-operators/how-to/integrate-ci/pack/cli/"
@@ -64,6 +67,27 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	if err := stripANSIFromDir(outputPath); err != nil {
+		log.Fatal(err)
+	}
+}
+
+func stripANSIFromDir(dir string) error {
+	return filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
+		if err != nil || info.IsDir() || filepath.Ext(path) != ".md" {
+			return err
+		}
+		data, err := os.ReadFile(path)
+		if err != nil {
+			return err
+		}
+		cleaned := ansiEscape.ReplaceAll(data, nil)
+		if len(cleaned) == len(data) {
+			return nil
+		}
+		return os.WriteFile(path, cleaned, info.Mode())
+	})
 }
 
 type packLogger struct {
