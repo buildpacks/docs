@@ -9,6 +9,44 @@
 #     - name: Name of resource
 #       icon: Icon name (font-awesome 5 - https://fontawesome.com/icons?d=gallery&p=2&m=free)
 #       url: URL to resource
+- name: "Buildpacks: Towards 1.0, AI and Other Things"
+  presenters:
+    - Aidan Delaney, Bloomberg
+  description: >-
+    An update on the Buildpacks project's progress toward its 1.0 release, along with new work
+    around AI workloads and other recent developments in the ecosystem.
+  event_name: KubeCon EU
+  youtube_id: Gc4NZlv7F5A
+  year: 2026
+- name: "Project Lightning Talk: Container Builds at Scale with Buildpacks"
+  presenters:
+    - Vidhi Shah, Salesforce
+  description: >-
+    A lightning talk introducing Cloud Native Buildpacks and how they enable building container
+    images at scale.
+  event_name: KubeCon India
+  youtube_id: FBgX1RS0ND8
+  year: 2026
+- name: "Using Buildpacks To Boost Developer Productivity"
+  presenters:
+    - Joe Kutner, Salesforce
+    - Joey Brown, Heroku
+  description: >-
+    How Cloud Native Buildpacks streamline the developer inner loop and improve productivity by
+    turning application source code into secure, production-ready container images without
+    Dockerfiles.
+  event_name: KubeCon NA
+  youtube_id: GeO8qCPlJC8
+  year: 2025
+- name: "Project Lightning Talk: Container Builds At Scale With Buildpacks"
+  presenters:
+    - Joe Kutner, Salesforce
+  description: >-
+    A lightning talk on using Cloud Native Buildpacks to build container images at scale, and
+    the latest updates from the Buildpacks project.
+  event_name: KubeCon NA
+  youtube_id: 8ULJg-z_wZA
+  year: 2025
 - name: "Customizing your Buildpacks Build"
   presenters:
     - Natalie Arellano, VMware
