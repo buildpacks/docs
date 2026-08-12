@@ -23,7 +23,7 @@ jobs:
           go-version: stable
       # Node is used to generate the pagefind index
       - name: Setup Node.js environment
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version: 'latest'
       - name: Install Dependencies
