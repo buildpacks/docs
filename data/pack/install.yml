@@ -32,6 +32,13 @@
           -v $PWD:/workspace -w /workspace \
           buildpacksio/pack build <my-image> --builder <builder-image>
         ```
+    - name: Fedora Linux
+      content: |
+        `pack` can be installed from the [fedora](https://packages.fedoraproject.org/pkgs/pack/pack/) RPM repo by running the following command:
+
+        ```bash
+        sudo dnf install pack
+        ```
     - &homebrew
       name: Homebrew
       default: true
@@ -48,6 +55,14 @@
 
         ```bash
         mise use -g pack@latest
+        ```
+    - name: openSUSE
+      content: |
+        `pack` can be installed via the [buildpacks-cli](https://software.opensuse.org/package/buildpacks-cli) package for openSUSE Tumbleweed by running the following commands:
+
+        ```bash
+        sudo zypper refresh
+        sudo zypper install buildpacks-cli
         ```
     - name: Ubuntu
       content: |
