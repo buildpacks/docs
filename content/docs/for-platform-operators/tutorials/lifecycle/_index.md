@@ -78,7 +78,7 @@ It's recommended to check the [lifecycle releases][releases] page to download bi
 In order to execute the various `lifecycle phases` correctly, you first need to set the values of few important environment variables by running the following commands in the terminal:
 
 ```command
-export CNB_USER_ID=$(id -u) CNB_GROUP_ID=$(id -g) CNB_PLATFORM_API=0.14
+export CNB_USER_ID=$(id -u) CNB_GROUP_ID=$(id -g) CNB_PLATFORM_API=0.15
 export CNB_SAMPLES_PATH="/<your-path>/samples"
 export CNB_LIFECYCLE_PATH="/<your-path/lifecycle/out/<your-os-arch>/lifecycle"
 ```
@@ -86,7 +86,7 @@ export CNB_LIFECYCLE_PATH="/<your-path/lifecycle/out/<your-os-arch>/lifecycle"
 Where
 
 * `CNB_USER_ID` and `CNB_GROUP_ID` are arbitrary values that need to be consistent. This example re-uses our user id and group id for the `CNB` user.  In a production system, these are commonly set to `1000`.
-* `CNB_PLATFORM_API` or the `Platform API` version, varies depending on the use case. This tutorial uses `v0.14`, which is the latest [Platform API][Platform API] version.
+* `CNB_PLATFORM_API` or the `Platform API` version, varies depending on the use case. This tutorial uses `v0.15`, which is the latest [Platform API][Platform API] version.
 * `CNB_SAMPLES_PATH` represents the path of our local copy of the `samples` directory.
 * `CNB_LIFECYCLE_PATH` represents the path of our local compiled `lifecycle` directory.
 
@@ -145,7 +145,7 @@ ${CNB_LIFECYCLE_PATH}/analyzer -log-level debug -daemon -layers="./layers" -run-
 <!-- test:exec -->
 <!--
 ```command
-export CNB_USER_ID=$(id -u) CNB_GROUP_ID=$(id -g) CNB_PLATFORM_API=0.14
+export CNB_USER_ID=$(id -u) CNB_GROUP_ID=$(id -g) CNB_PLATFORM_API=0.15
 export CNB_LIFECYCLE_PATH=/tmp/tutorial/lifecycle/out/linux-amd64/lifecycle
 ${CNB_LIFECYCLE_PATH}/analyzer -log-level debug -daemon -layers="./layers" -run-image cnbs/sample-stack-run:resolute apps/bash-script
 ```
