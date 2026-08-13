@@ -953,13 +953,13 @@ make build-linux-amd64 # hardcode CI tests to linux-amd64
 </blockquote>
 <h3 id="set-environment-variables">Set environment variables</h3>
 <p>In order to execute the various <code>lifecycle phases</code> correctly, you first need to set the values of few important environment variables by running the following commands in the terminal:</p>
-<pre tabindex="0"><code class="language-command" data-lang="command">export CNB_USER_ID=$(id -u) CNB_GROUP_ID=$(id -g) CNB_PLATFORM_API=0.14
+<pre tabindex="0"><code class="language-command" data-lang="command">export CNB_USER_ID=$(id -u) CNB_GROUP_ID=$(id -g) CNB_PLATFORM_API=0.15
 export CNB_SAMPLES_PATH=&#34;/&lt;your-path&gt;/samples&#34;
 export CNB_LIFECYCLE_PATH=&#34;/&lt;your-path/lifecycle/out/&lt;your-os-arch&gt;/lifecycle&#34;
 </code></pre><p>Where</p>
 <ul>
 <li><code>CNB_USER_ID</code> and <code>CNB_GROUP_ID</code> are arbitrary values that need to be consistent. This example re-uses our user id and group id for the <code>CNB</code> user.  In a production system, these are commonly set to <code>1000</code>.</li>
-<li><code>CNB_PLATFORM_API</code> or the <code>Platform API</code> version, varies depending on the use case. This tutorial uses <code>v0.14</code>, which is the latest <a href="https://github.com/buildpacks/spec/releases?q=platform">Platform API</a> version.</li>
+<li><code>CNB_PLATFORM_API</code> or the <code>Platform API</code> version, varies depending on the use case. This tutorial uses <code>v0.15</code>, which is the latest <a href="https://github.com/buildpacks/spec/releases?q=platform">Platform API</a> version.</li>
 <li><code>CNB_SAMPLES_PATH</code> represents the path of our local copy of the <code>samples</code> directory.</li>
 <li><code>CNB_LIFECYCLE_PATH</code> represents the path of our local compiled <code>lifecycle</code> directory.</li>
 </ul>
@@ -1004,7 +1004,7 @@ cp -r "/tmp/tutorial/samples/apps/bash-script" ./apps/
 </span></span></code></pre></div><!-- test:exec -->
 <!--
 ```command
-export CNB_USER_ID=$(id -u) CNB_GROUP_ID=$(id -g) CNB_PLATFORM_API=0.14
+export CNB_USER_ID=$(id -u) CNB_GROUP_ID=$(id -g) CNB_PLATFORM_API=0.15
 export CNB_LIFECYCLE_PATH=/tmp/tutorial/lifecycle/out/linux-amd64/lifecycle
 ${CNB_LIFECYCLE_PATH}/analyzer -log-level debug -daemon -layers="./layers" -run-image cnbs/sample-stack-run:resolute apps/bash-script
 ```
