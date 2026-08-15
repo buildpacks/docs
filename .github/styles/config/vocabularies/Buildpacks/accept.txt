@@ -6,6 +6,7 @@ buildpackage
 bundler
 CLI
 [Cc]loud
+cnbs
 CNB
 containerd
 CycloneDX
