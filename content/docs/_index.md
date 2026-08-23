@@ -10,7 +10,7 @@ Cloud Native Buildpacks (CNBs) transform your application source code into [cont
 
 With buildpacks, organizations can concentrate the knowledge of container build best practices within a specialized team, instead of having application developers across the organization individually maintain their own Dockerfiles. This makes it easier to know what is inside application images, enforce security and compliance requirements, and perform upgrades with minimal effort and intervention.
 
-The CNB project was initiated by Pivotal and Heroku in January 2018 and joined the Cloud Native Computing Foundation (CNCF) as an Apache-2.0 licensed project in October 2018. It graduated within the CNCF in 2026.
+The CNB project was initiated by Pivotal and Heroku in January 2018 and joined the Cloud Native Computing Foundation (CNCF) as an Apache-2.0 licensed project in October 2018. Read the full story, including our 2026 graduation, on the [History](/history) page.
 
 ---
 
