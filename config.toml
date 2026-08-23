@@ -46,6 +46,12 @@ featureKatacoda = false
   url        = "https://registry.buildpacks.io/"
   weight     = 4
 
+  [[menu.main]]
+  identifier = "history"
+  name       = "History"
+  url        = "/history"
+  weight     = 5
+
   [[menu.footer1]]
   name       = "DevStats"
   url        = "https://buildpacks.devstats.cncf.io/d/8/dashboards?orgId=1&refresh=15m"
