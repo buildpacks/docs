@@ -204,6 +204,8 @@
   </url><url>
     <loc>https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/export/</loc>
   </url><url>
+    <loc>https://buildpacks.io/history/</loc>
+  </url><url>
     <loc>https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-buildpack/05_make-app-runnable/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/for-platform-operators/how-to/migrate/platform-api-0.11-0.12/</loc>

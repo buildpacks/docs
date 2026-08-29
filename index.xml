@@ -523,6 +523,13 @@
 				<description>&lt;p&gt;The &lt;code&gt;exporter&lt;/code&gt; creates the final &lt;code&gt;OCI image&lt;/code&gt; and updates the image config with new metadata to reflect the latest changes.&lt;/p&gt;</description>
 			</item>
 			<item>
+				<title>History</title>
+				<link>https://buildpacks.io/history/</link>
+				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+				<guid>https://buildpacks.io/history/</guid>
+				<description>How Cloud Native Buildpacks came to be, from Heroku&amp;rsquo;s original buildpacks to a graduated CNCF project.</description>
+			</item>
+			<item>
 				<title>Making your application runnable</title>
 				<link>https://buildpacks.io/docs/for-buildpack-authors/tutorials/basic-buildpack/05_make-app-runnable/</link>
 				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
