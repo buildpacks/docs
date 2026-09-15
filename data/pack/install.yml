@@ -64,6 +64,15 @@
         sudo zypper refresh
         sudo zypper install buildpacks-cli
         ```
+    - name: RHEL
+      content: |
+        `pack` is available for RHEL and CentOS Stream 8, 9, and 10 in [Extra Packages for Enterprise Linux](https://www.redhat.com/en/blog/whats-epel-and-how-do-i-use-it) or EPEL for short.
+
+        Enable EPEL by following [these instructions](https://www.redhat.com/en/blog/install-epel-linux), and then install `pack` by running:
+
+        ```bash
+        sudo dnf install pack
+        ```
     - name: Ubuntu
       content: |
         `pack` can be installed using the [official PPA](https://launchpad.net/~cncf-buildpacks/+archive/ubuntu/pack-cli) by running the following commands:
