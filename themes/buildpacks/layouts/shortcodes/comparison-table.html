@@ -1,5 +1,28 @@
+<style>
+/* Hide scrollbar for a cleaner UI, but keep it scrollable */
+.scrollable-list {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: thin;  /* Firefox */
+  scrollbar-color: rgba(0, 0, 0, 0.1) transparent;
+}
+/* For Webkit browsers: make it a sleek, invisible-until-hover scrollbar */
+.scrollable-list::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+.scrollable-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollable-list::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 4px;
+}
+.scrollable-list:hover::-webkit-scrollbar-thumb {
+  background: rgba(224, 62, 115, 0.4); /* Matches the pink theme subtly */
+}
+</style>
 <div style="overflow-x: auto">
-  <table class="text-center bs-0 bg-white border">
+  <table class="table-hover table-striped text-center bs-0 bg-white border">
     <caption>Cloud Native Buildpacks comparison with other alternatives</caption>
     <colgroup>
       <col style="width:25%">
@@ -13,7 +36,7 @@
     <tr>
       <th></th>
       <th class="py-3">
-        <div class="px-5 py-3">
+        <div class="py-3" style="max-width: 70px; margin: 0 auto;">
           {{ readFile "themes/buildpacks/static/images/buildpacks-logo-bug.svg" | safeHTML }}
         </div>
         <div>Cloud Native Buildpacks</div>
@@ -57,39 +80,39 @@
       <th class="p-3">
         Advanced Caching
       </th>
-      <td class="text-pink font-weight-bold border-left border-right">Yes</td>
-      <td class="text-muted">No</td>
-      <td class="text-pink font-weight-bold">Yes</td>
-      <td class="text-muted">No</td>
-      <td class="text-pink font-weight-bold">Yes</td>
+      <td class="text-pink font-weight-bold border-left border-right"><i class="fas fa-check me-1"></i>Yes</td>
+      <td class="text-muted"><span class="opacity-50 text-muted"><i class="fas fa-minus me-1"></i> No</span></td>
+      <td class="text-pink font-weight-bold"><i class="fas fa-check me-1"></i>Yes</td>
+      <td class="text-muted"><span class="opacity-50 text-muted"><i class="fas fa-minus me-1"></i> No</span></td>
+      <td class="text-pink font-weight-bold"><i class="fas fa-check me-1"></i>Yes</td>
     </tr>
     <tr>
       <th class="p-3">
         Auto-detection
       </th>
-      <td class="text-pink font-weight-bold border-left border-right">Yes</td>
-      <td class="text-muted">No</td>
-      <td class="text-pink font-weight-bold">Yes</td>
-      <td class="text-pink font-weight-bold">Yes</td>
-      <td class="text-pink font-weight-bold">Yes</td>
+      <td class="text-pink font-weight-bold border-left border-right"><i class="fas fa-check me-1"></i>Yes</td>
+      <td class="text-muted"><span class="opacity-50 text-muted"><i class="fas fa-minus me-1"></i> No</span></td>
+      <td class="text-pink font-weight-bold"><i class="fas fa-check me-1"></i>Yes</td>
+      <td class="text-pink font-weight-bold"><i class="fas fa-check me-1"></i>Yes</td>
+      <td class="text-pink font-weight-bold"><i class="fas fa-check me-1"></i>Yes</td>
     </tr>
     <tr>
       <th class="p-3">
         Bill-of-Materials
       </th>
-      <td class="text-pink font-weight-bold border-left border-right">Yes</td>
-      <td class="text-muted">No</td>
-      <td class="text-muted">No</td>
-      <td class="text-muted">No</td>
-      <td class="text-pink font-weight-bold">Yes</td>
+      <td class="text-pink font-weight-bold border-left border-right"><i class="fas fa-check me-1"></i>Yes</td>
+      <td class="text-muted"><span class="opacity-50 text-muted"><i class="fas fa-minus me-1"></i> No</span></td>
+      <td class="text-muted"><span class="opacity-50 text-muted"><i class="fas fa-minus me-1"></i> No</span></td>
+      <td class="text-muted"><span class="opacity-50 text-muted"><i class="fas fa-minus me-1"></i> No</span></td>
+      <td class="text-pink font-weight-bold"><i class="fas fa-check me-1"></i>Yes</td>
     </tr>
     <tr>
       <th class="p-3">
         Modular / Pluggable
       </th>
-      <td class="text-pink font-weight-bold border-left border-right">Yes</td>
-      <td class="text-muted">No</td>
-      <td class="text-muted">No</td>
+      <td class="text-pink font-weight-bold border-left border-right"><i class="fas fa-check me-1"></i>Yes</td>
+      <td class="text-muted"><span class="opacity-50 text-muted"><i class="fas fa-minus me-1"></i> No</span></td>
+      <td class="text-muted"><span class="opacity-50 text-muted"><i class="fas fa-minus me-1"></i> No</span></td>
       <td class="text-muted">&nbsp;&nbsp;N/A&nbsp;<sup>&dagger;</sup></td>
       <td class="text-muted">&nbsp;&nbsp;N/A&nbsp;<sup>&dagger;</sup></td>
     </tr>
@@ -97,66 +120,67 @@
       <th class="p-3">
         Multi-language
       </th>
-      <td class="text-pink font-weight-bold border-left border-right">Yes</td>
-      <td class="text-pink font-weight-bold">Yes</td>
-      <td class="text-pink font-weight-bold">Yes</td>
-      <td class="text-muted">No</td>
-      <td class="text-muted">No</td>
+      <td class="text-pink font-weight-bold border-left border-right"><i class="fas fa-check me-1"></i>Yes</td>
+      <td class="text-pink font-weight-bold"><i class="fas fa-check me-1"></i>Yes</td>
+      <td class="text-pink font-weight-bold"><i class="fas fa-check me-1"></i>Yes</td>
+      <td class="text-muted"><span class="opacity-50 text-muted"><i class="fas fa-minus me-1"></i> No</span></td>
+      <td class="text-muted"><span class="opacity-50 text-muted"><i class="fas fa-minus me-1"></i> No</span></td>
     </tr>
     <tr>
       <th class="p-3">
         Multi-process
       </th>
-      <td class="text-pink font-weight-bold border-left border-right">Yes</td>
-      <td class="text-muted">No</td>
-      <td class="text-muted">No</td>
-      <td class="text-muted">No</td>
-      <td class="text-muted">No</td>
+      <td class="text-pink font-weight-bold border-left border-right"><i class="fas fa-check me-1"></i>Yes</td>
+      <td class="text-muted"><span class="opacity-50 text-muted"><i class="fas fa-minus me-1"></i> No</span></td>
+      <td class="text-muted"><span class="opacity-50 text-muted"><i class="fas fa-minus me-1"></i> No</span></td>
+      <td class="text-muted"><span class="opacity-50 text-muted"><i class="fas fa-minus me-1"></i> No</span></td>
+      <td class="text-muted"><span class="opacity-50 text-muted"><i class="fas fa-minus me-1"></i> No</span></td>
     </tr>
     <tr>
       <th class="p-3">
         Minimal app image
       </th>
-      <td class="text-pink font-weight-bold border-left border-right">Yes</td>
-      <td class="text-pink font-weight-bold">&nbsp;&nbsp;Yes&nbsp;<sup>&diams;</sup></td>
-      <td class="text-pink font-weight-bold">&nbsp;&nbsp;Yes&nbsp;<sup>&ddagger;</sup></td>
-      <td class="text-pink font-weight-bold">Yes</td>
-      <td class="text-pink font-weight-bold">Yes</td>
+      <td class="text-pink font-weight-bold border-left border-right"><i class="fas fa-check me-1"></i>Yes</td>
+      <td class="text-pink font-weight-bold"><i class="fas fa-check me-1"></i>&nbsp;&nbsp;Yes&nbsp;<sup>&diams;</sup></td>
+      <td class="text-pink font-weight-bold"><i class="fas fa-check me-1"></i>&nbsp;&nbsp;Yes&nbsp;<sup>&ddagger;</sup></td>
+      <td class="text-pink font-weight-bold"><i class="fas fa-check me-1"></i>Yes</td>
+      <td class="text-pink font-weight-bold"><i class="fas fa-check me-1"></i>Yes</td>
     </tr>
     <tr>
       <th class="p-3">
         Rebasing
       </th>
-      <td class="text-pink font-weight-bold border-left border-right">Yes</td>
-      <td class="text-muted">No</td>
-      <td class="text-muted">No</td>
-      <td class="text-muted">No</td>
-      <td class="text-muted">No</td>
+      <td class="text-pink font-weight-bold border-left border-right"><i class="fas fa-check me-1"></i>Yes</td>
+      <td class="text-muted"><span class="opacity-50 text-muted"><i class="fas fa-minus me-1"></i> No</span></td>
+      <td class="text-muted"><span class="opacity-50 text-muted"><i class="fas fa-minus me-1"></i> No</span></td>
+      <td class="text-muted"><span class="opacity-50 text-muted"><i class="fas fa-minus me-1"></i> No</span></td>
+      <td class="text-muted"><span class="opacity-50 text-muted"><i class="fas fa-minus me-1"></i> No</span></td>
     </tr>
     <tr>
       <th class="p-3">
         Reproducibility
       </th>
-      <td class="text-pink font-weight-bold border-left border-right">Yes</td>
-      <td class="text-muted">No</td>
-      <td class="text-muted">No</td>
-      <td class="text-pink font-weight-bold">Yes</td>
-      <td class="text-pink font-weight-bold">Yes</td>
+      <td class="text-pink font-weight-bold border-left border-right"><i class="fas fa-check me-1"></i>Yes</td>
+      <td class="text-muted"><span class="opacity-50 text-muted"><i class="fas fa-minus me-1"></i> No</span></td>
+      <td class="text-muted"><span class="opacity-50 text-muted"><i class="fas fa-minus me-1"></i> No</span></td>
+      <td class="text-pink font-weight-bold"><i class="fas fa-check me-1"></i>Yes</td>
+      <td class="text-pink font-weight-bold"><i class="fas fa-check me-1"></i>Yes</td>
     </tr>
     <tr>
       <th class="p-3">
         Reusability
       </th>
-      <td class="text-pink font-weight-bold border-left border-right">Yes</td>
-      <td class="text-muted">No</td>
-      <td class="text-pink font-weight-bold">Yes</td>
+      <td class="text-pink font-weight-bold border-left border-right"><i class="fas fa-check me-1"></i>Yes</td>
+      <td class="text-muted"><span class="opacity-50 text-muted"><i class="fas fa-minus me-1"></i> No</span></td>
+      <td class="text-pink font-weight-bold"><i class="fas fa-check me-1"></i>Yes</td>
       <td class="text-muted">&nbsp;&nbsp;N/A&nbsp;<sup>&dagger;</sup></td>
       <td class="text-muted">&nbsp;&nbsp;N/A&nbsp;<sup>&dagger;</sup></td>
     </tr>
     <tr class="border-bottom border-top bg-light">
       <th class="p-3">Integrations</th>
-      <td class="text-left pl-5 align-text-top border-left border-right">
-        <ul class="list-circle">
+      <td class="align-top border-left border-right">
+        <div class="scrollable-list" style="max-height: 140px; overflow-y: auto; overflow-x: auto; padding-right: 10px;">
+          <ul class="list-circle ps-3 mb-0">
           <li>Azure</li>
           <li>CircleCI</li>
           <li>GitLab</li>
@@ -166,9 +190,11 @@
           <li>Tekton</li>
           <li>...</li>
         </ul>
+        </div>
       </td>
-      <td class="text-left pl-5 align-text-top">
-        <ul class="list-circle">
+      <td class="align-top">
+        <div class="scrollable-list" style="max-height: 140px; overflow-y: auto; overflow-x: auto; padding-right: 10px;">
+          <ul class="list-circle ps-3 mb-0">
           <li>Amazon ECS</li>
           <li>Azure</li>
           <li>CircleCI</li>
@@ -177,20 +203,26 @@
           <li>Tekton</li>
           <li>...</li>
         </ul>
+        </div>
       </td>
-      <td class="text-left pl-5 align-text-top">
-        <ul class="list-circle">
+      <td class="align-top">
+        <div class="scrollable-list" style="max-height: 140px; overflow-y: auto; overflow-x: auto; padding-right: 10px;">
+          <ul class="list-circle ps-3 mb-0">
           <li>OpenShift</li>
         </ul>
+        </div>
       </td>
-      <td class="text-left pl-5 align-text-top">
-        <ul class="list-circle">
+      <td class="align-top">
+        <div class="scrollable-list" style="max-height: 140px; overflow-y: auto; overflow-x: auto; padding-right: 10px;">
+          <ul class="list-circle ps-3 mb-0">
           <li>Gradle</li>
           <li>Maven</li>
         </ul>
+        </div>
       </td>
-      <td class="text-left pl-5 align-text-top">
-        <ul class="list-circle">
+      <td class="align-top">
+        <div class="scrollable-list" style="max-height: 140px; overflow-y: auto; overflow-x: auto; padding-right: 10px;">
+          <ul class="list-circle ps-3 mb-0">
           <li>Terraform</li>
           <li>GoReleaser</li>
           <li>Skaffold</li>
@@ -198,6 +230,7 @@
           <li>Tilt</li>
           <li>...</li>
         </ul>
+        </div>
       </td>
     </tr>
     <tr>
@@ -210,32 +243,38 @@
     </tr>
     <tr class="border-top bg-light">
       <th class="p-3">Best for Building...</th>
-      <td class="border-left border-right text-left pl-6 align-text-top">
-        <ul class="list-circle">
+      <td class="border-left border-right align-top"><div class="d-inline-block text-start align-top">
+        <ul class="list-circle ps-3 mb-0">
           <li>Applications</li>
         </ul>
+      </div>
       </td>
-      <td class="text-left pl-6 align-text-top">
-        <ul class="list-circle">
+      <td class="align-top"><div class="d-inline-block text-start align-top">
+        <ul class="list-circle ps-3 mb-0">
           <li>Applications</li>
           <li>Base images</li>
           <li>OS Images</li>
         </ul>
-        <td class="text-left pl-6 align-text-top">
-          <ul class="list-circle">
+      </div>
+      </td>
+      <td class="align-top"><div class="d-inline-block text-start align-top">
+        <ul class="list-circle ps-3 mb-0">
+          <li>Applications</li>
+          </ul>
+        </div>
+      </td>
+        <td class="align-top"><div class="d-inline-block text-start align-top">
+          <ul class="list-circle ps-3 mb-0">
             <li>Applications</li>
           </ul>
-        </td>
-        <td class="text-left pl-6 align-text-top">
-          <ul class="list-circle">
+        </div>
+      </td>
+        <td class="align-top"><div class="d-inline-block text-start align-top">
+          <ul class="list-circle ps-3 mb-0">
             <li>Applications</li>
           </ul>
-        </td>
-        <td class="text-left pl-6 align-text-top">
-          <ul class="list-circle">
-            <li>Applications</li>
-          </ul>
-        </td>
+        </div>
+      </td>
       </tr>
     </tbody>
   </table>
