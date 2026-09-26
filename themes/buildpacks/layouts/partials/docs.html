@@ -25,6 +25,145 @@
   </div>
 </div>
 
+<script>
+(function() {
+  document.addEventListener('DOMContentLoaded', function() {
+    var sidebar = document.querySelector('.sidebar');
+    if (!sidebar) return;
+
+    function scrollSidebarToItem(itemEl, smooth) {
+      if (!itemEl) return;
+      var itemLink = itemEl.querySelector('a') || itemEl;
+      var itemRect = itemLink.getBoundingClientRect();
+      var sidebarRect = sidebar.getBoundingClientRect();
+      var padding = 60;
+
+      if (itemRect.top < sidebarRect.top + padding || itemRect.bottom > sidebarRect.bottom - padding) {
+        var targetScrollTop = sidebar.scrollTop + (itemRect.top - sidebarRect.top) - (sidebarRect.height / 2) + (itemRect.height / 2);
+        sidebar.scrollTo({
+          top: Math.max(0, targetScrollTop),
+          behavior: smooth ? 'smooth' : 'auto'
+        });
+      }
+    }
+
+    // Ensure the initially active sidebar item is scrolled into view on load
+    var initialActive = sidebar.querySelector('li.active');
+    if (initialActive) {
+      scrollSidebarToItem(initialActive, false);
+    }
+
+    {{ if .Params.include_summaries }}
+    var docsContent = document.querySelector('.docs-content');
+    if (!docsContent) return;
+
+    // Collect all h2 and h3 headings in content that have <a> children linking to child pages
+    var headings = docsContent.querySelectorAll('h2, h3');
+    var trackedHeadings = [];
+
+    headings.forEach(function(heading) {
+      var link = heading.querySelector('a[href]');
+      if (!link) return;
+
+      var href = link.getAttribute('href');
+      var pathname;
+      try {
+        var url = new URL(href, window.location.origin);
+        pathname = url.pathname;
+      } catch(e) {
+        pathname = href;
+      }
+
+      var sidebarItem = sidebar.querySelector('li[data-nav-id="' + pathname + '"]');
+      if (sidebarItem) {
+        trackedHeadings.push({
+          heading: heading,
+          sidebarItem: sidebarItem,
+          pathname: pathname
+        });
+      }
+    });
+
+    if (trackedHeadings.length === 0) return;
+
+    var currentActive = null;
+    var ticking = false;
+
+    function updateActiveItem() {
+      ticking = false;
+      var triggerOffset = 140;
+      var activeEntry = null;
+
+      // If scrolled to the very bottom of the page, highlight the last visible heading
+      var atBottom = (window.innerHeight + Math.round(window.scrollY)) >= (document.documentElement.scrollHeight - 15);
+      if (atBottom) {
+        activeEntry = trackedHeadings[trackedHeadings.length - 1];
+      } else {
+        // Find the last heading that has crossed the trigger offset line near the top of the viewport
+        for (var i = 0; i < trackedHeadings.length; i++) {
+          var rect = trackedHeadings[i].heading.getBoundingClientRect();
+          if (rect.top <= triggerOffset) {
+            activeEntry = trackedHeadings[i];
+          } else {
+            break;
+          }
+        }
+
+        // If near the top of the page and the first heading hasn't reached triggerOffset yet, select the first heading if visible
+        if (!activeEntry && trackedHeadings.length > 0) {
+          var firstRect = trackedHeadings[0].heading.getBoundingClientRect();
+          if (firstRect.top < window.innerHeight * 0.8) {
+            activeEntry = trackedHeadings[0];
+          }
+        }
+      }
+
+      if (activeEntry && activeEntry !== currentActive) {
+        if (currentActive) {
+          if (currentActive.visibleItem) {
+            currentActive.visibleItem.classList.remove('scrollspy-active');
+          } else {
+            currentActive.sidebarItem.classList.remove('scrollspy-active');
+          }
+        }
+
+        // Find the closest visible sidebar item (ignore items with .collapse)
+        var visibleItem = activeEntry.sidebarItem;
+        while (visibleItem && visibleItem.classList.contains('collapse')) {
+          var parentUl = visibleItem.parentElement;
+          if (!parentUl) break;
+          var parentLi = parentUl.closest('li');
+          if (!parentLi) break;
+          visibleItem = parentLi;
+        }
+
+        activeEntry.visibleItem = visibleItem;
+        if (visibleItem) {
+          visibleItem.classList.add('scrollspy-active');
+          scrollSidebarToItem(visibleItem, true);
+        }
+        
+        currentActive = activeEntry;
+      }
+    }
+
+    function onScroll() {
+      if (!ticking) {
+        window.requestAnimationFrame(updateActiveItem);
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+
+    // Initial evaluation on page load
+    updateActiveItem();
+    {{ end }}
+  });
+})();
+</script>
+
 <!-- templates -->
 {{- define "subsection-summary" }}
   {{- $depth := (int .depth) }}
