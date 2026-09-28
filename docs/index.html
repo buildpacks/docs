@@ -950,211 +950,255 @@ of the <a href="/docs/for-platform-operators/concepts/lifecycle">lifecycle</a> t
 <p>We love talks to share the latest development updates, explain buildpacks basics and more, receive feedback and questions, and get to know other members of the community.</p>
 <h3 id="conference-talks">Conference Talks</h3>
 <p>Check out some of our most recent and exciting conference talks below. More talks are available in our <a href="https://www.youtube.com/playlist?list=PL1p8pquzNvRqz3v7Q-OA7wldIxLCNFHcC">Conference Talks Playlist</a> on YouTube.</p>
-<div id="talks" class="px-2">
-  <div class="row border">
-    <div id="talks-player" class="col-md-8 px-0">
+<style>
+  .coverflow-scene {
+    position: relative;
+    width: 100%;
+    height: 450px;
+    perspective: 1200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: transparent;
+    margin-bottom: 10px;
+  }
+  .coverflow-item {
+    position: absolute;
+    width: 480px;
+    height: 270px;
+    transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.5s ease;
+    cursor: pointer;
+    border-radius: 12px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    background-color: #000;
+    overflow: hidden;
+    transform-origin: center;
+    user-select: none;
+  }
+  
+   
+  @media (max-width: 768px) {
+    .coverflow-item {
+      width: 320px;
+      height: 180px;
+    }
+    .coverflow-scene {
+      height: 350px;
+    }
+  }
+
+  .coverflow-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.6;
+    transition: opacity 0.3s;
+  }
+  .coverflow-item:hover img {
+    opacity: 0.8;
+  }
+  .coverflow-item.active img {
+    opacity: 1;
+  }
+  .coverflow-item.active:hover img {
+    opacity: 0.8;
+  }
+
+  .coverflow-item iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    z-index: 5;
+    background: #000;
+    display: none;
+  }
+  .coverflow-item.playing iframe {
+    display: block;
+  }
+
+  .play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 4rem;
+    z-index: 4;
+    text-shadow: 0 4px 15px rgba(0,0,0,1);
+    pointer-events: none;
+    display: none;
+    transition: color 0.3s;
+  }
+  .coverflow-item.active .play-button {
+    display: block;
+  }
+  .coverflow-item.active:hover .play-button {
+    color: #ff0000;  
+  }
+  .coverflow-item.playing .play-button {
+    display: none;
+  }
+
+  .item-title-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(transparent, rgba(0,0,0,0.95));
+    color: white;
+    padding: 30px 15px 15px;
+    font-size: 15px;
+    font-weight: 600;
+    z-index: 3;
+    pointer-events: none;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  }
+  .coverflow-item.playing .item-title-overlay {
+    display: none;
+  }
+
+  .coverflow-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  .coverflow-nav button {
+    background: #fff;
+    color: #333;
+    border: 1px solid #ddd;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+  .coverflow-nav button:hover {
+    background: #f0f0f0;
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  .coverflow-nav button:active {
+    transform: scale(0.95);
+  }
+</style>
+
+<div id="talks" class="px-2 mt-3">
+  <div class="row">
+    <div class="col-12 px-0">
+      <div class="coverflow-scene">
+        
+        <div data-talk-index="0" class="coverflow-item pointer">
+          <img src="https://img.youtube.com/vi/Gc4NZlv7F5A/hqdefault.jpg" alt="Buildpacks: Towards 1.0, AI and Other Things" />
+          <div class="play-button"><i class="fab fa-youtube"></i></div>
+          <div class="item-title-overlay">Buildpacks: Towards 1.0, AI and Other Things</div>
+          <iframe allowfullscreen title="Buildpacks: Towards 1.0, AI and Other Things"></iframe>
+        </div>
+        
+        <div data-talk-index="1" class="coverflow-item pointer">
+          <img src="https://img.youtube.com/vi/FBgX1RS0ND8/hqdefault.jpg" alt="Project Lightning Talk: Container Builds at Scale with Buildpacks" />
+          <div class="play-button"><i class="fab fa-youtube"></i></div>
+          <div class="item-title-overlay">Project Lightning Talk: Container Builds at Scale with Buildpacks</div>
+          <iframe allowfullscreen title="Project Lightning Talk: Container Builds at Scale with Buildpacks"></iframe>
+        </div>
+        
+        <div data-talk-index="2" class="coverflow-item pointer">
+          <img src="https://img.youtube.com/vi/GeO8qCPlJC8/hqdefault.jpg" alt="Using Buildpacks To Boost Developer Productivity" />
+          <div class="play-button"><i class="fab fa-youtube"></i></div>
+          <div class="item-title-overlay">Using Buildpacks To Boost Developer Productivity</div>
+          <iframe allowfullscreen title="Using Buildpacks To Boost Developer Productivity"></iframe>
+        </div>
+        
+        <div data-talk-index="3" class="coverflow-item pointer">
+          <img src="https://img.youtube.com/vi/8ULJg-z_wZA/hqdefault.jpg" alt="Project Lightning Talk: Container Builds At Scale With Buildpacks" />
+          <div class="play-button"><i class="fab fa-youtube"></i></div>
+          <div class="item-title-overlay">Project Lightning Talk: Container Builds At Scale With Buildpacks</div>
+          <iframe allowfullscreen title="Project Lightning Talk: Container Builds At Scale With Buildpacks"></iframe>
+        </div>
+        
+        <div data-talk-index="4" class="coverflow-item pointer">
+          <img src="https://img.youtube.com/vi/ZrxAyk1-pSs/hqdefault.jpg" alt="Customizing your Buildpacks Build" />
+          <div class="play-button"><i class="fab fa-youtube"></i></div>
+          <div class="item-title-overlay">Customizing your Buildpacks Build</div>
+          <iframe allowfullscreen title="Customizing your Buildpacks Build"></iframe>
+        </div>
+        
+        <div data-talk-index="5" class="coverflow-item pointer">
+          <img src="https://img.youtube.com/vi/bpshvqQMYM0/hqdefault.jpg" alt="Intro to Cloud Native Buildpacks" />
+          <div class="play-button"><i class="fab fa-youtube"></i></div>
+          <div class="item-title-overlay">Intro to Cloud Native Buildpacks</div>
+          <iframe allowfullscreen title="Intro to Cloud Native Buildpacks"></iframe>
+        </div>
+        
+        <div data-talk-index="6" class="coverflow-item pointer">
+          <img src="https://img.youtube.com/vi/r7VfuEHixtc/hqdefault.jpg" alt="Introduction to Cloud Native Buildpacks" />
+          <div class="play-button"><i class="fab fa-youtube"></i></div>
+          <div class="item-title-overlay">Introduction to Cloud Native Buildpacks</div>
+          <iframe allowfullscreen title="Introduction to Cloud Native Buildpacks"></iframe>
+        </div>
+        
+        <div data-talk-index="7" class="coverflow-item pointer">
+          <img src="https://img.youtube.com/vi/YoPUu8EryFY/hqdefault.jpg" alt="Unraveling the magic behind Buildpacks" />
+          <div class="play-button"><i class="fab fa-youtube"></i></div>
+          <div class="item-title-overlay">Unraveling the magic behind Buildpacks</div>
+          <iframe allowfullscreen title="Unraveling the magic behind Buildpacks"></iframe>
+        </div>
+        
+        <div data-talk-index="8" class="coverflow-item pointer">
+          <img src="https://img.youtube.com/vi/RNN8XwRWGjk/hqdefault.jpg" alt="Production CI/CD w/CNBs: Tekton, Gitlab &amp; CircleCI(plus), Oh My!" />
+          <div class="play-button"><i class="fab fa-youtube"></i></div>
+          <div class="item-title-overlay">Production CI/CD w/CNBs: Tekton, Gitlab &amp; CircleCI(plus), Oh My!</div>
+          <iframe allowfullscreen title="Production CI/CD w/CNBs: Tekton, Gitlab &amp; CircleCI(plus), Oh My!"></iframe>
+        </div>
+        
+        <div data-talk-index="9" class="coverflow-item pointer">
+          <img src="https://img.youtube.com/vi/j9Ak5YLrihU/hqdefault.jpg" alt="Deep Dive: Cloud Native Buildpacks" />
+          <div class="play-button"><i class="fab fa-youtube"></i></div>
+          <div class="item-title-overlay">Deep Dive: Cloud Native Buildpacks</div>
+          <iframe allowfullscreen title="Deep Dive: Cloud Native Buildpacks"></iframe>
+        </div>
+        
+        <div data-talk-index="10" class="coverflow-item pointer">
+          <img src="https://img.youtube.com/vi/-u5FIbi3Gs8/hqdefault.jpg" alt="Cloud Native Buildpacks: Containers for Everyone" />
+          <div class="play-button"><i class="fab fa-youtube"></i></div>
+          <div class="item-title-overlay">Cloud Native Buildpacks: Containers for Everyone</div>
+          <iframe allowfullscreen title="Cloud Native Buildpacks: Containers for Everyone"></iframe>
+        </div>
+        
+        <div data-talk-index="11" class="coverflow-item pointer">
+          <img src="https://img.youtube.com/vi/J2SXkmOo8iQ/hqdefault.jpg" alt="Pack to the Future: Cloud-Native Buildpacks on k8s" />
+          <div class="play-button"><i class="fab fa-youtube"></i></div>
+          <div class="item-title-overlay">Pack to the Future: Cloud-Native Buildpacks on k8s</div>
+          <iframe allowfullscreen title="Pack to the Future: Cloud-Native Buildpacks on k8s"></iframe>
+        </div>
+        
+      </div>
       
-      <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
-        <iframe class="border-0 w-100 h-100" style="position: absolute; top: 0; left: 0;" allowfullscreen
-          title="talks"></iframe>
+      <div class="coverflow-nav">
+        <button id="coverflow-prev"><i class="fas fa-chevron-left"></i></button>
+        <button id="coverflow-next"><i class="fas fa-chevron-right"></i></button>
       </div>
     </div>
-    <div id="talks-playlist" class="col-md-4 px-0">
-      
-      <div style="position: relative; padding-bottom: 109.25%; height: 0; overflow: auto;">
-        
-        <div data-talk-index="0" class="talk border-bottom pl-2 pr-1 py-1 pointer">
-          <div class="small font-weight-bold">Buildpacks: Towards 1.0, AI and Other Things</div>
-          <div class="small font-italic">
-            
-            
-            <span class="talks-presenter">Aidan Delaney, Bloomberg</span>
-            
-          </div>
-          <div class="small bg-pink px-1 d-inline-block rounded text-light">
-            KubeCon EU (2026)
-          </div>
-        </div>
-        
-        <div data-talk-index="1" class="talk border-bottom pl-2 pr-1 py-1 pointer">
-          <div class="small font-weight-bold">Project Lightning Talk: Container Builds at Scale with Buildpacks</div>
-          <div class="small font-italic">
-            
-            
-            <span class="talks-presenter">Vidhi Shah, Salesforce</span>
-            
-          </div>
-          <div class="small bg-pink px-1 d-inline-block rounded text-light">
-            KubeCon India (2026)
-          </div>
-        </div>
-        
-        <div data-talk-index="2" class="talk border-bottom pl-2 pr-1 py-1 pointer">
-          <div class="small font-weight-bold">Using Buildpacks To Boost Developer Productivity</div>
-          <div class="small font-italic">
-            
-            
-            <span class="talks-presenter">Joe Kutner, Salesforce</span>
-            
-             & 
-            <span class="talks-presenter">Joey Brown, Heroku</span>
-            
-          </div>
-          <div class="small bg-pink px-1 d-inline-block rounded text-light">
-            KubeCon NA (2025)
-          </div>
-        </div>
-        
-        <div data-talk-index="3" class="talk border-bottom pl-2 pr-1 py-1 pointer">
-          <div class="small font-weight-bold">Project Lightning Talk: Container Builds At Scale With Buildpacks</div>
-          <div class="small font-italic">
-            
-            
-            <span class="talks-presenter">Joe Kutner, Salesforce</span>
-            
-          </div>
-          <div class="small bg-pink px-1 d-inline-block rounded text-light">
-            KubeCon NA (2025)
-          </div>
-        </div>
-        
-        <div data-talk-index="4" class="talk border-bottom pl-2 pr-1 py-1 pointer">
-          <div class="small font-weight-bold">Customizing your Buildpacks Build</div>
-          <div class="small font-italic">
-            
-            
-            <span class="talks-presenter">Natalie Arellano, VMware</span>
-            
-             & 
-            <span class="talks-presenter">Aidan Delaney, Bloomberg</span>
-            
-          </div>
-          <div class="small bg-pink px-1 d-inline-block rounded text-light">
-            KubeCon EU (2023)
-          </div>
-        </div>
-        
-        <div data-talk-index="5" class="talk border-bottom pl-2 pr-1 py-1 pointer">
-          <div class="small font-weight-bold">Intro to Cloud Native Buildpacks</div>
-          <div class="small font-italic">
-            
-            
-            <span class="talks-presenter">Javier Romero, VMware</span>
-            
-             & 
-            <span class="talks-presenter">Sambhav Kothari, Bloomberg</span>
-            
-          </div>
-          <div class="small bg-pink px-1 d-inline-block rounded text-light">
-            KubeCon NA (2021)
-          </div>
-        </div>
-        
-        <div data-talk-index="6" class="talk border-bottom pl-2 pr-1 py-1 pointer">
-          <div class="small font-weight-bold">Introduction to Cloud Native Buildpacks</div>
-          <div class="small font-italic">
-            
-            
-            <span class="talks-presenter">Stephen Levine, VMware</span>
-            
-             & 
-            <span class="talks-presenter">Jesse Brown, Salesforce</span>
-            
-          </div>
-          <div class="small bg-pink px-1 d-inline-block rounded text-light">
-            KubeCon EU (2021)
-          </div>
-        </div>
-        
-        <div data-talk-index="7" class="talk border-bottom pl-2 pr-1 py-1 pointer">
-          <div class="small font-weight-bold">Unraveling the magic behind Buildpacks</div>
-          <div class="small font-italic">
-            
-            
-            <span class="talks-presenter">Sambhav Kothari, Bloomberg</span>
-            
-             & 
-            <span class="talks-presenter">Natalie Arellano, VMware</span>
-            
-          </div>
-          <div class="small bg-pink px-1 d-inline-block rounded text-light">
-            PackagingCon (2021)
-          </div>
-        </div>
-        
-        <div data-talk-index="8" class="talk border-bottom pl-2 pr-1 py-1 pointer">
-          <div class="small font-weight-bold">Production CI/CD w/CNBs: Tekton, Gitlab &amp; CircleCI(plus), Oh My!</div>
-          <div class="small font-italic">
-            
-            
-            <span class="talks-presenter">David Freilich, VMware</span>
-            
-             & 
-            <span class="talks-presenter">Natalie Arellano, VMware</span>
-            
-          </div>
-          <div class="small bg-pink px-1 d-inline-block rounded text-light">
-            KubeCon NA (2020)
-          </div>
-        </div>
-        
-        <div data-talk-index="9" class="talk border-bottom pl-2 pr-1 py-1 pointer">
-          <div class="small font-weight-bold">Deep Dive: Cloud Native Buildpacks</div>
-          <div class="small font-italic">
-            
-            
-            <span class="talks-presenter">Joe Kutner, Heroku</span>
-            
-             & 
-            <span class="talks-presenter">Stephen Levine, Pivotal</span>
-            
-          </div>
-          <div class="small bg-pink px-1 d-inline-block rounded text-light">
-            KubeCon NA (2019)
-          </div>
-        </div>
-        
-        <div data-talk-index="10" class="talk border-bottom pl-2 pr-1 py-1 pointer">
-          <div class="small font-weight-bold">Cloud Native Buildpacks: Containers for Everyone</div>
-          <div class="small font-italic">
-            
-            
-            <span class="talks-presenter">Danielle Adams, Heroku</span>
-            
-          </div>
-          <div class="small bg-pink px-1 d-inline-block rounded text-light">
-            Node&#43;JS Interactive (2019)
-          </div>
-        </div>
-        
-        <div data-talk-index="11" class="talk border-bottom pl-2 pr-1 py-1 pointer">
-          <div class="small font-weight-bold">Pack to the Future: Cloud-Native Buildpacks on k8s</div>
-          <div class="small font-italic">
-            
-            
-            <span class="talks-presenter">Emily Casey, Pivotal</span>
-            
-             & 
-            <span class="talks-presenter">Joe Kutner, Heroku</span>
-            
-          </div>
-          <div class="small bg-pink px-1 d-inline-block rounded text-light">
-            SpringOne Platform (2019)
-          </div>
-        </div>
-        
-      </div>
+  </div>
+
+  <div class="row p-2">
+    <div>
+      <div class="font-weight-bold mb-2">Description</div>
+      <div id="talk-description" class="text-muted"></div>
     </div>
   </div>
   <div class="row p-2">
     <div>
-      <div class="font-weight-bold">Description</div>
-      <div id="talk-description"></div>
-    </div>
-  </div>
-  <div class="row p-2">
-    <div>
-      <div class="font-weight-bold">Resources</div>
+      <div class="font-weight-bold mb-2">Resources</div>
       <div id="talk-resources"></div>
     </div>
   </div>
@@ -1162,45 +1206,133 @@ of the <a href="/docs/for-platform-operators/concepts/lifecycle">lifecycle</a> t
 
 <script type="application/javascript">
   let talks = [{"description":"An update on the Buildpacks project's progress toward its 1.0 release, along with new work around AI workloads and other recent developments in the ecosystem.","event_name":"KubeCon EU","name":"Buildpacks: Towards 1.0, AI and Other Things","presenters":["Aidan Delaney, Bloomberg"],"year":2026,"youtube_id":"Gc4NZlv7F5A"},{"description":"A lightning talk introducing Cloud Native Buildpacks and how they enable building container images at scale.","event_name":"KubeCon India","name":"Project Lightning Talk: Container Builds at Scale with Buildpacks","presenters":["Vidhi Shah, Salesforce"],"year":2026,"youtube_id":"FBgX1RS0ND8"},{"description":"How Cloud Native Buildpacks streamline the developer inner loop and improve productivity by turning application source code into secure, production-ready container images without Dockerfiles.","event_name":"KubeCon NA","name":"Using Buildpacks To Boost Developer Productivity","presenters":["Joe Kutner, Salesforce","Joey Brown, Heroku"],"year":2025,"youtube_id":"GeO8qCPlJC8"},{"description":"A lightning talk on using Cloud Native Buildpacks to build container images at scale, and the latest updates from the Buildpacks project.","event_name":"KubeCon NA","name":"Project Lightning Talk: Container Builds At Scale With Buildpacks","presenters":["Joe Kutner, Salesforce"],"year":2025,"youtube_id":"8ULJg-z_wZA"},{"description":"Cloud Native Buildpacks makes building container images as easy as running “pack build.” However, you will eventually want to customize that out-of-the-box experience. This talk explores the many buildpacks extension points that enable custom workflows. For application developers, we introduce inline buildpacks and build time environment variables. For platform operators, we present image extension with Dockerfiles, and how to control the level of customization available in order to adhere to security requirements.","event_name":"KubeCon EU","name":"Customizing your Buildpacks Build","presenters":["Natalie Arellano, VMware","Aidan Delaney, Bloomberg"],"resources":[{"icon":"file-powerpoint","name":"Slides","url":"https://docs.google.com/presentation/d/13eW9rm_lhrbRbwrk_sCeUCkitFI52OJRLbsGVy7eJmA/edit#slide=id.g879acc97aa_0_71"}],"year":2023,"youtube_id":"ZrxAyk1-pSs"},{"description":"Cloud Native Buildpacks transform your application source code into images that can run on any cloud. In this session you'll learn the basics of using buildpacks, why they make a great choice over the alternatives, and what new features the project has to offer. Cloud Native Buildpacks embrace modern container standards, such as the OCI image format. They take advantage of the latest capabilities of these standards, such as cross-repository blob mounting and image layer \"rebasing\" on Docker API v2 registries.","event_name":"KubeCon NA","name":"Intro to Cloud Native Buildpacks","presenters":["Javier Romero, VMware","Sambhav Kothari, Bloomberg"],"resources":[{"icon":"file-powerpoint","name":"Slides","url":"https://docs.google.com/presentation/d/13j_Im9ZLPpAKmQmMSkkeZS9e4Tebhjc_bz8yTF8dR_w/edit?usp=sharing"}],"year":2021,"youtube_id":"bpshvqQMYM0"},{"description":"Cloud Native Buildpacks transform your application source code into images that can run on any cloud. In this session you'll learn the basics of using buildpacks, and why they make a great choice over the alternatives.","event_name":"KubeCon EU","name":"Introduction to Cloud Native Buildpacks","presenters":["Stephen Levine, VMware","Jesse Brown, Salesforce"],"resources":[{"icon":"file-powerpoint","name":"Slides","url":"https://static.sched.com/hosted_files/kccnceu2021/f3/IntroductionToCloudNativeBuildpacks_StephenLevineJesseBrown_v1.pdf"},{"icon":"file-powerpoint","name":"Slides (Office Hours)","url":"https://docs.google.com/presentation/d/1eM-p7aWv6kiY77GBUR4kvdjuEBA-PEr_th9euNryoJE/view"}],"year":2021,"youtube_id":"r7VfuEHixtc"},{"description":"In this talk we will explore how lifecycle - the binary at the heart of buildpacks - makes all this possible. We will be going through the 5 different stages that the lifecycle executes - detect, analyze, restore,  build and finally export and how it stitches up the final OCI image.","event_name":"PackagingCon","name":"Unraveling the magic behind Buildpacks","presenters":["Sambhav Kothari, Bloomberg","Natalie Arellano, VMware"],"resources":[{"icon":"file-powerpoint","name":"Slides","url":"https://docs.google.com/presentation/d/1Ejo8Mf7GXxVHL7PjiApCZMJLtbX6VO8n2H7vEcZkV0I/view"}],"year":2021,"youtube_id":"YoPUu8EryFY"},{"description":"Dive into some new functionality of Cloud Native Buildpacks which can be powerful in the enterprise context, such as the ability to narrowly define trusted builders, allowing developers and operators to restrict access to registry credentials, as well as the ability to create Windows images in a number of CI/CD systems, including Tekton, Gitlab and CircleCI.","event_name":"KubeCon NA","name":"Production CI/CD w/CNBs: Tekton, Gitlab \u0026 CircleCI(plus), Oh My!","presenters":["David Freilich, VMware","Natalie Arellano, VMware"],"resources":[{"icon":"file-powerpoint","name":"Slides","url":"https://docs.google.com/presentation/d/1vDv33oHU277mh6oCP7vBqQomMpPFIuzSmMTtfaQyBoY/view"}],"year":2020,"youtube_id":"RNN8XwRWGjk"},{"description":"Learn why you need a buildpack and how to create one. We'll take advantage of caching and Docker layers to speed up rebuilds and deploys. Unlike Dockerfiles, buildpacks are composable. Finally, you'll learn how to rebase your application layers on a new image. This allow operators to efficiently handle the delivery of OS-level dependency upgrades.","event_name":"KubeCon NA","name":"Deep Dive: Cloud Native Buildpacks","presenters":["Joe Kutner, Heroku","Stephen Levine, Pivotal"],"resources":[{"icon":"file-powerpoint","name":"Slides","url":"https://docs.google.com/presentation/d/14cjPH520VGx9aGi4rHRIqgl7RHdUmCRj6PYFEBINPhs/view"}],"year":2019,"youtube_id":"j9Ak5YLrihU"},{"description":"Buildpacks are the core of Heroku - they lower the operational burden of creating and maintaining application environments. Cloud Native Buildpacks combine Heroku’s seamless developer experience with modern container standards, making it easy to build Docker images from Node.js source code. In this talk, Node developers can learn how to perform both OS and application-level upgrades, create Docker images without Dockerfiles, and run containerized Node.js apps with little configuration. (Docker experience not required.)","event_name":"Node+JS Interactive","name":"Cloud Native Buildpacks: Containers for Everyone","presenters":["Danielle Adams, Heroku"],"resources":[{"icon":"file-powerpoint","name":"Slides","url":"https://slides.com/danielleadams/cnbs-node-js-interactive-19"}],"year":2019,"youtube_id":"-u5FIbi3Gs8"},{"description":"Are you a developer that would rather build features than maintain Dockerfiles? Is your organization excited about Kubernetes but worried about patching vulnerable dependencies across a great number of containers? In this talk, you’ll learn how to use the pack CLI to go from source to image in seconds and patch a pod even faster. Cloud Foundry and Heroku users have long appreciated the developer experience and security guarantees provided by buildpacks. Cloud-Native Buildpacks (a CNCF sandbox project) represents a generational leap in buildpacks, bringing the power of buildpacks to k8s and beyond.","event_name":"SpringOne Platform","name":"Pack to the Future: Cloud-Native Buildpacks on k8s","presenters":["Emily Casey, Pivotal","Joe Kutner, Heroku"],"resources":[{"icon":"file-powerpoint","name":"Slides","url":"https://docs.google.com/presentation/d/14rkLA2hn3nVu_liiW6Y7hy3hSsnz1HueEdLkhvChONM/view"}],"year":2019,"youtube_id":"J2SXkmOo8iQ"}];
-
+  
   $(function () {
     let $talkDescription = $("#talk-description");
     let $talkResources = $("#talk-resources");
+    let cells = Array.from(document.querySelectorAll('.coverflow-item'));
+    let cellCount = cells.length;
+    let activeIndex = 0;
+    
+    if (cellCount > 0) {
+      function updateCoverflow() {
+        
+        let isMobile = window.innerWidth <= 768;
+        let xOffset = isMobile ? 120 : 220;
+        let zOffset = isMobile ? 80 : 120;
+        
+        cells.forEach((cell, i) => {
+          let diff = i - activeIndex;
+          
+          if (Math.abs(diff) > 5) {
+            cell.style.display = 'none';
+          } else {
+            cell.style.display = 'block';
+            let zIndex = 100 - Math.abs(diff);
+            let translateX = diff * xOffset;
+            let rotateY = diff === 0 ? 0 : (diff > 0 ? -45 : 45);
+            let translateZ = diff === 0 ? 0 : -zOffset - Math.abs(diff) * 50;
+            
+            
+            if (Math.abs(diff) > 1) {
+              rotateY = diff > 0 ? -55 : 55;
+            }
 
-    $("#talks-playlist div[data-talk-index]").on('click', function () {
-      $el = $(this);
-      let index = $el.attr('data-talk-index');
-      let talk = talks[index];
+            
+            cell.style.zIndex = zIndex;
+            cell.style.transform = 'translateX(' + translateX + 'px) translateZ(' + translateZ + 'px) rotateY(' + rotateY + 'deg)';
+            cell.style.opacity = 1 - Math.abs(diff) * 0.15;
+            
+            if (diff === 0) {
+              cell.classList.add('active');
+            } else {
+              cell.classList.remove('active');
+              if (cell.classList.contains('playing')) {
+                cell.classList.remove('playing');
+                let iframe = cell.querySelector('iframe');
+                if (iframe) iframe.src = '';
+              }
+            }
+          }
+        });
 
+        
+        updateTalkDetails(activeIndex);
+      }
       
-      $("#talks-playlist div[data-talk-index]").each(function () {
-        $(this).attr('data-active', 'false');
-      })
-      $(this).attr('data-active', 'true');
-
-      
-      let $video_player = $("#talks-player iframe");
-      let url = "https://www.youtube.com/embed/" + talk.youtube_id + "?autoplay=0&modestbranding=1&rel=0&iv_load_policy=3&controls=1";
-      if (url != $video_player.attr("src")) {
-        $video_player.attr("src", url);
-        $video_player.attr("title", talk.name);
+      function updateTalkDetails(index) {
+        if (!talks[index]) return;
+        let talk = talks[index];
+        
+        $talkDescription.empty().html(talk.description || '<em>No description available.</em>');
+        
+        $talkResources.empty();
+        if (talk.resources && talk.resources.length > 0) {
+          talk.resources.forEach(resource => {
+            $talkResources.append(
+            '<a class="d-inline-block button-light button rounded border p-1 mt-2 mr-2" href="' + resource.url + '" target="_blank">' +
+              '<i class="fas fa-' + resource.icon + '"></i> ' + resource.name +
+            '</a>'
+            );
+          });
+        } else {
+           $talkResources.append('<span class="text-muted">No resources linked.</span>');
+        }
       }
 
-      
-      $talkDescription.empty().html(talk.description);
-
-      
-      $talkResources.empty();
-      (talk.resources || []).forEach(resource => {
-        $talkResources.append(`
-        <a class="d-inline-block button-light button rounded border p-1" href="${resource.url}" target="_blank">
-          <i class="fas fa-${resource.icon}"></i> ${resource.name}
-        </a>
-        `);
+      $("#coverflow-prev").on('click', function() {
+        if (activeIndex > 0) {
+          activeIndex--;
+          updateCoverflow();
+        }
       });
-    });
 
-    $("#talks-playlist div[data-talk-index]")[0].click();
+      $("#coverflow-next").on('click', function() {
+        if (activeIndex < cellCount - 1) {
+          activeIndex++;
+          updateCoverflow();
+        }
+      });
+
+      $(".coverflow-item").on('click', function() {
+        let index = parseInt($(this).attr('data-talk-index'));
+        if (index === activeIndex) {
+          
+          if (!$(this).hasClass('playing')) {
+            $(this).addClass('playing');
+            let talk = talks[index];
+            let iframe = $(this).find('iframe');
+            
+            let url = "https://www.youtube.com/embed/" + talk.youtube_id + "?autoplay=1&modestbranding=1&rel=0";
+            iframe.attr("src", url);
+          }
+        } else {
+          
+          activeIndex = index;
+          updateCoverflow();
+        }
+      });
+      
+      
+      $(document).keydown(function(e) {
+        if (e.keyCode == 37 && activeIndex > 0) { 
+           activeIndex--;
+           updateCoverflow();
+        }
+        else if (e.keyCode == 39 && activeIndex < cellCount - 1) { 
+           activeIndex++;
+           updateCoverflow();
+        }
+      });
+      
+      
+      updateCoverflow();
+      
+      
+      window.addEventListener('resize', () => {
+         updateCoverflow();
+      });
+    }
   });
 </script>
 <p>If you are interested in giving a talk about buildpacks, the linked slides may provide a useful starting point. Please feel free to reach out in Slack if you&rsquo;d like input or help from the CNB team!</p>
