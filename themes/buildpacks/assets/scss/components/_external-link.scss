@@ -1,0 +1,23 @@
+/**********************************
+
+External link indicator
+
+**********************************/
+
+// Keeps the last word of a link and its arrow icon on the same line, so the
+// icon can never wrap onto a line by itself.
+.external-link-tail {
+  white-space: nowrap;
+}
+
+.external-link-icon {
+  display: inline-block;
+  width: 0.7em;
+  height: 0.7em;
+  margin-left: 0.15em;
+  vertical-align: -0.05em;
+  color: $pink;
+  stroke: currentColor;
+  // the icon is not part of the link text, so keep it free of the underline
+  text-decoration: none;
+}

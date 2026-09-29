@@ -1,0 +1,30 @@
+{{- /*
+  Renders markdown links. Links that point to a different host than the site's
+  own (i.e. external links) open in a new tab, get safe rel attributes, and are
+  followed by a small arrow icon so readers know they will leave the site.
+
+  The arrow is kept together with the last word of the link text inside a
+  nowrap span, so it can never wrap onto a line by itself.
+*/ -}}
+{{- $isExternal := false -}}
+{{- with urls.Parse .Destination -}}
+  {{- if and .Host (ne .Host (urls.Parse site.BaseURL).Host) -}}
+    {{- $isExternal = true -}}
+  {{- end -}}
+{{- end -}}
+{{- if not $isExternal -}}
+<a href="{{ .Destination | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}>{{ .Text | safeHTML }}</a>
+{{- else -}}
+  {{- $icon := partial "external-link-icon.html" . | chomp -}}
+  {{- $text := .Text -}}
+  {{- $inner := "" -}}
+  {{- if and (not (strings.Contains $text "<")) (strings.Contains $text " ") -}}
+    {{- $words := split $text " " -}}
+    {{- $last := index $words (sub (len $words) 1) -}}
+    {{- $head := delimit (first (sub (len $words) 1) $words) " " -}}
+    {{- $inner = printf "%s <span class=\"external-link-tail\">%s%s</span>" $head $last $icon -}}
+  {{- else -}}
+    {{- $inner = printf "<span class=\"external-link-tail\">%s%s</span>" $text $icon -}}
+  {{- end -}}
+<a href="{{ .Destination | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }} target="_blank" rel="noopener noreferrer">{{ $inner | safeHTML }}</a>
+{{- end -}}
