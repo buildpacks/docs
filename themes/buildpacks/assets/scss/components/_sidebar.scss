@@ -1,9 +1,17 @@
 .sidebar {
   font-size: 1rem;
-  padding: 10px 0 0 0;
+  padding: 10px 0 2rem 0;
   position: -webkit-sticky;
   position: sticky;
   top: 0;
+  max-height: 100vh;
+  overflow-y: auto;
+  scrollbar-width: thin;
+
+  @media (max-width: 767px) {
+    max-height: none;
+    overflow-y: visible;
+  }
 
   ul {
     list-style: none;
@@ -63,5 +71,17 @@
         color: $pink;
       }
     }
+
+    &.scrollspy-active {
+      background: 0 .75rem url("/images/list-item-active.svg") no-repeat;
+
+      > a {
+        color: $pink;
+        font-weight: 600;
+        transition: color 0.2s ease, font-weight 0.2s ease;
+      }
+    }
+
+
   }
 }
