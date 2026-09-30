@@ -1104,10 +1104,17 @@ Footer
 
 .sidebar {
   font-size: 1rem;
-  padding: 10px 0 0 0;
+  padding: 10px 0 2rem 0;
   position: -webkit-sticky;
   position: sticky;
-  top: 0; }
+  top: 0;
+  max-height: 100vh;
+  overflow-y: auto;
+  scrollbar-width: thin; }
+  @media (max-width: 767px) {
+    .sidebar {
+      max-height: none;
+      overflow-y: visible; } }
   .sidebar ul {
     list-style: none;
     padding: 0;
@@ -1144,6 +1151,12 @@ Footer
       background: 0 0.75rem url("/images/list-item-active.svg") no-repeat; }
       .sidebar li[class*="depth-"]:not(.depth-0).active > a {
         color: #DF0A6B; }
+    .sidebar li[class*="depth-"]:not(.depth-0).scrollspy-active {
+      background: 0 0.75rem url("/images/list-item-active.svg") no-repeat; }
+      .sidebar li[class*="depth-"]:not(.depth-0).scrollspy-active > a {
+        color: #DF0A6B;
+        font-weight: 600;
+        transition: color 0.2s ease, font-weight 0.2s ease; }
 
 .docs {
   background-color: #F8F9FA;

@@ -1408,6 +1408,145 @@
   </div>
 </div>
 
+<script>
+(function() {
+  document.addEventListener('DOMContentLoaded', function() {
+    var sidebar = document.querySelector('.sidebar');
+    if (!sidebar) return;
+
+    function scrollSidebarToItem(itemEl, smooth) {
+      if (!itemEl) return;
+      var itemLink = itemEl.querySelector('a') || itemEl;
+      var itemRect = itemLink.getBoundingClientRect();
+      var sidebarRect = sidebar.getBoundingClientRect();
+      var padding = 60;
+
+      if (itemRect.top < sidebarRect.top + padding || itemRect.bottom > sidebarRect.bottom - padding) {
+        var targetScrollTop = sidebar.scrollTop + (itemRect.top - sidebarRect.top) - (sidebarRect.height / 2) + (itemRect.height / 2);
+        sidebar.scrollTo({
+          top: Math.max(0, targetScrollTop),
+          behavior: smooth ? 'smooth' : 'auto'
+        });
+      }
+    }
+
+    
+    var initialActive = sidebar.querySelector('li.active');
+    if (initialActive) {
+      scrollSidebarToItem(initialActive, false);
+    }
+
+    
+    var docsContent = document.querySelector('.docs-content');
+    if (!docsContent) return;
+
+    
+    var headings = docsContent.querySelectorAll('h2, h3');
+    var trackedHeadings = [];
+
+    headings.forEach(function(heading) {
+      var link = heading.querySelector('a[href]');
+      if (!link) return;
+
+      var href = link.getAttribute('href');
+      var pathname;
+      try {
+        var url = new URL(href, window.location.origin);
+        pathname = url.pathname;
+      } catch(e) {
+        pathname = href;
+      }
+
+      var sidebarItem = sidebar.querySelector('li[data-nav-id="' + pathname + '"]');
+      if (sidebarItem) {
+        trackedHeadings.push({
+          heading: heading,
+          sidebarItem: sidebarItem,
+          pathname: pathname
+        });
+      }
+    });
+
+    if (trackedHeadings.length === 0) return;
+
+    var currentActive = null;
+    var ticking = false;
+
+    function updateActiveItem() {
+      ticking = false;
+      var triggerOffset = 140;
+      var activeEntry = null;
+
+      
+      var atBottom = (window.innerHeight + Math.round(window.scrollY)) >= (document.documentElement.scrollHeight - 15);
+      if (atBottom) {
+        activeEntry = trackedHeadings[trackedHeadings.length - 1];
+      } else {
+        
+        for (var i = 0; i < trackedHeadings.length; i++) {
+          var rect = trackedHeadings[i].heading.getBoundingClientRect();
+          if (rect.top <= triggerOffset) {
+            activeEntry = trackedHeadings[i];
+          } else {
+            break;
+          }
+        }
+
+        
+        if (!activeEntry && trackedHeadings.length > 0) {
+          var firstRect = trackedHeadings[0].heading.getBoundingClientRect();
+          if (firstRect.top < window.innerHeight * 0.8) {
+            activeEntry = trackedHeadings[0];
+          }
+        }
+      }
+
+      if (activeEntry && activeEntry !== currentActive) {
+        if (currentActive) {
+          if (currentActive.visibleItem) {
+            currentActive.visibleItem.classList.remove('scrollspy-active');
+          } else {
+            currentActive.sidebarItem.classList.remove('scrollspy-active');
+          }
+        }
+
+        
+        var visibleItem = activeEntry.sidebarItem;
+        while (visibleItem && visibleItem.classList.contains('collapse')) {
+          var parentUl = visibleItem.parentElement;
+          if (!parentUl) break;
+          var parentLi = parentUl.closest('li');
+          if (!parentLi) break;
+          visibleItem = parentLi;
+        }
+
+        activeEntry.visibleItem = visibleItem;
+        if (visibleItem) {
+          visibleItem.classList.add('scrollspy-active');
+          scrollSidebarToItem(visibleItem, true);
+        }
+        
+        currentActive = activeEntry;
+      }
+    }
+
+    function onScroll() {
+      if (!ticking) {
+        window.requestAnimationFrame(updateActiveItem);
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+
+    
+    updateActiveItem();
+    
+  });
+})();
+</script>
+
 
 
 
