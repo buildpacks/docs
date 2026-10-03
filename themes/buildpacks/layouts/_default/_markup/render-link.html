@@ -1,0 +1,16 @@
+{{- /*
+  Renders markdown links. Links that point to a different host than the site's
+  own (i.e. external links) open in a new tab, get safe rel attributes, and are
+  followed by a small arrow icon so readers know they will leave the site.
+*/ -}}
+{{- $isExternal := false -}}
+{{- with urls.Parse .Destination -}}
+  {{- if and .Host (ne .Host (urls.Parse site.BaseURL).Host) -}}
+    {{- $isExternal = true -}}
+  {{- end -}}
+{{- end -}}
+{{- if not $isExternal -}}
+<a href="{{ .Destination | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}>{{ .Text | safeHTML }}</a>
+{{- else -}}
+<a href="{{ .Destination | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }} target="_blank" rel="noopener noreferrer">{{ .Text | safeHTML }}{{ partial "external-link-icon.html" . | chomp }}</a>
+{{- end -}}
