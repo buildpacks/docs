@@ -92,42 +92,32 @@
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/features">
-              Features
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/features">Features</a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/community">
-              Community
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/community">Community</a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' 
-              href="https://medium.com/buildpacks">
-              Blog
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' rel="noopener noreferrer"
+              href="https://medium.com/buildpacks"><span class="external-link-tail">Blog<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></span></a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' 
-              href="https://registry.buildpacks.io/">
-              Registry
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' rel="noopener noreferrer"
+              href="https://registry.buildpacks.io/"><span class="external-link-tail">Registry<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></span></a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/history">
-              History
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/history">History</a>
           </li>
         
     
@@ -925,13 +915,13 @@ containing build-time arguments for Dockerfiles.
 (Not to be confused with the <code>build</code> phase, &ldquo;build&rdquo; here refers to the application of Dockerfiles to a base image,
 similar to a <code>docker build</code>).</p>
 <p>Arguments may be configured for builder image extension or runtime base image extension or both,
-according to the schema defined in the <a href="https://github.com/buildpacks/spec/blob/main/image_extension.md#extend-configtoml-toml">spec</a>.</p>
+according to the schema defined in the <a href="https://github.com/buildpacks/spec/blob/main/image_extension.md#extend-configtoml-toml" target="_blank" rel="noopener noreferrer">spec<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a>.</p>
 <p>During the <code>generate</code> phase, the lifecycle sets a <code>CNB_OUTPUT_DIR</code> environment variable when executing each <code>./bin/generate</code>.
 If using an <code>extend-config.toml</code>, extensions should write the config to <code>$CNB_OUTPUT_DIR/extend-config.toml</code>.</p>
 <h3 id="invalidating-the-build-cache-with-the-uuid-build-arg">Invalidating the build cache with the UUID build arg</h3>
 <p>Whenever possible, the application of Dockerfiles to a base image will use a caching mechanism
 similar to that of a <code>docker build</code>.
-The lifecycle, for example, uses <a href="https://github.com/GoogleContainerTools/kaniko"><code>kaniko</code></a> to implement the <code>extender</code>.</p>
+The lifecycle, for example, uses <a href="https://github.com/GoogleContainerTools/kaniko" target="_blank" rel="noopener noreferrer"><code>kaniko</code><svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a> to implement the <code>extender</code>.</p>
 <p>However, there may be times when caching is not desired - for example, when fetching the &ldquo;latest&rdquo; available version of a package.
 In such cases, Dockerfiles can use the <code>build_id</code> build argument to invalidate the cache for all instructions that follow.</p>
 <p>As an example:</p>
@@ -973,7 +963,7 @@ Otherwise, the application image will contain the label <code>io.buildpacks.reba
 <p>Extension IDs must be globally unique to extensions, but extensions and buildpacks can share the same ID.</p>
 <h3 id="expressing-information-in-extensiontoml">Expressing information in extension.toml</h3>
 <p>Just like <code>buildpack.toml</code>, an <code>extension.toml</code> can contain additional metadata to describe its behavior.
-See the <a href="https://github.com/buildpacks/spec/blob/main/image_extension.md#extensiontoml-toml">spec</a> for more information.</p>
+See the <a href="https://github.com/buildpacks/spec/blob/main/image_extension.md#extensiontoml-toml" target="_blank" rel="noopener noreferrer">spec<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a> for more information.</p>
 <h3 id="pre-populating-output">Pre-populating output</h3>
 <p>The root directory for a typical extension might look like the following:</p>
 <pre tabindex="0"><code>.

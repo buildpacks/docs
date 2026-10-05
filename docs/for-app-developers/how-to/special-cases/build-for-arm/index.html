@@ -90,42 +90,32 @@
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/features">
-              Features
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/features">Features</a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/community">
-              Community
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/community">Community</a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' 
-              href="https://medium.com/buildpacks">
-              Blog
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' rel="noopener noreferrer"
+              href="https://medium.com/buildpacks"><span class="external-link-tail">Blog<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></span></a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' 
-              href="https://registry.buildpacks.io/">
-              Registry
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' rel="noopener noreferrer"
+              href="https://registry.buildpacks.io/"><span class="external-link-tail">Registry<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></span></a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/history">
-              History
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/history">History</a>
           </li>
         
     
@@ -905,16 +895,16 @@
         </div>
 
         <p>Building for the ARM architecture is now easier than ever. The <code>heroku/builder:24</code> builder supports both AMD64 and ARM64 architectures, and includes
-multi-arch .NET, Go, Java, Node.js, PHP, Python, Ruby and Scala buildpacks. You can read more about Heroku&rsquo;s <a href="https://github.com/heroku/buildpacks">Cloud Native Buildpacks here</a>.</p>
+multi-arch .NET, Go, Java, Node.js, PHP, Python, Ruby and Scala buildpacks. You can read more about Heroku&rsquo;s <a href="https://github.com/heroku/buildpacks" target="_blank" rel="noopener noreferrer">Cloud Native Buildpacks here<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a>.</p>
 <blockquote>
 <p><strong>NOTE:</strong> Our current multi-architecture support allows building an ARM64 app image on an ARM64 host, and building an AMD64 app image on an AMD64 host. We do not currently support building an app image for one architecture on a different architecture. However, if your host machine supports emulation (for example, with QEMU) you may be able to perform cross platform builds, albeit with a performance penalty.</p>
 </blockquote>
-<h3 id="1-clone-the-samples-repository">1. Clone the <a href="https://github.com/buildpacks/samples">samples</a> repository</h3>
+<h3 id="1-clone-the-samples-repository">1. Clone the <a href="https://github.com/buildpacks/samples" target="_blank" rel="noopener noreferrer">samples<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a> repository</h3>
 <pre tabindex="0"><code># clone the repo
 git clone https://github.com/buildpacks/samples
 </code></pre><!--+- "{{execute}}"+-->
 <h3 id="2-build-the-app">2. Build the app</h3>
-<p>If you&rsquo;re using an ARM64 computer (such as an Apple Silicon Mac, or an AWS Graviton instance), you can build an ARM64 OCI image with <a href="https://github.com/buildpacks/pack">pack</a> simply by setting your builder to <code>heroku/builder:24</code>:</p>
+<p>If you&rsquo;re using an ARM64 computer (such as an Apple Silicon Mac, or an AWS Graviton instance), you can build an ARM64 OCI image with <a href="https://github.com/buildpacks/pack" target="_blank" rel="noopener noreferrer">pack<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a> simply by setting your builder to <code>heroku/builder:24</code>:</p>
 <pre tabindex="0"><code>pack build java-maven-sample --path samples/apps/java-maven/ --builder heroku/builder:24
 </code></pre><!--+- "{{execute}}"+-->
 <p>By default, <code>pack</code> uses the current architecture for multi-arch builders like <code>heroku/builder:24</code>, so an AMD64 image will be built on AMD64 systems.</p>
@@ -931,7 +921,7 @@ builder by running <code>pack config default-builder &lt;BUILDER&gt;</code> for 
 </code></pre><!--+- "{{execute}}"+-->
 <p><strong>Congratulations.</strong></p>
 <!--+- if false+-->
-<p>The app should now be running and accessible via <a href="http://localhost:8080">localhost:8080</a>.</p>
+<p>The app should now be running and accessible via <a href="http://localhost:8080" target="_blank" rel="noopener noreferrer">localhost:8080<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a>.</p>
 <!--+end+-->
 
         

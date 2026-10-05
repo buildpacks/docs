@@ -90,42 +90,32 @@
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/features">
-              Features
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/features">Features</a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/community">
-              Community
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/community">Community</a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' 
-              href="https://medium.com/buildpacks">
-              Blog
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' rel="noopener noreferrer"
+              href="https://medium.com/buildpacks"><span class="external-link-tail">Blog<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></span></a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' 
-              href="https://registry.buildpacks.io/">
-              Registry
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' rel="noopener noreferrer"
+              href="https://registry.buildpacks.io/"><span class="external-link-tail">Registry<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></span></a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/history">
-              History
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/history">History</a>
           </li>
         
     
@@ -906,7 +896,7 @@
 
         <p>Buildpacks-built images can contain multiple process types.</p>
 <h3 id="build-a-multi-process-app">Build a multi-process app</h3>
-<p>For this example we will use the <code>hello-processes</code> buildpack from our <a href="https://github.com/buildpacks/samples">samples</a> repo so make sure you have it cloned locally.</p>
+<p>For this example we will use the <code>hello-processes</code> buildpack from our <a href="https://github.com/buildpacks/samples" target="_blank" rel="noopener noreferrer">samples<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a> repo so make sure you have it cloned locally.</p>
 <p>Let&rsquo;s build the app.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pack build multi-process-app <span class="se">\
 </span></span></span><span class="line"><span class="cl">    --builder cnbs/sample-builder:alpine <span class="se">\
@@ -995,7 +985,7 @@ Note that while buildpack-provided environment variables will be set in the exec
 <p>You can bypass the launcher entirely by setting a new entrypoint for the run container:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run --rm --entrypoint bash -it multi-process-app <span class="c1"># profile scripts have NOT been sourced and buildpack-provided env vars are NOT set in this shell</span>
 </span></span></code></pre></div><!--+- "{{execute interrupt}}"+-->
-<p>To learn more about the launcher, see the <a href="https://github.com/buildpacks/spec/blob/main/platform.md#launcher">platform spec</a>.</p>
+<p>To learn more about the launcher, see the <a href="https://github.com/buildpacks/spec/blob/main/platform.md#launcher" target="_blank" rel="noopener noreferrer">platform spec<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a>.</p>
 
 
         

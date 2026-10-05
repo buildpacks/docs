@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta http-equiv="x-ua-compatible" content="ie=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="From version 0.11.0 onward, pack can be used to identify builders that should be considered trusted. pack build will operate slightly differently under the hood based on whether it considers the…"/>
+<meta name="description" content="From version 0.11.0(opens in a new tab) onward, pack can be used to identify builders that should be considered trusted. pack build will operate slightly differently under the hood based on whether…"/>
 <link rel="canonical" content="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/concepts/trusted_builders/">
 <link rel="icon" type="image/png" href="/images/favicon.png">
 
@@ -22,7 +22,7 @@
 <meta property="og:url" content="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/concepts/trusted_builders/">
 <meta property="og:locale" content="en_US">
 <meta property="og:site_name" content="Cloud Native Buildpacks">
-<meta property="og:description" content="From version 0.11.0 onward, pack can be used to identify builders that should be considered trusted. pack build will operate slightly differently under the hood based on whether it considers the…">
+<meta property="og:description" content="From version 0.11.0(opens in a new tab) onward, pack can be used to identify builders that should be considered trusted. pack build will operate slightly differently under the hood based on whether…">
 <meta property="og:type" content="article">
 <meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
 <meta property="og:image:alt" content="Buildpacks project logo">
@@ -90,42 +90,32 @@
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/features">
-              Features
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/features">Features</a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/community">
-              Community
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/community">Community</a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' 
-              href="https://medium.com/buildpacks">
-              Blog
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' rel="noopener noreferrer"
+              href="https://medium.com/buildpacks"><span class="external-link-tail">Blog<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></span></a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' 
-              href="https://registry.buildpacks.io/">
-              Registry
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' rel="noopener noreferrer"
+              href="https://registry.buildpacks.io/"><span class="external-link-tail">Registry<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></span></a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/history">
-              History
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/history">History</a>
           </li>
         
     
@@ -904,11 +894,11 @@
           <h1 class="title">Trusted Builders</h1>
         </div>
 
-        <p>From version <a href="https://github.com/buildpacks/pack/releases/tag/v0.11.0">0.11.0</a> onward, <code>pack</code> can be used to identify builders that should be considered trusted. <code>pack build</code> will operate slightly differently under the hood based on whether it considers the specified builder to be trusted.</p>
-<p>Read the <a href="https://medium.com/buildpacks/faster-more-secure-builds-with-pack-0-11-0-4d0c633ca619">announcement</a>.</p>
+        <p>From version <a href="https://github.com/buildpacks/pack/releases/tag/v0.11.0" target="_blank" rel="noopener noreferrer">0.11.0<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a> onward, <code>pack</code> can be used to identify builders that should be considered trusted. <code>pack build</code> will operate slightly differently under the hood based on whether it considers the specified builder to be trusted.</p>
+<p>Read the <a href="https://medium.com/buildpacks/faster-more-secure-builds-with-pack-0-11-0-4d0c633ca619" target="_blank" rel="noopener noreferrer">announcement<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a>.</p>
 <h2 id="what-is-a-trusted-builder">What is a Trusted Builder?</h2>
 <p>When <code>pack</code> considers a builder to be trusted, <code>pack build</code> operations will use a single lifecycle binary called the <code>creator</code>.</p>
-<p>If <code>pack</code> doesn&rsquo;t trust a builder it will continue to execute five separate lifecycle binaries: <code>detect</code>, <code>analyze</code>, <code>restore</code>, <code>build</code> and <code>export</code>. It will run the more privileged phases using a published <a href="https://hub.docker.com/r/buildpacksio/lifecycle/tags">lifecycle image</a>, if one is available.</p>
+<p>If <code>pack</code> doesn&rsquo;t trust a builder it will continue to execute five separate lifecycle binaries: <code>detect</code>, <code>analyze</code>, <code>restore</code>, <code>build</code> and <code>export</code>. It will run the more privileged phases using a published <a href="https://hub.docker.com/r/buildpacksio/lifecycle/tags" target="_blank" rel="noopener noreferrer">lifecycle image<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a>, if one is available.</p>
 <p>This choice strikes a balance between security and performance. The <code>analyze</code>, <code>restore</code> and <code>export</code> phases of the lifecycle require higher levels of privilege or access to sensitive data that is not required by the <code>detect</code> and <code>build</code> phases.</p>
 <h2 id="why-use-a-trusted-builder">Why use a Trusted Builder?</h2>
 <p>When <code>pack</code> trusts a builder <code>pack build</code> will run a single lifecycle binary which will flow through the five lifecycle steps in a single container. This is more efficient than running five separate containers.</p>

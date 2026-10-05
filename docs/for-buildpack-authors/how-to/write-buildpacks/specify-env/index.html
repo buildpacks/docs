@@ -92,42 +92,32 @@
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/features">
-              Features
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/features">Features</a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/community">
-              Community
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/community">Community</a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' 
-              href="https://medium.com/buildpacks">
-              Blog
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' rel="noopener noreferrer"
+              href="https://medium.com/buildpacks"><span class="external-link-tail">Blog<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></span></a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' 
-              href="https://registry.buildpacks.io/">
-              Registry
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' rel="noopener noreferrer"
+              href="https://registry.buildpacks.io/"><span class="external-link-tail">Registry<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></span></a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/history">
-              History
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/history">History</a>
           </li>
         
     
@@ -908,7 +898,7 @@
 
         <p>Environment variables are a common way to configure buildpacks at build-time and the application at runtime.</p>
 <h3 id="preparing-the-environment-at-build-time">Preparing the environment at build time</h3>
-<p>When the <code>lifecycle</code> runs each buildpack, it first tears down any environment variables defined on the <code>build-time</code> base image. It only allows a <a href="https://github.com/buildpacks/lifecycle/blob/a43d5993a4f2cc23c44b6480ba2ab09fe81d57ed/env/build.go#L9-L19">specific set</a> of pre-configured environment variables through.</p>
+<p>When the <code>lifecycle</code> runs each buildpack, it first tears down any environment variables defined on the <code>build-time</code> base image. It only allows a <a href="https://github.com/buildpacks/lifecycle/blob/a43d5993a4f2cc23c44b6480ba2ab09fe81d57ed/env/build.go#L9-L19" target="_blank" rel="noopener noreferrer">specific set<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a> of pre-configured environment variables through.</p>
 <p>For the <code>detect</code> phase, the <code>lifecycle</code> then applies user-provided environment variables, followed by platform-provided environment variables. For more information, see the page for how to <a href="https://buildpacks.io/docs/for-app-developers/how-to/build-inputs/configure-build-time-environment/">customize buildpack behavior with build-time environment variables</a>.</p>
 <p>For the <code>build</code> phase, the process is more complex. Before applying user-provided environment variables, the <code>lifecycle</code> applies buildpack-provided environment variables, which is anything that a previous buildpack (a buildpack that ran earlier in the <code>build</code> phase) might have configured in its <code>layers</code> directory.</p>
 <blockquote>
@@ -997,7 +987,7 @@ For setting up environment variables at <code>runtime</code>, the <a href="#exam
 <p>Note that the <code>launcher</code> binary is found inside the application image at <code>/cnb/lifecycle/launcher</code> and is the entrypoint for any <code>CNB-built</code> image.</p>
 </blockquote>
 <h3 id="when-multiple-buildpacks-define-the-same-variable">When multiple buildpacks define the same variable</h3>
-<p>When multiple buildpacks define the same variable, the <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#environment-variable-modification-rules">&ldquo;environment modification rules&rdquo;</a> come into play.</p>
+<p>When multiple buildpacks define the same variable, the <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#environment-variable-modification-rules" target="_blank" rel="noopener noreferrer">&ldquo;environment modification rules&rdquo;<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a> come into play.</p>
 <p>Let&rsquo;s say buildpack A (which runs first) defines <code>SOME_VAR=foo</code> and buildpack B defines <code>SOME_VAR=bar</code>. The <code>lifecycle</code> can perform different modifications when setting up the environment for buildpack C (which runs last).</p>
 <ul>
 <li>The <code>lifecycle</code> can <code>append</code> the second value to the first, so that buildpack C sees something like <code>SOME_VAR=foo:bar</code>.</li>
@@ -1028,7 +1018,7 @@ For setting up environment variables at <code>runtime</code>, the <a href="#exam
 <p>Note that the examples shown on this page are relatively simple. It is possible for a buildpack to double-specify the same variable (i.e., within two or more different layers), and for a buildpack to specify a variable for a particular phase (build or launch) when the layer has type both <code>build = true</code> and <code>launch = true</code>. Additionally, for <code>runtime</code> variables, buildpacks can specify a variable for a particular process.</p>
 <p>In these cases, the lifecycle determines the final value of the variable according to a process outlined in the specification.</p>
 <blockquote>
-<p>For more information on modifying environment variables, see the <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#environment-variable-modification-rules">Environment Variable Modification Rules</a> section of the specification.</p>
+<p>For more information on modifying environment variables, see the <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#environment-variable-modification-rules" target="_blank" rel="noopener noreferrer">Environment Variable Modification Rules<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a> section of the specification.</p>
 </blockquote>
 
         

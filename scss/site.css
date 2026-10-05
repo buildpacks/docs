@@ -1420,6 +1420,24 @@ ul.list-circle > li {
 
 /**********************************
 
+External link indicator
+
+**********************************/
+.external-link-tail {
+  white-space: nowrap; }
+
+.external-link-icon {
+  display: inline-block;
+  width: 0.7em;
+  height: 0.7em;
+  margin-left: 0.15em;
+  vertical-align: -0.05em;
+  color: #DF0A6B;
+  stroke: currentColor;
+  text-decoration: none; }
+
+/**********************************
+
 Helpers and Resets
 
 **********************************/

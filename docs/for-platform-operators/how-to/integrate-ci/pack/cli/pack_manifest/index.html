@@ -90,42 +90,32 @@
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/features">
-              Features
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/features">Features</a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/community">
-              Community
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/community">Community</a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' 
-              href="https://medium.com/buildpacks">
-              Blog
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' rel="noopener noreferrer"
+              href="https://medium.com/buildpacks"><span class="external-link-tail">Blog<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></span></a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' 
-              href="https://registry.buildpacks.io/">
-              Registry
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' rel="noopener noreferrer"
+              href="https://registry.buildpacks.io/"><span class="external-link-tail">Registry<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></span></a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/history">
-              History
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/history">History</a>
           </li>
         
     
@@ -904,11 +894,11 @@
         <h2 id="pack-manifest">pack manifest</h2>
 <p>Interact with OCI image indexes</p>
 <h3 id="synopsis">Synopsis</h3>
-<p>An image index is a higher-level manifest which points to specific image manifests and is ideal for one or more platforms; see: <a href="https://github.com/opencontainers/image-spec/">https://github.com/opencontainers/image-spec/</a> for more details</p>
+<p>An image index is a higher-level manifest which points to specific image manifests and is ideal for one or more platforms; see: <a href="https://github.com/opencontainers/image-spec/" target="_blank" rel="noopener noreferrer">https://github.com/opencontainers/image-spec/<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a> for more details</p>
 <p>&lsquo;pack manifest&rsquo; commands provide tooling to create, update, or delete images indexes or push them to a remote registry.
 &lsquo;pack&rsquo; will save a local copy of the image index at &lsquo;$PACK_HOME/manifests&rsquo;; the environment variable &lsquo;XDG_RUNTIME_DIR&rsquo;
 can be set to override the location, allowing manifests to be edited locally before being pushed to a registry.</p>
-<p>These commands are experimental. For more information, consult the RFC which can be found at <a href="https://github.com/buildpacks/rfcs/blob/main/text/0124-pack-manifest-list-commands.md">https://github.com/buildpacks/rfcs/blob/main/text/0124-pack-manifest-list-commands.md</a></p>
+<p>These commands are experimental. For more information, consult the RFC which can be found at <a href="https://github.com/buildpacks/rfcs/blob/main/text/0124-pack-manifest-list-commands.md" target="_blank" rel="noopener noreferrer">https://github.com/buildpacks/rfcs/blob/main/text/0124-pack-manifest-list-commands.md<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a></p>
 <h3 id="options">Options</h3>
 <pre tabindex="0"><code>  -h, --help   Help for &#39;manifest&#39;
 </code></pre><h3 id="options-inherited-from-parent-commands">Options inherited from parent commands</h3>

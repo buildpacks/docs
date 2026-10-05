@@ -90,42 +90,32 @@
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/features">
-              Features
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/features">Features</a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/community">
-              Community
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/community">Community</a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' 
-              href="https://medium.com/buildpacks">
-              Blog
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' rel="noopener noreferrer"
+              href="https://medium.com/buildpacks"><span class="external-link-tail">Blog<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></span></a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' 
-              href="https://registry.buildpacks.io/">
-              Registry
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' rel="noopener noreferrer"
+              href="https://registry.buildpacks.io/"><span class="external-link-tail">Registry<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></span></a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/history">
-              History
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/history">History</a>
           </li>
         
     
@@ -918,7 +908,7 @@
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">cat ~/.pack/config.toml
 </span></span><span class="line"><span class="cl"><span class="nv">experimental</span> <span class="o">=</span> <span class="nb">true</span>
 </span></span><span class="line"><span class="cl">layout-repo-dir <span class="o">=</span> <span class="s2">&#34;&lt;</span><span class="nv">$HOME</span><span class="s2">&gt;/.pack/layout-repo&#34;</span>
-</span></span></code></pre></div><p>The configuration shows the experimental mode was <strong>enabled</strong> and a local directory to save images on disk was configured to path <code>&lt;$HOME&gt;/.pack/layout-repo</code>. <code>layout-repo-dir</code> is being used as a <a href="https://github.com/buildpacks/rfcs/blob/main/text/0119-export-to-oci.md#how-it-works">local repository</a>
+</span></span></code></pre></div><p>The configuration shows the experimental mode was <strong>enabled</strong> and a local directory to save images on disk was configured to path <code>&lt;$HOME&gt;/.pack/layout-repo</code>. <code>layout-repo-dir</code> is being used as a <a href="https://github.com/buildpacks/rfcs/blob/main/text/0119-export-to-oci.md#how-it-works" target="_blank" rel="noopener noreferrer">local repository<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a>
 to save images requires by <code>pack build</code> command in OCI layout format.</p>
 <h3 id="2-build-the-app">2. Build the app</h3>
 <p>Please first follow the steps to <a href="/docs/for-app-developers/tutorials/basic-app">build an app</a>, once you have successfully built an app you can export the sample app to disk in OCI layout format.</p>
@@ -949,8 +939,8 @@ to save images requires by <code>pack build</code> command in OCI layout format.
 </span></span><span class="line"><span class="cl">└── oci-layout  
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="m">3</span> directories, <span class="m">13</span> files
-</span></span></code></pre></div><p>If you want to keep playing with the image in  OCI layout format, one tool you can take a look at is <a href="https://umo.ci/">umoci</a>. It can help you to create a
-<a href="https://github.com/opencontainers/runtime-spec">runtime bundler</a> that can be executed with another tool like <a href="https://github.com/opencontainers/runc">runc</a></p>
+</span></span></code></pre></div><p>If you want to keep playing with the image in  OCI layout format, one tool you can take a look at is <a href="https://umo.ci/" target="_blank" rel="noopener noreferrer">umoci<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a>. It can help you to create a
+<a href="https://github.com/opencontainers/runtime-spec" target="_blank" rel="noopener noreferrer">runtime bundler<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a> that can be executed with another tool like <a href="https://github.com/opencontainers/runc" target="_blank" rel="noopener noreferrer">runc<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a></p>
 <hr>
 <h2 id="extra-configuration">Extra configuration</h2>
 <h3 id="skip-saving-your-run-image-layers-on-disk">Skip saving your run-image layers on disk</h3>
@@ -980,18 +970,18 @@ your app image folder (if you are planning to use the same folder). The reason f
 when you export the full image.</p>
 <h2 id="implementation-notes">Implementation notes</h2>
 <h3 id="media-types">Media types</h3>
-<p>According to the OCI specification, the <a href="https://github.com/opencontainers/image-spec/blob/main/media-types.md#compatibility-matrix">compatibles media types</a> for the index.json files must be:</p>
+<p>According to the OCI specification, the <a href="https://github.com/opencontainers/image-spec/blob/main/media-types.md#compatibility-matrix" target="_blank" rel="noopener noreferrer">compatibles media types<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a> for the index.json files must be:</p>
 <ul>
 <li><code>application/vnd.oci.image.index.v1+json</code> or</li>
 <li><code>application/vnd.docker.distribution.manifest.list.v2+json</code></li>
 </ul>
 <p>If you are trying to use the lifecycle directly without using <code>pack</code> to export your image, take on consideration that tools like:</p>
-<p><a href="https://github.com/containers/skopeo">skopeo</a></p>
+<p><a href="https://github.com/containers/skopeo" target="_blank" rel="noopener noreferrer">skopeo<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">skopeo copy -a docker://&lt;your-image&gt; &lt;dest&gt;
 </span></span></code></pre></div><p>It will give you <code>application/vnd.oci.image.index.v1+json</code> media type, which is currently working</p>
-<p>But <a href="https://github.com/google/go-containerregistry/tree/main/cmd/crane">crane</a></p>
+<p>But <a href="https://github.com/google/go-containerregistry/tree/main/cmd/crane" target="_blank" rel="noopener noreferrer">crane<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">crane pull &lt;your-image&gt; &lt;dest&gt; --format<span class="o">=</span>oci
-</span></span></code></pre></div><p>It will give you <code>application/vnd.docker.distribution.manifest.list.v2+json</code>, which will fail because of the <a href="https://github.com/buildpacks/rfcs/pull/203#discussion_r1092449172">state of our current implementation</a>, we will improve this behavior in future versions.</p>
+</span></span></code></pre></div><p>It will give you <code>application/vnd.docker.distribution.manifest.list.v2+json</code>, which will fail because of the <a href="https://github.com/buildpacks/rfcs/pull/203#discussion_r1092449172" target="_blank" rel="noopener noreferrer">state of our current implementation<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a>, we will improve this behavior in future versions.</p>
 
         
 

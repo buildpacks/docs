@@ -90,42 +90,32 @@
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/features">
-              Features
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/features">Features</a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/community">
-              Community
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/community">Community</a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' 
-              href="https://medium.com/buildpacks">
-              Blog
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' rel="noopener noreferrer"
+              href="https://medium.com/buildpacks"><span class="external-link-tail">Blog<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></span></a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' 
-              href="https://registry.buildpacks.io/">
-              Registry
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' rel="noopener noreferrer"
+              href="https://registry.buildpacks.io/"><span class="external-link-tail">Registry<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></span></a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/history">
-              History
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/history">History</a>
           </li>
         
     
@@ -907,7 +897,7 @@
         <p>&ldquo;Clearing&rdquo; the buildpack environment with <code>clear-env</code> is the process of preventing the lifecycle from automatically merging user-provided environment variables into the buildpack&rsquo;s executing process&rsquo;s environment variables.</p>
 <p>User-provided environment variables are always written to disk at <code>$CNB_PLATFORM_DIR/env/</code> as &ldquo;platform&rdquo; environment variables and are available to a buildpack regardless of the <code>clear-env</code> setting. For example, if someone runs <code>pack build --env HELLO=world</code>, there is always a <code>$CNB_PLATFORM_DIR/env/hello</code> file with the contents of <code>world</code>.</p>
 <p>By default with <code>clear-env = false</code>, the lifecycle automatically copies these user-provided environment variables into the current process environment when executing <code>/bin/detect</code> and <code>/bin/build</code>. This provides a comprehensive stream of all user environment variables for a buildpack that wants easy access to user customization.</p>
-<p>Setting <code>clear-env = true</code> in the <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#buildpacktoml-toml">buildpack.toml</a> prevents this automatic merging, giving a buildpack complete control over which user-provided environment variables to use. This provides maximum isolation and predictability for a buildpack that wants to be more selective about environment variable usage.</p>
+<p>Setting <code>clear-env = true</code> in the <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#buildpacktoml-toml" target="_blank" rel="noopener noreferrer">buildpack.toml<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a> prevents this automatic merging, giving a buildpack complete control over which user-provided environment variables to use. This provides maximum isolation and predictability for a buildpack that wants to be more selective about environment variable usage.</p>
 <p>For example, if a user has specified the <code>PATH</code> environment variable, then a buildpack written in bash might unexpectedly find that tools it relies on such as <code>cp</code> aren&rsquo;t the ones it expects. However, setting <code>clear-env = true</code> won&rsquo;t change runtime behavior.</p>
 <ul>
 <li>When you set <code>clear-env</code> to <code>true</code> for a given buildpack, the <code>lifecycle</code> writes user-provided environment variables to disk at <code>$CNB_PLATFORM_DIR/env/</code> but it won&rsquo;t copy those variables into the buildpack process when running <code>/bin/detect</code> or <code>/bin/build</code>.</li>

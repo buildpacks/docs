@@ -16,7 +16,7 @@
 				<link>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/get-started/</link>
 				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
 				<guid>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/get-started/</guid>
-				<description>&lt;p&gt;To write a buildpack, we follow the &lt;a href=&#34;https://github.com/buildpacks/spec/blob/main/buildpack.md&#34;&gt;Buildpack Specification&lt;/a&gt;,&#xA;which defines the contract between buildpacks and the lifecycle.&lt;/p&gt;</description>
+				<description>&lt;p&gt;To write a buildpack, we follow the &lt;a href=&#34;https://github.com/buildpacks/spec/blob/main/buildpack.md&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;Buildpack Specification&lt;svg class=&#34;external-link-icon&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;1em&#34; height=&#34;1em&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34; aria-hidden=&#34;true&#34; focusable=&#34;false&#34;&gt;&lt;path d=&#34;M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6&#34;&gt;&lt;/path&gt;&lt;polyline points=&#34;15 3 21 3 21 9&#34;&gt;&lt;/polyline&gt;&lt;line x1=&#34;10&#34; y1=&#34;14&#34; x2=&#34;21&#34; y2=&#34;3&#34;&gt;&lt;/line&gt;&lt;/svg&gt;&lt;span class=&#34;visually-hidden&#34;&gt;(opens in a new tab)&lt;/span&gt;&lt;/a&gt;,&#xA;which defines the contract between buildpacks and the lifecycle.&lt;/p&gt;</description>
 			</item>
 			<item>
 				<title>Use the build plan</title>
@@ -44,7 +44,7 @@
 				<link>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/add-sbom/</link>
 				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
 				<guid>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/add-sbom/</guid>
-				<description>&lt;p&gt;Buildpacks can provide a &lt;a href=&#34;https://en.wikipedia.org/wiki/Software_bill_of_materials&#34;&gt;Software &lt;code&gt;Bill-of-Materials&lt;/code&gt;&lt;/a&gt; (SBOM)&#xA;to describe the dependencies that they provide.&lt;/p&gt;</description>
+				<description>&lt;p&gt;Buildpacks can provide a &lt;a href=&#34;https://en.wikipedia.org/wiki/Software_bill_of_materials&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;Software &lt;code&gt;Bill-of-Materials&lt;/code&gt;&lt;svg class=&#34;external-link-icon&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;1em&#34; height=&#34;1em&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34; aria-hidden=&#34;true&#34; focusable=&#34;false&#34;&gt;&lt;path d=&#34;M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6&#34;&gt;&lt;/path&gt;&lt;polyline points=&#34;15 3 21 3 21 9&#34;&gt;&lt;/polyline&gt;&lt;line x1=&#34;10&#34; y1=&#34;14&#34; x2=&#34;21&#34; y2=&#34;3&#34;&gt;&lt;/line&gt;&lt;/svg&gt;&lt;span class=&#34;visually-hidden&#34;&gt;(opens in a new tab)&lt;/span&gt;&lt;/a&gt; (SBOM)&#xA;to describe the dependencies that they provide.&lt;/p&gt;</description>
 			</item>
 			<item>
 				<title>Add labels to the application image</title>
@@ -86,7 +86,7 @@
 				<link>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/use-exec.d/</link>
 				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
 				<guid>https://buildpacks.io/docs/for-buildpack-authors/how-to/write-buildpacks/use-exec.d/</guid>
-				<description>&lt;p&gt;The &lt;a href=&#34;https://github.com/buildpacks/spec/blob/main/buildpack.md#execd&#34;&gt;buildpacks &lt;code&gt;exec.d&lt;/code&gt; interface&lt;/a&gt; allows buildpack authors to execute custom scripts or binaries when the application image is started.&lt;/p&gt;</description>
+				<description>&lt;p&gt;The &lt;a href=&#34;https://github.com/buildpacks/spec/blob/main/buildpack.md#execd&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;buildpacks &lt;code&gt;exec.d&lt;/code&gt; interface&lt;svg class=&#34;external-link-icon&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;1em&#34; height=&#34;1em&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34; aria-hidden=&#34;true&#34; focusable=&#34;false&#34;&gt;&lt;path d=&#34;M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6&#34;&gt;&lt;/path&gt;&lt;polyline points=&#34;15 3 21 3 21 9&#34;&gt;&lt;/polyline&gt;&lt;line x1=&#34;10&#34; y1=&#34;14&#34; x2=&#34;21&#34; y2=&#34;3&#34;&gt;&lt;/line&gt;&lt;/svg&gt;&lt;span class=&#34;visually-hidden&#34;&gt;(opens in a new tab)&lt;/span&gt;&lt;/a&gt; allows buildpack authors to execute custom scripts or binaries when the application image is started.&lt;/p&gt;</description>
 			</item>
 	</channel>
 </rss>

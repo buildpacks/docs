@@ -92,42 +92,32 @@
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/features">
-              Features
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/features">Features</a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/community">
-              Community
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/community">Community</a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' 
-              href="https://medium.com/buildpacks">
-              Blog
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' rel="noopener noreferrer"
+              href="https://medium.com/buildpacks"><span class="external-link-tail">Blog<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></span></a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' 
-              href="https://registry.buildpacks.io/">
-              Registry
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' rel="noopener noreferrer"
+              href="https://registry.buildpacks.io/"><span class="external-link-tail">Registry<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></span></a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/history">
-              History
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/history">History</a>
           </li>
         
     
@@ -910,7 +900,7 @@
 <p>Whereas a <code>buildpack group</code>, or <code>group</code>, is a list of one or more buildpacks that are designed to work together. For example, a buildpack that provides <code>node</code> and a buildpack that provides <code>npm</code>.</p>
 <p>During the <code>detect</code> phase, an order definition for buildpacks and an order definition for image extensions—if present—MUST be resolved into a group of component buildpacks and a group of image extensions.</p>
 <h2 id="composite-buildpacks">Composite Buildpacks</h2>
-<p>A <strong>composite buildpack</strong> is a buildpack that doesn&rsquo;t contain any <code>/bin/detect</code> or <code>/bin/build</code> executables; instead it references other buildpacks in its <code>buildpack.toml</code> via the <code>[[order]]</code> array. Composite buildpacks MUST be <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#order-resolution">resolvable</a> into a collection of component buildpacks. That is, after the <a href="https://buildpacks.io/docs/for-buildpack-authors/concepts/lifecycle-phases/#phase-2-detect">detect phase</a> of the lifecycle has completed, a single group of component buildpacks from the <code>[[order]]</code> array will have opted in to the build.</p>
+<p>A <strong>composite buildpack</strong> is a buildpack that doesn&rsquo;t contain any <code>/bin/detect</code> or <code>/bin/build</code> executables; instead it references other buildpacks in its <code>buildpack.toml</code> via the <code>[[order]]</code> array. Composite buildpacks MUST be <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#order-resolution" target="_blank" rel="noopener noreferrer">resolvable<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a> into a collection of component buildpacks. That is, after the <a href="https://buildpacks.io/docs/for-buildpack-authors/concepts/lifecycle-phases/#phase-2-detect">detect phase</a> of the lifecycle has completed, a single group of component buildpacks from the <code>[[order]]</code> array will have opted in to the build.</p>
 <h2 id="why-use-composite-buildpacks">Why use Composite Buildpacks</h2>
 <p>Most advanced buildpacks aren’t actually a single buildpack, but instead a composite or an ordered list of component buildpacks with each buildpack performing specific jobs. This is useful for composing more complex detection strategies.</p>
 <blockquote>

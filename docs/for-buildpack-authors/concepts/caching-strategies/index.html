@@ -90,42 +90,32 @@
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/features">
-              Features
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/features">Features</a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/community">
-              Community
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/community">Community</a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' 
-              href="https://medium.com/buildpacks">
-              Blog
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' rel="noopener noreferrer"
+              href="https://medium.com/buildpacks"><span class="external-link-tail">Blog<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></span></a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' 
-              href="https://registry.buildpacks.io/">
-              Registry
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' rel="noopener noreferrer"
+              href="https://registry.buildpacks.io/"><span class="external-link-tail">Registry<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></span></a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/history">
-              History
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/history">History</a>
           </li>
         
     
@@ -913,7 +903,7 @@
 </ul>
 <p>In this section we look at caching each layer type.</p>
 <h3 id="layer-metadata">Layer Metadata</h3>
-<p>buildpacks ensure byte-for-byte reproducibility of layers.  File creation time is <a href="https://medium.com/buildpacks/time-travel-with-pack-e0efd8bf05db">normalized to January 1, 1980</a> to ensure reproducibility.  Byte-for-byte reproducibility means previous layers can be reused.  However, we may want to invalidate previously cached layers if an important property changes, such as:</p>
+<p>buildpacks ensure byte-for-byte reproducibility of layers.  File creation time is <a href="https://medium.com/buildpacks/time-travel-with-pack-e0efd8bf05db" target="_blank" rel="noopener noreferrer">normalized to January 1, 1980<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a> to ensure reproducibility.  Byte-for-byte reproducibility means previous layers can be reused.  However, we may want to invalidate previously cached layers if an important property changes, such as:</p>
 <ul>
 <li>the major version of the runtime changes eg: NodeJS changes from 16 to 18</li>
 <li>requested application dependencies have changed eg: a Python application adds a dependency on the <code>requests</code> module</li>
@@ -940,7 +930,7 @@
 <li><code>cache = true, build = true, launch = false</code> This configuration is useful where a build time dependency is provided.  For example, a JDK could be provided as a cached build layer that is not added as a launch layer. Instead, a JRE could be provided as a launch layer in the application image.</li>
 <li><code>cache = true, build = false, launch = false</code> This configuration is particularly useful in layers that download resources.  Using a cache-only layer supports allows a  buildpack to re-use cached downloads during installation.  For example, pip wheels could be downloaded as a cache-only layer and the same buildpack could install the wheels in to a launch layer.</li>
 </ul>
-<p>There are other boolean combinations of cache, build and launch.  These provide significant flexibility in the caching system.  Users of less common caching strategies need a good understanding of the <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#layer-types">buildpacks specification on Layer Types</a>.</p>
+<p>There are other boolean combinations of cache, build and launch.  These provide significant flexibility in the caching system.  Users of less common caching strategies need a good understanding of the <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#layer-types" target="_blank" rel="noopener noreferrer">buildpacks specification on Layer Types<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a>.</p>
 <p>The flexibility of buildpacks layer options allow fine-grained control over caching.  A buildpack may make <em>content</em> level decisions about the validity of a previous layer (as opposed to using the less granular metadata).  A buildpack may contribute a launch layer that includes a built application and its dependencies.  The same buildpack can also contribute a cache-only layer containing the source dependencies.  In subsequent builds the buildpack can detect whether application dependencies have changed.  The subset of dependencies that have changed may be updated on the cache layer.  Then all dependencies may be restored from the cache layer and the built application is contributed as a new launch layer.  In this way we make content-level decisions about the validity of dependencies.  In addition, content-level caching strategies can save time and bandwidth by choosing to update only a subset of the cached content.</p>
 
 

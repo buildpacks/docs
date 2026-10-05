@@ -90,42 +90,32 @@
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/features">
-              Features
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/features">Features</a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/community">
-              Community
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/community">Community</a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' 
-              href="https://medium.com/buildpacks">
-              Blog
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' rel="noopener noreferrer"
+              href="https://medium.com/buildpacks"><span class="external-link-tail">Blog<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></span></a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' 
-              href="https://registry.buildpacks.io/">
-              Registry
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' rel="noopener noreferrer"
+              href="https://registry.buildpacks.io/"><span class="external-link-tail">Registry<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></span></a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/history">
-              History
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/history">History</a>
           </li>
         
     
@@ -905,7 +895,7 @@
         </div>
 
         <p>This guide is most relevant to platform operators and builder authors.</p>
-<p>See the <a href="https://github.com/buildpacks/spec/releases/tag/platform%2Fv0.11">spec release</a> for Platform API 0.11 for the full list of changes and further details.</p>
+<p>See the <a href="https://github.com/buildpacks/spec/releases/tag/platform%2Fv0.11" target="_blank" rel="noopener noreferrer">spec release<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a> for Platform API 0.11 for the full list of changes and further details.</p>
 <h2 id="platform-operator">Platform Operator</h2>
 <h3 id="sbom-files-for-the-launcher-are-included-in-the-application-image">SBOM files for the <code>launcher</code> are included in the application image</h3>
 <p>In Platform 0.11, the lifecycle ships with standardized SBOM files describing the <code>lifecycle</code> and <code>launcher</code> binaries
@@ -934,7 +924,7 @@ This prevented rebasing by digest, among other use cases.</p>
 <p>Files in the <code>/cnb/build-config/env/</code> directory can use suffixes to control the behavior when another entity defines the same variable -
 e.g., if <code>/cnb/build-config/env/SOME_VAR.override</code> has contents <code>some-builder-val</code> and <code>&lt;platform&gt;/env/SOME_VAR</code> has contents <code>some-user-val</code>,
 the buildpack environment will contain <code>SOME_VAR=some-builder-val</code>.
-This is similar to the <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#environment-variable-modification-rules">environment modification rules for buildpacks</a>,
+This is similar to the <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#environment-variable-modification-rules" target="_blank" rel="noopener noreferrer">environment modification rules for buildpacks<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a>,
 except that the default behavior when no file suffix is provided is <code>default</code>.</p>
 <p>The order of application for env directories is:</p>
 <ul>
@@ -942,7 +932,7 @@ except that the default behavior when no file suffix is provided is <code>defaul
 <li>User: <code>&lt;platform&gt;/env/</code> - overrides buildpack values</li>
 <li>Builder: <code>/cnb/build-config/env/</code></li>
 </ul>
-<p>For additional information, see the <a href="https://github.com/buildpacks/spec/blob/main/platform.md#buildpack-environment">buildpack environment</a> section in the Platform spec.</p>
+<p>For additional information, see the <a href="https://github.com/buildpacks/spec/blob/main/platform.md#buildpack-environment" target="_blank" rel="noopener noreferrer">buildpack environment<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a> section in the Platform spec.</p>
 <p>To use this feature, builder authors should include a <code>/cnb/build-config/env/</code> directory with the desired configuration.</p>
 
         

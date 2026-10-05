@@ -92,42 +92,32 @@
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/features">
-              Features
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/features">Features</a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/community">
-              Community
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/community">Community</a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' 
-              href="https://medium.com/buildpacks">
-              Blog
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' rel="noopener noreferrer"
+              href="https://medium.com/buildpacks"><span class="external-link-tail">Blog<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></span></a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' 
-              href="https://registry.buildpacks.io/">
-              Registry
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' rel="noopener noreferrer"
+              href="https://registry.buildpacks.io/"><span class="external-link-tail">Registry<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></span></a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/history">
-              History
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/history">History</a>
           </li>
         
     
@@ -917,7 +907,7 @@
 <li><code>yarn</code> buildpack that provides the <code>yarn</code> binary,</li>
 <li><code>yarn-install</code> and <code>npm-install</code> buildpacks that install dependencies using either <code>yarn</code> or <code>npm</code>,</li>
 <li><code>yarn-start</code> and <code>npm-start</code> buildpacks that configure the entrypoint to the application image,</li>
-<li><code>procfile</code> a buildpack that allows developers to provide a <a href="https://devcenter.heroku.com/articles/procfile#procfile-format">Heroku-style</a> entrypoint for the image.</li>
+<li><code>procfile</code> a buildpack that allows developers to provide a <a href="https://devcenter.heroku.com/articles/procfile#procfile-format" target="_blank" rel="noopener noreferrer">Heroku-style<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a> entrypoint for the image.</li>
 </ul>
 <p>The <code>nodejs</code> buildpack itself is a composite buildpack which defines two <strong>order groups</strong>.  Here we represent the order groups visually:</p>
 <p><img src="/images/order-groups.svg" alt="nodejs order groups"></p>
@@ -961,7 +951,7 @@ font-size="medium"
 poster="data:text/plain,$ pack build example --verbose --buildpack docker://registry.fake/buildpacks/nodejs:latest" src="/images/pack-hello-world-nodejs.cast"></asciinema-player></p>
 <p>Now that we understand the example application we can step through each of the Buildpack phases.</p>
 <h2 id="phases">Phases</h2>
-<p>There are five phases to a buildpacks build.  These logic for each phase is provided by a binary within <a href="https://github.com/buildpacks/lifecycle"><code>lifecycle</code></a> and the orchestration of running each of the binaries is the responsibility of the Buildpacks platform.  In this case we are using <code>pack</code> as our Buildpacks platform.</p>
+<p>There are five phases to a buildpacks build.  These logic for each phase is provided by a binary within <a href="https://github.com/buildpacks/lifecycle" target="_blank" rel="noopener noreferrer"><code>lifecycle</code><svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a> and the orchestration of running each of the binaries is the responsibility of the Buildpacks platform.  In this case we are using <code>pack</code> as our Buildpacks platform.</p>
 <p>At a high-level each layer:</p>
 <ul>
 <li>Analyze phase - Reads metadata from any previously built image and ensures we have access to the OCI registry to be able to write the image we will build.</li>
@@ -984,7 +974,7 @@ Analyzing image &#34;98070ee549c522cbc08d15683d134aa0af1817fcdc56f450b07e6b4a790
 <p><img src="/images/order-groups-detect.svg" alt="nodejs order groups"></p>
 <!-- ALERT-NOTE -->
 <blockquote>
-<p>The <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#order-resolution">specification for order resolution</a> shows each order group as a matrix and the resolution as an operation on matrices.</p>
+<p>The <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#order-resolution" target="_blank" rel="noopener noreferrer">specification for order resolution<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a> shows each order group as a matrix and the resolution as an operation on matrices.</p>
 </blockquote>
 <p>The above diagram shows that the <code>detect</code> binary of each required buildpack in the second order group passes.  The detect phase is summarized by pack as</p>
 <pre tabindex="0"><code>===&gt; DETECTING

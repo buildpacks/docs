@@ -92,42 +92,32 @@
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/features">
-              Features
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/features">Features</a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/community">
-              Community
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/community">Community</a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' 
-              href="https://medium.com/buildpacks">
-              Blog
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' rel="noopener noreferrer"
+              href="https://medium.com/buildpacks"><span class="external-link-tail">Blog<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></span></a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' 
-              href="https://registry.buildpacks.io/">
-              Registry
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' rel="noopener noreferrer"
+              href="https://registry.buildpacks.io/"><span class="external-link-tail">Registry<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></span></a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/history">
-              History
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/history">History</a>
           </li>
         
     
@@ -924,7 +914,7 @@ rm -rf /tmp/tutorial
 -->
 <p>The majority of Buildpack users use community-maintained platforms, such as <a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/">pack</a> and <a href="https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/kpack/">kpack</a>, to run Buildpacks and create <code>OCI images</code>. However this might not be desireable especially for users maintaining their own platforms and seeking more control over how the underlying Buildpack <code>lifecycle phases</code> are executed.</p>
 <blockquote>
-<p>This tutorial is derived from a <a href="https://medium.com/buildpacks/unpacking-cloud-native-buildpacks-ff51b5a767bf">blog post</a> contributed by one of our community members.</p>
+<p>This tutorial is derived from a <a href="https://medium.com/buildpacks/unpacking-cloud-native-buildpacks-ff51b5a767bf" target="_blank" rel="noopener noreferrer">blog post<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a> contributed by one of our community members.</p>
 </blockquote>
 <p>In this step-by-step tutorial, you will build a <code>Bash</code> application without using any <code>platform</code> tooling like <code>pack</code> or <code>kpack</code>. You will also leverage the individual <code>lifecycle phases</code> to produce a runnable application image.</p>
 <h2 id="prerequisites">Prerequisites</h2>
@@ -955,7 +945,7 @@ cd /tmp/tutorial/lifecycle
 make build-linux-amd64 # hardcode CI tests to linux-amd64
 ```
 -->
-<p>It&rsquo;s recommended to check the <a href="https://github.com/buildpacks/lifecycle/releases">lifecycle releases</a> page to download binaries based on your system.</p>
+<p>It&rsquo;s recommended to check the <a href="https://github.com/buildpacks/lifecycle/releases" target="_blank" rel="noopener noreferrer">lifecycle releases<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a> page to download binaries based on your system.</p>
 <blockquote>
 <p>Please note that the entire process is most easily followed on Linux systems</p>
 </blockquote>
@@ -967,7 +957,7 @@ export CNB_LIFECYCLE_PATH=&#34;/&lt;your-path/lifecycle/out/&lt;your-os-arch&gt;
 </code></pre><p>Where</p>
 <ul>
 <li><code>CNB_USER_ID</code> and <code>CNB_GROUP_ID</code> are arbitrary values that need to be consistent. This example re-uses our user id and group id for the <code>CNB</code> user.  In a production system, these are commonly set to <code>1000</code>.</li>
-<li><code>CNB_PLATFORM_API</code> or the <code>Platform API</code> version, varies depending on the use case. This tutorial uses <code>v0.15</code>, which is the latest <a href="https://github.com/buildpacks/spec/releases?q=platform">Platform API</a> version.</li>
+<li><code>CNB_PLATFORM_API</code> or the <code>Platform API</code> version, varies depending on the use case. This tutorial uses <code>v0.15</code>, which is the latest <a href="https://github.com/buildpacks/spec/releases?q=platform" target="_blank" rel="noopener noreferrer">Platform API<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a> version.</li>
 <li><code>CNB_SAMPLES_PATH</code> represents the path of our local copy of the <code>samples</code> directory.</li>
 <li><code>CNB_LIFECYCLE_PATH</code> represents the path of our local compiled <code>lifecycle</code> directory.</li>
 </ul>
@@ -1061,9 +1051,9 @@ ${CNB_LIFECYCLE_PATH}/analyzer -log-level debug -daemon -layers="./layers" -run-
 <li>
 <p>Then you must populate the <code>buildpacks</code> directory with your buildpacks of interest.</p>
 <blockquote>
-<p>You have to follow the <a href="https://github.com/buildpacks/spec/blob/main/platform.md#buildpacks-directory-layout">directory layout</a> defined in the buildpack spec, where each top-level directory is a <code>buildpack ID</code> and each second-level directory is a <code>buildpack version</code>.</p>
+<p>You have to follow the <a href="https://github.com/buildpacks/spec/blob/main/platform.md#buildpacks-directory-layout" target="_blank" rel="noopener noreferrer">directory layout<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a> defined in the buildpack spec, where each top-level directory is a <code>buildpack ID</code> and each second-level directory is a <code>buildpack version</code>.</p>
 </blockquote>
-<p>We will use <a href="http://github.com/tomwright/dasel/"><code>dasel</code></a> to help us parse toml files.</p>
+<p>We will use <a href="http://github.com/tomwright/dasel/" target="_blank" rel="noopener noreferrer"><code>dasel</code><svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a> to help us parse toml files.</p>
 <pre tabindex="0"><code class="language-command" data-lang="command">$ go install github.com/tomwright/dasel/v2/cmd/dasel@master
 </code></pre><p>Let’s do that for every buildpack in the <code>samples/buildpacks</code> directory:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">for f in $(ls --color=no ${CNB_SAMPLES_PATH}/buildpacks | grep -v README)

@@ -65,7 +65,7 @@
 				<link>https://buildpacks.io/docs/for-buildpack-authors/concepts/component-buildpack/</link>
 				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
 				<guid>https://buildpacks.io/docs/for-buildpack-authors/concepts/component-buildpack/</guid>
-				<description>&lt;p&gt;A &lt;strong&gt;component buildpack&lt;/strong&gt; is a buildpack containing &lt;code&gt;/bin/detect&lt;/code&gt; and &lt;code&gt;/bin/build&lt;/code&gt; executables and that implements the &lt;a href=&#34;https://github.com/buildpacks/spec/blob/main/buildpack.md#buildpack-interface&#34;&gt;Buildpack Interface&lt;/a&gt;.&lt;/p&gt;</description>
+				<description>&lt;p&gt;A &lt;strong&gt;component buildpack&lt;/strong&gt; is a buildpack containing &lt;code&gt;/bin/detect&lt;/code&gt; and &lt;code&gt;/bin/build&lt;/code&gt; executables and that implements the &lt;a href=&#34;https://github.com/buildpacks/spec/blob/main/buildpack.md#buildpack-interface&#34; target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;Buildpack Interface&lt;svg class=&#34;external-link-icon&#34; viewBox=&#34;0 0 24 24&#34; width=&#34;1em&#34; height=&#34;1em&#34; fill=&#34;none&#34; stroke=&#34;currentColor&#34; stroke-width=&#34;2&#34; stroke-linecap=&#34;round&#34; stroke-linejoin=&#34;round&#34; aria-hidden=&#34;true&#34; focusable=&#34;false&#34;&gt;&lt;path d=&#34;M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6&#34;&gt;&lt;/path&gt;&lt;polyline points=&#34;15 3 21 3 21 9&#34;&gt;&lt;/polyline&gt;&lt;line x1=&#34;10&#34; y1=&#34;14&#34; x2=&#34;21&#34; y2=&#34;3&#34;&gt;&lt;/line&gt;&lt;/svg&gt;&lt;span class=&#34;visually-hidden&#34;&gt;(opens in a new tab)&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;</description>
 			</item>
 			<item>
 				<title>What is a composite buildpack?</title>

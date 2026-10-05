@@ -90,42 +90,32 @@
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/features">
-              Features
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/features">Features</a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/community">
-              Community
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/community">Community</a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' 
-              href="https://medium.com/buildpacks">
-              Blog
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' rel="noopener noreferrer"
+              href="https://medium.com/buildpacks"><span class="external-link-tail">Blog<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></span></a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' 
-              href="https://registry.buildpacks.io/">
-              Registry
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' rel="noopener noreferrer"
+              href="https://registry.buildpacks.io/"><span class="external-link-tail">Registry<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></span></a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/history">
-              History
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/history">History</a>
           </li>
         
     
@@ -917,9 +907,9 @@
 </span></span></span><span class="line"><span class="cl"><span class="go">: Error response from daemon: Get &#34;https//registry-1.docker.io/v2/&#34;: context deadline exceeded
 </span></span></span></code></pre></div><p>The <code>pack</code> tool uses the Docker daemon to manage the local image registry on your machine. The <code>pack</code> tool will ask the Docker daemon to download buildpacks and images for you. Because of this relationship, between <code>pack</code> and the Docker daemon, we need to configure the Docker daemon to use a HTTP proxy. The approach to setting the HTTP proxy depends on your platform:</p>
 <h3 id="docker-desktop-windows-and-macos">Docker Desktop (Windows and macOS)</h3>
-<p>Docker&rsquo;s documentation states &ldquo;Docker Desktop lets you configure HTTP/HTTPS Proxy Settings and automatically propagates these to Docker.&rdquo; Set the system proxy using the <a href="https://support.apple.com/en-gb/guide/mac-help/mchlp2591/mac">MacOS documentation</a> or <a href="https://www.dummies.com/computers/operating-systems/windows-10/how-to-set-up-a-proxy-in-windows-10/">Windows documentation</a>. The system proxy settings will be used by Docker Desktop.</p>
+<p>Docker&rsquo;s documentation states &ldquo;Docker Desktop lets you configure HTTP/HTTPS Proxy Settings and automatically propagates these to Docker.&rdquo; Set the system proxy using the <a href="https://support.apple.com/en-gb/guide/mac-help/mchlp2591/mac" target="_blank" rel="noopener noreferrer">MacOS documentation<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a> or <a href="https://www.dummies.com/computers/operating-systems/windows-10/how-to-set-up-a-proxy-in-windows-10/" target="_blank" rel="noopener noreferrer">Windows documentation<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a>. The system proxy settings will be used by Docker Desktop.</p>
 <h3 id="linux">Linux</h3>
-<p>The Docker project documents <a href="https://docs.docker.com/config/daemon/systemd/#httphttps-proxy">how to configure the HTTP/HTTPS proxy</a> settings for the Docker daemon on Linux. You should configure the <code>HTTP_PROXY</code> and <code>HTTPS_PROXY</code> environment variables as part of the Docker daemon startup.</p>
+<p>The Docker project documents <a href="https://docs.docker.com/config/daemon/systemd/#httphttps-proxy" target="_blank" rel="noopener noreferrer">how to configure the HTTP/HTTPS proxy<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a> settings for the Docker daemon on Linux. You should configure the <code>HTTP_PROXY</code> and <code>HTTPS_PROXY</code> environment variables as part of the Docker daemon startup.</p>
 <h2 id="proxy-settings-for-buildpacks">Proxy settings for buildpacks</h2>
 <p>Buildpacks may also need to be aware of your HTTP and HTTPS proxies at build time. For example python, java and Node.js buildpacks need to be aware of proxies to resolve dependencies. To make buildpacks aware of proxies, export the <code>http_proxy</code> and <code>https_proxy</code> environment variables before invoking <code>pack</code>. For example:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">export http_proxy=http://user:pass@my-proxy.example.com:3128

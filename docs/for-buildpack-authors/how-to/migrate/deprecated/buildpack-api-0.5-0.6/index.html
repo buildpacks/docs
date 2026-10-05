@@ -90,42 +90,32 @@
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/features">
-              Features
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/features">Features</a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/community">
-              Community
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/community">Community</a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' 
-              href="https://medium.com/buildpacks">
-              Blog
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' rel="noopener noreferrer"
+              href="https://medium.com/buildpacks"><span class="external-link-tail">Blog<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></span></a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' 
-              href="https://registry.buildpacks.io/">
-              Registry
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' rel="noopener noreferrer"
+              href="https://registry.buildpacks.io/"><span class="external-link-tail">Registry<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></span></a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/history">
-              History
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/history">History</a>
           </li>
         
     
@@ -905,7 +895,7 @@
         </div>
 
         <p>This guide is most relevant to buildpack authors.</p>
-<p>See the <a href="https://github.com/buildpacks/spec/releases/tag/buildpack%2Fv0.6">spec release</a> for Buildpack API 0.6 for the full list of changes and further details.</p>
+<p>See the <a href="https://github.com/buildpacks/spec/releases/tag/buildpack%2Fv0.6" target="_blank" rel="noopener noreferrer">spec release<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a> for Buildpack API 0.6 for the full list of changes and further details.</p>
 <h3 id="opt-in-layer-caching-and-launchtoml-format-changes">Opt-in layer caching and launch.toml format changes</h3>
 <p>Buildpacks must now explicitly opt-in to layer re-use by setting the <code>launch</code>, <code>build</code>, and <code>cache</code> keys in <code>&lt;layers&gt;/&lt;layer&gt;.toml</code>. If buildpacks do not modify <code>&lt;layers&gt;/&lt;layer&gt;.toml</code>, the layer will behave like a temporary directory, available only to the authoring buildpack, existing for the duration of a single build - even if the buildpack in the previous build set any of these keys to <code>true</code>.</p>
 <blockquote>
@@ -933,7 +923,7 @@ For example -</p>
 <li>A <code>description</code> free text field</li>
 <li>A <code>keywords</code> array</li>
 <li>A <code>licenses</code> array of table
-Each license in <code>[[buildpack.licenses]]</code> can contain a <code>type</code> and <code>uri</code>, where <code>type</code> may use the <a href="https://spdx.org/spdx-specification-21-web-version">SPDX 2.1 license expression</a>, but it is not limited to identifiers in the <a href="https://spdx.org/licenses/">SPDX Licenses List</a>. If the buildpack is using a nonstandard license, then the <code>uri</code> key may be specified in lieu of or in addition to <code>type</code> to point to the license.</li>
+Each license in <code>[[buildpack.licenses]]</code> can contain a <code>type</code> and <code>uri</code>, where <code>type</code> may use the <a href="https://spdx.org/spdx-specification-21-web-version" target="_blank" rel="noopener noreferrer">SPDX 2.1 license expression<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a>, but it is not limited to identifiers in the <a href="https://spdx.org/licenses/" target="_blank" rel="noopener noreferrer">SPDX Licenses List<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a>. If the buildpack is using a nonstandard license, then the <code>uri</code> key may be specified in lieu of or in addition to <code>type</code> to point to the license.</li>
 </ul>
 <h3 id="execd-on-windows">exec.d on Windows</h3>
 <p>Buildpack API 0.5 introduced support for <code>exec.d</code> executables that may be used to modify the environment for an app process (similar to profile.d) but do not depend on a shell.

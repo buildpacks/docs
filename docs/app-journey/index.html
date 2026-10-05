@@ -92,42 +92,32 @@ In order to run the build process in an isolated fashion,…">
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/features">
-              Features
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/features">Features</a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/community">
-              Community
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/community">Community</a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' 
-              href="https://medium.com/buildpacks">
-              Blog
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' rel="noopener noreferrer"
+              href="https://medium.com/buildpacks"><span class="external-link-tail">Blog<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></span></a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' 
-              href="https://registry.buildpacks.io/">
-              Registry
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' rel="noopener noreferrer"
+              href="https://registry.buildpacks.io/"><span class="external-link-tail">Registry<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></span></a>
           </li>
         
           
           <li class="nav-item ms-lg-4 text-center text-lg-left ">
-            <a class="nav-link py-2 py-lg-0 px-1"  
-              href="/history">
-              History
-            </a>
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/history">History</a>
           </li>
         
     
@@ -913,7 +903,7 @@ That means you&rsquo;ll need to make sure you have both <code>pack</code> and a 
 <a href='/docs/install-pack' class='download-button button icon-button bg-pink'> Install pack </a><br />
 <p><a href='https://store.docker.com/search?type=edition&amp;offering=community' class='download-button button icon-button bg-blue'> Install Docker </a><br /> or alternatively, see <a href="/docs/for-app-developers/how-to/special-cases/build-on-podman">this page</a> about working with <code>podman</code>.</p>
 <blockquote>
-<p><strong>NOTE:</strong> <code>pack</code> is only one implementation of the <a href="https://github.com/buildpacks/spec/blob/main/platform.md">Cloud Native Buildpacks Platform Specification</a>. Additionally, not all Cloud Native Buildpacks Platforms require Docker.</p>
+<p><strong>NOTE:</strong> <code>pack</code> is only one implementation of the <a href="https://github.com/buildpacks/spec/blob/main/platform.md" target="_blank" rel="noopener noreferrer">Cloud Native Buildpacks Platform Specification<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a>. Additionally, not all Cloud Native Buildpacks Platforms require Docker.</p>
 </blockquote>
 <h2 id="buildpack-base-camp">Buildpack base camp</h2>
 <p>Before we set out, you&rsquo;ll need to know the basics of <strong>buildpacks</strong> and how they work.</p>
@@ -932,7 +922,7 @@ instance, an <strong>NPM buildpack</strong> might look for a <code>package.json<
 <p>A builder is an image that contains all the components necessary to execute a build. A builder image is created by taking a build image and adding a lifecycle, buildpacks, and files that configure aspects of the build including the buildpack detection order and the location(s) of the run image.</p>
 <h2 id="next-stop-the-end">Next stop, the end</h2>
 <p>Let&rsquo;s see all this in action using <code>pack build</code>.</p>
-<p>Run the following commands in a shell to clone and build this <a href="https://github.com/buildpacks/samples/tree/main/apps/java-maven">simple Java app</a>.</p>
+<p>Run the following commands in a shell to clone and build this <a href="https://github.com/buildpacks/samples/tree/main/apps/java-maven" target="_blank" rel="noopener noreferrer">simple Java app<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a>.</p>
 <ol>
 <li>Clone the samples repo.</li>
 </ol>
@@ -960,7 +950,7 @@ a JDK, run Maven, or otherwise configure a build environment. <code>pack</code> 
 <p>To test out your new app image locally, you can run it with Docker:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker run --rm -p 8080:8080 myapp
 </span></span></code></pre></div><!--+- "{{execute}}"+-->
-<p>Now hit <a href="http://localhost:8080"><code>localhost:8080</code></a> in your favorite browser and take a minute to enjoy the view.</p>
+<p>Now hit <a href="http://localhost:8080" target="_blank" rel="noopener noreferrer"><code>localhost:8080</code><svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a> in your favorite browser and take a minute to enjoy the view.</p>
 <h3 id="take-your-image-to-the-skies">Take your image to the skies</h3>
 <p><code>pack</code> uses <strong>buildpacks</strong> to help you easily create OCI images that you can run just about anywhere. Try
 deploying your new image to your favorite cloud!</p>
@@ -969,7 +959,7 @@ deploying your new image to your favorite cloud!</p>
 registry. You can learn more about <code>pack</code> features in the <a href="/docs/tools/pack/">documentation</a>.</p>
 <p>Additionally, if your Docker daemon uses <code>containerd</code> image storage (not the Docker default),
 it may degrade the performance of <code>pack build</code>. For more details, please refer to
-<a href="https://github.com/buildpacks/pack/issues/2272">the related issue</a>.</p>
+<a href="https://github.com/buildpacks/pack/issues/2272" target="_blank" rel="noopener noreferrer">the related issue<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a>.</p>
 </blockquote>
 <h2 id="what-about-windows-apps">What about Windows apps?</h2>
 <p>Windows image builds are now supported!</p>
