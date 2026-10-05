@@ -13,9 +13,13 @@
         {{ range $.Site.Menus.main }}
           {{ $topLevel := replace .URL "/" "" }}
           <li class="nav-item ms-lg-4 text-center text-lg-left {{ if or (eq $current.Permalink .URL) (eq $current.Type $topLevel) }}active{{end}}">
-            <a class="nav-link py-2 py-lg-0 px-1" {{ if (hasPrefix .URL "https") }}target='_blank'{{ end }} 
+            <a class="nav-link py-2 py-lg-0 px-1" {{ if (hasPrefix .URL "https") }}target='_blank' rel="noopener noreferrer"{{ end }}
               href="{{ .URL }}">
-              {{ .Name }}
+              {{- if (hasPrefix .URL "https") -}}
+                <span class="external-link-tail">{{ .Name }}{{ partial "external-link-icon.html" . | chomp }}</span>
+              {{- else -}}
+                {{ .Name }}
+              {{- end -}}
             </a>
           </li>
         {{ end }}
