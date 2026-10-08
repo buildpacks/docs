@@ -2,32 +2,48 @@
 
 <div class='docs'>
 
-  <div class="bg-blue">
+  <div class="bg-blue community-hero">
     <div class="container">
-      <div class="row pt-4">
-        <div class='col-md-7 pt-1 d-none d-lg-flex justify-content-center'>
-          <div class='align-self-end col-md-8'>
+      <div class="row">
+        <div class='col-lg-7 d-none d-lg-flex justify-content-center'>
+          <div class='community-hero__art'>
             {{ readFile "themes/buildpacks/static/images/community.svg" | safeHTML }}
           </div>
         </div>
-        <div
-          class='docs-content text-white col-12 col-lg-5 d-flex justify-content-center justify-content-lg-start text-center text-lg-left'>
-          <div>
-            <h1 class="mt-1 mb-2 text-white">Join our community</h1>
-            <div>
-              <a class="slack-button icon-button bg-pink shadow-sm button d-flex" href="https://slack.cncf.io/">Slack</a>
-	      Find us in the <a href="https://cloud-native.slack.com/app_redirect?channel=buildpacks">#buildpacks</a> channel.
-            </div>
-            <div class="mt-3 text-left pl-4 pl-lg-0">
-              <strong>Also...</strong>
-              <ul class="text-left">
-                <li><a target="_blank" rel="noopener noreferrer" href="https://github.com/buildpacks/community/discussions">GitHub Discussions</a></li>
-                <li><a target="_blank" rel="noopener noreferrer" href="https://github.com/buildpacks/community">BuildPacks Community on GitHub</a></li>
-                <li><a target="_blank" rel="noopener noreferrer" href="https://lists.cncf.io/g/cncf-buildpacks">Mailing List</a></li>
-                <li><a target="_blank" rel="noopener noreferrer" href="https://stackoverflow.com/questions/tagged/buildpack">StackOverflow</a></li>
-              </ul>
-            </div>
-          </div>
+        <div class='docs-content text-white col-12 col-lg-5'>
+          <h1 class="text-white">Join our community</h1>
+          <p class="community-hero__lead">Connect with our users, contributors, and maintainers.</p>
+
+          <a class="slack-button icon-button bg-pink button community-hero__slack" href="https://slack.cncf.io/">Slack</a>
+          <p class="community-hero__hint">Find us in the <a href="https://cloud-native.slack.com/app_redirect?channel=buildpacks">#buildpacks</a> channel.</p>
+
+          <p class="community-hero__also">Also find us on</p>
+          <ul class="community-links">
+            <li>
+              <a target="_blank" rel="noopener noreferrer" href="https://github.com/buildpacks/community/discussions">
+                <span class="community-links__icon community-links__icon--github"></span>
+                <span class="community-links__name">GitHub Discussions</span>
+              </a>
+            </li>
+            <li>
+              <a target="_blank" rel="noopener noreferrer" href="https://github.com/buildpacks/community">
+                <span class="community-links__icon community-links__icon--community"></span>
+                <span class="community-links__name">Community on GitHub</span>
+              </a>
+            </li>
+            <li>
+              <a target="_blank" rel="noopener noreferrer" href="https://lists.cncf.io/g/cncf-buildpacks">
+                <span class="community-links__icon community-links__icon--mail"></span>
+                <span class="community-links__name">Mailing List</span>
+              </a>
+            </li>
+            <li>
+              <a target="_blank" rel="noopener noreferrer" href="https://stackoverflow.com/questions/tagged/buildpack">
+                <span class="community-links__icon community-links__icon--stackoverflow"></span>
+                <span class="community-links__name">Stack Overflow</span>
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
