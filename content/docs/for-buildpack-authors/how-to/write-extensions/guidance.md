@@ -16,7 +16,7 @@ then come here for the finer points.
 
 ### Expressing provided dependencies through the build plan
 
-The [build plan](/docs/reference/spec/buildpack-api#build-plan) is a mechanism for inter-buildpack communication.
+The [build plan](/docs/for-buildpack-authors/concepts/build-plan/) is a mechanism for inter-buildpack communication.
 Through the build plan, buildpacks may express the dependencies they require, as well as those they provide.
 The lifecycle uses information from the build plan to determine whether a group of buildpacks is compatible - that is, whether for every buildpack in the group, its required dependencies are provided by a buildpack that comes before it.
 
