@@ -36,5 +36,5 @@ The schema is as follows:
 You can view [sample buildpackages](https://github.com/buildpacks/samples/tree/main/packages) on Github.
 
 [package]: /docs/for-platform-operators/concepts/buildpack#distribution
-[supported-archives]: /docs/reference/builder-config#supported-archives
+[supported-archives]: /docs/reference/config/builder-config/#supported-archives
 [order-group]: https://github.com/buildpacks/spec/blob/main/buildpack.md#order-resolution

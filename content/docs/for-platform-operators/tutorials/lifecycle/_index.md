@@ -270,7 +270,7 @@ samples/hello-moon  0.0.1
 Timer: Detector ran for 26.011769ms and ended at 2024-10-01T07:00:50Z
 ```
 
-You can view more details about the [order](https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/detect/#ordertoml), [group](https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/detect/#grouptoml) and [plan](https://buildpacks.io/docs/concepts/components/lifecycle/detect/#plantoml) toml files in the platform documentation.
+You can view more details about the [order](https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/detect/#ordertoml), [group](https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/detect/#grouptoml) and [plan](https://buildpacks.io/docs/for-platform-operators/concepts/lifecycle/detect/#plantoml) toml files in the platform documentation.
 
 #### Restore
 
