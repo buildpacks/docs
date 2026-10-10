@@ -1438,6 +1438,123 @@ External link indicator
 
 /**********************************
 
+Community
+
+**********************************/
+.docs .community-hero {
+  overflow: hidden; }
+  .docs .community-hero__art {
+    width: 100%;
+    max-width: 440px;
+    align-self: flex-end; }
+    .docs .community-hero__art svg {
+      width: 100%;
+      height: auto;
+      display: block; }
+  .docs .community-hero .docs-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 2.25rem 2rem 2.5rem; }
+    @media (min-width: 992px) {
+      .docs .community-hero .docs-content {
+        align-items: flex-start;
+        text-align: left; } }
+    .docs .community-hero .docs-content h1 {
+      color: #FFFFFF;
+      padding-bottom: 0;
+      margin-bottom: 0.6rem; }
+      .docs .community-hero .docs-content h1:first-child::after {
+        display: none; }
+    .docs .community-hero .docs-content .community-hero__lead {
+      max-width: 26rem;
+      margin-bottom: 1rem;
+      color: rgba(255, 255, 255, 0.85); }
+    .docs .community-hero .docs-content .community-hero__slack {
+      margin-bottom: 0.75rem;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15); }
+    .docs .community-hero .docs-content .community-hero__hint {
+      max-width: 26rem;
+      margin-bottom: 1.25rem;
+      color: rgba(255, 255, 255, 0.85); }
+      .docs .community-hero .docs-content .community-hero__hint a {
+        color: #FFFFFF;
+        text-decoration: underline; }
+    .docs .community-hero .docs-content .community-hero__also {
+      width: 100%;
+      max-width: 34rem;
+      margin-bottom: 0.7rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.7); }
+      .docs .community-hero .docs-content .community-hero__also::after {
+        content: '';
+        flex: 1 1 auto;
+        height: 1px;
+        background-color: rgba(255, 255, 255, 0.25); }
+    .docs .community-hero .docs-content .community-links {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      max-width: 34rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.6rem; }
+      @media (min-width: 576px) {
+        .docs .community-hero .docs-content .community-links {
+          grid-template-columns: repeat(2, 1fr); } }
+      .docs .community-hero .docs-content .community-links li {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        list-style: none;
+        display: flex; }
+      .docs .community-hero .docs-content .community-links a {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        padding: 0.55rem 0.8rem;
+        border-radius: 9px;
+        color: #FFFFFF;
+        text-decoration: none;
+        background-color: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease; }
+        .docs .community-hero .docs-content .community-links a:hover, .docs .community-hero .docs-content .community-links a:focus {
+          background-color: rgba(255, 255, 255, 0.14);
+          border-color: rgba(255, 255, 255, 0.3);
+          text-decoration: none;
+          transform: translateY(-1px); }
+      .docs .community-hero .docs-content .community-links__icon {
+        flex: 0 0 auto;
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        background-color: rgba(255, 255, 255, 0.12);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 18px 18px; }
+      .docs .community-hero .docs-content .community-links__icon--github, .docs .community-hero .docs-content .community-links__icon--community {
+        background-image: url("/images/github-mark.svg"); }
+      .docs .community-hero .docs-content .community-links__icon--mail {
+        background-image: url("/images/mail-mark.svg"); }
+      .docs .community-hero .docs-content .community-links__icon--stackoverflow {
+        background-image: url("/images/stackoverflow-mark.svg"); }
+      .docs .community-hero .docs-content .community-links__name {
+        font-weight: 600;
+        line-height: 1.2;
+        font-size: 0.95rem; }
+
+/**********************************
+
 Helpers and Resets
 
 **********************************/
