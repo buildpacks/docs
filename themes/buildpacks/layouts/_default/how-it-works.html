@@ -1,0 +1,92 @@
+{{ define "main" }}
+
+<div class="hiw">
+  <section class="hiw-hero">
+    <div class="container">
+      <p class="hiw-hero__eyebrow">Under the hood</p>
+      <h1>How Buildpacks Work</h1>
+      <p class="hiw-hero__lead">{{ .Params.lead }}</p>
+      <a class="hiw-hero__cue" href="#hiw-story">
+        Scroll to explore
+        <span class="hiw-hero__chevron" aria-hidden="true"></span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Without JavaScript the steps below read as a plain article -->
+  <script>document.documentElement.classList.add('hiw-js');</script>
+
+  <section id="hiw-story" class="hiw-story container" data-hiw>
+    <div class="hiw-stage">
+      <div class="hiw-stage__panel">
+        <nav class="hiw-rail" aria-label="Build phases">
+          <ol>
+            {{ range .Params.steps }}
+            <li><a class="hiw-rail__item" href="#{{ .phase | anchorize }}" data-hiw-rail>{{ .phase }}</a></li>
+            {{ end }}
+          </ol>
+          <div class="hiw-rail__progress" aria-hidden="true"><span data-hiw-progress></span></div>
+        </nav>
+        <div class="hiw-stage__canvas" data-hiw-canvas aria-hidden="true">
+          <div class="hiw-stage__labels" data-hiw-labels></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hiw-steps">
+      {{ range $i, $step := .Params.steps }}
+      <article id="{{ $step.phase | anchorize }}" class="hiw-step{{ if eq $i 0 }} is-active{{ end }}" data-hiw-step>
+        <div class="hiw-step__card">
+          <p class="hiw-step__eyebrow">Step {{ printf "%02d" (add $i 1) }} &middot; {{ $step.phase }}</p>
+          <h2>{{ $step.title }}</h2>
+          <p>{{ $step.body | markdownify }}</p>
+          {{ with $step.link }}
+          <a class="hiw-step__link" href="{{ . }}">{{ $step.linkText }}</a>
+          {{ end }}
+        </div>
+      </article>
+      {{ end }}
+    </div>
+  </section>
+
+  <section class="hiw-outro container">
+    <div class="text-center p-5 bg-light rounded">
+      <p class="h2">Try it yourself</p>
+      <p>Build an image from your app's source code with the <code class="highlight">pack</code> CLI:</p>
+      <pre class="hiw-cmd"><code>pack build my-app --builder cnbs/sample-builder:resolute</code></pre>
+      <p class="mb-0">
+        <a href="/docs/app-journey" class="button bg-pink">Start Tutorial</a>
+        <a href="/docs/" class="button bg-white button-light">Read the Docs</a>
+      </p>
+    </div>
+
+    <h2 class="mt-5">Dive deeper</h2>
+    <div class="row highlights text-center mb-5">
+      <div class="col-sm bg-off-blue m-2 p-4 rounded">
+        <h3 class="mb-2">Buildpacks</h3>
+        <p>What a buildpack is and how it inspects and builds your app.</p>
+        <a href="/docs/for-app-developers/concepts/buildpack/">Read more</a>
+      </div>
+      <div class="col-sm bg-off-blue m-2 p-4 rounded">
+        <h3 class="mb-2">Builders</h3>
+        <p>How buildpacks, base images and the lifecycle are packaged together.</p>
+        <a href="/docs/for-app-developers/concepts/builder/">Read more</a>
+      </div>
+      <div class="col-sm bg-off-blue m-2 p-4 rounded">
+        <h3 class="mb-2">Lifecycle</h3>
+        <p>Every phase the lifecycle runs, from analyze through export.</p>
+        <a href="/docs/for-platform-operators/concepts/lifecycle/">Read more</a>
+      </div>
+      <div class="col-sm bg-off-blue m-2 p-4 rounded">
+        <h3 class="mb-2">Rebase</h3>
+        <p>How app images get OS updates without a rebuild.</p>
+        <a href="/docs/for-app-developers/concepts/rebase/">Read more</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+{{ $script := resources.Get "js/how-it-works.js" | minify | fingerprint }}
+<script type="module" src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity }}"></script>
+
+{{ end }}
