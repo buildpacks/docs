@@ -314,6 +314,8 @@
   </url><url>
     <loc>https://buildpacks.io/docs/reference/spec/distribution-api/</loc>
   </url><url>
+    <loc>https://buildpacks.io/how-it-works/</loc>
+  </url><url>
     <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack/</loc>
   </url><url>
     <loc>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack_build/</loc>

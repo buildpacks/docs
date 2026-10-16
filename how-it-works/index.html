@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  
+
+
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Follow your source code through the buildpacks lifecycle, from detection to a production-ready, rebasable container image."/>
+<link rel="canonical" content="https://buildpacks.io/how-it-works/">
+<link rel="icon" type="image/png" href="/images/favicon.png">
+
+
+
+
+
+
+<meta property="og:title" content="How it Works · Cloud Native Buildpacks">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://buildpacks.io/how-it-works/">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Cloud Native Buildpacks">
+<meta property="og:description" content="Follow your source code through the buildpacks lifecycle, from detection to a production-ready, rebasable container image.">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://buildpacks.io/images/buildpacks-social-card.jpg">
+<meta property="og:image:alt" content="Buildpacks project logo">
+<meta property="og:image:type" content="image/jpeg">
+
+
+
+
+
+
+<meta property="twitter:title" content="How it Works · Cloud Native Buildpacks">
+<meta property="twitter:card" content="summary">
+<meta property="twitter:image" content="https://buildpacks.io/images/buildpacks-social-card-square.jpg">
+<meta property="twitter:image:alt" content="Buildpacks project logo">
+<meta property="twitter:site" content="@buildpacks_io">
+<meta property="twitter:creator" content="@buildpacks_io">
+
+  <script
+    src="https://cdn.jsdelivr.net/combine/npm/axios@1.7.9,npm/jquery@3.7.1,npm/bootstrap@5.3.3,npm/fullcalendar@5.4.0,npm/jquery-replacetext@1.1.0/replacetext.min.js"></script>
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.1/css/all.min.css"
+    crossorigin="anonymous">
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/combine/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css,npm/fullcalendar@5.4.0/main.min.css"
+    crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Fira+Mono|Source+Sans+Pro:400,400i,600" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://buildpacks.io/scss/site.css" integrity="" media="screen">
+
+  <link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+  <script src="/pagefind/pagefind-ui.js"></script>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-CJLSR4FQXL"></script>
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/asciinema-player/2.6.1/asciinema-player.min.css"
+    integrity="sha512-tv24MiwP+0CRCL80VsmJYPl/xDD2tdlDMz9fhNCIAQ6UPrj6Kh/57hOt9A4YnoNDKH5QDxJqGhtt9NPW2sgQeg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer">
+  <style type="text/css">
+    .asciinema-theme-asciinema .fg-15 {
+        color: #6a2929;
+    }
+    .asciinema-theme-asciinema .asciinema-terminal {
+        color: #888888;
+    }
+  </style>
+
+  <title>How it Works · Cloud Native Buildpacks</title>
+</head>
+
+<body>
+  <header class="container px-0">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <a href="https://buildpacks.io/" class="logo navbar-brand"><img src="/images/buildpacks-logo.svg"
+        alt="Buildpacks Logo"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <ul class="navbar-nav">
+        
+        
+          
+          <li class="nav-item ms-lg-4 text-center text-lg-left ">
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/features">Features</a>
+          </li>
+        
+          
+          <li class="nav-item ms-lg-4 text-center text-lg-left ">
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/how-it-works">How it Works</a>
+          </li>
+        
+          
+          <li class="nav-item ms-lg-4 text-center text-lg-left ">
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/community">Community</a>
+          </li>
+        
+          
+          <li class="nav-item ms-lg-4 text-center text-lg-left ">
+            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' rel="noopener noreferrer"
+              href="https://medium.com/buildpacks"><span class="external-link-tail">Blog<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></span></a>
+          </li>
+        
+          
+          <li class="nav-item ms-lg-4 text-center text-lg-left ">
+            <a class="nav-link py-2 py-lg-0 px-1" target='_blank' rel="noopener noreferrer"
+              href="https://registry.buildpacks.io/"><span class="external-link-tail">Registry<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></span></a>
+          </li>
+        
+          
+          <li class="nav-item ms-lg-4 text-center text-lg-left ">
+            <a class="nav-link py-2 py-lg-0 px-1" 
+              href="/history">History</a>
+          </li>
+        
+    
+        
+        <li class="nav-item text-center d-lg-none">
+          <a class="nav-link py-2 px-1" href="/docs">Docs</a>
+        </li>
+        <li class="nav-item text-center d-lg-none">
+          <a class="nav-link py-2 px-1" target='_blank' rel="noopener noreferrer" href="https://github.com/buildpacks">GitHub</a>
+        </li>
+      </ul>
+
+      <a class="button-light ms-3 d-none d-lg-block" href="/docs">
+        <i class="far fa-file-alt me-2"></i>Docs
+      </a>
+       <a class="github-button ms-3  icon-button bg-blue button d-none d-lg-flex" href="https://github.com/buildpacks">GitHub</a>
+    </div>    
+  </nav>
+</header>
+
+  
+
+<div class="hiw">
+  <section class="hiw-hero">
+    <div class="container">
+      <p class="hiw-hero__eyebrow">Under the hood</p>
+      <h1>How Buildpacks Work</h1>
+      <p class="hiw-hero__lead">From source code to a production-ready container image, without writing a Dockerfile. Scroll to follow a build from start to finish.</p>
+      <a class="hiw-hero__cue" href="#hiw-story">
+        Scroll to explore
+        <span class="hiw-hero__chevron" aria-hidden="true"></span>
+      </a>
+    </div>
+  </section>
+
+  
+  <script>document.documentElement.classList.add('hiw-js');</script>
+
+  <section id="hiw-story" class="hiw-story container" data-hiw>
+    <div class="hiw-stage">
+      <div class="hiw-stage__panel">
+        <nav class="hiw-rail" aria-label="Build phases">
+          <ol>
+            
+            <li><a class="hiw-rail__item" href="#source" data-hiw-rail>Source</a></li>
+            
+            <li><a class="hiw-rail__item" href="#builder" data-hiw-rail>Builder</a></li>
+            
+            <li><a class="hiw-rail__item" href="#detect" data-hiw-rail>Detect</a></li>
+            
+            <li><a class="hiw-rail__item" href="#restore" data-hiw-rail>Restore</a></li>
+            
+            <li><a class="hiw-rail__item" href="#build" data-hiw-rail>Build</a></li>
+            
+            <li><a class="hiw-rail__item" href="#export" data-hiw-rail>Export</a></li>
+            
+            <li><a class="hiw-rail__item" href="#rebase" data-hiw-rail>Rebase</a></li>
+            
+            <li><a class="hiw-rail__item" href="#run" data-hiw-rail>Run</a></li>
+            
+          </ol>
+          <div class="hiw-rail__progress" aria-hidden="true"><span data-hiw-progress></span></div>
+        </nav>
+        <div class="hiw-stage__canvas" data-hiw-canvas aria-hidden="true">
+          <div class="hiw-stage__labels" data-hiw-labels></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hiw-steps">
+      
+      <article id="source" class="hiw-step is-active" data-hiw-step>
+        <div class="hiw-step__card">
+          <p class="hiw-step__eyebrow">Step 01 &middot; Source</p>
+          <h2>It starts with your source code</h2>
+          <p>Point a platform such as <code>pack</code> at your app. There&rsquo;s no Dockerfile to write or maintain: buildpacks work out what your app needs and how to package it.</p>
+          
+          <a class="hiw-step__link" href="/docs/for-app-developers/concepts/platform/">What is a platform?</a>
+          
+        </div>
+      </article>
+      
+      <article id="builder" class="hiw-step" data-hiw-step>
+        <div class="hiw-step__card">
+          <p class="hiw-step__eyebrow">Step 02 &middot; Builder</p>
+          <h2>A builder brings the tools</h2>
+          <p>A builder is an image that bundles an ordered set of buildpacks, a build-time base image to run them in, the lifecycle that orchestrates every phase, and a reference to the runtime base image your app will ship on.</p>
+          
+          <a class="hiw-step__link" href="/docs/for-app-developers/concepts/builder/">What is a builder?</a>
+          
+        </div>
+      </article>
+      
+      <article id="detect" class="hiw-step" data-hiw-step>
+        <div class="hiw-step__card">
+          <p class="hiw-step__eyebrow">Step 03 &middot; Detect</p>
+          <h2>Buildpacks decide if they apply</h2>
+          <p>After analyzing any previously built image, the lifecycle asks each buildpack, in order, whether it recognizes your app. A <code>package.json</code> lets the Node.js buildpack pass, a <code>requirements.txt</code> lets Python pass, and optional buildpacks with nothing to do simply opt out.</p>
+          
+          <a class="hiw-step__link" href="/docs/for-platform-operators/concepts/lifecycle/detect/">Learn about detection</a>
+          
+        </div>
+      </article>
+      
+      <article id="restore" class="hiw-step" data-hiw-step>
+        <div class="hiw-step__card">
+          <p class="hiw-step__eyebrow">Step 04 &middot; Restore</p>
+          <h2>Cached layers come back</h2>
+          <p>The lifecycle restores layers saved by earlier builds from the cache, so dependencies that haven&rsquo;t changed don&rsquo;t have to be downloaded or compiled again. Rebuilds stay fast.</p>
+          
+          <a class="hiw-step__link" href="/docs/for-platform-operators/concepts/lifecycle/restore/">Learn about restoring</a>
+          
+        </div>
+      </article>
+      
+      <article id="build" class="hiw-step" data-hiw-step>
+        <div class="hiw-step__card">
+          <p class="hiw-step__eyebrow">Step 05 &middot; Build</p>
+          <h2>Each buildpack contributes layers</h2>
+          <p>The lifecycle runs each participating buildpack inside the build-time base image, and each one contributes its own layers: a language runtime, installed dependencies, your compiled app. Every layer is isolated, cacheable and can be described in a software bill of materials.</p>
+          
+          <a class="hiw-step__link" href="/docs/for-platform-operators/concepts/lifecycle/build/">Learn about the build phase</a>
+          
+        </div>
+      </article>
+      
+      <article id="export" class="hiw-step" data-hiw-step>
+        <div class="hiw-step__card">
+          <p class="hiw-step__eyebrow">Step 06 &middot; Export</p>
+          <h2>Out comes an OCI image</h2>
+          <p>The lifecycle stacks those layers on top of the runtime base image and exports a standard OCI image, ready to push to any registry, with no build tools left inside.</p>
+          
+          <a class="hiw-step__link" href="/docs/for-platform-operators/concepts/lifecycle/export/">Learn about exporting</a>
+          
+        </div>
+      </article>
+      
+      <article id="rebase" class="hiw-step" data-hiw-step>
+        <div class="hiw-step__card">
+          <p class="hiw-step__eyebrow">Step 07 &middot; Rebase</p>
+          <h2>Patch the OS in seconds</h2>
+          <p>When a vulnerability is fixed in the runtime base image, <code>pack rebase</code> swaps the base layers underneath your app without rebuilding it. Your app layers stay exactly as they were.</p>
+          
+          <a class="hiw-step__link" href="/docs/for-app-developers/concepts/rebase/">What happens during rebase?</a>
+          
+        </div>
+      </article>
+      
+      <article id="run" class="hiw-step" data-hiw-step>
+        <div class="hiw-step__card">
+          <p class="hiw-step__eyebrow">Step 08 &middot; Run</p>
+          <h2>Run it anywhere</h2>
+          <p>The result is a reproducible, well-structured container image that runs wherever containers do: on Kubernetes, on a cloud platform, or on your own machine.</p>
+          
+          <a class="hiw-step__link" href="/docs/app-journey">Try it in the tutorial</a>
+          
+        </div>
+      </article>
+      
+    </div>
+  </section>
+
+  <section class="hiw-outro container">
+    <div class="text-center p-5 bg-light rounded">
+      <p class="h2">Try it yourself</p>
+      <p>Build an image from your app's source code with the <code class="highlight">pack</code> CLI:</p>
+      <pre class="hiw-cmd"><code>pack build my-app --builder cnbs/sample-builder:resolute</code></pre>
+      <p class="mb-0">
+        <a href="/docs/app-journey" class="button bg-pink">Start Tutorial</a>
+        <a href="/docs/" class="button bg-white button-light">Read the Docs</a>
+      </p>
+    </div>
+
+    <h2 class="mt-5">Dive deeper</h2>
+    <div class="row highlights text-center mb-5">
+      <div class="col-sm bg-off-blue m-2 p-4 rounded">
+        <h3 class="mb-2">Buildpacks</h3>
+        <p>What a buildpack is and how it inspects and builds your app.</p>
+        <a href="/docs/for-app-developers/concepts/buildpack/">Read more</a>
+      </div>
+      <div class="col-sm bg-off-blue m-2 p-4 rounded">
+        <h3 class="mb-2">Builders</h3>
+        <p>How buildpacks, base images and the lifecycle are packaged together.</p>
+        <a href="/docs/for-app-developers/concepts/builder/">Read more</a>
+      </div>
+      <div class="col-sm bg-off-blue m-2 p-4 rounded">
+        <h3 class="mb-2">Lifecycle</h3>
+        <p>Every phase the lifecycle runs, from analyze through export.</p>
+        <a href="/docs/for-platform-operators/concepts/lifecycle/">Read more</a>
+      </div>
+      <div class="col-sm bg-off-blue m-2 p-4 rounded">
+        <h3 class="mb-2">Rebase</h3>
+        <p>How app images get OS updates without a rebuild.</p>
+        <a href="/docs/for-app-developers/concepts/rebase/">Read more</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<script type="module" src="/js/how-it-works.min.bc6039bac4953fb7d152395d99db56bfb20d2979040a2d2bcc2dd4f459a62587.js" integrity="sha256-vGA5usSVP7fRUjldmdtWv7INKXkECi0rzC3U9FmmJYc="></script>
+
+
+  <footer>
+  <div class="container footer">
+    <a href="https://www.cncf.io/" style="width: 50%;"><img src="/images/cncf-color.svg" class="footer-logo" alt="CNCF logo" ></a>
+    <p>We are a <a href="https://www.cncf.io/">Cloud Native Computing Foundation</a> graduated project.</p>
+  </div>
+  <div class="bg-blue">
+    <div class="container sub-footer">
+      <ul>
+        
+        <li><a target="_blank" rel="noopener noreferrer" href="https://buildpacks.devstats.cncf.io/d/8/dashboards?orgId=1&amp;refresh=15m">DevStats</a></li>
+        
+        <li><span>&bull;</span><a target="_blank" rel="noopener noreferrer" href="https://www.linuxfoundation.org/privacy/">Privacy Policy</a></li>
+        
+      </ul>
+
+      <ul>
+        
+        <li><a target="_blank" rel="noopener noreferrer" href="https://lists.cncf.io/g/cncf-buildpacks/join">Mailing List</a></li>
+        
+        <li><span>&bull;</span><a target="_blank" rel="noopener noreferrer" href="https://slack.cncf.io">Slack</a></li>
+        
+        <li><span>&bull;</span><a target="_blank" rel="noopener noreferrer" href="https://twitter.com/buildpacks_io">Twitter</a></li>
+        
+        <li><span>&bull;</span><a target="_blank" rel="noopener noreferrer" href="https://github.com/buildpacks">GitHub</a></li>
+        
+      </ul>
+    </div>
+    <div class="container sub-footer">
+      <ul>
+        <li><p>Copyright © 2026 The Linux Foundation ®. All rights reserved. The Linux Foundation has registered trademarks and uses trademarks. For a list of trademarks of The Linux Foundation, please see our <a href="https://www.linuxfoundation.org/trademark-usage">Trademark Usage page</a></p></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+
+    
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/asciinema-player/2.6.1/asciinema-player.min.js"></script>
+</body>
+
+</html>

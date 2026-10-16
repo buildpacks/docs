@@ -831,6 +831,13 @@
 				<description>&lt;p&gt;This specification defines the artifact format, delivery mechanism, and order resolution process for buildpacks.&lt;/p&gt;</description>
 			</item>
 			<item>
+				<title>How it Works</title>
+				<link>https://buildpacks.io/how-it-works/</link>
+				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+				<guid>https://buildpacks.io/how-it-works/</guid>
+				<description>Follow your source code through the buildpacks lifecycle, from detection to a production-ready, rebasable container image.</description>
+			</item>
+			<item>
 				<title>pack</title>
 				<link>https://buildpacks.io/docs/for-platform-operators/how-to/integrate-ci/pack/cli/pack/</link>
 				<pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
