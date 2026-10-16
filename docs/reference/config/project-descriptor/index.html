@@ -1005,7 +1005,7 @@ The version of the buildpack. Must match version specified in buildpack&rsquo;s 
 </li>
 <li>
 <p><strong><code>uri</code></strong> <em>(string, default=<code>urn:buildpack:&lt;id&gt;</code>)</em><br>
-A URL or path to an <a href="/docs/reference/builder-config#supported-archives">archive</a>, a packaged buildpack (saved as a <code>.cnb</code> file), or a directory. If path is relative, it must be relative to the <code>project.toml</code>.</p>
+A URL or path to an <a href="/docs/reference/config/builder-config/#supported-archives">archive</a>, a packaged buildpack (saved as a <code>.cnb</code> file), or a directory. If path is relative, it must be relative to the <code>project.toml</code>.</p>
 </li>
 <li>
 <p><strong><code>script</code></strong> <em>(list, optional)</em>
@@ -1013,7 +1013,7 @@ Defines an inline buildpack.</p>
 <ul>
 <li>
 <p><strong><code>api</code></strong> <em>(string, required, current: <code>0.5</code>)</em><br>
-The Buildpack API version the buildpack adheres to. Used to ensure <a href="/docs/reference/buildpack-api#api-compatibility">compatibility</a> against the <a href="/docs/for-platform-operators/concepts/lifecycle/">lifecycle</a>.</p>
+The Buildpack API version the buildpack adheres to. Used to ensure <a href="/docs/reference/spec/buildpack-api/#api-compatibility">compatibility</a> against the <a href="/docs/for-platform-operators/concepts/lifecycle/">lifecycle</a>.</p>
 </li>
 <li>
 <p><strong><code>inline</code></strong> <em>(string, required)</em><br>

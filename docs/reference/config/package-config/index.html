@@ -910,7 +910,7 @@
 <p>The buildpack to package. It must contain the following field:</p>
 <ul>
 <li><strong><code>uri</code></strong> <em>(string, required)</em><br>
-A URL or path to an <a href="/docs/reference/builder-config#supported-archives">archive</a>, or a path to a directory. If path is relative, it must be relative to the <code>package.toml</code>.</li>
+A URL or path to an <a href="/docs/reference/config/builder-config/#supported-archives">archive</a>, or a path to a directory. If path is relative, it must be relative to the <code>package.toml</code>.</li>
 </ul>
 </li>
 <li>
@@ -918,7 +918,7 @@ A URL or path to an <a href="/docs/reference/builder-config#supported-archives">
 <p>A set of dependent buildpack locations, for packaging a composite buildpack (sometimes referred to as a &ldquo;meta buildpack&rdquo;). Each dependent buildpack location must correspond to an <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#order-resolution" target="_blank" rel="noopener noreferrer">order group<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a> within the composite buildpack being packaged, and must have <strong>one</strong> of the following fields:</p>
 <ul>
 <li><strong><code>uri</code></strong> <em>(string)</em><br>
-A URL or path to an <a href="/docs/reference/builder-config#supported-archives">archive</a>, a packaged buildpack (saved as a <code>.cnb</code> file), or a directory. If path is relative, it must be relative to the <code>package.toml</code>.</li>
+A URL or path to an <a href="/docs/reference/config/builder-config/#supported-archives">archive</a>, a packaged buildpack (saved as a <code>.cnb</code> file), or a directory. If path is relative, it must be relative to the <code>package.toml</code>.</li>
 </ul>
 </li>
 <li>
