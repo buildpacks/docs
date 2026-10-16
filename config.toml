@@ -29,28 +29,34 @@ featureKatacoda = false
   weight     = 1
 
   [[menu.main]]
+  identifier = "how-it-works"
+  name       = "How it Works"
+  url        = "/how-it-works"
+  weight     = 2
+
+  [[menu.main]]
   identifier = "community"
   name       = "Community"
   url        = "/community"
-  weight     = 2
+  weight     = 3
 
   [[menu.main]]
   identifier = "blog"
   name       = "Blog"
   url        = "https://medium.com/buildpacks"
-  weight     = 3
+  weight     = 4
 
   [[menu.main]]
   identifier = "registry"
   name       = "Registry"
   url        = "https://registry.buildpacks.io/"
-  weight     = 4
+  weight     = 5
 
   [[menu.main]]
   identifier = "history"
   name       = "History"
   url        = "/history"
-  weight     = 5
+  weight     = 6
 
   [[menu.footer1]]
   name       = "DevStats"

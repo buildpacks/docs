@@ -1,0 +1,566 @@
+/**********************************
+
+How it Works
+
+**********************************/
+
+$hiw-compact: 991.98px;
+$hiw-amber: #E8962A;
+$hiw-red: #D9363E;
+
+.hiw {
+  // Hero: the blue, cube-patterned band of the home page
+  &-hero {
+    color: $white;
+    text-align: center;
+    padding: 4rem 0 3rem;
+    background-color: $blue-light;
+    background-image: url("/images/bg-pattern.png");
+    background-blend-mode: multiply;
+
+    h1 {
+      color: $white;
+      margin-bottom: 0.75rem;
+      text-shadow: 2px 2px rgba($black, 0.2);
+    }
+
+    &__eyebrow {
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: rgba($white, 0.75);
+    }
+
+    &__lead {
+      max-width: 36rem;
+      margin: 0 auto 2rem;
+      color: rgba($white, 0.9);
+    }
+
+    &__cue {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: $white;
+      text-decoration: none;
+
+      &:hover,
+      &:focus {
+        color: $white;
+        text-decoration: none;
+      }
+    }
+
+    &__chevron {
+      width: 12px;
+      height: 12px;
+      border-right: 2px solid $white;
+      border-bottom: 2px solid $white;
+      transform: rotate(45deg);
+      animation: hiw-bounce 1.8s ease-in-out infinite;
+    }
+  }
+
+  // Story: without JavaScript the steps read as a plain article
+  &-story {
+    padding: 2rem 0;
+  }
+
+  &-stage {
+    display: none;
+  }
+
+  &-step {
+    padding: 1.5rem 0;
+    scroll-margin-top: 10vh;
+
+    &__card {
+      h2 {
+        padding-bottom: 0;
+        margin-bottom: 0.75rem;
+      }
+
+      p {
+        margin-bottom: 1rem;
+      }
+
+      code {
+        color: $pink;
+        font-size: 0.95em;
+      }
+    }
+
+    &__eyebrow {
+      margin-bottom: 0.5rem !important;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: $pink;
+    }
+
+    &__link {
+      font-weight: 600;
+      color: $blue-light;
+
+      &::after {
+        content: ' \2192';
+      }
+    }
+  }
+
+  // With JavaScript: text steps on the left, sticky scene on the right
+  .hiw-js &-story:not(.hiw--static) {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    column-gap: 2.5rem;
+    padding: 0;
+
+    .hiw-stage {
+      display: block;
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .hiw-steps {
+      grid-column: 1;
+      grid-row: 1;
+      // Let the last step reach the middle of the viewport
+      padding: 0 0 20vh;
+    }
+
+    .hiw-step {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      padding: 0;
+    }
+  }
+
+  // Cards follow the scroll once the scene is running
+  &--ready .hiw-step__card {
+    opacity: 0.3;
+    transform: translateY(12px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+    will-change: opacity, transform;
+  }
+
+  &--ready .hiw-step.is-active .hiw-step__card {
+    opacity: 1;
+    transform: none;
+  }
+
+  &-stage {
+    &__panel {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      padding: 1.5rem 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__canvas {
+      position: relative;
+      flex: 1 1 auto;
+      min-height: 0;
+      border-radius: 16px;
+      overflow: hidden;
+      background-color: $off-blue;
+      // Dots on an isometric lattice, matching the scene's angles
+      background-image:
+        radial-gradient(rgba($blue-light, 0.16) 1.2px, transparent 1.6px),
+        radial-gradient(rgba($blue-light, 0.16) 1.2px, transparent 1.6px);
+      background-size: 34.64px 20px;
+      background-position: 0 0, 17.32px 10px;
+    }
+
+    &__labels {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+  }
+
+  &-rail {
+    margin-bottom: 0.75rem;
+
+    ol {
+      position: relative;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    li {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      list-style: none;
+    }
+
+    &__item {
+      display: inline-block;
+      border: 1px solid rgba($blue-light, 0.25);
+      border-radius: 999px;
+      background-color: $white;
+      color: $blue-light;
+      font-size: 0.8rem;
+      font-weight: 600;
+      line-height: 1;
+      padding: 0.45rem 0.75rem;
+      text-decoration: none;
+      transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+
+      &:hover {
+        opacity: 1;
+        color: $blue-light;
+        border-color: $blue-light;
+      }
+
+      &.is-done {
+        background-color: $off-blue;
+      }
+
+      &.is-active {
+        background-color: $pink;
+        border-color: $pink;
+        color: $white;
+      }
+    }
+
+    &__progress {
+      height: 3px;
+      margin-top: 0.6rem;
+      border-radius: 3px;
+      background-color: rgba($blue-light, 0.12);
+      overflow: hidden;
+
+      span {
+        display: block;
+        height: 100%;
+        background-color: $pink;
+        transform: scaleX(0);
+        transform-origin: left center;
+      }
+    }
+  }
+
+  // Labels pinned to objects in the scene
+  &-tag {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 6px;
+    background-color: $white;
+    border: 1px solid rgba($blue-light, 0.2);
+    box-shadow: 0 2px 6px rgba($blue-dark, 0.08);
+    color: $blue-dark;
+    font-size: 0.78rem;
+    font-weight: 600;
+    line-height: 1.4;
+    white-space: nowrap;
+    opacity: 0;
+    transform-origin: 50% 100%;
+    will-change: transform, opacity;
+
+    &--right {
+      transform-origin: 0 50%;
+    }
+
+    &--left {
+      transform-origin: 100% 50%;
+    }
+
+    &--below {
+      transform-origin: 50% 0;
+    }
+
+    &--file {
+      font-family: 'Fira Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 400;
+    }
+
+    // Leader line back to the point the tag describes
+    &--lead::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 100%;
+      width: var(--lead, 0);
+      border-top: 1.5px dotted rgba($blue-light, 0.6);
+    }
+
+    i {
+      color: $blue-light;
+    }
+
+    &.is-pass::before {
+      content: '\2713';
+      color: $green;
+    }
+
+    &.is-fail {
+      color: $gray-light;
+      text-decoration: line-through;
+    }
+
+    &.is-warn {
+      color: $hiw-red;
+      border-color: rgba($hiw-red, 0.35);
+
+      &::before {
+        content: '!';
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 1rem;
+        height: 1rem;
+        border-radius: 50%;
+        background-color: $hiw-red;
+        color: $white;
+        font-size: 0.7rem;
+        font-weight: 700;
+      }
+    }
+  }
+
+  // The scene itself
+  &-svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+
+    .hiw-shadow {
+      fill: rgba($blue-dark, 0.1);
+    }
+
+    .hiw-band {
+      fill: none;
+      stroke: $blue-dark;
+      stroke-width: 5;
+    }
+
+    .hiw-rim {
+      stroke: #DADCEE;
+      stroke-width: 1.5;
+    }
+
+    .hiw-edge {
+      stroke-width: 1.5;
+      stroke-linejoin: round;
+    }
+
+    .hiw-match {
+      stroke-width: 5;
+      stroke-linejoin: round;
+    }
+
+    .hiw-frame line {
+      stroke: $pink;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      vector-effect: non-scaling-stroke;
+    }
+
+    .hiw-frame--back line {
+      stroke-dasharray: 3 6;
+      opacity: 0.55;
+    }
+
+    .hiw-beam {
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-dasharray: 2 9;
+      vector-effect: non-scaling-stroke;
+      animation: hiw-dash 0.9s linear infinite;
+    }
+
+    .hiw-pulse {
+      fill: none;
+      stroke: $hiw-amber;
+      stroke-width: 3;
+      opacity: 0;
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+
+    .is-on .hiw-pulse {
+      animation: hiw-pulse 1.8s ease-out infinite;
+    }
+
+    .is-on > .hiw-float {
+      animation: hiw-float 3.2s ease-in-out infinite;
+    }
+
+    &.is-paused * {
+      animation-play-state: paused !important;
+    }
+  }
+
+  &-outro {
+    padding-top: 2rem;
+
+    .hiw-cmd {
+      display: inline-block;
+      max-width: 100%;
+      margin: 0 auto 1.5rem;
+      padding: 0.75rem 1.25rem;
+      border-radius: 8px;
+      background-color: $blue-dark;
+      color: $white;
+      text-align: left;
+      white-space: pre-wrap;
+      word-break: break-word;
+
+      code {
+        padding: 0;
+        background: transparent;
+        color: $white;
+        font-family: 'Fira Mono', monospace;
+        font-size: 0.9rem;
+      }
+    }
+
+    .button {
+      margin: 0.25rem;
+    }
+  }
+
+  // Phones and tablets: the scene fills the screen and the steps
+  // scroll over it as cards
+  @media (max-width: $hiw-compact) {
+    .hiw-js &-story:not(.hiw--static) {
+      display: block;
+
+      .hiw-stage {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        height: 100svh;
+      }
+
+      .hiw-stage__panel {
+        position: static;
+        height: 100%;
+        padding: 0.75rem 0;
+      }
+
+      .hiw-steps {
+        position: relative;
+        margin-top: -100vh;
+        margin-top: -100svh;
+        padding: 60vh 0 10vh;
+        pointer-events: none;
+      }
+
+      .hiw-step {
+        min-height: 100vh;
+        align-items: flex-end;
+        padding-bottom: 1.5rem;
+      }
+
+      .hiw-step__card {
+        pointer-events: auto;
+        width: 100%;
+        padding: 1.25rem 1.25rem 1rem;
+        border-radius: 12px;
+        background-color: rgba($white, 0.96);
+        box-shadow: 0 6px 24px rgba($blue-dark, 0.15);
+
+        h2 {
+          font-size: 1.35rem;
+        }
+
+        p {
+          font-size: 1rem;
+        }
+      }
+    }
+
+    &-tag {
+      padding: 0.15rem 0.4rem;
+      font-size: 0.68rem;
+
+      &--file {
+        font-size: 0.64rem;
+      }
+    }
+
+    &-rail {
+      ol {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+
+      li {
+        flex: 0 0 auto;
+      }
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &-hero__chevron,
+    &-svg * {
+      animation: none !important;
+    }
+
+    &--ready .hiw-step__card {
+      transition: none;
+    }
+  }
+}
+
+@keyframes hiw-bounce {
+  0%, 100% {
+    transform: translateY(0) rotate(45deg);
+  }
+
+  50% {
+    transform: translateY(6px) rotate(45deg);
+  }
+}
+
+@keyframes hiw-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes hiw-pulse {
+  0% {
+    opacity: 0.8;
+    transform: scale(0.55);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(1.25);
+  }
+}
+
+@keyframes hiw-dash {
+  to {
+    stroke-dashoffset: -11;
+  }
+}
