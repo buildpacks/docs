@@ -142,6 +142,6 @@ buzz = ["a", "b", "c"]
 For more detail, you can check out the `project.toml` [specification][spec]
 
 [spec]: https://github.com/buildpacks/spec/blob/main/extensions/project-descriptor.md
-[supported-archives]: /docs/reference/builder-config#supported-archives
-[api-compat]: /docs/reference/buildpack-api#api-compatibility
+[supported-archives]: /docs/reference/config/builder-config/#supported-archives
+[api-compat]: /docs/reference/spec/buildpack-api/#api-compatibility
 [lifecycle]: /docs/for-platform-operators/concepts/lifecycle/
