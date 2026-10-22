@@ -37,3 +37,208 @@
         }
     }
 }
+
+
+// Event details, opened by clicking an event on the calendar
+.event-modal {
+    --bs-modal-width: 480px;
+
+    @media(max-width: 575px) {
+        --bs-modal-margin: 1rem;
+    }
+
+    .modal-content {
+        border: 0;
+        border-radius: 12px;
+        overflow: hidden;
+        background-color: $off-white;
+        box-shadow: 0 1rem 3rem rgba($blue-dark, 0.3);
+    }
+
+    // same cube-patterned blue band as the site's heroes
+    .modal-header {
+        position: relative;
+        display: block;
+        padding: 1.5rem 4rem 1.5rem 1.75rem;
+        border: 0;
+        border-radius: 0;
+        color: $white;
+        background-color: $blue-light;
+        background-image: url("/images/bg-pattern.png");
+        background-blend-mode: multiply;
+    }
+
+    &__calendar {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.4rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 0.75rem;
+        font-weight: 600;
+        color: rgba($white, 0.75);
+    }
+
+    &__dot {
+        flex: 0 0 auto;
+        width: 0.6rem;
+        height: 0.6rem;
+        border-radius: 50%;
+        box-shadow: 0 0 0 2px rgba($white, 0.35);
+    }
+
+    &__title {
+        margin: 0;
+        padding: 0;
+        font-size: 1.5rem;
+        font-weight: 400;
+        line-height: 1.25;
+        color: $white;
+        text-shadow: 2px 2px rgba($black, 0.2);
+    }
+
+    &__close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.25rem;
+        height: 2.25rem;
+        padding: 0;
+        border: 0;
+        border-radius: 50%;
+        font-size: 1rem;
+        color: $white;
+        background-color: rgba($white, 0.12);
+        transition: background-color 0.15s ease;
+
+        &:hover,
+        &:focus-visible {
+            background-color: rgba($white, 0.25);
+        }
+
+        &:focus-visible {
+            outline: 2px solid $white;
+            outline-offset: 2px;
+        }
+    }
+
+    .modal-body {
+        padding: 1.5rem 1.75rem;
+        color: $gray-dark;
+    }
+
+    &__details {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 1rem;
+    }
+
+    &__detail {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.875rem;
+        margin: 0;
+    }
+
+    &__icon {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.25rem;
+        height: 2.25rem;
+        border-radius: 8px;
+        color: $blue-light;
+        background-color: $white;
+        border: 1px solid rgba($blue-light, 0.2);
+        box-shadow: 0 2px 6px rgba($blue-dark, 0.08);
+    }
+
+    &__label {
+        display: block;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        font-size: 0.72rem;
+        font-weight: 600;
+        color: $gray-light;
+    }
+
+    &__value {
+        display: block;
+        line-height: 1.4;
+        font-weight: 600;
+        color: $blue-dark;
+        overflow-wrap: anywhere;
+    }
+
+    &__time {
+        display: block;
+        line-height: 1.4;
+        color: $gray-dark;
+    }
+
+    // styled like the site's text notes
+    &__notes {
+        margin-top: 1.5rem;
+        padding: 1rem 1.25rem;
+        border-left: 5px solid $pink;
+        border-radius: 5px;
+        background-color: $white;
+        box-shadow: 0 2px 6px rgba($blue-dark, 0.08);
+        font-size: 0.9rem;
+        line-height: 1.7;
+        overflow-wrap: anywhere;
+
+        p,
+        div,
+        ul,
+        ol {
+            margin: 0 0 0.5rem;
+        }
+
+        ul,
+        ol {
+            padding-left: 1.25rem;
+        }
+
+        > :last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    .modal-footer {
+        justify-content: flex-start;
+        gap: 0.75rem;
+        padding: 0 1.75rem 1.5rem;
+        border: 0;
+
+        > * {
+            margin: 0;
+        }
+    }
+
+    &__join {
+        box-shadow: 0 2px 6px rgba($black, 0.15);
+        transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.1s;
+
+        &:hover,
+        &:focus-visible {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba($pink, 0.3);
+        }
+
+        .external-link-icon {
+            color: currentColor;
+        }
+    }
+
+    &__teamup {
+        background-color: $white;
+    }
+}
