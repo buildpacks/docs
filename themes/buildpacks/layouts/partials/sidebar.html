@@ -16,7 +16,7 @@
   <ul>
     <li data-nav-id="{{.RelPermalink}}" class="dd-item depth-0">
       <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-      <ul class="ml-2">
+      <ul class="ms-2">
         {{- $pages := where .Pages ".Params.getting-started" true -}}
         {{- range $pages.ByWeight }}
         {{- if (not .Params.hidden) }}
@@ -58,7 +58,7 @@
 
   {{- if ne $numberOfPages 0 }}
   {{- $depth = add (int $depth) 1 }}
-  <ul class="ml-2">
+  <ul class="ms-2">
     {{- $expand = (or .Params.expand $isCurrent) -}}
     {{- $pages := (.Pages | union .Sections) }}
     {{- range $pages.ByWeight }}
