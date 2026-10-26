@@ -189,13 +189,13 @@
             {{- template "subsection-summary" dict "currentSection" . "depth" (add $depth 1)  "titleOnlyAfterDepth" $titleOnlyAfterDepth "maxDepth" $maxDepth -}}
 
             {{- if (eq (add $depth 1) $maxDepth) -}}
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="{{.Permalink}}">Learn more →</a>
+            <div class="text-md-end">
+              <a class="small text-pink me-md-3 text-decoration-none" href="{{.Permalink}}">Learn more →</a>
             </div>
             {{- end }}
           {{ else }}
-            <div class="text-md-right">
-              <a class="small text-pink mr-md-3 text-decoration-none" href="{{.Permalink}}">Learn more →</a>
+            <div class="text-md-end">
+              <a class="small text-pink me-md-3 text-decoration-none" href="{{.Permalink}}">Learn more →</a>
             </div>
           {{- end }}
         {{- end }}
