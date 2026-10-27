@@ -163,13 +163,13 @@
 
   <div class="row p-2">
     <div>
-      <div class="font-weight-bold mb-2">Description</div>
+      <div class="fw-bold mb-2">Description</div>
       <div id="talk-description" class="text-muted"></div>
     </div>
   </div>
   <div class="row p-2">
     <div>
-      <div class="font-weight-bold mb-2">Resources</div>
+      <div class="fw-bold mb-2">Resources</div>
       <div id="talk-resources"></div>
     </div>
   </div>
@@ -241,7 +241,7 @@
         if (talk.resources && talk.resources.length > 0) {
           talk.resources.forEach(resource => {
             $talkResources.append(
-            '<a class="d-inline-block button-light button rounded border p-1 mt-2 mr-2" href="' + resource.url + '" target="_blank">' +
+            '<a class="d-inline-block button-light button rounded border p-1 mt-2 me-2" href="' + resource.url + '" target="_blank">' +
               '<i class="fas fa-' + resource.icon + '"></i> ' + resource.name +
             '</a>'
             );
