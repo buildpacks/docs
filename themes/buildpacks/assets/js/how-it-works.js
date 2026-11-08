@@ -44,6 +44,65 @@ const round = (n) => Math.round(n * 100) / 100;
 const root = document.querySelector('[data-hiw]');
 if (root) init(root);
 
+const topButton = document.querySelector('[data-hiw-top]');
+if (topButton) initBackToTop(topButton);
+
+// Floating button that returns to the top; its ring fills with page progress
+function initBackToTop(button) {
+  const ring = button.querySelector('[data-hiw-top-progress]');
+  const hero = document.querySelector('.hiw-hero');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let target = 0;
+  let shown = 0;
+  let running = false;
+  let then = 0;
+
+  const paint = () => {
+    if (ring) ring.style.strokeDashoffset = (1 - shown).toFixed(4);
+  };
+
+  // The ring glides towards the scroll position instead of jumping with
+  // each wheel step
+  function frame(now) {
+    const dt = clamp((now - then) / 1000, 0, 0.1);
+    then = now;
+    shown += (target - shown) * (1 - Math.exp(-dt * 8));
+    if (reduced.matches || Math.abs(target - shown) < 0.0005) shown = target;
+    paint();
+    if (shown !== target) requestAnimationFrame(frame);
+    else running = false;
+  }
+
+  function update() {
+    const scrolled = window.scrollY;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const threshold = hero ? hero.offsetTop + hero.offsetHeight : window.innerHeight * 0.5;
+    button.classList.toggle('is-visible', scrolled > threshold);
+    target = clamp(max > 0 ? scrolled / max : 0);
+    if (!running) {
+      running = true;
+      then = performance.now();
+      requestAnimationFrame(frame);
+    }
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update, { passive: true });
+  update();
+  // Start from where the page opened, e.g. a reload part-way down
+  shown = target;
+  paint();
+
+  button.addEventListener('click', (event) => {
+    event.preventDefault();
+    window.scrollTo({ top: 0, behavior: reduced.matches ? 'auto' : 'smooth' });
+    if (location.hash) history.replaceState(null, '', location.pathname + location.search);
+    // Return keyboard focus to the start of the page
+    const target = document.querySelector('a[href], button') || document.body;
+    target.focus({ preventScroll: true });
+  });
+}
+
 function init(root) {
   const steps = Array.from(root.querySelectorAll('[data-hiw-step]'));
   const railItems = Array.from(root.querySelectorAll('[data-hiw-rail]'));

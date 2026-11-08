@@ -442,6 +442,93 @@ $hiw-red: #D9363E;
     }
   }
 
+  // Back to top: a floating cube-blue button whose ring tracks page progress
+  &-top {
+    position: fixed;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    z-index: 1030;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, $blue-light, $blue-dark);
+    box-shadow: 0 8px 22px rgba($blue-dark, 0.28);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px) scale(0.8);
+    transition:
+      opacity 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0.45s,
+      box-shadow 0.35s ease;
+
+    &.is-visible {
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+    }
+
+    &:hover,
+    &:focus-visible {
+      box-shadow: 0 12px 28px rgba($pink, 0.35);
+      transform: translateY(-3px);
+
+      .hiw-top__arrow {
+        transform: translateY(-3px) rotate(45deg);
+      }
+
+      .hiw-top__track {
+        stroke: rgba($white, 0.35);
+      }
+    }
+
+    &:focus-visible {
+      outline: 2px solid $pink;
+      outline-offset: 3px;
+    }
+
+    &__ring {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      transform: rotate(-90deg);
+    }
+
+    &__track,
+    &__fill {
+      fill: none;
+      stroke-width: 3;
+    }
+
+    &__track {
+      stroke: rgba($white, 0.18);
+      transition: stroke 0.25s ease;
+    }
+
+    &__fill {
+      stroke: $pink;
+      stroke-linecap: round;
+      stroke-dasharray: 1;
+      stroke-dashoffset: 1;
+    }
+
+    // Chevron pointing up, nudged down so it sits optically centred
+    &__arrow {
+      width: 12px;
+      height: 12px;
+      margin-top: 5px;
+      border-top: 2.5px solid $white;
+      border-left: 2.5px solid $white;
+      border-radius: 2px 0 0 0;
+      transform: rotate(45deg);
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+  }
+
   // Phones and tablets: the scene fills the screen and the steps
   // scroll over it as cards
   @media (max-width: $hiw-compact) {
@@ -502,6 +589,19 @@ $hiw-red: #D9363E;
       }
     }
 
+    &-top {
+      right: 1rem;
+      bottom: 1rem;
+      width: 44px;
+      height: 44px;
+
+      &__arrow {
+        width: 10px;
+        height: 10px;
+        margin-top: 4px;
+      }
+    }
+
     &-rail {
       ol {
         flex-wrap: nowrap;
@@ -521,7 +621,9 @@ $hiw-red: #D9363E;
       animation: none !important;
     }
 
-    &--ready .hiw-step__card {
+    &--ready .hiw-step__card,
+    &-top,
+    &-top__arrow {
       transition: none;
     }
   }
