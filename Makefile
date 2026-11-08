@@ -108,8 +108,11 @@ pack-docs-update: upgrade-pack
 pack-version: export PACK_VERSION:=$(PACK_VERSION)
 pack-version:
 	@echo "> Ensuring pack version is set..."
-	@test ! -z '${PACK_VERSION}'
-	@test '${PACK_VERSION}' != 'null'
+	@if [ -z '${PACK_VERSION}' ] || [ '${PACK_VERSION}' = 'null' ]; then \
+		echo "ERROR: could not determine the latest pack version from the GitHub API."; \
+		echo "       The request may have been rate limited. Set GITHUB_TOKEN, or set PACK_VERSION to skip the lookup."; \
+		exit 1; \
+	fi
 	@echo "PACK_VERSION="${PACK_VERSION}""
 
 .PHONY: serve
