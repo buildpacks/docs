@@ -17,6 +17,117 @@
         date.setMonth(date.getMonth() + 6);
         return date.toISOString().split('T')[0];
     }();
+    const DATE_FORMAT = new Intl.DateTimeFormat(undefined, {
+        weekday: 'long', month: 'long', day: 'numeric', year: 'numeric'
+    });
+    const TIME_FORMAT = new Intl.DateTimeFormat(undefined, {
+        hour: 'numeric', minute: '2-digit'
+    });
+    const TIME_ZONE_FORMAT = new Intl.DateTimeFormat(undefined, {
+        hour: 'numeric', minute: '2-digit', timeZoneName: 'short'
+    });
+    // formatting kept from teamup event notes; anything else is unwrapped to its text
+    const NOTE_TAGS = ['P', 'DIV', 'BR', 'A', 'UL', 'OL', 'LI', 'B', 'STRONG', 'I', 'EM', 'U'];
+
+    function formatWhen(teamup_event) {
+        if (teamup_event.all_day) {
+            // all day events span whole calendar days, so ignore the time zone offset
+            let start = new Date(teamup_event.start_dt.slice(0, 10) + 'T00:00:00');
+            let end = new Date(teamup_event.end_dt.slice(0, 10) + 'T00:00:00');
+            return {
+                date: start.toDateString() === end.toDateString()
+                    ? DATE_FORMAT.format(start)
+                    : `${DATE_FORMAT.format(start)} – ${DATE_FORMAT.format(end)}`,
+                time: 'All day'
+            };
+        }
+
+        let start = new Date(teamup_event.start_dt);
+        let end = new Date(teamup_event.end_dt);
+        return {
+            date: start.toDateString() === end.toDateString()
+                ? DATE_FORMAT.format(start)
+                : `${DATE_FORMAT.format(start)} – ${DATE_FORMAT.format(end)}`,
+            time: `${TIME_FORMAT.format(start)} – ${TIME_ZONE_FORMAT.format(end)}`
+        };
+    }
+
+    function isWebLink(href) {
+        return /^(https?:|mailto:)/i.test(href);
+    }
+
+    function externalLink(href, text) {
+        return $('<a target="_blank" rel="noopener noreferrer"></a>')
+            .attr('href', href)
+            .text(text)
+            .append($('#external-link-icon').html());
+    }
+
+    // teamup notes are HTML, so rebuild them keeping only basic formatting and web links
+    function sanitizeNotes(html) {
+        let notes = $('<div></div>');
+        (function copy(from, to) {
+            from.childNodes.forEach(node => {
+                if (node.nodeType === Node.TEXT_NODE) {
+                    to.append(document.createTextNode(node.textContent));
+                } else if (node.nodeType !== Node.ELEMENT_NODE || ['SCRIPT', 'STYLE'].includes(node.tagName)) {
+                    return;
+                } else if (node.tagName === 'A') {
+                    let href = (node.getAttribute('href') || '').trim();
+                    isWebLink(href) ? to.append(externalLink(href, node.textContent)) : copy(node, to);
+                } else if (NOTE_TAGS.includes(node.tagName)) {
+                    let element = $(document.createElement(node.tagName));
+                    to.append(element);
+                    copy(node, element);
+                } else {
+                    copy(node, to);
+                }
+            });
+        })(new DOMParser().parseFromString(html, 'text/html').body, notes);
+        return notes.contents();
+    }
+
+    // teamup locations are often just a name, e.g. "Zoom", with the actual link in the notes
+    function findLocationUrl(location, notes) {
+        if (!location || /^https?:/i.test(location)) {
+            return location || null;
+        }
+        let link = Array.from(new DOMParser().parseFromString(notes, 'text/html').querySelectorAll('a[href]'))
+            .find(link => link.textContent.trim().toLowerCase() === location.toLowerCase());
+        let href = link ? link.getAttribute('href').trim() : '';
+        return /^https?:/i.test(href) ? href : null;
+    }
+
+    function showEventDetails(event) {
+        let teamup_event = event.extendedProps.teamup_event;
+        let when = formatWhen(teamup_event);
+        let location = (teamup_event.location || '').trim();
+        let locationUrl = findLocationUrl(location, teamup_event.notes || '');
+        let who = (teamup_event.who || '').trim();
+        let notes = sanitizeNotes(teamup_event.notes || '');
+        let modal = $('#event-modal');
+
+        modal.find('.event-modal__dot').css('background-color', event.backgroundColor);
+        modal.find('.event-modal__calendar-name').text(event.extendedProps.calendar);
+        modal.find('.event-modal__title').text(event.title);
+        modal.find('.event-modal__date').text(when.date);
+        modal.find('.event-modal__time').text(when.time);
+
+        modal.find('[data-detail="location"]').prop('hidden', !location);
+        modal.find('.event-modal__location').empty()
+            .append(locationUrl ? externalLink(locationUrl, location) : document.createTextNode(location));
+
+        modal.find('[data-detail="who"]').prop('hidden', !who);
+        modal.find('.event-modal__who').text(who);
+
+        modal.find('.event-modal__notes').prop('hidden', !notes.text().trim()).empty().append(notes);
+
+        modal.find('.event-modal__join').prop('hidden', !locationUrl).attr('href', locationUrl);
+        modal.find('.event-modal__teamup')
+            .attr('href', `${CAL_BASE_URL}${CAL_CONFIG.id}/events/${teamup_event.id}/pointer`);
+
+        modal.modal('show');
+    }
 
     Promise.all(
         CAL_CONFIG.subcalendars.map(subcalendar => {
@@ -45,6 +156,7 @@
                         url: "javascript:void(0);",
                         extendedProps: {
                             teamup_event,
+                            calendar: subcalendar.name,
                         }
                     };
                     return event;
@@ -52,6 +164,8 @@
             })
         }).then(events => {
             $(function () {
+                // keep the modal outside the page content so its styles don't leak in
+                $('#event-modal').appendTo(document.body);
                 (new FullCalendar.Calendar(document.getElementById('calendar-view'), {
                     initialView: 'dayGridWeek',
                     height: 'auto',
@@ -61,13 +175,7 @@
                     },
                     events: events,
                     eventClick: function ({ event }) {
-                        let url = `${CAL_BASE_URL}${CAL_CONFIG.id}/events/${event.extendedProps.teamup_event.id}/pointer`;
-                        let modal = $("#event-modal");
-                        modal.find('iframe').attr('src', url);
-                        modal.on("hidden.bs.modal", function () {
-                            $(this).find('iframe').attr("src", "");
-                        });
-                        modal.modal('show');
+                        showEventDetails(event);
                     },
                     views: {
                         dayGridMonth: {
@@ -107,14 +215,56 @@
     </div>
 </div>
 
-<div class="modal" id="event-modal" role="dialog" style="overflow-y: hidden;">
-    <div class="modal-dialog h-100">
-        <div class="modal-header bg-transparent border-0 p-3">
-            <button type="button" class="close text-white py-0 pr-2 opacity-100" data-dismiss="modal">&times;</button>
-        </div>
-        <div class="modal-content h-75 border-0 rounded-0">
-            <div class="modal-body m-0 p-0">
-                <iframe class="h-100 w-100 d-block border-0" title="calendar"></iframe>
+<template id="external-link-icon">{{ partial "external-link-icon.html" . }}</template>
+
+<div class="modal fade event-modal" id="event-modal" tabindex="-1" role="dialog" aria-labelledby="event-modal-title"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="event-modal__calendar">
+                    <span class="event-modal__dot"></span>
+                    <span class="event-modal__calendar-name"></span>
+                </span>
+                <h2 class="event-modal__title" id="event-modal-title"></h2>
+                <button type="button" class="event-modal__close" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <ul class="event-modal__details">
+                    <li class="event-modal__detail" data-detail="when">
+                        <span class="event-modal__icon"><i class="far fa-clock" aria-hidden="true"></i></span>
+                        <div>
+                            <span class="event-modal__label">When</span>
+                            <span class="event-modal__value event-modal__date"></span>
+                            <span class="event-modal__time"></span>
+                        </div>
+                    </li>
+                    <li class="event-modal__detail" data-detail="location">
+                        <span class="event-modal__icon"><i class="fas fa-map-marker-alt" aria-hidden="true"></i></span>
+                        <div>
+                            <span class="event-modal__label">Where</span>
+                            <span class="event-modal__value event-modal__location"></span>
+                        </div>
+                    </li>
+                    <li class="event-modal__detail" data-detail="who">
+                        <span class="event-modal__icon"><i class="fas fa-user-friends" aria-hidden="true"></i></span>
+                        <div>
+                            <span class="event-modal__label">Who</span>
+                            <span class="event-modal__value event-modal__who"></span>
+                        </div>
+                    </li>
+                </ul>
+                <div class="event-modal__notes"></div>
+            </div>
+            <div class="modal-footer">
+                <a class="button bg-pink event-modal__join" target="_blank" rel="noopener noreferrer">
+                    Join meeting{{ partial "external-link-icon.html" . | chomp }}
+                </a>
+                <a class="button-light event-modal__teamup" target="_blank" rel="noopener noreferrer">
+                    View on Teamup{{ partial "external-link-icon.html" . | chomp }}
+                </a>
             </div>
         </div>
     </div>
