@@ -1,7 +1,7 @@
 {{ define "main" }}
 
 <div class="hiw">
-  <section class="hiw-hero">
+  <section id="top" class="hiw-hero">
     <div class="container">
       <p class="hiw-hero__eyebrow">Under the hood</p>
       <h1>How Buildpacks Work</h1>
@@ -84,6 +84,14 @@
       </div>
     </div>
   </section>
+
+  <a class="hiw-top" href="#top" aria-label="Back to top" data-hiw-top>
+    <svg class="hiw-top__ring" viewBox="0 0 52 52" aria-hidden="true" focusable="false">
+      <circle class="hiw-top__track" cx="26" cy="26" r="24"></circle>
+      <circle class="hiw-top__fill" cx="26" cy="26" r="24" pathLength="1" data-hiw-top-progress></circle>
+    </svg>
+    <span class="hiw-top__arrow" aria-hidden="true"></span>
+  </a>
 </div>
 
 {{ $script := resources.Get "js/how-it-works.js" | minify | fingerprint }}
