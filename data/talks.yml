@@ -27,6 +27,18 @@
   event_name: KubeCon India
   youtube_id: FBgX1RS0ND8
   year: 2026
+- name: "Using Buildpacks To Reduce Container Bloat and Attack Surface"
+  presenters:
+    - Sai Bharadwaj Avvari, Salesforce
+  description: >-
+    Stop drowning in CVEs for unnecessary components. Most container vulnerabilities hide in
+    packages never loaded at runtime, inflating security backlogs. This session uses Cloud Native
+    Buildpacks to build a federated "patching waterfall": custom builders that compile and cache
+    heavy, domain-specific dependencies once, OS rebasing to swap the underlying OS for hundreds of
+    apps without rebuilding them, and securely debugging distroless builds with ephemeral containers.
+  event_name: KubeCon India
+  youtube_id: FOzJWagwBfk
+  year: 2026
 - name: "Using Buildpacks To Boost Developer Productivity"
   presenters:
     - Joe Kutner, Salesforce
@@ -47,6 +59,124 @@
   event_name: KubeCon NA
   youtube_id: 8ULJg-z_wZA
   year: 2025
+- name: "Project Lightning Talk: Dockerfiles vs Buildpacks: What's The Cloud Native Way?"
+  presenters:
+    - Ram Iyengar
+  description: >-
+    Often, our cloud native thought process begins after we have created containers. This talk
+    raises the question - is "docker build" the only way to build containers? Cloud Native
+    Buildpacks make the container build process much easier, and the images they export are
+    smaller, more transparent, more secure and more maintainable.
+  event_name: KubeCon India
+  youtube_id: sEZSBrOyjl4
+  year: 2025
+- name: "Buildpacks: Pragmatic Solutions To Quick and Secure Image Builds"
+  presenters:
+    - Juan Bustamante, DBAccess
+    - Aidan Delaney, Bloomberg
+  description: >-
+    Buildpacks streamline the process of building, deploying, and managing applications by
+    automating the creation of container images from source code. Their key objectives include
+    detecting application dependencies, configuring runtime environments, and ensuring consistent
+    builds across different platforms. By abstracting away complex infrastructure details,
+    buildpacks enable faster deployments, enhance developer productivity, and ensure better
+    security through standardized and reproducible workflows.
+  event_name: KubeCon EU
+  youtube_id: Eb9AweCazi8
+  year: 2025
+- name: "Project Lightning Talk: Container Builds at Scale with Buildpacks"
+  presenters:
+    - Joe Kutner
+  event_name: KubeCon EU
+  youtube_id: gi3hZAFI0qs
+  year: 2025
+- name: "Buildpacks: Quietly Redefining the Build Experience"
+  description: >-
+    A project lightning talk on the most recent areas of focus for the Buildpacks community,
+    including ARM64 migration, security primitives such as SBOMs, and other optimisations to
+    Buildpacks workflows.
+  event_name: KubeCon India
+  youtube_id: U_FVLYeIK_8
+  year: 2024
+- name: "Container Image Workflows at Scale with Buildpacks"
+  presenters:
+    - Jesse Brown, Heroku
+    - Terence Lee, Heroku
+  description: >-
+    Buildpacks transform source applications into images that run on any cloud. Each output image
+    contains a full Software Bill of Materials which allows platform developers to know precisely
+    what software is deployed. This talk looks at using Buildpacks to deploy web applications at
+    scale, batch processing in large workflows - particularly AI/machine learning workflows - and
+    an example Functions as a Service platform that uses Buildpacks.
+  event_name: KubeCon NA
+  youtube_id: lT4ULcmhVT8
+  year: 2024
+- name: "Project Lightning Talk: Container Builds at Scale with Buildpacks"
+  description: >-
+    Cloud Native Buildpacks transform your application source code into images that can run on any
+    cloud. After this short talk, you'll be able to run buildpacks with the Pack CLI, find
+    off-the-shelf buildpacks in the Buildpack Registry, and learn how operators of large platforms
+    use buildpacks to make their container builds as scalable as possible.
+  event_name: KubeCon NA
+  youtube_id: f0lObSvR980
+  year: 2024
+- name: "Container Image Workflows at Scale with Buildpacks"
+  presenters:
+    - Juan Bustamante, Broadcom
+    - Aidan Delaney, Bloomberg
+  description: >-
+    Buildpacks transform source applications into images that run on any cloud. Each output image
+    contains a full Software Bill of Materials which allows platform developers to know precisely
+    what software is deployed. This talk looks at using Buildpacks to deploy web applications at
+    scale, batch processing in large workflows - particularly AI/machine learning workflows - and
+    an example Functions as a Service platform that uses Buildpacks.
+  event_name: KubeCon EU
+  youtube_id: cenTw6WzQv8
+  year: 2024
+- name: "Project Lightning Talk: Container Builds at Scale with Buildpacks"
+  description: >-
+    Cloud Native Buildpacks transform your application source code into images that can run on any
+    cloud. After this short talk, you'll be able to run buildpacks with the Pack CLI, find
+    off-the-shelf buildpacks in the Buildpack Registry, and learn how operators of large platforms
+    use buildpacks to make their container builds as scalable as possible.
+  event_name: KubeCon EU
+  youtube_id: TX_UXuzqVGQ
+  year: 2024
+- name: "Sponsored Keynote: Streamlining Your Application Builds with Cloud Native Buildpacks"
+  presenters:
+    - Vish Abrams, Heroku
+  description: >-
+    Learn about Heroku's app development platform: its origins, usage, future direction, and its
+    adherence to industry standards such as Kubernetes and Cloud Native Buildpacks. This keynote
+    demonstrates how Cloud Native Buildpacks handle dependencies, environment configuration, and
+    packaging into efficient container images, regardless of language or framework.
+  event_name: KubeCon EU
+  youtube_id: Yr9mxqHMoE4
+  year: 2024
+- name: "Getting Buildpacks Ready for the Multi-Architecture Future"
+  presenters:
+    - Terence Lee, Heroku
+    - Juan Bustamante, VMware
+  description: >-
+    Buildpacks provide a consistent and scalable way to transform source into images that run on
+    any cloud. Starting with the basics of Buildpacks, Buildpack Platforms, and distributing
+    Buildpacks with Builder Images, this talk discusses the challenges of supporting
+    multi-architecture application images and shows how multi-architecture Buildpacks and Builder
+    Images help solve them.
+  event_name: KubeCon NA
+  youtube_id: v1R-5LMdDq8
+  year: 2023
+- name: "Lightning Talk: Buildpacks: Conventional Vs. Convenient for Creating Containers"
+  presenters:
+    - Ram Iyengar, Cloud Foundry Foundation
+  description: >-
+    Writing excellent Dockerfiles is an art and maintaining them isn't for the faint of heart. In
+    this talk, attendees will learn about an alternative way to create immutable artifacts for
+    deployment using Cloud Native Buildpacks, which provide a uniform and repeatable build
+    experience across languages and frameworks.
+  event_name: KubeCon NA
+  youtube_id: fI3YmfwkBag
+  year: 2023
 - name: "Customizing your Buildpacks Build"
   presenters:
     - Natalie Arellano, VMware
@@ -65,6 +195,29 @@
     - name: Slides
       icon: file-powerpoint
       url: https://docs.google.com/presentation/d/13eW9rm_lhrbRbwrk_sCeUCkitFI52OJRLbsGVy7eJmA/edit#slide=id.g879acc97aa_0_71
+- name: "Building Multi-Architecture Images With Buildpacks"
+  presenters:
+    - Aidan Delaney, Bloomberg
+  description: >-
+    An introduction to the key architecture of Buildpacks and the separation of concerns between
+    the buildpack and platform APIs, with a deep dive into pack and kpack. Building on that, the
+    talk workshops approaches to supporting multi-architecture builds, so applications built on
+    x86_64 can produce images for both x86_64 and ARM64.
+  event_name: KubeCon NA
+  youtube_id: Sdr5axlOnDI
+  year: 2022
+- name: "Unraveling the Magic Behind Buildpacks"
+  presenters:
+    - Sambhav Kothari, Bloomberg
+    - Natalie Arellano, VMware
+  description: >-
+    Cloud Native Buildpacks makes building container images a breeze. It comes with out-of-the-box
+    support for rebasing, reproducibility, multiple entrypoints and more! In this talk we'll
+    uncover the magic that the lifecycle - the binary at the heart of CNB - uses to convert source
+    code into OCI images.
+  event_name: KubeCon EU
+  youtube_id: Mi_fb5ToOa8
+  year: 2022
 - name: "Intro to Cloud Native Buildpacks"
   presenters:
     - Javier Romero, VMware
@@ -132,6 +285,29 @@
     - name: Slides
       icon: file-powerpoint
       url: https://docs.google.com/presentation/d/1vDv33oHU277mh6oCP7vBqQomMpPFIuzSmMTtfaQyBoY/view
+- name: "Why We Are Choosing Cloud Native Buildpacks at GitLab"
+  presenters:
+    - Abubakar Siddiq, GitLab
+  description: >-
+    GitLab's zero configuration "Auto DevOps" pipeline relies on Herokuish to detect how to build
+    source code into a runnable image. The new tooling from Cloud Native Buildpacks can build
+    smaller images by separating the build layers from the runtime layers. Learn about GitLab's
+    goals, plan, and how they decided to move forward with Cloud Native Buildpacks.
+  event_name: KubeCon EU
+  youtube_id: oTC-itx6ubE
+  year: 2020
+- name: "Building Docker Images with Cloud Native Buildpacks"
+  presenters:
+    - Ben Hale, VMware
+    - Terence Lee, Salesforce
+  description: >-
+    Creating great, secure, and efficient images can be difficult and time consuming. In this
+    talk, you'll learn about Cloud Native Buildpacks, a high-level abstraction for building
+    application images in a secure, reproducible, and efficient manner, and how they automate the
+    delivery of both OS-level and application-level dependency upgrades.
+  event_name: KubeCon EU
+  youtube_id: qoM3tLlcdfs
+  year: 2020
 - name: "Deep Dive: Cloud Native Buildpacks"
   presenters:
     - Joe Kutner, Heroku
@@ -148,6 +324,18 @@
     - name: Slides
       icon: file-powerpoint
       url: https://docs.google.com/presentation/d/14cjPH520VGx9aGi4rHRIqgl7RHdUmCRj6PYFEBINPhs/view
+- name: "Intro to Cloud Native Buildpacks"
+  presenters:
+    - Terence Lee, Heroku
+    - Emily Casey, Pivotal
+  description: >-
+    You're great at running containers but you shouldn't have to be great at building them. In
+    this talk, you'll learn about Cloud Native Buildpacks, a higher-level abstraction for building
+    apps compared to Dockerfiles, and how they automate the delivery of both OS-level and
+    application-level dependency upgrades and help you efficiently handle day-2 app operations.
+  event_name: KubeCon NA
+  youtube_id: SK6e_ZatOaw
+  year: 2019
 - name: "Cloud Native Buildpacks: Containers for Everyone"
   presenters:
     - Danielle Adams, Heroku
@@ -184,4 +372,52 @@
     - name: Slides
       icon: file-powerpoint
       url: https://docs.google.com/presentation/d/14rkLA2hn3nVu_liiW6Y7hy3hSsnz1HueEdLkhvChONM/view
+- name: "Intro: Cloud Native Buildpacks"
+  presenters:
+    - Terence Lee, Heroku
+    - Stephen Levine, Pivotal
+  description: >-
+    You're great at running containers but you shouldn't have to be great at building them. In
+    this talk, you'll learn about Cloud Native Buildpacks, a higher-level abstraction for building
+    apps compared to Dockerfiles, and how they automate the delivery of both OS-level and
+    application-level dependency upgrades and help you efficiently handle day-2 app operations.
+  event_name: KubeCon EU
+  youtube_id: WTE8iu_vnbk
+  year: 2019
+- name: "Deep Dive: Cloud Native Buildpacks"
+  presenters:
+    - Terence Lee, Heroku
+    - Stephen Levine, Pivotal
+  description: >-
+    Learn why you need a buildpack and how to create one. We'll write a simple Python buildpack,
+    take advantage of caching and Docker layers to speed up rebuilds and deploys, and compose it
+    with the Node.js buildpack. Finally, you'll learn how to rebase your application layers on a
+    new image, allowing operators to efficiently deliver OS-level dependency upgrades.
+  event_name: KubeCon EU
+  youtube_id: wZyoZSOfDlc
+  year: 2019
+- name: "Intro: Cloud Native Buildpacks"
+  presenters:
+    - Terence Lee, Heroku
+    - Joe Kutner, Heroku
+  description: >-
+    You're great at running containers but you shouldn't have to be great at building them. In
+    this talk, you'll learn about Cloud Native Buildpacks, a higher-level abstraction for building
+    apps compared to Dockerfiles, and how they automate the delivery of both OS-level and
+    application-level dependency upgrades and help you efficiently handle day-2 app operations.
+  event_name: KubeCon NA
+  youtube_id: t3C2nW0WTRo
+  year: 2018
+- name: "Deep Dive: Cloud Native Buildpacks"
+  presenters:
+    - Terence Lee, Heroku
+    - Joe Kutner, Heroku
+  description: >-
+    Learn why you need a buildpack and how to create one. We'll write a simple Python buildpack,
+    take advantage of caching and Docker layers to speed up rebuilds and deploys, and compose it
+    with the Node.js buildpack. Finally, you'll learn how to rebase your application layers on a
+    new image, allowing operators to efficiently deliver OS-level dependency upgrades.
+  event_name: KubeCon NA
+  youtube_id: KiDK5C0kzJs
+  year: 2018
       
