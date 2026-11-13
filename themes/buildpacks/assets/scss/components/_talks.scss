@@ -17,3 +17,145 @@ Talks Widget
   }
 }
 
+/* Event filter */
+
+.talks-filter {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+  margin: 1.5rem 0 0.5rem;
+
+  &-label {
+    color: $gray-light;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  &-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    align-items: stretch;
+
+    &-list {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding: 2px 2px 6px;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+}
+
+.talks-pill {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.45rem 0.4rem 0.95rem;
+  border: 1px solid rgba($blue-light, 0.25);
+  border-radius: 999px;
+  background-color: $white;
+  box-shadow: 0 1px 2px rgba($blue-dark, 0.06);
+  color: $blue-dark;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+
+  &:hover {
+    border-color: $blue-light;
+    box-shadow: 0 4px 12px rgba($blue-dark, 0.1);
+    transform: translateY(-1px);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $pink;
+    outline-offset: 2px;
+  }
+
+  &-count {
+    min-width: 1.6rem;
+    padding: 0.15rem 0.45rem;
+    border-radius: 999px;
+    background-color: $off-blue;
+    color: $blue-light;
+    font-size: 0.75rem;
+    text-align: center;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  &.is-active {
+    border-color: $blue-dark;
+    background-color: $blue-dark;
+    box-shadow: 0 6px 16px rgba($blue-dark, 0.25);
+    color: $white;
+
+    .talks-pill-count {
+      background-color: $pink;
+      color: $white;
+    }
+  }
+}
+
+/* Coverflow additions */
+
+.coverflow-scene {
+  transition: opacity 0.2s ease;
+
+  &.is-switching {
+    opacity: 0;
+  }
+}
+
+.item-title-overlay .item-event {
+  display: block;
+  margin-bottom: 0.3rem;
+  color: rgba($white, 0.8);
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.coverflow-counter {
+  min-width: 3.5rem;
+  color: $blue-dark;
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  text-align: center;
+}
+
+#talks .coverflow-nav button:disabled {
+  opacity: 0.4;
+  cursor: default;
+  box-shadow: none;
+  transform: none;
+}
+
+.talk-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  color: $blue-dark;
+  font-weight: 600;
+
+  &-item i {
+    margin-right: 0.35rem;
+    color: $pink;
+  }
+}
+
