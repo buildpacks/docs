@@ -53,7 +53,7 @@ dive multi-process-app
 
 The output should look similar to the following:
 
-PLACEHOLDER
+![dive output for the multi-process-app image](/images/dive-inspect-app.png)
 
 As seen in the preceding output, you're presented with `Layers`, `Layer Details`, `Image Details`, and `Current Layer Contents`. To view the contents or explore the file tree of any layer, you need to select the layer on the left using the arrow keys.
 
