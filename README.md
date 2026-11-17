@@ -2,6 +2,7 @@
 
 [![](https://github.com/buildpacks/docs/workflows/Deploy/badge.svg)](https://github.com/buildpacks/docs/actions)
 [![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/buildpacks/docs)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fbuildpacks%2Fdocs.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fbuildpacks%2Fdocs?ref=badge_shield)
 
 ## Preview
 
@@ -34,3 +35,7 @@ Thanks for your interest in the Cloud Native Buildpacks project; your contributi
 ## Stay Updated
 
 To get the latest updates on the project, follow us on [X](https://twitter.com/buildpacks_io), check out our [blog](https://medium.com/buildpacks), or join our [mailing list](https://lists.cncf.io/g/cncf-buildpacks).
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fbuildpacks%2Fdocs.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fbuildpacks%2Fdocs?ref=badge_large)
