@@ -98,7 +98,7 @@ Note: image extensions are not supported for Windows container images.
     * The new run image will be written to `analyzed.toml`
 * Invoke `restorer` with a new required flag (when using extensions): `-build-image`, a tag reference to the builder image in use
   * A new volume mount is introduced with target `/kaniko`; this volume must be writable by the `restorer` user
-* Invoke `extender` (new lifecycle binary), instead of `builder`; the extender will use kaniko to apply the relevant generated Dockerfiles to the build image and then drop privileges to run the `build` phase
+* Invoke `extender` (new lifecycle binary), instead of `builder`; the extender will use `kaniko` to apply the relevant generated Dockerfiles to the build image and then drop privileges to run the `build` phase
   * The same volume from `restore` should be mounted at `/kaniko`
   * The `extender` user should have sufficient permissions to execute all `RUN` instructions in each Dockerfile - typically, it should run as `root`
   * Consult the [platform specification](https://github.com/buildpacks/spec/blob/main/platform.md) for the full list of configuration options for the `extender`
