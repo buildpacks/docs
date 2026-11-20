@@ -57,12 +57,35 @@ HUGO_BIN:=tools/bin/hugo
 $(HUGO_BIN): $(HUGO_RELEASES_CACHE)
 $(HUGO_BIN):
 	@echo "> Installing hugo for $(HUGO_OS) ($(HUGO_ARCH))..."
-	curl -sSL -o $(HUGO_BIN).$(HUGO_EXT) $(shell cat $(HUGO_RELEASES_CACHE) | jq -r '[.assets[] | select (.name | test("extended.*$(HUGO_OS)-$(HUGO_ARCH).*$(HUGO_EXT)"))][0] | .browser_download_url')
+	curl -sSL -o $(HUGO_BIN).$(HUGO_EXT) $(shell cat $(HUGO_RELEASES_CACHE) | jq -r '[.assets[] | select (.name | test("^hugo_[0-9.]+_$(HUGO_OS)-$(HUGO_ARCH)[.]$(HUGO_EXT)$$"))][0] | .browser_download_url')
 ifeq ($(HUGO_EXT), zip)
 	unzip $(HUGO_BIN).$(HUGO_EXT) -d $(TOOLS_BIN)
 else
 	tar mxfz $(HUGO_BIN).$(HUGO_EXT) -C $(TOOLS_BIN) hugo
 endif
+
+# Hugo compiles the site's SCSS with Dart Sass, which it runs as `sass` from the PATH
+SASS_OS:=linux
+SASS_ARCH:=x64
+
+ifeq ($(shell uname -s),Darwin)
+	SASS_OS:=macos
+endif
+
+ifneq ($(filter arm64 aarch64,$(shell uname -m)),)
+	SASS_ARCH:=arm64
+endif
+
+SASS_RELEASES_CACHE:=tools/bin/dart-sass-releases
+$(SASS_RELEASES_CACHE): | $(TOOLS_BIN)
+	curl -sSL $(GITHUB_API_OPTS) https://api.github.com/repos/sass/dart-sass/releases/latest > $(SASS_RELEASES_CACHE)
+
+SASS_DIR:=tools/bin/dart-sass
+SASS_BIN:=$(SASS_DIR)/sass
+$(SASS_BIN): $(SASS_RELEASES_CACHE)
+	@echo "> Installing Dart Sass for $(SASS_OS) ($(SASS_ARCH))..."
+	curl -sSL -o $(SASS_DIR).tar.gz $(shell cat $(SASS_RELEASES_CACHE) | jq -r '[.assets[] | select (.name | test("-$(SASS_OS)-$(SASS_ARCH)[.]tar[.]gz$$"))][0] | .browser_download_url')
+	tar mxfz $(SASS_DIR).tar.gz -C $(TOOLS_BIN)
 
 .PHONY: upgrade-pack
 upgrade-pack: pack-version
@@ -117,7 +140,8 @@ pack-version:
 
 .PHONY: serve
 serve: export PACK_VERSION:=$(PACK_VERSION)
-serve: $(HUGO_BIN) pack-version pack-docs-update
+serve: export PATH:=$(CURDIR)/$(SASS_DIR):$(PATH)
+serve: $(HUGO_BIN) $(SASS_BIN) pack-version pack-docs-update
 	@echo "> Serving..."
 ifeq ($(BASE_URL),)
 	$(HUGO_BIN) server --disableFastRender --port=$(SERVE_PORT)
@@ -127,7 +151,8 @@ endif
 
 .PHONY: build
 build: export PACK_VERSION:=$(PACK_VERSION)
-build: $(HUGO_BIN) pack-version pack-docs-update
+build: export PATH:=$(CURDIR)/$(SASS_DIR):$(PATH)
+build: $(HUGO_BIN) $(SASS_BIN) pack-version pack-docs-update
 	@echo "> Building..."
 	$(HUGO_BIN)
 	# Github Workflows ensures `node` is installed.
