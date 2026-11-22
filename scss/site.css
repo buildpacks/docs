@@ -1003,7 +1003,7 @@ Grid
 **********************************/
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(480px, 100%), 1fr));
   grid-gap: 1rem;
 }
 
@@ -1345,7 +1345,29 @@ Footer
   .sidebar {
     max-height: none;
     overflow-y: visible;
+    padding-bottom: 0.75rem;
   }
+}
+.sidebar .sidebar-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: calc(100% - 2rem);
+  margin: 0.25rem 1rem 0.5rem;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #242960;
+  background-color: #FFFFFF;
+  border: 1px solid #EFEFEF;
+  border-radius: 5px;
+}
+.sidebar .sidebar-toggle__chevron {
+  font-size: 0.85rem;
+  transition: transform 0.2s ease;
+}
+.sidebar .sidebar-toggle[aria-expanded=true] .sidebar-toggle__chevron {
+  transform: rotate(180deg);
 }
 .sidebar ul {
   list-style: none;
@@ -1458,6 +1480,12 @@ Footer
 .docs .docs-content {
   padding: 1rem 2rem 2rem 2rem;
   color: #302C2E;
+  overflow-wrap: break-word;
+}
+@media (max-width: 767.98px) {
+  .docs .docs-content {
+    padding: 1rem 1rem 2rem 1rem;
+  }
 }
 .docs .docs-content h1, .docs .docs-content .h1,
 .docs .docs-content h2, .docs .docs-content .h2,
@@ -1563,6 +1591,11 @@ Footer
   margin-left: -2rem;
   background: transparent linear-gradient(to right, #efefef, rgba(239, 239, 239, 0));
 }
+@media (max-width: 767.98px) {
+  .docs .docs-content hr {
+    margin-left: -1rem;
+  }
+}
 .docs .docs-content:last-child {
   margin-bottom: 0;
 }
@@ -1602,6 +1635,9 @@ Footer
 Highlights
 
 **********************************/
+.highlights > [class*=col] {
+  max-width: calc(100% - 1rem);
+}
 .highlights svg path {
   stroke: #EFEFEF;
   stroke-width: 6px;
@@ -1643,6 +1679,17 @@ Quote
 .quote .author:before {
   content: "- ";
   color: #7C6E75;
+}
+@media (max-width: 575.98px) {
+  .quote {
+    padding: 20px 20px 20px 36px;
+  }
+  .quote:before {
+    left: 6px;
+  }
+  .quote .author {
+    padding-right: 0;
+  }
 }
 
 .tabbable .nav-tabs:not(.nav-pills) a.nav-link {

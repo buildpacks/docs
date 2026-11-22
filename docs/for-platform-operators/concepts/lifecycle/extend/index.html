@@ -161,6 +161,15 @@
     });
   });
   </script>
+
+  
+  <button class="sidebar-toggle d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#docs-nav"
+    aria-expanded="false" aria-controls="docs-nav">
+    <span><i class="fas fa-bars me-2" aria-hidden="true"></i>Docs menu</span>
+    <i class="fas fa-chevron-down sidebar-toggle__chevron" aria-hidden="true"></i>
+  </button>
+
+  <div id="docs-nav" class="collapse d-md-block">
   <ul>
     <li data-nav-id="/docs/" class="dd-item depth-0">
       <a href="/docs/">Getting Started</a>
@@ -876,6 +885,7 @@
 </li>
   </ul>
   
+  </div>
 </nav>
 
 
@@ -909,36 +919,38 @@
 <li>In addition to the outputs enumerated below, outputs produced by <code>extender</code> include those produced by <code>builder</code> - as the <code>lifecycle</code> will run the <code>build</code> phase after extending the <code>build image</code>.</li>
 <li>Platforms MUST skip the <code>builder</code> and proceed to the <code>exporter</code>.</li>
 </ul>
+<div class="table-responsive">
 <table>
-	<thead>
-			<tr>
-					<th>Exit Code</th>
-					<th>Result</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><code>0</code></td>
-					<td>Success</td>
-			</tr>
-			<tr>
-					<td><code>11</code></td>
-					<td>Platform API incompatibility error</td>
-			</tr>
-			<tr>
-					<td><code>12</code></td>
-					<td>Buildpack API incompatibility error</td>
-			</tr>
-			<tr>
-					<td><code>1-10</code>, <code>13-19</code></td>
-					<td>Generic lifecycle errors</td>
-			</tr>
-			<tr>
-					<td><code>100-109</code></td>
-					<td>Extension-specific lifecycle errors</td>
-			</tr>
-	</tbody>
+  <thead>
+    <tr>
+      <th>Exit Code</th>
+      <th>Result</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>0</code></td>
+      <td>Success</td>
+    </tr>
+    <tr>
+      <td><code>11</code></td>
+      <td>Platform API incompatibility error</td>
+    </tr>
+    <tr>
+      <td><code>12</code></td>
+      <td>Buildpack API incompatibility error</td>
+    </tr>
+    <tr>
+      <td><code>1-10</code>, <code>13-19</code></td>
+      <td>Generic lifecycle errors</td>
+    </tr>
+    <tr>
+      <td><code>100-109</code></td>
+      <td>Extension-specific lifecycle errors</td>
+    </tr>
+  </tbody>
 </table>
+</div>
 <ul>
 <li>For each extension in <code>&lt;group&gt;</code> in order, if a <code>Dockerfile</code> exists in <code>&lt;generated&gt;/&lt;buildpack-id&gt;/&lt;kind&gt;.Dockerfile</code>, the <code>lifecycle</code>:
 <ul>

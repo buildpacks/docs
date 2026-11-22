@@ -161,6 +161,15 @@
     });
   });
   </script>
+
+  
+  <button class="sidebar-toggle d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#docs-nav"
+    aria-expanded="false" aria-controls="docs-nav">
+    <span><i class="fas fa-bars me-2" aria-hidden="true"></i>Docs menu</span>
+    <i class="fas fa-chevron-down sidebar-toggle__chevron" aria-hidden="true"></i>
+  </button>
+
+  <div id="docs-nav" class="collapse d-md-block">
   <ul>
     <li data-nav-id="/docs/" class="dd-item depth-0">
       <a href="/docs/">Getting Started</a>
@@ -876,6 +885,7 @@
 </li>
   </ul>
   
+  </div>
 </nav>
 
 
@@ -931,54 +941,56 @@
 </ul>
 <p>Thus, any <code>&lt;layers&gt;/&lt;layer&gt;/&lt;env&gt;</code> directory is for setting environment variables directly, and <code>&lt;layers&gt;/&lt;layer&gt;/&lt;bin&gt;</code>, <code>&lt;layers&gt;/&lt;layer&gt;/&lt;lib&gt;</code>, etc. offer a convenient way to modify <code>POSIX</code> path variables.</p>
 <p>The full list of convenience directories is summarized in the table below:</p>
+<div class="table-responsive">
 <table>
-	<thead>
-			<tr>
-					<th>Env Variable</th>
-					<th>Layer Path</th>
-					<th>Contents</th>
-					<th>Build</th>
-					<th>Launch</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><code>PATH</code></td>
-					<td><code>/bin</code></td>
-					<td>binaries</td>
-					<td>[x]</td>
-					<td>[x]</td>
-			</tr>
-			<tr>
-					<td><code>LD_LIBRARY_PATH</code></td>
-					<td><code>/lib</code></td>
-					<td>shared libraries</td>
-					<td>[x]</td>
-					<td>[x]</td>
-			</tr>
-			<tr>
-					<td><code>LIBRARY_PATH</code></td>
-					<td><code>/lib</code></td>
-					<td>static libraries</td>
-					<td>[x]</td>
-					<td></td>
-			</tr>
-			<tr>
-					<td><code>CPATH</code></td>
-					<td><code>/include</code></td>
-					<td>header files</td>
-					<td>[x]</td>
-					<td></td>
-			</tr>
-			<tr>
-					<td><code>PKG_CONFIG_PATH</code></td>
-					<td><code>/pkgconfig</code></td>
-					<td>pc files</td>
-					<td>[x]</td>
-					<td></td>
-			</tr>
-	</tbody>
+  <thead>
+    <tr>
+      <th>Env Variable</th>
+      <th>Layer Path</th>
+      <th>Contents</th>
+      <th>Build</th>
+      <th>Launch</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>PATH</code></td>
+      <td><code>/bin</code></td>
+      <td>binaries</td>
+      <td>[x]</td>
+      <td>[x]</td>
+    </tr>
+    <tr>
+      <td><code>LD_LIBRARY_PATH</code></td>
+      <td><code>/lib</code></td>
+      <td>shared libraries</td>
+      <td>[x]</td>
+      <td>[x]</td>
+    </tr>
+    <tr>
+      <td><code>LIBRARY_PATH</code></td>
+      <td><code>/lib</code></td>
+      <td>static libraries</td>
+      <td>[x]</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><code>CPATH</code></td>
+      <td><code>/include</code></td>
+      <td>header files</td>
+      <td>[x]</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><code>PKG_CONFIG_PATH</code></td>
+      <td><code>/pkgconfig</code></td>
+      <td>pc files</td>
+      <td>[x]</td>
+      <td></td>
+    </tr>
+  </tbody>
 </table>
+</div>
 <ul>
 <li>User-provided variables are then applied, meaning that it&rsquo;s possible for the end-user to override buildpack-provided variables.</li>
 <li>Finally, <code>platform-defined</code> variables are applied, which eventually override any previous values.</li>

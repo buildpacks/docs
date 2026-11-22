@@ -159,6 +159,15 @@
     });
   });
   </script>
+
+  
+  <button class="sidebar-toggle d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#docs-nav"
+    aria-expanded="false" aria-controls="docs-nav">
+    <span><i class="fas fa-bars me-2" aria-hidden="true"></i>Docs menu</span>
+    <i class="fas fa-chevron-down sidebar-toggle__chevron" aria-hidden="true"></i>
+  </button>
+
+  <div id="docs-nav" class="collapse d-md-block">
   <ul>
     <li data-nav-id="/docs/" class="dd-item depth-0">
       <a href="/docs/">Getting Started</a>
@@ -874,6 +883,7 @@
 </li>
   </ul>
   
+  </div>
 </nav>
 
 
@@ -920,36 +930,38 @@ in favor of existing constructs in the container image ecosystem such as operati
 in order to maintain compatibility with older platforms.</p>
 <h4 id="during-build">During build</h4>
 <p>The lifecycle will provide the following environment variables during <code>detect</code> and <code>build</code> to describe the target os/arch:</p>
+<div class="table-responsive">
 <table>
-	<thead>
-			<tr>
-					<th>Env Variable</th>
-					<th>Description</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><code>CNB_TARGET_OS</code></td>
-					<td>Target OS</td>
-			</tr>
-			<tr>
-					<td><code>CNB_TARGET_ARCH</code></td>
-					<td>Target architecture</td>
-			</tr>
-			<tr>
-					<td><code>CNB_TARGET_ARCH_VARIANT</code></td>
-					<td>Target architecture variant (optional)</td>
-			</tr>
-			<tr>
-					<td><code>CNB_TARGET_DISTRO_NAME</code></td>
-					<td>Target OS distribution name (optional)</td>
-			</tr>
-			<tr>
-					<td><code>CNB_TARGET_DISTRO_VERISON</code></td>
-					<td>Target OS distribution version (optional)</td>
-			</tr>
-	</tbody>
+  <thead>
+    <tr>
+      <th>Env Variable</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>CNB_TARGET_OS</code></td>
+      <td>Target OS</td>
+    </tr>
+    <tr>
+      <td><code>CNB_TARGET_ARCH</code></td>
+      <td>Target architecture</td>
+    </tr>
+    <tr>
+      <td><code>CNB_TARGET_ARCH_VARIANT</code></td>
+      <td>Target architecture variant (optional)</td>
+    </tr>
+    <tr>
+      <td><code>CNB_TARGET_DISTRO_NAME</code></td>
+      <td>Target OS distribution name (optional)</td>
+    </tr>
+    <tr>
+      <td><code>CNB_TARGET_DISTRO_VERISON</code></td>
+      <td>Target OS distribution version (optional)</td>
+    </tr>
+  </tbody>
 </table>
+</div>
 <p>Buildpacks can use this information to modify their behavior depending on the target.</p>
 <h3 id="run-image-extensions-is-supported-experimental">Run image extensions is supported (experimental)</h3>
 <p>In Platform 0.12, extensions can be used to extend not only build-time base images, but runtime base images as well.</p>

@@ -161,6 +161,15 @@
     });
   });
   </script>
+
+  
+  <button class="sidebar-toggle d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#docs-nav"
+    aria-expanded="false" aria-controls="docs-nav">
+    <span><i class="fas fa-bars me-2" aria-hidden="true"></i>Docs menu</span>
+    <i class="fas fa-chevron-down sidebar-toggle__chevron" aria-hidden="true"></i>
+  </button>
+
+  <div id="docs-nav" class="collapse d-md-block">
   <ul>
     <li data-nav-id="/docs/" class="dd-item depth-0">
       <a href="/docs/">Getting Started</a>
@@ -876,6 +885,7 @@
 </li>
   </ul>
   
+  </div>
 </nav>
 
 
@@ -938,44 +948,46 @@ The <code>detector</code> reads the build plans of the buildpacks of the “chos
 </ul>
 <p>If at least one of the above failed on a required buildpack, the trial fails and the detector will look for the next trial. If at least one of the above failed on an optional buildpack, this buildpack should be excluded from the final plan. If all of the trials fail, the group fails (and the detector moves on to the next group).</p>
 <h3 id="exit-codes">Exit Codes</h3>
+<div class="table-responsive">
 <table>
-	<thead>
-			<tr>
-					<th>Exit Code</th>
-					<th>Result</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><code>0</code></td>
-					<td>Success</td>
-			</tr>
-			<tr>
-					<td><code>11</code></td>
-					<td>Platform API incompatibility error</td>
-			</tr>
-			<tr>
-					<td><code>12</code></td>
-					<td>Buildpack API incompatibility error</td>
-			</tr>
-			<tr>
-					<td><code>1-10</code>, <code>13-19</code></td>
-					<td>Generic lifecycle errors</td>
-			</tr>
-			<tr>
-					<td><code>20</code></td>
-					<td>All buildpacks groups have failed to detect w/o error</td>
-			</tr>
-			<tr>
-					<td><code>21</code></td>
-					<td>All buildpack groups have failed to detect and at least one buildpack has errored</td>
-			</tr>
-			<tr>
-					<td><code>22-29</code></td>
-					<td>Detection-specific lifecycle errors</td>
-			</tr>
-	</tbody>
+  <thead>
+    <tr>
+      <th>Exit Code</th>
+      <th>Result</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>0</code></td>
+      <td>Success</td>
+    </tr>
+    <tr>
+      <td><code>11</code></td>
+      <td>Platform API incompatibility error</td>
+    </tr>
+    <tr>
+      <td><code>12</code></td>
+      <td>Buildpack API incompatibility error</td>
+    </tr>
+    <tr>
+      <td><code>1-10</code>, <code>13-19</code></td>
+      <td>Generic lifecycle errors</td>
+    </tr>
+    <tr>
+      <td><code>20</code></td>
+      <td>All buildpacks groups have failed to detect w/o error</td>
+    </tr>
+    <tr>
+      <td><code>21</code></td>
+      <td>All buildpack groups have failed to detect and at least one buildpack has errored</td>
+    </tr>
+    <tr>
+      <td><code>22-29</code></td>
+      <td>Detection-specific lifecycle errors</td>
+    </tr>
+  </tbody>
 </table>
+</div>
 <h3 id="some-links-to-important-parts-of-the-code">Some links to important parts of the code</h3>
 <p>The following file is responsible for the detection command: <a href="https://github.com/buildpacks/lifecycle/blob/main/cmd/lifecycle/detector.go" target="_blank" rel="noopener noreferrer">https://github.com/buildpacks/lifecycle/blob/main/cmd/lifecycle/detector.go<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a>.</p>
 <p>The public functions in the above file are being called by the <code>Run</code> function in the following file: <a href="https://github.com/buildpacks/lifecycle/blob/main/cmd/lifecycle/cli/command.go" target="_blank" rel="noopener noreferrer">https://github.com/buildpacks/lifecycle/blob/main/cmd/lifecycle/cli/command.go<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a></p>

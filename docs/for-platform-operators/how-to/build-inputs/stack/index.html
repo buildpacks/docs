@@ -161,6 +161,15 @@
     });
   });
   </script>
+
+  
+  <button class="sidebar-toggle d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#docs-nav"
+    aria-expanded="false" aria-controls="docs-nav">
+    <span><i class="fas fa-bars me-2" aria-hidden="true"></i>Docs menu</span>
+    <i class="fas fa-chevron-down sidebar-toggle__chevron" aria-hidden="true"></i>
+  </button>
+
+  <div id="docs-nav" class="collapse d-md-block">
   <ul>
     <li data-nav-id="/docs/" class="dd-item depth-0">
       <a href="/docs/">Getting Started</a>
@@ -876,6 +885,7 @@
 </li>
   </ul>
   
+  </div>
 </nav>
 
 
@@ -946,22 +956,24 @@ During rebase, this label will be read by the lifecycle to determine if the prov
 Mixins can be provided at build-time (name prefixed with <code>build:</code>), run-time (name prefixed with <code>run:</code>), or both (name unprefixed).</p>
 <h4 id="declaring-provided-mixins">Declaring provided mixins</h4>
 <p>When declaring provided mixins, both the build and run image of a stack must contain the following label:</p>
+<div class="table-responsive">
 <table>
-	<thead>
-			<tr>
-					<th>Name</th>
-					<th>Description</th>
-					<th>Format</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><code>io.buildpacks.stack.mixins</code></td>
-					<td>List of provided mixins</td>
-					<td>JSON string array</td>
-			</tr>
-	</tbody>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Format</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>io.buildpacks.stack.mixins</code></td>
+      <td>List of provided mixins</td>
+      <td>JSON string array</td>
+    </tr>
+  </tbody>
 </table>
+</div>
 <p><br>
 The following rules apply for mixin declarations:</p>
 <ul>

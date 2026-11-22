@@ -161,6 +161,15 @@
     });
   });
   </script>
+
+  
+  <button class="sidebar-toggle d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#docs-nav"
+    aria-expanded="false" aria-controls="docs-nav">
+    <span><i class="fas fa-bars me-2" aria-hidden="true"></i>Docs menu</span>
+    <i class="fas fa-chevron-down sidebar-toggle__chevron" aria-hidden="true"></i>
+  </button>
+
+  <div id="docs-nav" class="collapse d-md-block">
   <ul>
     <li data-nav-id="/docs/" class="dd-item depth-0">
       <a href="/docs/">Getting Started</a>
@@ -876,6 +885,7 @@
 </li>
   </ul>
   
+  </div>
 </nav>
 
 
@@ -904,28 +914,30 @@
 
         <p>Each directory created by the buildpack under the <code>CNB_LAYERS_DIR</code> can be used as a layer in the final app image or build cache.</p>
 <p>That is, each directory can be used for any of the following purposes:</p>
+<div class="table-responsive">
 <table>
-	<thead>
-			<tr>
-					<th>Layer Type</th>
-					<th></th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><code>Launch</code></td>
-					<td>the directory will be included in the <strong>final app image</strong> as a single layer</td>
-			</tr>
-			<tr>
-					<td><code>Cache</code></td>
-					<td>the directory will be included in the <strong>build cache</strong> and restored to the <code>CNB_LAYERS_DIR</code> on future builds</td>
-			</tr>
-			<tr>
-					<td><code>Build</code></td>
-					<td>the directory will be accessible to <strong>buildpacks that follow</strong> in the build (via the environment)</td>
-			</tr>
-	</tbody>
+  <thead>
+    <tr>
+      <th>Layer Type</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>Launch</code></td>
+      <td>the directory will be included in the <strong>final app image</strong> as a single layer</td>
+    </tr>
+    <tr>
+      <td><code>Cache</code></td>
+      <td>the directory will be included in the <strong>build cache</strong> and restored to the <code>CNB_LAYERS_DIR</code> on future builds</td>
+    </tr>
+    <tr>
+      <td><code>Build</code></td>
+      <td>the directory will be accessible to <strong>buildpacks that follow</strong> in the build (via the environment)</td>
+    </tr>
+  </tbody>
 </table>
+</div>
 <p>A buildpack can control how a layer will be used by creating a <code>&lt;layer&gt;.toml</code> with a name matching the directory it describes in the <code>CNB_LAYERS_DIR</code>.</p>
 <h3 id="example">Example</h3>
 <p>A buildpack might create a <code>$CNB_LAYERS_DIR/python</code> directory and a <code>$CNB_LAYERS_DIR/python.toml</code> with the following contents:</p>

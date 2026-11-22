@@ -161,6 +161,15 @@
     });
   });
   </script>
+
+  
+  <button class="sidebar-toggle d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#docs-nav"
+    aria-expanded="false" aria-controls="docs-nav">
+    <span><i class="fas fa-bars me-2" aria-hidden="true"></i>Docs menu</span>
+    <i class="fas fa-chevron-down sidebar-toggle__chevron" aria-hidden="true"></i>
+  </button>
+
+  <div id="docs-nav" class="collapse d-md-block">
   <ul>
     <li data-nav-id="/docs/" class="dd-item depth-0">
       <a href="/docs/">Getting Started</a>
@@ -876,6 +885,7 @@
 </li>
   </ul>
   
+  </div>
 </nav>
 
 
@@ -904,36 +914,38 @@
 
         <p>The <code>exporter</code> creates the final <code>OCI image</code> and updates the image config with new metadata to reflect the latest changes.</p>
 <h3 id="exit-codes">Exit Codes</h3>
+<div class="table-responsive">
 <table>
-	<thead>
-			<tr>
-					<th>Exit Code</th>
-					<th>Result</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><code>0</code></td>
-					<td>Success</td>
-			</tr>
-			<tr>
-					<td><code>11</code></td>
-					<td>Platform API incompatibility error</td>
-			</tr>
-			<tr>
-					<td><code>12</code></td>
-					<td>Buildpack API incompatibility error</td>
-			</tr>
-			<tr>
-					<td><code>1-10</code>, <code>13-19</code></td>
-					<td>Generic lifecycle errors</td>
-			</tr>
-			<tr>
-					<td><code>60-69</code></td>
-					<td>Export-specific lifecycle errors</td>
-			</tr>
-	</tbody>
+  <thead>
+    <tr>
+      <th>Exit Code</th>
+      <th>Result</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>0</code></td>
+      <td>Success</td>
+    </tr>
+    <tr>
+      <td><code>11</code></td>
+      <td>Platform API incompatibility error</td>
+    </tr>
+    <tr>
+      <td><code>12</code></td>
+      <td>Buildpack API incompatibility error</td>
+    </tr>
+    <tr>
+      <td><code>1-10</code>, <code>13-19</code></td>
+      <td>Generic lifecycle errors</td>
+    </tr>
+    <tr>
+      <td><code>60-69</code></td>
+      <td>Export-specific lifecycle errors</td>
+    </tr>
+  </tbody>
 </table>
+</div>
 <h3 id="image">Image</h3>
 <p>The <code>exporter</code> accepts as an argument the <code>&lt;image&gt;</code> tag reference to which the app image will be written, either in an <code>OCI image</code> registry or a <code>docker daemon</code>.</p>
 <ul>

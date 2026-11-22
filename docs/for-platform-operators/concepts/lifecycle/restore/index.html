@@ -161,6 +161,15 @@
     });
   });
   </script>
+
+  
+  <button class="sidebar-toggle d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#docs-nav"
+    aria-expanded="false" aria-controls="docs-nav">
+    <span><i class="fas fa-bars me-2" aria-hidden="true"></i>Docs menu</span>
+    <i class="fas fa-chevron-down sidebar-toggle__chevron" aria-hidden="true"></i>
+  </button>
+
+  <div id="docs-nav" class="collapse d-md-block">
   <ul>
     <li data-nav-id="/docs/" class="dd-item depth-0">
       <a href="/docs/">Getting Started</a>
@@ -876,6 +885,7 @@
 </li>
   </ul>
   
+  </div>
 </nav>
 
 
@@ -932,36 +942,38 @@
 <p>The <code>lifecycle</code> must use the provided <code>cache-dir</code> or <code>cache-image</code> to retrieve cache contents. The <a href="https://github.com/buildpacks/spec/blob/main/buildpack.md#layer-types" target="_blank" rel="noopener noreferrer">rules<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a> for restoration must be followed when determining how and when to store cache layers.</p>
 <h3 id="exit-codes">Exit Codes</h3>
 <p>If the <code>restore</code> phase was successful or there was any error during the process, the output will have one of the following exit codes:</p>
+<div class="table-responsive">
 <table>
-	<thead>
-			<tr>
-					<th>Exit Code</th>
-					<th>Result</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><code>0</code></td>
-					<td>Success</td>
-			</tr>
-			<tr>
-					<td><code>11</code></td>
-					<td>Platform API incompatibility error</td>
-			</tr>
-			<tr>
-					<td><code>12</code></td>
-					<td>Buildpack API incompatibility error</td>
-			</tr>
-			<tr>
-					<td><code>1-10</code>, <code>13-19</code></td>
-					<td>Generic lifecycle errors</td>
-			</tr>
-			<tr>
-					<td><code>40-49</code></td>
-					<td>Restoration-specific lifecycle errors</td>
-			</tr>
-	</tbody>
+  <thead>
+    <tr>
+      <th>Exit Code</th>
+      <th>Result</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>0</code></td>
+      <td>Success</td>
+    </tr>
+    <tr>
+      <td><code>11</code></td>
+      <td>Platform API incompatibility error</td>
+    </tr>
+    <tr>
+      <td><code>12</code></td>
+      <td>Buildpack API incompatibility error</td>
+    </tr>
+    <tr>
+      <td><code>1-10</code>, <code>13-19</code></td>
+      <td>Generic lifecycle errors</td>
+    </tr>
+    <tr>
+      <td><code>40-49</code></td>
+      <td>Restoration-specific lifecycle errors</td>
+    </tr>
+  </tbody>
 </table>
+</div>
 <hr>
 <p>For more information about the <code>restorer</code>, see the <a href="https://github.com/buildpacks/spec/blob/main/platform.md#restorer" target="_blank" rel="noopener noreferrer">Platform API spec<svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a>.</p>
 

@@ -159,6 +159,15 @@
     });
   });
   </script>
+
+  
+  <button class="sidebar-toggle d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#docs-nav"
+    aria-expanded="false" aria-controls="docs-nav">
+    <span><i class="fas fa-bars me-2" aria-hidden="true"></i>Docs menu</span>
+    <i class="fas fa-chevron-down sidebar-toggle__chevron" aria-hidden="true"></i>
+  </button>
+
+  <div id="docs-nav" class="collapse d-md-block">
   <ul>
     <li data-nav-id="/docs/" class="dd-item depth-0">
       <a href="/docs/">Getting Started</a>
@@ -874,6 +883,7 @@
 </li>
   </ul>
   
+  </div>
 </nav>
 
 
@@ -901,40 +911,42 @@
         </div>
 
         <p>You may specify exactly what buildpacks are used during the build process by referencing them with a URI in any of the following formats.</p>
+<div class="table-responsive">
 <table>
-	<thead>
-			<tr>
-					<th>Type</th>
-					<th>Format</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td>Relative</td>
-					<td><code>&lt;path&gt;</code></td>
-			</tr>
-			<tr>
-					<td>Filesystem</td>
-					<td><code>file://[&lt;host&gt;]/&lt;path&gt;</code></td>
-			</tr>
-			<tr>
-					<td>URL</td>
-					<td><code>http[s]://&lt;host&gt;/&lt;path&gt;</code></td>
-			</tr>
-			<tr>
-					<td>Docker</td>
-					<td><code>docker://[&lt;host&gt;]/&lt;path&gt;[:&lt;tag&gt;⏐@&lt;digest&gt;]</code></td>
-			</tr>
-			<tr>
-					<td>CNB Builder Resource</td>
-					<td><code>urn:cnb:builder[:&lt;id&gt;[@&lt;version&gt;]]</code></td>
-			</tr>
-			<tr>
-					<td>CNB Registry Resource</td>
-					<td><code>urn:cnb:registry[:&lt;id&gt;[@&lt;version&gt;]]</code></td>
-			</tr>
-	</tbody>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Format</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Relative</td>
+      <td><code>&lt;path&gt;</code></td>
+    </tr>
+    <tr>
+      <td>Filesystem</td>
+      <td><code>file://[&lt;host&gt;]/&lt;path&gt;</code></td>
+    </tr>
+    <tr>
+      <td>URL</td>
+      <td><code>http[s]://&lt;host&gt;/&lt;path&gt;</code></td>
+    </tr>
+    <tr>
+      <td>Docker</td>
+      <td><code>docker://[&lt;host&gt;]/&lt;path&gt;[:&lt;tag&gt;⏐@&lt;digest&gt;]</code></td>
+    </tr>
+    <tr>
+      <td>CNB Builder Resource</td>
+      <td><code>urn:cnb:builder[:&lt;id&gt;[@&lt;version&gt;]]</code></td>
+    </tr>
+    <tr>
+      <td>CNB Registry Resource</td>
+      <td><code>urn:cnb:registry[:&lt;id&gt;[@&lt;version&gt;]]</code></td>
+    </tr>
+  </tbody>
 </table>
+</div>
 <h5 id="fallback-behavior">Fallback behavior</h5>
 <p>When a string does not include a scheme prefix (ex. <code>docker://</code>) and also does not match a path on the filesystem,
 a platform may attempt to resolve it to a URI in the following order:</p>

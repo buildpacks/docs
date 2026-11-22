@@ -159,6 +159,15 @@
     });
   });
   </script>
+
+  
+  <button class="sidebar-toggle d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#docs-nav"
+    aria-expanded="false" aria-controls="docs-nav">
+    <span><i class="fas fa-bars me-2" aria-hidden="true"></i>Docs menu</span>
+    <i class="fas fa-chevron-down sidebar-toggle__chevron" aria-hidden="true"></i>
+  </button>
+
+  <div id="docs-nav" class="collapse d-md-block">
   <ul>
     <li data-nav-id="/docs/" class="dd-item depth-0">
       <a href="/docs/">Getting Started</a>
@@ -874,6 +883,7 @@
 </li>
   </ul>
   
+  </div>
 </nav>
 
 
@@ -923,28 +933,30 @@
 </li>
 </ul>
 <p>Valid <code>&lt;ext&gt;</code> extensions are as follows:</p>
+<div class="table-responsive">
 <table>
-	<thead>
-			<tr>
-					<th>SBOM Media Type</th>
-					<th>File Extension</th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><code>application/vnd.cyclonedx+json</code></td>
-					<td><code>cdx.json</code></td>
-			</tr>
-			<tr>
-					<td><code>application/spdx+json</code></td>
-					<td><code>spdx.json</code></td>
-			</tr>
-			<tr>
-					<td><code>application/vnd.syft+json</code></td>
-					<td><code>syft.json</code></td>
-			</tr>
-	</tbody>
+  <thead>
+    <tr>
+      <th>SBOM Media Type</th>
+      <th>File Extension</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>application/vnd.cyclonedx+json</code></td>
+      <td><code>cdx.json</code></td>
+    </tr>
+    <tr>
+      <td><code>application/spdx+json</code></td>
+      <td><code>spdx.json</code></td>
+    </tr>
+    <tr>
+      <td><code>application/vnd.syft+json</code></td>
+      <td><code>syft.json</code></td>
+    </tr>
+  </tbody>
 </table>
+</div>
 <p>SBOM files for launch will be included in the application image if the platform api supports it; SBOM files for build may be saved off by the platform prior to the build container exiting.</p>
 <p>Layer-associated SBOM files will be cached and restored to the buildpack layers directory on re-builds of the same image (much like the <code>&lt;layers&gt;/&lt;layer&gt;.toml</code> metadata file). <code>&lt;layers&gt;/launch.sbom.&lt;ext&gt;</code> and <code>&lt;layers&gt;/build.sbom.&lt;ext&gt;</code> must be re-created on each build.</p>
 <p>The <code>[bom]</code> tables in launch.toml and build.toml are deprecated, but remain supported to enable backwards compatibility with platforms implementing Platform API &lt; 0.8.</p>

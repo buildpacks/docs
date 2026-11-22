@@ -161,6 +161,15 @@
     });
   });
   </script>
+
+  
+  <button class="sidebar-toggle d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#docs-nav"
+    aria-expanded="false" aria-controls="docs-nav">
+    <span><i class="fas fa-bars me-2" aria-hidden="true"></i>Docs menu</span>
+    <i class="fas fa-chevron-down sidebar-toggle__chevron" aria-hidden="true"></i>
+  </button>
+
+  <div id="docs-nav" class="collapse d-md-block">
   <ul>
     <li data-nav-id="/docs/" class="dd-item depth-0">
       <a href="/docs/">Getting Started</a>
@@ -876,6 +885,7 @@
 </li>
   </ul>
   
+  </div>
 </nav>
 
 
@@ -938,27 +948,29 @@ environment variables.</p>
 <pre tabindex="0"><code>docker run sample-app
 </code></pre><!--+- "{{execute}}"+-->
 <p>The following environment variables were set and available to buildpacks at build-time:</p>
+<div class="table-responsive">
 <table>
-	<thead>
-			<tr>
-					<th>Name</th>
-					<th>Value</th>
-					<th><em>Source</em></th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><code>HELLO</code></td>
-					<td><code>WORLD</code></td>
-					<td><em>hard-coded inline value</em></td>
-			</tr>
-			<tr>
-					<td><code>FOO</code></td>
-					<td><code>BAR</code></td>
-					<td><em>current environment</em></td>
-			</tr>
-	</tbody>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Value</th>
+      <th><em>Source</em></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>HELLO</code></td>
+      <td><code>WORLD</code></td>
+      <td><em>hard-coded inline value</em></td>
+    </tr>
+    <tr>
+      <td><code>FOO</code></td>
+      <td><code>BAR</code></td>
+      <td><em>current environment</em></td>
+    </tr>
+  </tbody>
 </table>
+</div>
 <h3 id="using-env-files---env-file">Using env files (<code>--env-file</code>)</h3>
 <p>The <code>--env-file</code> parameter must be a path to a file where each line is one of the following:</p>
 <ul>
@@ -992,27 +1004,29 @@ environment variables.</p>
 <pre tabindex="0"><code>docker run sample-app
 </code></pre><!--+- "{{execute}}"+-->
 <p>The following environment variables were set and available to buildpacks at build-time:</p>
+<div class="table-responsive">
 <table>
-	<thead>
-			<tr>
-					<th>Name</th>
-					<th>Value</th>
-					<th><em>Source</em></th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><code>HELLO</code></td>
-					<td><code>WORLD</code></td>
-					<td><em>hard-coded value in file</em></td>
-			</tr>
-			<tr>
-					<td><code>FOO</code></td>
-					<td><code>BAR</code></td>
-					<td><em>current environment</em></td>
-			</tr>
-	</tbody>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Value</th>
+      <th><em>Source</em></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>HELLO</code></td>
+      <td><code>WORLD</code></td>
+      <td><em>hard-coded value in file</em></td>
+    </tr>
+    <tr>
+      <td><code>FOO</code></td>
+      <td><code>BAR</code></td>
+      <td><em>current environment</em></td>
+    </tr>
+  </tbody>
 </table>
+</div>
 <blockquote>
 <p><strong>NOTE:</strong> Variables defined using <code>--env</code> take precedence over variables defined in <code>--env-file</code>.</p>
 </blockquote>
@@ -1046,22 +1060,24 @@ EOL
 <pre tabindex="0"><code>docker run sample-app
 </code></pre><!--+- "{{execute}}"+-->
 <p>The following environment variables were set and available to buildpacks at build-time:</p>
+<div class="table-responsive">
 <table>
-	<thead>
-			<tr>
-					<th>Name</th>
-					<th>Value</th>
-					<th><em>Source</em></th>
-			</tr>
-	</thead>
-	<tbody>
-			<tr>
-					<td><code>HELLO</code></td>
-					<td><code>WORLD</code></td>
-					<td><em>hard-coded value in file</em></td>
-			</tr>
-	</tbody>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Value</th>
+      <th><em>Source</em></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>HELLO</code></td>
+      <td><code>WORLD</code></td>
+      <td><em>hard-coded value in file</em></td>
+    </tr>
+  </tbody>
 </table>
+</div>
 <blockquote>
 <p><strong>NOTE:</strong> Variables defined using <code>--env</code> or <code>--env-file</code> take precedence over variables defined in the <code>project.toml</code>.</p>
 </blockquote>

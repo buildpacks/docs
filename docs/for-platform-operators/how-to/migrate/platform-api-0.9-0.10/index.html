@@ -159,6 +159,15 @@
     });
   });
   </script>
+
+  
+  <button class="sidebar-toggle d-md-none" type="button" data-bs-toggle="collapse" data-bs-target="#docs-nav"
+    aria-expanded="false" aria-controls="docs-nav">
+    <span><i class="fas fa-bars me-2" aria-hidden="true"></i>Docs menu</span>
+    <i class="fas fa-chevron-down sidebar-toggle__chevron" aria-hidden="true"></i>
+  </button>
+
+  <div id="docs-nav" class="collapse d-md-block">
   <ul>
     <li data-nav-id="/docs/" class="dd-item depth-0">
       <a href="/docs/">Getting Started</a>
@@ -874,6 +883,7 @@
 </li>
   </ul>
   
+  </div>
 </nav>
 
 
@@ -935,7 +945,7 @@ args = [&#34;always-1&#34;, &#34;always-2&#34;]
 <h4 id="implications-of-upgrading-1">Implications of upgrading</h4>
 <p>For processes from older buildpacks, upgrading the platform will not change the command invocation.</p>
 <h3 id="image-extensions-are-supported-experimental">Image extensions are supported (experimental)</h3>
-<p>Platform 0.10 introduces image extensions as experimental components for customizing build and run-time base images (see <a href="/docs/for-platform-operators/concepts/extension">here</a> for more information). Image extensions output Dockerfiles which are applied by the lifecycle using [kaniko][https://github.com/GoogleContainerTools/kaniko], a tool for building container images in Kubernetes, as a library.</p>
+<p>Platform 0.10 introduces image extensions as experimental components for customizing build and run-time base images (see <a href="/docs/for-platform-operators/concepts/extension">here</a> for more information). Image extensions output Dockerfiles which are applied by the lifecycle using <a href="https://github.com/GoogleContainerTools/kaniko" target="_blank" rel="noopener noreferrer"><code>kaniko</code><svg class="external-link-icon" viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg><span class="visually-hidden">(opens in a new tab)</span></a>, a tool for building container images in Kubernetes, as a library.</p>
 <p>Note: image extensions are not supported for Windows container images.</p>
 <ul>
 <li>To create a builder with extensions, ensure the <code>pack</code> version in use is at least <code>0.28.0</code> and enable experimental features: <code>pack config experimental</code>.</li>
@@ -956,7 +966,7 @@ args = [&#34;always-1&#34;, &#34;always-2&#34;]
 <li>A new volume mount is introduced with target <code>/kaniko</code>; this volume must be writable by the <code>restorer</code> user</li>
 </ul>
 </li>
-<li>Invoke <code>extender</code> (new lifecycle binary), instead of <code>builder</code>; the extender will use kaniko to apply the relevant generated Dockerfiles to the build image and then drop privileges to run the <code>build</code> phase
+<li>Invoke <code>extender</code> (new lifecycle binary), instead of <code>builder</code>; the extender will use <code>kaniko</code> to apply the relevant generated Dockerfiles to the build image and then drop privileges to run the <code>build</code> phase
 <ul>
 <li>The same volume from <code>restore</code> should be mounted at <code>/kaniko</code></li>
 <li>The <code>extender</code> user should have sufficient permissions to execute all <code>RUN</code> instructions in each Dockerfile - typically, it should run as <code>root</code></li>
