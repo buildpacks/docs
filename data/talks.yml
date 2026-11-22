@@ -9,6 +9,16 @@
 #     - name: Name of resource
 #       icon: Icon name (font-awesome 5 - https://fontawesome.com/icons?d=gallery&p=2&m=free)
 #       url: URL to resource
+- name: "Container Builds at Scale with Buildpacks"
+  presenters:
+    - Joe Kutner, Salesforce
+  description: >-
+    A lightning talk on how Cloud Native Buildpacks transform application source code into images
+    that can run on any cloud, covering the Pack CLI, buildpacks from the Buildpack Registry, and
+    the caching and modularity that make container builds work at scale.
+  event_name: KubeCon NA
+  youtube_id: vyyXCx-gpKE
+  year: 2026
 - name: "Buildpacks: Towards 1.0, AI and Other Things"
   presenters:
     - Aidan Delaney, Bloomberg
