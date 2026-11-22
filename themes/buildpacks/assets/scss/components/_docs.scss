@@ -55,6 +55,12 @@
   .docs-content {
     padding: 1rem 2rem 2rem 2rem;
     color: $gray-dark;
+    // Let long URLs and identifiers wrap instead of widening the page
+    overflow-wrap: break-word;
+
+    @media (max-width: 767.98px) {
+      padding: 1rem 1rem 2rem 1rem;
+    }
 
     h1, .h1,
     h2, .h2,
@@ -135,6 +141,10 @@
       margin: 2rem 0;
       margin-left: -2rem;
       background: transparent linear-gradient(to right, rgba($off-gray, 1), rgba($off-gray, 0));
+
+      @media (max-width: 767.98px) {
+        margin-left: -1rem;
+      }
     }
 
     &:last-child {

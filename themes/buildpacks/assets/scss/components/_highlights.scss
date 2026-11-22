@@ -5,6 +5,12 @@ Highlights
 **********************************/
 
 .highlights {
+  // Cards use `m-2` margins; once they stack full-width on phones, take that
+  // margin out of their width so they don't push the page sideways.
+  > [class*="col"] {
+    max-width: calc(100% - 1rem);
+  }
+
   svg path {
     stroke: $off-gray;
     stroke-width: 6px;
