@@ -9,6 +9,19 @@
 #     - name: Name of resource
 #       icon: Icon name (font-awesome 5 - https://fontawesome.com/icons?d=gallery&p=2&m=free)
 #       url: URL to resource
+- name: "Building Better Integration Test Images with Buildpacks"
+  presenters:
+    - Kathan Kashiparekh, Salesforce
+    - Damini Satya, Salesforce
+  description: >-
+    Learn the fundamentals of Cloud Native Buildpacks, how to get started using them, and how
+    Salesforce uses them to generate integration test images that let developers write custom test
+    scripts without maintaining the underlying container image. Leave with practical patterns for
+    reducing container maintenance, simplifying vulnerability management, and enabling developers
+    to safely extend containerized environments without becoming container experts.
+  event_name: KubeCon NA
+  youtube_id: 73ZRycfxUMA
+  year: 2026
 - name: "Container Builds at Scale with Buildpacks"
   presenters:
     - Joe Kutner, Salesforce
