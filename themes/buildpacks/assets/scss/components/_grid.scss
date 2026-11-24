@@ -6,6 +6,8 @@ Grid
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+  // Never ask for a column wider than the screen, so phones get one full-width column
+  // (unquote: emit the CSS min() as-is instead of Sass's own min function)
+  grid-template-columns: repeat(auto-fit, minmax(unquote("min(480px, 100%)"), 1fr));
   grid-gap: 1rem;
 }

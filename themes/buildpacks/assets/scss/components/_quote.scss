@@ -37,4 +37,17 @@ Quote
       color: $gray-light;
     }
   }
+
+  // Phones: the wide side padding leaves only a sliver for the text
+  @media (max-width: 575.98px) {
+    padding: 20px 20px 20px 36px;
+
+    &:before {
+      left: 6px;
+    }
+
+    .author {
+      padding-right: 0;
+    }
+  }
 }
