@@ -104,6 +104,43 @@ docker run --rm --entrypoint sys-info -it my-app
 
 We're sure you'll be able to create more useful builders.
 
+### 5. Create a multi-platform builder
+
+A builder can be created for more than one platform (for example `linux/amd64` and `linux/arm64`).
+When you publish a multi-platform builder, `pack` creates one builder image per platform and an
+[image index](https://github.com/opencontainers/image-spec/blob/main/image-index.md) that references them all,
+so that platforms pulling the builder get the image that matches their architecture.
+
+First, make sure that the build base image, the run base images, and any buildpacks referenced with `docker://` in your `builder.toml`
+are available for every platform you want to support.
+
+Then, declare the platforms in the `[[targets]]` list of the `builder.toml`:
+
+```toml
+[[targets]]
+os = "linux"
+arch = "amd64"
+
+[[targets]]
+os = "linux"
+arch = "arm64"
+```
+
+Alternatively, provide the platforms with the `--target` flag, which overrides the `[[targets]]` in the `builder.toml`:
+
+```bash
+pack builder create registry.example.com/my-org/my-builder:resolute --config ./builder.toml --publish \
+  --target linux/amd64 --target linux/arm64
+```
+
+> **NOTE:** Multi-platform builders must be published to a registry with `--publish`. Without it, `pack` exports the builder to the local
+> Docker daemon, which can only hold an image for a single platform, so only one target is allowed.
+
+If your registry doesn't allow overwriting existing tags, add `--append-image-name-suffix` to push each platform-specific builder
+using an `[os]-[arch]` suffix in the tag (for example, `my-builder:resolute-linux-amd64`) before the image index is created.
+
+For the full list of options of a target, such as `variant` and `distros`, see the [builder config][builder-config] reference.
+
 ### References
 
 For additional sample builders and buildpacks, check out our [samples][samples] repo.

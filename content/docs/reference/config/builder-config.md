@@ -105,6 +105,25 @@ The schema is as follows:
     > at the time of `pack`'s release. In other words, for a particular version of `pack`, this default
     > will not change despite new lifecycle versions being released.
 
+- #### `targets` _(list, optional)_
+
+  A list of platforms to create the builder for. When more than one target is specified, the builder must be published to a registry
+  (`pack builder create --publish`) and an image index referencing the builder image for each platform is created.
+  The `--target` flag of `pack builder create` overrides this list. Each target has the following fields, all optional
+  (though at least one should be provided):
+
+  - **`os`** _(string, optional)_\
+    The operating system name, for example `linux`.
+
+  - **`arch`** _(string, optional)_\
+    The architecture, for example `amd64` or `arm64`.
+
+  - **`variant`** _(string, optional)_\
+    The architecture variant, for example `v8`.
+
+  - **`distros`** _(list, optional)_\
+    A list of operating system distributions, each with a **`name`** and a **`version`**.
+
 - #### `build.env` _(optional)_
 
   The [[[build.env]]](https://github.com/buildpacks/spec/blob/main/buildpack.md#environment-variable-modification-rules) is used to specify [operator-defined](https://github.com/buildpacks/spec/blob/main/platform.md#operator-defined-variables) build-time environment variables for `buildpacks`. Set `CNB_BUILD_CONFIG_DIR` in pack's environment to override the default directory (`/cnb/build-config/env`) where environment variable files are stored within the builder.
